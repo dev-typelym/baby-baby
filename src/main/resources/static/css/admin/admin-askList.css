@@ -1,0 +1,39 @@
+.add-button {
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: 100px;
+    height: 20px;
+    background-color: #fff;
+	border-radius: 3px;
+    font-weight: bold;
+}
+
+.add-button:hover {
+	color: #c97793;
+}
+
+.anouncement-content{
+    height: 85%;
+    width: 100%;
+    padding: 0px 20px;
+    border: none;
+    resize: none;
+    color: #777777;
+    font-family: inherit;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.content-div{
+    height: 200px;
+}
+
+#answer-write .user-modal-shape {
+    height: 488px;
+}
+
+.answer {
+    z-index: 1;
+}

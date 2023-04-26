@@ -1,0 +1,50 @@
+.add-button {
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: 100px;
+    height: 20px;
+    background-color: #fff;
+	border-radius: 3px;
+    font-weight: bold;
+}
+
+.add-button:hover {
+	color: #c97793;
+}
+
+.anouncement-content{
+    height: 85%;
+    width: 100%;
+    padding: 0px 20px;
+    border: none;
+    resize: none;
+    color: #777777;
+    font-family: inherit;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.content-div{
+    height: 200px;
+}
+
+.profile-img-wrapper {
+    display: flex;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    position: relative;
+}
+
+.label-for-update-img{
+    display: block;
+    width: 32px;
+    position: absolute;
+    bottom: -16px;
+    right: -14px;
+    cursor: pointer;
+}
