@@ -92,7 +92,7 @@ strong {
 .free-board-top .free-board-title {
     float: left;
     margin-bottom: 24px;
-    background: #2c3d50;
+    background: #8e8315;
     width: 100%;
     height: 100px;
 }
@@ -123,7 +123,7 @@ strong {
     width: 70px;
     text-align: center;
     line-height: initial;
-    color: #2c3d50;
+    color: #8e8315;
     font-size: 14px;
 }
 
@@ -144,7 +144,7 @@ strong {
 .title-bar-text span {
     display: block;
     margin-top: 2px;
-    color: #a6afde;
+    color: #c3ce8d;
     font-size: 13px;
 }
 
@@ -207,15 +207,14 @@ strong {
 }
 
 .bar-button .type-event>em {
-    background: #9f8673;
+    background: #ff4040;
 }
 
 .bar-button .type-recruitment>em {
-    background: #705f53;
+    background: #F7E600;
 }
-
 .bar-button .type-free>em {
-    background: #90949c;
+    background: #0055ff;
 }
 
 .free-board-form {
@@ -289,7 +288,7 @@ strong {
 }
 
 .type-category {
-    background: #705f53;
+    background: #F7E600;
 }
 
 .detail-title {
@@ -376,7 +375,7 @@ button:not(:disabled) {
 .best-list {
     position: relative;
     padding: 20px 0;
-    border-top: 1px solid #006633;
+    border-top: 1px solid #F7E600;
 }
 
 .best-list img {
@@ -408,7 +407,7 @@ button:not(:disabled) {
     width: 30px;
     height: 40px;
     font-size: 24px;
-    color: #006633;
+    color: #F7E600;
 }
 
 .best-list ol li .title {

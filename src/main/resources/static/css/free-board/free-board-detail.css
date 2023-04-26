@@ -112,7 +112,7 @@ button:not(:disabled) {
 p.board {
     margin-bottom: 10px;
     font-size: 13px;
-    color: #006633;
+    color: #FFCD4A;
 }
 
 em.type {
@@ -123,7 +123,7 @@ em.type {
     line-height: 24px;
     font-size: 13px;
     color: #fff;
-    background: #006633;
+    background: #FFCD4A;
 }
 
 p.title {
@@ -274,7 +274,7 @@ p.info em.like-count {
     height: 33px;
     line-height: 33px;
     font-size: 14px;
-    background: #006633;
+    background: #FFCD4A;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -413,7 +413,7 @@ button.btn-comment {
 /* 카테고리 별 다른글 */
 .free-board-other {
     padding: 30px 0;
-    border-top: 1px solid #006633;
+    border-top: 1px solid #FFCD4A;
 }
 
 .free-board-other h4 {
@@ -423,7 +423,7 @@ button.btn-comment {
 }
 
 .free-board-other h4 em {
-    color: #006633;
+    color: #FFCD4A;
 }
 
 .other-list ul {
@@ -527,7 +527,7 @@ button.btn-category {
 .best-list {
     position: relative;
     padding: 20px 0;
-    border-top: 1px solid #006633;
+    border-top: 1px solid #FFCD4A;
 }
 
 .best-list img {
@@ -559,7 +559,7 @@ button.btn-category {
     width: 30px;
     height: 40px;
     font-size: 24px;
-    color: #006633;
+    color: #FFCD4A;
 }
 
 .best-list ol li .title {

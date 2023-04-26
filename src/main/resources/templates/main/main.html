@@ -5,13 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>도담도담</title>
+    <title>아기자기</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gugi&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/static/css/components/header.css">
-    <link rel="stylesheet" href="/static/css/main/main.css">
+    <link rel="stylesheet" href="../../static/css/components/header.css">
+    <link rel="stylesheet" href="../../static/css/main/main.css">
 </head>
 <body>
     <header>
@@ -29,7 +29,7 @@
                             <li class="header-menu-category-li"><a
                                 class="header-menu-category-a" href="/templates/main/main.html">
                                     <h1 class="wadiz-logo">
-                                        <span>도담도담</span>
+                                        <span>아기자기</span>
                                     </h1>
                             </a></li>
                             <li class="header-menu-category-li"><a
@@ -47,7 +47,7 @@
                             </a></li>
                         </ul>
                         <div class="web-header-utils">
-                            <div class="header-search-div">
+                            <!-- <div class="header-search-div">
                                 <form>
                                     <div class="header-search-index-div" tabindex="-1">
                                         <div class="header-search-empty-div"></div>
@@ -67,7 +67,7 @@
                                         </button>
                                     </div>
                                 </form>
-                            </div>
+                            </div> -->
                             <c:if
                                 test="${not empty sessionScope.memberId || not empty cookie.memberIdentification }">
                                 <!-- 로그아웃 버튼! -->
@@ -110,9 +110,41 @@
         </div>
     </header>
     <main>
-        <!-- <div class="banner">
+        <section class="banner-container">
+            <!-- 메인 배너 -->
+            <div class="banner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
 
-        </div> -->
+            <!-- 선택 버튼 -->
+            <div class="buttons">
+                <button style="background: white; color: black">1</button>
+                <button style="background: white; color: black">2</button>
+                <button style="background: white; color: black">3</button>
+                <button style="background: black; color: white">4</button>
+            </div>
+            <div class="move-arrow">
+                <!-- 이전 버튼 -->
+                <div class="prev">
+                    <img data-role="none" class="prev-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E %3Cpath fill='none' fill-rule='evenodd' stroke='%23FFF' stroke-width='2' d='M21 17l8 8.014L21.028 33'/%3E %3C/svg%3E" style="display: block;">
+                </div>
+                <!-- 사이 -->
+                <div class="page-move-wrapper">
+                    <span id="page-now">1</span>
+                    <span id="page-total"> / 4 </span>
+                    <div style="line-height: 1;">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='7' fill='none' viewBox='0 0 8 7'%3E %3Cpath fill='%23fff' d='M3 0H5V7H3z'/%3E %3Cpath fill='%23fff' d='M0.5 4.5H2.5V11.5H0.5z' transform='rotate(-90 .5 4.5)'/%3E %3C/svg%3E" alt="icon-plus" class="banner-plus-image">
+                    </div>
+                </div>
+                <!-- 다음 버튼 -->
+                <div class="next">
+                    <img data-role="none" class="prev-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E %3Cpath fill='none' fill-rule='evenodd' stroke='%23FFF' stroke-width='2' d='M21 17l8 8.014L21.028 33'/%3E %3C/svg%3E" style="display: block;">
+                </div>
+            </div>
+        </section>
         <div class="menus-bar">
             <div class="quick-bar">
                 <div class="menu-title">
@@ -299,7 +331,7 @@
                 </div>
             </div>
         </div>
-        <div class="boards-bar">
+       <!--<div class="boards-bar">
             <div class="board-bar">
                 <div class="board-title-bar">
                     <div class="board-title">
@@ -315,7 +347,7 @@
                     </div>
                 </div>
                 <div class="board-ul">
-                    <!-- 게시글 1개 시작 -->
+                    <!-- 게시글 1개 시작 
                     <div class="board-li">
                         <div class="board-title">
                             <div class="board-title-context">
@@ -326,8 +358,8 @@
                             2023.04.04
                         </div>
                     </div>
-                    <!-- 게시글 1개 끝 -->
-                    <!-- 게시글 1개 시작 -->
+                    <!-- 게시글 1개 끝 
+                    <!-- 게시글 1개 시작 
                     <div class="board-li">
                         <div class="board-title">
                             <div class="board-title-context">
@@ -338,8 +370,8 @@
                             2023.02.06
                         </div>
                     </div>
-                    <!-- 게시글 1개 끝 -->
-                    <!-- 게시글 1개 시작 -->
+                    <!-- 게시글 1개 끝 
+                    <!-- 게시글 1개 시작 
                     <div class="board-li">
                         <div class="board-title">
                             <div class="board-title-context">
@@ -350,7 +382,7 @@
                             2023.02.03
                         </div>
                     </div>
-                    <!-- 게시글 1개 끝 -->
+                    <!-- 게시글 1개 끝 
                 </div>
             </div>
             <div class="board-bar">
@@ -368,7 +400,7 @@
                     </div>
                 </div>
                 <div class="board-ul">
-                    <!-- 게시글 1개 시작 -->
+                    <!-- 게시글 1개 시작 
                     <div class="board-li">
                         <div class="board-title">
                             <div class="board-title-context">
@@ -379,8 +411,8 @@
                             2023.04.04
                         </div>
                     </div>
-                    <!-- 게시글 1개 끝 -->
-                    <!-- 게시글 1개 시작 -->
+                    <!-- 게시글 1개 끝 
+                    <!-- 게시글 1개 시작 
                     <div class="board-li">
                         <div class="board-title">
                             <div class="board-title-context">
@@ -391,8 +423,8 @@
                             2023.02.06
                         </div>
                     </div>
-                    <!-- 게시글 1개 끝 -->
-                    <!-- 게시글 1개 시작 -->
+                    <!-- 게시글 1개 끝 
+                    <!-- 게시글 1개 시작 
                     <div class="board-li">
                         <div class="board-title">
                             <div class="board-title-context">
@@ -403,12 +435,12 @@
                             2023.02.03
                         </div>
                     </div>
-                    <!-- 게시글 1개 끝 -->
+                    <!-- 게시글 1개 끝 
                 </div>
             </div>
-        </div>
-        <div class="events-bar">
-            <div class="event-container">
+        </div>-->
+        <div class="recruits-bar">
+            <div class="recruit-container">
                 <button type="button" class="arrow-icon-left">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
@@ -416,6 +448,157 @@
                     </svg>
                 </button>
                 <button type="button" class="arrow-icon-right">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
+                        <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+                <div class="recruit-title">
+                    <div class="recruit-title-container">
+                        <div class="recruit-title-context">
+                            체험학습
+                        </div>
+                        <div class="plus-menu">
+                            <div class="plus">
+                                더보기
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 13L11 8L6 3" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-tabs">
+                    <ul>
+                        <li class="active">
+                            <a href="">전체</a>
+                        </li>
+
+                        <li class="">
+                            <a href="">농촌</a>
+                        </li>
+
+                        <li>
+                            <a href="">미술관/박람회</a>
+                        </li>
+                        
+                        <li>
+                            <a href="">전통</a>
+                        </li>
+                        
+                        <li>
+                            <a href="">공방</a>
+                        </li>
+
+                        <li>
+                            <a href="">과학</a>
+                        </li>
+
+                        <li>
+                            <a href="">박물관</a>
+                        </li>
+
+                        <li>
+                            <a href="">스포츠</a>
+                        </li>
+
+                        <li>
+                            <a href="">기타</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="recruit-swiper-view">
+                    <div class="recruit-swiper-container">
+                        <div class="recruit-swiper-wrapper">
+                            <!-- 모집 박스 1개 시작 -->
+                            <div class="recruit-swiper-box">
+                                <div class="recruit-swiper-container">
+                                    <div class="recruit-swiper-image"></div>
+                                    <div class="recruit-box-context">
+                                        <div class="recruit-box-title">
+                                            [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
+                                        </div>
+                                        <div class="recruit-box-writer">
+                                            와디즈 메이커
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 모집 박스 1개 끝 -->
+                            <!-- 모집 박스 1개 시작 -->
+                           <div class="recruit-swiper-box">
+                                <div class="recruit-swiper-container">
+                                    <div class="recruit-swiper-image"></div>
+                                    <div class="recruit-box-context">
+                                        <div class="recruit-box-title">
+                                            [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
+                                        </div>
+                                        <div class="recruit-box-writer">
+                                            와디즈 메이커
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 모집 박스 1개 끝 -->
+                            <!-- 모집 박스 1개 시작 -->
+                            <div class="recruit-swiper-box">
+                                <div class="recruit-swiper-container">
+                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
+                                    <div class="recruit-box-context">
+                                        <div class="recruit-box-title">
+                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
+                                        </div>
+                                        <div class="recruit-box-writer">
+                                            올린스튜디오 정석현 대표
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 모집 박스 1개 끝 -->
+                            <!-- 모집 박스 1개 시작 -->
+                            <div class="recruit-swiper-box">
+                                <div class="recruit-swiper-container">
+                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
+                                    <div class="recruit-box-context">
+                                        <div class="recruit-box-title">
+                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
+                                        </div>
+                                        <div class="recruit-box-writer">
+                                            올린스튜디오 정석현 대표
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 모집 박스 1개 끝 -->
+                            <!-- 모집 박스 1개 시작 -->
+                            <div class="recruit-swiper-box">
+                                <div class="recruit-swiper-container">
+                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
+                                    <div class="recruit-box-context">
+                                        <div class="recruit-box-title">
+                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
+                                        </div>
+                                        <div class="recruit-box-writer">
+                                            올린스튜디오 정석현 대표
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 모집 박스 1개 끝 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="events-bar">
+            <div class="event-container">
+                <button type="button" class="arrow-icon-left" style="top: 35%;">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
+                        <path d="M22 25L17 20L22 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </button>
+                <button type="button" class="arrow-icon-right" style="top: 35%;">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
                         <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -558,127 +741,15 @@
                 </div>
             </div>
         </div>
-        <div class="recruits-bar">
-            <div class="recruit-container">
-                <button type="button" class="arrow-icon-left">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
-                        <path d="M22 25L17 20L22 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <button type="button" class="arrow-icon-right">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
-                        <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <div class="recruit-title">
-                    <div class="recruit-title-container">
-                        <div class="recruit-title-context">
-                            메이커 성공사례
-                        </div>
-                        <div class="plus-menu">
-                            <div class="plus">
-                                더보기
-                            </div>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 13L11 8L6 3" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="recruit-swiper-view">
-                    <div class="recruit-swiper-container">
-                        <div class="recruit-swiper-wrapper">
-                            <!-- 모집 박스 1개 시작 -->
-                            <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            와디즈 메이커
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                            <!-- 모집 박스 1개 시작 -->
-                            <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            올린스튜디오 정석현 대표
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                            <!-- 모집 박스 1개 시작 -->
-                            <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            올린스튜디오 정석현 대표
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                            <!-- 모집 박스 1개 시작 -->
-                            <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            올린스튜디오 정석현 대표
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                            <!-- 모집 박스 1개 시작 -->
-                            <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            올린스튜디오 정석현 대표
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="events-bar">
             <div class="event-container">
-                <button type="button" class="arrow-icon-left">
+                <button type="button" class="arrow-icon-left" style="top: 35%;">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
                         <path d="M22 25L17 20L22 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                 </button>
-                <button type="button" class="arrow-icon-right">
+                <button type="button" class="arrow-icon-right" style="top: 35%;">
                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
                         <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -779,7 +850,7 @@
                 </div>
                 <a href="" class="apply-form">
                     <svg width="22" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 9.41545L0.5 6.10352e-05H22.5L11.5 9.41545ZM0.5 1.60012V16.0001H22.5V1.60012L11.5 11.0155L0.5 1.60012Z" fill="white"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 9.41545L0.5 6.10352e-05H22.5L11.5 9.41545ZM0.5 1.60012V16.0001H22.5V1.60012L11.5 11.0155L0.5 1.60012Z" fill="black"></path>
                     </svg>
                     <div class="a-context">
                         뉴스레터 신청하기
@@ -792,4 +863,5 @@
 
     </footer>
 </body>
+<script src="../../static/js/main/main.js"></script>
 </html>
