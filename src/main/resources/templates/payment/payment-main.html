@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>payment-main</title>
+    <link rel="stylesheet" href="../../static/css/payment/payment-main.css">
+    <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/variable/woff2/SUIT-Variable.css" rel="stylesheet">
+</head>
+<body>
+    <!-- header-section -->
+    <section class="header"></section>
+    <!-- //header-section -->
+
+    <!-- 전체 div -->
+    <div class="payment-entire-conatiner">
+        <!-- padding-margin을 위한 wrapper -->
+        <div class="payment-wrapper">
+            <!-- 메인 컨텐츠 컨테이너 -->
+            <div class="payment-main-container">
+                <!-- 결제 내용 요약 container -->
+                <div class="payment-info-container">
+                    <p class="payment-info-title">프립정보</p>
+                    <!-- 이벤트 내용 전체 wrapper -->
+                    <div class="payment-info-wrapper">
+                        <!-- 행사 요약 div -->
+                        <div class="payment product-main-info-container">
+                            <div class="payment-main-info-pic">
+                                <img src="https://res.cloudinary.com/frientrip/image/upload/ar_1:1,c_fill,dpr_2,f_auto,g_center,h_112,q_auto,w_112/DSC_1187_9da8e82420f3ab3c1ee83ce01b2205fd8232577a55f51f6835da8461a1779ed3" alt="" class="payment-main-pic">
+                            </div>
+                            <div class="payment-main-info">
+                                <div class="company-name">슈퍼호스트</div>
+                                <div class="event-title">[와인콘서트: 와인오마카세] 와린이를 위한 음악&음식 페어링 클래스</div>
+                            </div>
+                        </div>
+                        <!-- //행사 요약 div -->
+                        <!-- 행사 일정 div-->
+                        <div class="payment option-info-container">
+                            <p>행사 일정</p>
+                            <p class="event-period">
+                               <span>4</span><span>월 </span><span>22</span><span>일 (</span><span>토</span><span>) </span><span>오후</span><span> 1:01</span>
+                            </p>
+                        </div>
+                        <!-- //행사 일정 div-->
+                    </div>
+                    <!-- //이벤트 내용 전체 wrapper -->
+                </div>
+                <!-- //결제 내용 요약 container -->
+                <!-- 구분선 -->
+                <hr class="payment-hr-border">
+                <!-- //구분선 -->
+                <!-- 참여자 info container (단체)-->
+                <div class="payment-contributors-info-container">
+                    <p>참여자 정보 (단체)(장애인)(비장애인)</p>
+                    <br>
+                    <div class="payment-final-price-container">
+                        <p class="summary total-price">참여인원 
+                            <span>3<span>명</span></span>
+                        </p>
+                        <p class="summary discount-price">통솔자 신청 (그룹인원 최대 5명) (그룹 인당 가격)
+                            <span>50,000<span>원</span></span>
+                        </p>
+                        <hr>
+                        <p class="final-price">추가금액 합계
+                            <span>150,000<span>원</span></span>
+                        </p>
+                    </div>
+                </div>
+                <!-- 참여자 info container (단체) -->
+                <hr class="payment-hr-border">
+                <!-- 참여자 info container (개인) -->
+                <div class="payment-contributors-info-container">
+                    <p>참여자 정보 (개인)(보호자 참여)</p>
+                    <br>
+                    <div class="payment-final-price-container">
+                        <p class="summary total-price">참여인원(보호자 포함)
+                            <span><span>2</span><span>명</span></span>
+                        </p>
+
+                        <hr>
+                        <p class="final-price">추가금액 합계 
+                            <span>0<span>원</span></span>
+                        </p>
+                    </div>
+                </div>
+                <!-- 참여자 info container (개인) -->
+                <!-- 구분선 -->
+                <hr class="payment-hr-border">
+                <!-- //구분선 -->
+                <!-- 결제방법 container -->
+                <div class="payment-method-container">
+                    <p>결제 수단</p>
+                    <div>
+                        <div>
+                            <label class="pay-method">
+                                <input type="radio" name="pay-method" value="bootpay" checked="">
+                                <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_142_737)'%3E %3Crect x='29.25' y='6.75' width='18.5' height='26.5' rx='1.25' transform='rotate(90 29.25 6.75)' stroke='%23333333' stroke-width='1.5'/%3E %3Cpath d='M3.5 10.5H28.5V13.5H3.5V10.5Z' fill='%23333333'/%3E %3Cpath d='M21 21.75C21 21.3358 21.3358 21 21.75 21H25.25C25.6642 21 26 21.3358 26 21.75C26 22.1642 25.6642 22.5 25.25 22.5H21.75C21.3358 22.5 21 22.1642 21 21.75Z' fill='%23333333'/%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_142_737'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E">신용/체크카드
+                            </label>
+                        </div>
+                        <!-- <div>
+                            <label class="pay-method">
+                                <input type="radio" name="pay-method" value="naver" checked="">
+                                <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Crect y='6' width='32' height='20' rx='2' fill='%2300C63B'/%3E %3Cpath d='M16.7087 19.1114C16.7087 19.1114 16.7212 19.0869 16.7212 19.0716V16.7331H17.4753C17.8851 16.7331 18.2387 16.6841 18.5359 16.5831C18.8332 16.4821 19.0803 16.3413 19.2837 16.1576C19.4871 15.974 19.6435 15.7505 19.753 15.4904C19.8626 15.2302 19.9189 14.9363 19.9189 14.6119C19.9189 14.367 19.8845 14.1436 19.8125 13.9415C19.7437 13.7395 19.6435 13.562 19.5121 13.4059C19.3807 13.2528 19.2243 13.1212 19.0365 13.0171C18.8488 12.9131 18.6673 12.8396 18.4859 12.7998C18.3075 12.76 18.1511 12.7355 18.0197 12.7233C17.8883 12.711 17.7506 12.7049 17.6067 12.7049H16.1862C16.0986 12.7049 16.0172 12.7325 15.9452 12.7906C15.8733 12.8488 15.8389 12.9437 15.8389 13.0784V19.0716C15.8389 19.0869 15.8451 19.0992 15.8514 19.1114H16.7087ZM16.7212 13.4181H17.5378C17.688 13.4181 17.8445 13.4304 18.0009 13.4518C18.1605 13.4763 18.3138 13.5314 18.464 13.6171C18.6141 13.7028 18.7362 13.8375 18.8394 14.015C18.9395 14.1925 18.9896 14.4129 18.9896 14.6792C18.9896 14.8721 18.9583 15.0526 18.8989 15.2179C18.8363 15.3832 18.7456 15.5271 18.6267 15.6434C18.5078 15.7597 18.3576 15.8546 18.1824 15.9219C18.0072 15.9893 17.785 16.023 17.5191 16.023H16.7243V13.4181H16.7212Z' fill='white'/%3E %3Cpath d='M23.9082 19.0808C23.9082 19.1206 23.9207 19.1512 23.9426 19.1696C23.9551 19.1787 23.9676 19.1849 23.9864 19.1941H24.5371C24.5559 19.1849 24.5809 19.1818 24.5965 19.1696C24.6247 19.1481 24.6372 19.1206 24.6372 19.0808V16.0321C24.6372 15.7505 24.6059 15.5057 24.5402 15.2944C24.4745 15.0832 24.3713 14.9057 24.2273 14.7649C24.0834 14.6241 23.8957 14.5139 23.6641 14.4405C23.4326 14.367 23.151 14.3303 22.8193 14.3303C22.641 14.3303 22.4658 14.3456 22.2906 14.3792C22.1154 14.4098 21.9558 14.4496 21.8087 14.4986C21.6617 14.5476 21.5303 14.5996 21.4176 14.6578C21.305 14.7159 21.2236 14.768 21.1798 14.8108C21.1329 14.8537 21.1047 14.8996 21.0922 14.9486C21.0797 14.9975 21.0735 15.0618 21.0735 15.1475C21.0735 15.1965 21.0766 15.2424 21.0828 15.2853C21.0891 15.3281 21.1016 15.3618 21.1173 15.3893C21.1329 15.4169 21.1517 15.4353 21.1704 15.4506C21.1892 15.4628 21.2143 15.472 21.2424 15.472C21.2831 15.472 21.3457 15.4475 21.4301 15.3985C21.5146 15.3495 21.6179 15.2975 21.743 15.2394C21.8682 15.1812 22.0121 15.1261 22.1779 15.0802C22.3438 15.0312 22.5315 15.0067 22.7411 15.0067C22.9351 15.0067 23.1009 15.0281 23.2324 15.0741C23.3669 15.12 23.4733 15.1873 23.5578 15.2761C23.6422 15.3648 23.7017 15.475 23.7392 15.6097C23.7768 15.7444 23.7955 15.8974 23.7955 16.0719V16.4239H23.1573C22.7974 16.4239 22.4752 16.4545 22.1873 16.5158C21.8995 16.577 21.6554 16.6719 21.4583 16.7943C21.2612 16.9198 21.1079 17.0728 21.0015 17.2626C20.8951 17.4493 20.8419 17.6697 20.8419 17.9268C20.8419 18.1442 20.8795 18.337 20.9577 18.5084C21.0359 18.6798 21.1423 18.8237 21.2831 18.94C21.4208 19.0563 21.5897 19.1451 21.7868 19.2094C21.9839 19.2706 22.203 19.3012 22.447 19.3012C22.7224 19.3012 22.9852 19.243 23.2355 19.1267C23.4827 19.0104 23.7079 18.8451 23.9113 18.6339V19.0869L23.9082 19.0808ZM23.7955 17.9758C23.5859 18.2023 23.3888 18.3737 23.1979 18.4839C23.0071 18.5941 22.8006 18.6492 22.5784 18.6492C22.3062 18.6492 22.0935 18.5788 21.9401 18.4411C21.7868 18.3033 21.7117 18.1166 21.7117 17.8809C21.7117 17.7432 21.7368 17.6238 21.79 17.5167C21.8431 17.4126 21.9276 17.3208 22.0371 17.2442C22.1498 17.1677 22.2906 17.1126 22.4627 17.0728C22.6347 17.0361 22.835 17.0147 23.0697 17.0147H23.7924V17.9727L23.7955 17.9758Z' fill='white'/%3E %3Cpath d='M29.925 14.4435H29.2272C29.2272 14.4435 29.2116 14.4496 29.2053 14.4527C29.1772 14.4711 29.1521 14.5109 29.1302 14.5751L27.8568 18.2207H27.8412L26.5239 14.5966C26.5083 14.5537 26.4895 14.52 26.4739 14.4925C26.4613 14.4711 26.4363 14.4558 26.4081 14.4435H25.6697C25.6697 14.4435 25.6447 14.4527 25.6385 14.4619C25.6103 14.4864 25.5978 14.517 25.5978 14.5568C25.5978 14.5966 25.6103 14.6517 25.6385 14.7221L27.2874 19.041C27.2967 19.0747 27.3155 19.1053 27.3437 19.1359C27.3718 19.1665 27.4 19.1879 27.4313 19.2002L26.7961 20.7704C26.7742 20.8163 26.768 20.8561 26.7711 20.8898C26.7711 20.9235 26.7899 20.951 26.8212 20.9694C26.8493 20.9908 26.8931 21.0031 26.9463 21.0122C27.0026 21.0214 27.0715 21.0245 27.1622 21.0245C27.3343 21.0245 27.4626 21.0092 27.5439 20.9816C27.6284 20.9541 27.6785 20.9112 27.7004 20.8592L28.3167 19.1971L29.975 14.7037C29.9938 14.6425 30.0063 14.5935 30.0063 14.5537C30.0063 14.5139 29.9907 14.4833 29.9625 14.4588C29.9531 14.4527 29.9406 14.4466 29.9281 14.4405L29.925 14.4435Z' fill='white'/%3E %3Cpath d='M2 11V21.3704H12.6005V11H2ZM10.0505 18.6523H8.17633L6.43983 16.1729V18.6523H4.56878V13.7395H6.44608L8.18259 16.2189V13.7395H10.0505V18.6523Z' fill='white'/%3E %3C/svg%3E">네이버 페이
+                            </label>
+                        </div>
+                        <div>
+                            <label class="pay-method">
+                                <input type="radio" name="pay-method" value="kakao" checked="">
+                                <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Crect y='6' width='32' height='20' rx='2' fill='%23FFEB00'/%3E %3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6.2702 12C3.91086 12 2 13.5882 2 15.5226C2 16.7851 2.79944 17.8846 3.98886 18.5158L3.57939 20.0837C3.55989 20.1244 3.57939 20.1855 3.61838 20.2262C3.63788 20.2466 3.67688 20.267 3.69638 20.267C3.71588 20.267 3.75487 20.2466 3.77437 20.2466L5.50975 19.0249C5.76323 19.0656 6.01671 19.086 6.28969 19.086C8.64903 19.086 10.5599 17.4977 10.5599 15.5633C10.5599 13.5882 8.64902 12 6.2702 12Z' fill='black'/%3E %3Cpath d='M14.1672 18.4548V20.7353H12.6073V12.3258H13.6992L13.8942 12.8552C14.2257 12.5091 14.7326 12.1425 15.5321 12.1425C17.053 12.1425 17.7744 13.3235 17.7744 15.2579C17.7744 17.2738 16.663 18.5566 15.0641 18.5566C14.7521 18.5769 14.5182 18.5566 14.1672 18.4548ZM14.1672 13.6901V17.3145C14.2452 17.3349 14.4597 17.3552 14.6742 17.3552C15.7856 17.3552 16.2145 16.5407 16.2145 15.2579C16.2145 14.138 15.9221 13.4661 15.0446 13.4661C14.7326 13.4661 14.4207 13.5679 14.1672 13.6901Z' fill='black'/%3E %3Cpath d='M21.1477 14.7081H22.0251V14.5045C22.0251 13.8326 21.6546 13.5271 21.0307 13.5271C20.5432 13.5271 19.9388 13.6697 19.4318 13.9344L19.0028 12.8552C19.5488 12.448 20.4067 12.1833 21.1672 12.1833C22.6491 12.1833 23.468 12.9977 23.468 14.5656V18.414H22.3761L22.2201 17.905C21.5962 18.3733 21.0112 18.5769 20.5042 18.5769C19.3733 18.5769 18.7299 17.8643 18.7299 16.6629C18.7299 15.3801 19.5683 14.7081 21.1477 14.7081ZM22.0251 16.8462V15.7262H21.3037C20.5042 15.7262 20.0948 16.0317 20.0948 16.6222C20.0948 17.0701 20.3092 17.2941 20.7772 17.2941C21.2257 17.3145 21.7716 17.0905 22.0251 16.8462Z' fill='black'/%3E %3Cpath d='M28.1866 17.7828C27.6407 19.2896 26.9972 20.3891 26.0418 21L25.0863 20.0837C25.6323 19.5747 26.0418 19.086 26.3732 18.4344L24.3064 12.5498L25.8468 12.1222L27.1727 16.8869L28.4791 12.1018L30 12.5498L28.1866 17.7828Z' fill='black'/%3E %3C/svg%3E">카카오 페이
+                            </label>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- //결제방법 container -->
+                <!-- 구분선 -->
+                <hr class="payment-hr-border">
+                <!-- //구분선 -->
+                <!-- 쿠폰 사용 및 조회 container -->
+                <div class="payment-coupon-container">
+                    <p>쿠폰<p>
+                    <div class="payment coupon-wrapper">
+                        <p>할인 쿠폰</p>
+                        <div class="coupon-info">
+                            <div class="coupon-count">
+                                <span>전체 </span><span class="counpon-entire">2</span><span>장, </span>
+                                <span>사용가능 1장</span>
+                            </div>
+                            <button class="check-coupon-btn">선택</button>
+                        </div>
+                        <hr class="hr-lighter">
+                    </div>
+                    <div class="coupon-notion">
+                        <p>쿠폰은 "후기 게시판" 에서 글 작성 시, 또는 "부모님 마당" 에서 글 작성 시 발급 됩니다.</p>
+                        <p style="margin-bottom:0;">쿠폰은 1회 1장씩 사용 가능합니다.</p>
+                    </div>
+                </div>
+                <!-- //쿠폰 사용 및 조회 container -->
+                <!-- 구분선 -->
+                <hr class="payment-hr-border">
+                <!-- //구분선 -->
+                <!-- 최종 결제 금액 안내 -->
+                <div class="payment-final-price-container">
+                    <p class="summary total-price">총 금액
+                        <span>49,000<span>원 x </span><span>1</span><span>명</span></span>
+                    </p>
+                    <p class="summary discount-price">할인 금액
+                        <span><span>-</span>5,000<span>원</span></span>
+                    </p>
+                    <hr>
+                    <p class="final-price">총 결제금액 
+                        <span>45,000<span>원</span></span>
+                    </p>
+                </div>
+                <!-- //최종 결제 금액 안내 -->
+                <!-- 결제동의 문 container -->
+                <div class="payment-purchase-notice-container">
+                    <p>개인정보 제 3자 제공 동의<button type="button">보기</button></p>
+                    <p>결제 대행 서비스 이용약관<button type="button">보기</button></p>
+                </div>
+                <div class="payment-purchase-agreement">위 내용을 모두 확인하였으며, 결제에 동의합니다.</div>
+                <!-- //결제동의 문 container -->
+            </div>
+            <!-- 결제하기 버튼 -->
+            <div class="payment-submit-button">
+                <button>결제하기</button>
+            </div>
+            <!-- //결제하기 버튼 -->
+            <!-- //메인 컨텐츠 컨테이너 -->
+        </div>
+        <!-- //padding-margin을 위한 wrapper -->
+        <!-- 모달 목록 -->
+        <!-- 쿠폰 모달 -->
+        <section id="coupon-modal">
+            <!-- <div class="coupon-modal-container">
+                <div class="coupon main-wrapper">
+                    <div class="coupon title">
+                        <h3>쿠폰 선택</h3>
+                        <button class="close-btn">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E %3Cpath fill='%23333' fill-rule='evenodd' d='M18.104 6.707c.39-.39.39-1.024 0-1.414-.39-.39-1.023-.39-1.414 0L11.7 10.284 6.707 5.293c-.39-.39-1.024-.39-1.414 0-.39.39-.39 1.023 0 1.414l4.991 4.992-4.991 4.991c-.39.39-.39 1.024 0 1.414.39.39 1.023.39 1.414 0l4.992-4.991 4.991 4.991c.39.39 1.024.39 1.414 0 .39-.39.39-1.023 0-1.414L13.113 11.7l4.991-4.992z' clip-rule='evenodd'/%3E %3C/svg%3E">
+                        </button>
+                    </div>
+                <div class="coupon coupon-list">
+                    <div class="coupon coupon-card-container">
+                        <!-- ::before -->
+                        <!--<div class="coupon coupon-card">
+                            <div class="coupon coupon-main">
+                                <div class="coupon-price"><span>5,000</span><span>원</span></div>
+                                <div class="coupon-date"><span>2023-05-01</span><span> 발급</span></div>
+                            </div>
+                            <div class="coupon coupon-title">[보호자 마당] 글 작성 감사 쿠폰</div>
+                        <div class="coupon-right"></div>
+                        </div>
+                        <!-- ::after -->
+                     <!--</div>
+                </div>
+                </div>
+            </div> -->
+        </section>
+        <!-- //쿠폰 모달 -->
+        <!-- 결제 동의 모달1 -->
+        <!-- //결제 동의 모달1 -->
+        <!-- 결제 동의 모달2 -->
+        <!-- //결제 동의 모달2 -->
+        <!-- //모달 목록 -->
+    </div>
+    <!-- //전체 div -->
+    <!-- footer-section -->
+    <section class="footer"></section>
+    <!-- //footer-section -->
+    
+</body>
+</html>

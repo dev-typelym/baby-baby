@@ -1,0 +1,44 @@
+.profile-img-wrapper {
+    display: flex;
+    width: 765px;
+    height: 150px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    overflow-x: scroll;
+}
+
+.user-modal-shape{
+    width: 820px;
+    height: 650px;
+}
+
+.event-status.process{
+    color: green;
+}
+
+.event-status.hold{
+    color: red;
+}
+
+.event-status.end{
+    color: black;
+}
+
+.content-div{
+    height: 200px;
+}
+
+.review-content{
+    height: 85%;
+    width: 100%;
+    padding: 0px 20px;
+    border: none;
+    resize: none;
+    color: #777777;
+    font-family: inherit;
+}
+
+textarea:focus {
+    outline: none;
+}

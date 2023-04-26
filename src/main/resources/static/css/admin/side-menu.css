@@ -1,0 +1,95 @@
+
+
+.side-menu-section {
+    width: 250px;
+    height: 100%;
+}
+
+.side-menu {
+	display: block;
+	position: fixed;
+	top:56px;
+	bottom: 0;
+	width: 250px;
+	background-color: #fff;
+}
+
+.menu-space {
+	height: 15px;
+    border-bottom: 1px dashed #4e4e4e;
+}
+
+.menu-bar li span {
+	margin: 10px;
+}
+
+.menu-bar .menu .menu-flex {
+	font-size: 14px;
+	color: #4e4e4e;
+	display: flex;
+	justify-content: flex-start;
+	margin: 20px 33px 0px;
+}
+
+.menus .select-menu {
+	font-size: 11px;
+	color: #4e4e4e;
+	margin-left: 67px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.menus .select-menu span {
+	margin-left: 5px;
+}
+
+
+.icon {
+	padding-top: 2px;
+    width: 16px;
+	filter: opacity(0.5) drop-shadow(0 0 0 #4e4e4e);
+}
+
+.triangle-button {
+	position:absolute;
+	right: 15px;
+}
+
+.triangle {
+	padding-top: 5px;
+	width: 12px;
+	cursor: pointer;
+}
+
+.menu .triangle-acitve {
+	transform: rotate(180deg);
+	width: 12px;
+}
+
+
+.menu-title div img {
+	padding-top: 5px;
+	width: 20px;
+}
+
+.select-menu {
+	font-size: 10px;
+}
+
+.menus2, .menu1 {
+	display: none;
+}
+
+.info-margin-bottom {
+	margin-bottom: 10px;
+	
+}
+
+.drop-menu-button{
+	cursor: pointer;
+}
+
+.rotate {
+	transform: rotate(180deg);
+	width: 12px;
+}

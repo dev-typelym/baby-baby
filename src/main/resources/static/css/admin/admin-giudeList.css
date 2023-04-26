@@ -1,0 +1,50 @@
+
+.status.accepted{
+    color: green;
+}
+.status.waiting{
+    color: red;
+}
+.field.abled{
+    color: black;
+}
+.field.disabled{
+    color:blueviolet;
+}
+
+.board-info-title-box div{
+    display: flex;
+    margin-top: 7px;
+    justify-content: space-between;
+}
+
+.category-abled,
+.category-disabled,
+.category-entire{
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: 100px;
+    height: 20px;
+    background-color: #fff;
+	border-radius: 3px;
+    font-weight: bold;
+}
+
+
+.category-abled:hover,
+.category-disabled:hover,
+.category-entire:hover{
+    color: #c97793;
+}
+
+.content-list {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    gap: 20px;
+    margin-bottom: 9px;
+}
+
+.guide-file{
+    border-bottom: groove;
+}
