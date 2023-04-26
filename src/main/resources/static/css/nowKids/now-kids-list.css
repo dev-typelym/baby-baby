@@ -278,3 +278,131 @@ a, address, article, aside, audio, b, body, button, canvas, caption, dd, div, dl
     font-size: 12px;
     font-weight: 400;
 }
+
+.board-component-image-wrapper{
+    width: 344px;
+    height: 344px;
+    overflow: hidden;
+    cursor: pointer;
+    margin-left: 95px;
+}
+
+.banner-container{
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+    border-radius: 20px;
+}
+
+div.banner {
+    width: 8400px; /* 배너 5개라 * 7 */
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+div.banner div {
+    width: 344px;
+    height: 344px;
+    float: left;
+    transition: transform 0.4s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+div.move-arrow {
+    z-index: 1;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+}
+
+div.move-arrow div {
+    background-size: 7px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+div.prev {
+    position: absolute;
+    transform: rotate(180deg) translate(0px, 50%) !important;
+    top: 50%;
+    left: 10px;
+}
+
+.prev-image{
+    width: 50px;
+    height: 50px;
+}
+
+div.next {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(0, -50%);  
+}
+
+div.buttons {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+}
+
+div.buttons button {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px;
+    width: 7px;
+    height: 7px;
+    border-radius: 4px;
+    line-height: 0;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+div.buttons button span{
+    opacity: 0;
+    height: 7px;
+    display: block;
+}
+
+div.buttons button:nth-child(1) {
+    opacity: 1;
+    background-color: rgba(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px;
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 4px;
+}
+
+.page-move-wrapper {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    bottom: 0px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    height: 28px;
+    padding: 6px 10px;
+    color: rgb(204, 204, 204);
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: -0.36px;
+    font-weight: bold;
+    border-radius: 16px;
+    background-color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+#page-now{
+    color: rgb(255, 255, 255);
+    margin-right: 2px;
+}
+
+#page-total{
+    margin-right: 2px;
+}
