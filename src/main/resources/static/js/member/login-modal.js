@@ -15,3 +15,10 @@ $("div.modal").on("click", function(){
         $("div.modal").fadeOut(500);
     }
 });
+const $passwordInput = $("#password-input"); //비밀번호 
+const $passwordCheckInput = $(".re-input-password-container");//비밀번호체크
+
+
+$("#eye1").on("click",function(){
+    $passwordInput.type = 'text';
+})
