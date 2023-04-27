@@ -1,89 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My 정보설정</title>
-      <!-- link 적용 -->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="../../static/css/myPage/myPage-info.css">
-</head>
-<body>
+    <!-- link 적용 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/css/myPage/myPage-info.css" />
+  </head>
+  <body>
     <div id="page-container">
-		<main id="main-app">
-			<!-- main -->
-			<div id="accountWrap">
-	            <!-- S : #newContainer -->
-	            <div id="newContainer"> 
-	                <!-- account-wrap with-footer -->
-	                <div class="account-wrap with-footer">
-	                    <h2 class="big">MY 정보설정</h2>
-	                    <a class="my-info" href="${pageContext.request.contextPath}/dhouse/user/myId.jsp">
-	                        <div class="my-info-text">
-	                            <h3>기본 정보 설정</h3>
-	                            <p>이름, 이메일, 휴대폰, SNS연동 등</p>
-	                        </div>
-	                        <div class="my-info-btn">
-	                            <i class="wadizicon wa-chevron-right"></i>
-	                        </div>
-	                    </a>
-	                    <a class="my-info" href="${pageContext.request.contextPath}/dhouse/user/myPassword.jsp">
-	                       <div class="my-info-text">
-	                         <h3>비밀번호 등록</h3>
-	                         <p>계정 비밀번호 등록</p>
-	                       </div>
-	                       <div class="my-info-btn">
-	                         <i class="wadizicon wa-chevron-right"></i>
-	                       </div>
-	                    </a>
-                        <a class="my-info" href="${pageContext.request.contextPath}/dhouse/user/myId.jsp">
-	                        <div class="my-info-text">
-	                            <h3>프로필 정보 설정</h3>
-	                            <p>프로필 사진, 경력, 학력,관심분야</p>
-	                        </div>
-	                        <div class="my-info-btn">
-	                            <i class="wadizicon wa-chevron-right"></i>
-	                        </div>
-	                    </a>
-                        <a class="my-info" href="${pageContext.request.contextPath}/dhouse/user/myId.jsp">
-	                        <div class="my-info-text">
-	                            <h3>이벤트 혜택 알림 설정</h3>
-	                            <p>이메일,SMS 알림 설정</p>
-	                        </div>
-	                        <div class="my-info-btn">
-	                            <i class="wadizicon wa-chevron-right"></i>
-	                        </div>
-	                    </a>
-                        <a class="my-info" href="${pageContext.request.contextPath}/dhouse/user/myId.jsp">
-	                        <div class="my-info-text">
-	                            <h3>새소식 알림 설정</h3>
-	                            <p>프로젝트별 새소식(메일, 앱 푸시)수신</p>
-	                        </div>
-	                        <div class="my-info-btn">
-	                            <i class="wadizicon wa-chevron-right"></i>
-	                        </div>
-	                    </a>
-                        <a class="my-info" href="${pageContext.request.contextPath}/dhouse/user/myId.jsp">
-	                        <div class="my-info-text">
-	                            <h3>메이커 팔로잉</h3>
-	                            <p>소식 받기 알림 설정</p>
-	                        </div>
-	                        <div class="my-info-btn">
-	                            <i class="wadizicon wa-chevron-right"></i>
-	                        </div>
-	                    </a>
-	                    <div class="my-info">
-	                        <h3><a href="${pageContext.request.contextPath}/dhouse/user/myPageWithdraw.jsp">회원 탈퇴</a></h3>
-	                    </div>
-	                </div>
-	                <!-- //account-wrap with-footer -->
-	            </div>
-	            <!-- E : #newContainer -->
-        	</div>
-        </main>
-	</div>
-</body>
+      <main id="main-app">
+        <!-- main -->
+        <div id="accountWrap">
+          <!-- S : #newContainer -->
+          <div id="newContainer">
+            <!-- account-wrap with-footer -->
+            <div class="account-wrap with-footer">
+              <h2 class="big">MY 정보설정</h2>
+
+              <div class="wrapper-button">
+                <button class="my-info" href="#">
+                  <div class="my-info-text">
+                    <h3>기본 정보 설정</h3>
+                    <p>이름, 이메일, 휴대폰, SNS연동 등</p>
+                  </div>
+                  <div class="my-info-btn">
+                    <i class="wadizicon wa-chevron-right"></i>
+                  </div>
+                </button>
+                <div class="content-wrapper" style="display: none">
+                  <span>회원정보 수정</span>
+                  <div class="input-btn-wrap">
+                    <div class="input">
+                      <input
+                        type="text"
+                        id="memberNickname"
+                        name="memberNickname"
+                        class="disable input-text"
+                        placeholder="닉네임"
+                        value="린먕"
+                      />
+                    </div>
+                    <div id="emailChangeBtn" class="changeBtnTop btn" data-status="change">
+                      <a href="#" onclick="return false;">
+                        <span>변경</span>
+                      </a>
+                    </div>
+                    <div
+                      id="emailCheckBtn"
+                      class="changeBtn btn"
+                      style="display: none"
+                      data-status="check"
+                    >
+                      <a href="#" onclick="return false;">
+                        <span>인증하기</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="input-btn-wrap">
+                    <div class="input">
+                      <input
+                        type="email"
+                        id="userEmail"
+                        name="userName"
+                        class="disable input-text"
+                        placeholder="이메일 계정"
+                        value="rladnrtjdsla@gmail.com"
+                      />
+                    </div>
+                    <div id="emailChangeBtn" class="changeBtn btn" data-status="change">
+                      <a href="#" onclick="return false;">
+                        <span>변경</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="input-btn-wrap">
+                    <div class="input">
+                      <input
+                        id="mobileNumber"
+                        name="mobileNumber"
+                        type="tel"
+                        class="disable input-text"
+                        placeholder="휴대폰 번호"
+                        value="01012341234"
+                      />
+                    </div>
+                    <div
+                      id="mobileCheckBtn"
+                      class="mobileAuthBtn btn"
+                      style="display: none"
+                      data-status="check"
+                    >
+                      <a href="#" onclick="return false;">
+                        <span>등록하기</span>
+                      </a>
+                    </div>
+                    <div id="mobileChangeBtn" class="mobileAuthBtn btn" data-status="change">
+                      <a href="#" onclick="return false;">
+                        <span>변경</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="wrapper-button">
+                <button class="my-info" href="#">
+                  <div class="my-info-text">
+                    <h3>비밀번호 변경</h3>
+                    <p>현재 비밀번호 변경</p>
+                  </div>
+                  <div class="my-info-btn">
+                    <i class="wadizicon wa-chevron-right"></i>
+                  </div>
+                </button>
+
+                <div class="content-wrapper" style="display: none; padding-left: 0; margin-top: 0">
+                  <div class="account-wrap" style="padding: 0 20px;">
+                    <h2 class="small">비밀번호 변경</h2>
+                    <div class="email-input-wrap">
+                      <form id="saveForm">
+                        <input
+                          type="password"
+                          id="newPassword"
+                          name="newPassword"
+                          class="input-text passwordval"
+                          placeholder="비밀번호"
+                          maxlength="17"
+                        />
+                        <p id="passwordError" class="pwd-text">
+                          영문,숫자,특수문자를 조합한 8자 이상
+                        </p>
+                        <input
+                          type="password"
+                          id="newPasswordConfirm"
+                          name="newPasswordConfirm"
+                          class="input-text passwordvalconfirm"
+                          placeholder="비밀번호 확인"
+                          maxlength="17"
+                        />
+                        <p class="error-text" style="display: none">비밀번호가 같지 않습니다.</p>
+                        <div class="email-input-wrap small">
+                          <div class="btn-wrap smaller">
+                            <button id="saveBtn" type="submit" class="wz button primary block">
+                              확인
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="wrapper-button">
+                <button class="my-info" href="#">
+                  <div class="my-info-text">
+                    <h3>회원 정보 설정</h3>
+                    <p>학력 이력서 등</p>
+                  </div>
+                  <div class="my-info-btn">
+                    <i class="wadizicon wa-chevron-right"></i>
+                  </div>
+                </button>
+                <div class="content-wrapper" style="display: none">
+                  <div id="waccountContainer">
+                    <div id="tabContent1" class="tab-content">
+                      <h5 style="text-align: center">프로필 사진</h5>
+
+                      <div class="profile-area">
+                        <label for="profile">
+                          <img src="../../static/images/myPage/children.png" alt="" />
+                        </label>
+                      </div>
+
+                      <input type="file" style="display: none" id="profile" />
+
+                      <h5 style="margin-top: 15px">직업 / 직책</h5>
+                      <ul class="input-div2">
+                        <li>
+                          <input
+                            type="text"
+                            class="input-text"
+                            maxlength="50"
+                            id="belongsTo"
+                            placeholder="직업"
+                            value=""
+                          />
+                        </li>
+                        <li>
+                          <input
+                            type="text"
+                            class="input-text"
+                            maxlength="50"
+                            id="position"
+                            placeholder="직책"
+                            value=""
+                          />
+                        </li>
+                      </ul>
+                      <h5>주소 변경</h5>
+                      <form id="shippingDetailForm">
+                        <input
+                          type="text"
+                          id="location1"
+                          name="address"
+                          value="주소를 입력해주세요"
+                          class="input-text"
+                          onclick="Wpost(); $('#location1')[0].blur();"
+                        />
+                        <input
+                          type="text"
+                          id="location2"
+                          maxlength="96"
+                          name="addressDetails"
+                          value="상세주소를 입력해주세요"
+                          class="input-text"
+                        />
+                      </form>
+                      <h5>한줄 소개 변경</h5>
+                      <div class="textarea-wrap">
+                        <textarea id="introduceme" maxlength="80"></textarea>
+                      </div>
+                      <div class="btn-bottom">
+                        <ul class="btn-div2">
+                          <li>
+                            <button
+                              type="button"
+                              class="cancel-btn button gray btn-darkgray"
+                              onclick="cancelModify()"
+                              id="mint"
+                            >
+                              취소
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              type="button"
+                              class="save-btn button primary btn-mint"
+                              onclick="modify()"
+                              id="gray"
+                            >
+                              확인
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="wrapper-button">
+                <button class="my-info" href="#">
+                  <div class="my-info-text">
+                    <h3>알림 설정</h3>
+                    <p>체험학습 알림</p>
+                  </div>
+                  <div class="my-info-btn">
+                    <i class="wadizicon wa-chevron-right"></i>
+                  </div>
+                </button>
+                <div class="content-wrapper" style="display: block">
+                  <div class="main-alarm">
+                    <div class="header-alarm">
+                      <h1 style="margin-bottom: 15px;">알림설정</h1>
+                    </div>
+                    <div class="alarm-content">
+                        <div class="member-alarm-all">
+                          <label for="member-follow">회원・서비스 이벤트 혜택 알림 동의</label>
+                          <div class="member-toggle">
+                            <label for="allow" class="not-allow-btn"></label>
+                          </div>
+                        </div>
+                        <ul>
+                          <li>
+                            <div class="first-alarm">
+                              <label for="alarm-member">이메일</label>
+                              <div class="member-toggle">
+                                <label for="allow" class="allow-btn"></label>
+                              </div>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="first-alarm">
+                              <label for="alarm-member">이메일</label>
+                              <div class="member-toggle">
+                                <label for="allow" class="allow-btn"></label>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="my-info">
+                <h3><a href="#">회원 탈퇴</a></h3>
+              </div>
+            </div>
+            <!-- //account-wrap with-footer -->
+          </div>
+          <!-- E : #newContainer -->
+        </div>
+      </main>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="/static/js/myPage/mypage-info.js"></script>
 </html>
