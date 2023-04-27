@@ -125,14 +125,14 @@ header{
 
 .eye {
     background-image: url(../../img/eye_open.png);
-	/* background-image: url(./../../img/eye_open.png); */
+    /* background-image: url(./../../img/eye_open.png); */
     width: 48px;
     background-repeat: no-repeat;
     background-size: 40%;
     display: block;
     position: absolute;
-    top: 15px;
-    left: 26px;
+    top: 0px;
+    left: 8px;
     height: 100%;
 }
 
@@ -532,7 +532,8 @@ header{
     width: 100%;
     max-width: 390px;
     overflow: hidden;
-    font-weight: 700;
+    font-weight: 400;
+    font-size: 16px;
     margin-top: 49px;
 }
 
@@ -883,13 +884,14 @@ header{
 
 .signup-submit-button{
     border-color: #00c4c4;
-    background-color: #00c4c4;
-    color: #fff;
+    background-color: yellow;
+    color: black;
     padding: 9px 29px;
     line-height: 1.75;
+    font-weight: bold;
     font-size: 16px;
     opacity: .45;
-    cursor: default;
+    cursor: pointer;
     /* pointer-events: none; */
     margin-top: 32px;
     position: relative;
@@ -964,3 +966,130 @@ input:focus {
     margin-top: 4px;
     font-style: normal;
 }
+
+
+  /* 주소 버튼 */
+
+
+  input[type="button"] {
+    width: 136px;
+    height: 50px;
+    line-height: 20px;
+    padding: 0px 13px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px;
+    margin: 4px 0px 8px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #80808042;
+    color: rgb(170, 170, 170);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    margin-top: 15px;
+    width: 104%;
+}
+
+.join-container .form-group input[type="button"]:hover {
+    background-color: rgb(127 127 133 / 10%);
+  }
+  
+  
+  #sample6_postcode{
+    width: 51%;
+    padding: 14px;
+    color: rgb(17, 17, 17);
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.42px;
+    border-radius: 3px;
+    border: 1px solid #dde2e6;
+    margin: 4px 0px 8px;
+    margin-right: 24px;
+  }
+
+  #sample6_address,
+  #sample6_detailAddress,
+  #sample6_extraAddress {
+    width: 92%;
+    padding: 14px;
+    color: rgb(17, 17, 17);
+    font-size: 14px;
+    line-height: 22px;
+    letter-spacing: -0.42px;
+    border-radius: 3px;
+    border: 1px solid #dde2e6;
+    margin: 4px 0px 8px;
+  }
+  
+  #sample6_postcode:focus,
+  #sample6_address:focus,
+  #sample6_detailAddress:focus,
+  #sample6_extraAddress:focus {
+    border: 1px solid #05AE68;
+  }
+  
+
+  #sample6_postcode {
+    margin-bottom: 10px;
+  }
+  
+  #sample6_address {
+    margin-bottom: 10px;
+  }
+  
+  #sample6_detailAddress {
+    margin-bottom: 10px;
+  }
+  
+  #sample6_extraAddress {
+    margin-bottom: 10px;
+  }
+  
+  .address-div {
+    display: flex;
+    }
+
+
+    svg.eye-icon {
+        width: 23px;
+        top: 12px;
+        position: absolute;
+        left: 16px;
+        fill: #adb5bd;
+    }
+
+    svg.eye-icon1 {
+        width: 23px;
+        position: absolute;
+        top: 19px;
+        left: 16px;
+        fill: #adb5bd;
+    }
+
+    .Button_TextField_icon1 {
+        right: 0;
+        text-align: left;
+        position: absolute;
+        top: 0;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        padding: 0;
+        height: 100%;
+        pointer-events: auto;
+        box-sizing: content-box!important;
+        border-radius: 4px;
+        vertical-align: middle;
+        text-decoration: none;
+        line-height: 1.43;
+        white-space: nowrap;
+        color: #495057;
+        font-size: 14px;
+        font-weight: 500;
+        /* background-color: crimson; */
+        width: 48px;
+    }

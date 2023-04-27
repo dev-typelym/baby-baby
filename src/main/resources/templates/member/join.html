@@ -54,7 +54,7 @@
                     <div class="snsbuttoncircle">
                         <button id="google">
                             <span class="google">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">s
                                     <defs>
                                         <path id="a" d="M0 0h348v46H0z"></path>
                                     </defs>
@@ -123,15 +123,17 @@
                             <label>비밀번호</label><!-- 비밀번호 -->
                             <div class="password-field-text">
                                 <input name="userPassword" placeholder="비밀번호 입력" type="password" class="input-password-container" id="password-input" aria-invalid="false">
+                                <!-- 비밀번호 확인 -->
                                 <button aria-label="비밀번호 보기" class="Button_TextField_icon" type="button">
                                     <span class="eye" id="eye1">
                                         <span class="Button_children_pw">
-                                            <svg viewBox="0 0 48 48" focusable="false" role="presentation" class="withIcon_icon__1YH1P" aria-hidden="true">
+                                            <svg viewBox="0 0 48 48" focusable="false" role="presentation" class="eye-icon" aria-hidden="true">
                                                 <path d="M23.589 7.895l.411.001c10.56 0 20.16 6.504 23.34 15.78l.132.432-.144.396c-3.216 9.168-12.816 15.6-23.328 15.6A24.84 24.84 0 0 1 .684 24.492l-.168-.432.156-.42A24.804 24.804 0 0 1 24 7.896zM24 14.46a9.6 9.6 0 1 0 0 19.2 9.6 9.6 0 0 0 0-19.2zm0 4.14a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8z"></path>
                                             </svg>
                                         </span>
                                     </span>
                                 </button>
+                                <!--  -->
                             </div>
                         </div>
                         <em class="password-error error-message">비밀번호를 입력해주세요.</em>
@@ -140,11 +142,11 @@
                             <div class="TextField_field__1B2AH">
                                 <input name="userPassword" placeholder="비밀번호 확인" type="password"
                                     class="re-input-password-container" aria-invalid="false">
-                                <button aria-label="비밀번호 보기" class="Button_TextField_icon" id="eye-wrapper" type="button">
+                                <button aria-label="비밀번호 보기" class="Button_TextField_icon1" id="eye-wrapper" type="button">
                                     <span class="eye">
                                         <span class="Button_children">
-                                            <svg viewBox="0 0 48 48" focusable="false" role="presentation" class="withIcon_icon__1YH1P" aria-hidden="true">
-                                                <path d="M23.589 7.895l.411.001c10.56 0 20.16 6.504 23.34 15.78l.132.432-.144.396c-3.216 9.168-12.816 15.6-23.328 15.6A24.84 24.84 0 0 1 .684 24.492l-.168-.432.156-.42A24.804 24.804 0 0 1 24 7.896zM24 14.46a9.6 9.6 0 1 0 0 19.2 9.6 9.6 0 0 0 0-19.2zm0 4.14a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8z"></path>
+                                            <svg viewBox="0 0 48 48" focusable="false" role="presentation" class="eye-icon1" aria-hidden="true">
+                                                <path class="path2" d="M23.589 7.895l.411.001c10.56 0 20.16 6.504 23.34 15.78l.132.432-.144.396c-3.216 9.168-12.816 15.6-23.328 15.6A24.84 24.84 0 0 1 .684 24.492l-.168-.432.156-.42A24.804 24.804 0 0 1 24 7.896zM24 14.46a9.6 9.6 0 1 0 0 19.2 9.6 9.6 0 0 0 0-19.2zm0 4.14a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8z"></path>
                                             </svg>
                                         </span>
                                     </span>
@@ -163,14 +165,16 @@
                             </div>
                             <em class="nickname-error error-message">최소 2자입니다.</em>
                         </div>
-                        <div class="email-field-container">
-                            <label class="EmailAuthField">이메일</label>
-                            <div class="email-field-input-continer">
-                                <div class="EmailAuthField_inputField">
-                                    <input name="userEmail" placeholder="이메일 입력" type="text" class="email-field" id="email-input">
-                                </div>
+                         <!-- 주소 -->
+                        <div class="form-group">
+                            <label for="address-btu" class="address-label" onclick="sample6_execDaumPostcode()">주소</label>
+                            <div class="address-div" id="" >
+                                <input type="text" id="sample6_postcode"  onclick="sample6_execDaumPostcode()" placeholder="우편번호">
+                                <input type="button" name="address-btu" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                             </div>
-                            <em class="email-error error-message">이메일을 입력해주세요.</em>
+                            <input type="text" id="sample6_address"  onclick="sample6_execDaumPostcode()" placeholder="주소"><br>
+                            <input type="text" id="sample6_detailAddress" placeholder="상세주소1">
+                            <input type="text" id="sample6_extraAddress" placeholder="상세주소2">
                         </div>
                 	</div>
                     <div class="name-field" id="name-name"><label>이름</label>
@@ -198,10 +202,10 @@
                                 </svg>
                             </span>
                             <span class="Checkbox_content__1uyi7"></span>
-                        </label>
+                        </label> -->
                         <label for="termsUpdateRequestCheckBox" class="SignUpAllCheckTermsCheckbox_termsAllCheckLabel__3TxCG">
                             <p class="checkbox-content-label-text">전체동의</p>
-                            <p class="checkboxDescription">회원·서비스(필수), 투자 서비스 (선택), 스타트업찾기 서비스 (선택), 이벤트·혜택알림 동의(선택), 만 14세 이상(필수)</p>
+                            <p class="checkboxDescription"></p>
                         </label>
                         <button class="Button_button" type="button">
                             <span>
@@ -219,7 +223,7 @@
                     </div>
                     <!-- <button class="signup-submit-button"  type="button" onclick="send()"> -->
                     <!-- 완료 버튼 -->
-                    <button class="signup-submit-button" type="submit" onclick=""> 
+                    <button class="signup-submit-button" type="button" onclick="send()"> 
                         <span>
                             <span class="signup-submit-button-text" >완료</span>
                         </span>
@@ -227,7 +231,7 @@
                 </form>
                 <!-- 하단 메세지 -->
                 <p class="login-page-link">
-                    이미 도담도담 계정이 있나요?
+                    이미 아기자기 계정이 있나요?
                     <a href="">로그인</a>
                 </p>
             </div>
@@ -236,4 +240,54 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="../../static/js/member/join.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+     function sample6_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+    
+                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var addr = ''; // 주소 변수
+                    var extraAddr = ''; // 참고항목 변수
+    
+                    //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                    if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                        addr = data.roadAddress;
+                    } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                        addr = data.jibunAddress;
+                    }
+    
+                    // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                    if(data.userSelectedType === 'R'){
+                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                        if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                            extraAddr += data.bname;
+                        }
+                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                        if(data.buildingName !== '' && data.apartment === 'Y'){
+                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                        }
+                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                        if(extraAddr !== ''){
+                            extraAddr = ' (' + extraAddr + ')';
+                        }
+                        // 조합된 참고항목을 해당 필드에 넣는다.
+                        document.getElementById("sample6_extraAddress").value = extraAddr;
+    
+                    } else {
+                        document.getElementById("sample6_extraAddress").value = '';
+                    }
+    
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('sample6_postcode').value = data.zonecode;
+                    document.getElementById("sample6_address").value = addr;
+                    // 커서를 상세주소 필드로 이동한다.
+                    document.getElementById("sample6_detailAddress").focus();
+                }
+            }).open();
+        }
+</script>
 </html>
