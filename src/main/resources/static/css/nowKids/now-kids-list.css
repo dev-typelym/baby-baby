@@ -284,7 +284,7 @@ a, address, article, aside, audio, b, body, button, canvas, caption, dd, div, dl
     height: 344px;
     overflow: hidden;
     cursor: pointer;
-    margin-left: 95px;
+    margin: 30px 0px 20px 95px;
 }
 
 .banner-container{
@@ -405,4 +405,50 @@ div.buttons button:nth-child(1) {
 
 #page-total{
     margin-right: 2px;
+}
+
+.bottom-full-wrap {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.bottom-event-title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bottom-event-title {
+    line-height: 28px;
+    letter-spacing: -.6px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #00c4c4;
+    width: 350px; /* 원하는 길이로 지정 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    overflow: hidden; /* 넘침 처리 */
+    text-overflow: ellipsis; /* '...' 추가 */
+}
+
+.bottom-event-one-line {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 8px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 500;
+    width: 500px; /* 원하는 길이로 지정 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    overflow: hidden; /* 넘침 처리 */
+    text-overflow: ellipsis; /* '...' 추가 */
+}
+
+.bottom-space {
+    margin: 0 -16px;
+    width: calc(100% + 32px);
+    height: 8px;
+    background-color: #f2f4f6;
 }
