@@ -34,6 +34,24 @@ textarea:focus {
     height: 488px;
 }
 
-.answer {
-    z-index: 1;
+.table {
+    position: relative;
+}
+
+div.answer button{
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: 100px;
+    height: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.table .answer{
+	position: absolute;
+}
+
+.answer button:hover{
+	color: #c97793;
 }
