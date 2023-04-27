@@ -281,22 +281,22 @@ body li, body ol, body ul {
     line-height: 44px;
     text-align: center;
     color: #fff;
-    background: #23dbab;
+    background: rgb(255, 212, 0);
     border: none;
     box-sizing: border-box;
 }
 
 .wz.button.primary, .wz.button.primary-outline {
-    border-color: #00c4c4;
+    border-color: rgb(255, 212, 0);
 }
 
 .wz.button.primary {
-    background-color: #00c4c4;
+    background-color: rgb(255, 212, 0);
     color: #fff;
 }
 
 #gray:hover{
-	background-color: #00b2b2;
+	background-color: rgb(255, 212, 0);
 }
 
 #mint:hover{
@@ -350,14 +350,6 @@ font-size: 13px;
     margin: 0 auto;
     padding: 50px 0;
 }
-
-
-
-
-
-
-
-
 
 
 

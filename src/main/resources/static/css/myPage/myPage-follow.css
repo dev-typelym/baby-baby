@@ -1,0 +1,278 @@
+/* myPage-follow.html */
+
+body{
+    font-family: Roboto, 'Noto Sans KR', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+main{
+    min-height: 100vh;
+}
+
+li{
+    text-decoration: none;
+    list-style: none;
+}
+
+.main-contents{
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.head-text{
+    line-height: 44px;
+    letter-spacing: -.6px;
+    font-size: 32px;
+    font-weight: 700;
+    padding: 48px 12px 29px;
+}
+
+.follow-nav{
+    position: relative;
+    width: 100%;
+    min-height: 48px;
+    overflow: hidden;
+}
+
+.nav-lists{
+    overflow: auto;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    display: flex;
+    padding-inline-start: 0;
+}
+
+.nav-lists li{
+    margin: 0 8px;
+}
+
+.nav-btn{
+    border: 0;
+    background-color: #0000;
+    cursor: pointer;
+    height: 100%;
+    min-height: 48px;
+    overflow: hidden;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+.nav-btn span{
+    line-height: 28px;
+    letter-spacing: -.3px;
+    font-size: 16px;
+    font-weight: 400;
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    padding: 9px 4px;
+    height: 100%;
+    color: #495057;
+}
+
+
+.active{
+    border: 0;
+    background-color: #0000;
+    cursor: pointer;
+    height: 100%;
+    min-height: 48px;
+    overflow: hidden;
+    vertical-align: middle;
+    white-space: normal;
+    border-bottom: 2px solid black;
+}
+
+.active span{
+    line-height: 28px;
+    letter-spacing: -.3px;
+    font-size: 16px;
+    font-weight: 400;
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    padding: 9px 4px;
+    height: 100%;
+    color: #495057;
+    color: #212529;
+    font-weight: 700;
+}
+
+.contents-lists-wrapper{
+    width: 100%;
+}
+
+.contents-lists{
+    margin: 24px 12px 0;
+}
+
+.one-content{
+    display: flex;
+    align-items: center;
+}
+
+.one-content a {
+    display: flex;
+    width: 80%;
+}
+
+.profile-area{
+    display: flex;
+    align-items: center;
+}
+
+.profile-area{
+    margin-right: 8px;
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    position: relative;
+    outline: none;
+    border: none;
+    border-radius: 100%;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.profile{
+    display: block;
+    position: absolute;
+    opacity: 1;
+    border-radius: 100%;
+    background: no-repeat 50%/cover;
+    width: 100%;
+    height: 100%;
+}
+
+.profile img{
+    border-radius: 100%;
+    border : 1px solid rgb(221, 226, 230);
+    width: 100%;
+    height: 100%;
+}
+
+.profile-name-area{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name{
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.follower-count{
+    line-height: 18px;
+    letter-spacing: 0;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: -11px;
+    
+}
+
+.following-btn-area{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+
+.following-btn-area .jong{
+    position: relative;
+    transition-property: background-color,border-color,color,opacity;
+    transition-duration: .15s;
+    border: 1px solid #cdd3d8;
+    border-radius: 4px;
+    background-color: #0000;
+    cursor: pointer;
+    padding: 9px 16px;
+    vertical-align: middle;
+    text-decoration: none;
+    line-height: 1.43;
+    white-space: nowrap;
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box!important;
+    -webkit-font-smoothing: antialiased;
+}
+
+.jong-btn-area{
+    display: inline-flex;
+    width: 20%;
+    justify-content: space-evenly;
+}
+
+.jong-span{
+    display: inline-flex;
+    align-items: center;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+}
+
+.jong-span img{
+    width: 100%;
+    height: 100%;
+}
+
+.following-btn{
+    position: relative;
+    transition-property: background-color,border-color,color,opacity;
+    transition-duration: .15s;
+    border: 1px solid #cdd3d8;
+    border-radius: 4px;
+    background-color: #0000;
+    cursor: pointer;
+    padding: 9px 16px 9px 10px;
+    vertical-align: middle;
+    text-decoration: none;
+    line-height: 1.43;
+    white-space: nowrap;
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box!important;
+    -webkit-font-smoothing: antialiased;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: top;
+}
+
+.line{
+    margin: 16px 0;
+    background-color: #f2f4f6;
+    width: 100%;
+    height: 1px;
+}
+
+
+.following-btn-not{
+    border-color: #00c4c4;
+    background-color: #fff;
+    color: #00b2b2;
+    padding: 9px 16px;
+    line-height: 1.45;
+    font-size: 14px;
+    border: 1px #00b2b2 solid;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.following-btn-not span svg{
+    fill: #00b2b2;
+}
