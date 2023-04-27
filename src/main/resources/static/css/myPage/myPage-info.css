@@ -13,6 +13,12 @@ body {
     font-family: Noto Sans KR;
 }
 
+
+li{
+    list-style: none;
+}
+
+
 body {
     overflow-y: scroll;
     line-height: 1.5em;
@@ -97,7 +103,7 @@ body>#root, #wadizTopBanner, #page-container {
 
 .account-wrap h2 {
     margin-bottom: 8px;
-    font-size: 20px;
+    font-size: 15px;
     color: #4a4a4a;
     font-weight: normal;
 }
@@ -116,6 +122,8 @@ body>#root, #wadizTopBanner, #page-container {
     padding-left: 20px;
     box-sizing: border-box;
     display: block;
+    cursor: pointer;
+    
 }
 
 .my-info-text {
@@ -125,6 +133,7 @@ body>#root, #wadizTopBanner, #page-container {
 
 .my-info div {
     float: left;
+    text-align: left;
 }
 
 .account-wrap h3 {
@@ -194,9 +203,197 @@ body>#root, #wadizTopBanner, #page-container {
 /* ================================================media===================================== */
 @media screen and (min-width: 1000px) {
 .account-wrap {
-    width: 350px;
+    width: 400px;
     margin: 0 auto;
-    padding-top: 75px;
 }
 
+}
+/* ----------------------------------------- */
+
+.input-text{
+    width: 100%;
+    height: 40px;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.input-btn-wrap {
+    display: flex;
+    margin-top: 10px;
+}
+.input-area.disabled .input-text, .input-text:disabled {
+    background: #e7e7e7;
+    font-size: 13px;
+}
+
+.content-wrapper{
+    padding: 15px;
+    background: #f9f9f9;
+}
+
+.input-btn-wrap .input {
+    width: 70%;
+}
+
+.input-btn-wrap .btn {
+    width: 28%;
+    margin-left: 4px;
+    display: block;
+    background: #8c8881;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+
+/* info-프로필 변경 시작 */
+h5{
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+label[for=profile]{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+label[for=profile] img{
+    width: 64px;
+}
+
+.input-div2{
+    margin: 15px 0 15px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-div2 li{
+    width: 49%;
+}
+
+textarea{
+    resize: none;
+    width: 100%;
+    height: 80px;
+    border: none;
+}
+
+.btn-div2{
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+}
+/* info-프로필 변경 끝 */
+
+
+/* 비밀번호 변경 시작 */
+input[type=password]{
+    width: 95%;
+}
+
+h2{
+    margin-top: 15px;
+}
+
+#passwordError{
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.error-text{
+    font-size: 12px;
+    margin-top: 5px;
+    color: red;
+}
+
+
+
+/* 알림설정 */
+
+.alarm-content{
+    position: relative;
+    margin-bottom: 41px;
+}
+
+.member-alarm-all{
+    display: flex;
+    justify-content: space-between;
+}
+
+.member-toggle{
+    display: block;
+    position: relative;
+    opacity: 1;
+    border: solid 2px rgba(0,0,0,.06);
+    border-radius: 16px;
+    background-color: #f5f7fa;
+    cursor: pointer;
+    width: 48px;
+    height: 30px;
+}
+
+
+.not-allow-btn{
+    display: block;
+    position: relative;
+    opacity: 1;
+    border: solid 2px rgba(0,0,0,.06);
+    border-radius: 16px;
+    background-color: #f5f7fa;
+    cursor: pointer;
+    width: 48px;
+    height: 30px;
+}
+
+.not-allow-btn::after{
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: .3s all;
+    border-radius: 12px;
+    box-shadow: 0 6px 6px -1px #0a16461a, 0 0 5px #0a16460f;
+    background-color: #fff;
+    width: 24px;
+    height: 24px;
+    content: "";
+}
+
+.allow-btn{
+    display: block;
+    position: relative;
+    opacity: 1;
+    border: solid 2px rgba(0,0,0,.06);
+    border-radius: 16px;
+    cursor: pointer;
+    width: 48px;
+    height: 30px;
+    border-color: #00c4c4;
+    background-color: #00c4c4;
+}
+
+.allow-btn::after{
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: .3s all;
+    border-radius: 12px;
+    box-shadow: 0 6px 6px -1px #0a16461a, 0 0 5px #0a16460f;
+    background-color: #fff;
+    width: 24px;
+    height: 24px;
+    content: "";
+    left: 19px;
+    background-color: #fff;
+}
+
+.first-alarm{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
 }

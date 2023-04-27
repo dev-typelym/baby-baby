@@ -234,20 +234,15 @@ a.ProfileSet {
 
 /* 배너신청하기 버튼 : 색지정 */
 a.Mint {
-	border-color: #00c4c4;
-	background-color: #00c4c4;
-    color: #fff !important;
+    background-color: rgb(255, 212, 0);
+    color: black;
 }
 
-#apply:hover {
-	border-color: #00b2b2;
-	background-color: #00b2b2;
-}
 
-a.ProfileSet:hover{
+/* a.ProfileSet:hover{
 	border-color: #E9ECEF;
 	background-color: #E9ECEF;
-}
+} */
 
 
 /* 참여한 */
@@ -291,7 +286,7 @@ a.ProfileSet:hover{
 }
 
 .mypage-project .tab-list ul li.active a  {
-    color: #00c4c4;
+    color: black;
     height: 47px;
 }
 
@@ -378,7 +373,8 @@ a.ProfileSet:hover{
 }
 
 .project-card .card-img-section .project-type.reward {
-    background: #00c4c4;
+    background: rgb(255, 212, 0);
+    color: black;
 }
 
 /* 가상요소 */
