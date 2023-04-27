@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기업상세</title>
+    <link rel="stylesheet" href="../../static/css/member-detail/company-detail.css">
+</head>
+<body>
+    <main>
+        <div>
+            <div class="container">
+                <div class="image_section">
+                    <div class="image_section_div">
+                        <span class="image_section_span" style="background-image: url(&quot;https://cdn.wadiz.kr/ft/images/maker/2022/0314/20220314143213142_null.png/wadiz/resize/200/format/jpg/quality/90/&quot;), url(&quot;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBpZD0iYzl1cmF3eHIyYSIgZD0iTTAgMGg4MHY4MEgweiIvPgogICAgPC9kZWZzPgogICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8Zz4KICAgICAgICAgICAgPG1hc2sgaWQ9IjZ2emt3OXN5NWIiIGZpbGw9IiNmZmYiPgogICAgICAgICAgICAgICAgPHVzZSB4bGluazpocmVmPSIjYzl1cmF3eHIyYSIvPgogICAgICAgICAgICA8L21hc2s+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik04MCA0MGMwIDIyLjA5Mi0xNy45MDkgNDAtNDAgNDBTMCA2Mi4wOTIgMCA0MCAxNy45MDkgMCA0MCAwczQwIDE3LjkwOCA0MCA0MCIgZmlsbD0iI0U5RUNFRiIgbWFzaz0idXJsKCM2dnprdzlzeTViKSIvPgogICAgICAgIDwvZz4KICAgICAgICA8cGF0aCBkPSJtMjIuMzA1IDI2LjkxNC4yMyAyLjEyMWMtLjAxLjI5LjA0OS41NTkuMTgxLjgwNy4wODUuMjYxLjIyOC40ODUuNDMzLjY3Ni4xOS4yMDMuNDEzLjM0OC42NzQuNDMyLjI0OS4xMzIuNTE5LjE5MS44MDYuMThsLjU1Ny0uMDc1Yy4zNTUtLjA5OS42NjMtLjI3OS45MjQtLjUzN2wuMzI4LS40MjVjLjE5LS4zMjYuMjg1LS42OC4yODctMS4wNTgtLjA3OC0uNzA2LS4xNTQtMS40MTUtLjIzLTIuMTIxLjAxLS4yOS0uMDUtLjU1OS0uMTgtLjgwN2ExLjU3IDEuNTcgMCAwIDAtLjQzNC0uNjc1IDEuNTUzIDEuNTUzIDAgMCAwLS42NzQtLjQzMyAxLjU4NCAxLjU4NCAwIDAgMC0uODA3LS4xOGMtLjE4NS4wMjYtLjM3Mi4wNS0uNTU3LjA3NWEyLjA4MyAyLjA4MyAwIDAgMC0uOTI1LjUzOGwtLjMyNi40MjRjLS4xOS4zMjctLjI4NS42NzktLjI4NyAxLjA1OE01My44ODIgMjcuMzI4djIuNTIyYzAgLjUzOC4yMzMgMS4xMDIuNjEzIDEuNDgyLjE5LjIwMy40MTQuMzQ4LjY3NC40MzMuMjUuMTMuNTE4LjE5LjgwNy4xOC41NDItLjAyNCAxLjEwNC0uMjAyIDEuNDgxLS42MTMuMzc2LS40MS42MTQtLjkxNC42MTQtMS40ODJ2LTIuNTIyYzAtLjUzNi0uMjM0LTEuMS0uNjE0LTEuNDhhMS41NzYgMS41NzYgMCAwIDAtLjY3NC0uNDM0IDEuNTczIDEuNTczIDAgMCAwLS44MDctLjE4Yy0uNTQyLjAyNC0xLjEwNC4yMDItMS40ODEuNjE0LS4zNzYuNDA5LS42MTMuOTEzLS42MTMgMS40OE0zNi4yOTcgMjUuOTQ1Yy0uNzQzIDQuMzM1LTEuNDg0IDguNjczLTIuMjI1IDEzLjAxLS4xODQgMS4wNzUuMjg1IDIuMzA3IDEuNDYzIDIuNTc2IDEuMDE0LjIzIDIuMzc4LS4zMDkgMi41NzYtMS40NjJsMi4yMjUtMTMuMDExYy4xODQtMS4wNzUtLjI4NS0yLjMwOC0xLjQ2My0yLjU3Ny0xLjAxNS0uMjMtMi4zOC4zMDgtMi41NzYgMS40NjRNNDUuMTU4IDUwLjM4NmMtLjE2LS4zMy0uMTAxLS40NzctLjA0NS0uODA2LS4xMTEuMTc1LS4xMjUuMjAxLS4wNDIuMDc3YS4zNy4zNyAwIDAgMSAuMjAzLS4xNzhjLS4yMi4xMTctLjIzNS4xMzgtLjA0Ny4wNjRhMy40MyAzLjQzIDAgMCAxLS4zOTMuMTE2Yy0uMDgyLjAyLS42NTkuMS0uMjY1LjA1Ny0xLjExNS4xMjQtMi4yNC4xOS0zLjM2LjI4NWwtNi44NzcuNTc3Yy0xLjA4OS4wOTItMi4xNDguODk3LTIuMDk1IDIuMDk0LjA0OCAxLjA1Ni45MjYgMi4xOTIgMi4wOTUgMi4wOTNsOC44NC0uNzRjMS40NS0uMTIzIDMuMDQxLS4xMyA0LjI4Ny0uOTggMS42LTEuMDkzIDIuMTYzLTMuMDI4IDEuMzE2LTQuNzcyLS40OC0uOTktMS45NjYtMS4zMzMtMi44NjYtLjc1Mi0xLjAxMy42NTQtMS4yNjMgMS44MDctLjc1IDIuODY1IiBmaWxsPSIjQ0REM0Q4Ii8+CiAgICA8L2c+Cjwvc3ZnPgo=&quot;); border: 1px solid rgb(221, 226, 230);"></span>
+                    </div>
+                </div>
+                <div class="main_content">
+                    <div>
+                        <div class="company_title">
+                            <strong class="company_title_strong">시티파이브</strong>
+                        </div>
+                        <p class="company_title_p">Awake your senses! 
+여러분의 감각을 깨워드릴 새로운 제품을 생각합니다.</p>
+                    </div>
+                    <div class="main_content_second">
+                        <div style="padding-bottom: 14px;">
+                            <span class="star_icon" aria-hidden="true"></span>
+                            <span class="satisfaction">만족도 4.0</span>
+                            <span class="satisfaction_amount">(1004개)</span>
+                        </div>
+                        <div style="padding-bottom: 14px;">
+                            <span class="money_icon" aria-hidden="true"></span>
+                            <span class="cumulative_amount">
+                                누적 액수 13억원+
+                            </span>
+                        </div>
+                        <div>
+                            <span class="supporter_icon" aria-hidden="true"></span>
+                            <span class="supporter_value">
+                                서포터 15,382 명
+                            </span>
+                        </div>
+                    </div>
+                    <div class="main_content_third">
+                        <button class="follow_button">
+                            <span class="follow_button_span">
+                                <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="plus_icon" aria-hidden="true">
+                                    <path d="M30.4 15.2H16.8V1.6h-1.6v13.6H1.6v1.6h13.6v13.6h1.6V16.8h13.6v-1.6z"></path>
+                                </svg>
+                                <span style="display: inline-block; vertical-align: middle;">
+                                    팔로우 1,404
+                                </span>
+                            </span>
+                        </button>
+                        <div class="new_project">
+                            <div class="up_arrow"></div>
+                            <span>👆</span>
+                            <p>새 프로젝트와 혜택 소식 받고 싶다면</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page_content">
+                <nav class="page_content_nav">
+                    <ul class="page_content_ul">
+                        <li class="page_content_li">
+                            <a class="page_content_a">
+                                <span class="page_content_span">
+                                    프로젝트
+                                </span>
+                            </a>
+                        </li>
+                        <li class="page_content_li">
+                            <a class="page_content_a">
+                                <span class="page_content_span_not">
+                                    메이커 정보
+                                </span>
+                            </a>
+                        </li>
+                        <li class="page_content_li">
+                            <a class="page_content_a">
+                                <span class="page_content_span_not">
+                                    만족도
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                
+
+                    <!-- 프로젝트 -->
+                    <div class="page_content_div">
+                        <div style="background-color: #f2f4f6;">
+                            <div class="content_wrap">
+                                <section class="content_wrap_section">
+                                    <div class="proceeding">
+                                        <h2 class="proceeding_h2">
+                                            프리오더 진행 중
+                                            <span class="free_order">🌟</span>
+                                        </h2>
+                                        <span class="proceeding_span">
+                                            2건
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="real_content">
+                                            <div class="real_content_div">
+                                                <div class="project_card">
+                                                    <a class="project_card_a">
+                                                        <div class="project_card_img"></div>
+                                                        <span class="project_card_span">
+                                                            <span class="five_days">5일 남음</span>
+                                                        </span>
+                                                    </a>
+                                                    <div class="project_card_div">
+                                                        <div class="air_ear">귀 아픈 이어폰은 이제 그만! 귀가 편한 신개념 공기전도 이어폰EZ023</div>
+                                                        <div class="participation">
+                                                            <div class="proceeding_h2">
+                                                                <span style="color: #00b2b2;">
+                                                                    218명참여
+                                                                </span>
+                                                            </div>
+                                                            <div class="proceeding_span total_amount">
+                                                                12,936,800 원
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="real_content_div">
+                                                <div class="project_card">
+                                                    <a class="project_card_a">
+                                                        <div class="project_card_img"></div>
+                                                        <span class="project_card_span">
+                                                            <span class="five_days">5일 남음</span>
+                                                        </span>
+                                                    </a>
+                                                    <div class="project_card_div">
+                                                        <div class="air_ear">귀 아픈 이어폰은 이제 그만! 귀가 편한 신개념 공기전도 이어폰EZ023</div>
+                                                        <div class="participation">
+                                                            <div class="proceeding_h2">
+                                                                <span style="color: #00b2b2;">
+                                                                    218명참여
+                                                                </span>
+                                                            </div>
+                                                            <div class="proceeding_span total_amount">
+                                                                12,936,800 원
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="content_wrap_section">
+                                    <div class="proceeding">
+                                        <h2 class="proceeding_h2">
+                                            오픈 예정
+                                            <span class="free_order">⏰</span>
+                                        </h2>
+                                        <span class="proceeding_span">
+                                            1건
+                                        </span>
+                                    </div>
+                                    <div class="real_content">
+                                        <div class="one_open_img">
+                                            <div class="project_card">
+                                                <a class="one_open_a">
+                                                    <div class="one_project_card_img"></div>
+                                                </a>
+                                                <div class="project_card_div">
+                                                    <div class="holder">[4차 앵콜] AluDisc™ 4가지 타입, 저스트모바일 신개념 거치대!</div>
+                                                    <div class="participation">
+                                                        <div class="proceeding_h2">
+                                                            <span style="color: #00b2b2;">
+                                                                4/29(토) 오픈 예정
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                                <section class="content_wrap_section">
+                                    <div class="proceeding">
+                                        <h2 class="proceeding_h2">
+                                            종료된 펀딩
+                                            <span class="free_order">🕒</span>
+                                        </h2>
+                                        <span class="proceeding_span">
+                                            7건
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <div class="real_content">
+                                            <div class="six_content">
+                                                <div class="project_card">
+                                                    <a class="project_card_a">
+                                                        <div class="real_cafe"></div>
+                                                        <span class="project_card_span">
+                                                            <span class="success">성공</span>
+                                                        </span>
+                                                    </a>
+                                                    <div class="project_card_div">
+                                                        <div class="camping">캠핑, 등산 언제라도 신선한 커피를 즐길 수 있는 내 손안에 리얼 카페!</div>
+                                                        <div class="participation">
+                                                            <div class="proceeding_h2">
+                                                                <span style="color: #00b2b2;">
+                                                                    3109% 달성
+                                                                </span>
+                                                            </div>
+                                                            <div class="camping_money">
+                                                                31,091,000 원
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="six_content">
+                                                <div class="project_card">
+                                                    <a class="project_card_a">
+                                                        <div class="real_cafe"></div>
+                                                        <span class="project_card_span">
+                                                            <span class="success">성공</span>
+                                                        </span>
+                                                    </a>
+                                                    <div class="project_card_div">
+                                                        <div class="camping">캠핑, 등산 언제라도 신선한 커피를 즐길 수 있는 내 손안에 리얼 카페!</div>
+                                                        <div class="participation">
+                                                            <div class="proceeding_h2">
+                                                                <span style="color: #00b2b2;">
+                                                                    3109% 달성
+                                                                </span>
+                                                            </div>
+                                                            <div class="camping_money">
+                                                                31,091,000 원
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="six_content">
+                                                <div class="project_card">
+                                                    <a class="project_card_a">
+                                                        <div class="real_cafe"></div>
+                                                        <span class="project_card_span">
+                                                            <span class="success">성공</span>
+                                                        </span>
+                                                    </a>
+                                                    <div class="project_card_div">
+                                                        <div class="camping">캠핑, 등산 언제라도 신선한 커피를 즐길 수 있는 내 손안에 리얼 카페!</div>
+                                                        <div class="participation">
+                                                            <div class="proceeding_h2">
+                                                                <span style="color: #00b2b2;">
+                                                                    3109% 달성
+                                                                </span>
+                                                            </div>
+                                                            <div class="camping_money">
+                                                                31,091,000 원
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="six_content">
+                                                <div class="project_card">
+                                                    <a class="project_card_a">
+                                                        <div class="real_cafe"></div>
+                                                        <span class="project_card_span">
+                                                            <span class="success">성공</span>
+                                                        </span>
+                                                    </a>
+                                                    <div class="project_card_div">
+                                                        <div class="camping">캠핑, 등산 언제라도 신선한 커피를 즐길 수 있는 내 손안에 리얼 카페!</div>
+                                                        <div class="participation">
+                                                            <div class="proceeding_h2">
+                                                                <span style="color: #00b2b2;">
+                                                                    3109% 달성
+                                                                </span>
+                                                            </div>
+                                                            <div class="camping_money">
+                                                                31,091,000 원
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="six_content">
+                                                <div class="project_card">
+                                                    <a class="project_card_a">
+                                                        <div class="real_cafe"></div>
+                                                        <span class="project_card_span">
+                                                            <span class="success">성공</span>
+                                                        </span>
+                                                    </a>
+                                                    <div class="project_card_div">
+                                                        <div class="camping">캠핑, 등산 언제라도 신선한 커피를 즐길 수 있는 내 손안에 리얼 카페!</div>
+                                                        <div class="participation">
+                                                            <div class="proceeding_h2">
+                                                                <span style="color: #00b2b2;">
+                                                                    3109% 달성
+                                                                </span>
+                                                            </div>
+                                                            <div class="camping_money">
+                                                                31,091,000 원
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="six_content">
+                                                <div class="project_card">
+                                                    <a class="project_card_a">
+                                                        <div class="real_cafe"></div>
+                                                        <span class="project_card_span">
+                                                            <span class="success">성공</span>
+                                                        </span>
+                                                    </a>
+                                                    <div class="project_card_div">
+                                                        <div class="camping">캠핑, 등산 언제라도 신선한 커피를 즐길 수 있는 내 손안에 리얼 카페!</div>
+                                                        <div class="participation">
+                                                            <div class="proceeding_h2">
+                                                                <span style="color: #00b2b2;">
+                                                                    3109% 달성
+                                                                </span>
+                                                            </div>
+                                                            <div class="camping_money">
+                                                                31,091,000 원
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <button class="see_more">
+                                            더 보기
+                                            <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">
+                                                <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 메이커 정보 -->
+                    <div class="maker_wrap" style="display: none;">
+                        <div class="maker_content">
+                            <div style="padding: 0;">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th class="th">상호/법인명</th>
+                                            <td class="td">시티파이브</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="th">주요제품</th>
+                                            <td class="td">블루투스 키보드 외 모바일 및 컴퓨터 주변기기</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="th">업종</th>
+                                            <td class="td">도소매</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="th">기업규모</th>
+                                            <td class="td">주식회사</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 만족도 -->
+                    <div id="wrap_satisfaction" style="display: none;">
+                        <section class="satisfaction_rating">
+                            <div style="margin-bottom: 48px;">
+                                <h2 class="new_h2">만족도 평가</h2>
+                                <span class="plus_satisfaction">999+개 평가</span>
+                            </div>
+                            <div style="margin-bottom: 40px; text-align: center">
+                                <strong class="strong_score">4.0</strong>
+                                <div style="display: inline-block; position: relative;">
+                                    <div class="rating_star">
+                                        <button class="one_rating_star">
+                                            <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="rating_star">
+                                        <button class="one_rating_star">
+                                            <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="rating_star">
+                                        <button class="one_rating_star">
+                                            <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="rating_star">
+                                        <button class="one_rating_star">
+                                            <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="rating_star">
+                                        <button class="one_down_star">
+                                            <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul>
+                                <li class="review_li">
+                                    <div class="page_content_ul">
+                                        <span class="real_name">박**</span>
+                                        <div style="display: inline-block; position: relative;">
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="like_p">좋아요~~~~~~~~~~~~~~~~~~~~~~~~~`</p>
+                                    <span class="review_span">[2억앵콜!] 당신의 다음 카메라는 카메라가 아니다!! 셔터그립2</span>
+                                </li>
+                                <li class="review_li_hei">
+                                    <div class="page_content_ul">
+                                        <span class="real_name">박**</span>
+                                        <div style="display: inline-block; position: relative;">
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="like_p">좋아요~~~~~~~~~~~~~~~~~~~~~~~~~`</p>
+                                    <span class="review_span">[2억앵콜!] 당신의 다음 카메라는 카메라가 아니다!! 셔터그립2</span>
+                                </li>
+                                <li class="review_li_hei">
+                                    <div class="page_content_ul">
+                                        <span class="real_name">박**</span>
+                                        <div style="display: inline-block; position: relative;">
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="rating_star">
+                                                <button class="one_rating_star">
+                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="like_p">좋아요~~~~~~~~~~~~~~~~~~~~~~~~~`</p>
+                                    <span class="review_span">[2억앵콜!] 당신의 다음 카메라는 카메라가 아니다!! 셔터그립2</span>
+                                </li>
+                            </ul>
+                            <div class="all_see">
+                                <a class="all_see_a">
+                                    999+개의 평가 전체보기
+                                    <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="all_see_svg" aria-hidden="true">
+                                        <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+
+
+                </nav>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+
+/* 프로젝트, 메이커 정보, 만족도 클릭시 css 변경  */
+$(document).ready(function() {
+  $('.page_content_span_not, .page_content_span').click(function() {
+    if (!$(this).hasClass('page_content_span')) {
+      $('.page_content_span').toggleClass('page_content_span_not page_content_span');
+      $(this).toggleClass('page_content_span_not page_content_span');
+    }
+  });
+});
+
+
+/* 프로젝트, 메이커 정보, 만족도 클릭시 display 변경  */
+$(document).ready(function() {
+  $('.page_content_div').hide();
+  $('.maker_wrap').hide();
+  $('#wrap_satisfaction').hide();
+  $('.page_content_div').show(); // 기본적으로 프로젝트를 보여줍니다.
+  
+  $('.page_content_li').eq(0).click(function() { // 프로젝트 클릭 시
+    $('.maker_wrap').hide();
+    $('#wrap_satisfaction').hide();
+    $('.page_content_div').show();
+  });
+  
+  $('.page_content_li').eq(1).click(function() { // 메이커 정보 클릭 시
+    $('.page_content_div').hide();
+    $('#wrap_satisfaction').hide();
+    $('.maker_wrap').show();
+  });
+  
+  $('.page_content_li').eq(2).click(function() { // 만족도 클릭 시
+    $('.page_content_div').hide();
+    $('.maker_wrap').hide();
+    $('#wrap_satisfaction').show();
+  });
+});
+
+
+</script>
+</html>

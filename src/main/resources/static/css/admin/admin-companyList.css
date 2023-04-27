@@ -1,0 +1,16 @@
+.user-modal-shape{
+    width: 820px;
+    height: 650px;
+}
+
+.event-status.process{
+    color: green;
+}
+
+.event-status.hold{
+    color: red;
+}
+
+.event-status.end{
+    color: black;
+}

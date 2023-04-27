@@ -1,0 +1,53 @@
+
+.board-info-title-box div{
+    display: flex;
+    margin-top: 7px;
+    justify-content: space-between;
+}
+
+
+
+.event-status.process{
+    color: green;
+}
+
+.event-status.hold{
+    color: red;
+}
+
+.event-status.end{
+    color: black;
+}
+
+.category-country-side,
+.category-gallery-art,
+.category-tradition,
+.category-craft,
+.category-science,
+.category-museum,
+.category-sports,
+.category-etc,
+.category-entire,
+.status-btn{
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: fit-content;
+    height: 20px;
+    margin: 0 7px;
+    background-color: #fff;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+
+.category-country-side:hover,
+.category-gallery-art:hover,
+.category-tradition:hover,
+.category-craft:hover,
+.category-science:hover,
+.category-museum:hover,
+.category-sports:hover,
+.category-etc:hover,
+.category-entire:hover{
+    color: #c97793;
+}

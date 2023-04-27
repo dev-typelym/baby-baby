@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 게시판</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+	<link rel="stylesheet" href="../../static/css/admin/admin-default.css">
+	<link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
+	<link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
+	<link rel="stylesheet" href="../../static/css/admin/admin-anouncementList.css">
+</head>
+<body>
+	<section class="header-section">
+		<div class="info-title-box info-title-box-flex">
+			<div class="logo-box-layout">
+				<div class="logo-title-layout">
+					<div class="logo-title">
+						<div class="logo-name">
+							아기자기
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="select-name">
+					<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="depth1-icon">
+					<span>공지사항 게시판</span>	
+				</div>
+			</div>
+		</div>
+	</section>
+	<main class="main-section">
+		<!-- 임시 사이드바 -->
+		<div id="side-bar"></div>
+		<!-- 임시 사이드바 끝 -->
+		<section class="content-section">
+			<div class="container">
+				<div class="container-margin">
+					<!-- 내용 섹션 -->
+					<section class="board-info-box-layout">
+						<div class="board-info-box">
+							<div class="board-info-title-box">
+								<div class="board-info-title">
+									<div>
+										<span>공지사항 관리</span>
+									</div>
+									<div class="search">
+										<input type="text" placeholder="검색어 입력">
+										<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+									</div>
+								</div>
+								<div class="delete-box">
+									<button class="add-button">공지사항 추가</button>
+									<button class="delete-button">공지사항 삭제</button>
+								</div>
+							</div>
+							<div class="info-table">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>
+												<input type="checkbox" id="allSelect">
+											</th>
+											<th>No</th>
+											<th>제목</th>
+											<th>작성자</th>
+											<th>작성일시</th>
+											<th>내용</th>
+										</tr>
+									</thead>
+									<tr class="row">
+										<td>
+											<input type="checkbox" name="check">
+										</td>
+										<td>1</td>
+										<td>[사이트 이용방법] 사이트 이용방법 안내문</td>
+										<td>admin1</td>
+										<td>2022.11.23</td>
+										<td>함께 해주시는 사이트 이용자 여러분, 안녕하세요. [아기자기] 관리자 입니다. 저희 사이트를 이용해 주셔서 감사합니다.</td>
+									</tr>
+									<tr class="row">
+										<td>
+											<input type="checkbox" name="check">
+										</td>
+										<td>2</td>
+										<td>[사이트 이용방법] 사이트 이용방법 안내문</td>
+										<td>admin1</td>
+										<td>2022.11.23</td>
+										<td>함께 해주시는 사이트 이용자 여러분, 안녕하세요. [아기자기] 관리자 입니다. 저희 사이트를 이용해 주셔서 감사합니다.</td>
+									</tr>
+									<tr class="row">
+										<td>
+											<input type="checkbox" name="check">
+										</td>
+										<td>3</td>
+										<td>[사이트 이용방법] 사이트 이용방법 안내문</td>
+										<td>admin1</td>
+										<td>2022.11.23</td>
+										<td>함께 해주시는 사이트 이용자 여러분, 안녕하세요. [아기자기] 관리자 입니다. 저희 사이트를 이용해 주셔서 감사합니다.</td>
+									</tr>
+									<tr class="row">
+										<td>
+											<input type="checkbox" name="check">
+										</td>
+										<td>4</td>
+										<td>[사이트 이용방법] 사이트 이용방법 안내문</td>
+										<td>admin1</td>
+										<td>2022.11.23</td>
+										<td>함께 해주시는 사이트 이용자 여러분, 안녕하세요. [아기자기] 관리자 입니다. 저희 사이트를 이용해 주셔서 감사합니다.</td>
+									</tr>
+									<tr class="row">
+										<td>
+											<input type="checkbox" name="check">
+										</td>
+										<td>5</td>
+										<td>[사이트 이용방법] 사이트 이용방법 안내문</td>
+										<td>admin1</td>
+										<td>2022.11.23</td>
+										<td>함께 해주시는 사이트 이용자 여러분, 안녕하세요. [아기자기] 관리자 입니다. 저희 사이트를 이용해 주셔서 감사합니다.</td>
+									</tr>
+								</table>
+								<!-- 페이지 버튼 -->
+								<div class="page-button-box-layout">
+									<div class="page-button-box">
+										<!-- 페이지 번호 -->
+										<div class="">
+											<div class="page-button-margin">
+												<div>
+													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
+												</div>
+											</div>
+										</div>
+										<div class="page-button-active page-button">
+											<div class="page-button-margin">
+												<div>
+													<span>1</span>
+												</div>
+											</div>
+										</div>
+										<div class="page-button">
+											<div class="page-button-margin">
+												<div>
+													<span>2</span>
+												</div>
+											</div>
+										</div>
+										<div class="page-button">
+											<div class="page-button-margin">
+												<div>
+													<span>3</span>
+												</div>
+											</div>
+										</div>
+										<div class="">
+											<div class="page-button-margin">
+												<div>
+													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 페이지 버튼 끝 -->
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</section>
+	</main>
+	<section class="delete-modal">
+		<div class="delete-modal-shape">
+			<div class="modal-header">
+				<h4>삭제 확인</h4>
+			</div>
+			<div class="modal-body">
+				<p>정말로 삭제하겠습니까?</p>
+			</div>
+			<div class="modal-footer">
+				<span class="confirm-delete">확인</span>
+				<span class="cancel-delete">취소</span>
+			</div>
+		</div>
+	</section>
+	<section class="user-modal" id="anouncement-detail">
+		<div class="user-modal-shape">
+			<div class="modal-header">
+				<h4>공지사항 상세보기</h4>
+				<a class="modal-close">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						data-name="Capa 1"
+						id="Capa_1"
+						viewBox="0 0 20 19.84"
+					>
+						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
+					</svg>
+				</a>
+			</div>
+			<form class="user-info" action>
+				<main class="user-detail">
+					<h5 class="detail-title">공지사항 상세정보</h5>
+					<div class="profile-img-wrapper">
+						<div class="content-img">
+							<img
+								class="img-updated"
+								src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+							/>
+						</div>
+						<label class="label-for-update-img">
+							<?xml version="1.0" ?><svg id="Layer_1" style="enable-background:new 0 0 100 100;" version="1.1" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+								<style type="text/css">
+								.st0{fill:#E64C3C;}
+								.st1{fill:#EFEFEF;}
+								</style><circle class="st0" cx="50" cy="49.6" id="XMLID_10_" r="50"/><g id="XMLID_5_"><path class="st1" d="M76.9,38h-8l-3.1-5c-1.3-2-3.5-3.2-5.8-3.2H40.1c-2.4,0-4.6,1.2-5.8,3.2l-3.1,5h-8   c-1.4,0-2.6,1.2-2.6,2.6v26.3c0,1.4,1.2,2.6,2.6,2.6h53.8c1.4,0,2.6-1.2,2.6-2.6V40.6C79.5,39.2,78.3,38,76.9,38z M50,64.9   c-6.5,0-11.7-5.3-11.7-11.7S43.5,41.4,50,41.4c6.5,0,11.7,5.3,11.7,11.7S56.5,64.9,50,64.9z" id="XMLID_8_"/><circle class="st1" cx="50" cy="53.2" id="XMLID_9_" r="8.9"/></g></svg>
+							<input class="update-profile" type="file" name="file" style="display: none" />
+						</label>
+					</div>
+					<ul class="content-list-wrap">
+						<li class="content-list">
+							<span>제목</span>
+							<div class="content-input">
+								<input type="text" value="[우리은행] 부모님과 함께하는 진흙놀이"/>
+							</div>
+						</li>
+						<li class="content-list">
+							<span>작성자</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>작성일시</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>내용</span>
+							<div class="content-input content-div">
+								<textarea class="anouncement-content">함께 해주시는 사이트 이용자 여러분, 안녕하세요. [아기자기] 관리자 입니다. 저희 사이트를 이용해 주셔서 감사합니다.</textarea>
+							</div>
+						</li>
+					</ul>
+					<div class="update-box">
+						<button type="button" class="update-button">수정하기</button>
+					</div>
+				</main>
+			</form>
+		</div>
+	</section>
+	<section class="user-modal" id="anouncement-write">
+		<div class="user-modal-shape">
+			<div class="modal-header">
+				<h4>공지사항 작성하기</h4>
+				<a class="modal-close ">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						data-name="Capa 1"
+						id="Capa_1"
+						class="closeBtn"
+						viewBox="0 0 20 19.84"
+					>
+						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
+					</svg>
+				</a>
+			</div>
+			<form class="anouncement" action>
+				<main class="user-detail">
+					<h5 class="detail-title">공지사항 작성하기</h5>
+					<div class="profile-img-wrapper">
+						<label>
+							<div class="content-img">
+								<img
+									class="img-inserted" src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+							</div>
+							<input class="insert-profile" type="file" name="file" style="display: none" />
+						</label>
+					</div>
+					<ul class="content-list-wrap">
+						<li class="content-list">
+							<span>제목</span>
+							<div class="content-input">
+								<input type="text"/>
+							</div>
+						</li>
+						<li class="content-list">
+							<span>작성일시</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>내용</span>
+							<div class="content-input content-div">
+								<textarea class="anouncement-content"></textarea>
+							</div>
+						</li>
+					</ul>
+					<div class="update-box">
+						<button type="button" class="update-button">작성하기</button>
+					</div>
+				</main>
+			</form>
+		</div>
+	</section>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="../../static/js/admin/menuLoad.js"></script>
+<script src="../../static/js/admin/checkbox.js"></script>
+<script src="../../static/js/admin/page.js"></script>
+<script src="../../static/js/admin/admin-anouncement.js"></script>
+</html>
