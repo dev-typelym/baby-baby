@@ -61,13 +61,105 @@
 								</section>
 								<!-- 요청 사항(선택) -->
 								<form id="payment-submit">	
-									<section class="Section_container">
-										<div class="Section_titleContainer">
-											<h3 class="Section_title">주문 요청 사항 (선택)</h3>
+									<div class="payment-coupon-container Section_container">
+										<h3 class="Section_title coupon-title">쿠폰</h3><p>
+										</p><div class="payment coupon-wrapper">
+											<p>할인 쿠폰</p>
+											<div class="coupon-info">
+												<div class="coupon-count">
+													<span>전체 </span><span class="counpon-entire">2</span><span>장, </span>
+													<span>사용가능 1장</span>
+												</div>
+												<button class="check-coupon-btn" id="open-modal" type="button">선택</button>
+											</div>
+											<hr class="hr-lighter">
 										</div>
-										<div class="Active1 Active2">
-											<input name="productRequestMessage" maxlength="100" placeholder="주문 요청 사항을 입력하세요" type="text" class="Input1 Input2" aria-invalid="false"></div>
-									</section>
+										<div class="coupon-notion">
+											<p>쿠폰은 "후기 게시판" 에서 글 작성 시, 또는 "부모님 마당" 에서 글 작성 시 발급 됩니다.</p>
+											<p style="margin-bottom:0;">쿠폰은 1회 1장씩 사용 가능합니다.</p>
+										</div>
+									</div>
+									<!-- 쿠폰모달 -->
+									<div class="modal" id="coupon-modal">
+										<div class="modal-content">
+											<span class="close">&times;</span>
+											<h2>사용 가능 쿠폰</h2>
+											<!-- 쿠폰 여기다가 작성하기 -->
+											<!-- 쿠폰하나 시작 -->
+											<div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
+												<div class="coupon-full-wrap">
+													<div class="coupon-left-full-wrap">
+														<dl>
+															<dd class="coupon-left-title">후기</dd>
+															<dd class="coupon-left-title-explain">성실한 후기 작성 쿠폰</dd>
+															<dd class="coupon-left-price-wrap">
+																<span class="coupon-left-price">5000</span><span>원</span>
+															</dd>
+															<dd class="coupon-left-deadline-wrap">
+																<span class="coupon-left-deadline">2023.05.03</span><span>까지 사용 가능</span>
+															</dd>
+														</dl>
+													</div>
+													<button type="button" class="coupon-right-full-wrap">
+														<i class="coupon-right-icon">
+															<img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+														</i>
+														<span class="coupon-right-can-use">사용 가능</span>
+													</button>
+												</div>
+										  	</div>
+											<!-- 쿠폰하나 끝 -->
+											<!-- 쿠폰하나 시작 -->
+											<div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
+												<div class="coupon-full-wrap">
+													<div class="coupon-left-full-wrap">
+														<dl>
+															<dd class="coupon-left-title">후기</dd>
+															<dd class="coupon-left-title-explain">성실한 후기 작성 쿠폰</dd>
+															<dd class="coupon-left-price-wrap">
+																<span class="coupon-left-price">5000</span><span>원</span>
+															</dd>
+															<dd class="coupon-left-deadline-wrap">
+																<span class="coupon-left-deadline">2023.05.03</span><span>까지 사용 가능</span>
+															</dd>
+														</dl>
+													</div>
+													<button type="button" class="coupon-right-full-wrap">
+														<i class="coupon-right-icon">
+															<img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+														</i>
+														<span class="coupon-right-can-use">사용 가능</span>
+													</button>
+												</div>
+										  	</div>
+											<!-- 쿠폰하나 끝 -->
+											<!-- 쿠폰하나 시작 -->
+											<div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
+												<div class="coupon-full-wrap">
+													<div class="coupon-left-full-wrap">
+														<dl>
+															<dd class="coupon-left-title">후기</dd>
+															<dd class="coupon-left-title-explain">성실한 후기 작성 쿠폰</dd>
+															<dd class="coupon-left-price-wrap">
+																<span class="coupon-left-price">5000</span><span>원</span>
+															</dd>
+															<dd class="coupon-left-deadline-wrap">
+																<span class="coupon-left-deadline">2023.05.03</span><span>까지 사용 가능</span>
+															</dd>
+														</dl>
+													</div>
+													<button type="button" class="coupon-right-full-wrap">
+														<i class="coupon-right-icon">
+															<img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+														</i>
+														<span class="coupon-right-can-use">사용 가능</span>
+													</button>
+												</div>
+										  	</div>
+											<!-- 쿠폰하나 끝 -->
+										</div>
+									</div>
+									<!-- 쿠폰모달 끝 -->
 									<!-- 상품정보 -->
 									<section class="Section_container">
 										<div class="Section_titleContainer">
@@ -245,6 +337,7 @@
 					</div>
 				</div>
 			</div>
+
 			<!-- footer적용 -->
 		</main>
 	</div>
