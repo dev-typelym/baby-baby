@@ -6,7 +6,12 @@
     font-family: wadizicon;
     font-weight: 400;
     font-style: normal;
-    src: url(https://static.wadiz.kr/static/web/media/wadizicon.1de1502a.eot#iefix) format("embedded-opentype"),url(https://static.wadiz.kr/static/web/media/wadizicon.f5cdf486.woff2) format("woff2"),url(https://static.wadiz.kr/static/web/media/wadizicon.9eb6b0a9.woff) format("woff"),url(https://static.wadiz.kr/static/web/media/wadizicon.e5379495.ttf) format("truetype"),url(https://static.wadiz.kr/static/web/media/wadizicon.077f5804.svg#wadizicon) format("svg")
+    src: url(https://static.wadiz.kr/static/web/media/wadizicon.1de1502a.eot#iefix)
+            format('embedded-opentype'),
+        url(https://static.wadiz.kr/static/web/media/wadizicon.f5cdf486.woff2) format('woff2'),
+        url(https://static.wadiz.kr/static/web/media/wadizicon.9eb6b0a9.woff) format('woff'),
+        url(https://static.wadiz.kr/static/web/media/wadizicon.e5379495.ttf) format('truetype'),
+        url(https://static.wadiz.kr/static/web/media/wadizicon.077f5804.svg#wadizicon) format('svg');
 }
 
 body {
@@ -17,22 +22,79 @@ body {
 body {
     overflow-y: scroll;
     line-height: 1.5em;
-    letter-spacing: -.02em;
-    color: rgba(0,0,0,.84);
+    letter-spacing: -0.02em;
+    color: rgba(0, 0, 0, 0.84);
     font-size: 15px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
 }
 
-body, html {
+body,
+html {
     -webkit-text-size-adjust: none;
 }
 
-body, body button, body input, body select, body textarea {
+body,
+body button,
+body input,
+body select,
+body textarea {
     font-family: Noto Sans KR;
 }
 
-a, address, article, aside, audio, b, body, button, canvas, caption, dd, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, img, input, label, legend, li, nav, ol, p, pre, section, small, span, strong, summary, table, tbody, td, th, thead, time, tr, ul, video {
+a,
+address,
+article,
+aside,
+audio,
+b,
+body,
+button,
+canvas,
+caption,
+dd,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+html,
+i,
+img,
+input,
+label,
+legend,
+li,
+nav,
+ol,
+p,
+pre,
+section,
+small,
+span,
+strong,
+summary,
+table,
+tbody,
+td,
+th,
+thead,
+time,
+tr,
+ul,
+video {
     margin: 0;
     border: 0;
     padding: 0;
@@ -41,22 +103,29 @@ a, address, article, aside, audio, b, body, button, canvas, caption, dd, div, dl
     box-sizing: border-box;
 }
 
-
-
-a, em, div {
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+a,
+em,
+div {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
 }
 
-body li, body ol, body ul {
+body li,
+body ol,
+body ul {
     list-style: none;
 }
 
-article, main, section {
-   	display: block;
+article,
+main,
+section {
+    display: block;
 }
 
-input, optgroup, select, textarea {
+input,
+optgroup,
+select,
+textarea {
     color: inherit;
 }
 
@@ -66,7 +135,7 @@ button {
 }
 
 .Wrapper {
-    transition: padding-top .25s;
+    transition: padding-top 0.25s;
     padding-top: 0;
 }
 
@@ -88,7 +157,7 @@ button {
     font-family: Noto Sans KR;
     word-break: keep-all;
     overflow-wrap: break-word;
-    letter-spacing: -.3px;
+    letter-spacing: -0.3px;
     background-color: #f9fafb;
     color: #495057;
 }
@@ -96,7 +165,7 @@ button {
 .withIcon {
     display: block;
     transform: scale(1);
-    transition: transform .3s ease-out;
+    transition: transform 0.3s ease-out;
     width: 1em;
     height: 1em;
     fill: currentColor;
@@ -150,7 +219,7 @@ button {
     height: 18px;
     text-align: center;
     font-size: 14px;
-    content: "\2022";
+    content: '\2022';
     box-sizing: border-box;
 }
 
@@ -167,7 +236,7 @@ button {
 
 .Section_container .Section_titleContainer .Section_title {
     line-height: 28px;
-    letter-spacing: -.3px;
+    letter-spacing: -0.3px;
     font-size: 16px;
     font-weight: 700;
 }
@@ -214,8 +283,8 @@ button {
 /* 주문 요청 사항을 입력하세요 */
 .Input1 {
     display: block;
-    transition-property: border-color,background-color,color;
-    transition-duration: .15s;
+    transition-property: border-color, background-color, color;
+    transition-duration: 0.15s;
     outline: none;
     border: 1px solid #dde2e6;
     border-radius: 3px;
@@ -229,7 +298,7 @@ button {
     box-sizing: border-box;
     -webkit-appearance: none;
     line-height: 28px;
-    letter-spacing: -.3px;
+    letter-spacing: -0.3px;
     font-size: 16px;
     font-weight: 400;
 }
@@ -250,7 +319,7 @@ button {
 /* 상품명 */
 .Product .Product_container .TextContainer .ProductName {
     line-height: 28px;
-    letter-spacing: -.3px;
+    letter-spacing: -0.3px;
     font-size: 16px;
     font-weight: 400;
 }
@@ -274,7 +343,7 @@ button {
 .Product .Product_container:after {
     display: block;
     clear: both;
-    content: "";
+    content: '';
 }
 /* 가격정보 */
 .Product .ProductInfo {
@@ -293,7 +362,7 @@ button {
 /* 금액 */
 .Product .ProductInfo .Info_price {
     line-height: 28px;
-    letter-spacing: -.3px;
+    letter-spacing: -0.3px;
     font-size: 16px;
     font-weight: 700;
     float: right;
@@ -302,7 +371,7 @@ button {
 .Product .ProductInfo:after {
     display: block;
     clear: both;
-    content: "";
+    content: '';
 }
 
 .Product .Divider {
@@ -315,7 +384,7 @@ button {
 .Product:after {
     display: block;
     clear: both;
-    content: "";
+    content: '';
 }
 
 .select-menu {
@@ -340,7 +409,7 @@ button {
 .withIcon {
     display: block;
     transform: scale(1);
-    transition: transform .3s ease-out;
+    transition: transform 0.3s ease-out;
     width: 1em;
     height: 1em;
     fill: currentColor;
@@ -370,7 +439,7 @@ button {
 
 .NicePay1 .NicePay_title {
     line-height: 28px;
-    letter-spacing: -.3px;
+    letter-spacing: -0.3px;
     font-size: 16px;
     font-weight: 400;
     position: relative;
@@ -381,7 +450,7 @@ button {
     vertical-align: top;
 }
 
-label.Radio1>input {
+label.Radio1 > input {
     position: absolute;
     visibility: hidden;
     opacity: 0;
@@ -417,7 +486,7 @@ label.Radio1 {
     display: none;
 }
 
-.NicePay1 .NicePay_title>span {
+.NicePay1 .NicePay_title > span {
     vertical-align: middle;
 }
 
@@ -431,11 +500,11 @@ label.Radio1 {
     color: #adb5bd;
 }
 
-label.Radio1>.Radio_icon {
+label.Radio1 > .Radio_icon {
     display: block;
     position: relative;
-    transition-property: opacity,border-color,background-color;
-    transition-duration: .15s;
+    transition-property: opacity, border-color, background-color;
+    transition-duration: 0.15s;
     opacity: 1;
     z-index: 1;
     border: 1px solid #cdd3d8;
@@ -447,19 +516,19 @@ label.Radio1>.Radio_icon {
     box-sizing: border-box;
 }
 
-label.Radio1.Radio_pay1>span {
+label.Radio1.Radio_pay1 > span {
     line-height: 28px;
-    letter-spacing: -.3px;
+    letter-spacing: -0.3px;
     font-size: 16px;
     font-weight: 400;
 }
 
-label.Radio1.Radio_pay1>.Radio_icon {
+label.Radio1.Radio_pay1 > .Radio_icon {
     font-size: 24px;
 }
 
-label.Radio1>input:checked+.Radio_icon {
-    border-color: #00c4c4!important;
+label.Radio1 > input:checked + .Radio_icon {
+    border-color: #00c4c4 !important;
 }
 
 label.Radio1 .Radio_label {
@@ -477,7 +546,7 @@ label.Radio1 .Radio_label {
     background-color: #f9fafb;
     cursor: pointer;
     padding: 16px;
-    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 
 .DefaultPrice .DefaultPrice_title .Radio3 {
@@ -486,36 +555,36 @@ label.Radio1 .Radio_label {
     cursor: pointer;
 }
 
-label.Radio1.Radio2>span {
+label.Radio1.Radio2 > span {
     line-height: 28px;
-    letter-spacing: -.3px;
+    letter-spacing: -0.3px;
     font-size: 16px;
     font-weight: 400;
 }
 
-label.Radio1.Radio2>.Radio_icon {
+label.Radio1.Radio2 > .Radio_icon {
     font-size: 20px;
 }
 
-label.Radio1>input:checked+.Radio_icon {
-    border-color: #00c4c4!important;
+label.Radio1 > input:checked + .Radio_icon {
+    border-color: #00c4c4 !important;
 }
 
-label.Radio1>.Radio_icon:before {
+label.Radio1 > .Radio_icon:before {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     transition-property: background-color;
-    transition-duration: .15s;
+    transition-duration: 0.15s;
     border-radius: 999em;
     background-color: #fff;
     width: 0.5em;
     height: 0.5em;
-    content: "";
+    content: '';
 }
 
-label.Radio1>input:checked+.Radio_icon:before {
+label.Radio1 > input:checked + .Radio_icon:before {
     background-color: #00c4c4;
 }
 
@@ -567,7 +636,7 @@ label.Radio1 .Radio_label {
 }
 
 .Price_container .Price_divide {
-    margin: 12px -16px 2px!important;
+    margin: 12px -16px 2px !important;
     border: 1px solid #e6eaed;
 }
 
@@ -582,7 +651,7 @@ label.Radio1 .Radio_label {
 
 .Price_container .Price_total em {
     line-height: 28px;
-    letter-spacing: -.6px;
+    letter-spacing: -0.6px;
     font-size: 18px;
     font-weight: 700;
     line-height: 30px;
@@ -612,46 +681,21 @@ label.Radio1 .Radio_label {
     font-size: 14px;
     font-weight: 700;
 }   */
- 
- 
-.withIcon CheckIcon:after{
-     display: inline-block;
-    margin-top: -0.2em;
-    vertical-align: middle;
-    text-transform: none;
-    line-height: 1;
-    font-family: wadizicon!important;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-style: normal;
-    font-variant: normal;
-    speak: none;
-    content: "";
-    position: absolute;
-    top: 6px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700;
- }
 
- .Checkbox_content:after {
+.withIcon CheckIcon:after {
     display: inline-block;
     margin-top: -0.2em;
     vertical-align: middle;
     text-transform: none;
     line-height: 1;
-    font-family: wadizicon!important;
+    font-family: wadizicon !important;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-style: normal;
     font-variant: normal;
     speak: none;
-    content: "";
+    content: '';
     position: absolute;
     top: 6px;
     left: 2px;
@@ -660,8 +704,31 @@ label.Radio1 .Radio_label {
     color: #fff;
     font-size: 14px;
     font-weight: 700;
-} 
- 
+}
+
+.Checkbox_content:after {
+    display: inline-block;
+    margin-top: -0.2em;
+    vertical-align: middle;
+    text-transform: none;
+    line-height: 1;
+    font-family: wadizicon !important;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    speak: none;
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+}
 
 .Checkbox1 {
     display: block;
@@ -697,13 +764,13 @@ label.Radio1 .Radio_label {
 .Checkbox1 .Checkbox_icon {
     display: block;
     position: relative;
-    transition-property: opacity,border-color,background-color;
-    transition-duration: .15s;
+    transition-property: opacity, border-color, background-color;
+    transition-duration: 0.15s;
     opacity: 1;
     z-index: 1;
     border: 1px solid #cdd3d8;
     border-radius: 3px;
-/*     background-color: #fff; */
+    /*     background-color: #fff; */
     width: 1em;
     height: 1em;
     box-sizing: border-box;
@@ -723,11 +790,11 @@ label.Radio1 .Radio_label {
     position: absolute;
     top: 37%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    transition-property: opacity,width,fill;
-    transition-duration: .15s;
-    width: em(18.7px,24px);
-    height: em(18.7px,24px);
+    transform: translate(-50%, -50%);
+    transition-property: opacity, width, fill;
+    transition-duration: 0.15s;
+    width: em(18.7px, 24px);
+    height: em(18.7px, 24px);
     fill: #fff;
 }
 
@@ -742,7 +809,7 @@ label.Radio1 .Radio_label {
 }
 
 .Checkbox1.Terms_check2.Terms_check1 .Checkbox_content {
-    letter-spacing: -.6px;
+    letter-spacing: -0.6px;
     font-size: 16px;
     font-weight: 700;
 }
@@ -785,8 +852,8 @@ label.Radio1 .Radio_label {
 
 .Button1 {
     position: relative;
-    transition-property: background-color,border-color,color,opacity;
-    transition-duration: .15s;
+    transition-property: background-color, border-color, color, opacity;
+    transition-duration: 0.15s;
     border: 1px solid #cdd3d8;
     border-radius: 4px;
     background-color: transparent;
@@ -799,7 +866,7 @@ label.Radio1 .Radio_label {
     color: #495057;
     font-size: 14px;
     font-weight: 500;
-    box-sizing: border-box!important;
+    box-sizing: border-box !important;
     -webkit-appearance: none;
     -webkit-font-smoothing: antialiased;
 }
@@ -828,12 +895,12 @@ label.Radio1 .Radio_label {
     height: auto;
 }
 
-.Button1.Button4>span svg {
+.Button1.Button4 > span svg {
     width: 16px;
     height: 16px;
 }
 
-.Button1.Button4.Button3>span svg {
+.Button1.Button4.Button3 > span svg {
     width: 16px;
     height: 16px;
 }
@@ -843,7 +910,7 @@ label.Radio1 .Radio_label {
     height: 16px;
 }
 
-button[class*=Button_button] {
+button[class*='Button_button'] {
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -888,87 +955,87 @@ button[class*=Button_button] {
 }
 
 #paymentbutton:hover {
-	border-color: #00b2b2;
-	background-color: #00b2b2;
+    border-color: #00b2b2;
+    background-color: #00b2b2;
 }
-
-
 
 /* ======================================media======================================= */
 @media screen and (min-width: 1097px) {
-.Wrapper {
-    padding-top: 0;
-    padding-bottom: 0;
-}
+    .Wrapper {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 
-.Layout {
-    display: flex;
-    justify-content: space-between;
-    margin: 40px auto 0;
-    background-color: #fff;
-    max-width: 1140px;
-}
+    .Layout {
+        display: flex;
+        justify-content: space-between;
+        margin: 40px auto 0;
+        background-color: #fff;
+        max-width: 1140px;
+    }
 
-.Layout .Container {
-    width: 100%;
-    max-width: 729px;
-}
+    .Layout .Container {
+        width: 100%;
+        max-width: 729px;
+    }
 
-.PageTitle {
-    line-height: 38px;
-    letter-spacing: -.6px;
-    font-size: 28px;
-    font-weight: 700;
-    padding: 0 16px 24px;
-}
+    .PageTitle {
+        line-height: 38px;
+        letter-spacing: -0.6px;
+        font-size: 28px;
+        font-weight: 700;
+        padding: 0 16px 24px;
+    }
 
-.Box_description {
-    line-height: 20px;
-}
+    .Box_description {
+        line-height: 20px;
+    }
 
-.Section_container .Section_titleContainer .Section_title {
-	line-height: 30px;
-    letter-spacing: -.6px;
-    font-size: 20px;
-    font-weight: 700;
-}
+    .Section_container .Section_titleContainer .Section_title {
+        line-height: 30px;
+        letter-spacing: -0.6px;
+        font-size: 20px;
+        font-weight: 700;
+    }
 
-.Layout .Layout_floatingSectionContainer__2QCzS {
-    margin-top: 24px;
-    width: 343px;
-}
+    .Layout .Layout_floatingSectionContainer__2QCzS {
+        margin-top: 24px;
+        width: 343px;
+    }
 
-.FloatingSection{
-width: 350px
-}
+    .FloatingSection {
+        width: 350px;
+    }
 
-.Layout .Layout_floatingSectionContainer__2QCzS .Layout_floatingSection__31pLD {
-    position: sticky;
-    top: 40px;
-}
+    .Layout .Layout_floatingSectionContainer__2QCzS .Layout_floatingSection__31pLD {
+        position: sticky;
+        top: 40px;
+    }
 
-.Layout .Layout_floatingSectionContainer__2QCzS .Layout_floatingSection__31pLD .Layout_floating__3iHN0 {
-    padding-top: 0;
-    padding-right: 0;
-    padding-left: 0;
-}
+    .Layout
+        .Layout_floatingSectionContainer__2QCzS
+        .Layout_floatingSection__31pLD
+        .Layout_floating__3iHN0 {
+        padding-top: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
 
+    input[type='checkbox']:checked {
+        background-color: #00c4c4;
+        color: white;
+    }
 
-input[type=checkbox]:checked {
-   background-color: #00c4c4;
-   color: white;
-}
-
-input[type="checkbox"]:checked::before { /* 체크 모양 */
-            content: "\2713";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            line-height: 1px;
-            border-radius: 2px;
-            transform: scale(1) translate(-50%, -50%);
-        }
-
+    input[type='checkbox']:checked::before {
+        /* 체크 모양 */
+        content: '\2713';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        line-height: 1px;
+        border-radius: 2px;
+        transform: scale(1) translate(-50%, -50%);
+    }
 }
 
 /*.Checkbox1 .Checkbox_input+ .Checkbox_icon .CheckIcon .Checkbox1 .Checkbox_input .Checkbox_icon  .RemoveIcon  {
@@ -977,19 +1044,244 @@ input[type="checkbox"]:checked::before { /* 체크 모양 */
 }  
 */
 
-
-#checkboxmint{
+#checkboxmint {
     opacity: 1;
-  background-color: #fff;
-  }
-
-
-#checkbutton{
-opacity:0;
+    background-color: #fff;
 }
-   
-  #realbutton{
-  opacity: 1; 
-  }
-  
+
+#checkbutton {
+    opacity: 0;
+}
+
+#realbutton {
+    opacity: 1;
+}
+
+/* 김동한 */
+.payment.coupon-wrapper {
+    padding: 24px 0px;
+}
+
+.payment.coupon-wrapper p {
+    color: rgb(51, 51, 51);
+    letter-spacing: -0.48px;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.coupon-info {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.48px;
+}
+
+.coupon-count span {
+    color: rgb(170, 170, 170);
+    font-weight: 600;
+}
+
+.check-coupon-btn {
+    padding: 9px 17px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.42px;
+    color: rgb(51, 51, 51);
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.hr-lighter {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(238, 238, 238);
+    margin: 16px 0px;
+    border: none;
+}
+
+.coupon-notion {
+    background-color: rgb(244, 244, 244);
+    border-radius: 5px;
+    padding: 16px;
+}
+
+.coupon-notion p {
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: -0.36px;
+    color: rgb(153, 153, 153);
+    word-break: keep-all;
+}
+
+.coupon-title {
+    line-height: 30px;
+    letter-spacing: -0.6px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* 쿠폰 모달 */
+/* 모달 */
+.modal {
+    display: none; /* 모달창 숨김 */
+    position: fixed; /* 모달창 위치 고정 */
+    z-index: 10; /* 모달창이 다른 요소 위에 보이도록 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* 모달창이 너무 커서 스크롤이 필요할 때 스크롤바를 생성하도록 함 */
+    background-color: rgba(0, 0, 0, 0.4); /* 배경 어둡게 */
+}
+
+.modal-content {
+    background-color: white; /* 모달창 배경색 지정 */
+    margin: 10% auto; /* 모달창 중앙 정렬 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa; /* x 버튼 색상 */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* x 버튼 hover 시 색상 */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 모달 내에 쿠폰 */
+.coupon-full-wrap-margin {
+    margin: 32px 0;
+}
+
+/* @media screen and (min-width: 769px)
+ {
+    .coupon-full-wrap-margin {
+        margin: 12px 0;
+    }
+ } */
+
+ .coupon-full-wrap {
+    min-height: 100px;
+    position: relative;
+    padding-right: 23px;
+    max-width: 820px;
+ }
+
+ .coupon-left-full-wrap {
+    border-radius: 3px;
+    box-shadow: 0 2px 30px rgba(0,0,0,.15);
+    background: #fff;
+    padding: 16px;
+    padding-right: calc(20% + 16px);
+    height: 100%;
+    line-height: 18px;
+    color: rgba(0,0,0,.84);
+    font-size: 14px;
+    font-weight: 400;
+    box-sizing: border-box;
+    min-height: 100px;
+ }
+
+ dl {
+    margin: 0;
+    padding: 0;
+ }
+
+ .coupon-left-category {
+    position: absolute;
+    margin: -1px;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+ }
  
+ .coupon-left-title {
+    margin: 0;
+    color: #000;
+    font-weight: 500;
+ }
+
+ .coupon-left-title-explain {
+    margin: 0;
+ }
+
+ .coupon-left-price-wrap {
+    margin: 4px 0 8px;
+    line-height: 28px;
+    color: #3359cc;
+    font-size: 21px;
+    font-weight: 700;
+ }
+
+ .coupon-left-price {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font: inherit;
+    box-sizing: border-box;
+ }
+
+ .coupon-right-full-wrap {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: rgba(0,0,0,0) url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODUiIGhlaWdodD0iMTciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8ZmlsdGVyIHg9Ii05LjglIiB5PSItMjEuOCUiIHdpZHRoPSIxMTkuNSUiIGhlaWdodD0iMTQzLjUlIiBmaWx0ZXJVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIGlkPSJhIj4KICAgICAgPGZlTWVyZ2U+CiAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+CiAgICAgIDwvZmVNZXJnZT4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8cGF0aCBkPSJNMzQzIDEzOGE1IDUgMCAxIDAgMCAxMHY0YTIgMiAwIDAgMS0yIDJoLTgzVjBoODNhMiAyIDAgMCAxIDIgMnY0YTUgNSAwIDEgMCAwIDEwdjdhNSA1IDAgMSAwIDAgMTB2NmE1IDUgMCAxIDAgMCAxMHY3YTUgNSAwIDEgMCAwIDEwdjZhNSA1IDAgMSAwIDAgMTB2N2E1IDUgMCAxIDAgMCAxMHY2YTUgNSAwIDEgMCAwIDEwdjdhNSA1IDAgMSAwIDAgMTB2NnoiIGZpbHRlcj0idXJsKCNhKSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI1OCAtMTYpIiBmaWxsPSIjMzM1OUNDIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiLz4KPC9zdmc+Cg==) 100% 0 repeat-y;
+    cursor: pointer;
+    width: 17%;
+    min-width: 85px;
+    height: 100%;
+    color: #fff;
+ }
+
+ .coupon-right-full-wrap::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: #3359cc;
+    width: calc(100% - 23px);
+    height: 100%;
+    content: "";
+ }
+
+ .coupon-right-icon {
+    position: relative;
+    z-index: 2;
+    display: block;
+    font-size: 28px;
+    margin-top: 10px;
+ }
+
+ .coupon-right-can-use {
+    position: relative;
+    z-index: 2;
+    line-height: 36px;
+    font-size: 13px;
+    font-weight: 400;
+ }
