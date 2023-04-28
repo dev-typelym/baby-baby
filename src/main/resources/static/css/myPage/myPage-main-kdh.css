@@ -1,0 +1,218 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;700&display=swap');
+
+@font-face {
+    font-family: wadizicon;
+    font-weight: 400;
+    font-style: normal;
+    src: url(https://static.wadiz.kr/static/web/media/wadizicon.1de1502a.eot#iefix) format("embedded-opentype"),url(https://static.wadiz.kr/static/web/media/wadizicon.f5cdf486.woff2) format("woff2"),url(https://static.wadiz.kr/static/web/media/wadizicon.9eb6b0a9.woff) format("woff"),url(https://static.wadiz.kr/static/web/media/wadizicon.e5379495.ttf) format("truetype"),url(https://static.wadiz.kr/static/web/media/wadizicon.077f5804.svg#wadizicon) format("svg")
+}
+
+article, blockquote, body, dd, div, dl, dt, h1, h2, h3, h4, html, li, main, ol, p, section, table, tbody, td, th, thead, tr, ul {
+    margin: 0;
+    padding: 0;
+}
+
+article, main, section {
+    display: block;
+}
+
+.full-content-wrapper {
+    transition: padding-top .25s;
+    padding-top: 0;
+}
+
+@media screen and (min-width: 1097px) {
+    .full-content-wrapper {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.full-content-wrapper-section {
+    position: relative;
+    z-index: 98;
+    padding-bottom: 58px;
+}
+
+@media screen and (min-width: 1097px) {
+    .full-content-wrapper-section {
+        top: auto;
+        z-index: auto;
+        background-color: #fff;
+    }
+}
+
+.mypage-profile-background {
+    display: none;
+}
+
+@media screen and (min-width: 1097px) {
+    .mypage-profile-background::before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #00c4c4;
+        width: 100%;
+        height: 220px;
+    }
+}
+
+@media screen and (min-width: 1097px) {
+    .mypage-profile-background::after {
+        display: block;
+        position: absolute;
+        top: 69px;
+        left: 50%;
+        transform: translate(-50%);
+        box-shadow: 0 0 8px rgba(33,37,41,.16);
+        width: 1025px;
+        height: 151px;
+        content: "";
+    }
+}
+
+.media-query-title {
+    position: absolute;
+    margin: -1px;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 1097px) {
+    .full-content-inner {
+        margin: 0 auto;
+        background-color: #fff;
+        max-width: 1280px;
+    }
+}
+
+.full-content-inner-header {
+    position: relative;
+}
+
+.full-content-inner-header-padding {
+    position: relative;
+    width: 100%;
+    height: 51px;
+    overflow: hidden;
+    position: sticky;
+    z-index: 99;
+    top: 56px;
+    background: #00c4c4;
+}
+
+@media screen and (min-width: 1097px) {
+    .full-content-inner-header-padding {
+        padding-top: 13px;
+        height: 69px;
+        position: relative;
+        top: 0;
+        background-image: none;
+    }
+}
+
+.header-button-wrapper {
+    position: relative;
+    z-index: 11;
+    background-image: url(PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTUwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNOTEgMEM4Mi4xNjM0IDAgNzUgNy4xNjM0NCA3NSAxNlY0MUM3NSA0MSA3NC44NDQ5IDQzLjQxMDMgNzQgNDVDNzMuNDEzMiA0Ni4xMDQgNzEgNDggNzEgNDhIMTUwQzE1MCA0OCAxNDcuNTg3IDQ2LjEwNDEgMTQ3IDQ1QzE0Ni4xNTUgNDMuNDEwNCAxNDYgNDEgMTQ2IDQxVjE2QzE0NiA3LjE2MzQ0IDEzOC44MzcgMCAxMzAgMEg5MVoiIGZpbGw9IiNGOUZBRkIiLz4KPHBhdGggZD0iTTc1IDE2Qzc1IDcuMTYzNDQgODIuMTYzNCAwIDkxIDBIMTMwQzEzOC44MzcgMCAxNDYgNy4xNjM0NCAxNDYgMTZWNDhINzVWMTZaIiBmaWxsPSIjRjlGQUZCIi8);
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    padding: 0 15px;
+    width: 154px;
+    height: 61px;
+}
+
+@media screen and (min-width: 1097px) {
+    .header-button-wrapper {
+        background-image: 'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQ4IiB2aWV3Qm94PSIwIDAgMTUwIDQ4IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cGF0aCBkPSJNOTEgMEM4Mi4xNjM0IDAgNzUgNy4xNjM0NCA3NSAxNlY0MUM3NSA0MSA3NC44NDQ5IDQzLjQxMDMgNzQgNDVDNzMuNDEzMiA0Ni4xMDQgNzEgNDggNzEgNDhIMTUwQzE1MCA0OCAxNDcuNTg3IDQ2LjEwNDEgMTQ3IDQ1QzE0Ni4xNTUgNDMuNDEwNCAxNDYgNDEgMTQ2IDQxVjE2QzE0NiA3LjE2MzQ0IDEzOC44MzcgMCAxMzAgMEg5MVoiIGZpbGw9IiNGOUZBRkIiLz4KPHBhdGggZD0iTTc1IDE2Qzc1IDcuMTYzNDQgODIuMTYzNCAwIDkxIDBIMTMwQzEzOC44MzcgMCAxNDYgNy4xNjM0NCAxNDYgMTZWNDhINzVWMTZaIiBmaWxsPSIjRjlGQUZCIi8+CjxwYXRoIGQ9Ik05NS42NjIgMjAuNjRIOTMuNDc4VjE0Ljk3SDk1LjY2MlYyMC42NFpNOTguNjAyIDE3LjEyNkg5Ny4wMDZWMTMuODIySDkyLjEzNFYyMS43ODhIOTcuMDA2VjE4LjMwMkg5OC42MDJWMjQuNDc2SDk5Ljk0NlYxMi42NzRIOTguNjAyVjE3LjEyNlpNMTAxLjEzNiAxMi40MzZWMjUuMDY0SDEwMi41MDhWMTIuNDM2SDEwMS4xMzZaTTExMy41MzkgMTIuNDIyVjI1LjEwNkgxMTQuOTk1VjEyLjQyMkgxMTMuNTM5Wk0xMDguMjYxIDEzLjM2QzEwNi4zODUgMTMuMzYgMTA1LjAxMyAxNS4wOTYgMTA1LjAxMyAxNy44MTJDMTA1LjAxMyAyMC41NTYgMTA2LjM4NSAyMi4yNzggMTA4LjI2MSAyMi4yNzhDMTEwLjE1MSAyMi4yNzggMTExLjUyMyAyMC41NTYgMTExLjUyMyAxNy44MTJDMTExLjUyMyAxNS4wOTYgMTEwLjE1MSAxMy4zNiAxMDguMjYxIDEzLjM2Wk0xMDguMjYxIDE0LjY2MkMxMDkuMzY3IDE0LjY2MiAxMTAuMTM3IDE1Ljg1MiAxMTAuMTM3IDE3LjgxMkMxMTAuMTM3IDE5LjggMTA5LjM2NyAyMC45OSAxMDguMjYxIDIwLjk5QzEwNy4xNjkgMjAuOTkgMTA2LjM5OSAxOS44IDEwNi4zOTkgMTcuODEyQzEwNi4zOTkgMTUuODUyIDEwNy4xNjkgMTQuNjYyIDEwOC4yNjEgMTQuNjYyWk0xMTguMTQ0IDEzLjY5NlYxNC44NzJIMTIyLjQyOEMxMjIuMzg2IDE1LjU3MiAxMjIuMjYgMTYuMjMgMTIyLjA5MiAxNi44NkwxMTcuNDg2IDE3LjE0TDExNy42OTYgMTguMzcyTDEyMS42NDQgMTguMDA4QzEyMC45MDIgMTkuNTYyIDExOS41NzIgMjAuODc4IDExNy40MyAyMS45N0wxMTguMjE0IDIzLjA5QzEyMi43MDggMjAuNzk0IDEyMy44NyAxNy40NjIgMTIzLjg3IDEzLjY5NkgxMTguMTQ0Wk0xMjYuNDg4IDEyLjQzNlYxNy40MDZIMTIzLjgyOFYxOC41OTZIMTI2LjQ4OFYyNS4wOTJIMTI3Ljk0NFYxMi40MzZIMTI2LjQ4OFoiIGZpbGw9IiM4NjhFOTYiLz4KPHBhdGggZD0iTTIwIDBDMTEuMTYzNCAwIDQgNy4xNjM0NCA0IDE2VjQxQzQgNDEgMy44NDQ4OCA0My40MTAzIDMgNDVDMi40MTMyMiA0Ni4xMDQgMCA0OCAwIDQ4SDc5LjAwMDJDNzkuMDAwMiA0OCA3Ni41ODY4IDQ2LjEwNDEgNzYgNDVDNzUuMTU1MSA0My40MTA0IDc1IDQxIDc1IDQxVjE2Qzc1IDcuMTYzNDQgNjcuODM2NiAwIDU5IDBIMjBaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNNCAxNkM0IDcuMTYzNDQgMTEuMTYzNCAwIDIwIDBINTlDNjcuODM2NiAwIDc1IDcuMTYzNDQgNzUgMTZWNDhINFYxNloiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNS4yOTIgMTMuNDU4SDIzLjgzNlYxNS41NDRDMjMuODM2IDE3LjkxIDIyLjYwNCAyMC4zNDYgMjAuNjMgMjEuMzEyTDIxLjU0IDIyLjQ2QzIyLjk4MiAyMS43MTggMjQuMDE4IDIwLjI0OCAyNC41NzggMTguNDU2QzI1LjEyNCAyMC4xNSAyNi4xNDYgMjEuNTM2IDI3LjU3NCAyMi4yNUwyOC40MjggMjEuMDg4QzI2LjQ5NiAyMC4xOTIgMjUuMjkyIDE3Ljg5NiAyNS4yOTIgMTUuNTQ0VjEzLjQ1OFpNMjkuNzU4IDEyLjQwOFYxNi41NjZIMjcuMDU2VjE3Ljc0MkgyOS43NThWMjUuMDkySDMxLjIxNFYxMi40MDhIMjkuNzU4Wk0zNy44MzQ5IDE0LjczMkg0MC43NDY5VjE4LjYyNEgzNy44MzQ5VjE0LjczMlpNNDAuMDA0OSAyMi4zOVYxOS43ODZINDQuMDA4OVYxOC42MjRINDIuMTc0OVYxNC43MzJINDQuMDM2OVYxMy41N0gzNC41MzA5VjE0LjczMkgzNi4zOTI5VjE4LjYyNEgzNC41NzI5VjE5Ljc4NkgzOC41NjI5VjIyLjM5SDMzLjU3ODlWMjMuNThINDUuMDU4OVYyMi4zOUg0MC4wMDQ5Wk00OC40NzM4IDE4LjIzMkg1Mi4zNzk4VjE3LjA4NEg0OC40NzM4VjE0LjcxOEg1Mi44OTc4VjEzLjUyOEg0Ny4wMzE4VjIyLjEzOEg0OC4wMjU4QzUwLjMyMTggMjIuMTM4IDUxLjkwMzggMjIuMDgyIDUzLjcwOTggMjEuNzZMNTMuNTgzOCAyMC41OThDNTEuOTMxOCAyMC44NzggNTAuNDg5OCAyMC45NDggNDguNDczOCAyMC45NjJWMTguMjMyWk01NS41MTU4IDEyLjQwOFYxNy4wNTZINTMuMDkzOFYxOC4yNDZINTUuNTE1OFYyNS4wOTJINTYuOTcxOFYxMi40MDhINTUuNTE1OFoiIGZpbGw9IiMwMEM0QzQiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zNi41IDMzLjI1TDM5LjUgMzcuNzVMNDIuNSAzMy4yNUgzNi41WiIgZmlsbD0iIzAwQzRDNCIvPgo8L3N2Zz4K)';
+        background-size: 150px 48px;
+        padding: 0;
+    }
+}
+
+.switch-header {
+    position: absolute;
+    top: 3px;
+    right: 0;
+}
+
+@media screen and (min-width: 1097px) {
+    .switch-header {
+        top: 22px;
+    }
+}
+
+@media screen and (min-width: 1097px) {
+    .individule{
+        width: 77px;
+    }
+}
+
+.individule {
+    z-index: 1;
+    left: 0;
+    cursor: default;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+
+.enterprise {
+    right: 0;
+    position: absolute;
+    z-index: 0;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 1097px) {
+    .enterprise {
+        width: 77px;
+    }
+}
+
+.body-content-full-wrapper {
+    position: relative;
+}
+
+.body-content-full-wrapper-media-query {
+    background-color: #fff; 
+}
+
+@media screen and (min-width: 1097px) {
+    .body-content-full-wrapper-media-query {
+        position: relative;
+        margin: 0 auto;
+        background-color: #fff;
+        max-width: 1280px;
+    }
+}
+
+.body-left-full-wrapper {
+    background-color: #fff;
+    padding: 32px 16px 8px;
+}
+
+@media screen and (min-width: 1097px) {
+    .body-left-full-wrapper {
+        position: relative;
+        float: left;
+        padding: 56px 24px 0;
+        width: 233px;
+    }
+}
+
+.media-query-myprofile {
+    position: absolute;
+    margin: -1px;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
