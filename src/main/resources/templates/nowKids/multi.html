@@ -7,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>작성하기</title>
     <link rel="stylesheet" href="../../static/css/nowKids/now-kids-write-ljw.css">
+    <style>
+        .cancel-box {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -134,7 +141,7 @@
                                             <div class="file-wrap">
                                                 <div class="file-header">
                                                     <div>미리 보기</div>
-                                                    <button class="image-cancel">
+                                                    <!-- <button class="image-cancel">
                                                         <svg viewBox="0 0 40 40" focusable="false" role="presentation"
                                                             class="image-cancel-icon" aria-hidden="true"
                                                             style="width: 24px; height: 24px;">
@@ -142,25 +149,10 @@
                                                                 d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z">
                                                             </path>
                                                         </svg>
-                                                    </button>
+                                                    </button> -->
                                                 </div>
                                                 <div class="file-list-box">
-                                                    <!-- <div class="image-file-content-box">
-                                                        <div>
-                                                            <div class="first-image-box">
-                                                                <img
-                                                                    src="https://www.wadiz.kr/wwwwadiz/green001/2023/0428/20230428001502093_210472.jpg">
-                                                            </div>
-                                                            <span class="image-file-info">프로젝트 이미지</span>
-                                                        </div>
-                                                        <div>
-                                                            <div class="second-image-box">
-                                                                <img
-                                                                    src="https://www.wadiz.kr/wwwwadiz/green001/2023/0428/20230428001502093_210472.jpg">
-                                                            </div>
-                                                            <span class="image-file-info">정방향 이미지</span>
-                                                        </div>
-                                                    </div> -->
+                                                    <!-- 이미지 들어가는 곳ㅇ -->
                                                 </div>
                                             </div>
                                         </div>
@@ -264,7 +256,6 @@
     const $subNav = $(".nav-info-ul");
     console.log(!$arrowIcon.hasClass("active"));
     $arrowButton.click(() => {
-        console.log(!$arrowIcon.hasClass("active"));
         if (!$arrowIcon.hasClass("active")) {
             $arrowIcon.addClass("active");
             $arrowIcon.css("transition", "0.3s");
@@ -343,16 +334,14 @@
 
         inputFiles = [];
 
-        filesArr.forEach(file => {
-            if (!file.type.match("image.*")) {
-                alertModal(errorMsg);
-                return;
-            }
+        filesArr.forEach((file,i) => {
+
             inputFiles.push(file);
 
             var reader = new FileReader();
             reader.onload = (e) => {
                 let text = `
+                        <div style="position:relative" id="file${i}">
                             <div class="image-file-content-box">
                                 <div>
                                     <div class="first-image-box">
@@ -367,6 +356,17 @@
                                     <span class="image-file-info">정방향 이미지</span>
                                 </div>
                             </div>
+                            <div class="cancel-box">
+                                <button class="image-cancel" id="${i}">
+                                    <svg viewBox="0 0 40 40" focusable="false" role="presentation"
+                                        class="image-cancel-icon" aria-hidden="true"
+                                            style="width: 24px; height: 24px;">
+                                        <path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>    
                 `;
                 $fileListBox.append(text);
                 $fileModal.hide();
@@ -375,16 +375,25 @@
             }
             reader.readAsDataURL(file);
         });
-
+        console.log(inputFiles);
     });
 
-    // 이미지 삭제 버튼
-    const $imageCancelButton = $(".image-cancel");
+    $fileListBox.on("click",".image-cancel", (e) => {
+        let idx = e.currentTarget.id;
+        inputFiles.splice(idx, 1);
+        let box = '#file' + idx;
+        $(box).remove();
+        
+        $fileListBox.find('div[id^="file"]').each(function(index) {
+            $(this).attr('id', 'file' + index);
+            $(this).find('button').attr('id', index);
+         });
 
-    // 이미지 삭제 이벤트
-    $imageCancelButton.click(() => {
-        $(".file-content-box").hide();
-        $(".file-input-box").show();
+        console.log(inputFiles);
+
+        if(inputFiles.length < 1){
+            $(".file-content-box").hide();
+        }
     });
 
 </script>
