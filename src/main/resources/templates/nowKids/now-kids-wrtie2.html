@@ -1,908 +1,965 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>통솔중인 행사 정보</title>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
-            * {
-                margin: 0px;
-                padding: 0px;
-            }
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>통솔중인 행사 정보</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
-            html {
-                font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
-            }
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
 
-            body {
-                font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
-                box-sizing: border-box;
-                font-size: 16px;
-                font-weight: 400;
-                overflow-wrap: break-word;
-                line-height: 1.3;
-                word-break: keep-all;
-            }
+        html {
+            font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
+        }
 
-            ul,
-            li,
-            ol {
-                font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
-                list-style: none;
-            }
+        body {
+            font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-weight: 400;
+            overflow-wrap: break-word;
+            line-height: 1.3;
+            word-break: keep-all;
+        }
 
-            button {
-                font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
-                border: none;
-                background: none;
-                cursor: pointer;
-            }
+        ul,
+        li,
+        ol {
+            font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
+            list-style: none;
+        }
 
-            a {
-                font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
-                text-decoration: none;
-            }
+        button {
+            font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
 
-            a:hover {
-                color: inherit;
-                text-decoration: none;
-            }
+        a {
+            font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
+            text-decoration: none;
+        }
 
-            input {
-                font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
-                outline: none;
-                border: none;
-            }
+        a:hover {
+            color: inherit;
+            text-decoration: none;
+        }
 
-            input::placeholder {
-                color: #adb5bd;
-                font-weight: 400;
-            }
+        input {
+            font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
+            outline: none;
+            border: none;
+        }
 
-            input[type='text'] {
-                word-break: normal;
-            }
+        input::placeholder {
+            color: #adb5bd;
+            font-weight: 400;
+        }
 
+        input[type='text'] {
+            word-break: normal;
+        }
+
+        .wrap {
+            padding-top: 56px;
+        }
+
+        .now-kids.container {
+            display: flex;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            flex-flow: column;
+            z-index: 1500;
+            background-color: #fff;
+            width: 200px;
+        }
+
+        .nav-header-box {
+            display: block;
+            position: relative;
+            cursor: pointer;
+            padding: 24px 24px 16px;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .nav-header-background {
+            background-image: linear-gradient(118deg, #75d184, #65bfce);
+        }
+
+        .nav-header-span {
+            letter-spacing: 0;
+            font-size: 10px;
+            font-weight: 400;
+            margin-right: 8px;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            padding: 2px 4px;
+            overflow: hidden;
+            line-height: normal;
+        }
+
+        .profile-box {
+            line-height: 28px;
+            letter-spacing: -0.6px;
+            font-size: 18px;
+            font-weight: 700;
+            display: block;
+            margin: 8px 0;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .profile-btn {
+            border-radius: 4px;
+            background-color: transparent;
+            cursor: pointer;
+            padding: 9px 16px;
+            vertical-align: middle;
+            text-decoration: none;
+            white-space: nowrap;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.45;
+            font-size: 14px;
+            position: relative;
+            padding: 0;
+            width: 192px;
+            height: 20px;
+            overflow: hidden;
+            text-align: left;
+            padding-right: 10px;
+        }
+
+        .profile-span {
+            vertical-align: top;
+            display: inline-block;
+            width: 158px;
+            overflow: hidden;
+        }
+
+        .arrow-icon {
+            display: block;
+            position: absolute;
+            top: 6%;
+            right: 0;
+            margin-left: 6px;
+            fill: currentColor;
+        }
+
+        .nav-side-box {
+            flex: 1 1;
+            padding-bottom: 120px;
+        }
+
+        .nav-side-layout {
+            height: 8px;
+        }
+
+        .nav-title-box {
+            display: block;
+            position: relative;
+            cursor: pointer;
+            padding: 16px 24px;
+            color: #00a2a2;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .nav-arrow-icon {
+            position: absolute;
+            top: 50%;
+            right: 24px;
+            transform: rotate(-90deg);
+            margin-top: -11px;
+            font-size: 24px;
+        }
+
+        .nav-info-ul {
+            display: none;
+            background-color: rgba(186, 189, 192, 0.1);
+            padding-left: 44px;
+        }
+
+        .nav-detail-title {
+            display: block;
+            position: relative;
+            cursor: pointer;
+            padding: 16px 24px;
+            color: #212529;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .content-wrap {
+            position: relative;
+            flex: 1 1;
+        }
+
+        .content-container {
+            position: relative;
+            padding: 24px 16px;
+            width: 100%;
+        }
+
+        .content-ol {
+            line-height: 20px;
+            letter-spacing: 0;
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 32px;
+        }
+
+        .content-ol-li {
+            display: inline-block;
+            color: #868e96;
+            font-size: 13px;
+        }
+
+        .content-ol-li::after {
+            display: inline-block;
+            margin: 0 2px;
+            vertical-align: bottom;
+            content: '>';
+        }
+
+        .content-ol-li:last-child {
+            display: inline-block;
+            color: #212529;
+        }
+
+        .content-ol-li:last-child::after {
+            content: '';
+        }
+
+        .content-title {
+            line-height: 48px;
+            letter-spacing: -0.6px;
+            font-size: 36px;
+            font-weight: 700;
+        }
+
+        .content-sub-title {
+            line-height: 28px;
+            letter-spacing: -0.3px;
+            font-size: 16px;
+            font-weight: 400;
+            margin-top: 8px;
+            margin-bottom: 32px;
+        }
+
+        .content-side-box {
+            display: block;
+            position: absolute;
+            top: 80px;
+            right: 0;
+            width: 300px;
+        }
+
+        .side-button {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+            cursor: pointer;
+        }
+
+        .side-button-icon {
+            position: relative;
+            margin-right: 16px;
+            border-radius: 8px;
+            background-color: #f9fafb;
+            width: 40px;
+            min-width: 40px;
+            height: 40px;
+            min-height: 40px;
+        }
+
+        .side-button-icon i {
+            display: inline-block;
+            background: url(https://static.wadiz.kr/studio/funding/static/media/icon-guide.ffa68575.svg) 0 0 no-repeat;
+            background-position: 50%;
+            background-size: 24px 24px;
+            width: 40px;
+            height: 40px;
+        }
+
+        .side-button-title {
+            line-height: 20px;
+            letter-spacing: 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #adb5bd;
+        }
+
+        .side-button-sub-title {
+            display: flex;
+            align-items: center;
+            line-height: 28px;
+            letter-spacing: -0.3px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #212529;
+        }
+
+        .content-box {
+            position: relative;
+        }
+
+        .content-section {
+            position: relative;
+            margin-bottom: 80px;
+        }
+
+        .input-title-box {
+            max-width: 630px;
+        }
+
+        .input-title-layout {
+            margin-bottom: 12px;
+            display: flex;
+            position: relative;
+            justify-content: space-between;
+            z-index: 1;
+        }
+
+        .input-title-layout2 {
+            margin-bottom: 12px;
+            display: flex;
+            position: relative;
+            justify-content: space-between;
+            z-index: 1;
+        }
+
+        .input-title-layout h2 {
+            line-height: 28px;
+            letter-spacing: -0.6px;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+        }
+
+        .input-title-layout2 h2 {
+            line-height: 28px;
+            letter-spacing: -0.6px;
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+        }
+
+        .input-title-layout h2::after {
+            line-height: 28px;
+            letter-spacing: -0.3px;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 4px;
+            color: #f66;
+            content: '*';
+        }
+
+        .input-title-layout2 h2::after {
+            line-height: 28px;
+            letter-spacing: -0.3px;
+            font-size: 16px;
+            font-weight: 400;
+            margin-left: 4px;
+            color: #adb5bd;
+            content: '(선택)';
+        }
+
+        .input-sub-title {
+            margin-top: 8px;
+            margin-bottom: 24px;
+            color: #868e96;
+            line-height: 20px;
+            letter-spacing: 0;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .input-box {
+            display: block;
+            position: relative;
+        }
+
+        .input-layout {
+            position: relative;
+        }
+
+        .select-box {
+            word-break: keep-all;
+            overflow-wrap: break-word;
+        }
+
+        .select-layout {
+            align-items: center;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            min-height: 48px;
+            position: relative;
+            transition: all 100ms ease 0s;
+            box-sizing: border-box;
+            line-height: 28px;
+            letter-spacing: -0.3px;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            height: 48px;
+            border: 1px solid #dde2e6;
+            border-radius: 4px;
+            box-shadow: none;
+            cursor: pointer;
+            outline: 0px !important;
+        }
+
+        .select-layout:hover {
+            border: 1px solid #0c0c0c;
+        }
+
+        .select-value-box {
+            align-items: center;
+            display: flex;
+            flex: 1 1 0%;
+            flex-wrap: wrap;
+            padding: 0 16px;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .select-value {
+            color: rgb(51, 51, 51);
+            margin-left: 2px;
+            margin-right: 2px;
+            max-width: calc(100% - 8px);
+            overflow: hidden;
+            position: absolute;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            top: 50%;
+            transform: translateY(-50%);
+            box-sizing: border-box;
+        }
+
+        .dummy-input {
+            background: 0px center;
+            border: 0px;
+            font-size: inherit;
+            outline: 0px;
+            padding: 0px;
+            width: 1px;
+            color: transparent;
+            left: -100px;
+            opacity: 0;
+            position: relative;
+            transform: scale(0);
+        }
+
+        .select-icon-box {
+            align-items: center;
+            align-self: stretch;
+            display: flex;
+            flex-shrink: 0;
+        }
+
+        .select-icon-layout {
+            display: flex;
+            padding: 8px;
+            transition: color 150ms ease 0s;
+            font-size: 24px;
+            padding-right: 12px;
+            padding-left: 12px;
+            color: #495057;
+        }
+
+        .select-icon-layout svg {
+            display: block;
+            transform: scale(1);
+            transition: transform 0.3s ease-out;
+            width: 1em;
+            height: 1em;
+            fill: currentColor;
+            color: rgb(134, 142, 150);
+        }
+
+        .select-menu-box {
+            margin-top: 4px;
+            border: 1px solid #dde2e6;
+            border-radius: 8px;
+            box-shadow: 0 0 1px 0 rgba(10, 22, 70, 0.08), 0 1px 5px 0 rgba(10, 22, 70, 0.08);
+            padding: 12px 8px;
+            max-width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .select-menu-box::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .select-menu-box::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background-color: rgba(0, 0, 0, 0.54);
+        }
+
+        .select-option {
+            padding: 8px 12px;
+            color: #212529;
+        }
+
+        .select-option:last-child {
+            margin-bottom: 0;
+        }
+
+        .select-menu-layout {
+            overflow-y: auto;
+        }
+
+        div.select-placeholder {
+            color: #adb5bd;
+        }
+
+        .date-wrap {
+            display: flex;
+            border-radius: 4px;
+        }
+
+        .date-container {
+            margin: 0;
+            color: rgba(33, 37, 41, 0.88);
+            font-size: 14px;
+            line-height: 1.5714285714285714;
+            list-style: none;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            transition: border 0.2s, box-shadow 0.2s;
+            border-radius: 4px;
+            border-color: #dde2e6;
+            padding: 8px 16px;
+            width: 100%;
+        }
+
+        .date-input-box {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .date-input-box input {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            min-width: 1px;
+            padding: 0;
+            border-width: 1px;
+            border-style: solid;
+            border-color: #d9d9d9;
+            border-radius: 6px;
+            transition: all 0.2s;
+            flex: auto;
+            height: auto;
+            background: transparent;
+            border: 0;
+            line-height: 28px;
+            letter-spacing: -0.3px;
+            font-size: 16px;
+            font-weight: 400;
+            color: #212529;
+        }
+
+
+        .date-wrap:hover {
+            border : 1px solid black;
+        }
+
+        .select-option:hover {
+            background: #e1e1e1;
+        }
+
+        .table-box {
+            width: 100%;
+            text-align: center;
+            border: 1px solid #e1e1e1;
+            border-collapse: collapse;
+            line-height: 30px;
+            font-size: 15px;
+        }
+
+        .table-wrap {
+            max-width: 800px;
+        }
+
+        th, tr {
+            padding: 10px;
+            border-left: 1px solid #e1e1e1;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        td {
+            border-left: 1px solid #e1e1e1;
+            padding: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 600px;
+            white-space: nowrap;
+        }
+
+        td:last-child {
+            font-size: 13px;
+        }
+
+        @media (min-width: 769px) {
             .wrap {
-                padding-top: 56px;
-            }
-
-            .now-kids.container {
                 display: flex;
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                flex-flow: column;
-                z-index: 1500;
-                background-color: #fff;
-                width: 200px;
+                height: 100%;
             }
 
-            .nav-header-box {
-                display: block;
+            .container {
                 position: relative;
-                cursor: pointer;
-                padding: 24px 24px 16px;
-                overflow: hidden;
-                color: #fff;
-            }
-
-            .nav-header-background {
-                background-image: linear-gradient(118deg, #75d184, #65bfce);
-            }
-
-            .nav-header-span {
-                letter-spacing: 0;
-                font-size: 10px;
-                font-weight: 400;
-                margin-right: 8px;
-                border: 1px solid #fff;
-                border-radius: 4px;
-                padding: 2px 4px;
-                overflow: hidden;
-                line-height: normal;
-            }
-
-            .profile-box {
-                line-height: 28px;
-                letter-spacing: -0.6px;
-                font-size: 18px;
-                font-weight: 700;
-                display: block;
-                margin: 8px 0;
-                cursor: pointer;
-                color: #fff;
-            }
-
-            .profile-btn {
-                border-radius: 4px;
-                background-color: transparent;
-                cursor: pointer;
-                padding: 9px 16px;
-                vertical-align: middle;
-                text-decoration: none;
-                white-space: nowrap;
-                color: #fff;
-                font-size: 14px;
-                font-weight: 500;
-                line-height: 1.45;
-                font-size: 14px;
-                position: relative;
-                padding: 0;
-                width: 192px;
-                height: 20px;
-                overflow: hidden;
-                text-align: left;
-                padding-right: 10px;
-            }
-
-            .profile-span {
-                vertical-align: top;
-                display: inline-block;
-                width: 158px;
-                overflow: hidden;
-            }
-
-            .arrow-icon {
-                display: block;
-                position: absolute;
-                top: 6%;
-                right: 0;
-                margin-left: 6px;
-                fill: currentColor;
+                transform: none;
+                transition: none;
+                z-index: 0;
+                box-shadow: 1px 0 0 0 rgba(0, 0, 0, 0.06);
+                height: 100%;
             }
 
             .nav-side-box {
-                flex: 1 1;
-                padding-bottom: 120px;
-            }
-
-            .nav-side-layout {
-                height: 8px;
-            }
-
-            .nav-title-box {
-                display: block;
-                position: relative;
-                cursor: pointer;
-                padding: 16px 24px;
-                color: #00a2a2;
-                font-size: 13px;
-                font-weight: 700;
-            }
-
-            .nav-arrow-icon {
-                position: absolute;
-                top: 50%;
-                right: 24px;
-                transform: rotate(-90deg);
-                margin-top: -11px;
-                font-size: 24px;
-            }
-
-            .nav-info-ul {
-                display: none;
-                background-color: rgba(186, 189, 192, 0.1);
-                padding-left: 44px;
-            }
-
-            .nav-detail-title {
-                display: block;
-                position: relative;
-                cursor: pointer;
-                padding: 16px 24px;
-                color: #212529;
-                font-size: 13px;
-                font-weight: 700;
-            }
-
-            .content-wrap {
-                position: relative;
-                flex: 1 1;
+                height: auto;
+                overflow-y: auto;
             }
 
             .content-container {
-                position: relative;
-                padding: 24px 16px;
-                width: 100%;
-            }
-
-            .content-ol {
-                line-height: 20px;
-                letter-spacing: 0;
-                font-size: 14px;
-                font-weight: 400;
-                margin-bottom: 32px;
-            }
-
-            .content-ol-li {
-                display: inline-block;
-                color: #868e96;
-                font-size: 13px;
-            }
-
-            .content-ol-li::after {
-                display: inline-block;
-                margin: 0 2px;
-                vertical-align: bottom;
-                content: '>';
-            }
-
-            .content-ol-li:last-child {
-                display: inline-block;
-                color: #212529;
-            }
-
-            .content-ol-li:last-child::after {
-                content: '';
-            }
-
-            .content-title {
-                line-height: 48px;
-                letter-spacing: -0.6px;
-                font-size: 36px;
-                font-weight: 700;
-            }
-
-            .content-sub-title {
-                line-height: 28px;
-                letter-spacing: -0.3px;
-                font-size: 16px;
-                font-weight: 400;
-                margin-top: 8px;
-                margin-bottom: 32px;
-            }
-
-            .content-side-box {
-                display: block;
-                position: absolute;
-                top: 80px;
-                right: 0;
-                width: 300px;
-            }
-
-            .side-button {
-                display: flex;
-                align-items: center;
-                margin-bottom: 24px;
-                cursor: pointer;
-            }
-
-            .side-button-icon {
-                position: relative;
-                margin-right: 16px;
-                border-radius: 8px;
-                background-color: #f9fafb;
-                width: 40px;
-                min-width: 40px;
-                height: 40px;
-                min-height: 40px;
-            }
-
-            .side-button-icon i {
-                display: inline-block;
-                background: url(https://static.wadiz.kr/studio/funding/static/media/icon-guide.ffa68575.svg)
-                    0 0 no-repeat;
-                background-position: 50%;
-                background-size: 24px 24px;
-                width: 40px;
-                height: 40px;
-            }
-
-            .side-button-title {
-                line-height: 20px;
-                letter-spacing: 0;
-                font-size: 14px;
-                font-weight: bold;
-                color: #adb5bd;
-            }
-
-            .side-button-sub-title {
-                display: flex;
-                align-items: center;
-                line-height: 28px;
-                letter-spacing: -0.3px;
-                font-size: 16px;
-                font-weight: bold;
-                color: #212529;
+                padding: 40px 64px;
+                width: calc(100vw - 480px);
+                min-width: 800px;
+                max-width: 1280px;
             }
 
             .content-box {
-                position: relative;
+                margin-top: 80px;
             }
+        }
 
-            .content-section {
-                position: relative;
-                margin-bottom: 80px;
+        @media (min-width: 321px) {
+            .container {
+                width: 240px;
             }
+        }
+    </style>
+</head>
 
-            .input-title-box {
-                max-width: 630px;
-            }
+<body>
+    <div>
+        <div id="header"></div>
 
-            .input-title-layout {
-                margin-bottom: 12px;
-                display: flex;
-                position: relative;
-                justify-content: space-between;
-                z-index: 1;
-            }
+        <div class="wrap">
+            <div class="now-kids.container">
+                <div class="nav-header-box nav-header-background">
+                    <div style="display: flex">
+                        <span class="nav-header-span">펀딩</span>
+                        <span class="nav-header-span">작성 중</span>
+                    </div>
+                    <a href="javascript:void(0)" class="profile-box">
+                        <p class="profile-name">임종욱의</p>
+                        <p>멋진 프로젝트</p>
+                    </a>
+                    <button type="button" class="profile-btn">
+                        <span class="profile-span">
+                            <span class="profile-span">프로젝트 번호 210217</span>
+                            <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="arrow-icon"
+                                aria-hidden="true" style="width: 20px; height: 20px">
+                                <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <nav class="side-nav-box">
+                    <div class="side-nav-layout"></div>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)" class="nav-title-box">
+                                지금 우리 아이들은
+                                <span>
+                                    <svg viewBox="0 0 32 32" focusable="false" role="presentation"
+                                        class="nav-arrow-icon" aria-hidden="true" style="width: 20px; height: 20px">
+                                        <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+                                    </svg>
+                                </span>
+                            </a>
+                            <ul class="nav-info-ul">
+                                <li>
+                                    <a href="javascript:void(0)" class="nav-detail-title">통솔중인 행사</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" class="nav-detail-title">사진 등록</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 
-            .input-title-layout2 {
-                margin-bottom: 12px;
-                display: flex;
-                position: relative;
-                justify-content: space-between;
-                z-index: 1;
-            }
-
-            .input-title-layout h2 {
-                line-height: 28px;
-                letter-spacing: -0.6px;
-                font-size: 18px;
-                font-weight: 700;
-                display: flex;
-            }
-
-            .input-title-layout2 h2 {
-                line-height: 28px;
-                letter-spacing: -0.6px;
-                font-size: 18px;
-                font-weight: 700;
-                display: flex;
-            }
-
-            .input-title-layout h2::after {
-                line-height: 28px;
-                letter-spacing: -0.3px;
-                font-size: 16px;
-                font-weight: 400;
-                margin-left: 4px;
-                color: #f66;
-                content: '*';
-            }
-
-            .input-title-layout2 h2::after {
-                line-height: 28px;
-                letter-spacing: -0.3px;
-                font-size: 16px;
-                font-weight: 400;
-                margin-left: 4px;
-                color: #adb5bd;
-                content: '(선택)';
-            }
-
-            .input-sub-title {
-                margin-top: 8px;
-                margin-bottom: 24px;
-                color: #868e96;
-                line-height: 20px;
-                letter-spacing: 0;
-                font-size: 14px;
-                font-weight: 400;
-            }
-
-            .input-box {
-                display: block;
-                position: relative;
-            }
-
-            .input-layout {
-                position: relative;
-            }
-
-            .select-box {
-                word-break: keep-all;
-                overflow-wrap: break-word;
-            }
-
-            .select-layout {
-                align-items: center;
-                background-color: rgb(255, 255, 255);
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                min-height: 48px;
-                position: relative;
-                transition: all 100ms ease 0s;
-                box-sizing: border-box;
-                line-height: 28px;
-                letter-spacing: -0.3px;
-                font-size: 16px;
-                font-weight: normal;
-                font-style: normal;
-                height: 48px;
-                border: 1px solid #dde2e6;
-                border-radius: 4px;
-                box-shadow: none;
-                cursor: pointer;
-                outline: 0px !important;
-            }
-
-            .select-layout:hover {
-                border: 1px solid #0c0c0c;
-            }
-
-            .select-value-box {
-                align-items: center;
-                display: flex;
-                flex: 1 1 0%;
-                flex-wrap: wrap;
-                padding: 0 16px;
-                position: relative;
-                overflow: hidden;
-                box-sizing: border-box;
-            }
-
-            .select-value {
-                color: rgb(51, 51, 51);
-                margin-left: 2px;
-                margin-right: 2px;
-                max-width: calc(100% - 8px);
-                overflow: hidden;
-                position: absolute;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                top: 50%;
-                transform: translateY(-50%);
-                box-sizing: border-box;
-            }
-
-            .dummy-input {
-                background: 0px center;
-                border: 0px;
-                font-size: inherit;
-                outline: 0px;
-                padding: 0px;
-                width: 1px;
-                color: transparent;
-                left: -100px;
-                opacity: 0;
-                position: relative;
-                transform: scale(0);
-            }
-
-            .select-icon-box {
-                align-items: center;
-                align-self: stretch;
-                display: flex;
-                flex-shrink: 0;
-            }
-
-            .select-icon-layout {
-                display: flex;
-                padding: 8px;
-                transition: color 150ms ease 0s;
-                font-size: 24px;
-                padding-right: 12px;
-                padding-left: 12px;
-                color: #495057;
-            }
-
-            .select-icon-layout svg {
-                display: block;
-                transform: scale(1);
-                transition: transform 0.3s ease-out;
-                width: 1em;
-                height: 1em;
-                fill: currentColor;
-                color: rgb(134, 142, 150);
-            }
-
-            .select-menu-box {
-                margin-top: 4px;
-                border: 1px solid #dde2e6;
-                border-radius: 8px;
-                box-shadow: 0 0 1px 0 rgba(10, 22, 70, 0.08), 0 1px 5px 0 rgba(10, 22, 70, 0.08);
-                padding: 12px 8px;
-                max-width: 100%;
-                max-height: 200px;
-                overflow-y: auto;
-                display: none;
-            }
-
-            .select-menu-box::-webkit-scrollbar {
-                width: 6px;
-                height: 6px;
-            }
-
-            .select-menu-box::-webkit-scrollbar-thumb {
-                border-radius: 4px;
-                background-color: rgba(0, 0, 0, 0.54);
-            }
-
-            .select-option {
-                padding: 8px 12px;
-                color: #212529;
-            }
-
-            .select-option:last-child {
-                margin-bottom: 0;
-            }
-
-            .select-menu-layout {
-                overflow-y: auto;
-            }
-
-            div.select-placeholder {
-                color: #adb5bd;
-            }
-
-            .date-wrap {
-                display: flex;
-            }
-
-            .date-container {
-                margin: 0;
-                color: rgba(33, 37, 41, 0.88);
-                font-size: 14px;
-                line-height: 1.5714285714285714;
-                list-style: none;
-                position: relative;
-                display: inline-flex;
-                align-items: center;
-                background: #ffffff;
-                border: 1px solid #d9d9d9;
-                transition: border 0.2s, box-shadow 0.2s;
-                border-radius: 4px;
-                border-color: #dde2e6;
-                padding: 8px 16px;
-                width: 100%;
-            }
-
-            .date-input-box {
-                position: relative;
-                display: inline-flex;
-                align-items: center;
-                width: 100%;
-            }
-
-            .date-input-box input {
-                position: relative;
-                display: inline-block;
-                width: 100%;
-                min-width: 1px;
-                padding: 0;
-                border-width: 1px;
-                border-style: solid;
-                border-color: #d9d9d9;
-                border-radius: 6px;
-                transition: all 0.2s;
-                flex: auto;
-                height: auto;
-                background: transparent;
-                border: 0;
-                line-height: 28px;
-                letter-spacing: -0.3px;
-                font-size: 16px;
-                font-weight: 400;
-                color: #212529;
-            }
-
-            .calendar-icon-box {
-                display: flex;
-                flex: none;
-                align-self: center;
-                margin-inline-start: 4px;
-                color: rgba(33, 37, 41, 0.25);
-                line-height: 1;
-                pointer-events: none;
-            }
-
-            .calendar-icon-box svg {
-                display: block;
-                transform: scale(1);
-                transition: transform 0.3s ease-out;
-                width: 16px;
-                height: 16px;
-                fill: currentColor;
-                color: #868e96;
-            }
-
-            @media (min-width: 769px) {
-                .wrap {
-                    display: flex;
-                    height: 100%;
-                }
-
-                .container {
-                    position: relative;
-                    transform: none;
-                    transition: none;
-                    z-index: 0;
-                    box-shadow: 1px 0 0 0 rgba(0, 0, 0, 0.06);
-                    height: 100%;
-                }
-
-                .nav-side-box {
-                    height: auto;
-                    overflow-y: auto;
-                }
-
-                .content-container {
-                    padding: 40px 64px;
-                    width: calc(100vw - 480px);
-                    min-width: 800px;
-                    max-width: 1280px;
-                }
-
-                .content-box {
-                    margin-top: 80px;
-                }
-            }
-
-            @media (min-width: 321px) {
-                .container {
-                    width: 240px;
-                }
-            }
-        </style>
-    </head>
-
-    <body>
-        <div>
-            <div id="header"></div>
-
-            <div class="wrap">
-                <div class="now-kids.container">
-                    <div class="nav-header-box nav-header-background">
-                        <div style="display: flex">
-                            <span class="nav-header-span">펀딩</span>
-                            <span class="nav-header-span">작성 중</span>
-                        </div>
-                        <a href="javascript:void(0)" class="profile-box">
-                            <p class="profile-name">임종욱의</p>
-                            <p>멋진 프로젝트</p>
-                        </a>
-                        <button type="button" class="profile-btn">
-                            <span class="profile-span">
-                                <span class="profile-span">프로젝트 번호 210217</span>
-                                <svg
-                                    viewBox="0 0 32 32"
-                                    focusable="false"
-                                    role="presentation"
-                                    class="arrow-icon"
-                                    aria-hidden="true"
-                                    style="width: 20px; height: 20px"
-                                >
-                                    <path
-                                        d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-                                    ></path>
-                                </svg>
-                            </span>
+            <div class="content-wrap">
+                <section class="content-container">
+                    <ol class="content-ol">
+                        <li class="content-ol-li">지금 우리 아이들은</li>
+                        <li class="content-ol-li">통솔중인 행사</li>
+                    </ol>
+                    <div class="content-title">통솔중인 행사 정보</div>
+                    <div class="content-sub-title">통솔중인 행사 기본정보를 확인해 주세요.</div>
+                    <div class="content-side-box">
+                        <button type="button" class="side-button">
+                            <div class="side-button-icon">
+                                <i></i>
+                            </div>
+                            <div>
+                                <div class="side-button-title">다른 메이커들 다 본다는</div>
+                                <div class="side-button-sub-title">필수 가이드 모음집</div>
+                            </div>
                         </button>
                     </div>
-                    <nav class="side-nav-box">
-                        <div class="side-nav-layout"></div>
-                        <ul>
-                            <li>
-                                <a href="javascript:void(0)" class="nav-title-box">
-                                    지금 우리 아이들은
-                                    <span>
-                                        <svg
-                                            viewBox="0 0 32 32"
-                                            focusable="false"
-                                            role="presentation"
-                                            class="nav-arrow-icon"
-                                            aria-hidden="true"
-                                            style="width: 20px; height: 20px"
-                                        >
-                                            <path
-                                                d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-                                            ></path>
-                                        </svg>
-                                    </span>
-                                </a>
-                                <ul class="nav-info-ul">
-                                    <li>
-                                        <a href="javascript:void(0)" class="nav-detail-title"
-                                            >통솔중인 행사</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)" class="nav-detail-title"
-                                            >사진 등록</a
-                                        >
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="content-wrap">
-                    <section class="content-container">
-                        <ol class="content-ol">
-                            <li class="content-ol-li">지금 우리 아이들은</li>
-                            <li class="content-ol-li">통솔중인 행사</li>
-                        </ol>
-                        <div class="content-title">통솔중인 행사 정보</div>
-                        <div class="content-sub-title">통솔중인 행사 기본정보를 확인해 주세요.</div>
-                        <div class="content-side-box">
-                            <button type="button" class="side-button">
-                                <div class="side-button-icon">
-                                    <i></i>
+                    <div class="content-box">
+                        <section class="content-section">
+                            <div class="input-title-box">
+                                <div class="input-title-layout2">
+                                    <h2>진행중인 행사</h2>
                                 </div>
+                                <div class="input-sub-title">
+                                    지금 진행중인 행사를 선택해주세요.
+                                </div>
+                                <div class="input-box">
+                                    <div class="select-box">
+                                        <div style="position: relative">
+                                            <div class="select-layout">
+                                                <div class="select-value-box">
+                                                    <div class="select-value select-placeholder">
+                                                        선택해주세요.
+                                                    </div>
+                                                    <input type="text" class="dummy-input" readonly />
+                                                </div>
+                                                <div class="select-icon-box">
+                                                    <div class="select-icon-layout">
+                                                        <svg viewBox="0 0 32 32" focusable="false" role="presentation"
+                                                            aria-hidden="true" style="color: rgb(134, 142, 150)">
+                                                            <path
+                                                                d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="select-menu-box">
+                                                <div class="select-menu-layout">
+                                                    <div class="select-option">안녕하세요.</div>
+                                                    <div class="select-option">안녕하세요.</div>
+                                                    <div class="select-option">안녕하세요.</div>
+                                                    <div class="select-option">안녕하세요.</div>
+                                                    <div class="select-option">안녕하세요.</div>
+                                                    <div class="select-option">안녕하세요.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="content-section">
+                            <div class="input-title-box">
+                                <div class="input-title-layout">
+                                    <h2>해당 날짜</h2>
+                                </div>
+                                <div class="input-sub-title">행사 참여날짜를 기입해주세요</div>
+                                <div class="input-box">
+                                    <div class="select-box">
+                                        <div style="position: relative">
+                                            <div class="date-wrap">
+                                                <div class="date-container">
+                                                    <div class="date-input-box">
+                                                        <input type="date" class="form-control date-box"
+                                                            placeholder="예시) 2023-04-28" autocomplete="off" size="12" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="content-section">
+                            <div class="table-wrap">
+                                <div class="input-title-layout2">
+                                    <h2>통솔중인 참여자 목록</h2>
+                                </div>
+                                <div class="input-sub-title">행사 참여날짜를 기입해주세요</div>
                                 <div>
-                                    <div class="side-button-title">다른 메이커들 다 본다는</div>
-                                    <div class="side-button-sub-title">필수 가이드 모음집</div>
+                                <div>
+                                    <table class="table-box">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>닉네임</th>
+                                                <th>이름</th>
+                                                <th>나이</th>                                
+                                                <th>참여행사</th>                                
+                                                <th>참여일자</th>    
+                                            </tr>
+                                        </thead>
+                                        <tbody>       
+                                            <!-- 여기에 요소 추가 -->                                 
+                                            <tr>
+                                                <td>1</td>
+                                                <td>뚝딱이</td>
+                                                <td>임종욱</td>
+                                                <td>27</td>
+                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</td>
+                                                <td>2023.04.27 13:00:00</td>
+                                            </tr>    
+                                            <!-- 여기에 요소 추가 -->                                 
+                                            <tr>
+                                                <td>1</td>
+                                                <td>뚝딱이</td>
+                                                <td>임종욱</td>
+                                                <td>27</td>
+                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</td>
+                                                <td>2023.04.27 13:00:00</td>
+                                            </tr>    
+                                            <!-- 여기에 요소 추가 -->                                 
+                                            <tr>
+                                                <td>1</td>
+                                                <td>뚝딱이</td>
+                                                <td>임종욱</td>
+                                                <td>27</td>
+                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세녕하세녕하세녕하세녕하세요안녕하세요</td>
+                                                <td>2023.04.27 13:00:00</td>
+                                            </tr>    
+                                            <!-- 여기에 요소 추가 -->                                 
+                                            <tr>
+                                                <td>1</td>
+                                                <td>뚝딱이</td>
+                                                <td>임종욱</td>
+                                                <td>27</td>
+                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</td>
+                                                <td>2023.04.27 13:00:00</td>
+                                            </tr>    
+                                        </tbody>
+                                    </table>
                                 </div>
-                            </button>
-                        </div>
-                        <div class="content-box">
-                            <section class="content-section">
-                                <div class="input-title-box">
-                                    <div class="input-title-layout2">
-                                        <h2>진행중인 행사</h2>
-                                    </div>
-                                    <div class="input-sub-title">
-                                        지금 진행중인 행사를 선택해주세요.
-                                    </div>
-                                    <div class="input-box">
-                                        <div class="select-box">
-                                            <div style="position: relative">
-                                                <div class="select-layout">
-                                                    <div class="select-value-box">
-                                                        <div
-                                                            class="select-value select-placeholder"
-                                                        >
-                                                            선택해주세요.
-                                                        </div>
-                                                        <input
-                                                            type="text"
-                                                            class="dummy-input"
-                                                            readonly
-                                                        />
-                                                    </div>
-                                                    <div class="select-icon-box">
-                                                        <div class="select-icon-layout">
-                                                            <svg
-                                                                viewBox="0 0 32 32"
-                                                                focusable="false"
-                                                                role="presentation"
-                                                                aria-hidden="true"
-                                                                style="color: rgb(134, 142, 150)"
-                                                            >
-                                                                <path
-                                                                    d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-                                                                ></path>
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="select-menu-box">
-                                                    <div class="select-menu-layout">
-                                                        <div class="select-option">안녕하세요.</div>
-                                                        <div class="select-option">안녕하세요.</div>
-                                                        <div class="select-option">안녕하세요.</div>
-                                                        <div class="select-option">안녕하세요.</div>
-                                                        <div class="select-option">안녕하세요.</div>
-                                                        <div class="select-option">안녕하세요.</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                            <section class="content-section">
-                                <div class="input-title-box">
-                                    <div class="input-title-layout">
-                                        <h2>해당 날짜</h2>
-                                    </div>
-                                    <div class="input-sub-title">행사 참여날짜를 기입해주세요</div>
-                                    <div class="input-box">
-                                        <div class="select-box">
-                                            <div style="position: relative">
-                                                <div class="date-wrap">
-                                                    <div class="date-container">
-                                                        <div class="date-input-box">
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                placeholder="예시) 2023-04-28"
-                                                                autocomplete="off"
-                                                                size="12"
-                                                            />
-                                                            <span class="calendar-icon-box">
-                                                                <svg
-                                                                    viewBox="0 0 32 32"
-                                                                    focusable="false"
-                                                                    role="presentation"
-                                                                    class="withIcon_icon__3lrgp"
-                                                                    aria-hidden="true"
-                                                                >
-                                                                    <path
-                                                                        d="M24 4V1.6h-1.6V4H9.6V1.6H8V4H3.2v25.6h25.6V4zm3.2 24H4.8V5.6h22.4z"
-                                                                    ></path>
-                                                                    <path
-                                                                        d="M8 8.8h3.2V12H8zm6.4 3.2h3.2V8.8h-3.2zm6.4 0H24V8.8h-3.2zM8 18.4h3.2v-3.2H8zm6.4 0h3.2v-3.2h-3.2zm6.4 0H24v-3.2h-3.2zM8 24.8h3.2v-3.2H8zm6.4 0h3.2v-3.2h-3.2zm6.4 0H24v-3.2h-3.2z"
-                                                                    ></path>
-                                                                </svg>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </section>
-                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
             </div>
         </div>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-    <script src="jquery.js"></script>
-    <script src="jquery-ui.js"></script>
-    <script src="datepicker-ko.js"></script>
-    <script>
-        const $arrowButton = $('.nav-title-box');
-        const $arrowIcon = $('.nav-arrow-icon');
-        const $subNav = $('.nav-info-ul');
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+<script src="jquery.js"></script>
+<script src="jquery-ui.js"></script>
+<script src="datepicker-ko.js"></script> -->
+<script>
+    const $arrowButton = $('.nav-title-box');
+    const $arrowIcon = $('.nav-arrow-icon');
+    const $subNav = $('.nav-info-ul');
 
-        $arrowButton.click(() => {
-            if (!$arrowIcon.hasClass('active')) {
-                $arrowIcon.addClass('active');
-                $arrowIcon.css('transition', '0.3s');
-                $arrowIcon.css('transform', 'rotate(0deg)');
-                $subNav.slideDown();
-            } else {
-                console.log('왜?');
-                $arrowIcon.removeClass('active');
-                $arrowIcon.css('transition', '0.3s');
-                $arrowIcon.css('transform', 'rotate(-90deg)');
-                $subNav.slideUp();
-            }
+    $arrowButton.click(() => {
+        if (!$arrowIcon.hasClass('active')) {
+            $arrowIcon.addClass('active');
+            $arrowIcon.css('transition', '0.3s');
+            $arrowIcon.css('transform', 'rotate(0deg)');
+            $subNav.slideDown();
+        } else {
+            $arrowIcon.removeClass('active');
+            $arrowIcon.css('transition', '0.3s');
+            $arrowIcon.css('transform', 'rotate(-90deg)');
+            $subNav.slideUp();
+        }
+    });
+
+    const $selectBox = $(".select-layout");
+    const $selectMenuBox = $(".select-menu-box");
+
+    $selectBox.mouseup(() => {
+        $selectMenuBox.show();
+    });
+
+    $selectMenuBox.mouseleave(() => {
+        $selectMenuBox.hide();
+    })
+
+
+    let $selectOption = $(".select-option");
+
+    $selectOption.each((i, e) => {
+
+        $(e).click(() => {
+            $selectOption.css("color", "#0c0c0c");
+            $(".select-placeholder").css("color","#0c0c0c"); 
+            $(".select-placeholder").text($(e).text()); 
+            $(e).css("color", "#e1e1e1");
+            $selectMenuBox.hide();       
         });
+    });
 
-        /* 달력 모달 */
+
+    /* 달력 모달 */
 
         // datepicker를 사용하여 달력 생성
-/*         $('#datepicker').datepicker({
-            dateFormat: 'yy년 mm월 dd일',
-            monthNames: [
-                '1월',
-                '2월',
-                '3월',
-                '4월',
-                '5월',
-                '6월',
-                '7월',
-                '8월',
-                '9월',
-                '10월',
-                '11월',
-                '12월',
-            ],
-            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-            titleFormat: 'yyyy년 MM월',
-            todayHighlight: true,
-            autoclose: true,
-            titleFormat: 'yyyy년 MM월',
-            yearSuffix: '년',
-            monthSuffix: '월',
-        });
+    /*         $('#datepicker').datepicker({
+                dateFormat: 'yy년 mm월 dd일',
+                monthNames: [
+                    '1월',
+                    '2월',
+                    '3월',
+                    '4월',
+                    '5월',
+                    '6월',
+                    '7월',
+                    '8월',
+                    '9월',
+                    '10월',
+                    '11월',
+                    '12월',
+                ],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                titleFormat: 'yyyy년 MM월',
+                todayHighlight: true,
+                autoclose: true,
+                titleFormat: 'yyyy년 MM월',
+                yearSuffix: '년',
+                monthSuffix: '월',
+            });
+    
+            // date-container 클릭 시 datepicker 보이도록 설정
+            $('.date-container').click(function (e) {
+                e.stopPropagation();
+                $('#datepicker').datepicker('show');
+            });
+    
+            // datepicker에서 날짜 선택 시 input value에 값을 넣는 함수
+            $('#datepicker').datepicker({
+                onSelect: function (dateText) {
+                    $('#datepicker').val(dateText);
+                },
+            }); */
+</script>
 
-        // date-container 클릭 시 datepicker 보이도록 설정
-        $('.date-container').click(function (e) {
-            e.stopPropagation();
-            $('#datepicker').datepicker('show');
-        });
-
-        // datepicker에서 날짜 선택 시 input value에 값을 넣는 함수
-        $('#datepicker').datepicker({
-            onSelect: function (dateText) {
-                $('#datepicker').val(dateText);
-            },
-        }); */
-    </script>
 </html>
