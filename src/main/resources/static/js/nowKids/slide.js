@@ -71,13 +71,6 @@ imageList.forEach((e, i) => {
                     <img src="${e[0]}">
                 </div>
             </div>
-            <div class="buttons">
-                <button><span>1</span></button>
-                <button><span>2</span></button>
-                <button><span>3</span></button>
-                <button><span>4</span></button>
-                <button><span>5</span></button>
-            </div>
             <div class="move-arrow">
                 <!-- 이전 버튼 -->
                 <div class="prev" id="prev${i}">
@@ -146,5 +139,5 @@ $imageWrap.on("click","div.next", (e) => {
     setTimeout(()=>{checkArrow = false}, 300);
 });
 
-
+  
 
