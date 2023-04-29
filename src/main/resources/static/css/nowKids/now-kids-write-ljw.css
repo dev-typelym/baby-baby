@@ -766,6 +766,7 @@ div.guide-box {
 }
 
 .image-file-content-box {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin-top: 12px;
