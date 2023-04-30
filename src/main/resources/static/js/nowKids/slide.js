@@ -49,6 +49,7 @@ imageList.forEach((e, i) => {
                         <section class="banner-container">
                             <!-- 메인 배너 -->
                             <div class="banner" id="banner${i}">
+                            /* 이미지가 없으면 이 이미지아래로 이미지 태그 전부를 if로 감싸야한다. */
                             <div>
                                 <img src="${e[e.length-1]}">
                             </div>
