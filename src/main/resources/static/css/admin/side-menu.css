@@ -91,5 +91,6 @@
 
 .rotate {
 	transform: rotate(180deg);
-	width: 12px;
+    width: 12px;
+    margin-top: 5px;
 }
