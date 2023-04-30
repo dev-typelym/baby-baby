@@ -85,10 +85,41 @@ imageList.forEach((e, i) => {
         </section>
         </div>
         <section class="bottom-full-wrap">
-        <section class="bottom-event-title-wrap">
-            <p class="bottom-event-title">체험제목을 DB에서 가져와서 넣어주세요오오오오오오ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ</p>
-        </section>
-        <p class="bottom-event-one-line">통솔자가 한마디 해주세요오오오오오오오오오오오hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh</p>
+            <section class="bottom-event-title-wrap">
+                <p class="bottom-event-title">뚝딱이가 왔어요 [제목]</p>
+                <button type="button" id="table${i}" class="table-button">
+                    <span>
+                        <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="nav-arrow-icon" aria-hidden="true" style="width: 20px; height: 20px;">
+                            <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+                        </svg>
+                    </span>
+                </button>
+            </section>
+            <div class="table-display">
+                <table class="table-box">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>닉네임</th>
+                            <th>이름</th>
+                            <th>나이</th>                                
+                            <th>통솔자 이름</th>                                
+                            <th>참여일자</th>    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 하나의 데이터 -->
+                        <tr>  
+                            <td>1</td>
+                            <td>뚝딱이</td>
+                            <td>임종욱</td>
+                            <td>27</td>
+                            <td>뚝딱이</td>
+                            <td>2023.04.27</td>  
+                        </tr>   
+                    </tbody>
+                </table>
+            </div>
         </section>
         <div class="bottom-space"></div>
         </div>
@@ -138,6 +169,20 @@ $imageWrap.on("click","div.next", (e) => {
         }, 300);
     }
     setTimeout(()=>{checkArrow = false}, 300);
+});
+
+$imageWrap.on("click","button.table-button",(e) => {
+    let idx = e.currentTarget.id.replace("table","");
+    let $arrowButton = $($(".nav-arrow-icon")[idx]);
+
+    if(!$arrowButton.hasClass("active-arrow")){
+        $arrowButton.addClass("active-arrow");
+        $($(".table-display")[idx]).slideDown();
+    }else {
+        $arrowButton.removeClass("active-arrow");
+        $($(".table-display")[idx]).slideUp();
+    }
+    
 });
 
   
