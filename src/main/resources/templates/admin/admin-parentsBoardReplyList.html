@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>기업 관리</title>
+    <title>부모님마당 댓글 게시판</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 	<link rel="stylesheet" href="../../static/css/admin/admin-default.css">
 	<link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
 	<link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
-	<link rel="stylesheet" href="../../static/css/admin/admin-companyList.css">
-
+	<link rel="stylesheet" href="../../static/css/admin/admin-reviewList.css">
 </head>
 <body>
 	<section class="header-section">
@@ -29,7 +29,7 @@
 			<div>
 				<div class="select-name">
 					<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="depth1-icon">
-					<span>기업 관리</span>	
+					<span>후기 게시판</span>	
 				</div>
 			</div>
 		</div>
@@ -45,11 +45,17 @@
 					<section class="board-info-box-layout">
 						<div class="board-info-box">
 							<div class="board-info-title-box">
-								<span>기업 목록</span>
-								<div>
-									<div class="delete-box">
-										<button class="delete-button">기업 삭제</button>
+								<div class="board-info-title">
+									<div>
+										<span>후기 관리</span>
 									</div>
+									<div class="search">
+										<input type="text" placeholder="검색어 입력">
+										<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+									</div>
+								</div>
+								<div class="delete-box">
+									<button class="delete-button">후기 삭제</button>
 								</div>
 							</div>
 							<div class="info-table">
@@ -60,55 +66,65 @@
 												<input type="checkbox" id="allSelect">
 											</th>
 											<th>No</th>
-											<th>이름</th>
-											<th>전화번호</th>
-											<th>이메일</th>
-											<th>지원행사</th>
+											<th>행사 명</th>
+											<th>작성자</th>
+											<th>참여인원</th>
+											<th>참여일시</th>
+											<th>작성일시</th>
+											<th>내용</th>
 											<th>상세보기</th>
 										</tr>
 									</thead>
-									<tr class="row">
+									<tr>
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>1</td>
-										<td>한동석</td>
-										<td>010-1234-1234</td>
-										<td>hds123@gmail.com</td>
-										<td>3</td>
+										<td>[우리은행] 부모님과 함께하는 진흙놀이</td>
+										<td>멋쟁이</td>
+										<td>2</td>
+										<td>2022.10.23</td>
+										<td>2022.10.25</td>
+										<td>아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</td>
 										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr class="row">
+									<tr>
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>2</td>
-										<td>이순신</td>
-										<td>010-0000-0000</td>
-										<td>lss123@naver.com</td>
-										<td>0</td>
+										<td>[우리은행] 부모님과 함께하는 진흙놀이</td>
+										<td>멋쟁이</td>
+										<td>2</td>
+										<td>2022.10.23</td>
+										<td>2022.10.25</td>
+										<td>아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</td>
 										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr class="row">
+									<tr>
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>3</td>
-										<td>홍길동</td>
-										<td>010-0123-0123</td>
-										<td>hgd123@naver.com</td>
+										<td>[우리은행] 부모님과 함께하는 진흙놀이</td>
+										<td>멋쟁이</td>
 										<td>2</td>
+										<td>2022.10.23</td>
+										<td>2022.10.25</td>
+										<td>아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</td>
 										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr class="row">
+									<tr>
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>4</td>
-										<td>을지문덕</td>
-										<td>010-1111-2222</td>
-										<td>uzmd123@naver.com</td>
-										<td>3</td>
+										<td>[우리은행] 부모님과 함께하는 진흙놀이</td>
+										<td>멋쟁이</td>
+										<td>2</td>
+										<td>2022.10.23</td>
+										<td>2022.10.25</td>
+										<td>아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</td>
 										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 								</table>
@@ -178,7 +194,7 @@
 	<section class="user-modal">
 		<div class="user-modal-shape">
 			<div class="modal-header">
-				<h4>행사 목록</h4>
+				<h4>후기 상세보기</h4>
 				<a class="modal-close">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -192,165 +208,94 @@
 			</div>
 			<form class="user-info" action>
 				<main class="user-detail">
-					<h5 class="detail-title company-name">기업이름</h5>
+					<h5 class="detail-title">후기 상세정보</h5>
 					<div class="profile-img-wrapper">
 						<label>
 							<div class="content-img">
 								<img
 									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
 								/>
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
+								<img
+									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
+								/>
 							</div>
+							<input type="file" name="file" style="display: none" />
 						</label>
 					</div>
-					<div class="info-table">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>
-										<input type="checkbox" id="allSelect">
-									</th>
-									<th>No</th>
-									<th>행사 명</th>
-									<th>행사 분야</th>
-									<th>행사 위치</th>
-									<th>행사 기간</th>
-									<th>모집 인원</th>
-									<th>종료 여부</th>
-									<th>상세보기</th>
-								</tr>
-							</thead>
-							<tr>
-								<td>
-									<input type="checkbox" name="check">
-								</td>
-								<td class="event-num">1</td>
-								<td class="event-title">[아이와 함께하는] 진흙놀이</td>
-								<td class="event-category">과학</td>
-								<td class="event-location">여의도</td>
-								<td class="event-period"><span class="start-date">2023.10.22</span><span> ~ </span><span class="send-date">2023.11.15</span></td>
-								<td class="event-amount">1200<span>명</span></td>
-								<!-- <td class="event-status hold">대기</td>
-								<td class="event-status end">종료</td>-->
-								<td class="event-status process">진행중</td> 
-								<td class="event-detail"><a>상세보기</a></td>
-							</tr>
-							<tr>
-								<td>
-									<input type="checkbox" name="check">
-								</td>
-								<td class="event-num">2</td>
-								<td class="event-title">[아이와 함께하는] 진흙놀이</td>
-								<td class="event-category">과학</td>
-								<td class="event-location">여의도</td>
-								<td class="event-period"><span class="start-date">2023.10.22</span><span> ~ </span><span class="send-date">2023.11.15</span></td>
-								<td class="event-amount">1200<span>명</span></td>
-								<!-- <td class="event-status hold">대기</td> -->
-								<td class="event-status end">종료</td>
-								<!-- <td class="event-status process">진행중</td> -->
-								<td class="event-detail"><a>상세보기</a></td>
-							</tr>
-							<tr>
-								<td>
-									<input type="checkbox" name="check">
-								</td>
-								<td class="event-num">3</td>
-								<td class="event-title">[아이와 함께하는] 진흙놀이</td>
-								<td class="event-category">과학</td>
-								<td class="event-location">여의도</td>
-								<td class="event-period"><span class="start-date">2023.10.22</span><span> ~ </span><span class="send-date">2023.11.15</span></td>
-								<td class="event-amount">1200<span>명</span></td>
-								<td class="event-status hold">대기</td>
-								<!-- <td class="event-status end">종료</td>
-								<td class="event-status process">진행중</td> -->
-								<td class="event-detail"><a>상세보기</a></td>
-							</tr>
-							
-						</table>
-						<!-- 페이지 버튼 -->
-						<div class="page-button-box-layout">
-							<div class="page-button-box">
-								<!-- 페이지 번호 -->
-								<div class="">
-									<div class="page-button-margin">
-										<div>
-											<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
-										</div>
-									</div>
-								</div>
-								<div class="page-button-active page-button">
-									<div class="page-button-margin">
-										<div>
-											<span>1</span>
-										</div>
-									</div>
-								</div>
-								<div class="page-button">
-									<div class="page-button-margin">
-										<div>
-											<span>2</span>
-										</div>
-									</div>
-								</div>
-								<div class="page-button">
-									<div class="page-button-margin">
-										<div>
-											<span>3</span>
-										</div>
-									</div>
-								</div>
-								<div class="">
-									<div class="page-button-margin">
-										<div>
-											<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- 페이지 버튼 끝 -->
-					</div>
-					<!-- <ul class="content-list-wrap">
+					<ul class="content-list-wrap">
 						<li class="content-list">
-							<span>행사 제목</span>
+							<span>행사명</span>
 							<div class="content-input">
-								<p class="event-title">[아이와 함께하는] 진흙놀이</p>
+								<input type="text" value="[우리은행] 부모님과 함께하는 진흙놀이"/>
 							</div>
 						</li>
 						<li class="content-list">
-							<span>행사 분야</span>
+							<span>작성자</span>
 							<div class="content-input">
-								<p class="event-kind">과학</p>
+								<input type="text" />
 							</div>
 						</li>
 						<li class="content-list">
-							<span>행사 위치</span>
+							<span>크루 명</span>
 							<div class="content-input">
-								<p class="event-location">여의도</p>
+								<input type="text" />
 							</div>
 						</li>
 						<li class="content-list">
-							<span>행사 기간</span>
+							<span>크루 인원</span>
 							<div class="content-input">
-								<p class="event-period"><span class="start-date">2023.10.22</span><span> ~ </span><span>2023.11.15</span></p>
+								<input type="text" />
 							</div>
 						</li>
 						<li class="content-list">
-							<span>모집 인원</span>
+							<span>통솔자 유무</span>
 							<div class="content-input">
-								<p class="event-crewCount">1200</p>
+								<input type="text" />
 							</div>
 						</li>
 						<li class="content-list">
-							<span>종료여부</span>
+							<span>통솔자 명</span>
 							<div class="content-input">
-								<p class="event-status hold">대기</p>
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>참여일시</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>작성일시</span>
+							<div class="content-input">
+								<input type="text" />
+							</div>
+						</li>
+						<li class="content-list">
+							<span>내용</span>
+							<div class="content-input content-div">
+								<textarea class="review-content"></textarea>
 							</div>
 						</li>
 					</ul>
-					<!-- <div class="update-box">
-						<button type="button" class="update-button">승인취소</button>
-						<button type="button" class="update-button">승인하기</button>
-					</div> -->
+					<div class="update-box">
+						<button type="button" class="update-button">수정하기</button>
+					</div>
 				</main>
 			</form>
 		</div>
