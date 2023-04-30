@@ -5,17 +5,26 @@
     justify-content: space-between;
 }
 
+.delete-box div{
+    margin: 0;
+}
+
+.event-status.status-btn {
+    color: grey;
+    line-height: 24px;
+}
 
 
-.event-status.process{
+
+.event-status.process.selected{
     color: green;
 }
 
-.event-status.hold{
+.event-status.hold.selected{
     color: red;
 }
 
-.event-status.end{
+.event-status.end.selected{
     color: black;
 }
 
@@ -37,6 +46,7 @@
     background-color: #fff;
     border-radius: 3px;
     font-weight: bold;
+    line-height: 24px;
 }
 
 
