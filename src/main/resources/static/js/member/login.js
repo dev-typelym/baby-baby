@@ -1,5 +1,25 @@
 /* login */
+$(document).ready(function() {
+    var memberLogin = $('span.member-login');
+    var enterpriseLogin = $('span.enterprise-login');
+  
+    memberLogin.on('click', function() {
+      memberLogin.css('border-bottom', '2px solid');
+      memberLogin.css('color', '');
+      enterpriseLogin.css('border-bottom', '');
+      enterpriseLogin.css('color', '#9fa1a7');
+    });
+  
+    enterpriseLogin.on('click', function() {
+      enterpriseLogin.css('border-bottom', '2px solid');
+      enterpriseLogin.css('color', 'black');
+      memberLogin.css('border-bottom', '0');
+      memberLogin.css('color', '#9fa1a7');
+    });
+  });
 
+  
+  
 const $id = $("input#id");
 const $password = $("input#password");
 

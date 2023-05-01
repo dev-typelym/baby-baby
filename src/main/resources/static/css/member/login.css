@@ -11,6 +11,27 @@ body{
     overflow: scroll;
 }
 
+.login-model {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    font-family: 'Noto Sans KR';
+    height: 20.6px;
+}
+span.member-login {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    border-bottom: 2px solid;
+    cursor: pointer;
+}
+span.enterprise-login {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+    cursor: pointer;
+    color: #9fa1a7;
+}
+
 input::placeholder {
 	color: #b2b2b2;
 }
@@ -312,6 +333,7 @@ button.web-main{
 }
 
 .login-title{
+    text-align: center;
     color: rgba(0,0,0,.84);
     margin: 0px 0px 30px;
     line-height: 36px;
@@ -396,6 +418,7 @@ input{
     font-weight: 500px;
     line-height: 1.75px;
     font-family: 'Noto Sans KR';
+    cursor: pointer;
 }
 
 .kakaobutton{
