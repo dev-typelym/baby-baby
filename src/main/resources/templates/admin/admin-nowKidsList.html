@@ -54,8 +54,27 @@
 										<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
 									</div>
 								</div>
-								<div class="delete-box">
-									<button class="delete-button">게시글 삭제</button>
+								<div>
+									<div class="category-container">
+										<button class="category-entire active">전체</button>
+										<button class="category-country-side">농촌</button>
+										<button class="category-gallery-art">미술관/박람회</button>
+										<button class="category-tradition">전통</button>
+										<button class="category-craft">공방</button>
+										<button class="category-science">과학</button>
+										<button class="category-museum">박물관</button>
+										<button class="category-sports">스포츠</button>
+										<button class="category-etc">기타</button>
+									</div>
+									<div class="delete-box">
+										<div>
+											<button class="event-status status-btn entire">전체</button>
+											<button class="event-status status-btn hold selected">대기</button>
+											<button class="event-status status-btn process">진행 중</button>
+											<button class="event-status status-btn end ">종료</button>
+										</div>
+										<button class="delete-button">게시글 삭제</button>
+									</div>
 								</div>
 							</div>
 							<div class="info-table">
@@ -66,10 +85,12 @@
 												<input type="checkbox" id="allSelect">
 											</th>
 											<th>No</th>
+											<th>행사 종류</th>
 											<th>행사명</th>
 											<th>통솔자</th>
-											<th>참여인원</th>
-											<th>행사날짜</th>
+											<th>참여 인원</th>
+											<th>행사 기간</th>
+											<th>진행 여부</th>
 										</tr>
 									</thead>
 									<tr class="row">
@@ -77,30 +98,42 @@
 											<input type="checkbox" name="check">
 										</td>
 										<td>1</td>
+										<td>농촌</td>
 										<td>[우리은행]함께해요</td>
 										<td>한동석</td>
 										<td>5</td>
 										<td><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>
+										<td class="event-status hold selected">대기</td>
+										<!-- <td class="event-status process">진행 중</td>
+										<td class="event-status end">종료</td> -->
 									</tr>
 									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>2</td>
+										<td>농촌</td>
 										<td>[우리은행]함께해요</td>
 										<td>한동석</td>
 										<td>5</td>
 										<td><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>
+										<td class="event-status hold selected">대기</td>
+										<!-- <td class="event-status process">진행 중</td>
+										<td class="event-status end">종료</td> -->
 									</tr>
 									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>3</td>
+										<td>농촌</td>
 										<td>[우리은행]함께해요</td>
 										<td>한동석</td>
 										<td>5</td>
 										<td><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>
+										<!-- <td class="event-status hold selected">대기</td> -->
+										 <td class="event-status process selected">진행 중</td>
+										<!--<td class="event-status end">종료</td> -->
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -214,83 +247,105 @@
 							</div>
 						</label>
 					</div>
-					<div class="info-table">
+					<div class="info-table" style="width: 1200px;">
+						<!-- <colgroup> 
+							<col style="width: 5%;"/> 
+							<col style="width: 30%;"/> 
+							<col style="width: 30%;"/> 
+							<col style="width: 15%;"/> 
+							<col style="width: 10%;"/> 
+							<col style="width: 10%;"/> 
+						</colgroup>  -->
 						<table class="table">
 							<thead>
 								<tr>
-									<th>No</th>
-									<th>행사 명</th>
-									<th>행사 위치</th>
-									<th>행사 기간</th>
-									<th>종료 여부</th>
-									<th>참여 명단</th>
+									<th style="width: 5%;">No</th>
+									<th style="width: 10%;">행사 종류</th>
+									<th style="width: 30%;">행사 명</th>
+									<th style="width: 20%;">행사 위치</th>
+									<th style="width: 15%;">행사 기간</th>
+									<th style="width: 10%;">종료 여부</th>
+									<th style="width: 10%;">참여 명단</th>
 								</tr>
 							</thead>
+							<!-- row 1개 -->
 							<tr>
 								<td class="event-num">1</td>
-								<td class="event-title">[아이와 함께하는] 진흙놀이</td>
-								<td class="event-location">여의도</td>
-								<td class="event-period"><span class="start-date">2023.10.22</span><span> ~ </span><span class="send-date">2023.11.15</span></td>
+								<td>농촌</td>
+								<td class="event-title modal">[아이와 함께하는] 진흙놀이</td>
+								<td class="event-location modal">여의도</td>
+								<td class="event-period modal"><span class="start-date">2023.10.22</span><span> ~ </span><span class="send-date">2023.11.15</span></td>
 								<!-- <td class="event-status hold">대기</td>
 								<td class="event-status end">종료</td>-->
-								<td class="event-status process">진행중</td> 
-								<td class="event-guide">
+								<td class="event-status process selected">진행중</td> 
+								<td class="event-guide maker_up_button">
 									<svg
 									viewbox="0 0 32 32"
 									focusable="false"
 									role="presentation"
 									class="maker_svg"
 									aria-hidden="true"
+									style="width: 12px;"
 									>
-										<path
-											d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-										></path>
-									</svg></td>
+									<path
+										d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
+									></path>
+									</svg>
+								</td>
 							</tr>
+							<tr class="crew-table" style="display: none;">
+								<td colspan="7" style="padding: 15px;">
+										<table class="rice-table">
+											<thead class="rice-table-thead">
+												<tr class="rice-table-tr">
+													<th class="rice-table-th" style="width: 5%;">No</th>
+													<th class="rice-table-th" style="width: 10%;">닉네임</th>
+													<th class="rice-table-th" style="width: 10%;">이름</th>
+													<th class="rice-table-th" style="width: 5%;">나이</th>
+													<th class="rice-table-th" style="width: 45%;">참여행사</th>
+													<th class="rice-table-th" style="width: 25%;">참여일자</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr class="rice-table-tr">
+													<td class="rice-table-td">1</td>
+													<td class="rice-table-td">lovelyU</td>
+													<td class="rice-table-td">한동석</td>
+													<td class="rice-table-td">5</td>
+													<td class="rice-table-td">[우리은행] 모두가 함께하는 촉감놀이, 서해, 진흙여행</td>
+													<td class="rice-table-td">2023-04-22 18:26:00</td>
+												</tr>
+												<tr class="rice-table-tr">
+													<td class="rice-table-td">2</td>
+													<td class="rice-table-td">lovelyU</td>
+													<td class="rice-table-td">한동석</td>
+													<td class="rice-table-td">5</td>
+													<td class="rice-table-td">[우리은행] 모두가 함께하는 촉감놀이, 서해, 진흙여행</td>
+													<td class="rice-table-td">2023-04-22 18:26:00</td>
+												</tr>
+												<tr class="rice-table-tr">
+													<td class="rice-table-td">3</td>
+													<td class="rice-table-td">lovelyU</td>
+													<td class="rice-table-td">한동석</td>
+													<td class="rice-table-td">5</td>
+													<td class="rice-table-td">[우리은행] 모두가 함께하는 촉감놀이, 서해, 진흙여행</td>
+													<td class="rice-table-td">2023-04-22 18:26:00</td>
+												</tr>
+												<tr class="rice-table-tr">
+													<td class="rice-table-td">4</td>
+													<td class="rice-table-td">lovelyU</td>
+													<td class="rice-table-td">한동석</td>
+													<td class="rice-table-td">5</td>
+													<td class="rice-table-td">[우리은행] 모두가 함께하는 촉감놀이, 서해, 진흙여행</td>
+													<td class="rice-table-td">2023-04-22 18:26:00</td>
+												</tr>
+											</tbody>
+										</table>
+								</td>
+							</tr>
+							<!-- //row 1개 -->
 						</table>
 					</div>
-					<!-- <ul class="content-list-wrap">
-						<li class="content-list">
-							<span>행사 제목</span>
-							<div class="content-input">
-								<p class="event-title">[아이와 함께하는] 진흙놀이</p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>행사 분야</span>
-							<div class="content-input">
-								<p class="event-kind">과학</p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>행사 위치</span>
-							<div class="content-input">
-								<p class="event-location">여의도</p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>행사 기간</span>
-							<div class="content-input">
-								<p class="event-period"><span class="start-date">2023.10.22</span><span> ~ </span><span>2023.11.15</span></p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>모집 인원</span>
-							<div class="content-input">
-								<p class="event-crewCount">1200</p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>종료여부</span>
-							<div class="content-input">
-								<p class="event-status hold">대기</p>
-							</div>
-						</li>
-					</ul>
-					<!-- <div class="update-box">
-						<button type="button" class="update-button">승인취소</button>
-						<button type="button" class="update-button">승인하기</button>
-					</div> -->
 				</main>
 			</form>
 		</div>

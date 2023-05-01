@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
 	<link rel="stylesheet" href="../../static/css/admin/admin-giudeList.css">
 	<link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon2.ico">
-
 </head>
 <body>
 	<section class="header-section">
@@ -57,6 +56,21 @@
 								</div>
 								<div>
 									<div class="category-container">
+										<button class="category-entire active">전체</button>
+										<button class="category-abled">비장애인</button>
+										<button class="category-disabled">장애인</button>
+									</div>
+									<div class="delete-box">
+										<div class="margin-box">
+											<button class="event-status status-btn accepted active">승인완료</button>
+											<button class="event-status status-btn hold">승인대기</button>
+											<button class="event-status status-btn end">종료</button>
+										</div>
+										<button class="delete-button">행사 삭제</button>
+									</div>
+								</div>
+								<!-- <div>
+									<div class="category-container">
 										<button class="category-entire">전체</button>
 										<button class="category-abled">비장애인</button>
 										<button class="category-disabled">장애인</button>
@@ -66,7 +80,7 @@
 									<div class="delete-box">
 										<button class="delete-button">회원 삭제</button>
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<div class="info-table">
 								<table class="table">
@@ -83,10 +97,9 @@
 											<th>생년월일</th>
 											<th>지원분야</th>
 											<th>상태</th>
-											<th>상세보기</th>
 										</tr>
 									</thead>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
@@ -98,9 +111,9 @@
 										<td>2000.12.04</td>
 										<td class="field abled">비장애인</td>
 										<td class="status waiting">승인 대기</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr>
+									
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
@@ -112,9 +125,8 @@
 										<td>1995.02.12</td>
 										<td class="field disabled">장애인</td>
 										<td class="status waiting">승인 대기</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
@@ -126,9 +138,8 @@
 										<td>1999.04.27</td>
 										<td class="field abled">비장애인</td>
 										<td class="status accepted">승인 완료</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
@@ -140,7 +151,6 @@
 										<td>1991.08.16</td>
 										<td class="field abled">비장애인</td>
 										<td class="status accepted">승인 완료</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -280,5 +290,5 @@
 <script src="../../static/js/admin/menuLoad.js"></script>
 <script src="../../static/js/admin/checkbox.js"></script>
 <script src="../../static/js/admin/page.js"></script>
-<script src="../../static/js/admin/modal.js"></script>
+<script src="../../static/js/admin/admin-guideList.js"></script>
 </html>
