@@ -1,3 +1,74 @@
+.board-info-title-box div{
+    display: flex;
+    margin-top: 7px;
+    justify-content: space-between;
+}
+
+.delete-box div{
+    margin: 0;
+}
+
+.event-status.status-btn {
+    color: grey;
+    line-height: 24px;
+}
+
+.event-status.process.selected{
+    color: green;
+}
+
+.event-status.hold.selected{
+    color: red;
+}
+
+.event-status.end.selected,
+.event-status.entire.selected{
+    color: black;
+}
+
+.category-country-side,
+.category-gallery-art,
+.category-tradition,
+.category-craft,
+.category-science,
+.category-museum,
+.category-sports,
+.category-etc,
+.category-entire,
+.status-btn{
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: fit-content;
+    height: 20px;
+    margin: 0 7px;
+    background-color: #fff;
+    border-radius: 3px;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+
+.category-country-side:hover,
+.category-gallery-art:hover,
+.category-tradition:hover,
+.category-craft:hover,
+.category-science:hover,
+.category-museum:hover,
+.category-sports:hover,
+.category-etc:hover,
+.category-entire:hover,
+.category-country-side.active,
+.category-gallery-art.active,
+.category-tradition.active,
+.category-craft.active,
+.category-science.active,
+.category-museum.active,
+.category-sports.active,
+.category-etc.active,
+.category-entire.active{
+    color: #c97793;
+}
+
 .profile-img-wrapper {
     display: flex;
     width: 765px;
@@ -9,7 +80,7 @@
 }
 
 .user-modal-shape {
-    width: 1220px;
+    width: 1245px;
     height: 650px;
     position: absolute;
     left: 17%;
@@ -22,7 +93,7 @@
     animation: fade-in 0.4s ease-in-out forwards;
 }
 
-.event-status.process{
+/* .event-status.process{
     color: green;
 }
 
@@ -32,4 +103,47 @@
 
 .event-status.end{
     color: black;
+} */
+
+.maker_real_info {
+    margin: 50px auto;
+}
+
+.rice-table {
+    border: 1px solid rgb(233, 233, 233);
+}
+
+.rice-table-th {
+    border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.rice-table-th, .rice-table-td {
+    height: 40px;
+    border-bottom: 1px solid rgb(233, 233, 233);
+    border-right: 1px solid rgb(233, 233, 233);
+    text-align: center;
+}
+
+/* .rice-table-tr:last-child .rice-table-td {
+    border-bottom: 0;
+} */
+
+.rice-table-th:last-child, .rice-table-td:last-child {
+    border-right: 0;
+}
+
+.maker_up_button.rotate svg{
+    width: 12px;
+    height: 100%;
+    margin-bottom: -5px;
+}
+
+table td.modal.event-title,
+table td.modal.event-location,
+table td.modal.event-period{
+    font-weight: 300;
+    text-overflow: unset;
+    max-width: 200px;
+    overflow: visible;
+    white-space: normal;
 }

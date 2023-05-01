@@ -1,16 +1,82 @@
+
+.board-info-title-box div{
+    display: flex;
+    margin-top: 7px;
+    justify-content: space-between;
+}
+
+.delete-box div{
+    margin: 0;
+}
+
+.event-status.status-btn {
+    color: grey;
+    line-height: 24px;
+}
+
+
+
+.event-status.process.selected{
+    color: green;
+}
+
+.event-status.hold.selected{
+    color: red;
+}
+
+.event-status.end.selected{
+    color: black;
+}
+
+.category-country-side,
+.category-gallery-art,
+.category-tradition,
+.category-craft,
+.category-science,
+.category-museum,
+.category-sports,
+.category-etc,
+.category-entire,
+.status-btn{
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: fit-content;
+    height: 20px;
+    margin: 0 7px;
+    background-color: #fff;
+    border-radius: 3px;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+
+.category-country-side:hover,
+.category-gallery-art:hover,
+.category-tradition:hover,
+.category-craft:hover,
+.category-science:hover,
+.category-museum:hover,
+.category-sports:hover,
+.category-etc:hover,
+.category-entire:hover{
+    color: #c97793;
+}
+
 .profile-img-wrapper {
     display: flex;
     width: 765px;
-    height: 150px;
+    height: 175px;
     margin: 0 auto;
     margin-bottom: 15px;
     margin-top: 15px;
     overflow-x: scroll;
 }
 
-.user-modal-shape{
+.user-modal-shape {
     width: 820px;
-    height: 650px;
+    height: 789px;
+    left: 28%;
+    top: 5%;
 }
 
 .event-status.process{
@@ -41,4 +107,18 @@
 
 textarea:focus {
     outline: none;
+}
+
+.content-list .content-input{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: 12px 0;
+    margin: 12px 12px 12px 0px;
+    font-size: 12px;
+    text-align: left;
+    font-weight: 400;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
 }
