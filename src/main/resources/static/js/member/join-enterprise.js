@@ -32,14 +32,11 @@
 // 				identificationFlag = true;
 // 				// #dde2e6;
 // 			}
-// 			completeAllCheck();
 // 		}
 // 	})
 // });
 
 /* 아이디 이메일 */
-
-// 아이디 변수 - 인풋
 const $identificationInput = $("#identification-input");
 const $identificationWarning = $(".identification-error");
 // var regExp = /^[A-Za-z0-9]([-_.]?[0-9a-z]){5,20}$/;
@@ -66,24 +63,6 @@ $identificationInput.on("blur",function(){
 		// #dde2e6;
 	}
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // 비밀번호 변수
@@ -128,7 +107,6 @@ $passwordInput.on("blur", function() {
 		$passwordInput.css("border-color", "#dde2e6");
 		passwordFlag = true;
 	}
-	completeAllCheck();
 });
 
 // 비밀번호 확인 변수
@@ -158,7 +136,6 @@ $passwordCheckInput.on("blur", function() {
 		$passwordCheckInput.css("border-color", "#f66");
 		passwordCheckFlag = false;
 	}
-	completeAllCheck();
 });
 
 const $nicknameInput = $("#nickname");
@@ -186,75 +163,9 @@ $nicknameInput.on("blur", function() {
 		$nicknameInput.css("border-color", "#dde2e6");
 		nicknameFlag = true;
 	}
-	completeAllCheck();
 });
 
 
-// 이메일 변수
-// const $emailInput = $("#email-input");
-// 이메일 에러 변수
-const $emailWarning = $(".email-error");
-let emailFlag = false;
-var emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-// 이메일 정규식 이벤트 사용 및 함수
-// $emailInput.on("blur", function() {
-// 	$.ajax({
-// 		url: contextPath + "/user/checkEmailOk.user",
-// 		data: {userEmail: $emailInput.val()},
-// 		success: function(result) {
-// 			result = JSON.parse(result);
-// 			/*console.log(result);*/
-// 			if (result.check) {
-// 				$emailWarning.text("중복된 이메일입니다.");
-// 				$emailWarning.css("display", "block");
-// 				$emailInput.css("border-color", "#f66");
-// 				emailFlag = false;
-// 			} else if ($emailInput.val() < 1) {
-// 				$emailWarning.text("이메일을 입력해주세요.");
-// 				$emailWarning.css("display", "block");
-// 				$emailInput.css("border-color", "#f66");
-// 				emailFlag = false;
-
-// 			} else if (!emailPattern.test($emailInput.val())) {
-// 				$emailWarning.text("이메일 주소를 다시 확인해주세요.");
-// 				$emailWarning.css("display", "block");
-// 				$emailInput.css("border-color", "#f66");
-// 				emailFlag = false;
-// 			} else {
-// 				$emailWarning.css("display", "none");
-// 				$emailInput.css("border-color", "#dde2e6");
-// 				emailFlag = true;
-// 			}
-// 			completeAllCheck();
-// 			}
-// })
-// });
-const $emailInput = $("#email-input");
-/* 아이디(이메일 유효성검사) */
-$identificationInput.on("blur",function(){
-	var $emailInput = $identificationInput.val();	
-	if (result.check) {
-		$emailWarning.text("중복된 이메일입니다.");
-		$emailWarning.css("display", "block");
-		$emailInput.css("border-color", "#f66");
-		emailFlag = false;
-	} else if ($emailInput.val() < 1) {
-		$emailWarning.text("이메일을 입력해주세요.");
-		$emailWarning.css("display", "block");
-		$emailInput.css("border-color", "#f66");
-		emailFlag = false;
-	
-	} else if (!emailPattern.test($emailInput.val())) {
-		$emailWarning.text("이메일 주소를 다시 확인해주세요.");
-		$emailWarning.css("display", "block");
-		$emailInput.css("border-color", "#f66");
-		emailFlag = false;
-	} else {
-		$emailWarning.css("display", "none");
-		$emailInput.css("border-color", "#dde2e6");
-		emailFlag = true;
-	}
-})
 
 const $nameInput = $("#name-input");
 const $nameWarning = $(".name-error");
@@ -292,7 +203,46 @@ $nameInput.on("blur", function() {
 		$nameInput.css("border-color", "#dde2e6");
 		nameFlag = true;
 	}
-	completeAllCheck();
+});
+
+
+/* 담당자 이름  */
+const $managerNameInput = $("#manager-name-input");
+const $managerNameWarning = $(".manager-name-error");
+let managerNameFlag = false;
+// 이름 정규식 이벤트 사용 및 함수
+$managerNameInput.on("blur", function() {
+	let $managerNameInputValue = $managerNameInput.val();
+	var name = $managerNameInputValue.search(/^[가-힣a-zA-Z]{2,20}$/);
+
+	// $nameInput.css("border-color", "#f66");
+	// $nameInput.css("border-color", "#dde2e6");
+	if ($managerNameInputValue.length < 1) {
+		$managerNameWarning.text("이름을 입력해주세요.");
+		$managerNameWarning.css("display", "block");
+		$managerNameInput.css("border-color", "#f66");
+		managerNameFlag = false;
+	} else if ($managerNameInputValue.length < 2) {
+		$managerNameWarning.text("최소 2자입니다.");
+		$managerNameWarning.css("display", "block");
+		$managerNameInput.css("border-color", "#f66");
+		managerNameFlag = false;
+	} else if ($managerNameInputValue.search(/\s/) != -1) {
+		$managerNameWarning.text("다시 확인해주세요.");
+		$managerNameWarning.css("display", "block");
+		$managerNameInput.css("border-color", "#f66");
+		managerNameFlag = false;
+	} else if (name < 0) {
+		$managerNameWarning.text("다시 확인해주세요.");
+		$managerNameWarning.css("display", "block");
+		$managerNameInput.css("border-color", "#f66");
+		managerNameFlag = false;
+	} else {
+		$managerNameWarning.css("display", "none");
+		$managerNameInput.css("border-color", "#dde2e6");
+		managerNameFlag = true;
+		console.log(managerNameFlag);
+	}
 });
 
 
@@ -326,79 +276,13 @@ $phoneInput.on("blur", function() {
 		phoneFlag = true;
 	}
 
-	completeAllCheck();
 });
 
 
 
-const $checkBox = $("#termscheckbox");
-const $checkBoxImage = $("#check-box");
-let check = false; // 전체동의 미체크 상태
-
-$checkBox.on("click", function() {
-	console.log("체크박스 들어옴.")
-	if (!check) {
-		console.log("true 체크박스 들어옴.")
-		// document.querySelector("#check-box").style.background = "black";
-		// $("#check-box").css("display", "block");
-		$checkBoxImage.css("display", "block");
-		check = true;
-		completeAllCheck();
-		return false;
-	} else {
-		console.log("false 체크박스 들어옴.")
-		// document.querySelector("#check-box").style.display = "none";
-		$checkBoxImage.css("display", "none");
-		check = false;
-		completeAllCheck();
-		return false;
-	}
-});
-
-
-// const $completeButton = $(".signup-submit-button");
-// /* 모든 정규식 완료 및 전체 동의 체크 시 버튼 활성화 */
-// function completeAllCheck() {
-
-// 	// let identificationFlag = false; // 아이디
-// 	// let passwordFlag = false; // 비밀번호
-// 	// let passwordCheckFlag = false; // 비밀번호 확인
-// 	// let nicknameFlag = false; // 닉네임
-// 	// let emailFlag = false; // 이메일
-// 	// let nameFlag = false; // 이름
-// 	// let phoneCheck = false; // 핸드폰
-
-// 	if (identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag) {
-// 		console.log("완료");
-// 		$completeButton.css("pointer-events", "auto");
-// 		$completeButton.css("cursor", "pointer");
-// 		// $completeButton.css("border-color", "#00c4c4");
-// 		// $completeButton.css("background-color", "#00c4c4");
-// 		$completeButton.css("opacity", "0.8");  // 활성화 opacity: 0.8;
-// 		$completeButton.css("color", "#fff");
-// 	} else {
-// 		console.log("하나라도 실패 시 들어옴.")
-// 		$completeButton.css("pointer-events", "none");
-// 		$completeButton.css("cursor", "default");
-// 		// $completeButton.css("border-color", "#00c4c4");
-// 		// $completeButton.css("background-color", "#00c4c4");
-// 		$completeButton.css("opacity", "0.45");  //  비활성화 opacity: 0.45;
-// 		$completeButton.css("color", "#fff");
-// 	}
-// }
 
 const $checkAddress1 = $(".sample6_detailAddress");
 const $checkAddress2 = $(".sample6_extraAddress");
-
-
-
-
-
-
-
-
-
-
 
 
 /* 주소 */
@@ -454,7 +338,7 @@ function sample6_execDaumPostcode() {
 
 
 function send() {
-	if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
+	if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && managerNameFlag){
 		document.joinForm.submit();
 	}else if(identificationFlag == false){
 		$identificationInput.focus();
@@ -466,6 +350,8 @@ function send() {
 		$nicknameInput.focus();
 	}else if(nameFlag == false){
 		$nameInput.focus();
+	}else if(managerNameFlag == false){
+		$managerNameInput.focus();
 	}else if(phoneFlag == false){
 		$phoneInput.focus();
 	}
@@ -489,3 +375,51 @@ $(".Button_TextField_icon1").on("click",function(){
 	$path.attr("d", d);
 })
 
+
+/* 기업 뱃지 */
+
+
+var maxFiles = 1;
+var currentFiles = 0;
+// // 이미지 선택 후 프리뷰
+function setThumbnail(e) {
+    var imageContainer = document.getElementById("image_container");
+    if (currentFiles < maxFiles) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = new Image();
+            img.src = e.target.result;
+            img.style.width = "100%";
+            img.style.height = "auto";
+            var imgContainer = document.createElement("div");
+            imgContainer.style.display = "inline-block";
+            imgContainer.style.marginRight = "10px";
+            imgContainer.style.position = "relative";
+            var deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "X";
+            deleteButton.style.position = "absolute";
+            deleteButton.style.top = "0";
+            deleteButton.style.right = "0";
+            deleteButton.style.backgroundColor = "white";
+            deleteButton.style.color = "red";
+            deleteButton.style.border = "none";
+            deleteButton.style.cursor = "pointer";
+            deleteButton.addEventListener("click", function() {
+                imageContainer.removeChild(imgContainer);
+                currentFiles--;
+            });
+            imgContainer.appendChild(img);
+            imgContainer.appendChild(deleteButton);
+            imageContainer.appendChild(imgContainer);
+            currentFiles++;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    } else {
+        alert("최대 1개의 이미지만 선택 가능합니다.");
+    }
+}
+
+// "등록하기" 버튼 클릭 시 파일 선택
+document.getElementById("photosubmit").addEventListener("click", function() {
+    document.getElementById("image").click();
+});

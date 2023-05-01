@@ -2337,6 +2337,8 @@ border:none;
     -webkit-rtl-ordering: logical;
     --vh: 7.46px;
     -webkit-text-size-adjust: none;
+    height: 100%;
+    cursor: pointer;
 }
 
 .Input_right input ::after {
@@ -4554,6 +4556,7 @@ cursor: pointer;
 
 .SelectMenu1.SelectMenu2 {
     border: 1px solid #00c4c4;
+    width: 40%;
 }
 
 .Select1 {
@@ -4673,12 +4676,65 @@ cursor: pointer;
 
 .SelectMenu1 .content1 {
     max-height: 392px;
+    margin-bottom: 0;
 }
 }
 
 
+select.option-select {
+    float: right;
+    width: 69%;
+    padding: 15px 19px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #00c4c4;
+    outline: none;
+    height: 50px;
+}
+
+select.as {
+    width: 30%;
+    padding: 15px 19px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #00c4c4;
+    outline: none;
+    height: 50px;
+}
 
 
+
+
+@media (max-width: 768px) {
+    /* 모바일 기기용 스타일 */
+    /* 예시 */
+    .example-class {
+      font-size: 14px;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    /* 태블릿 기기용 스타일 */
+    /* 예시 */
+    .example-class {
+      font-size: 16px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    /* 데스크탑 기기용 스타일 */
+    /* 예시 */
+    .example-class {
+      font-size: 18px;
+    }
+  }
+  
 
 
 
