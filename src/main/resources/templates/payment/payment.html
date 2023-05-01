@@ -5,6 +5,7 @@
 <title>주문 및 결제</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
 <link rel="stylesheet" href="../../static/css/payment/payment.css">
+<link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon2.ico">
 </head>
 <body>
 	<div id="page-container">
@@ -38,26 +39,43 @@
 									</div>
 								</div>
 								<!-- 주문 정보 -->
-								<section class="Section_container">
+								<section class="Section_container" style="margin-top: 33px;">
+									<!-- 참여자 info container (단체) -->
 									<div class="Section_titleContainer">
-										<h3 class="Section_title">주문 정보</h3>
+										<h3 class="Section_title">참여자 정보 (단체)(장애인)(비장애인)</h3>
 									</div>
-									<div class="Active1 Active2">
-										<div class="Information">
-											<div class="Information_row">
-												<span class="Information_label">주문자명</span>
-												<span>땅콩이</span>
-											</div>
-											<div class="Information_row">
-												<span class="Information_label">휴대폰 번호</span>
-												<span>01012341234</span>
-											</div>
-											<div class="Information_row">
-												<span class="Information_label">이메일 주소</span>
-												<span>abc123@gmail.com</span>
-											</div>
+									<div class="payment-contributors-info-container">
+										<div class="payment-final-price-container">
+											<p class="summary total-price">참여인원 
+												<span>3<span>명</span></span>
+											</p>
+											<p class="summary discount-price">통솔자 신청 (그룹인원 최대 25명) (그룹 인당 가격)
+												<span>50,000<span>원</span></span>
+											</p>
+											<hr class="hr-lighter">
+											<p class="final-price">추가금액 합계
+												<span>150,000<span>원</span></span>
+											</p>
 										</div>
 									</div>
+									<!-- //참여자 info container (단체) 개인 일 때 아래 보여주기-->
+									<!-- 참여자 info container (개인) -->
+									<div class="Section_titleContainer">
+										<h3 class="Section_title">참여자 정보 (개인)(보호자 참여)</h3>
+									</div>
+									<div class="payment-contributors-info-container">
+										<div class="payment-final-price-container">
+											<p class="summary total-price">참여인원(보호자 포함)
+												<span><span>2</span><span>명</span></span>
+											</p>
+					
+											<hr class="hr-lighter">
+											<p class="final-price">추가금액 합계 
+												<span>0<span>원</span></span>
+											</p>
+										</div>
+									</div>
+									<!-- //참여자 info container (개인) -->
 								</section>
 								<!-- 요청 사항(선택) -->
 								<form id="payment-submit">	
@@ -160,30 +178,6 @@
 										</div>
 									</div>
 									<!-- 쿠폰모달 끝 -->
-									<!-- 상품정보 -->
-									<section class="Section_container">
-										<div class="Section_titleContainer">
-											<h3 class="Section_title">상품 정보</h3>
-										</div>
-										<div class="Active1 Active2">
-											<div class="Product">
-												<div class="Product_container">
-													<div class="TextContainer">
-														<p class="ProductName">홍보 배너</p>
-														<p class="ProductDescription"></p>
-														<p class="OptionsContainer">
-															<span>1개월 패키지</span>
-														</p>
-													</div>
-												</div>
-												<div class="ProductInfo">
-													<span class="Info_date">시작날짜: 3월 1일</span>
-													<span class="Info_price">50,000원</span>
-												</div>
-												<div class="Divider"></div>
-											</div>
-										</div>
-									</section>
 									<!-- 결제수단 -->
 									<section class="Section_container">
 										<div class="Section_titleContainer">
@@ -216,6 +210,27 @@
 											</div>
 										</div>
 									</section>
+									<!--결제 info container (최종) -->
+									<section class="Section_container">
+										<div class="Section_titleContainer">
+											<h3 class="Section_title">총 결제 금액</h3>
+										</div>
+										<div class="payment-contributors-info-container">
+											<div class="payment-final-price-container">
+												<p class="summary total-price">총 금액
+													<span>49,000<span>원 x </span><span>1</span><span>명</span></span>
+												</p>
+												<p class="summary discount-price">할인 금액
+													<span><span>-</span>5,000<span>원</span></span>
+												</p>
+												<hr class="hr-lighter">
+												<p class="final-price">총 결제금액 
+													<span>45,000<span>원</span></span>
+												</p>
+											</div>
+										</div>
+									</section>
+									<!-- //결제 info container (최종)-->
 								</form>
 							</div>
 						</div>
@@ -248,7 +263,7 @@
 											</div>
 											<div class="Price_container">
 												<dl class="">
-													<dt>레벨 별 할인 금액</dt>
+													<dt>쿠폰 할인 금액</dt>
 													<dd>
 														<span>0 원</span>
 													</dd>
@@ -269,36 +284,7 @@
 								<section class="Section_container Floating">
 									<div class="Active1 Active2">
 										<div class="PaymentTerms">
-									<label class="Checkbox1 Terms_check1 Terms_check2 Terms_check3">
-												<!-- <input name="paymentRequiredTerms" type="checkbox" class="Checkbox_input" id="check_all">
-												<span class="Checkbox_icon" aria-hidden="true">
-													 <svg viewBox="0 0 16 2" focusable="false" role="presentation" class="withIcon RemoveIcon" aria-hidden="true">
-														<path fill-rule="evenodd" d="M0 0h16v2H0z"></path>
-													</svg>
-													<svg viewBox="0 0 48 f48" focusable="false" role="presentation" class="withIcon CheckIcon" aria-hidden="true">
-														<path d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path>
-													</svg>
-												</span>
-												<span class="Checkbox_content">
-													<span>결제 진행 필수 동의</span>
-												</span> -->
-											</label> 
 											 <div class="termsList"> 
-											 	<label for="serviceTerms" class="termsItem">
-												<!--	<label for="serviceTerms" class="Checkbox1 Checkbox2 Checkbox3">
-														<input name="serviceTerms" id="serviceTerms" type="checkbox" class="Checkbox_input">
-														<span class="Checkbox_icon" aria-hidden="true">
-															<svg viewBox="0 0 16 2" focusable="false" role="presentation" class="withIcon RemoveIcon" aria-hidden="true">
-																<path fill-rule="evenodd" d="M0 0h16v2H0z"></path>
-															</svg>
-														 	<svg viewBox="0 0 48 48" focusable="false" role="presentation" class="withIcon CheckIcon" aria-hidden="true">
-																<path d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"></path>
-															</svg>
-														</span>
-														<span class="Checkbox_content"></span>
-													</label>
-													<span class="Terms_text">구매 조건, 결제 진행 및 결제 대행 서비스 동의 (필수)</span>
-												</label> -->
 												<label for="privacyTerms" class="termsItem">
 													<label for="privacyTerms" class="Checkbox1 Checkbox2 Checkbox3">
 														<input name="privacyTerms" id="checkboxtf" type="checkbox" class="Checkbox_input">
@@ -313,7 +299,7 @@
 															<span class="Checkbox_content"></span>
 													</label>
 													<span class="Terms_text">개인정보 제3자 제공 동의 (필수)</span>
-													<button class="Button1 Button2 Button3 Button4 Button5 Button6" type="button">
+													<button class="Button1 Button2 Button3 Button4 Button5 Button6 agreement-btn" type="button">
 														<span>
 															<span class="Button_children">
 																<svg viewBox="0 0 40 40" focusable="false" role="presentation" class="withIcon" aria-hidden="true">
@@ -337,6 +323,34 @@
 					</div>
 				</div>
 			</div>
+			<div class="agrModal">
+				<div class="modal-content">
+				  <h2>개인정보 제3자 제공 동의</h2>
+				  <p>'아기자기'를 통한 결제 및 상품 전달 서비스를 제공하기 위해, 이용자의 사전 동의 아래 제3자(프로젝트 메이커)에게 제공합니다. 메이커에게 전달되는 개인 정보는 기재된 목적 달성 후 파기에 대한 책임이 메이커에게 있으며, 파기하지 않아 생기는 문제에 대한 법적 책임은 메이커에게 있습니다. 아래 내용에 대하여 동의를 거부할 수 있으며, 거부 시 서비스 이용이 제한됩니다.</p>
+				  <div class="info-table">
+					<table>
+					  <thead>
+						<tr>
+						  <th style="width: 17%;">제공받는자</th>
+						  <th>목적</th>
+						  <th>항목</th>
+						</tr>
+					  </thead>
+					  <tbody>
+						<tr>
+						  <td>아기자기</td>
+						  <td>스토어 구매 정보 확인 및 상품 발송, 상품 제공과 관련된 공지 및 민원처리</td>
+						  <td>서포터 정보(이름, 이메일, 휴대폰 번호), 수취인 정보(이름, 휴대폰 번호, 주소, 배송시 요청사항)</td>
+						</tr>
+					  </tbody>
+					</table>
+				  </div>
+				  <div class="buttons">
+					<button id="close-btn">확인</button>
+				  </div>
+				</div>
+			  </div>
+			  
 
 			<!-- footer적용 -->
 		</main>
