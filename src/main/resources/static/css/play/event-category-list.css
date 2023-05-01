@@ -601,6 +601,7 @@ div.search input:focus {
 
 .bottom-write {
     font-size: 14px;
+    color: white;
 }
 
 @media screen and (min-width: 1097px) {

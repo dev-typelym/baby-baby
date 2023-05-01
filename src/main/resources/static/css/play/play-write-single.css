@@ -204,31 +204,31 @@ input[type=text] {
 .content-ol {
     line-height: 20px;
     letter-spacing: 0;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     margin-bottom: 32px;
+}
+
+.content-ol-li {
+    display: inline-block;
+    color: #868e96;
+    font-size: 13px;
 }
 
 .content-ol-li::after {
     display: inline-block;
     margin: 0 2px;
     vertical-align: bottom;
-    content: ">"
+    content: '>';
 }
 
-.content-ol li {
+.content-ol-li:last-child {
     display: inline-block;
     color: #212529;
 }
 
-.content-ol-li:first-child {
-    display: inline-block;
-    color: #868e96;
-    font-size: 13px;
-}
-
 .content-ol-li:last-child::after {
-    content: "";
+    content: '';
 }
 
 .content-title {
