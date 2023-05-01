@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
 	<link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
 	<link rel="stylesheet" href="../../static/css/admin/admin-nowKidsList.css">
-
+	<link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon2.ico">
 </head>
 <body>
 	<section class="header-section">
@@ -45,11 +45,17 @@
 					<section class="board-info-box-layout">
 						<div class="board-info-box">
 							<div class="board-info-title-box">
-								<span>지금 우리 아이들은?</span>
-								<div>
-									<div class="delete-box">
-										<button class="delete-button">게시글 삭제</button>
+								<div class="board-info-title">
+									<div>
+										<span>지금 우리 아이들은?</span>
 									</div>
+									<div class="search">
+										<input type="text" placeholder="검색어 입력">
+										<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+									</div>
+								</div>
+								<div class="delete-box">
+									<button class="delete-button">게시글 삭제</button>
 								</div>
 							</div>
 							<div class="info-table">
@@ -64,10 +70,9 @@
 											<th>통솔자</th>
 											<th>참여인원</th>
 											<th>행사날짜</th>
-											<th>상세보기</th>
 										</tr>
 									</thead>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
@@ -76,9 +81,8 @@
 										<td>한동석</td>
 										<td>5</td>
 										<td><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
@@ -87,9 +91,8 @@
 										<td>한동석</td>
 										<td>5</td>
 										<td><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
@@ -98,7 +101,6 @@
 										<td>한동석</td>
 										<td>5</td>
 										<td><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -221,11 +223,7 @@
 									<th>행사 위치</th>
 									<th>행사 기간</th>
 									<th>종료 여부</th>
-									<th>참여1</th>
-									<th>참여2</th>
-									<th>참여3</th>
-									<th>참여4</th>
-									<th>참여5</th>
+									<th>참여 명단</th>
 								</tr>
 							</thead>
 							<tr>
@@ -236,11 +234,18 @@
 								<!-- <td class="event-status hold">대기</td>
 								<td class="event-status end">종료</td>-->
 								<td class="event-status process">진행중</td> 
-								<td class="event-category">정유찬</td>
-								<td class="event-category">황현수</td>
-								<td class="event-category">김정표</td>
-								<td class="event-category">김동한</td>
-								<td class="event-category">임의택</td>
+								<td class="event-guide">
+									<svg
+									viewbox="0 0 32 32"
+									focusable="false"
+									role="presentation"
+									class="maker_svg"
+									aria-hidden="true"
+									>
+										<path
+											d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
+										></path>
+									</svg></td>
 							</tr>
 						</table>
 					</div>
@@ -295,5 +300,5 @@
 <script src="../../static/js/admin/menuLoad.js"></script>
 <script src="../../static/js/admin/checkbox.js"></script>
 <script src="../../static/js/admin/page.js"></script>
-<script src="../../static/js/admin/modal.js"></script>
+<script src="../../static/js/admin/admin-nowKidsList.js"></script>
 </html>

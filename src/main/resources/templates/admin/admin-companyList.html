@@ -45,11 +45,17 @@
 					<section class="board-info-box-layout">
 						<div class="board-info-box">
 							<div class="board-info-title-box">
-								<span>기업 목록</span>
-								<div>
-									<div class="delete-box">
-										<button class="delete-button">기업 삭제</button>
+								<div class="board-info-title">
+									<div>
+										<span>기업 관리</span>
 									</div>
+									<div class="search">
+										<input type="text" placeholder="검색어 입력">
+										<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+									</div>
+								</div>
+								<div class="delete-box">
+									<button class="delete-button">기업 삭제</button>
 								</div>
 							</div>
 							<div class="info-table">
@@ -64,7 +70,6 @@
 											<th>전화번호</th>
 											<th>이메일</th>
 											<th>지원행사</th>
-											<th>상세보기</th>
 										</tr>
 									</thead>
 									<tr class="row">
@@ -76,7 +81,6 @@
 										<td>010-1234-1234</td>
 										<td>hds123@gmail.com</td>
 										<td>3</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr class="row">
 										<td>
@@ -87,7 +91,6 @@
 										<td>010-0000-0000</td>
 										<td>lss123@naver.com</td>
 										<td>0</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr class="row">
 										<td>
@@ -98,7 +101,6 @@
 										<td>010-0123-0123</td>
 										<td>hgd123@naver.com</td>
 										<td>2</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 									<tr class="row">
 										<td>
@@ -109,7 +111,6 @@
 										<td>010-1111-2222</td>
 										<td>uzmd123@naver.com</td>
 										<td>3</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -206,9 +207,6 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>
-										<input type="checkbox" id="allSelect">
-									</th>
 									<th>No</th>
 									<th>행사 명</th>
 									<th>행사 분야</th>
@@ -216,13 +214,9 @@
 									<th>행사 기간</th>
 									<th>모집 인원</th>
 									<th>종료 여부</th>
-									<th>상세보기</th>
 								</tr>
 							</thead>
 							<tr>
-								<td>
-									<input type="checkbox" name="check">
-								</td>
 								<td class="event-num">1</td>
 								<td class="event-title">[아이와 함께하는] 진흙놀이</td>
 								<td class="event-category">과학</td>
@@ -232,12 +226,8 @@
 								<!-- <td class="event-status hold">대기</td>
 								<td class="event-status end">종료</td>-->
 								<td class="event-status process">진행중</td> 
-								<td class="event-detail"><a>상세보기</a></td>
 							</tr>
 							<tr>
-								<td>
-									<input type="checkbox" name="check">
-								</td>
 								<td class="event-num">2</td>
 								<td class="event-title">[아이와 함께하는] 진흙놀이</td>
 								<td class="event-category">과학</td>
@@ -247,12 +237,8 @@
 								<!-- <td class="event-status hold">대기</td> -->
 								<td class="event-status end">종료</td>
 								<!-- <td class="event-status process">진행중</td> -->
-								<td class="event-detail"><a>상세보기</a></td>
 							</tr>
 							<tr>
-								<td>
-									<input type="checkbox" name="check">
-								</td>
 								<td class="event-num">3</td>
 								<td class="event-title">[아이와 함께하는] 진흙놀이</td>
 								<td class="event-category">과학</td>
@@ -262,7 +248,6 @@
 								<td class="event-status hold">대기</td>
 								<!-- <td class="event-status end">종료</td>
 								<td class="event-status process">진행중</td> -->
-								<td class="event-detail"><a>상세보기</a></td>
 							</tr>
 							
 						</table>
@@ -360,5 +345,5 @@
 <script src="../../static/js/admin/menuLoad.js"></script>
 <script src="../../static/js/admin/checkbox.js"></script>
 <script src="../../static/js/admin/page.js"></script>
-<script src="../../static/js/admin/modal.js"></script>
+<script src="../../static/js/admin/admin-companyList.js"></script>
 </html>

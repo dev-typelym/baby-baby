@@ -1,16 +1,25 @@
 .profile-img-wrapper {
     display: flex;
     width: 765px;
-    height: 150px;
+    height: 175px;
     margin: 0 auto;
     margin-bottom: 15px;
     margin-top: 15px;
     overflow-x: scroll;
 }
 
-.user-modal-shape{
-    width: 820px;
+.user-modal-shape {
+    width: 1220px;
     height: 650px;
+    position: absolute;
+    left: 17%;
+    top: 15%;
+    padding: 12px;
+    overflow-y: scroll;
+    background-color: #fff;
+    border: 1px solid #8080806e;
+    border-radius: 5px;
+    animation: fade-in 0.4s ease-in-out forwards;
 }
 
 .event-status.process{
