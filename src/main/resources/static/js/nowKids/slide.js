@@ -27,6 +27,10 @@ imageList.forEach((e, i) => {
     let text = `
                 <div class="bottom-content-flex" id ="${i}">
                     <section class="feed-header-full-wrap">
+                        <div class="modify-delete">
+                            <button type="button">수정하기</button>
+                            <button type="button">삭제하기</button>
+                        </div>
                         <div class="feed-header-inner-flex">
                             <div class="feed-header-left-flex">
                                 <a class="feed-header-user-img-wrap">
@@ -86,7 +90,7 @@ imageList.forEach((e, i) => {
         </div>
         <section class="bottom-full-wrap">
             <section class="bottom-event-title-wrap">
-                <p class="bottom-event-title">뚝딱이가 왔어요 [제목]</p>
+                <p class="bottom-event-title">뚝딱이가 왔어요 [체험학습 제목]</p>
                 <button type="button" id="table${i}" class="table-button">
                     <span>
                         <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="nav-arrow-icon" aria-hidden="true" style="width: 20px; height: 20px;">

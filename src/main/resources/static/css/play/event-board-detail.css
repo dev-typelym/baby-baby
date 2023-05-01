@@ -196,6 +196,13 @@ ul {
     padding-bottom: 75%;
     background-image: url(https://cdn2.wadiz.kr/2023/02/15/c5daa009-636e-4962-b511-818e85dfde60.jpg/wadiz/quality/80/);
 }
+.company_info2 {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .company_info {
     margin-top: 24px;
 }
@@ -1055,7 +1062,7 @@ ul {
     width: 20px;
     height: 20px;
     color: #495057;
-/*     transform: rotate(180deg); */
+    /*     transform: rotate(180deg); */
     transition: transform 0.25s;
     margin-left: 1px;
     font-size: 20px;
@@ -1119,4 +1126,130 @@ ul {
 
 .purchase_wrap_button:hover {
     background-color: #00b2b2;
+}
+
+/* 수정하기 삭제하기 버튼 */
+.modify-delete button {
+    display: none;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    background-color: #00c4c4;
+    color: white;
+    font-size: 14px;
+}
+
+.modify-delete button:hover {
+    background-color: #00b2b2;
+}
+
+.modify-delete button:first-child {
+    margin-right: 10px;
+}
+
+.boardDetail-sectionContainer {
+    padding: 20px 0px;
+    border-bottom: none;
+}
+
+.Article-header {
+    margin: 0px 0px 24px;
+    padding: 0px;
+}
+
+
+.Article-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0px;
+}
+
+.reviewDetail-point-wrapper {
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  .reviewDetail-star {
+    width: 27px;
+  }
+
+  .reviewDetail-point {
+    margin-left: 5px;
+    color: #5f5f5f;
+    height: 25px;
+  }
+
+.ArticleInfoSection-infoContainer {
+    margin: 0px;
+    padding: 0px;
+}
+
+.ArticleInfoSection-infoContainer > div {
+    display: flex;
+    margin: 0px 0px 12px;
+}
+
+.ArticleInfoSection-infoContainer > div > dt {
+    width: 76px;
+    color: rgb(153, 153, 153);
+}
+
+.ArticleInfoSection-infoContainer > div > dd {
+    margin: 0px;
+    font-weight: 500;
+}
+
+.InfoRecruitDetail-section > p {
+    font-weight: 500;
+}
+
+.placeMapSection-container > div:last-child {
+    margin: 0px 0px 20px;
+}
+
+.placeMapContainer {
+    height: auto;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 5px;
+}
+
+.place-container {
+    height: auto;
+    padding: 0px 14px;
+}
+
+.placeLocation-container {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 14px 0px;
+}
+
+.placeLocationTitle-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.placeLocationTitle {
+    margin: 0px 0px 8px;
+    color: rgb(51, 51, 51);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 22px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.placeLocationTitleDetail {
+    color: rgb(119, 119, 119);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
 }
