@@ -112,13 +112,15 @@ body li, body ol, body ul {
     white-space: nowrap;
 }
 .company_title_p{
-    line-height: 18px;
-    letter-spacing: 0;
-    font-size: 12px;
+    line-height: 35px;
+    letter-spacing: 0px;
+    font-size: 17px;
     font-weight: 400;
     margin-top: 18px;
     white-space: pre-wrap;
-    color: #495057;
+    color: rgb(73, 80, 87);
+    background-color: #00b2b23d;
+    padding: 19px;
 }
 .star_icon{
     margin-right: 12px;
@@ -278,6 +280,8 @@ body li, body ol, body ul {
     align-items: center;
     justify-content: space-between;
 }
+
+
 .page_content_li{
     width: 33.3333%;
     text-align: center;
@@ -431,16 +435,11 @@ body li, body ol, body ul {
 }
 .participation{
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
     align-items: center;
     margin-top: 6px;
 }
-.total_amount::before{
-    display: inline-block;
-    margin: 0 6px;
-    color: #868e96;
-    content: "\b7";
-}
+
 .one_open_img{
     width: calc((100% - 12px + 12px) - 0.01px);
     margin-left: 0px;
