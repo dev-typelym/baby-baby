@@ -72,6 +72,7 @@ $(document).ready(function() {
         $(this).attr('value', value);
     });
 });
+
 /* 토글 클릭해서 색 나오면 true 넣어주고 아니면 false 넣어줌 */
 $(".allow-btn, .not-allow-btn").on('click', function(){
     var value = '';
@@ -84,3 +85,12 @@ $(".allow-btn, .not-allow-btn").on('click', function(){
     }
     $(this).attr('value', value);
 });
+
+
+/* 이력서 넣었을때 그 파일에 대한 정보를 띄워주기 */
+$("#resume").on('change', function(){
+    const file = $(this)[0].files[0]
+    console.log(file)
+    let fileName = file.name
+    $(".resume-info").html(fileName)
+})

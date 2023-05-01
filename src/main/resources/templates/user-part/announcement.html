@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/css/user-part/announcement.css">
+</head>
+<body>
+    <div class="all-wrapper">
+        <div class="title-wrapper">
+            <h1>공지사항</h1>
+        </div>
+
+
+        <div class="main-content">
+            <ul class="contents">
+
+
+                <li class="one-content">
+                    <div class="article">
+                        <div class="info">
+                            <div class="thumb">
+                                <img src="https://cdn.wadiz.kr/ft/images/green001/2023/0131/20230131110759569_0.png/wadiz/resize/400/format/jpg/quality/80" alt="">
+                            </div>
+                            <div class="text-wrapper">
+                                <div class="notice">중요 • BEST</div>
+                                <div class="content-title">
+                                    [서비스 안내] 아기자기 서비스가 리뉴얼됩니다.
+                                </div>
+                                <span class="author">
+                                    아기자기
+                                </span>
+                                <span class="update-date">2023.01.30</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-writed">
+                        <div class="announcement-content">
+                            아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                        </div>
+                    </div>
+                </li>
+
+                <li class="one-content">
+                    <div class="article">
+                        <div class="info">
+                            <div class="thumb">
+                                <img src="https://cdn.wadiz.kr/ft/images/green001/2023/0131/20230131110759569_0.png/wadiz/resize/400/format/jpg/quality/80" alt="">
+                            </div>
+                            <div class="text-wrapper">
+                                <div class="notice">중요 • BEST</div>
+                                <div class="content-title">
+                                    [서비스 안내] 아기자기 서비스가 리뉴얼됩니다.
+                                </div>
+                                <span class="author">
+                                    아기자기
+                                </span>
+                                <span class="update-date">2023.01.30</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-writed">
+                        <div class="announcement-content">
+                            아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                            <br>아기자기 서비스가 전체 리뉴얼될 예정입니다
+                        </div>
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+  let $title = $('.article');
+  let $content = $('.admin-writed');
+  $title.on('click', function () {
+  let index = $(this).parent().index();
+  let $currentContent = $content.eq(index);
+  
+  if ($currentContent.is(':visible')) {
+    $currentContent.hide();
+  } else {
+    $content.hide();
+    $currentContent.show();
+  }
+});
+</script>
+</html>

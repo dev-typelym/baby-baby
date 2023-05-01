@@ -125,7 +125,7 @@
                 </button>
 
                 <div class="content-wrapper" style="display: none; padding-left: 0; margin-top: 0">
-                  <div class="account-wrap" style="padding: 0 20px;">
+                  <div class="account-wrap" style="padding: 0 25px 0px 0px">
                     <h2 class="small">비밀번호 변경</h2>
                     <div class="email-input-wrap">
                       <form id="saveForm">
@@ -166,7 +166,7 @@
                 <button class="my-info" href="#">
                   <div class="my-info-text">
                     <h3>회원 정보 설정</h3>
-                    <p>학력 이력서 등</p>
+                    <p>이력서, 프로필 정보 변경</p>
                   </div>
                   <div class="my-info-btn">
                     <i class="wadizicon wa-chevron-right"></i>
@@ -175,16 +175,30 @@
                 <div class="content-wrapper" style="display: none">
                   <div id="waccountContainer">
                     <div id="tabContent1" class="tab-content">
-                      <h5 style="text-align: center">프로필 사진</h5>
+                      <div class="file-area">
+                        <div class="profile-wrapper">
+                          <h5 style="text-align: center">프로필 사진</h5>
 
-                      <div class="profile-area">
-                        <label for="profile">
-                          <img src="../../static/images/myPage/children.png" alt="" />
-                        </label>
+                          <div class="profile-area">
+                            <label for="profile">
+                              <img src="../../static/images/myPage/children.png" alt="" />
+                            </label>
+                          </div>
+                        </div>
+
+                        <div class="profile-wrapper">
+                          <h5 style="text-align: center">이력서</h5>
+
+                          <div class="resume-area">
+                            <label for="resume">
+                              <img src="../../static/images/myPage/resume.png" alt="" />
+                            </label>
+                            <div class="resume-info"></div>
+                          </div>
+                        </div>
+                        <input type="file" style="display: none" id="resume" />
+                        <input type="file" style="display: none" id="profile" />
                       </div>
-
-                      <input type="file" style="display: none" id="profile" />
-
                       <h5 style="margin-top: 15px">직업 / 직책</h5>
                       <ul class="input-div2">
                         <li>
@@ -208,23 +222,24 @@
                           />
                         </li>
                       </ul>
-                      <h5>주소 변경</h5>
+                      <h5>이메일 변경</h5>
                       <form id="shippingDetailForm">
                         <input
                           type="text"
                           id="location1"
                           name="address"
-                          value="주소를 입력해주세요"
+                          value="이메일을 입력해주세요"
                           class="input-text"
-                          onclick="Wpost(); $('#location1')[0].blur();"
                         />
+                        <h5>전화번호 변경</h5>
                         <input
                           type="text"
                           id="location2"
                           maxlength="96"
                           name="addressDetails"
-                          value="상세주소를 입력해주세요"
+                          value="전화번호를 입력해주세요"
                           class="input-text"
+                          style="margin-top: 10px"
                         />
                       </form>
                       <h5>한줄 소개 변경</h5>
@@ -236,18 +251,7 @@
                           <li>
                             <button
                               type="button"
-                              class="cancel-btn button gray btn-darkgray"
-                              onclick="cancelModify()"
-                              id="mint"
-                            >
-                              취소
-                            </button>
-                          </li>
-                          <li>
-                            <button
-                              type="button"
                               class="save-btn button primary btn-mint"
-                              onclick="modify()"
                               id="gray"
                             >
                               확인
@@ -270,36 +274,38 @@
                     <i class="wadizicon wa-chevron-right"></i>
                   </div>
                 </button>
-                <div class="content-wrapper" style="display: block">
+                <div class="content-wrapper" style="display: none">
                   <div class="main-alarm">
                     <div class="header-alarm">
-                      <h1 style="margin-bottom: 15px;">알림설정</h1>
+                      <h1 style="margin-bottom: 15px">알림설정</h1>
                     </div>
                     <div class="alarm-content">
-                        <div class="member-alarm-all">
-                          <label for="member-follow">회원・서비스 이벤트 혜택 알림 동의</label>
-                          <div class="member-toggle">
-                            <label for="allow" class="not-allow-btn"></label>
-                          </div>
+                      <div class="member-alarm-all">
+                        <label for="member-follow">회원・서비스 이벤트 혜택 알림 동의</label>
+                        <div class="member-toggle">
+                          <!--not-allow-btn은 동의 안되어있는 상태 -->
+                          <label for="allow" class="not-allow-btn"></label>
                         </div>
-                        <ul>
-                          <li>
-                            <div class="first-alarm">
-                              <label for="alarm-member">이메일</label>
-                              <div class="member-toggle">
-                                <label for="allow" class="allow-btn"></label>
-                              </div>
+                      </div>
+                      <ul>
+                        <li>
+                          <div class="first-alarm">
+                            <label for="alarm-member">팔로잉</label>
+                            <div class="member-toggle">
+                              <!--allow-btn은 동의되어있는 상태 -->
+                              <label for="allow" class="allow-btn"></label>
                             </div>
-                          </li>
-                          <li>
-                            <div class="first-alarm">
-                              <label for="alarm-member">이메일</label>
-                              <div class="member-toggle">
-                                <label for="allow" class="allow-btn"></label>
-                              </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="second-alarm">
+                            <label for="alarm-member">통솔자 알람</label>
+                            <div class="member-toggle">
+                              <label for="allow" class="allow-btn"></label>
                             </div>
-                          </li>
-                        </ul>
+                          </div>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>

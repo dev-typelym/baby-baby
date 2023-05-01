@@ -10,7 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../static/css/myPage/myPage-withDrawal.css">
-</head>
+    <link rel="stylesheet" href="/static/css/myPage/modal.css">
+  </head>
 <body>
     <div>
         <div id="wz-header"></div>
@@ -21,7 +22,7 @@
                 <p><strong>린먕</strong>님, 아기자기를 이용하시는데 혹시 아래와 같은 불편함이 있으셨으면, 아래 방법을 한번 이용해보세요.</p>
                 <div class="message-box">
                   <dl>
-                    <dt>통솔회원 가입 시 업로드한 개인정보 때문에 불편하신가요?</dt>
+                    <dt>통솔자 회원 가입 시 업로드한 개인정보 때문에 불편하신가요?</dt>
                     아기자기에서는 실명인증 확인 후, 24시간 이내 즉시 파기하고 있습니다.
                     <dt>기타 불편한 사항이 있으시면 언제든 아기자기에게 알려주세요.</dt>
                     <dd>
@@ -32,7 +33,7 @@
                   <em id="inputDropOutReasonError" style="display:none">탈퇴 사유를 입력해주세요.</em>
                 </div>
                 <h2>탈퇴 전, 꼭 확인하세요!</h2>
-                <p>탈퇴 전 반드시 아래 유의 사항을 확인하시기 바랍니다.<br><em>참여∙모집 중인 프로젝트가 있을때 또는 아기자기 계좌에 예치금이 남았을 경우 탈퇴가 불가능합니다.</em></p>
+                <p>탈퇴 전 반드시 아래 유의 사항을 확인하시기 바랍니다.<br><em>참여∙모집 중인 체험학습이 있을때 또는 아기자기 계좌에 예치금이 남았을 경우 탈퇴가 불가능합니다.</em></p>
                 <dl>
                   <dt>탈퇴 후 3개월 내 재가입 불가</dt>
                   <dd>탈퇴 후 3개월 내 동일 아이디(이메일)로 재가입 불가</dd>
@@ -43,19 +44,32 @@
                   <dd>게시글, 댓글등 남겨진 이름 등 삭제 불가</dd>
                 </dl>
                     <label class="wz checkbox">
-                    <input type="checkbox" name="agree" value="Y" id="dropConfirm" onclick="test()">
+                    <input type="checkbox" name="agree" value="Y" id="dropConfirm">
                         <span>상기 아기자기 탈퇴 시 유의 사항을 확인하였습니다.</span>
                     </label>
                 </p>
                 <hr>
-                <form>
+                <!-- 서브밋하는 폼 -->
+                <form class="form-submit">
                 <div class="drop-button">
-                  <input type="submit" value="회원 탈퇴" class="wz button red" disabled="disabled" id="btnDropOut">
+                  <input type="button" value="회원 탈퇴" class="wz button red" disabled="disabled" id="btnDropOut">
                 </div></form>
               </div>
             </main>
     </div>
-    </body>
+
+    <div class="modal">
+      <div class="modal-content">
+        <h3 class="modal-title">아기자기 회원탈퇴</h3>
+        <p class="modal-body">정말로 아기자기를 탈퇴하시겠습니까?</p>
+        <p class="modal-start"></p>
+        <p class="modal-end"></p>
+        <div class="modal-buttons">
+          <button class="modal-cancel modal-btn">취소</button>
+          <button type="submit" class="modal-ok modal-btn" >확인</button>
+        </div>
+      </div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/static/js/myPage/myPage-wthiDrawal.js"></script>
