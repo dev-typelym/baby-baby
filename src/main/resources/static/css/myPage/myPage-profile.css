@@ -9,9 +9,12 @@
     src: url(https://static.wadiz.kr/static/web/media/wadizicon.1de1502a.eot#iefix) format("embedded-opentype"),url(https://static.wadiz.kr/static/web/media/wadizicon.f5cdf486.woff2) format("woff2"),url(https://static.wadiz.kr/static/web/media/wadizicon.9eb6b0a9.woff) format("woff"),url(https://static.wadiz.kr/static/web/media/wadizicon.e5379495.ttf) format("truetype"),url(https://static.wadiz.kr/static/web/media/wadizicon.077f5804.svg#wadizicon) format("svg")
 }
 
+
+
 body {
     line-height: 1.33;
     font-family: Noto Sans KR;
+    background-color: #f4f4f4;;
 }
 
 body {
@@ -37,6 +40,7 @@ a, address, article, aside, audio, b, body, button, canvas, caption, dd, div, dl
     font: inherit;
     box-sizing: border-box;
 }
+
 
 article, main, section {
     display: block;
@@ -65,6 +69,10 @@ a {
 /* container */
 #mypageWrap {
     width: 100%;
+}
+
+#iam-profile-app{
+    background-color: #fff;
 }
 
 #mypageWrap, #mypageWrap * {
@@ -248,7 +256,6 @@ a.Mint {
 /* 참여한 */
 .mypage-project.bg {
     background: #F5F7FA;
-    padding-bottom: 160px;
 }
 
 .mypage-project .tab-list {
@@ -572,4 +579,282 @@ a.Mint {
 .ProfileSet {
     margin: auto 0 0 auto;
     max-width: 327px;
+    }
+}
+
+
+/* 추가 */
+.project-list1{
+    padding-bottom: 90px;
+    background: #f4f4f4;
+    width: 100%;
+    height: 130vh;
+    
+}
+
+.lecture-list-header{
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid #e4e4e4;
+    height: 103px;
+    z-index: 100;
+}
+
+.lecture-list-title{
+    width: 48%;
+    float: left;
+    margin-bottom: 24px;
+    background: #2c3d50;
+    height: 100px;
+}
+.lecture-list-info{
+    float: right;
+    width: 515px;
+}
+
+.lecture-list-month{
+    float: left;
+    margin-top: 15px;
+    margin-left: 10px;
+    background: #e4e4e4;
+    padding: 12px 0;
+    width: 70px;
+    text-align: center;
+    line-height: initial;
+    color: #2c3d50;
+    font-size: 14px;
+}
+
+.lecture-list-description{
+    margin: 23px 0 0 20px;
+    width: 400px;
+    line-height: initial;
+    font-size: 21px;
+    color: #fff;
+    float: left;
+}
+
+.lecture-list-description span{
+    display: block;
+    font-size: 14px;
+    margin-top: 2px;
+    color: #a6afde;
+}
+
+.lecture-type-selection{
+    float: left;
+    width: 52%;
+    height: 100px;
+}
+
+.lecture-type-buttons{
+    display: flex;
+    margin-top: 0;
+    padding-right: 8px;
+    padding-left: 16px;
+}
+
+.lecture-type-buttons li {
+    border-left: 1px solid #e4e4e4;
+    width: 119px;
+    height: 98px;
+}
+
+.all-type-button, .intro-type-button, .practical-type-button,
+.mentoring-type-button, .special-type-button{
+    display: block;
+    border-top: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    background: #fff;
+    color: rgba(0,0,0,.84);
+    padding: 5px 0;
+    text-align: center;
+    font-size: 14px;
+    padding: 19px 0 21px;
+}
+
+.all em{
+    width: auto;
+    line-height: 18px;
+    font-weight: 500;
+    display: block;
+    margin: 0 auto 10px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-weight: 500;
+}
+
+.all span{
+    display: block;
+}
+
+.reward-btn em{
+        display: block;
+    margin: 0 auto 10px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-weight: 500;
+        background: #2e51ef;
+}
+
+.invest em{
+        display: block;
+    margin: 0 auto 10px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-weight: 500;
+    background: #9f8673;
+}
+
+.combine em{
+    display: block;
+    margin: 0 auto 10px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-weight: 500;
+    background: #705f53;
+}
+
+.special em{
+    display: block;
+    margin: 0 auto 10px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-weight: 500;
+    background: #90949c;
+}
+
+.lecture-type-buttons li:hover{
+background-color: #e4e4e4;
+cursor: pointer;
+}
+
+/* 상세정보 */
+
+.calender-content-wrapper{
+    margin: 60px auto 0;
+    width: 1100px;
+    position: relative;
+}
+
+.lecture-list{
+    width: 685px;
+    height: auto;
+    float: left;
+    margin-top: 29px;
+}
+
+.lecture{
+    margin-bottom: 23px;
+    border: 1px solid #e4e4e4;
+    background: #fff;
+    width: 633px;
+    height: 172px;
+    display: flex;
+}
+
+.lecture-image{
+    background-image:(url(https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/253/format/jpg/quality/95/) 1x, url(https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/506/format/jpg/quality/95/) 2x);
+    transform: scale(1);
+    opacity: 1;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    max-width: 40%;
+    }
+
+.lecture-image img{
+    width: 100%;
+    height: 100%;
+}
+
+.lecture a{
+        display: block;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.lecture-content{
+position: relative;
+float: left;
+padding: 15px 20px;
+width: 390px;
+max-width: 60%;
+}
+
+.lecture-type{
+    display: flex;
+    font-size: 12px;
+}
+
+.reward{
+    background: #2e51ef;
+    display: inline-block;
+    margin-right: 8px;
+    width: 10px;
+    height: 10px;
+}
+
+.lecture-title{
+    margin-bottom: 5px;
+    width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.lecture-subtitle{
+    margin-bottom: 10px;
+    line-height: 18px;
+    font-size: 12px;
+}
+
+.lecture-info{
+    margin-bottom: 5px;
+    line-height: 18px;
+    font-size: 12px;
+}
+
+.lecture-number{
+        position: absolute;
+    top: 135px;
+    right: -135px;
+    text-align: right;
+    font-size: 12px;
+}
+
+/* 켈린더 */
+.calender{
+    position: absolute;
+    right: 0;
+}
+
+#calendar {
+    width: 350px;
+    height: 400px;
+  }
+  
+  .tui-full-calendar {
+    width: 100%;
+    height: 100%;
+  }
+  
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+.toastui-calendar-template-time,   .toastui-calendar-weekday-grid-more-events {
+    display: none;
+}
+
+.toastui-calendar-daygrid-cell{
+    cursor: pointer;
 }

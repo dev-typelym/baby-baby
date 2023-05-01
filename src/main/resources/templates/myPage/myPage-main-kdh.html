@@ -1,44 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <title>아기자기</title>
     <!--css 연결하는곳-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
     />
     <link rel="stylesheet" href="../../static/css/myPage/myPage-main-kdh.css" />
-</head>
-<body>
+  </head>
+  <body>
     <main id="main-app">
-        <div class="full-content-wrapper">
-            <section class="full-content-wrapper-section">
-                <div class="mypage-profile-background" aria-hidden="true">
+      <div class="full-content-wrapper">
+        <section class="full-content-wrapper-section">
+          <div class="mypage-profile-background" aria-hidden="true"></div>
+          <h2 class="media-query-title">마이페이지</h2>
+          <div class="full-content-inner">
+            <div class="full-content-inner-header">
+              <div class="full-content-inner-header-padding">
+                <div class="header-button-wrapper switch-header" role="tablist">
+                  <button role="tab" class="individule"></button>
+                  <button role="tab" class="enterprise"></button>
                 </div>
-                <h2 class="media-query-title">마이페이지</h2>
-                <div class="full-content-inner">
-                    <div class="full-content-inner-header">
-                        <div class="full-content-inner-header-padding">
-                            <div class="header-button-wrapper switch-header" role="tablist">
-                                <button role="tab" class="individule"></button>
-                                <button role="tab" class="enterprise"></button>
-                            </div>
+              </div>
+            </div>
+            <div class="body-content-full-wrapper">
+              <div class="body-content-full-wrapper-media-query">
+                <div class="body-left-full-wrapper">
+                  <div class="profile-wrapper">
+                    <h3 class="media-query-myprofile">나의 프로필</h3>
+                    <div class="profile-info-area">
+                      <div class="myprofile-photo">
+                        <label for="profile">
+                          <div class="profile">
+                            <img
+                              src="https://static.wadiz.kr/assets/icon/profile-icon-1.png"
+                              alt=""
+                            />
+                          </div>
+                        </label>
+                        <input type="file" id="profile" style="display: none" />
+                      </div>
+                      <div class="profile-name-area">
+                        <div class="profile-name">
+                          정유찬
+                          <span>님</span>
+                          <svg
+                            viewBox="0 0 40 40"
+                            focusable="false"
+                            role="presentation"
+                            class="withIcon_icon__3VTbq"
+                            aria-hidden="true"
+                          >
+                            <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
+                          </svg>
                         </div>
+
+                        <div class="profile-type">서포터 • 개인회원</div>
+                      </div>
                     </div>
-                    <div class="body-content-full-wrapper">
-                        <div class="body-content-full-wrapper-media-query">
-                            <div class="body-left-full-wrapper">
-                                <h3 class="media-query-myprofile">나의 프로필</h3>
-                                <div class="myprofile-photo"
+                    <button class="logout-btn" type="button">
+                      <span><span class="logout-btn-text">로그아웃</span></span>
+                    </button>
+                  </div>
+
+                  <div class="body-content-right-wrapper center">
+                    <div class="right-wrapper">
+                      <div class="point-coupon">
+                        <div class="inner-content">
+                          <a href="#">
+                            <div class="a-inner-content">
+                              <div class="store-area">
+                                <img src="/static/images/myPage/store.png" alt="" />
+                                <span>스토어</span>
+                              </div>
+                              <div class="store-amount">1</div>
                             </div>
+                          </a>
                         </div>
+
+                        <div class="inner-content">
+                          <a href="#">
+                            <div class="a-inner-content">
+                              <div class="store-area">
+                                <svg
+                                  viewBox="0 0 40 40"
+                                  focusable="false"
+                                  role="presentation"
+                                  class="withIcon_icon__3VTbq"
+                                  aria-hidden="true"
+                                >
+                                  <g data-name="레이어 2">
+                                    <path
+                                      d="M37.64 17.54l.86-.12V8.5a2 2 0 0 0-2-2h-33a2 2 0 0 0-2 2v8.92l.86.12a2.48 2.48 0 0 1 0 4.92l-.86.12v8.92a2 2 0 0 0 2 2h33a2 2 0 0 0 2-2v-8.92l-.86-.12a2.48 2.48 0 0 1 0-4.92zm-1.14 6.69v7.27h-33v-7.27a4.48 4.48 0 0 0 0-8.46V8.5h33v7.27a4.48 4.48 0 0 0 0 8.46z"
+                                    ></path>
+                                    <path
+                                      d="M18.16 16.73a2.66 2.66 0 1 0-2.66 2.66 2.66 2.66 0 0 0 2.66-2.66zm-3.8 0a1.14 1.14 0 1 1 1.14 1.14 1.14 1.14 0 0 1-1.14-1.14zm12.14 4.34a2.66 2.66 0 1 0 2.66 2.66 2.66 2.66 0 0 0-2.66-2.66zm0 3.8a1.14 1.14 0 1 1 1.14-1.14 1.14 1.14 0 0 1-1.14 1.14zm.43-10.45l-1.08-.98-10.99 12.01-.09.09 1.08.98 10.99-12.01.09-.09z"
+                                    ></path>
+                                    <path fill="none" d="M0 0h40v40H0z"></path>
+                                  </g>
+                                </svg>
+                                <span>쿠폰</span>
+                              </div>
+                              <div class="coupon-amount">3 <span>장</span></div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </section>
-        </div>
+              </div>
+              <div class="link-area">
+                <h4 class="mypage-sub-title">나의 활동</h4>
+                <ul class="links">
+                  <li class="one-link">
+                    <a href="#">
+                      <div>
+                        <span class="link-icon">
+                          <svg
+                            viewBox="0 0 40 40"
+                            focusable="false"
+                            role="presentation"
+                            class="withIcon_icon__3VTbq"
+                            aria-hidden="true"
+                          >
+                            <path fill="none" d="M0 0h40v40H0z"></path>
+                            <path
+                              d="M28.13 9.39a5.26 5.26 0 0 1 0 10.52 8.93 8.93 0 0 1-1.71 1.87 7.07 7.07 0 0 0 1.73.22 7.35 7.35 0 1 0 0-14.7 7.07 7.07 0 0 0-1.73.22 8.93 8.93 0 0 1 1.71 1.87zM29.82 24a8.41 8.41 0 0 1 2.63 2.38c3.71.69 5.3 2.51 5.3 5.8h2.09c0-6.58-5.31-7.97-10.02-8.18zM11.3 20.79v-1.04H6.69v-4.61H4.61v4.61H0v2.08h4.61v4.61h2.08v-4.61h4.61v-1.04z"
+                            ></path>
+                            <path
+                              d="M27.85 14.65A7.35 7.35 0 1 0 20.5 22a7.36 7.36 0 0 0 7.35-7.35zm-12.62 0a5.27 5.27 0 1 1 5.27 5.26 5.27 5.27 0 0 1-5.27-5.26zM20.5 24c-5 0-11.69.85-11.69 8.22h2.08c0-4.36 2.79-6.14 9.61-6.14s9.6 1.78 9.6 6.14h2.08c0-7.42-6.67-8.22-11.68-8.22z"
+                            ></path>
+                          </svg>
+                        </span>
+                        <span class="link-text">팔로잉</span>
+                      </div>
+                      <span class="next-btn">
+                        <svg
+                          viewBox="0 0 40 40"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__3VTbq"
+                          aria-hidden="true"
+                        >
+                          <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
+                      ></span>
+                    </a>
+                  </li>
+
+                  <li class="one-link">
+                    <a href="#">
+                      <div>
+                        <span class="link-icon">
+                          <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>
+                        </span>
+                        <span class="link-text">찜목록</span>
+                      </div>
+                      <span class="next-btn">
+                        <svg
+                          viewBox="0 0 40 40"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__3VTbq"
+                          aria-hidden="true"
+                        >
+                          <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
+                      ></span>
+                    </a>
+                  </li>
+
+                  <li class="one-link">
+                    <a href="#">
+                      <div>
+                        <span class="link-icon">
+                          <img src="/static/images/myPage/horse.png" alt="">
+                        </span>
+                        <span class="link-text">나의 체험학습</span>
+                      </div>
+                      <span class="next-btn">
+                        <svg
+                          viewBox="0 0 40 40"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__3VTbq"
+                          aria-hidden="true"
+                        >
+                          <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
+                      ></span>
+                    </a>
+                  </li>
+
+                  <li class="one-link">
+                    <a href="#">
+                      <div>
+                        <span class="link-icon">
+                          <img src="/static/images/myPage/apply.png" alt="">
+                        </span>
+                        <span class="link-text">통솔자 지원</span>
+                      </div>
+                      <span class="next-btn">
+                        <svg
+                          viewBox="0 0 40 40"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__3VTbq"
+                          aria-hidden="true"
+                        >
+                          <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
+                      ></span>
+                    </a>
+                  </li>
+                </ul>
+
+                <h4 class="mypage-sub-title">고객센터</h4>
+                <ul class="links">
+                  <li class="one-link">
+                    <a href="#">
+                      <div>
+                        <span class="link-icon">
+                          <img src="/static/images/myPage/announcement.png" alt="">
+                        </span>
+                        <span class="link-text">공지 사항</span>
+                      </div>
+                      <span class="next-btn">
+                        <svg
+                          viewBox="0 0 40 40"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__3VTbq"
+                          aria-hidden="true"
+                        >
+                          <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
+                      ></span>
+                    </a>
+                  </li>
+
+
+                  <li class="one-link">
+                    <a href="#">
+                      <div>
+                        <span class="link-icon">
+                          <img src="/static/images/myPage/support.png" alt="">
+                        </span>
+                        <span class="link-text">1:1문의</span>
+                      </div>
+                      <span class="next-btn">
+                        <svg
+                          viewBox="0 0 40 40"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__3VTbq"
+                          aria-hidden="true"
+                        >
+                          <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
+                      ></span>
+                    </a>
+                  </li>
+
+                  <h4 class="mypage-sub-title">나의 정보</h4>
+                <ul class="links">
+                  <li class="one-link">
+                    <a href="#">
+                      <div>
+                        <span class="link-icon">
+                          <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true"><path d="M17.84 3.2l.4 2.56.16.88.88.32a9.55 9.55 0 0 1 2.893 1.691l.707.549.88-.32 2.4-.88L28 11.2l-2 1.68-.72.56.16.88a9.022 9.022 0 0 1-.009 3.336l-.151.824.72.56 2 1.76-1.84 3.2-3.28-1.2-.72.56a9.485 9.485 0 0 1-2.814 1.658l-.946.342-.16.88-.4 2.56h-3.68l-.4-2.56-.16-.88-.88-.32a9.55 9.55 0 0 1-2.893-1.691L9.12 22.8l-.88.32-2.4.88L4 20.8l2-1.68.72-.56-.16-.88a9.022 9.022 0 0 1 .009-3.336l.151-.824-.72-.56-2-1.76L5.84 8l3.28 1.2.72-.56a9.485 9.485 0 0 1 2.814-1.658l.946-.342.16-.88.4-2.56h3.68zM16 21.6a5.6 5.6 0 1 0 0-11.2 5.6 5.6 0 0 0 0 11.2zm2.56-20h-5.136a.8.8 0 0 0-.783.635L12.08 5.44a11.21 11.21 0 0 0-3.292 2.011L5.76 6.24h-.267a.798.798 0 0 0-.691.397L2.24 10.961a.798.798 0 0 0 .238 1.038l2.562 2.082a10.647 10.647 0 0 0 .01 3.906l-2.57 2.014a.8.8 0 0 0-.158 1.044L4.8 25.362a.8.8 0 0 0 .693.4h.347l2.96-1.2c.956.798 2.07 1.448 3.282 1.895l.638 3.225c.077.368.399.64.784.64h5.072a.8.8 0 0 0 .783-.635l.561-3.205a11.212 11.212 0 0 0 3.296-1.934l3.024 1.134h.347a.798.798 0 0 0 .691-.397l2.562-4.404a.8.8 0 0 0-.159-1.039l-2.561-2.081a10.647 10.647 0 0 0-.01-3.906l2.41-1.854a.8.8 0 0 0 .158-1.044L27.2 6.64a.8.8 0 0 0-.693-.4h-.347l-2.96 1.2a11.163 11.163 0 0 0-3.282-1.895L19.28 2.32a.801.801 0 0 0-.784-.64h-.017zM16 20a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"></path></svg>
+                        </span>
+                        <span class="link-text">나의 정보 수정</span>
+                      </div>
+                      <span class="next-btn">
+                        <svg
+                          viewBox="0 0 40 40"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__3VTbq"
+                          aria-hidden="true"
+                        >
+                          <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
+                      ></span>
+                    </a>
+                  </li>
+
+
+                  <li class="one-link">
+                    <a href="#">
+                      <div>
+                        <span class="link-icon">
+                          <img src="/static/images/myPage/withdraw.png" alt="">
+                        </span>
+                        <span class="link-text">회원탈퇴</span>
+                      </div>
+                      <span class="next-btn">
+                        <svg
+                          viewBox="0 0 40 40"
+                          focusable="false"
+                          role="presentation"
+                          class="withIcon_icon__3VTbq"
+                          aria-hidden="true"
+                        >
+                          <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg
+                      ></span>
+                    </a>
+                  </li>
+
+
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
-</body>
+  </body>
 </html>

@@ -1,7 +1,6 @@
 /* payment-detail.html */
 
-body{
-    background-color: #cccccc12;
+body {
     overflow-y: scroll;
     line-height: 1.5em;
     letter-spacing: -.02em;
@@ -9,7 +8,6 @@ body{
     font-size: 15px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
-    font-family: Noto Sans KR;
 }
 
 a{
@@ -90,7 +88,7 @@ dl{
     line-height: 20px;
     letter-spacing: 0;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
     border-bottom: 1px solid #f2f4f6;
     background-color: #f9fafb;
     padding: 16px;

@@ -294,7 +294,6 @@ strong {
     -moz-osx-font-smoothing: grayscale;
     font-style: normal;
     font-variant: normal;
-    speak: none;
     content: "\e94e";
 }
 
@@ -582,11 +581,11 @@ label.wz.checkbox>span:after {
 }
 
 .wz.button.red, .wz.button.red-outline {
-    border-color: #f66;
+    border-color: #00c4c4;
 }
 
 .wz.button.red {
-    background-color: #f66;
+    background-color: #00c4c4;
     color: #fff;
 }
 

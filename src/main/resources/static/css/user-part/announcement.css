@@ -1,0 +1,175 @@
+/* announcement.css */
+
+body{
+    zoom:90%
+}
+
+a, address, article, aside, audio, b, body, button, canvas, caption, dd, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, img, input, label, legend, li, nav, ol, p, pre, section, small, span, strong, summary, table, tbody, td, th, thead, time, tr, ul, video {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    vertical-align: baseline;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+body{
+    line-height: 1.33;
+    font-weight: 400;
+    font-family: Roboto,Noto Sans KR,-apple-system,Dotum,sans-serif;
+}
+
+
+
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color:black;
+}
+
+.title-wrapper{
+    max-width: 700px;
+    margin: 50px auto;
+    padding-right: 16px;
+    padding-left: 16px;
+    width: 100%;
+    width: calc(100% - env(safe-area-inset-left) - env(safe-area-inset-right) - 32px);
+}
+
+.title-wrapper h1{
+    text-align: center;
+    line-height: 52px;
+    font-size: 40px;
+}
+
+.contents{
+    margin: 0 auto;
+    padding-right: 16px;
+    padding-left: 16px;
+    width: 100%;
+    width: calc(100% - env(safe-area-inset-left) - env(safe-area-inset-right) - 32px);
+    max-width: 800px;
+}
+
+.one-content{
+    padding: 20px 0 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.article{
+    display: block;
+    height: 120px;
+    cursor: pointer;
+}
+
+.thumb{
+    margin-bottom: 20px;
+    width: 140px;
+    float: right;
+}
+
+.thumb img{
+    width: 100%;
+    height: 100%;
+}
+
+.notice{
+    color: #4462ee;
+    padding-bottom: 4px;
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: 500;
+    list-style: none;
+}
+
+.content-title{
+    padding-bottom: 12px;
+    line-height: 28px;
+    font-size: 20px;
+    color: #212529;
+}
+
+.author{
+    font-size: 13px;
+    margin-right: 8px;
+    color: #696f75;
+}
+
+.update-date{
+    font-size: 13px;
+    margin-right: 8px;
+    color: #696f75;
+}
+
+.admin-writed{
+    background-color: rgb(245, 245, 245);
+    display: none;
+}
+
+.announcement-content{
+    padding: 25px;
+}
+
+
+/* 검색 바 */
+
+.search-wrapper {
+    margin: 0 auto;
+    max-width: 800px;
+    border-bottom: 1px solid #d1d1d1;
+    padding-bottom: 10px;
+  }
+  
+  .search {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+  }
+  
+  select {
+    border: none;
+    background-color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .search-text {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 5px;
+  }
+  
+  .search-input {
+    border: none;
+    background-color: transparent;
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .search-btn {
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+
+
+
+
+/* 문의 */
+.waiting{
+    color: red;
+}
+
+.complete{
+    color: black;
+}

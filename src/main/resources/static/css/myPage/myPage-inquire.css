@@ -1,0 +1,66 @@
+/* faq.html */
+
+.main-content{
+    margin: 100px auto;
+    width: 540px;
+}
+
+.content-cheer{
+    line-height: 6px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #212529;
+}
+
+.content-title-wrapper{
+    border-bottom: 1px solid rgba(0,0,0,.06);
+    padding-bottom: 12px;
+    margin-top: 50px;
+}
+
+.content-title h2{
+    line-height: 28px;
+    letter-spacing: -.6px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 8px;
+}
+
+.title-sub{
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #868e96;
+}
+
+.one-content{
+    border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.inquire-title{
+    position: relative;
+    cursor: pointer;
+    padding: 12px 0;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    font-weight: 700;
+}
+
+.inquire-content{
+    display: none;
+    width: 100%;
+    overflow: hidden;
+    line-height: 1.62;
+    padding-bottom: 12px;
+    line-height: 18px;
+    letter-spacing: 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: #495057;
+    box-sizing: border-box;
+}

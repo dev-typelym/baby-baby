@@ -1,0 +1,99 @@
+/* myPage-alarm.html */
+body{
+    line-height: 1.33;
+    font-family: Roboto,Noto Sans KR,-apple-system,Dotum,sans-serif;
+}
+main{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.main-content{
+    width: 750px;
+    margin: 0 auto;
+}
+
+.header-title{
+    line-height: 48px;
+    letter-spacing: -.6px;
+    font-size: 36px;
+    font-weight: 700;
+    padding-bottom: 4px;
+}
+
+.header-sub{
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: -8px;
+    color: #495057;
+}
+
+.content-title-area{
+    margin-top: 60px;
+}
+
+.content-title{
+    line-height: 34px;
+    letter-spacing: -.51px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.content-sub img{
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.content-sub{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+.alarm-wrapper{
+    display: flex;
+}
+
+.alarm-text{
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    flex-grow: 2;
+    color: #495057;
+    margin-left: 4px;
+}
+
+.alarm-content{
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+    margin: 8px 0 0 20px;
+    word-break: break-all;
+    color: #212529;
+}
+
+.time{
+    line-height: 18px;
+    letter-spacing: 0;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 1px 0;
+    color: #495057;
+}
+
+.hover{
+    padding: 10px;
+    padding-bottom: 30px;
+    cursor: pointer;
+}
+.hover:hover{
+    background-color: rgb(242, 241, 241);
+    border-radius: 4px;
+    padding-bottom: 30px;
+}

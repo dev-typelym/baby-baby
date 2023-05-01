@@ -9,10 +9,18 @@
 }
 
 body {
-    line-height: 1.33;
-    font-family: Noto Sans KR;
+    overflow-y: scroll;
+    line-height: 1.5em;
+    letter-spacing: -.02em;
+    color: rgba(0,0,0,.84);
+    font-size: 15px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
 }
 
+button{
+    cursor: pointer;
+}
 
 li{
     list-style: none;
@@ -239,31 +247,49 @@ body>#root, #wadizTopBanner, #page-container {
     width: 28%;
     margin-left: 4px;
     display: block;
-    background: #8c8881;
+    background-color: #00c4c4;
+    color: #fff;
     height: 40px;
     line-height: 40px;
     border: none;
     text-align: center;
-    color: white;
     overflow: hidden;
+    cursor: pointer;
 }
 
 
 /* info-프로필 변경 시작 */
+
+.file-area{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+
 h5{
     margin-top: 15px;
     margin-bottom: 5px;
 }
 
-label[for=profile]{
+label[for=profile], label[for=resume]{
     display: flex;
     justify-content: center;
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
-label[for=profile] img{
+label[for=profile] img, label[for=resume] img{
     width: 64px;
+    cursor: pointer;
+}
+
+.resume-info{
+    width: 100px;
+    white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
 }
 
 .input-div2{
@@ -283,17 +309,13 @@ textarea{
     border: none;
 }
 
-.btn-div2{
-    display: flex;
-    justify-content: space-between;
-    width: 80px;
-}
+
 /* info-프로필 변경 끝 */
 
 
 /* 비밀번호 변경 시작 */
 input[type=password]{
-    width: 95%;
+    width: 96%;
 }
 
 h2{
@@ -312,6 +334,24 @@ h2{
     color: red;
 }
 
+#saveBtn{
+    background-color: #00c4c4;
+    color: #fff;
+    width: 96%;
+    margin-top: 20px;
+    height: 40px;
+}
+
+/* 회원정보 설정 */
+
+.save-btn{
+    background-color: #00c4c4;
+    color: #fff;
+    width: 100%;
+    margin-top: 20px;
+    height: 40px;
+
+}
 
 
 /* 알림설정 */
@@ -392,7 +432,7 @@ h2{
     background-color: #fff;
 }
 
-.first-alarm{
+.first-alarm, .second-alarm{
     display: flex;
     margin-top: 10px;
     justify-content: space-between;
