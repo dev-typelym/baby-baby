@@ -1110,7 +1110,7 @@ button[class*='Button_button'] {
 }
 
 .coupon-notion {
-    background-color: rgb(244, 244, 244);
+    background-color: #f9fafb;
     border-radius: 5px;
     padding: 16px;
 }
@@ -1285,3 +1285,131 @@ button[class*='Button_button'] {
     font-size: 13px;
     font-weight: 400;
  }
+
+ .agrModal {
+    display: none; 
+    position: fixed; 
+    z-index: 2; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4); /* 배경 어둡게 */
+  }
+  
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 32%; 
+  }
+  
+  .modal-content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .modal-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .info-table {
+    margin-bottom: 20px;
+  }
+  
+  .info-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .info-table th, .info-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .info-table thead {
+    background-color:#f2f2f2;
+}
+
+.info-table th {
+font-weight: bold;
+}
+
+.buttons {
+display: flex;
+justify-content: center;
+}
+
+#close-btn {
+background-color: #00b2b2;
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+margin-right: 10px;
+font-size: 16px;
+}
+
+#close-btn:hover {
+background-color: #048181;
+}
+
+.customer-info-title{
+    line-height: 30px;
+    letter-spacing: -0.6px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.payment-contributors-info-container{
+    margin-bottom: 32px;
+    margin-top: 27px;
+}
+
+p.summary {
+    color: rgb(51, 51, 51);
+    letter-spacing: -0.48px;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+p.summary span{
+    margin-bottom: initial;
+}
+
+.final-price{
+    font-weight: bold;
+    line-height: 28px;
+    letter-spacing: -0.6px;
+    color: rgb(51, 51, 51);
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    line-height: 24px;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.final-price span{
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 36px;
+    letter-spacing: -0.72px;
+    color: #00b2b2;
+}

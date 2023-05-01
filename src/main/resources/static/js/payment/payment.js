@@ -37,12 +37,30 @@ window.onclick = function (event) {
     }
 };
 
-const modalForm = document.querySelector('#modal-form');
+// const modalForm = document.querySelector('#modal-form');
 
-modalForm.addEventListener('submit', function(event) {
-  // 기본 동작을 막는다
-  event.preventDefault();
+// modalForm.addEventListener('submit', function(event) {
+//   // 기본 동작을 막는다
+//   event.preventDefault();
 
-  // 폼 데이터를 전송하는 코드
-  // ...
-});
+//   // 폼 데이터를 전송하는 코드
+//   // ...
+// });
+
+
+// Get the modal
+var agrModal = document.querySelector('.agrModal');
+
+// Get the buttons
+var agreeBtn = document.querySelector('.agreement-btn');
+var closeBtn = document.querySelector('#close-btn');
+
+// When the user clicks the agree button, close the modal
+agreeBtn.onclick = function() {
+    agrModal.style.display = "block";
+}
+closeBtn.onclick = function() {
+    agrModal.style.display = "none";
+}
+
+
