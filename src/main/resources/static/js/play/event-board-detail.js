@@ -29,24 +29,6 @@ function handleScroll() {
 }
 
 $(window).on('scroll', handleScroll);
-
-/* 오른쪽 딸려 내려오는 부분의 더보기. 회사 상세보기 더보기 */
-/* const closeBtn = $('.close');
-const moreButton = $('.more_button_company');
-const companyClose = $('.company_close_btn');
-const companyOpen = $('.company_open_btn');
-
-companyClose.on('click', function () {
-    moreButton.hide();
-    companyOpen.show();
-    companyClose.hide();
-});
-
-companyOpen.on('click', function () {
-    moreButton.show();
-    companyOpen.hide();
-    companyClose.show();
-}); */
 const companyOpenBtn = $('.company_open');
 const moteButtonCompany = $('.more_button_company');
 const companyCloseBtn = $('.company_close');
@@ -80,39 +62,147 @@ $('.more_button').click(function () {
 });
 
 /* 상품 정보 제공 고시 */
-const moreUpButton = document.querySelector('.more_up_button');
-const infoWrap = document.querySelector('.provide_information_full_wrap');
-const path = document.querySelector('.more_up_svg path');
+const moreUpButton = $('.more_up_button');
+const infoWrap = $('.provide_information_full_wrap');
+const path = $('.more_up_svg path');
 
-moreUpButton.addEventListener('click', () => {
-    if (infoWrap.style.display === 'none') {
-        infoWrap.style.display = 'block';
-        // path.setAttribute('transform', 'rotate(180 16 16)');
-        let angle = 0;
-
-        const intervalId = setInterval(() => {
-          angle += 5; // 회전 각도를 5도씩 증가시킵니다.
-        
-          if (angle <= 180) { // 회전 각도가 180도 이하인 경우
-            path.setAttribute('transform', `rotate(${angle} 16 16)`);
-          } else { // 회전 각도가 180도 이상인 경우
-            angle = 360 - angle; // 180도를 빼서 원래 각도로 되돌립니다.
-            path.setAttribute('transform', `rotate(${angle} 16 16)`);
-            clearInterval(intervalId); // setInterval을 종료합니다.
-          }
-        }, 5); 
-    } else {
-        infoWrap.style.display = 'none';
+moreUpButton.on('click', () => {
+    if (infoWrap.css('display') === 'none') {
+        infoWrap.css('display', 'block');
         let angle = 0;
 
         const intervalId = setInterval(() => {
             angle += 5; // 회전 각도를 5도씩 증가시킵니다.
-            path.setAttribute('transform', `rotate(${angle} 16 16)`);
 
-            if (angle === 180) {
-                // 회전 각도가 180도가 되면 setInterval을 종료합니다.
+            if (angle <= 180) {
+                // 회전 각도가 180도 이하인 경우
+                path.attr('transform', `rotate(${angle} 16 16)`);
+            } else {
+                // 회전 각도가 180도 이상인 경우
+                angle = 360 - angle; // 180도를 빼서 원래 각도로 되돌립니다.
+                path.attr('transform', `rotate(${angle} 16 16)`);
+                clearInterval(intervalId); // setInterval을 종료합니다.
+            }
+        }, 5);
+    } else {
+        let angle = 180; // 회전 각도를 180도로 초기화합니다.
+
+        const intervalId = setInterval(() => {
+            angle += 5; // 회전 각도를 5도씩 증가시킵니다.
+            path.attr('transform', `rotate(${angle} 16 16)`);
+
+            if (angle >= 360) {
+                // 회전 각도가 360도 이상이 되면 setInterval을 종료합니다.
+                clearInterval(intervalId);
+                infoWrap.css('display', 'none'); // display를 none으로 설정합니다.
+            }
+        }, 5);
+    }
+});
+
+/* 메이커 정보 */
+const makerUpButton = $('.maker_up_button');
+const makerWrap = $('.maker_real_info');
+const makerPath = $('.maker_svg path');
+
+makerUpButton.click(() => {
+    if (makerWrap.css('display') === 'none') {
+        makerWrap.css('display', 'block');
+        let makerAngle = 0;
+
+        const intervalId = setInterval(() => {
+            makerAngle += 5;
+            if (makerAngle <= 180) {
+                makerPath.attr('transform', `rotate(${makerAngle} 16 16)`);
+            } else {
+                makerAngle = 360 - makerAngle;
+                makerPath.attr('transform', `rotate(${makerAngle} 16 16)`);
                 clearInterval(intervalId);
             }
         }, 5);
+    } else {
+        let makerAngle = 180;
+
+        const intervalId = setInterval(() => {
+            makerAngle += 5;
+            makerPath.attr('transform', `rotate(${makerAngle} 16 16)`);
+            if (makerAngle >= 360) {
+                clearInterval(intervalId);
+                makerWrap.css('display', 'none');
+            }
+        }, 5);
+    }
+});
+
+/* 게시물 더보기 */
+const moreButton = $('.more_button_span');
+const imgSection = $('.img_section');
+const contentWrap = $('.content_wrap');
+const arrowPath = $('.more_button_svg path');
+
+// 스토리 더보기 버튼을 클릭했을 때 실행할 함수를 정의합니다.
+function showAllContent() {
+    const contentWrap = $('.content_wrap');
+    contentWrap.css({
+        overflow: 'visible',
+        height: 'auto',
+        position: 'static',
+    });
+    imgSection.css({
+        position: 'static',
+    });
+    moreButton.text('체험학습 접기');
+    // 다시 원래 상태로 되돌리기 위해 추가한 코드입니다.
+    moreButton.off('click', showAllContent);
+    moreButton.on('click', hideAllContent);
+    arrowPath.attr('transform', 'rotate(360 16 16)');
+}
+
+// 스토리 감추기 버튼을 클릭했을 때 실행할 함수를 정의합니다.
+function hideAllContent() {
+    const contentWrap = $('.content_wrap');
+    contentWrap.css({
+        overflow: 'hidden',
+        height: '2350px',
+        position: 'relative',
+    });
+    // 다시 더보기 버튼을 클릭할 수 있도록 리스너를 등록합니다.
+    imgSection.css({
+        position: 'relative',
+    });
+    moreButton.text('체험학습 상세보기');
+    moreButton.off('click', hideAllContent);
+    moreButton.on('click', showAllContent);
+    arrowPath.attr('transform', 'rotate(180 16 16)');
+}
+
+// 스토리 더보기 버튼에 클릭 이벤트 리스너를 등록합니다.
+moreButton.on('click', showAllContent);
+
+/* 아래쪽에 있는 상품 고시 설명에 1000단위로 , 찍는거 */
+$('.bottom-price').text(function (i, text) {
+    return Number(text).toLocaleString('en');
+});
+
+/* 좋아요 누르기 */
+var clicked = false;
+$('.purchase_wrap_div_btn').click(function () {
+    if (clicked === false) {
+        $('.heart_path').attr(
+            'd',
+            'M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z'
+        );
+        $('.heart_icon path').attr('fill', '#f66');
+        clicked = true;
+    } else {
+        $('.heart_path').attr(
+            'd',
+            'M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z'
+        );
+        $('.heart_icon').css({
+            color: '#868e96',
+        });
+        $('.heart_path').attr('fill', '#868e96');
+        clicked = false;
     }
 });

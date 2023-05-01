@@ -197,8 +197,6 @@ ul {
     background-image: url(https://cdn2.wadiz.kr/2023/02/15/c5daa009-636e-4962-b511-818e85dfde60.jpg/wadiz/quality/80/);
 }
 .company_info {
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
     margin-top: 24px;
 }
 .observer {
@@ -930,13 +928,13 @@ ul {
     color: rgba(0, 0, 0, 0.68);
     font-size: 15px;
     font-weight: 700;
-    z-index: 20;
+    z-index: 2000;
 }
 .more_up_svg {
     width: 20px;
     height: 20px;
     color: #495057;
-    transform: rotate(180deg);
+    /* transform: rotate(180deg); */
     transition: transform 0.25s;
     margin-left: 1px;
     font-size: 20px;
@@ -1057,7 +1055,7 @@ ul {
     width: 20px;
     height: 20px;
     color: #495057;
-    transform: rotate(180deg);
+/*     transform: rotate(180deg); */
     transition: transform 0.25s;
     margin-left: 1px;
     font-size: 20px;
@@ -1112,4 +1110,13 @@ ul {
 
 .more_button_span.expanded {
     content: '스토리 접기';
+}
+
+.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+.purchase_wrap_button:hover {
+    background-color: #00b2b2;
 }
