@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
 	<link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
 	<link rel="stylesheet" href="../../static/css/admin/admin-parentsBoardList.css">
+	<link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon2.ico">
 </head>
 <body>
 	<section class="header-section">
@@ -66,56 +67,56 @@
 												<input type="checkbox" id="allSelect">
 											</th>
 											<th>No</th>
+											<th>참여행사</th>
 											<th>제목</th>
 											<th>작성자</th>
 											<th>작성일시</th>
 											<th>내용</th>
-											<th>상세보기</th>
 										</tr>
 									</thead>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>1</td>
+										<td>해당없음</td>
 										<td>부모님과 함께하는 진흙놀이 참여 하고싶은데 해보신분?</td>
 										<td>멋쟁이</td>
 										<td>2022.10.23</td>
 										<td>아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>2</td>
+										<td>모두가 함께하는 진흙체험</td>
 										<td>부모님과 함께하는 진흙놀이 참여 하고싶은데 해보신분?</td>
 										<td>멋쟁이</td>
 										<td>2022.10.23</td>
 										<td>아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>3</td>
+										<td>해당없음</td>
 										<td>부모님과 함께하는 진흙놀이 참여 하고싶은데 해보신분?</td>
 										<td>멋쟁이</td>
 										<td>2022.10.23</td>
 										<td>아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
-									<tr>
+									<tr class="row">
 										<td>
 											<input type="checkbox" name="check">
 										</td>
 										<td>4</td>
+										<td>해당없음</td>
 										<td>부모님과 함께하는 진흙놀이 참여 하고싶은데 해보신분?</td>
 										<td>멋쟁이</td>
 										<td>2022.10.23</td>
 										<td>아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</td>
-										<td><span class="show-detail">상세보기</span></td>
 									</tr>
 								</table>
 								<!-- 페이지 버튼 -->
@@ -229,33 +230,36 @@
 					</div>
 					<ul class="content-list-wrap">
 						<li class="content-list">
+							<span>참여행사</span>
+							<div class="content-input">
+								<p>[우리은행] 부모님과 함께하는 진흙놀이</p>
+							</div>
+						</li>
+						<li class="content-list">
 							<span>제목</span>
 							<div class="content-input">
-								<input type="text" value="[우리은행] 부모님과 함께하는 진흙놀이"/>
+								<p>[우리은행]진흙놀이 헤 보신 분?</p>
 							</div>
 						</li>
 						<li class="content-list">
 							<span>작성자</span>
 							<div class="content-input">
-								<input type="text" />
+								<p></p>
 							</div>
 						</li>
 						<li class="content-list">
 							<span>작성일시</span>
 							<div class="content-input">
-								<input type="text" />
+								<p></p>
 							</div>
 						</li>
 						<li class="content-list">
 							<span>내용</span>
 							<div class="content-input content-div">
-								<textarea class="review-content">아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</textarea>
+								<p class="review-content">아이들과 함께하는 촉감놀이가 재밌었고 다음에 기회가 된다면 친구들을 모아서 크루로 참가해 보고 싶은 생각이 있어요.</textarea>
 							</div>
 						</li>
 					</ul>
-					<div class="update-box">
-						<button type="button" class="update-button">수정하기</button>
-					</div>
 				</main>
 			</form>
 		</div>
@@ -265,5 +269,5 @@
 <script src="../../static/js/admin/menuLoad.js"></script>
 <script src="../../static/js/admin/checkbox.js"></script>
 <script src="../../static/js/admin/page.js"></script>
-<script src="../../static/js/admin/modal.js"></script>
+<script src="../../static/js/admin/admin-parentsBoardList.js"></script>
 </html>

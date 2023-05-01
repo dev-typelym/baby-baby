@@ -1,8 +1,19 @@
+.user-modal-shape {
+    position: absolute;
+    left: 37%;
+    top: 9%;
+    width: 600px;
+    height: 699px;
+}
 
 .board-info-title-box div{
     display: flex;
-    margin-top: 7px;
     justify-content: space-between;
+}
+
+.board-info-title-box span{
+    line-height: 35px;
+    font-size: larger;
 }
 
 .delete-box div{
@@ -58,6 +69,35 @@
 .category-museum:hover,
 .category-sports:hover,
 .category-etc:hover,
-.category-entire:hover{
+.category-entire:hover,
+.category-country-side.active,
+.category-gallery-art.active,
+.category-tradition.active,
+.category-craft.active,
+.category-science.active,
+.category-museum.active,
+.category-sports.active,
+.category-etc.active,
+.category-entire.active{
     color: #c97793;
+}
+
+.content-list .content-input{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    padding: 12px 0;
+    margin: 12px 12px 12px 0px;
+    font-size: 12px;
+    text-align: left;
+    font-weight: 400;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+}
+
+.content-input span{
+    margin: 0;
+    display: inline;
+    font-size: 12px;
 }
