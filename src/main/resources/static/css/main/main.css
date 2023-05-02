@@ -1000,8 +1000,8 @@ div.buttons button:nth-child(1) {
 }
 
 .category-tabs li.active{
-    border-bottom: 3px solid #F7E600;
-    color: #f0e003;
+    border-bottom: 3px solid #00c4c4;
+    color: #00b2b2;
     font-weight: 500;
     padding-top: 1px;
 }
@@ -1611,6 +1611,11 @@ div.modal-background {
     color: rgba(0, 0, 0, 0.4);
     box-sizing: border-box;
 }
+.collection-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .ask-title{
     display: flex;
@@ -1625,4 +1630,39 @@ div.modal-background {
 
 
 
+
+.category-list-wrapper {
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header-category {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 16px;
+    margin: 0px 8px 16px 0px;
+    border: 0px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: black;
+    background-color: #00c4c4;
+    color: white;
+}
+
+.header-category:hover {
+    background-color: #00c4c4;
+    border-color: #00c4c4;
+    color: white;
+}
+
+.category-container {
+    display: flex;
+}
 

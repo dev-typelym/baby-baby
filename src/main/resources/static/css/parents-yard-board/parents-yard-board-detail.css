@@ -91,6 +91,8 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 }
 
 .reply-box-title{
+    display: flex;
+    justify-content: space-between;
     margin: 0;
     margin-bottom: 16px;
     line-height: 1.33;
@@ -123,10 +125,23 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 }
 
 .name-reply-content-user-name{
+    display: flex;
+    align-items: center;
     margin: 0;
 }
 
 .name-reply-content-text{
     color:#868e96;
     font-size: 15px;
+}
+
+.upload-date{
+    font-size: 12px;
+    color: #868e96;;
+    margin-left: 8px;
+}
+
+.reply-box-to-list{
+    font-size: 15px;
+    cursor: pointer;
 }
