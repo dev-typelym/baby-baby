@@ -1,6 +1,9 @@
 /* 모달  */
 function showModal(){
-    $('.modal').css('display', 'block');
+	if(passwordFlag && passwordCheckFlag){
+		$('.modal').css('display', 'block');
+	}
+    
 }
 
 function closeModal(){
@@ -71,7 +74,6 @@ $passwordCheckInput.on("blur", function() {
         $(".re-check-icon img").css("display", "none")
 		passwordCheckFlag = false;
 	}
-	completeAllCheck();
 });
 
 function send() {

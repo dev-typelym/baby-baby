@@ -16,8 +16,7 @@ $(document).ready(function() {
         error.eq(0).hide();
       }
   
-      // 도담도담에 등록된 계정인지 검사
-      // TODO: 도담도담 API와 연동하여 계정 검사 코드 작성
+      // 등록된 계정 검사
   
       if (isValid) {
         $('#send-modal').modal('show'); // 이메일 유효성 검사가 통과되면 모달창 띄우기
@@ -31,26 +30,3 @@ $(document).ready(function() {
   });
   
 
-const modalContainer = document.querySelector('.modal-container');
-const modal = document.querySelector('.modal');
-const modalCloseButtons = document.querySelectorAll('.modal-close');
-
-function openModal() {
-  modalContainer.style.display = 'block';
-}
-
-function closeModal() {
-  modalContainer.style.display = 'none';
-}
-
-function handleModalClick(event) {
-  if (event.target === modalContainer || event.target.classList.contains('modal-close')) {
-    closeModal();
-  }
-}
-
-modalCloseButtons.forEach((button) => {
-  button.addEventListener('click', closeModal);
-});
-
-modalContainer.addEventListener('click', handleModalClick);
