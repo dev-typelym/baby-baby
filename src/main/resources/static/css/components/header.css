@@ -378,9 +378,11 @@ svg:not(:root) {
     display: inline-block;
     vertical-align: top;
     white-space: nowrap;
+    display: flex;
 }
 .header-user-container .header-user-button { /* 로그인, 회원가입 버튼 태그 */
-    display: inline-block;
+    /* display: inline-block; */
+    display: none;
     cursor: pointer;
     padding: 0 8px;
     text-align: center;
@@ -416,8 +418,8 @@ svg:not(:root) {
     -webkit-font-smoothing: antialiased;
 }
 .header-make-button.header-make-button2 { /* 프로젝트 만들기 버튼 */
-    border-color: #F7E600;
-    color: #cec106;
+    border-color: #00c4c4;
+    color: #00c4c4;
 }
 .header-make-button.header-make-button3 { /* 프로젝트 만들기 버튼 */
     padding: 9px 16px;
@@ -444,7 +446,64 @@ input::placeholder {
 	color: #adb5bd;
 }
 
+.alarm-wrapper{
+    width: 56px;
+    height: 56px;
+}
 
+.alarm-modal-btn{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+    height: inherit;
+}
+
+.alarm-image-wrapper{
+    width: 34px;
+    height: 32px;
+    margin-bottom: 6px;
+}
+
+.alarm-image{
+    width: 100%;
+    height: 100%;
+}
+
+.profile-wrapper{
+    width: 56px;
+    height: 56px;
+}
+
+.profile-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+}
+
+.profile-image-wrapper{
+    width: 32px;
+    height: 32px;
+}
+
+.profile-image{
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+}
+
+.new-alarm{
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    width: 6px;
+    height: 6px;
+    background-color: #ff6666;
+    border-radius: 100%;
+}
 
 
 

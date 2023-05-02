@@ -14,134 +14,53 @@
     <link rel="stylesheet" href="../../static/css/main/main.css">
 </head>
 <body>
-    <header>
-        <div class="web-header">
-            <div class="web-header-large">
-                <header class="header-wrapper">
-                    <div class="header-container">
-                        <!-- <h1 class="wadiz-logo">
-                            <a href="/templates/main/main.html" style="width: 100px;">
-                                <span class="label">도담도담</span>
-                                <img alt="" src="" style="width: 88%;">
-                            </a>
-                        </h1> -->
-                        <ul class="header-menu-category-ul">
-                            <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" href="/templates/main/main.html">
-                                    <h1 class="wadiz-logo">
-                                        <span>아기자기</span>
-                                    </h1>
-                            </a></li>
-                            <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" href="">
-                                    <span>사업소개</span>
-                            </a></li>
-                            <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" href=""> <span>오픈예정</span>
-                            </a></li>
-                            <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" href=""> <span>홍보하기</span>
-                            </a></li>
-                            <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" href=""> <span>고객센터</span>
-                            </a></li>
-                        </ul>
-                        <div class="web-header-utils">
-                            <!-- <div class="header-search-div">
-                                <form>
-                                    <div class="header-search-index-div" tabindex="-1">
-                                        <div class="header-search-empty-div"></div>
-                                        <div class="header-search-input-div">
-                                            <input type="search" placeholder="새로운 것을 찾으시나요?"
-                                                aria-label="검색" value="" style="">
-                                        </div>
-                                        <button type="submit" class="header-search-button"
-                                            aria-label="검색">
-                                            <svg viewBox="0 0 40 40" focusable="false" role="presentation"
-                                                class="withIcon_icon__20lDO" aria-hidden="true"
-                                                style="width: 24px; height: 24px;">
-                                                <path fill="none" d="M0 0h40v40H0z"></path>
-                                                <path
-                                                    d="M29.2 27.91a14.38 14.38 0 1 0-1.42 1.4l7.16 7.15.07.08 1.41-1.41zM18.45 6a12.36 12.36 0 0 1 8.35 3.23 12.24 12.24 0 0 1 4 8.59A12.39 12.39 0 1 1 17.88 6z"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div> -->
-                            <c:if
-                                test="${not empty sessionScope.memberId || not empty cookie.memberIdentification }">
-                                <!-- 로그아웃 버튼! -->
-                                <div class="buttonWrap headerButton">
-                                    <button class="listButton logoutButton"
-                                        onclick="location.href = '${pageContext.request.contextPath}/user/loging.user'">
-                                    </button>
-                                </div>
-                                <!-- // 로그아웃 버튼! -->
-                            </c:if>
-                            <div class="header-user-div">
-                                <!-- <div class="header-user-container">
-                                    <button type="button" class="header-user-button" onclick="location.href='${pageContext.request.contextPath}/user/logout.user'">로그아웃</button>
-                                    <button data-event="iam.signup" class="header-user-button" onclick="location.href='${pageContext.request.contextPath}/dhouse/user/mypage.user'">마이페이지</button>
-                                </div> -->
-                                <div class="header-user-container">
-                                    <button type="button" class="header-user-button">로그인</button>
-                                    <button data-event="iam.signup" class="header-user-button" onclick="location.href='${pageContext.request.contextPath}/user/signUp.user'">회원가입</button>
-                                </div>
-                            </div>
-                            <div class="web-header-funding-open funding-open">
-                                <div>
-                                    <div>
-                                        <button aria-label="기부 참여하기"
-                                            class="header-make-button header-make-button2 header-make-button3 funding-open-button"
-                                            type="button">
-                                            <span> 
-                                                <span class="header-make-project-span">
-                                                    프로젝트 만들기
-                                                </span>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-            </div>
-        </div>
-    </header>
+    <div id="headers"></div>
     <main>
+        <button type="button" class="top-btn" title="위로 이동">
+            <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="top-btn-icon" aria-hidden="true">
+                <path d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"></path>
+            </svg>
+        </button>
+        <div class="ask-admin-btn-wrapper" onclick="categoryModal()">
+            <button type="button" class="ask-admin-modal-btn" aria-label="고객센터 문의"></button>
+        </div>
         <section class="banner-container">
             <!-- 메인 배너 -->
             <div class="banner">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="banners"></div>
+                <div class="banners"></div>
+                <div class="banners"></div>
+                <div class="banners"></div>
+                <div class="banners"></div>
             </div>
 
             <!-- 선택 버튼 -->
             <div class="buttons">
-                <button style="background: white; color: black">1</button>
-                <button style="background: white; color: black">2</button>
-                <button style="background: white; color: black">3</button>
-                <button style="background: black; color: white">4</button>
+                <div class="loading-bar">
+                    <div class="loading-bar-now"></div>
+                </div>
+                <button><span>1</span></button>
+                <button><span>2</span></button>
+                <button><span>3</span></button>
+                <button><span>4</span></button>
+                <button><span>5</span></button>
             </div>
             <div class="move-arrow">
                 <!-- 이전 버튼 -->
                 <div class="prev">
-                    <img data-role="none" class="prev-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E %3Cpath fill='none' fill-rule='evenodd' stroke='%23FFF' stroke-width='2' d='M21 17l8 8.014L21.028 33'/%3E %3C/svg%3E" style="display: block;">
+                    <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="prev-icon" aria-hidden="true" style="width: 24px; height: 24px;"><path d="M12 20L25 7l1.4 1.4L14.8 20l11.6 11.6L25 33 12 20z"></path></svg>
                 </div>
                 <!-- 사이 -->
-                <div class="page-move-wrapper">
+               <!--  <div class="page-move-wrapper">
                     <span id="page-now">1</span>
                     <span id="page-total"> / 4 </span>
                     <div style="line-height: 1;">
                         <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='7' fill='none' viewBox='0 0 8 7'%3E %3Cpath fill='%23fff' d='M3 0H5V7H3z'/%3E %3Cpath fill='%23fff' d='M0.5 4.5H2.5V11.5H0.5z' transform='rotate(-90 .5 4.5)'/%3E %3C/svg%3E" alt="icon-plus" class="banner-plus-image">
                     </div>
-                </div>
+                </div> -->
                 <!-- 다음 버튼 -->
                 <div class="next">
-                    <img data-role="none" class="prev-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E %3Cpath fill='none' fill-rule='evenodd' stroke='%23FFF' stroke-width='2' d='M21 17l8 8.014L21.028 33'/%3E %3C/svg%3E" style="display: block;">
+                    <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="next-icon" aria-hidden="true" style="width: 24px; height: 24px;"><path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path></svg>
                 </div>
             </div>
         </section>
@@ -179,7 +98,7 @@
                             <path d="M13.0667 22.0117V27.4117" stroke="#212529" stroke-miterlimit="10"></path>
                         </svg>
                         <div class="quick-name">
-                            도담도담 스쿨
+                            아기자기 스쿨
                         </div>
                     </a>
                     <a href="" target="_blank" class="quick-menu">
@@ -331,431 +250,11 @@
                 </div>
             </div>
         </div>
-       <!--<div class="boards-bar">
-            <div class="board-bar">
-                <div class="board-title-bar">
-                    <div class="board-title">
-                        공지사항
-                    </div>
-                    <div class="plus-menu">
-                        <div class="plus">
-                            더보기
-                        </div>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 13L11 8L6 3" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="board-ul">
-                    <!-- 게시글 1개 시작 
-                    <div class="board-li">
-                        <div class="board-title">
-                            <div class="board-title-context">
-                                한 달간의 와디즈 소식을 모아보는, 월간와디즈
-                            </div>
-                        </div>
-                        <div class="board-register-date">
-                            2023.04.04
-                        </div>
-                    </div>
-                    <!-- 게시글 1개 끝 
-                    <!-- 게시글 1개 시작 
-                    <div class="board-li">
-                        <div class="board-title">
-                            <div class="board-title-context">
-                                2023 와디즈 콘텐츠 파트너 모집 안내(~2/26)
-                            </div>
-                        </div>
-                        <div class="board-register-date">
-                            2023.02.06
-                        </div>
-                    </div>
-                    <!-- 게시글 1개 끝 
-                    <!-- 게시글 1개 시작 
-                    <div class="board-li">
-                        <div class="board-title">
-                            <div class="board-title-context">
-                                [서비스 안내] 프리오더 서비스 정책 변경 안내
-                            </div>
-                        </div>
-                        <div class="board-register-date">
-                            2023.02.03
-                        </div>
-                    </div>
-                    <!-- 게시글 1개 끝 
-                </div>
-            </div>
-            <div class="board-bar">
-                <div class="board-title-bar">
-                    <div class="board-title">
-                        공지사항
-                    </div>
-                    <div class="plus-menu">
-                        <div class="plus">
-                            더보기
-                        </div>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 13L11 8L6 3" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="board-ul">
-                    <!-- 게시글 1개 시작 
-                    <div class="board-li">
-                        <div class="board-title">
-                            <div class="board-title-context">
-                                한 달간의 와디즈 소식을 모아보는, 월간와디즈
-                            </div>
-                        </div>
-                        <div class="board-register-date">
-                            2023.04.04
-                        </div>
-                    </div>
-                    <!-- 게시글 1개 끝 
-                    <!-- 게시글 1개 시작 
-                    <div class="board-li">
-                        <div class="board-title">
-                            <div class="board-title-context">
-                                2023 와디즈 콘텐츠 파트너 모집 안내(~2/26)
-                            </div>
-                        </div>
-                        <div class="board-register-date">
-                            2023.02.06
-                        </div>
-                    </div>
-                    <!-- 게시글 1개 끝 
-                    <!-- 게시글 1개 시작 
-                    <div class="board-li">
-                        <div class="board-title">
-                            <div class="board-title-context">
-                                [서비스 안내] 프리오더 서비스 정책 변경 안내
-                            </div>
-                        </div>
-                        <div class="board-register-date">
-                            2023.02.03
-                        </div>
-                    </div>
-                    <!-- 게시글 1개 끝 
-                </div>
-            </div>
-        </div>-->
-        <div class="recruits-bar">
-            <div class="recruit-container">
-                <button type="button" class="arrow-icon-left">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
-                        <path d="M22 25L17 20L22 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <button type="button" class="arrow-icon-right">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
-                        <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <div class="recruit-title">
-                    <div class="recruit-title-container">
-                        <div class="recruit-title-context">
-                            체험학습
-                        </div>
-                        <div class="plus-menu">
-                            <div class="plus">
-                                더보기
-                            </div>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 13L11 8L6 3" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="category-tabs">
-                    <ul>
-                        <li class="active">
-                            <a href="">전체</a>
-                        </li>
-
-                        <li class="">
-                            <a href="">농촌</a>
-                        </li>
-
-                        <li>
-                            <a href="">미술관/박람회</a>
-                        </li>
-                        
-                        <li>
-                            <a href="">전통</a>
-                        </li>
-                        
-                        <li>
-                            <a href="">공방</a>
-                        </li>
-
-                        <li>
-                            <a href="">과학</a>
-                        </li>
-
-                        <li>
-                            <a href="">박물관</a>
-                        </li>
-
-                        <li>
-                            <a href="">스포츠</a>
-                        </li>
-
-                        <li>
-                            <a href="">기타</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="recruit-swiper-view">
-                    <div class="recruit-swiper-container">
-                        <div class="recruit-swiper-wrapper">
-                            <!-- 모집 박스 1개 시작 -->
-                            <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            와디즈 메이커
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                            <!-- 모집 박스 1개 시작 -->
-                           <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            와디즈 메이커
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                            <!-- 모집 박스 1개 시작 -->
-                            <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            올린스튜디오 정석현 대표
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                            <!-- 모집 박스 1개 시작 -->
-                            <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            올린스튜디오 정석현 대표
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                            <!-- 모집 박스 1개 시작 -->
-                            <div class="recruit-swiper-box">
-                                <div class="recruit-swiper-container">
-                                    <div class="recruit-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/8cc2499a-b0ac-4b67-b699-efa65243a544.png);"></div>
-                                    <div class="recruit-box-context">
-                                        <div class="recruit-box-title">
-                                            [보드게임] 신규 보드게임, 경쟁력 있게 선보이려면
-                                        </div>
-                                        <div class="recruit-box-writer">
-                                            올린스튜디오 정석현 대표
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 모집 박스 1개 끝 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="events-bar">
+    
+         <!-- 세번째 배너 -->
+         <div class="events-bar">
             <div class="event-container">
-                <button type="button" class="arrow-icon-left" style="top: 35%;">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
-                        <path d="M22 25L17 20L22 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <button type="button" class="arrow-icon-right" style="top: 35%;">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
-                        <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <div class="event-banner">
-                    <div class="event-title">
-                        <div class="event-title-container">
-                            이벤트·혜택
-                        </div>
-                        <div class="plus-menu">
-                            <div class="plus">
-                                더보기
-                            </div>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 13L11 8L6 3" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="event-swiper-container">
-                        <div class="swiper-wrapper">
-                            <!-- 이벤트 박스 1개 시작 -->
-                            <div class="event-swiper-box">
-                                <div class="event-swiper-container">
-                                    <div class="event-swiper-image"></div>
-                                    <div class="event-status">
-                                        <div></div>
-                                        <div class="status-container">
-                                            <div class="important-status">중요</div>
-                                            <div class="finish-status">종료</div>
-                                        </div>
-                                    </div>
-                                    <div class="event-box-title-container">
-                                        <div class="event-box-title">
-                                            [기획전]4월 기획전 참여 메이커 모집
-                                        </div>
-                                    </div>
-                                    <div class="event-box-context-container">
-                                        <div class="event-box-context">
-                                            봄 맞이 인테리어, 가정의달 선물, 건강/다이어트 프로젝트를 메이커님이라면 꼭 확인해 주세요.
-                                        </div>
-                                    </div>
-                                    <div class="event-box-date-container">
-                                        2023.03.20
-                                        &nbsp;~&nbsp;
-                                        2023.04.16
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 이벤트 박스 1개 끝 -->
-                            <!-- 이벤트 박스 1개 시작 -->
-                            <div class="event-swiper-box">
-                                <div class="event-swiper-container">
-                                    <div class="event-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/3a54037a-3fb9-4677-94e3-d6e0351e0612.jpg);"></div>
-                                    <div class="event-status">
-                                        <div></div>
-                                        <div class="status-container">
-                                            <div class="important-status">중요</div>
-                                            <div class="finish-status">종료</div>
-                                        </div>
-                                    </div>
-                                    <div class="event-box-title-container">
-                                        <div class="event-box-title">
-                                            [기획전]4월 기획전 참여 메이커 모집
-                                        </div>
-                                    </div>
-                                    <div class="event-box-context-container">
-                                        <div class="event-box-context">
-                                            봄 맞이 인테리어, 가정의달 선물, 건강/다이어트 프로젝트를 메이커님이라면 꼭 확인해 주세요.
-                                        </div>
-                                    </div>
-                                    <div class="event-box-date-container">
-                                        2023.03.20
-                                        &nbsp;~&nbsp;
-                                        2023.04.16
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 이벤트 박스 1개 끝 -->
-                            <!-- 이벤트 박스 1개 시작 -->
-                            <div class="event-swiper-box">
-                                <div class="event-swiper-container">
-                                    <div class="event-swiper-image" style="background-image: url(https://static.makercenter.wadiz.kr/board/image/7111d226-bfeb-4f89-b8a8-71ef5b7a5ace.jpg);"></div>
-                                    <div class="event-status">
-                                        <div></div>
-                                        <div class="status-container">
-                                            <div class="important-status">중요</div>
-                                            <div class="finish-status">종료</div>
-                                        </div>
-                                    </div>
-                                    <div class="event-box-title-container">
-                                        <div class="event-box-title">
-                                            [기획전]4월 기획전 참여 메이커 모집
-                                        </div>
-                                    </div>
-                                    <div class="event-box-context-container">
-                                        <div class="event-box-context">
-                                            봄 맞이 인테리어, 가정의달 선물, 건강/다이어트 프로젝트를 메이커님이라면 꼭 확인해 주세요.
-                                        </div>
-                                    </div>
-                                    <div class="event-box-date-container">
-                                        2023.03.20
-                                        &nbsp;~&nbsp;
-                                        2023.04.16
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 이벤트 박스 1개 끝 -->
-                            <!-- 이벤트 박스 1개 시작 -->
-                            <div class="event-swiper-box">
-                                <div class="event-swiper-container">
-                                    <div class="event-swiper-image" style="background-image: url(	https://static.makercenter.wadiz.kr/board/image/ceca1a4c-ec23-4199-bd12-10e35ac3fc61.png);"></div>
-                                    <div class="event-status">
-                                        <div></div>
-                                        <div class="status-container">
-                                            <div class="important-status">중요</div>
-                                            <div class="progress-status">종료</div>
-                                        </div>
-                                    </div>
-                                    <div class="event-box-title-container">
-                                        <div class="event-box-title">
-                                            [기획전]4월 기획전 참여 메이커 모집
-                                        </div>
-                                    </div>
-                                    <div class="event-box-context-container">
-                                        <div class="event-box-context">
-                                            봄 맞이 인테리어, 가정의달 선물, 건강/다이어트 프로젝트를 메이커님이라면 꼭 확인해 주세요.
-                                        </div>
-                                    </div>
-                                    <div class="event-box-date-container">
-                                        2023.03.20
-                                        &nbsp;~&nbsp;
-                                        2023.04.16
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 이벤트 박스 1개 끝 -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="events-bar">
-            <div class="event-container">
-                <button type="button" class="arrow-icon-left" style="top: 35%;">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
-                        <path d="M22 25L17 20L22 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <button type="button" class="arrow-icon-right" style="top: 35%;">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
-                        <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
-                <div class="event-banner">
+                <div class="event-banner-container">
                     <div class="event-title">
                         <div class="event-title-container">
                             와디즈 아카데미
@@ -769,73 +268,457 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="event-swiper-container">
-                        <div class="swiper-wrapper">
-                            <!-- 이벤트 박스 1개 시작 -->
-                            <div class="event-swiper-box">
-                                <div class="event-swiper-container">
-                                    <div class="event-swiper-image" style="background-image: url('https://static.makercenter.wadiz.kr/board/image/ffaa703e-9caa-4d9c-a97f-0ccefd3d6388.jpg');"></div>
-                                    <div class="event-box-title-container">
-                                        <div class="event-box-title">
-                                            카테고리성공비법서 : 스포츠 하편
-                                        </div>
+                    <div class="category-tabs">
+                        <ul>
+                            <li class="active">
+                                <a href="">전체</a>
+                            </li>
+    
+                            <li class="">
+                                <a href="">농촌</a>
+                            </li>
+    
+                            <li>
+                                <a href="">미술관/박람회</a>
+                            </li>
+                            
+                            <li>
+                                <a href="">전통</a>
+                            </li>
+                            
+                            <li>
+                                <a href="">공방</a>
+                            </li>
+    
+                            <li>
+                                <a href="">과학</a>
+                            </li>
+    
+                            <li>
+                                <a href="">박물관</a>
+                            </li>
+    
+                            <li>
+                                <a href="">스포츠</a>
+                            </li>
+    
+                            <li>
+                                <a href="">기타</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <section class="second-banner-container">
+                        <!-- 두번째 배너 -->
+                        <div class="second-banner">
+                            <div class="second-banner1 second-banners">
+                                <div class="second-banner-image-wrapper">
+                                    <div class="second-banner-image"></div>
+                                </div>
+                                <div class="recruit-box-context">
+                                    <div class="recruit-box-title">
+                                        [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
+                                    </div>
+                                    <div class="recruit-box-writer">
+                                        와디즈 메이커
+                                    </div>
+                                    <div class="like-btn-wrapper">
+                                        <button class="second-list-like-btn1 like-btn" width="24px" height="24px" onclick="secondListLikeOn(1)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2514_433)'%3E %3Cmask id='mask0_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask0_2514_433)'%3E %3Cmask id='mask1_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask1_2514_433)'%3E %3Cpath d='M28 12C28 16.1889 24.9781 19.7916 22.063 22.3047C20.2579 23.8469 18.2982 25.1986 16.2154 26.3381C16.2027 26.3441 16.1898 26.3505 16.1774 26.357C16.1226 26.3861 16.0613 26.4013 15.999 26.4015C15.9401 26.4015 15.882 26.3881 15.8293 26.362L15.8094 26.3511L15.784 26.3378C15.1694 26.0033 14.5659 25.649 13.9743 25.2754C12.5586 24.3847 11.2086 23.3914 9.93704 22.3049C7.02334 19.7914 4.00003 16.1887 4 12C4.00014 10.6766 4.41054 9.38568 5.17469 8.30517C5.93885 7.22466 7.01918 6.4076 8.26696 5.96651C9.51472 5.52542 10.8685 5.482 12.142 5.84222C13.4155 6.20245 14.546 6.94859 15.3778 7.97794C15.5297 8.16589 15.7584 8.2751 16 8.2751C16.2416 8.2751 16.4704 8.16589 16.6222 7.97794C17.4541 6.94859 18.5845 6.20245 19.8579 5.84222C21.1315 5.482 22.4853 5.52542 23.7331 5.96651C24.9808 6.4076 26.0611 7.22466 26.8253 8.30517C27.5894 9.38568 27.9998 10.6766 28 12Z' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E %3C/g%3E %3C/g%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2514_433'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
+                                        <button class="second-list-like-red-btn1 like-red-btn" width="24px" height="24px" onclick="secondListLikeOff(1)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2517_457)'%3E %3Cpath d='M15.4448 27.0641L15.4368 27.0593L15.4064 27.0433C14.775 26.6998 14.1549 26.3359 13.5472 25.9521C12.0981 25.0404 10.7174 24.0243 9.41595 22.9121C6.47195 20.3729 3.19995 16.5633 3.19995 12.0001C3.20009 10.5112 3.66179 9.05903 4.52147 7.84344C5.38115 6.62785 6.59654 5.70866 8.00027 5.21244C9.40401 4.71622 10.9271 4.66737 12.3597 5.07263C13.7924 5.47788 15.0641 6.31729 16 7.4753C16.9358 6.31729 18.2075 5.47788 19.6402 5.07263C21.0728 4.66737 22.5959 4.71622 23.9996 5.21244C25.4034 5.70866 26.6187 6.62785 27.4784 7.84344C28.3381 9.05903 28.7998 10.5112 28.8 12.0001C28.8 16.5633 25.5296 20.3729 22.584 22.9121C20.7349 24.492 18.7274 25.8764 16.5936 27.0433L16.5632 27.0593L16.5552 27.0641H16.552C16.3819 27.1542 16.1925 27.2014 16.0001 27.2017C15.8078 27.2019 15.6182 27.1553 15.448 27.0657L15.4448 27.0641Z' fill='%23FD2748'/%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2517_457'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- 이벤트 박스 1개 끝 -->
-                            <!-- 이벤트 박스 1개 시작 -->
-                            <div class="event-swiper-box">
-                                <div class="event-swiper-container">
-                                    <div class="event-swiper-image" style="background-image: url('	https://static.makercenter.wadiz.kr/board/image/cf918d9f-be9e-4bce-8899-e263e0db2579.jpg');"></div>
-                                    <div class="event-box-title-container">
-                                        <div class="event-box-title">
-                                            카테고리성공비법서 : 스포츠 하편
-                                        </div>
+                            <div class="second-banner2 second-banners">
+                                <div class="second-banner-image-wrapper">
+                                    <div class="second-banner-image"></div>
+                                </div>
+                                <div class="recruit-box-context">
+                                    <div class="recruit-box-title">
+                                        [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
+                                    </div>
+                                    <div class="recruit-box-writer">
+                                        와디즈 메이커
+                                    </div>
+                                    <div class="like-btn-wrapper">
+                                        <button class="second-list-like-btn2 like-btn" width="24px" height="24px" onclick="secondListLikeOn(2)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2514_433)'%3E %3Cmask id='mask0_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask0_2514_433)'%3E %3Cmask id='mask1_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask1_2514_433)'%3E %3Cpath d='M28 12C28 16.1889 24.9781 19.7916 22.063 22.3047C20.2579 23.8469 18.2982 25.1986 16.2154 26.3381C16.2027 26.3441 16.1898 26.3505 16.1774 26.357C16.1226 26.3861 16.0613 26.4013 15.999 26.4015C15.9401 26.4015 15.882 26.3881 15.8293 26.362L15.8094 26.3511L15.784 26.3378C15.1694 26.0033 14.5659 25.649 13.9743 25.2754C12.5586 24.3847 11.2086 23.3914 9.93704 22.3049C7.02334 19.7914 4.00003 16.1887 4 12C4.00014 10.6766 4.41054 9.38568 5.17469 8.30517C5.93885 7.22466 7.01918 6.4076 8.26696 5.96651C9.51472 5.52542 10.8685 5.482 12.142 5.84222C13.4155 6.20245 14.546 6.94859 15.3778 7.97794C15.5297 8.16589 15.7584 8.2751 16 8.2751C16.2416 8.2751 16.4704 8.16589 16.6222 7.97794C17.4541 6.94859 18.5845 6.20245 19.8579 5.84222C21.1315 5.482 22.4853 5.52542 23.7331 5.96651C24.9808 6.4076 26.0611 7.22466 26.8253 8.30517C27.5894 9.38568 27.9998 10.6766 28 12Z' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E %3C/g%3E %3C/g%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2514_433'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
+                                        <button class="second-list-like-red-btn2 like-red-btn" width="24px" height="24px" onclick="secondListLikeOff(2)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2517_457)'%3E %3Cpath d='M15.4448 27.0641L15.4368 27.0593L15.4064 27.0433C14.775 26.6998 14.1549 26.3359 13.5472 25.9521C12.0981 25.0404 10.7174 24.0243 9.41595 22.9121C6.47195 20.3729 3.19995 16.5633 3.19995 12.0001C3.20009 10.5112 3.66179 9.05903 4.52147 7.84344C5.38115 6.62785 6.59654 5.70866 8.00027 5.21244C9.40401 4.71622 10.9271 4.66737 12.3597 5.07263C13.7924 5.47788 15.0641 6.31729 16 7.4753C16.9358 6.31729 18.2075 5.47788 19.6402 5.07263C21.0728 4.66737 22.5959 4.71622 23.9996 5.21244C25.4034 5.70866 26.6187 6.62785 27.4784 7.84344C28.3381 9.05903 28.7998 10.5112 28.8 12.0001C28.8 16.5633 25.5296 20.3729 22.584 22.9121C20.7349 24.492 18.7274 25.8764 16.5936 27.0433L16.5632 27.0593L16.5552 27.0641H16.552C16.3819 27.1542 16.1925 27.2014 16.0001 27.2017C15.8078 27.2019 15.6182 27.1553 15.448 27.0657L15.4448 27.0641Z' fill='%23FD2748'/%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2517_457'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- 이벤트 박스 1개 끝 -->
-                            <!-- 이벤트 박스 1개 시작 -->
-                            <div class="event-swiper-box">
-                                <div class="event-swiper-container">
-                                    <div class="event-swiper-image" style="background-image: url('	https://static.makercenter.wadiz.kr/board/image/cf918d9f-be9e-4bce-8899-e263e0db2579.jpg');"></div>
-                                    <div class="event-box-title-container">
-                                        <div class="event-box-title">
-                                            카테고리성공비법서 : 스포츠 상편
-                                        </div>
+                            <div class="second-banner3 second-banners">
+                                <div class="second-banner-image-wrapper">
+                                    <div class="second-banner-image"></div>
+                                </div>
+                                <div class="recruit-box-context">
+                                    <div class="recruit-box-title">
+                                        [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
+                                    </div>
+                                    <div class="recruit-box-writer">
+                                        와디즈 메이커
+                                    </div>
+                                    <div class="like-btn-wrapper">
+                                        <button class="second-list-like-btn3 like-btn" width="24px" height="24px" onclick="secondListLikeOn(3)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2514_433)'%3E %3Cmask id='mask0_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask0_2514_433)'%3E %3Cmask id='mask1_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask1_2514_433)'%3E %3Cpath d='M28 12C28 16.1889 24.9781 19.7916 22.063 22.3047C20.2579 23.8469 18.2982 25.1986 16.2154 26.3381C16.2027 26.3441 16.1898 26.3505 16.1774 26.357C16.1226 26.3861 16.0613 26.4013 15.999 26.4015C15.9401 26.4015 15.882 26.3881 15.8293 26.362L15.8094 26.3511L15.784 26.3378C15.1694 26.0033 14.5659 25.649 13.9743 25.2754C12.5586 24.3847 11.2086 23.3914 9.93704 22.3049C7.02334 19.7914 4.00003 16.1887 4 12C4.00014 10.6766 4.41054 9.38568 5.17469 8.30517C5.93885 7.22466 7.01918 6.4076 8.26696 5.96651C9.51472 5.52542 10.8685 5.482 12.142 5.84222C13.4155 6.20245 14.546 6.94859 15.3778 7.97794C15.5297 8.16589 15.7584 8.2751 16 8.2751C16.2416 8.2751 16.4704 8.16589 16.6222 7.97794C17.4541 6.94859 18.5845 6.20245 19.8579 5.84222C21.1315 5.482 22.4853 5.52542 23.7331 5.96651C24.9808 6.4076 26.0611 7.22466 26.8253 8.30517C27.5894 9.38568 27.9998 10.6766 28 12Z' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E %3C/g%3E %3C/g%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2514_433'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
+                                        <button class="second-list-like-red-btn3 like-red-btn" width="24px" height="24px" onclick="secondListLikeOff(3)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2517_457)'%3E %3Cpath d='M15.4448 27.0641L15.4368 27.0593L15.4064 27.0433C14.775 26.6998 14.1549 26.3359 13.5472 25.9521C12.0981 25.0404 10.7174 24.0243 9.41595 22.9121C6.47195 20.3729 3.19995 16.5633 3.19995 12.0001C3.20009 10.5112 3.66179 9.05903 4.52147 7.84344C5.38115 6.62785 6.59654 5.70866 8.00027 5.21244C9.40401 4.71622 10.9271 4.66737 12.3597 5.07263C13.7924 5.47788 15.0641 6.31729 16 7.4753C16.9358 6.31729 18.2075 5.47788 19.6402 5.07263C21.0728 4.66737 22.5959 4.71622 23.9996 5.21244C25.4034 5.70866 26.6187 6.62785 27.4784 7.84344C28.3381 9.05903 28.7998 10.5112 28.8 12.0001C28.8 16.5633 25.5296 20.3729 22.584 22.9121C20.7349 24.492 18.7274 25.8764 16.5936 27.0433L16.5632 27.0593L16.5552 27.0641H16.552C16.3819 27.1542 16.1925 27.2014 16.0001 27.2017C15.8078 27.2019 15.6182 27.1553 15.448 27.0657L15.4448 27.0641Z' fill='%23FD2748'/%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2517_457'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- 이벤트 박스 1개 끝 -->
-                            <!-- 이벤트 박스 1개 시작 -->
-                            <div class="event-swiper-box">
-                                <div class="event-swiper-container">
-                                    <div class="event-swiper-image" style="background-image: url('https://static.makercenter.wadiz.kr/board/image/7bfd00cc-1ff0-4eca-a475-54a17dd5e3c5.jpg');"></div>
-                                    <div class="event-box-title-container">
-                                        <div class="event-box-title">
-                                            카테고리성공비법서 : 출판·클래스 하편
-                                        </div>
+                            <div class="second-banner4 second-banners">
+                                <div class="second-banner-image-wrapper">
+                                    <div class="second-banner-image"></div>
+                                </div>
+                                <div class="recruit-box-context">
+                                    <div class="recruit-box-title">
+                                        [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
+                                    </div>
+                                    <div class="recruit-box-writer">
+                                        와디즈 메이커
+                                    </div>
+                                    <div class="like-btn-wrapper">
+                                        <button class="second-list-like-btn4 like-btn" width="24px" height="24px" onclick="secondListLikeOn(4)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2514_433)'%3E %3Cmask id='mask0_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask0_2514_433)'%3E %3Cmask id='mask1_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask1_2514_433)'%3E %3Cpath d='M28 12C28 16.1889 24.9781 19.7916 22.063 22.3047C20.2579 23.8469 18.2982 25.1986 16.2154 26.3381C16.2027 26.3441 16.1898 26.3505 16.1774 26.357C16.1226 26.3861 16.0613 26.4013 15.999 26.4015C15.9401 26.4015 15.882 26.3881 15.8293 26.362L15.8094 26.3511L15.784 26.3378C15.1694 26.0033 14.5659 25.649 13.9743 25.2754C12.5586 24.3847 11.2086 23.3914 9.93704 22.3049C7.02334 19.7914 4.00003 16.1887 4 12C4.00014 10.6766 4.41054 9.38568 5.17469 8.30517C5.93885 7.22466 7.01918 6.4076 8.26696 5.96651C9.51472 5.52542 10.8685 5.482 12.142 5.84222C13.4155 6.20245 14.546 6.94859 15.3778 7.97794C15.5297 8.16589 15.7584 8.2751 16 8.2751C16.2416 8.2751 16.4704 8.16589 16.6222 7.97794C17.4541 6.94859 18.5845 6.20245 19.8579 5.84222C21.1315 5.482 22.4853 5.52542 23.7331 5.96651C24.9808 6.4076 26.0611 7.22466 26.8253 8.30517C27.5894 9.38568 27.9998 10.6766 28 12Z' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E %3C/g%3E %3C/g%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2514_433'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
+                                        <button class="second-list-like-red-btn4 like-red-btn" width="24px" height="24px" onclick="secondListLikeOff(4)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2517_457)'%3E %3Cpath d='M15.4448 27.0641L15.4368 27.0593L15.4064 27.0433C14.775 26.6998 14.1549 26.3359 13.5472 25.9521C12.0981 25.0404 10.7174 24.0243 9.41595 22.9121C6.47195 20.3729 3.19995 16.5633 3.19995 12.0001C3.20009 10.5112 3.66179 9.05903 4.52147 7.84344C5.38115 6.62785 6.59654 5.70866 8.00027 5.21244C9.40401 4.71622 10.9271 4.66737 12.3597 5.07263C13.7924 5.47788 15.0641 6.31729 16 7.4753C16.9358 6.31729 18.2075 5.47788 19.6402 5.07263C21.0728 4.66737 22.5959 4.71622 23.9996 5.21244C25.4034 5.70866 26.6187 6.62785 27.4784 7.84344C28.3381 9.05903 28.7998 10.5112 28.8 12.0001C28.8 16.5633 25.5296 20.3729 22.584 22.9121C20.7349 24.492 18.7274 25.8764 16.5936 27.0433L16.5632 27.0593L16.5552 27.0641H16.552C16.3819 27.1542 16.1925 27.2014 16.0001 27.2017C15.8078 27.2019 15.6182 27.1553 15.448 27.0657L15.4448 27.0641Z' fill='%23FD2748'/%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2517_457'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- 이벤트 박스 1개 끝 -->
-                            <!-- 이벤트 박스 1개 시작 -->
-                            <div class="event-swiper-box">
-                                <div class="event-swiper-container">
-                                    <div class="event-swiper-image" style="background-image: url('	https://static.makercenter.wadiz.kr/board/image/97cad177-ca22-4da8-9ad6-be00ac99c599.jpg');"></div>
-                                    <div class="event-box-title-container">
-                                        <div class="event-box-title">
-                                            카테고리성공비법서 : 출판·클래스 상편
-                                        </div>
+                            <div class="second-banner5 second-banners">
+                                <div class="second-banner-image-wrapper">
+                                    <div class="second-banner-image"></div>
+                                </div>
+                                <div class="recruit-box-context">
+                                    <div class="recruit-box-title">
+                                        [메이커] 저희는 와디즈 메이커 입니다. 메이커 5인의 성공스토리
+                                    </div>
+                                    <div class="recruit-box-writer">
+                                        와디즈 메이커
+                                    </div>
+                                    <div class="like-btn-wrapper">
+                                        <button class="second-list-like-btn5 like-btn" width="24px" height="24px" onclick="secondListLikeOn(5)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2514_433)'%3E %3Cmask id='mask0_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask0_2514_433)'%3E %3Cmask id='mask1_2514_433' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='32' height='32'%3E %3Cpath d='M32 0H0V32H32V0Z' fill='white'/%3E %3C/mask%3E %3Cg mask='url(%23mask1_2514_433)'%3E %3Cpath d='M28 12C28 16.1889 24.9781 19.7916 22.063 22.3047C20.2579 23.8469 18.2982 25.1986 16.2154 26.3381C16.2027 26.3441 16.1898 26.3505 16.1774 26.357C16.1226 26.3861 16.0613 26.4013 15.999 26.4015C15.9401 26.4015 15.882 26.3881 15.8293 26.362L15.8094 26.3511L15.784 26.3378C15.1694 26.0033 14.5659 25.649 13.9743 25.2754C12.5586 24.3847 11.2086 23.3914 9.93704 22.3049C7.02334 19.7914 4.00003 16.1887 4 12C4.00014 10.6766 4.41054 9.38568 5.17469 8.30517C5.93885 7.22466 7.01918 6.4076 8.26696 5.96651C9.51472 5.52542 10.8685 5.482 12.142 5.84222C13.4155 6.20245 14.546 6.94859 15.3778 7.97794C15.5297 8.16589 15.7584 8.2751 16 8.2751C16.2416 8.2751 16.4704 8.16589 16.6222 7.97794C17.4541 6.94859 18.5845 6.20245 19.8579 5.84222C21.1315 5.482 22.4853 5.52542 23.7331 5.96651C24.9808 6.4076 26.0611 7.22466 26.8253 8.30517C27.5894 9.38568 27.9998 10.6766 28 12Z' stroke='white' stroke-width='1.5' stroke-linejoin='round'/%3E %3C/g%3E %3C/g%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2514_433'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
+                                        <button class="second-list-like-red-btn5 like-red-btn" width="24px" height="24px" onclick="secondListLikeOff(5)">
+                                            <img src="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cg clip-path='url(%23clip0_2517_457)'%3E %3Cpath d='M15.4448 27.0641L15.4368 27.0593L15.4064 27.0433C14.775 26.6998 14.1549 26.3359 13.5472 25.9521C12.0981 25.0404 10.7174 24.0243 9.41595 22.9121C6.47195 20.3729 3.19995 16.5633 3.19995 12.0001C3.20009 10.5112 3.66179 9.05903 4.52147 7.84344C5.38115 6.62785 6.59654 5.70866 8.00027 5.21244C9.40401 4.71622 10.9271 4.66737 12.3597 5.07263C13.7924 5.47788 15.0641 6.31729 16 7.4753C16.9358 6.31729 18.2075 5.47788 19.6402 5.07263C21.0728 4.66737 22.5959 4.71622 23.9996 5.21244C25.4034 5.70866 26.6187 6.62785 27.4784 7.84344C28.3381 9.05903 28.7998 10.5112 28.8 12.0001C28.8 16.5633 25.5296 20.3729 22.584 22.9121C20.7349 24.492 18.7274 25.8764 16.5936 27.0433L16.5632 27.0593L16.5552 27.0641H16.552C16.3819 27.1542 16.1925 27.2014 16.0001 27.2017C15.8078 27.2019 15.6182 27.1553 15.448 27.0657L15.4448 27.0641Z' fill='%23FD2748'/%3E %3C/g%3E %3Cdefs%3E %3CclipPath id='clip0_2517_457'%3E %3Crect width='32' height='32' fill='white'/%3E %3C/clipPath%3E %3C/defs%3E %3C/svg%3E" alt="찜하기">
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <!-- 이벤트 박스 1개 끝 -->
                         </div>
+                    </section>
+                </div>
+                <!-- 버튼 -->
+                <div class="second-move-arrow">
+                    <!-- 이전 버튼 -->
+                    <div class="second-prev">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
+                            <path d="M22 25L17 20L22 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    
+
+                    <!-- 다음 버튼 -->
+                    <div class="second-next">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
+                            <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
                     </div>
                 </div>
             </div>
         </div>
+
+        
+
+        <!--두번째 배너 -->
+        <div class="events-bar">
+            <div class="event-container">
+                <div class="event-banner-container">
+                    <div class="event-title">
+                        <div class="event-title-container">
+                            이벤트·혜택
+                        </div>
+                        <div class="plus-menu">
+                            <div class="plus">
+                                더보기
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 13L11 8L6 3" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <section class="event-banner-container">
+                        <!-- 이벤트 배너 -->
+                        <div class="event-banner">
+                            <div class="event-banner1 event-banners">
+                                <div class="event-banner-image-wrapper">
+                                    <div class="event-banner-image"></div>
+                                </div>
+                                <div class="event-status">
+                                    <div></div>
+                                    <div class="status-container">
+                                        <div class="important-status">중요</div>
+                                        <div class="finish-status">종료</div>
+                                    </div>
+                                </div>
+                                <div class="event-box-title-container">
+                                    <div class="event-box-title">
+                                        [기획전]4월 기획전 참여 메이커 모집
+                                    </div>
+                                </div>
+                                <div class="event-box-context-container">
+                                    <div class="event-box-context">
+                                        봄 맞이 인테리어, 가정의달 선물, 건강/다이어트 프로젝트를 메이커님이라면 꼭 확인해 주세요.
+                                    </div>
+                                </div>
+                                <div class="event-box-date-container">
+                                    2023.03.20
+                                    &nbsp;~&nbsp;
+                                    2023.04.16
+                                </div>
+                            </div>
+                            <div class="event-banner2 event-banners">
+                                <div class="event-banner-image-wrapper">
+                                    <div class="event-banner-image"></div>
+                                </div>
+                                <div class="event-status">
+                                    <div></div>
+                                    <div class="status-container">
+                                        <div class="important-status">중요</div>
+                                        <div class="finish-status">종료</div>
+                                    </div>
+                                </div>
+                                <div class="event-box-title-container">
+                                    <div class="event-box-title">
+                                        [기획전]4월 기획전 참여 메이커 모집
+                                    </div>
+                                </div>
+                                <div class="event-box-context-container">
+                                    <div class="event-box-context">
+                                        봄 맞이 인테리어, 가정의달 선물, 건강/다이어트 프로젝트를 메이커님이라면 꼭 확인해 주세요.
+                                    </div>
+                                </div>
+                                <div class="event-box-date-container">
+                                    2023.03.20
+                                    &nbsp;~&nbsp;
+                                    2023.04.16
+                                </div>
+                            </div>
+                            <div class="event-banner3 event-banners">
+                                <div class="event-banner-image-wrapper">
+                                    <div class="event-banner-image"></div>
+                                </div>
+                                <div class="event-status">
+                                    <div></div>
+                                    <div class="status-container">
+                                        <div class="important-status">중요</div>
+                                        <div class="finish-status">종료</div>
+                                    </div>
+                                </div>
+                                <div class="event-box-title-container">
+                                    <div class="event-box-title">
+                                        [기획전]4월 기획전 참여 메이커 모집
+                                    </div>
+                                </div>
+                                <div class="event-box-context-container">
+                                    <div class="event-box-context">
+                                        봄 맞이 인테리어, 가정의달 선물, 건강/다이어트 프로젝트를 메이커님이라면 꼭 확인해 주세요.
+                                    </div>
+                                </div>
+                                <div class="event-box-date-container">
+                                    2023.03.20
+                                    &nbsp;~&nbsp;
+                                    2023.04.16
+                                </div>
+                            </div>
+                            <div class="event-banner4 event-banners">
+                                <div class="event-banner-image-wrapper">
+                                    <div class="event-banner-image"></div>
+                                </div>
+                                <div class="event-status">
+                                    <div></div>
+                                    <div class="status-container">
+                                        <div class="important-status">중요</div>
+                                        <div class="finish-status">종료</div>
+                                    </div>
+                                </div>
+                                <div class="event-box-title-container">
+                                    <div class="event-box-title">
+                                        [기획전]4월 기획전 참여 메이커 모집
+                                    </div>
+                                </div>
+                                <div class="event-box-context-container">
+                                    <div class="event-box-context">
+                                        봄 맞이 인테리어, 가정의달 선물, 건강/다이어트 프로젝트를 메이커님이라면 꼭 확인해 주세요.
+                                    </div>
+                                </div>
+                                <div class="event-box-date-container">
+                                    2023.03.20
+                                    &nbsp;~&nbsp;
+                                    2023.04.16
+                                </div>
+                            </div>
+                            <div class="event-banner5 event-banners">
+                                <div class="event-banner-image-wrapper">
+                                    <div class="event-banner-image"></div>
+                                </div>
+                                <div class="event-status">
+                                    <div></div>
+                                    <div class="status-container">
+                                        <div class="important-status">중요</div>
+                                        <div class="finish-status">종료</div>
+                                    </div>
+                                </div>
+                                <div class="event-box-title-container">
+                                    <div class="event-box-title">
+                                        [기획전]4월 기획전 참여 메이커 모집
+                                    </div>
+                                </div>
+                                <div class="event-box-context-container">
+                                    <div class="event-box-context">
+                                        봄 맞이 인테리어, 가정의달 선물, 건강/다이어트 프로젝트를 메이커님이라면 꼭 확인해 주세요.
+                                    </div>
+                                </div>
+                                <div class="event-box-date-container">
+                                    2023.03.20
+                                    &nbsp;~&nbsp;
+                                    2023.04.16
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 버튼 -->
+                <div class="event-move-arrow">
+                    <!-- 이전 버튼 -->
+                    <div class="event-prev">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
+                            <path d="M22 25L17 20L22 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    
+
+                    <!-- 다음 버튼 -->
+                    <div class="event-next">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
+                            <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 세번째 배너 -->
+        <div class="events-bar">
+            <div class="event-container">
+                <div class="event-banner-container">
+                    <div class="event-title">
+                        <div class="event-title-container">
+                            와디즈 아카데미
+                        </div>
+                        <div class="plus-menu">
+                            <div class="plus">
+                                더보기
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 13L11 8L6 3" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <section class="third-banner-container">
+                        <!-- 이벤트 배너 -->
+                        <div class="third-banner">
+                            <div class="third-banner1 third-banners">
+                                <div class="third-banner-image-wrapper">
+                                    <div class="third-banner-image"></div>
+                                </div>
+                                <div class="third-banner-text-wrapper">
+                                    <div class="third-banner-text">
+                                        카테고리성공비법서 : 스포츠 하편
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="third-banner2 third-banners">
+                                <div class="third-banner-image-wrapper">
+                                    <div class="third-banner-image"></div>
+                                </div>
+                                <div class="third-banner-text-wrapper">
+                                    <div class="third-banner-text">
+                                        카테고리성공비법서 : 스포츠 하편
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="third-banner3 third-banners">
+                                <div class="third-banner-image-wrapper">
+                                    <div class="third-banner-image"></div>
+                                </div>
+                                <div class="third-banner-text-wrapper">
+                                    <div class="third-banner-text">
+                                        카테고리성공비법서 : 스포츠 하편
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="third-banner4 third-banners">
+                                <div class="third-banner-image-wrapper">
+                                    <div class="third-banner-image"></div>
+                                </div>
+                                <div class="third-banner-text-wrapper">
+                                    <div class="third-banner-text">
+                                        카테고리성공비법서 : 스포츠 하편
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="third-banner5 third-banners">
+                                <div class="third-banner-image-wrapper">
+                                    <div class="third-banner-image"></div>
+                                </div>
+                                <div class="third-banner-text-wrapper">
+                                    <div class="third-banner-text">
+                                        카테고리성공비법서 : 스포츠 하편
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 버튼 -->
+                <div class="third-move-arrow">
+                    <!-- 이전 버튼 -->
+                    <div class="third-prev">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="20" fill="#F2F4F6"></rect>
+                            <path d="M22 25L17 20L22 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    
+
+                    <!-- 다음 버튼 -->
+                    <div class="third-next">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="20" transform="matrix(-1 0 0 1 40 0)" fill="#F2F4F6"></rect>
+                            <path d="M18 25L23 20L18 15" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <div class="static-banner-container">
             <div class="static-banner">
                 <div class="static-banner-context">
@@ -850,7 +733,7 @@
                 </div>
                 <a href="" class="apply-form">
                     <svg width="22" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 9.41545L0.5 6.10352e-05H22.5L11.5 9.41545ZM0.5 1.60012V16.0001H22.5V1.60012L11.5 11.0155L0.5 1.60012Z" fill="black"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 9.41545L0.5 6.10352e-05H22.5L11.5 9.41545ZM0.5 1.60012V16.0001H22.5V1.60012L11.5 11.0155L0.5 1.60012Z" fill="white"></path>
                     </svg>
                     <div class="a-context">
                         뉴스레터 신청하기
@@ -858,10 +741,50 @@
                 </a>
             </div>
         </div>
-    </main>
-    <footer>
 
-    </footer>
+        <div class="ask-modal">
+            <header class="ask-modal-header">
+                <div class="ask-modal-header-wrapper">
+                    <div class="ask-modal-header-container">
+                        <div class="ask-modal-image-wrapper" size="30">
+                            <img width="30" height="30" src="https://cf.channel.io/thumb/200x200/pub-file/22503/6445d4f632e2de86962d/tmp-2757111451.webp" alt="avatar">
+                        </div>
+                        <span class="ask-modal-text-span" data-testid="bezier-react-text">
+                            <div class="ask-modal-text">아기자기 고객센터</div>
+                        </span>
+                    </div>
+                </div>
+                <div name="CloseBtn" type="button" class="close-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" foundation="[object Object]" class="InnerIconstyled__Icon-ch-front__sc-197h5bb-0 egxpAM" defaultopacity="1" hoveredopacity="1" margintop="0" marginright="0" marginbottom="0" marginleft="0" withtheme="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.4818 4.69668L15.3033 3.51817L10 8.82147L4.69671 3.51817L3.5182 4.69668L8.8215 9.99998L3.51819 15.3033L4.6967 16.4818L10 11.1785L15.3033 16.4818L16.4818 15.3033L11.1785 9.99998L16.4818 4.69668Z"></path></svg>
+                </div>
+            </header>
+            <p class="ask-modal-content-hi-sentence">아기자기에 대한 궁금증을 해소해드립니다</p>
+            <div class="ask-modal-body">
+                <div class="ask-modal-content-wrapper">
+                    <form action="">
+                        <div class="ask-title-wrapper">
+                            <div class="ask-title-container">
+                                <div class="ask-title">문의제목</div>
+                            </div>
+                        </div>
+                        <input type="text">
+                    </form>
+                </div>
+            </div>
+            <div id="content-wrap">
+            </div>
+        </div>
+    </main>
+    <div id="footers"></div>
 </body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="../../static/js/main/main.js"></script>
+<script type="text/javascript">   
+    $(document).ready( function() {
+    
+    $("#headers").load("../components/header.html");  
+    $("#footers").load("../components/footer.html"); 
+    
+    });
+    </script>
 </html>
