@@ -177,6 +177,7 @@ video {
     padding: 0 4px;
     width: 56px;
     height: 74px;
+    position: relative;
 }
 
 .user-img-wrap {
@@ -279,8 +280,8 @@ video {
 }
 
 .feed-header-user-img-wrap {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     margin-right: 8px;
     background-position: center;
     display: inline-flex;
@@ -333,6 +334,7 @@ video {
 
 .feed-header-user-name {
     font-weight: 700;
+    font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -362,7 +364,7 @@ video {
     height: 344px;
     overflow: hidden;
     cursor: pointer;
-    margin: 30px 0px 20px 95px;
+    margin: 20px 0px 20px 95px;
 }
 
 .banner-container {
@@ -493,12 +495,13 @@ div.buttons button:nth-child(1) {
 
 .bottom-event-title-wrap {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    font-family: roboto, 'Noto Sans KR', -apple-system, dotum, sans-serif;
 }
 
 .bottom-event-title {
     line-height: 28px;
+    margin-top: 10px;
     letter-spacing: -0.6px;
     font-size: 18px;
     font-weight: 700;
@@ -595,12 +598,8 @@ button {
     display: none;
 }
 
-.nav-arrow-icon {
-    transform: rotate(-180deg);
-}
-
 .active-arrow {
-    transform: rotate(0deg);
+    transform: rotate(180deg);
 }
 
 .modify-delete button {
@@ -625,4 +624,111 @@ button {
 
 .modify-delete button:first-child {
     margin-right: 10px;
+}
+
+.title-line {
+    background-color: #00c4c4;
+    color: #fff;
+    height: 40px;
+    display: flex;
+    font-weight: 500;
+    font-size: 20px;
+    align-items: center;
+    font-family: Roboto, Noto Sans KR, -apple-system, Dotum, sans-serif;
+}
+
+.table-kids-count {
+    margin-bottom: 7px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 15px;
+    color: #adb5bd;
+}
+
+.wish-button:not(:disabled) {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.wish-button {
+    position: absolute;
+    top: -4px;
+    right: 0;
+    z-index: 9;
+    outline: none;
+    width: 56px;
+    height: 56px;
+}
+
+.wish-button svg {
+    margin: 0 auto;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    will-change: transform;
+    display: block;
+    transform: scale(1);
+    transition: transform 0.3s ease-out;
+    fill: currentColor;
+}
+
+.wish-button-svg path {
+    stroke: #f2f4f6;
+    stroke-width: 2px;
+    fill: #21252966;
+    transition: fill 0.25s ease-in-out;
+}
+
+.title-like-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.like-modal-container {
+    margin-left: 1550px;
+    display: none;
+    padding: 25px;
+    /* text-align: center; */
+    width: 240px;
+    height: 30px;
+    background-color: #00c4c4;
+    color: #fff;
+    font-family: 'Noto Sans KR';
+    font-weight: 400;
+    border-radius: 10px;
+    top: 90%;
+    position: fixed;
+    z-index: 999;
+}
+
+[aria-pressed='true'] path {
+    fill: #f25555;
+}
+
+.top-content-new-img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 2px;
+    top: 1px;
+    background-image: url(../../images/nowKids/letter-n.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+    background-position: center;
+}
+
+.feed-header-new-img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: -8px;
+    top: -4px;
+    background-image: url(../../images/nowKids/letter-n.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+    background-position: center;
 }

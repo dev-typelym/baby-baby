@@ -87,6 +87,16 @@
                             <div>
                                 <!-- <div class="side-button-title">이미지 등록 모음집</div> -->
                                 <div class="side-button-sub-title">이미지 등록 모음집</div>
+                                <div class="guide-box">
+                                    <h4>
+                                        <a class="link" href="javascript:void(0)">
+                                            보호자 분들이 만족할 만한 이미지 만들기
+                                        </a>
+                                    </h4>
+                                    <p>게시글의 큰 부분인 이미지는 가장 매력적으로 보이는 사진을 선택해 주세요.</p>
+                                    <p>SNS 노출 시 이미지가 1:1 비율로 보일 수 있으므로 이미지 내 좌우 여백이 충분하고 리워드가 중앙에 위치한 사진을 선택해 주세요.</p>
+                                    <p>이미지에는 텍스트나 로고를 넣을 수 없어요.</p>
+                                </div>
                             </div>
                         </button>
                     </div>
@@ -160,16 +170,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="guide-box">
-                                <h4>
-                                    <a class="link" href="javascript:void(0)">
-                                        보호자 분들이 만족할 만한 이미지 만들기
-                                    </a>
-                                </h4>
-                                <p>게시글의 큰 부분인 이미지는 가장 매력적으로 보이는 사진을 선택해 주세요.</p>
-                                <p>SNS 노출 시 이미지가 1:1 비율로 보일 수 있으므로 이미지 내 좌우 여백이 충분하고 리워드가 중앙에 위치한 사진을 선택해 주세요.</p>
-                                <p>이미지에는 텍스트나 로고를 넣을 수 없어요.</p>
                             </div>
                         </section>
                         <button type="button" class="btn confirm-button">
@@ -274,23 +274,7 @@
 
 </script>
 <script>
-    const $sectionBox = $(".content-section");
     const $inputTitle = $(".title");
-    const $maxCount = $(".text-max-count");
-
-    // 사이드 안내문 
-    $sectionBox.each((i, e) => {
-        $(e).mouseover(() => {
-            $($(".guide-box")[i]).show();
-        });
-
-        $(e).mouseout(() => {
-            $($(".guide-box")[i]).hide();
-        });
-
-    });
-
-
 
     // 제목 입력 js
     $inputTitle.keyup(() => {

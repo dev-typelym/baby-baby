@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>체험제공 신청</title>
-    <link rel="stylesheet" href="../../static/css/nowKids/now-kids-write.css">
+    <link rel="stylesheet" href="../../static/css/play/play-write-multi.css">
     <style>
         .cancel-box {
             position: absolute;
@@ -90,6 +90,16 @@
                             <div>
                                 <!-- <div class="side-button-title">이미지 등록 모음집</div> -->
                                 <div class="side-button-sub-title">내용사진 등록 가이드</div>
+                                <div class="guide-box">
+                                    <h4>
+                                        <a class="link" href="javascript:void(0)">
+                                            보호자 분들의 시선을 끌 이미지 만들기
+                                        </a>
+                                    </h4>
+                                    <p>게시글의 큰 부분인 이미지는 가장 매력적으로 보이는 사진을 선택해 주세요.</p>
+                                    <p>SNS 노출 시 이미지가 1:1 비율로 보일 수 있으므로 이미지 내 좌우 여백이 충분하고 리워드가 중앙에 위치한 사진을 선택해 주세요.</p>
+                                    <p>이미지에는 텍스트나 로고를 넣을 수 없어요.</p>
+                                </div>
                             </div>
                         </button>
                     </div>
@@ -163,16 +173,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="guide-box">
-                                <h4>
-                                    <a class="link" href="javascript:void(0)">
-                                        보호자 분들의 시선을 끌 이미지 만들기
-                                    </a>
-                                </h4>
-                                <p>게시글의 큰 부분인 이미지는 가장 매력적으로 보이는 사진을 선택해 주세요.</p>
-                                <p>SNS 노출 시 이미지가 1:1 비율로 보일 수 있으므로 이미지 내 좌우 여백이 충분하고 리워드가 중앙에 위치한 사진을 선택해 주세요.</p>
-                                <p>이미지에는 텍스트나 로고를 넣을 수 없어요.</p>
                             </div>
                         </section>
                         <button type="button" class="btn confirm-button">
@@ -277,8 +277,9 @@
 
 </script>
 <script>
-    const $sectionBox = $(".content-section");
-    const $inputTitle = $(".title");
+        const $inputTitle = $(".title");
+/*     const $sectionBox = $(".content-section");
+
     const $maxCount = $(".text-max-count");
 
     // 사이드 안내문 
@@ -291,7 +292,7 @@
             $($(".guide-box")[i]).hide();
         });
 
-    });
+    }); */
 
 
 
