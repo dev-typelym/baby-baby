@@ -134,8 +134,43 @@ makerUpButton.click(() => {
     }
 });
 
+/* 자주묻는 질문 */
+const faqButton = $('.faq_button');
+const faqWrap = $('.faq_real_info');
+const faqPath = $('.faq_svg path');
+
+faqButton.click(() => {
+    if (faqWrap.css('display') === 'none') {
+        faqWrap.css('display', 'block');
+        let faqAngle = 0;
+
+        const intervalId = setInterval(() => {
+            faqAngle += 5;
+            if (faqAngle <= 180) {
+                faqPath.attr('transform', `rotate(${faqAngle} 16 16)`);
+            } else {
+                faqAngle = 360 - faqAngle;
+                faqPath.attr('transform', `rotate(${faqAngle} 16 16)`);
+                clearInterval(intervalId);
+            }
+        }, 5);
+    } else {
+        let faqAngle = 180;
+
+        const intervalId = setInterval(() => {
+            faqAngle += 5;
+            faqPath.attr('transform', `rotate(${faqAngle} 16 16)`);
+            if (faqAngle >= 360) {
+                clearInterval(intervalId);
+                faqWrap.css('display', 'none');
+            }
+        }, 5);
+    }
+});
+
 /* 게시물 더보기 */
-const moreButton = $('.more_button_span');
+const moreButton = $('.more_button');
+const moreButtonSpan = $('.more_button_span');
 const imgSection = $('.img_section');
 const contentWrap = $('.content_wrap');
 const arrowPath = $('.more_button_svg path');
@@ -151,7 +186,7 @@ function showAllContent() {
     imgSection.css({
         position: 'static',
     });
-    moreButton.text('체험학습 접기');
+    moreButtonSpan.text('체험학습 접기');
     // 다시 원래 상태로 되돌리기 위해 추가한 코드입니다.
     moreButton.off('click', showAllContent);
     moreButton.on('click', hideAllContent);
@@ -170,7 +205,7 @@ function hideAllContent() {
     imgSection.css({
         position: 'relative',
     });
-    moreButton.text('체험학습 상세보기');
+    moreButtonSpan.text('체험학습 상세보기');
     moreButton.off('click', hideAllContent);
     moreButton.on('click', showAllContent);
     arrowPath.attr('transform', 'rotate(180 16 16)');
@@ -210,21 +245,21 @@ $('.purchase_wrap_div_btn').click(function () {
 /* 카카오맵 */
 // 지도 표시용 js
 
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-mapOption = { 
-    center: new kakao.maps.LatLng(37.2504431, 127.1555927), // 지도의 중심좌표
-    level: 3 // 지도의 확대 레벨
-};
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+    mapOption = {
+        center: new kakao.maps.LatLng(37.2504431, 127.1555927), // 지도의 중심좌표
+        level: 3, // 지도의 확대 레벨
+    };
 
 // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+var map = new kakao.maps.Map(mapContainer, mapOption);
 
-// 마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(37.2504431, 127.1555927); 
+// 마커가 표시될 위치입니다
+var markerPosition = new kakao.maps.LatLng(37.2504431, 127.1555927);
 
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({
-    position: markerPosition
+    position: markerPosition,
 });
 
 // 마커가 지도 위에 표시되도록 설정합니다
@@ -234,8 +269,8 @@ marker.setMap(map);
 var geocoder = new kakao.maps.services.Geocoder();
 
 function searchAddrFromCoords(coords, callback) {
-// 좌표로 행정동 주소 정보를 요청합니다
-geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+    // 좌표로 행정동 주소 정보를 요청합니다
+    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
 }
 
 // 현재 지도 설정좌표로 주소를 검색해서 지정한 위치에 표시합니다
@@ -246,12 +281,21 @@ function displayAdderessInfo(result, status) {
     if (status === kakao.maps.services.Status.OK) {
         var infoDiv = document.getElementById('coordAddr');
 
-        for(var i = 0; i < result.length; i++) {
+        for (var i = 0; i < result.length; i++) {
             // 행정동의 region_type 값은 'H' 이므로
             if (result[i].region_type === 'H') {
                 infoDiv.innerHTML = result[i].address_name;
                 break;
             }
         }
-    }    
+    }
 }
+
+/* faq */
+let $inquireTitle = $('.inquire-title');
+let $inquireContent = $('.inquire-content');
+$inquireTitle.on('click', function () {
+    let index = $(this).parent().index();
+    console.log($inquireContent.eq(index));
+    $inquireContent.eq(index).show();
+});

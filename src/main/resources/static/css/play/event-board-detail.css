@@ -125,8 +125,7 @@ ul {
     box-sizing: border-box;
 }
 .main_text {
-    flex: 0 0 48.21%;
-    padding: 0 28px 0 14.9%;
+    padding: 0 150px 0 12.9%;
     max-width: 48.21%;
     margin-left: 20px;
     position: fixed;
@@ -1090,6 +1089,35 @@ ul {
     min-width: 183px;
 }
 
+.faq_button {
+    position: absolute;
+    top: 0 !important;
+    right: 0;
+    width: auto;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.68);
+    font-size: 15px;
+    font-weight: 700;
+}
+.faq_svg {
+    width: 20px;
+    height: 20px;
+    color: #495057;
+    /*     transform: rotate(180deg); */
+    transition: transform 0.25s;
+    margin-left: 1px;
+    font-size: 20px;
+    font-weight: 400;
+    pointer-events: none;
+    display: block;
+    fill: currentColor;
+}
+
 /* 오른쪽 고정시키는 부분 */
 .wrapper {
     position: relative;
@@ -1252,4 +1280,72 @@ ul {
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
+}
+
+/* faq 부분 */
+/* faq.html */
+
+.main-content{
+    margin: 100px auto;
+    width: 540px;
+}
+
+.content-cheer{
+    line-height: 6px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #212529;
+}
+
+.content-title-wrapper{
+    border-bottom: 1px solid rgba(0,0,0,.06);
+    padding-bottom: 12px;
+    margin-top: 50px;
+}
+
+.content-title h2{
+    line-height: 28px;
+    letter-spacing: -.6px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 8px;
+}
+
+.title-sub{
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    color: #868e96;
+}
+
+.one-content{
+    border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.inquire-title{
+    position: relative;
+    cursor: pointer;
+    padding: 12px 0;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    font-weight: 700;
+}
+
+.inquire-content{
+    display: none;
+    width: 100%;
+    overflow: hidden;
+    line-height: 1.62;
+    padding-bottom: 12px;
+    line-height: 18px;
+    letter-spacing: 0;
+    font-size: 13px;
+    font-weight: 400;
+    color: #495057;
+    box-sizing: border-box;
 }
