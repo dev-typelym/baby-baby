@@ -1,13 +1,13 @@
-package com.app.dodamdodam;
+package com.app.babybaby;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DodamdodamApplication {
+public class BabybabyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DodamdodamApplication.class, args);
+        SpringApplication.run(com.app.babybaby.BabybabyApplication.class, args);
     }
 
 }

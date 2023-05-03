@@ -1,4 +1,4 @@
-package com.app.dodamdodam.entity.user;
+package com.app.babybaby.entity.user;
 
 import com.sun.istack.NotNull;
 import lombok.*;

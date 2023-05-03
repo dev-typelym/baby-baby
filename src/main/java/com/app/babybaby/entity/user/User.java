@@ -1,8 +1,8 @@
-package com.app.dodamdodam.entity.user;
+package com.app.babybaby.entity.user;
 
-import com.app.dodamdodam.type.Category;
-import com.app.dodamdodam.type.GuideType;
-import com.app.dodamdodam.type.SleepType;
+import com.app.babybaby.type.Category;
+import com.app.babybaby.type.GuideType;
+import com.app.babybaby.type.SleepType;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
