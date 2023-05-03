@@ -651,3 +651,82 @@ div.search input:focus {
     font-weight: 500;
     padding-top: 1px;
 }
+
+.go-write {
+    width: 1100px;
+    height: 200px;
+    margin-left: 0px;
+    margin-right: 12px;
+    margin-bottom: 60px;
+    position: relative;
+    cursor: pointer;
+    border: solid 1px;
+    border-radius: 4px;
+}
+
+.static-banner {
+    margin: 0px auto;
+    border-radius: 8px;
+    max-width: 1280px;
+    min-width: 320px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    background-image: url('https://makercenter.wadiz.kr/static/media/newsletter.5d08ede6da1807c7b556.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 220px;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+
+.static-banner-context {
+    margin-left: 120px;
+}
+.static-banner-date {
+    margin-bottom: 12px;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    line-height: 26px;
+    font-size: 18px;
+}
+.satic-banner-title {
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    margin-bottom: 16px;
+    font-size: 32px;
+    line-height: 44px;
+    text-align: left;
+}
+.apply-form {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 0px;
+    border-radius: 3px;
+    background-color: rgb(0, 196, 196);
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 120px;
+    width: 240px;
+    height: 60px;
+}
+.a-context {
+    margin-left: 8px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.apply-form:hover {
+    background-color: #00b2b2;
+}

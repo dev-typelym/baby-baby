@@ -152,7 +152,7 @@
                                         <div class="file-container">
                                             <div class="file-wrap">
                                                 <div class="file-header">
-                                                    <div>미리 보기</div>
+                                                    <div class="preview-text">미리 보기</div>
                                                     <!-- <button class="image-cancel">
                                                         <svg viewBox="0 0 40 40" focusable="false" role="presentation"
                                                             class="image-cancel-icon" aria-hidden="true"
@@ -330,16 +330,16 @@
                         <div style="position:relative" id="file${i}">
                             <div class="image-file-content-box">
                                 <div>
+                                    <span class="image-file-info">프로젝트 이미지</span>
                                     <div class="first-image-box">
                                         <img src="${e.target.result}" />
                                     </div>
-                                    <span class="image-file-info">프로젝트 이미지</span>
                                 </div>
                                 <div>
+                                    <span class="image-file-info">정방향 이미지</span>
                                     <div class="second-image-box">
                                         <img src="${e.target.result}" />
                                     </div>
-                                    <span class="image-file-info">정방향 이미지</span>
                                 </div>
                             </div>
                             <div class="cancel-box">
@@ -360,6 +360,7 @@
                 index++;
             }
             reader.readAsDataURL(file);
+            $('.preview-text').hide();
         });
         console.log(inputFiles);
     });
@@ -378,7 +379,7 @@
         console.log(inputFiles);
 
         if(inputFiles.length < 1){
-            $(".file-content-box").hide();
+            $('.preview-text').show();
         }
     });
 
