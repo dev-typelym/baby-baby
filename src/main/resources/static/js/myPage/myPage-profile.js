@@ -33,24 +33,24 @@ const options = {
   calendars: [
     {
       id: '1',
-      name: '입문',
+      name: '과학',
       backgroundColor: '#2e51ef',
     },
     {
       id: '2',
-      name: '실전',
+      name: '스포츠',
       backgroundColor: '#9f8673',
     },
 
     {
         id: '3',
-        name: '멘토링',
+        name: '농촌',
         backgroundColor: '#705f53',
       },
 
       {
         id: '4',
-        name: '특강',
+        name: '박물관',
         backgroundColor: '#90949c',
       },
   ],
@@ -103,11 +103,16 @@ $("#today").click(() => {
 });
 
 
+/* 쿼리 */
 
+/* 전체 일정을 가져오는 쿼리 : 아래 createEvents로 모든 날을 등록해야함
+  그래야 달력에 현재 내가 체험학습을 등록한 일정이 점으로 표현됨
+
+  해당 날짜에 대한 날짜 쿼리 : ajax로 해당 날짜를 누를때마다 쿼리가 나가서 해당 월의 정보를 다 가져오기
+  그리고 prev 버튼이나 next 버튼을 누르면 ajax로 다시 컨트롤러를 타야함
+   */
 
 /*  */
-
-
 /* 
     달력 이벤트를 담는 법 json으로 받으면 됨
     대신 모든 정보는 string으로 받아야함
@@ -155,6 +160,8 @@ calendar.createEvents([
       let passText = '';
       let now = new Date();
       let iconBackground = '';
+      let eventStart = '';
+      let eventEnd = '';
 
       // 클릭한 날짜의 시작 시간과 끝 시간 구하기
       // start: 시작시간 00:00:00 
@@ -162,8 +169,6 @@ calendar.createEvents([
       let start = new Date(Date.UTC(2023, month - 1, parseInt(day), 0, 0, 0)); // 0시 0분 0초
       let end = new Date(Date.UTC(2023, month - 1, parseInt(day), 23, 59, 59)); // 23시 59분 59초
       // 받아오는 정보
-      let eventStart = '';
-      let eventEnd = '';
       let eventTitle = "놀러가요"
       let eventBody = "놀러가면 재밌어요"
       let eventCategory = "농촌"
@@ -182,7 +187,7 @@ calendar.createEvents([
       // 그걸 반복문 돌려서 아래의 코드를 실행
       console.log('start : ' + start)
       console.log('end : ' + end)
-
+      console.log('now :' + now )
       /* 날짜 한국어로 변경하는 코드 */
       let startFormat = eventStart.toLocaleString('ko-KR', {
         month: 'long',
