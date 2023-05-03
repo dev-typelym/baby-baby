@@ -29,7 +29,9 @@ li{
     letter-spacing: -.6px;
     font-size: 32px;
     font-weight: 700;
-    padding: 48px 12px 29px;
+    /* padding: 10px 12px 29px; */
+    margin: 0;
+    margin-top: 36px;
 }
 
 .follow-nav{
@@ -262,17 +264,20 @@ li{
 
 
 .following-btn-not{
-    border-color: #00c4c4;
+    border-color: red;
     background-color: #fff;
-    color: #00b2b2;
-    padding: 9px 16px;
+    color: red;
+    padding: 9px 16px 9px 10px;
     line-height: 1.45;
     font-size: 14px;
-    border: 1px #00b2b2 solid;
+    border: 1px red solid;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .following-btn-not span svg{
-    fill: #00b2b2;
+    width: 18px; 
+    height: 16px;
+    fill: red;
+    margin-bottom: -1px;
 }

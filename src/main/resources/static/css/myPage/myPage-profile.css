@@ -242,8 +242,8 @@ a.ProfileSet {
 
 /* 배너신청하기 버튼 : 색지정 */
 a.Mint {
-    background-color: rgb(255, 212, 0);
-    color: black;
+    background-color: rgb(0, 196, 196);
+    color: rgb(255, 255, 255);
 }
 
 
@@ -592,6 +592,7 @@ a.Mint {
     
 }
 
+
 .lecture-list-header{
     position: sticky;
     top: 0;
@@ -753,9 +754,10 @@ cursor: pointer;
     margin-bottom: 23px;
     border: 1px solid #e4e4e4;
     background: #fff;
-    width: 633px;
-    height: 172px;
+    width: 570px;
     display: flex;
+    cursor: pointer;
+    flex-direction: column;
 }
 
 .lecture-image{
@@ -764,8 +766,6 @@ cursor: pointer;
     opacity: 1;
     display: inline-block;
     width: 100%;
-    height: 100%;
-    max-width: 40%;
     }
 
 .lecture-image img{
@@ -773,7 +773,7 @@ cursor: pointer;
     height: 100%;
 }
 
-.lecture a{
+.lecture .lecture-wrapper{
         display: block;
     cursor: pointer;
     width: 100%;
@@ -835,11 +835,13 @@ max-width: 60%;
 .calender{
     position: absolute;
     right: 0;
+    top: 31px;
 }
 
 #calendar {
-    width: 350px;
-    height: 400px;
+    width: 400px;
+    height: 450px;
+    background: #fff;
   }
   
   .tui-full-calendar {
@@ -857,4 +859,98 @@ max-width: 60%;
 
 .toastui-calendar-daygrid-cell{
     cursor: pointer;
+}
+
+/* 아이들 table */
+.lecture-wrapper{
+    display: flex;
+}
+.table-wrapper{
+    display: none;
+    position: relative;
+}
+
+.lecture-wrap{
+    display: flex;
+}
+
+.children-table{
+    flex:none;
+    display: block;
+    background-color: #fff;
+    font-size: 10px;
+}
+
+.table-wrapper{
+    background-color: #fff;
+    padding: 25px 90px;
+}
+
+  th {
+    border-bottom: 1px solid rgb(233, 233, 233);
+  }
+
+  th,
+  td {
+    width: 20%;
+    height: 40px;
+    border-bottom: 1px solid rgb(233, 233, 233);
+    border-right: 1px solid rgb(233, 233, 233);
+    text-align: center;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .num {
+    width: 10%;
+  }
+
+  tr:last-child td {
+    border-bottom: 0;
+  }
+
+
+  .children-table th:first-child,
+  .children-table td:first-child {
+    border-left: none;
+  }
+  
+  .children-table th:last-child,
+  .children-table td:last-child {
+    border-right: none;
+  }
+
+  .header-title {
+    line-height: 44px;
+    letter-spacing: -0.6px;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 48px 12px 29px;
+  }
+
+  .auto-flex, .auto-flex svg, .btn-padding, .calendar-box{
+    background: #fff;
+  }
+
+  .auto-flex svg{
+    width: 16px;
+    cursor: pointer;
+  }
+
+.toastui-calendar-month-daygrid{
+    padding:20px
+}
+
+.toastui-calendar-daygrid-cell+.toastui-calendar-daygrid-cell {
+    border:none;
+}
+
+.toastui-calendar-weekday-grid{
+    border:none !important;
+}
+
+.toastui-calendar-weekday-grid{
+    z-index: 1;
 }

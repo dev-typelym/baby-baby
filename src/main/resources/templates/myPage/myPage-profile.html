@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>프로필</title>
+    <link rel="shortcut icon" href="/static/images/logo_favi/favi/favicon2.ico">
     <!-- css 적용 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -57,7 +58,10 @@
                 <div class="ProfileCorp_info">
                   <dl class="ProfileInfo_box" aria-label="회원정보">
                     <dt class="BlindText">회원닉네임</dt>
-                    <dd class="ProfileInfo_nickname">린먕</dd>
+                    <dd class="ProfileInfo_nickname">
+                      <img src="/static/images/myPage/tongsol.png" width="20" style = "margin-bottom: -3px;" alt="">
+                      린먕
+                    </dd>
                     <dt class="BlindText">회원유형</dt>
                     <dd class="ProfileInfo_type">통솔자</dd>
                   </dl>
@@ -117,14 +121,13 @@
             <div class="project-list1" id="tabFunding" tabindex="0">
               <div class="top-area">
                 <p id="fundingInfoMessage" class="status-text fundingCount" style="display: none">
-                  내가 쓴 게시글 입니다.
                 </p>
               </div>
 
               <div class="lecture-list-header">
                 <div class="lecture-list-title">
                   <div class="lecture-list-info">
-                    <p class="lecture-list-month"><strong>4</strong> 월</p>
+                    <p class="lecture-list-month"></p>
                     <p class="lecture-list-description">
                       현재 나의 체험학습<span
                         >현재 내가 신청한 체험학습은 오른쪽 달력에 표시됩니다</span
@@ -138,16 +141,16 @@
                       <a class="all"> <em>ALL</em><span>전체보기</span> </a>
                     </li>
                     <li class="intro-type-button">
-                      <a class="reward-btn"> <em></em><span>입문</span> </a>
+                      <a class="reward-btn"> <em></em><span>과학</span> </a>
                     </li>
                     <li class="practical-type-button">
-                      <a class="invest"> <em></em><span>실전</span> </a>
+                      <a class="invest"> <em></em><span>스포츠</span> </a>
                     </li>
                     <li class="mentoring-type-button">
-                      <a class="combine"> <em></em><span>멘토링</span> </a>
+                      <a class="combine"> <em></em><span>전통</span> </a>
                     </li>
                     <li class="special-type-button">
-                      <a class="special"> <em></em><span>특강</span> </a>
+                      <a class="special"> <em></em><span>박물관</span> </a>
                     </li>
                   </ul>
                 </div>
@@ -156,14 +159,15 @@
               <div class="calender-content-wrapper">
                 <div class="lecture-list">
 
-                                    <!-- 왼쪽 컨텐츠 한개 -->
-                  <div class="lecture">
+                 <!-- 왼쪽 컨텐츠 한개 -->
+                  <!-- <div class="lecture">
+                    <div class="lecture-wrap">
                     <span class="lecture-image visible">
                         <img src="https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/253/format/jpg/quality/95/) 1x, url(https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/506/format/jpg/quality/95/" alt="">
                     </span>
                     
-                    <a href="#"
-                      ><div class="lecture-content">
+                    <div class="lecture-wrapper">
+                      <div class="lecture-content">
                         <p class="lecture-type">
                           <span><i class="reward"></i>입문</span>
                         </p>
@@ -183,10 +187,42 @@
                         <p class="lecture-number">
                           <em><strong>지나간 체험학습 입니다.</strong></em>
                         </p>
-                      </div></a
-                    >
+                      </div>
+                    </div>
                   </div>
-   <!-- 한개 끝 -->
+                  <div class="table-wrapper">
+                    <table class="children-table">
+                      <thead>
+                        <tr>
+                          <th class="num">No.</th>
+                          <th class="nickname">닉네임</th>
+                          <th class="name">이름</th>
+                          <th class="place">체험 이름</th>
+                          <th class="participant">체험 날짜</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="num">1</td>
+                          <td class="nickname">lovelyU</td>
+                          <td class="name">한동석</td>
+                          <td class="place">진흙놀이</td>
+                          <td class="participant">2023-04-22 18:26:00</td>
+                        </tr>
+                        <tr>
+                          <td class="num">1</td>
+                          <td class="nickname">lovelyU</td>
+                          <td class="name">한동석</td>
+                          <td class="place">진흙놀이</td>
+                          <td class="participant">2023-04-22 18:26:00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+                  </div> -->
+            <!-- 한개 끝 -->
+
+
    
 
                 </div>
@@ -198,11 +234,11 @@
                   <div class="calender">
                     <section>
                       <div class="calendar-box">
-                        <div style="display: flex; justify-content: center;">
+                        <div style="display: flex; justify-content: space-around;padding:15px;font-size: 23px;padding-top:40px;">
                           <div class="calendar-button-box">
                             <button type="button" id="calender-prev" class="btn">
                               <span class="auto-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#1a1a1a"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#ccc"></path></svg>
                               </span>
                             </button>
                           </div>
@@ -218,7 +254,7 @@
                           <div>
                             <button type="button" id="calender-next" class="btn">
                               <span class="auto-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#ccc"></path></svg>
                               </span>
                             </button>
                           </div>
@@ -235,12 +271,11 @@
       </div>
     </div>
   </body>
-
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
   <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
-<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
-<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
-<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
-<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+  <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+  <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+  <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+  <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
   <script src="/static/js/myPage/myPage-profile.js"></script>
 </html>
