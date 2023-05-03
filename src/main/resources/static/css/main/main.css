@@ -100,8 +100,20 @@ ul, li{
     transition: all 0.3s ease-in-out 0s;
     overflow: hidden;
     width: 378px;
-    background:  rgb(0, 196, 196);
+    transition-property: width, background-color;
+    transition-duration: 0.3s, 0.3s;
+    background-color: rgb(0, 196, 196);
 }
+
+.guide-use-select, .guide-reserve-select {
+    background-color: rgb(231, 249, 249);
+}
+
+.guide-use-select, .guide-reserve-select{
+    width: 104px;
+}
+
+
 .guide-frequent-container, .guide-use-container, .guide-reserve-container {
     height: 100%;
     flex-direction: column;
@@ -116,6 +128,12 @@ ul, li{
     padding-right: 30px;
     display: flex;
 }
+
+.guide-use-container, .guide-reserve-container{
+    display: none;
+}
+
+
 .frequent-title-bar, .use-title-bar, .reserve-title-bar {
     width: 100%;
     display: flex;
@@ -212,7 +230,6 @@ ul, li{
     cursor: pointer;
     height: 168px;
     min-width: 104px;
-    background-color: rgb(231, 249, 249);
     border: 0px;
     border-radius: 8px;
     transition: all 0.3s ease-in-out 0s;
