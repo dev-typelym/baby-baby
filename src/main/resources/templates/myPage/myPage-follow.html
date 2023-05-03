@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>팔로우</title>
+    <link rel="shortcut icon" href="/static/images/logo_favi/favi/favicon3.ico" />
     <link rel="stylesheet" href="../../static/css/myPage/myPage-follow.css" />
   </head>
   <body>
@@ -49,15 +50,7 @@
                       </div>
                     </a>
                     <div class="following-btn-area">
-                        <!-- 팔로우 안하면 없어져야함 -->
-                      <button class="jong">
-                        <span class="jong-span">
-                          <img src="../../static/images/myPage/jong.png" alt="" />
-                        </span>
-                      </button>
-                      <!-- 여기까지 -->
-
-                      <button class="following-btn">
+                      <button class="following-btn btn">
                         <span>
                           <svg
                             viewBox="0 0 48 48"
@@ -75,11 +68,10 @@
                         </span>
                       </button>
 
-
-                     <!--  팔로잉 버튼 취소하면 나오는 버튼 -->
-                     <!-- 종도 -->
+                      <!--  팔로잉 버튼 취소하면 나오는 버튼 -->
+                      <!-- 종도 -->
                       <!-- <button
-                        class="following-btn-not"
+                        class="following-btn-not btn"
                         type="button"
                       >
                         <span
@@ -89,7 +81,7 @@
                             role="presentation"
                             class="withIcon_icon__2KxnX Button_icon__16grv FollowingButton_icon__25M12"
                             aria-hidden="true"
-                            style="width: 14px; height: 14px"
+                            style="width: 14px; height: 14px;padding-top: 2px;padding-right: 4px;"
                           >
                             <path
                               d="M30.4 15.2H16.8V1.6h-1.6v13.6H1.6v1.6h13.6v13.6h1.6V16.8h13.6v-1.6z"
@@ -100,8 +92,72 @@
                     </div>
                   </div>
                   <div class="line"></div>
-                  <!-- 리스트 한개 끝 -->
                 </div>
+                <!-- 리스트 한개 끝 -->
+
+                 <!-- 팔로잉 한명 -->
+                 <div class="one-content-wrapper">
+                  <div class="one-content">
+                    <a href="#">
+                      <div class="profile-area">
+                        <div class="profile">
+                          <img
+                            src="https://cdn.wadiz.kr/ft/images/maker/2023/0202/20230202172350131_null.png/wadiz/resize/150/format/jpg/quality/90/"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+
+                      <div class="profile-name-area">
+                        <p class="name">(주)마미인터네셔널</p>
+                        <p class="follower-count">팔로우 하는 사람 <span>194</span></p>
+                      </div>
+                    </a>
+                    <div class="following-btn-area">
+                      <button class="following-btn btn">
+                        <span>
+                          <svg
+                            viewBox="0 0 48 48"
+                            focusable="false"
+                            role="presentation"
+                            class="withIcon_icon__2KxnX Button_icon__16grv FollowingButton_icon__25M12"
+                            aria-hidden="true"
+                            style="width: 14px; height: 14px"
+                          >
+                            <path
+                              d="M18 39.6L4.8 26.4l3.36-3.36L18 32.76l21.84-21.72 3.36 3.36z"
+                            ></path>
+                          </svg>
+                          <span class="btn-text">팔로잉</span>
+                        </span>
+                      </button>
+
+                      <!--  팔로잉 버튼 취소하면 나오는 버튼 -->
+                      <!-- 종도 -->
+                      <!-- <button
+                        class="following-btn-not btn"
+                        type="button"
+                      >
+                        <span
+                          ><svg
+                            viewBox="0 0 32 32"
+                            focusable="false"
+                            role="presentation"
+                            class="withIcon_icon__2KxnX Button_icon__16grv FollowingButton_icon__25M12"
+                            aria-hidden="true"
+                            style="width: 14px; height: 14px;padding-top: 2px;padding-right: 4px;"
+                          >
+                            <path
+                              d="M30.4 15.2H16.8V1.6h-1.6v13.6H1.6v1.6h13.6v13.6h1.6V16.8h13.6v-1.6z"
+                            ></path></svg
+                          ><span class="Button_children__raEW4">팔로우</span></span
+                        >
+                      </button> -->
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                </div>
+                <!-- 리스트 한개 끝 -->
               </div>
             </div>
           </div>
@@ -109,4 +165,6 @@
       </div>
     </main>
   </body>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="/static/js/myPage/mypage-follow.js"></script>
 </html>

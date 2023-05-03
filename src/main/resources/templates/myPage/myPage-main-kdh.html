@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>아기자기</title>
+    <link rel="shortcut icon" href="/static/images/logo_favi/favi/favicon2.ico">
+    <title>마이페이지</title>
     <!--css 연결하는곳-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,14 +20,6 @@
           <div class="mypage-profile-background" aria-hidden="true"></div>
           <h2 class="media-query-title">마이페이지</h2>
           <div class="full-content-inner">
-            <div class="full-content-inner-header">
-              <div class="full-content-inner-header-padding">
-                <div class="header-button-wrapper switch-header" role="tablist">
-                  <button role="tab" class="individule"></button>
-                  <button role="tab" class="enterprise"></button>
-                </div>
-              </div>
-            </div>
             <div class="body-content-full-wrapper">
               <div class="body-content-full-wrapper-media-query">
                 <div class="body-left-full-wrapper">
@@ -46,20 +39,17 @@
                       </div>
                       <div class="profile-name-area">
                         <div class="profile-name">
-                          정유찬
+                      <!-- 통솔자 -->
+                      <img src="/static/images/myPage/tongsol.png">
+                      <!-- 만약에 일반 회원이면 children.png사용 
+                      아니다 싶으면 사용 하지 말기 -->
+                          <span>정유찬</span>
                           <span>님</span>
-                          <svg
-                            viewBox="0 0 40 40"
-                            focusable="false"
-                            role="presentation"
-                            class="withIcon_icon__3VTbq"
-                            aria-hidden="true"
-                          >
-                            <path d="M28 20L15 33l-1.4-1.4L25.2 20 13.6 8.4 15 7l13 13z"></path>
-                          </svg>
                         </div>
 
-                        <div class="profile-type">서포터 • 개인회원</div>
+                        <div class="profile-type">
+                          <span>통솔자</span>
+                        </div>
                       </div>
                     </div>
                     <button class="logout-btn" type="button">
