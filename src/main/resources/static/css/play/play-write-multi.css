@@ -394,7 +394,6 @@ div.guide-box {
     font-size: 12px;
     font-weight: 400;
     position: absolute;
-    right: 0;
     top: 80px;
     right: 63px;
     flex-direction: column;
@@ -402,6 +401,7 @@ div.guide-box {
     background-color: #f2f4f6;
     padding: 24px;
     max-width: 190px;
+    text-align: left;
 }
 
 .guide-box h2 {
@@ -808,6 +808,7 @@ div.guide-box {
     height: 174px;
     margin-bottom: 8px;
     border-radius: 8px;
+    margin-top: 10px;
 }
 
 .first-image-box img {
@@ -837,6 +838,7 @@ div.guide-box {
     max-width: 100%;
     width: 174px;
     height: 174px;
+    margin-top: 10px;
 }
 
 .second-image-box img {
@@ -897,4 +899,8 @@ div.guide-box {
 
 .nav-info-ul li:hover a {
     color: #00c4c4;
+}
+
+.preview-text {
+    color: #adb5bd;
 }
