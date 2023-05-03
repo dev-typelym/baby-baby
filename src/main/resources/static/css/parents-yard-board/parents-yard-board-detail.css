@@ -111,6 +111,9 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     border-radius: 3px;
     background-color: #f5f7fa;
     height: 80px;
+    margin-top: -1px;
+    border-top: 1px solid rgba(206, 201, 201, 0.879);
+    border-bottom: 1px solid rgba(206, 201, 201, 0.879);
 }
 
 .reply-content-user-profile-image-wrapper{
@@ -144,4 +147,52 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 .reply-box-to-list{
     font-size: 15px;
     cursor: pointer;
+}
+
+.reply-box-write-container{
+    display: flex;
+    margin-top: 50px;
+}
+
+.write-form{
+    outline: none;
+    width: 570px;
+    border: none;
+    border-bottom: 2px solid #868e96;
+}
+
+.send-btn-wrapper{
+    display: flex;
+    margin-top: 25px;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-right: 19px;
+}
+
+.send-write{
+    width: 50px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.send-write:hover{
+    background-color: #00c4c4;
+    color: white;
+    border: none;
+}
+
+.delete-write{
+    width: 50px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.delete-write:hover{
+    background-color: #00c4c4;
+    color: white;
+    border: none;
 }

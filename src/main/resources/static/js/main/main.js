@@ -13,7 +13,7 @@ const loadingBar = document.querySelector('.loading-bar-now');
 
 let checkArrow = false;
 let count = 1;
-let auto = setInterval(autoSlide, 2000);
+let auto = setInterval(autoSlide, 4000);
 let temp = buttons[0];
 const pageNow = document.querySelector('#page-now');
 
@@ -25,7 +25,7 @@ buttons.forEach((button) => {
         changeButtonStyle();
         banner.style.transition = 'transform 0.3s';
         banner.style.transform = `translate(${-1519.2 * count}px)`;
-        auto = setInterval(autoSlide, 2000);
+        auto = setInterval(autoSlide, 4000);
     });
 });
 
@@ -103,7 +103,7 @@ prev.addEventListener('click', function () {
         }, 300);
     }
     changeButtonStyle();
-    auto = setInterval(autoSlide, 2000);
+    auto = setInterval(autoSlide, 4000);
     setTimeout(() => {
         checkArrow = false;
     }, 300);
@@ -125,7 +125,7 @@ next.addEventListener('click', function () {
         }, 300);
     }
     changeButtonStyle();
-    auto = setInterval(autoSlide, 2000);
+    auto = setInterval(autoSlide, 4000);
     setTimeout(() => {
         checkArrow = false;
     }, 300);
@@ -479,3 +479,125 @@ $(".close-btn").on("click", function(){
         $("div.ask-modal").fadeOut(500);
     }
 });
+
+
+const frequentSelect = document.querySelector('.guide-frequent-select');
+const useSelect = document.querySelector('.guide-use-select');
+const reserveSelect = document.querySelector('.guide-reserve-select');
+const use = document.querySelector('.guide-frequent');
+const frequent = document.querySelector('.guide-use');
+const reserve = document.querySelector('.guide-reserve');
+
+
+frequentSelect.style.width = '';
+useSelect.style.width = '';
+reserveSelect.style.width = '';
+
+
+
+
+let currentSelection = null; // 현재 선택된 영역을 추적하기 위한 변수
+
+/* frequentSelect를 마우스 오버시 다른 요소 바꾸기 */
+if (frequentSelect) {
+  frequentSelect.addEventListener('mouseover', function() {
+    if (currentSelection !== 'frequent') {
+      currentSelection = 'frequent';
+      
+      frequentSelect.style.width = '378px';
+      frequentSelect.style.backgroundColor = 'rgb(0, 196, 196)';
+      useSelect.style.width = '104px';
+      useSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+      reserveSelect.style.width = '104px';
+      reserveSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+
+      $(".guide-frequent-container").css("display", "flex");
+      $(".guide-use-container").css("display", "none");
+      $(".guide-select-container").css("display", "none");
+      $(".guide-frequent").css("display", "none");
+      $(".guide-use").css("display", "block");
+      $(".guide-reserve").css("display", "block");
+    }
+  });
+
+}
+
+/* useSelect를 마우스 오버시 다른 요소 바꾸기 */
+if (useSelect) {
+  useSelect.addEventListener('mouseover', function() { 
+    if (currentSelection !== 'use') {
+      currentSelection = 'use';
+      
+      useSelect.style.width = '378px';
+      useSelect.style.backgroundColor = 'rgb(0, 196, 196)';
+      frequentSelect.style.width = '104px';
+      frequentSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+      reserveSelect.style.width = '104px';
+      reserveSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+
+      $(".guide-use-container").css("display", "flex");
+      $(".guide-frequent-container").css("display", "none");
+      $(".guide-reserve-container").css("display", "none");
+      $(".guide-use").css("display", "none");
+      $(".guide-frequent").css("display", "block");
+      $(".guide-reserve").css("display", "block");
+    }
+  });
+
+}
+
+/* reserveSelect를 마우스 오버시 다른 요소 바꾸기 */
+if (reserveSelect) {
+  reserveSelect.addEventListener('mouseover', function() {
+    if (currentSelection !== 'reserve') {
+      currentSelection = 'reserve';
+
+      reserveSelect.style.width = '378px';
+      reserveSelect.style.backgroundColor = 'rgb(0, 196, 196)';
+      frequentSelect.style.width = '104px';
+      frequentSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+      useSelect.style.width = '104px';
+      useSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+      
+      $(".guide-reserve-container").css("display", "flex");
+      $(".guide-frequent-container").css("display", "none");
+      $(".guide-use-container").css("display", "none");
+      $(".guide-reserve").css("display", "none");
+      $(".guide-frequent").css("display", "block");
+      $(".guide-use").css("display", "block");
+    }
+  });
+
+}
+
+
+/* frequent에 마우스 오버시 다른 요소들 넓이 줄이기 */
+/* frequentSelect.addEventListener('mouseover', function() {
+  frequentSelect.style.width = '378px';
+  frequentSelect.style.backgroundColor = 'rgb(0, 196, 196)';
+  useSelect.style.width = '104px';
+  useSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+  reserveSelect.style.width = '104px';
+  reserveSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+});
+ */
+/* use에 마우스 오버시 다른 요소들 넓이 줄이기 */
+/* useSelect.addEventListener('mouseover', function() {
+  useSelect.style.width = '378px';
+  useSelect.style.backgroundColor = 'rgb(0, 196, 196)';
+  frequentSelect.style.width = '104px';
+  frequentSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+  reserveSelect.style.width = '104px';
+  reserveSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+}); */
+
+/* reserve에 마우스 오버시 다른 요소들 넓이 줄이기 */
+/* reserveSelect.addEventListener('mouseover', function() {
+  reserveSelect.style.width = '378px';
+  reserveSelect.style.backgroundColor = 'rgb(0, 196, 196)';
+  frequentSelect.style.width = '104px';
+  frequentSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+  useSelect.style.width = '104px';
+  useSelect.style.backgroundColor = 'rgb(231, 249, 249)';
+});
+ */
