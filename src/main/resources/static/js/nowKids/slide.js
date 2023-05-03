@@ -1,3 +1,30 @@
+/* 좋아요 */
+$(function () {
+    $('.wish-button').click(function (e) {
+        var target = $(e.target);
+        if ($(target).attr('aria-pressed') == 'false') {
+            $(target).attr('aria-pressed', 'true'); //하트 색 채우기
+            $('.like-cancel-text').hide(); //해제 문구
+            $('#like-modal').css({ right: '-30%' }); //오->왼 슬라이드 등장
+            $('#like-modal').animate({ right: '30px' }, { duration: 500 }); //오->왼 슬라이드 등장
+            $('#like-modal').show(); //슬라이드 보이기
+            $('#like-modal').css({'display': 'flex'}); 
+            $('#like-modal').css({'align-items': 'center'});
+            $('.like-text').show(); //찜 추가 문구
+            $('#like-modal').fadeOut(); //사라지기
+        } else {
+            $(target).attr('aria-pressed', 'false'); //색 비우기
+            $('.like-text').hide(); //찜 추가 문구
+            $('#like-modal').css({ right: '-30%' }); //오->왼 슬라이드 등장
+            $('#like-modal').animate({ right: '30px' }, { duration: 500 }); //오->왼 슬라이드 등장
+            $('#like-modal').show(); //슬라이드 보이기
+            $('.like-cancel-text').show(); //찜 해제 문구
+            $('#like-modal').fadeOut(); //사라지기
+        }
+    });
+});
+/* 좋아요 끝 */
+
 const $banner = $(".banner");
 const width = 344;
 
@@ -35,20 +62,27 @@ imageList.forEach((e, i) => {
                             <div class="feed-header-left-flex">
                                 <a class="feed-header-user-img-wrap">
                                     <span class="feed-header-user-img">
+                                    <span class="feed-header-new-img">
                                     </span>
                                 </a>
                                 <div class="feed-header-new-board">
                                     <em class="feed-header-user-name">
                                         김동한
                                     </em>
-                                    <span class="feed-header-new-message">
-                                        님이&nbsp; 새 글을 작성했습니다.
-                                    </span>
                                 </div>
                             </div>
                             <span class="feed-header-time">3시간 전</span>
                         </div>
                     </section>
+                    <div class=title-like-wrap>
+                        <button type="button" class="wish-button" aria-pressed="false">
+                            <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="wish-button-svg" aria-hidden="true">
+                                <path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path>
+                            </svg>
+                        </button>
+                        <span class="bottom-event-title">뚝딱이가 왔어요 [체험학습 제목]</span>
+                    </div>
+
                     <div class="board-component-image-wrapper">
                         <section class="banner-container">
                             <!-- 메인 배너 -->
@@ -90,16 +124,17 @@ imageList.forEach((e, i) => {
         </div>
         <section class="bottom-full-wrap">
             <section class="bottom-event-title-wrap">
-                <p class="bottom-event-title">뚝딱이가 왔어요 [체험학습 제목]</p>
+            참여인원 보기
                 <button type="button" id="table${i}" class="table-button">
                     <span>
-                        <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="nav-arrow-icon" aria-hidden="true" style="width: 20px; height: 20px;">
+                        <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="nav-arrow-icon" aria-hidden="true" style="width: 20px; height: 20px; margin-top: 3px; margin-left: 5px;">
                             <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
                         </svg>
                     </span>
                 </button>
             </section>
             <div class="table-display">
+            <div class="table-kids-count">홍길동<span>&nbsp;외&nbsp;</span><span>4</span>명</div>
                 <table class="table-box">
                     <thead>
                         <tr>

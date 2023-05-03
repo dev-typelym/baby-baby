@@ -80,7 +80,7 @@ input[type='text'] {
     cursor: pointer;
     padding: 24px 24px 16px;
     overflow: hidden;
-    color: #fff;
+    color: black;
 }
 
 .nav-header-background {
@@ -93,6 +93,7 @@ input[type='text'] {
     font-weight: 400;
     margin-right: 8px;
     border: 1px solid #fff;
+    background-color: #fff;
     border-radius: 4px;
     padding: 2px 4px;
     overflow: hidden;

@@ -73,13 +73,23 @@ input[type=text] {
     width: 200px;
 }
 
-.nav-header-box {
+/* .nav-header-box {
     display: block;
     position: relative;
     cursor: pointer;
     padding: 24px 24px 16px;
     overflow: hidden;
     color: #fff;
+} */
+
+
+.nav-header-box {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    padding: 24px 24px 16px;
+    overflow: hidden;
+    color: black;
 }
 
 .nav-header-background {
@@ -91,7 +101,9 @@ input[type=text] {
     font-size: 10px;
     font-weight: 400;
     margin-right: 8px;
-    border: 1px solid #fff;
+    background-color: white;
+    color: black;
+    border: 1px solid white;
     border-radius: 4px;
     padding: 2px 4px;
     overflow: hidden;
@@ -393,14 +405,14 @@ div.guide-box {
     font-size: 12px;
     font-weight: 400;
     position: absolute;
-    top: 0;
     right: 0;
+    top: 80px;
+    right: 63px;
     flex-direction: column;
     border-radius: 4px;
     background-color: #f2f4f6;
     padding: 24px;
     max-width: 190px;
-    display: none;
 }
 
 .guide-box h2 {
