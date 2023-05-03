@@ -61,6 +61,11 @@ $identificationInput.on("blur",function(){
 		$identificationInput.css("border-color", "#dde2e6");
 		identificationFlag = true;
 		// #dde2e6;
+		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
+			console.log("asdasd")
+			$(".signup-submit-button").css("opacity","3");
+			console.log("zz11")
+		}
 	}
 })
 
@@ -106,6 +111,11 @@ $passwordInput.on("blur", function() {
 		$passwordWarning.css("display", "none");
 		$passwordInput.css("border-color", "#dde2e6");
 		passwordFlag = true;
+		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
+			console.log("asdasd")
+			$(".signup-submit-button").css("opacity","3");
+			console.log("zz11")
+		}
 	}
 });
 
@@ -135,6 +145,11 @@ $passwordCheckInput.on("blur", function() {
 		$passwordCheckWarning.css("display", "block");
 		$passwordCheckInput.css("border-color", "#f66");
 		passwordCheckFlag = false;
+		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
+			console.log("asdasd")
+			$(".signup-submit-button").css("opacity","3");
+			console.log("zz11")
+		}
 	}
 });
 
@@ -162,6 +177,11 @@ $nicknameInput.on("blur", function() {
 		$nicknameWarning.css("display", "none");
 		$nicknameInput.css("border-color", "#dde2e6");
 		nicknameFlag = true;
+		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
+			console.log("asdasd")
+			$(".signup-submit-button").css("opacity","3");
+			console.log("zz11")
+		}
 	}
 });
 
@@ -202,6 +222,11 @@ $nameInput.on("blur", function() {
 		$nameWarning.css("display", "none");
 		$nameInput.css("border-color", "#dde2e6");
 		nameFlag = true;
+		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
+			console.log("asdasd")
+			$(".signup-submit-button").css("opacity","3");
+			console.log("zz11")
+		}
 	}
 });
 
@@ -242,6 +267,9 @@ $managerNameInput.on("blur", function() {
 		$managerNameInput.css("border-color", "#dde2e6");
 		managerNameFlag = true;
 		console.log(managerNameFlag);
+		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
+			$(".signup-submit-button").css("opacity","3");
+		}
 	}
 });
 
@@ -274,6 +302,11 @@ $phoneInput.on("blur", function() {
 		$phoneWarning.css("display", "none");
 		$phoneInput.css("border-color", "#dde2e6");
 		phoneFlag = true;
+		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
+			console.log("asdasd")
+			$(".signup-submit-button").css("opacity","3");
+			console.log("zz11")
+		}
 	}
 
 });
@@ -281,8 +314,39 @@ $phoneInput.on("blur", function() {
 
 
 
-const $checkAddress1 = $(".sample6_detailAddress");
-const $checkAddress2 = $(".sample6_extraAddress");
+const $checkAddress1 = $("#sample6_detailAddress");
+const $checkAddress2 = $("#sample6_extraAddress");
+
+let address1Flag = false;
+let address2Flag = false;
+
+$checkAddress1.on("blur",function(){
+	var $checkAddressValue = $checkAddress1.val();
+	if($checkAddressValue.length < 1){
+		address1Flag = false
+	}else{
+		address1Flag = true
+		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
+			console.log("asdasd")
+			$(".signup-submit-button").css("opacity","3");
+			console.log("zz11")
+		}
+	}
+})
+
+$checkAddress2.on("blur",function(){
+	var $checkAddressValue = $checkAddress2.val();
+	if($checkAddressValue.length < 1){
+		address2Flag = false
+	}else{
+		address2Flag = true
+		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
+			console.log("asdasd")
+			$(".signup-submit-button").css("opacity","3");
+			console.log("zz11")
+		}
+	}
+})
 
 
 /* 주소 */
@@ -338,7 +402,7 @@ function sample6_execDaumPostcode() {
 
 
 function send() {
-	if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && managerNameFlag){
+	if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && managerNameFlag && address1Flag && address2Flag){
 		document.joinForm.submit();
 	}else if(identificationFlag == false){
 		$identificationInput.focus();
@@ -354,6 +418,10 @@ function send() {
 		$managerNameInput.focus();
 	}else if(phoneFlag == false){
 		$phoneInput.focus();
+	}else if(address1Flag == false){
+		$checkAddress1.focus();
+	}else if(address2Flag == false){
+		$checkAddress2.focus();
 	}
 }
 
