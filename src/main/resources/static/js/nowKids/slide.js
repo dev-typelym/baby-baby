@@ -29,20 +29,20 @@ const $banner = $(".banner");
 const width = 344;
 
 var bannerImage1 = [
-    "../../../static/images/nowKids/001.jpg",
-    "../../../static/images/nowKids/002.jpg",
-    "../../../static/images/nowKids/003.jpg",
-    "../../../static/images/nowKids/004.jpg",
-    "../../../static/images/nowKids/005.jpg",
+    "../../static/images/nowKids/001.jpg",
+    "../../static/images/nowKids/002.jpg",
+    "../../static/images/nowKids/003.jpg",
+    "../../static/images/nowKids/004.jpg",
+    "../../static/images/nowKids/005.jpg",
 ];
 
 var bannerImage2 = [
     "https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/2048xauto.webp",
-    "../../../static/images/nowKids/002.jpg",
-    "../../../static/images/nowKids/003.jpg",
-    "../../../static/images/nowKids/004.jpg",
-    "../../../static/images/nowKids/005.jpg",
-    "https://cdn.class101.net/images/1efd9a4c-849e-4dfb-95aa-7485860043d6/2048xauto.webp",
+    "../../static/images/nowKids/002.jpg",
+    "../../static/images/nowKids/003.jpg",
+    "../../static/images/nowKids/004.jpg",
+    "../../static/images/nowKids/005.jpg",
+    "../../static/images/nowKids/001.jpg",
 ];
 
 let imageList = [bannerImage1,bannerImage2];

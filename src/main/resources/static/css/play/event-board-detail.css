@@ -124,13 +124,21 @@ ul {
     text-align: center;
     box-sizing: border-box;
 }
+.main_text_top {
+    padding: 0 28px 0 10.9%;
+    max-width: 100%;
+    z-index: 100;
+}
+
 .main_text {
     padding: 0 150px 0 12.9%;
     max-width: 48.21%;
-    margin-left: 20px;
+    margin-left: 680px;
+    margin-top: 60px;
     position: fixed;
     top: 0;
     z-index: 100;
+    display: none;
 }
 .main_image_div {
     position: relative;
@@ -985,6 +993,19 @@ ul {
     margin-bottom: 8px;
     color: #495057;
 }
+
+.maker_info_title {
+    margin-right: 24px;
+    width: 183px;
+    min-width: 183px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #495057;
+}
+
 .notice_item_content {
     line-height: 20px;
     letter-spacing: 0;
