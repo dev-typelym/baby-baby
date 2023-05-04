@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>체험제공 신청</title>
     <link rel="stylesheet" href="../../static/css/play/play-write-single.css">
+    <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
     <style>
         .image-display {
             display: none;
@@ -316,7 +317,8 @@
 
     // 이미지 삭제 이벤트
     $imageCancelButton.click(() => {
-        $(".file-content-box").hide();
+        $(".image-display").hide();
+        $(".file-header").show();
         $(".file-input-box").show();
     });
 

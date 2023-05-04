@@ -42,6 +42,18 @@ companyOpenBtn.click(function () {
     });
 });
 
+/* 게시글 상세보기에서 내렸을 때 신청하기 버튼 딸려있는거 오른쪽 옆에 뜨게 하기 */
+$(window).scroll(function() {
+    var detailTab = $('.detail_tab');
+    var mainText = $('.main_text');
+    
+    if ($(window).scrollTop() >= detailTab.offset().top) {
+      mainText.css('display', 'block');
+    } else {
+      mainText.css('display', 'none');
+    }
+  });
+
 companyCloseBtn.click(function () {
     moteButtonCompany.hide();
     companyOpenBtn.show();
