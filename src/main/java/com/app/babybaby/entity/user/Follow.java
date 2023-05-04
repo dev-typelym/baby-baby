@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString
+@ToString(exclude = {"following", "follower"})
 @Table(name = "TBL_FOLLOW")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Follow {
@@ -15,11 +15,11 @@ public class Follow {
     @EqualsAndHashCode.Include
     private Long id;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @NotNull
-//    private User following;
-//
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @NotNull
-//    private User follower;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FOLLOWING_ID")
+    private User following;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FOLLOWER_ID")
+    private User follower;
 }

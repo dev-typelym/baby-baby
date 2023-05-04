@@ -17,8 +17,10 @@ import javax.persistence.*;
 public class NowKids extends BoardInfo{
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EVENT_ID")
     private Event event;
 
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "GUIDE_ID")
     private User guide;
 }

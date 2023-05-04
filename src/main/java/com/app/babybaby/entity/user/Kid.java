@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString
+@ToString(exclude = {"parent"})
 @Table(name = "TBL_KID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Kid {
@@ -26,6 +26,7 @@ public class Kid {
     private GenderType kidGender;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PARENT_ID")
     private User parent;
 
 

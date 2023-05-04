@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = {"user", "guideSchedule"})
+@ToString(callSuper = true, exclude = {"company", "guideSchedule"})
 @Table(name = "TBL_EVENT")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -43,9 +43,6 @@ public class Event extends BoardInfo{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COMPANY_ID")
-    private User user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private GuideSchedule guideSchedule;
+    private User company;
 
 }

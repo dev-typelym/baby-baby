@@ -1,5 +1,6 @@
 package com.app.babybaby.entity.purchase;
 
+import com.app.babybaby.entity.user.User;
 import com.app.babybaby.type.CouponType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -11,11 +12,9 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString
+@ToString(exclude = "user")
 @Table(name = "TBL_COUPON")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@DynamicInsert
-@DynamicUpdate
 public class Coupon {
     @Id
     @GeneratedValue
@@ -26,7 +25,9 @@ public class Coupon {
     @Enumerated(EnumType.STRING)
     private CouponType couponType;
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
 
 }
