@@ -15,11 +15,11 @@ public class Follow {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @NotNull
-    private User following;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @NotNull
-    private User follower;
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @NotNull
+//    private User following;
+//
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @NotNull
+//    private User follower;
 }
