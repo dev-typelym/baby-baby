@@ -11,7 +11,7 @@ $(document).ready(function() {
     // 제출 버튼
     var bottomButton = $('#bottom-button');
   
-    // 제출 버튼 클릭 이벤트 처리
+  //   // 제출 버튼 클릭 이벤트 처리
   //   bottomButton.on('click', function(event) {
   //     // 필수 입력 요소가 모두 입력되었는지 확인
   //     if (optionSelect.val() === '' || as.val() ==='' || contentData.val() === '' || resumeContainer.html() === '')  {
@@ -26,7 +26,7 @@ $(document).ready(function() {
   //   });
   // });
   
-    // 제출 버튼 클릭 이벤트 처리
+  //   // 제출 버튼 클릭 이벤트 처리
   // bottomButton.on('click', function(event) {
   //        var modalTitle = $('.modal__title');
   //         var modalMessage = $('.modal__message');
@@ -46,8 +46,8 @@ $(document).ready(function() {
   //         // 제출 처리
   //         // TODO: 신청 처리 코드 작성
   //     }
-  //   });
-  // });
+
+    });
   
   
 
@@ -98,7 +98,6 @@ function setResume(e) {
             '<div class="ResumeInfo_size">' + fileSizeInKb + 'KB</div>' +
             '<div class="ResumeInfo_cancel"><a href="#" class="cancel-link"><i class="fa-times" aria-hidden="true"></i></a></div>' +
             '</div>';
-        
         resumeContainer.html(resumeInfo);
     };
     reader.readAsDataURL(file);
@@ -111,13 +110,6 @@ resumeContainer.on("click", ".CancelLink", function() {
 });
 
 
-function closeModal() {
-  $('.modal-wrapper').hide();
-}
-
-function showModal() {
-  $('.modal-wrapper').show();
-}
 
 
 
