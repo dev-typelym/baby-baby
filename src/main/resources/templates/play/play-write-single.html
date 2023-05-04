@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>체험제공 신청</title>
     <link rel="stylesheet" href="../../static/css/play/play-write-single.css">
+    <style>
+        .image-display {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -138,22 +143,24 @@
                                             <div class="file-wrap">
                                                 <div class="file-header">
                                                     <div class="preview-text">미리 보기</div>
-                                                    <button class="image-cancel">
-                                                        <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="image-cancel-icon" aria-hidden="true" style="width: 24px; height: 24px;"><path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg>
-                                                    </button>
                                                 </div>
-                                                <div class="image-file-content-box">
-                                                    <div>
-                                                        <span class="image-file-info">프로젝트 이미지</span>
-                                                        <div class="first-image-box">
-                                                            <img src="https://www.wadiz.kr/wwwwadiz/green001/2023/0428/20230428001502093_210472.jpg">
+                                                <div class="image-display">
+                                                    <div class="image-file-content-box">
+                                                        <div>
+                                                            <span class="image-file-info">프로젝트 이미지</span>
+                                                            <div class="first-image-box">
+                                                                <img src="https://www.wadiz.kr/wwwwadiz/green001/2023/0428/20230428001502093_210472.jpg">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div>
-                                                        <span class="image-file-info">정방향 이미지</span>
-                                                        <div class="second-image-box">
-                                                            <img src="https://www.wadiz.kr/wwwwadiz/green001/2023/0428/20230428001502093_210472.jpg">
+                                                        <div>
+                                                            <span class="image-file-info">정방향 이미지</span>
+                                                            <div class="second-image-box">
+                                                                <img src="https://www.wadiz.kr/wwwwadiz/green001/2023/0428/20230428001502093_210472.jpg">
+                                                            </div>
                                                         </div>
+                                                        <button class="image-cancel">
+                                                            <svg viewBox="0 0 40 40" focusable="false" role="presentation" class="image-cancel-icon" aria-hidden="true" style="width: 24px; height: 24px; margin-top: -100px;"><path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z"></path></svg>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -253,6 +260,17 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
+    const $sectionBox = $(".content-section");
+    const $inputTitle = $(".title");
+    const $maxCount = $(".text-max-count");
+
+
+    // 제목 입력 js
+    $inputTitle.keyup(() => {
+        $maxCount.text((40 - $inputTitle.val().length) + "자 남음");
+    });
+
+
     // 파일 버튼
     const $fileButton = $(".file-button");
     const $fileModal = $(".file-modal-display");
@@ -284,8 +302,9 @@
         reader.onload = function(e) {
             $(".first-image-box img").attr("src", e.target.result);
             $(".second-image-box img").attr("src", e.target.result);
-            $(".file-content-box").show();
+            $(".image-display").show();
             $(".file-input-box").hide();
+            $(".file-header").hide();
             $fileModal.hide();
         }
 

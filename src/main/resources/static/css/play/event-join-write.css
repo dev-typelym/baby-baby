@@ -423,10 +423,6 @@ input[type='text'] {
 .select-layout:hover {
     border: 1px solid #0c0c0c;
 }
-
-.select-layout-kid:hover {
-    border: 1px solid #0c0c0c;
-}
 .select-layout2 {
     align-items: center;
     background-color: rgb(255, 255, 255);
@@ -533,6 +529,18 @@ input[type='text'] {
     display: none;
 }
 
+.select-menu-box-kid {
+    margin-top: 4px;
+    border: 1px solid #dde2e6;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0 rgba(10, 22, 70, 0.08), 0 1px 5px 0 rgba(10, 22, 70, 0.08);
+    padding: 12px 8px;
+    max-height: 200px;
+    width: 860px;
+    overflow-y: auto;
+    display: none;
+}
+
 .select-kids-count {
     margin-top: 4px;
     border: 1px solid #dde2e6;
@@ -571,7 +579,6 @@ input[type='text'] {
     padding: 8px 12px;
     color: #212529;
 }
-
 .select-option-kid {
     padding: 8px 12px;
     color: #212529;
@@ -583,6 +590,7 @@ input[type='text'] {
 .select-option2:last-child {
     margin-bottom: 0;
 }
+
 .select-option-kid:last-child {
     margin-bottom: 0;
 }
@@ -755,6 +763,10 @@ div.select-placeholder-kid {
     background: #e1e1e1;
 }
 
+.select-option-kid:hover {
+    background: #e1e1e1;
+}
+
 .table-box {
     width: 100%;
     text-align: center;
@@ -886,6 +898,8 @@ input[type='date']::-webkit-calendar-picker-indicator {
 .input-size {
     height: 48px;
     min-height: 48px;
+    display: flex;
+    align-items: center;
 }
 
 .text-max-count {
@@ -927,7 +941,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
 }
 
 .end-day {
-    margin-left: 380px;
+    margin-left: 438px;
 }
 
 .location-input {
