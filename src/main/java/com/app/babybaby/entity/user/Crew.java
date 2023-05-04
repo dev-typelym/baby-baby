@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString
+@ToString(exclude = {"kid", "generalGuide", "adminGuide"})
 @Table(name = "TBL_CREW")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Crew{
@@ -27,13 +27,11 @@ public class Crew{
     private Kid kid;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "GENERAL_GUIDE_ID")
     private User generalGuide;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ADMIN_GUIDE_ID")
     private User adminGuide;
-
-
-
-
 
 }

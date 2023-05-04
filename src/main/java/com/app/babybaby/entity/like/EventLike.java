@@ -1,27 +1,22 @@
-package com.app.babybaby.entity.calendar;
+package com.app.babybaby.entity.like;
 
 import com.app.babybaby.entity.board.Event;
 import com.app.babybaby.entity.user.User;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Getter @ToString(exclude = {"user", "event", "calendar"})
-@Table(name = "TBL_GUIDE_SCHEDULE")
+@Getter
+@ToString
+@Table(name = "TBL_EVENT_LIKE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class GuideSchedule {
+public class EventLike {
 
     @Id
     @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
-
-    @OneToOne
-    @JoinColumn(name = "CALENDAR_ID")
-    private Calendar calendar;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EVENT_ID")
@@ -30,6 +25,5 @@ public class GuideSchedule {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
-
 
 }

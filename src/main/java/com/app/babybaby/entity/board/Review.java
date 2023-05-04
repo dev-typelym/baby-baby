@@ -28,6 +28,8 @@ public class Review extends BoardInfo{
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
     private User user;
+
 
 }

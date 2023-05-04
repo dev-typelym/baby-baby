@@ -28,5 +28,6 @@ public abstract class File {
     private FileType fileStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "BOARD_INFO_ID")
     private BoardInfo boardInfo;
 }
