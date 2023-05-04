@@ -1,6 +1,5 @@
-package com.app.babybaby.entity.user;
+package com.app.babybaby.entity.embeddable;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
