@@ -148,7 +148,7 @@
                                                 <div class="image-display">
                                                     <div class="image-file-content-box">
                                                         <div>
-                                                            <span class="image-file-info">프로젝트 이미지</span>
+                                                            <span class="image-file-info">원본 이미지</span>
                                                             <div class="first-image-box">
                                                                 <img src="https://www.wadiz.kr/wwwwadiz/green001/2023/0428/20230428001502093_210472.jpg">
                                                             </div>
@@ -295,9 +295,11 @@
         $fileInput.click();
     });
 
+    let file;
+
     // 이미지 추가 시
     $fileInput.change((event) => {
-        var file = event.target.files[0];
+        file = event.target.files[0];
 
         var reader = new FileReader();
         reader.onload = function(e) {
@@ -317,6 +319,7 @@
 
     // 이미지 삭제 이벤트
     $imageCancelButton.click(() => {
+        file = "";
         $(".image-display").hide();
         $(".file-header").show();
         $(".file-input-box").show();
