@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter @ToString
+@Getter @ToString(exclude = "user")
 @Table(name = "TBL_GUIDE_SCHEDULE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GuideSchedule {

@@ -1,6 +1,6 @@
 package com.app.babybaby.entity.calendar;
 
-import com.app.babybaby.type.Category;
+import com.app.babybaby.type.CategoryType;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -19,13 +19,15 @@ public class Calendar {
     private Long id;
 
     @NotNull
-    private String calendarID;
+    private String calendarName;
 
     @NotNull
-    private Category category;
+    @Enumerated(EnumType.STRING)
+    private CategoryType categoryType;
 
     @NotNull
     private LocalDateTime startDate;
+
     @NotNull
     private LocalDateTime endDate;
 }

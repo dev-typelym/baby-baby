@@ -1,5 +1,5 @@
 package com.app.babybaby.type;
 
-public enum Category {
+public enum CategoryType {
     AGRICULTURE, ART, TRADITION, CRAFT, SCIENCE, MUSEUM, SPORTS, ETC
 }

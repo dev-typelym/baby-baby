@@ -2,8 +2,9 @@ package com.app.babybaby.entity.board;
 
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.calendar.GuideSchedule;
-import com.app.babybaby.entity.user.Address;
+import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.user.User;
+import com.app.babybaby.type.CategoryType;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString
+@ToString(callSuper = true, exclude = {"user", "guideSchedule"})
 @Table(name = "TBL_EVENT")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -32,6 +33,10 @@ public class Event extends BoardInfo{
 
     @NotNull
     private String eventContent;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private CategoryType category;
 
     @OneToOne
     private Calendar calendar;

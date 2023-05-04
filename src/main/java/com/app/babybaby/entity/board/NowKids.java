@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString
+@ToString(callSuper = true, exclude = {"event", "guide"})
 @Table(name = "TBL_NOW_KIDS")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

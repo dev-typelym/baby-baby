@@ -9,8 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter
-@ToString
+@Getter @ToString
 @Table(name = "TBL_BOARD_INFO")
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

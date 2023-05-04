@@ -8,7 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString
+@Getter @ToString(exclude = "boardInfo")
 @Table(name = "TBL_FILE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class File {
@@ -24,6 +24,7 @@ public abstract class File {
     @NotNull
     private String filePath;
     @NotNull
+    @Enumerated(EnumType.STRING)
     private FileType fileStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -1,6 +1,7 @@
 package com.app.babybaby.entity.user;
 
-import com.app.babybaby.type.Category;
+import com.app.babybaby.entity.embeddable.Address;
+import com.app.babybaby.type.CategoryType;
 import com.app.babybaby.type.GuideType;
 import com.app.babybaby.type.SleepType;
 import com.sun.istack.NotNull;
@@ -50,9 +51,10 @@ public class User {
     @NotNull @Enumerated(EnumType.STRING)
     @ColumnDefault("'AWAKE'")
     private SleepType userSleep;
-
+    @Enumerated(EnumType.STRING)
     private GuideType userGuideType;
-    private Category userGuideInterest;
+    @Enumerated(EnumType.STRING)
+    private CategoryType userGuideInterest;
     private String userResumeFilePath;
     private String userResumeFileUUID;
     private String userResumeFileOriginalName;
