@@ -12,32 +12,42 @@ $(document).ready(function() {
     var bottomButton = $('#bottom-button');
   
     // 제출 버튼 클릭 이벤트 처리
-    bottomButton.on('click', function(event) {
-      // 필수 입력 요소가 모두 입력되었는지 확인
-      if (optionSelect.val() === '' || as.val() ==='' || contentData.val() === '' || resumeContainer.html() === '')  {
-        alert('모든 필수 입력 요소를 입력해주세요.');
-        event.preventDefault(); // 버튼 기본 동작 방지
-        return;
-      }
-      // 제출 처리
-      alert('신청이 완료되었습니다.');
-      // TODO: 신청 처리 코드 작성
-    });
-  });
+  //   bottomButton.on('click', function(event) {
+  //     // 필수 입력 요소가 모두 입력되었는지 확인
+  //     if (optionSelect.val() === '' || as.val() ==='' || contentData.val() === '' || resumeContainer.html() === '')  {
+  //       showModal1();
+  //       event.preventDefault(); // 버튼 기본 동작 방지
+  //       return;
+  //     }
+  //     console.log("asd");
+  //     showModal();
+  //     // 제출 처리
+  //     // TODO: 신청 처리 코드 작성
+  //   });
+  // });
   
-  // 제출 버튼 클릭 이벤트 처리
-bottomButton.on('click', function(event) {
-    // 필수 입력 요소가 모두 입력되었는지 확인
-    if (optionSelect.val() === '' || itemNames.filter('.active').length === 0 || contentData.val() === '' || resumeContainer.html() === '') {
-      alert('모든 필수 입력 요소를 입력해주세요.');
-      event.preventDefault(); // 버튼 기본 동작 방지
-      return;
-    }
-  
-    // 제출 처리
-    $('#submit-modal').modal('show');
-    // TODO: 신청 처리 코드 작성
-  });
+    // 제출 버튼 클릭 이벤트 처리
+  // bottomButton.on('click', function(event) {
+  //        var modalTitle = $('.modal__title');
+  //         var modalMessage = $('.modal__message');
+  //     // 필수 입력 요소가 모두 입력되었는지 확인
+  //     if (optionSelect.val() === '' && as.val() ==='' &&  contentData.val() === '' && resumeContainer.html() === '') {
+  //       modalTitle.text('필수입력사항을 입력해주세요');
+  //       console.log(optionSelect.val());
+  //       modalMessage.text('');
+  //       showModal();
+  //       bottomButton.attr('type','button');
+  //       return;
+  //     }else{
+  //       modalTitle.text('신청이 완료되었습니다');
+  //         modalMessage.text('');
+  //         showModal();
+  //         bottomButton.attr('type','submit');
+  //         // 제출 처리
+  //         // TODO: 신청 처리 코드 작성
+  //     }
+  //   });
+  // });
   
   
 
@@ -99,5 +109,15 @@ resumeContainer.on("click", ".CancelLink", function() {
     $(this).closest(".ResumeInfo").remove();
     $("#resume").val("");
 });
+
+
+function closeModal() {
+  $('.modal-wrapper').hide();
+}
+
+function showModal() {
+  $('.modal-wrapper').show();
+}
+
 
 

@@ -4736,5 +4736,49 @@ select.as {
   }
   
 
+/* 모달 */
 
-
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    width: 26%;
+  }
+  
+  .modal__title {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .modal__message {
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .modal__button {
+    background-color: #00c4c4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .modal__button:hover {
+    background-color: navy;
+  }
+  

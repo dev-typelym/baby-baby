@@ -15,7 +15,7 @@
 />
 <link rel="stylesheet" href="../../static/css/myPage/myPage-banner.css" >
 <body>
-	<form action="">
+	<form action="#">
     <div class="body1" data-react-modal-body-trap="" tabindex="0" style="position: absolute; opacity: 0;"></div>
     <div id="root">
         <div id="AppLayout_Container" class="Layout">
@@ -31,7 +31,7 @@
 	                        <div class="HeaderLayout">
 	                            <div class="HeaderLayout_contents">
 	                                <h2 class="Container_title">통솔자 지원
-	                                    <button id="bottom-button">
+	                                    <button id="bottom-button" type="button">
 	                                        <span id="button-inner-text">
 	                                            <span id="button-icon">
 	                                                <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__1VB4W" aria-hidden="true"><path d="M30.4 15.2H16.8V1.6h-1.6v13.6H1.6v1.6h13.6v13.6h1.6V16.8h13.6v-1.6z"></path></svg>
@@ -45,7 +45,7 @@
 	                            </div>
 	                        </div>
 	                        <!-- 기간 선택 -->
-							<select name="" id=""  class="option-select">
+							<select name="" id="option-select"  class="option-select">
 								<option value="">* 지원 분야 선택</option>
 								<option value="농촌">농촌</option>
 								<option value="전통">전통</option>
@@ -61,44 +61,6 @@
 								<option value="장애인">장애인</option>
 							</select>
 
-                        	<!-- <div class="SelectMenu1 SelectMenu2">
-	                        	<div class="Select1 Select2">
-		                        	<div class="Select_title">
-			                        	<div class="DefaultValue" style="font-weight: bold;">*통솔자 선택</div>
-			                        	<input type="hidden" id="input_hidden" value="">
-		                        	</div>
-		                        </div>		
- 	                        	<ul class="content1 content2">
-		                        	<div>
-			                        	<li>
-				                        	<div class="MenuItem Item1" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
-					                        	<div class="TitleWrapper">
-						                        	<div class="ItemTitle">
-							                        	<div class="ItemName" style="font-weight: bold;">비 장애인</div>
-						                        	</div>
-					                        	</div>
-					                        	<div class="Itembottom">
-						                        	<div></div>
-						                        	<span></span>
-					                        	</div>
-				                        	</div>
-			                        	</li>
-			                        	<li>
-				                        	<div class="MenuItem Item2" style="border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;">
-					                        	<div class="TitleWrapper">
-						                        	<div class="ItemTitle">
-							                        	<div class="ItemName" style="font-weight: bold;">장애인</div>
-						                        	</div>
-					                        	</div>
-					                        	<div class="Itembottom">
-						                        	<div></div>
-						                        	<span></span>
-					                        	</div>
-				                        	</div>
-			                        	</li>
-									</div>
-								</ul>
-							</div> -->
                        		 <!-- 글 내용 -->
 							<section class="Section_contents" style="max-width: 720px;">
 								<div class="Section_header1 Section_header2">
@@ -194,6 +156,13 @@
 	            </div>
 	        </div>
 	    </div>
+		<div class="modal-wrapper" style="display: none;">
+			<div class="modal">
+			  <h2 class="modal__title">신청이 완료되었습니다.</h2>
+			  <p class="modal__message">감사합니다! 신청이 성공적으로 처리되었습니다.</p>
+			  <button class="modal__button" onclick="closeModal()">확인</button>
+			</div>
+		</div>
 	</form>
 <!-- test -->
 <!-- HTML 코드 -->
