@@ -230,6 +230,12 @@ body ol, body select, body textarea, body ul {
     font-size: 23px;
     font-weight: 800;
 }
+
+.wadiz-logo{
+    width: 82.25px;
+    height: 22px;
+}
+
 .web-header .wadiz-logo>a {
     display: block;
     padding: 11px 0 13px;
@@ -260,7 +266,8 @@ svg:not(:root) {
     transform-origin: 0px 0px;
 } */
 .header-menu-category-ul { /* 헤더 상단 카테고리 메뉴 - ul태그 */
-    display: inline-block;
+    display: flex;
+    align-items: center;
     position: static;
     right: 0;
     bottom: 0;
@@ -504,6 +511,12 @@ input::placeholder {
     background-color: #ff6666;
     border-radius: 100%;
 }
+
+.logo-image{
+    width: 80%;
+    height: 80%;
+}
+
 
 
 
