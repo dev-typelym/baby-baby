@@ -1,6 +1,7 @@
 package com.app.babybaby.entity.user;
 
-import com.app.babybaby.type.Category;
+import com.app.babybaby.entity.embeddable.Address;
+import com.app.babybaby.type.CategoryType;
 import com.app.babybaby.type.GuideType;
 import com.app.babybaby.type.SleepType;
 import com.sun.istack.NotNull;
@@ -45,10 +46,17 @@ public class User {
     /* 탈퇴(sleep)가 true*/
     /* 내일 강사님께 질문*/
     @NotNull @Enumerated(EnumType.STRING)
+<<<<<<< HEAD
     private SleepType userSleep=SleepType.AWAKE;
 
+=======
+    @ColumnDefault("'AWAKE'")
+    private SleepType userSleep;
+    @Enumerated(EnumType.STRING)
+>>>>>>> mine
     private GuideType userGuideType;
-    private Category userGuideInterest;
+    @Enumerated(EnumType.STRING)
+    private CategoryType userGuideInterest;
     private String userResumeFilePath;
     private String userResumeFileUUID;
     private String userResumeFileOriginalName;
