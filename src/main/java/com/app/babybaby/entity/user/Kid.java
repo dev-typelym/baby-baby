@@ -25,9 +25,9 @@ public class Kid {
 //    @OneToOne(fetch = FetchType.LAZY)
 //    private Event eventId;
     @OneToOne(fetch = FetchType.LAZY)
-    private User userId;
+    private User user;
     @OneToOne(fetch = FetchType.LAZY)
-    private User guideId;
+    private User guide;
 
 
 }
