@@ -14,6 +14,9 @@
         url(https://static.wadiz.kr/static/web/media/wadizicon.077f5804.svg#wadizicon) format('svg');
 }
 
+body{
+    zoom: 90%;
+}
 
 body li, body ol, body ul {
     list-style: none;
@@ -137,7 +140,8 @@ ul {
     min-height: 100px;
     position: relative;
     padding-right: 23px;
-    max-width: 820px;
+    max-width: 768px;
+    margin:0 auto;
 }
 
 .coupon-left-full-wrap {
@@ -261,15 +265,26 @@ dl {
     display: block;
     margin: 60px auto 30px;
     padding: 0 16px;
-    max-width: 1000px;
+    max-width: 768px;
     font-weight: 700;
     box-sizing: content-box;
+    padding-bottom: 30px;
+    line-height: 48px;
+    letter-spacing: -.6px;
+    font-size: 36px;
+    font-weight: 700;
+    padding-bottom: 4px;
 }
 
+.coupon-left-deadline-wrap{
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+}
 
 .coupon-header-nav {
     margin: 0 auto;
-    max-width: 1000px;
+    max-width: 768px;
 }
 
 .coupon-header-nav-content {
@@ -286,7 +301,7 @@ dl {
 .coupon-body-full-wrap {
     margin: 24px auto -36px;
     padding: 0 16px;
-    max-width: 1000px;
+    max-width: 768px;
     box-sizing: content-box;
     margin-top: 65px;
 }
@@ -313,7 +328,7 @@ dl {
     margin-bottom: 0;
     margin: 24px auto -36px;
     padding: 0 16px;
-    max-width: 1000px;
+    max-width: 768px;
     box-sizing: content-box;
 }
 
@@ -340,4 +355,44 @@ dl {
     margin-bottom: 12px;
     margin-left: 1em;
     list-style-type: decimal;
+}
+
+
+/* 추가 */
+.description{
+    width: 768px;
+    margin: 0 auto;
+}
+
+.description-inner{
+    width: 85%;
+    line-height: 18px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    border-radius: 8px;
+    padding: 14px;
+    padding-bottom: 1px;
+    background: #cccccc2e;
+}
+
+
+.caution-icon img{
+    width: 20px;
+}
+
+.caution-icon{
+    margin-right: 5px;
+    margin-left: 10px;
+    line-height: 0;
+}
+
+.first-wrapper, .second-wrapper{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.emoji{
+    font-weight: 800;
 }
