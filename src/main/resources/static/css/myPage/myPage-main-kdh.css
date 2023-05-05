@@ -202,6 +202,7 @@ article, main, section {
     padding: 32px 16px 8px;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
 }
 
 @media screen and (min-width: 1097px) {
@@ -303,7 +304,7 @@ li{
 
 
 .link-area{
-    width: 320px;
+    max-width: 780;
     margin: 15px auto;
     position: relative;
     z-index: 100;
@@ -313,6 +314,10 @@ li{
     display: flex;
     justify-content: center;
     padding: 16px 0;
+}
+
+.link-wrapper{
+    width: 320px;
 }
 
 .link-icon svg{
@@ -378,7 +383,6 @@ li{
     font-size: 14px;
     font-weight: 500;
     box-sizing: border-box!important;
-    -webkit-appearance: none;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -393,3 +397,28 @@ li{
 .profile-name span{
     font-size: 18px;
 }
+
+/* media 쿼리 */
+@media (max-width: 700px) {
+    .body-left-full-wrapper {
+        margin:0;
+        width: 100%;
+    }
+
+    .link-area {
+        margin:15px 0;
+        width: 90%;
+    }
+
+    .link-wrapper{
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .body-content-right-wrapper{
+        padding: 0;
+        margin:0 auto;
+        width: 100%;
+    }
+
+  }
