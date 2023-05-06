@@ -48,25 +48,6 @@ $(document).ready(function() {
   //     }
 
     });
-  
-  
-
-  
-
-
-// 기간선택
-const Select = document.querySelector(".Select1");
-Select.addEventListener("click", function(event) {
-console.log(Select);
-let content = document.querySelector(".content1");
-if(content.style.display == 'none'){
-    content.style.display = 'block';
-}else{
-    content.style.display = 'none';
-}
-});
-
-
 
 var maxFiles = 1;
 var currentFiles = 0;
@@ -103,11 +84,6 @@ function setResume(e) {
     reader.readAsDataURL(file);
 }
 
-// 취소 버튼 클릭 시
-resumeContainer.on("click", ".CancelLink", function() {
-    $(this).closest(".ResumeInfo").remove();
-    $("#resume").val("");
-});
 
 
 

@@ -8,7 +8,6 @@ body{
     color: rgba(0,0,0,.84);
     font-size: 15px;
     font-weight: 400;
-    overflow: scroll;
 }
 
 .login-model {
@@ -419,6 +418,7 @@ input{
     line-height: 1.75px;
     font-family: 'Noto Sans KR';
     cursor: pointer;
+    margin-bottom: 27px;
 }
 
 .kakaobutton{
