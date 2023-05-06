@@ -26,4 +26,8 @@ public abstract class BoardInfo extends Period {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "boardInfo")
     private List<File> files;
+
+    public void addFiles(File file){
+        this.files.add(file);
+    }
 }

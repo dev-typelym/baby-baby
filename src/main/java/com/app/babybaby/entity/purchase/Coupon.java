@@ -1,12 +1,11 @@
 package com.app.babybaby.entity.purchase;
 
 import com.app.babybaby.entity.user.User;
+import com.app.babybaby.type.CouponStatus;
 import com.app.babybaby.type.CouponType;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -24,6 +23,15 @@ public class Coupon {
     @NotNull
     @Enumerated(EnumType.STRING)
     private CouponType couponType;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @ColumnDefault("'UNUSED'")
+    private CouponStatus couponStatus;
+
+    @NotNull
+    @ColumnDefault("5000")
+    private Long couponPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
