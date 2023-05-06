@@ -2,8 +2,7 @@ package com.app.babybaby.repository.board;
 
 import com.app.babybaby.entity.board.Event;
 import com.app.babybaby.entity.board.NowKids;
-import com.app.babybaby.entity.embeddable.Address;
-import com.app.babybaby.type.CategoryType;
+import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,6 @@ package com.app.babybaby.entity.board.event;
 
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.calendar.Calendar;
-import com.app.babybaby.entity.calendar.GuideSchedule;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.user.User;
 import com.app.babybaby.type.CategoryType;
