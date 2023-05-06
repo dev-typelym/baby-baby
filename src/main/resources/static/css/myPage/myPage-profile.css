@@ -690,7 +690,7 @@ a.Mint {
     display: block;
 }
 
-.reward-btn em{
+.science-btn em{
         display: block;
     margin: 0 auto 10px;
     width: 18px;
@@ -700,7 +700,7 @@ a.Mint {
         background: #2e51ef;
 }
 
-.invest em{
+.sports em{
         display: block;
     margin: 0 auto 10px;
     width: 18px;
@@ -710,7 +710,7 @@ a.Mint {
     background: #9f8673;
 }
 
-.combine em{
+.traditional em{
     display: block;
     margin: 0 auto 10px;
     width: 18px;
@@ -720,7 +720,7 @@ a.Mint {
     background: #705f53;
 }
 
-.special em{
+.agriculture em{
     display: block;
     margin: 0 auto 10px;
     width: 18px;
@@ -728,6 +728,47 @@ a.Mint {
     line-height: 18px;
     font-weight: 500;
     background: #90949c;
+}
+
+.art em{
+    display: block;
+    margin: 0 auto 10px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-weight: 500;
+    background: #9b72e7;
+}
+
+.musium em{
+    display: block;
+    margin: 0 auto 10px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-weight: 500;
+    background: #74aaf0;
+}
+
+
+.make em{
+    display: block;
+    margin: 0 auto 10px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-weight: 500;
+    background: #f0bb9d;
+}
+
+.etc em{
+    display: block;
+    margin: 0 auto 10px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-weight: 500;
+    background: #7a87f5;
 }
 
 .lecture-type-buttons li:hover{

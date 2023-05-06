@@ -44,15 +44,35 @@ const options = {
 
     {
         id: '3',
-        name: '농촌',
+        name: '전통',
         backgroundColor: '#705f53',
       },
 
       {
         id: '4',
         name: '박물관',
+        backgroundColor: '#74aaf0',
+      },
+      {
+        id: '5',
+        name: '농촌',
         backgroundColor: '#90949c',
       },
+      {
+        id: '6',
+        name: '미술관',
+        backgroundColor: '#9b72e7',
+      },
+      {
+        id: '7',
+        name: '공방',
+        backgroundColor: '#f0bb9d',
+      },
+      {
+        id: '8',
+        name: '기타',
+        backgroundColor: '#7a87f5',
+      }
   ],
 };
 

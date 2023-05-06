@@ -963,7 +963,7 @@ div.search input:focus {
     display: inline-block;
     margin-bottom: 8px;
     line-height: 1.67;
-    color: #868e96;
+    color: #00c4c4;
     font-size: 12px;
 }
 .parents-yard-board-item-container{
@@ -1052,5 +1052,5 @@ div.search input:focus {
 }
 
 .parents-yard-board-item-content{
-    width: 100%;
+    width: 70%;
 }
