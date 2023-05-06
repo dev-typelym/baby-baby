@@ -8,27 +8,23 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@ToString
+@Getter @ToString
 @Table(name = "TBL_ALERT")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class alert {
+public abstract class Alert {
     @Id
     @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
 
-    @NotNull
     private String alertTitle;
 
-    @NotNull
     private String alertContent;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
     private AlertType alertType;
 
-    @NotNull
     private LocalDateTime alertRegisterDate;
 
 }
