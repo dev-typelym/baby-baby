@@ -1349,7 +1349,6 @@ ul.li{
 .AnnouncementList_list__SiNbg{
     height: calc(100% - 50px);
     position: relative;
-    overscroll-behavior: contain;
     overflow-y: auto;
     box-sizing: border-box;
     list-style: none;
@@ -4782,3 +4781,30 @@ select.as {
     background-color: navy;
   }
   
+
+
+
+
+  /* children-register */
+
+  .children-wrapper{
+    display: flex;
+    width: 100%;
+  }
+.children-name-box input, .children-age-box input{
+    padding: 15px 19px;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #00c4c4;
+    outline: none;
+    height: 10px;
+    margin-top: 15px;
+    height: 18px;
+}
+
+.our-children{
+    width: 30px;
+}
