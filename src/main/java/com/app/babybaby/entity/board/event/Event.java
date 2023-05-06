@@ -1,5 +1,6 @@
-package com.app.babybaby.entity.board;
+package com.app.babybaby.entity.board.event;
 
+import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.calendar.GuideSchedule;
 import com.app.babybaby.entity.embeddable.Address;
@@ -12,11 +13,11 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = {"company", "guideSchedule"})
+@ToString(callSuper = true, exclude = {"company"})
 @Table(name = "TBL_EVENT")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Event extends BoardInfo{
+public class Event extends BoardInfo {
 
     @NotNull
     private Long eventRecruitCount;

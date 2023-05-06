@@ -19,9 +19,7 @@ public abstract class BoardInfo extends Period {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @NotNull
     private String boardTitle;
-    @NotNull
     private String boardContent;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "boardInfo")

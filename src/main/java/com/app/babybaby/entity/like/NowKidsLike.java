@@ -1,7 +1,6 @@
 package com.app.babybaby.entity.like;
 
-import com.app.babybaby.entity.board.Event;
-import com.app.babybaby.entity.board.NowKids;
+import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.user.User;
 import lombok.*;
 

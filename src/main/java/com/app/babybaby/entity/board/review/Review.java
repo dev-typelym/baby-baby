@@ -1,5 +1,7 @@
-package com.app.babybaby.entity.board;
+package com.app.babybaby.entity.board.review;
 
+import com.app.babybaby.entity.board.BoardInfo;
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.reply.ReviewReply;
 import com.app.babybaby.entity.user.User;
 import com.sun.istack.NotNull;
@@ -19,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @DynamicUpdate
-public class Review extends BoardInfo{
+public class Review extends BoardInfo {
 
     @NotNull
     @ColumnDefault("0")

@@ -1,5 +1,7 @@
-package com.app.babybaby.entity.board;
+package com.app.babybaby.entity.board.parentsBoard;
 
+import com.app.babybaby.entity.board.BoardInfo;
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.reply.ParentsBoardReply;
 import com.app.babybaby.entity.user.User;
 import lombok.AccessLevel;
@@ -8,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import javax.swing.*;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ import java.util.List;
 @Table(name = "TBL_PARENTS_BOARD")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ParentsBoard extends BoardInfo{
+public class ParentsBoard extends BoardInfo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EVENT_ID")

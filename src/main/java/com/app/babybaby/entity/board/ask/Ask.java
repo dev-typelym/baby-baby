@@ -1,5 +1,6 @@
-package com.app.babybaby.entity.board;
+package com.app.babybaby.entity.board.ask;
 
+import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.user.User;
 import com.app.babybaby.type.ProcessType;
 import com.sun.istack.NotNull;

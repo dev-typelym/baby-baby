@@ -1,6 +1,6 @@
 package com.app.babybaby.entity.purchase;
 
-import com.app.babybaby.entity.board.Event;
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.user.User;
 import com.sun.istack.NotNull;
 import lombok.*;

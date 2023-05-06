@@ -1,11 +1,10 @@
 package com.app.babybaby.entity.user;
 
-import com.app.babybaby.entity.board.Event;
+import com.app.babybaby.entity.board.event.Event;
 import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter

@@ -1,6 +1,6 @@
 package com.app.babybaby.entity.calendar;
 
-import com.app.babybaby.entity.board.Event;
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.user.User;
 import lombok.*;
 

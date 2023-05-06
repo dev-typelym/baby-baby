@@ -1,5 +1,7 @@
-package com.app.babybaby.entity.board;
+package com.app.babybaby.entity.board.nowKids;
 
+import com.app.babybaby.entity.board.BoardInfo;
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.user.User;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -14,7 +16,7 @@ import javax.persistence.*;
 @Table(name = "TBL_NOW_KIDS")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class NowKids extends BoardInfo{
+public class NowKids extends BoardInfo {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EVENT_ID")
