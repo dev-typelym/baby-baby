@@ -1,6 +1,5 @@
 package com.app.babybaby.entity.user;
 
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;

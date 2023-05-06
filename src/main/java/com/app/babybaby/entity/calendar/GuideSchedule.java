@@ -2,11 +2,9 @@ package com.app.babybaby.entity.calendar;
 
 import com.app.babybaby.entity.board.Event;
 import com.app.babybaby.entity.user.User;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter @ToString(exclude = {"user", "event", "calendar"})
@@ -23,7 +21,7 @@ public class GuideSchedule {
     @JoinColumn(name = "CALENDAR_ID")
     private Calendar calendar;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EVENT_ID")
     private Event event;
 
