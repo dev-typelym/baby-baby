@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-public class UserRepositoryTests {
+public class KidRepositoryTests {
     @Autowired
-    UserRepository userRepository;
+    KidRepository kidRepository;
 }
