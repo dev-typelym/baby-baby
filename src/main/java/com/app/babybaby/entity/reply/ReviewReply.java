@@ -1,8 +1,7 @@
 package com.app.babybaby.entity.reply;
 
 import com.app.babybaby.entity.audit.Period;
-import com.app.babybaby.entity.board.ParentsBoard;
-import com.app.babybaby.entity.board.Review;
+import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.user.User;
 import com.sun.istack.NotNull;
 import lombok.*;
