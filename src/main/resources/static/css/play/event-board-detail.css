@@ -775,6 +775,7 @@ ul {
     padding-left: 37px;
     max-width: 68.01%;
     display: flex;
+    padding-top: 99px;
     /*     justify-content: center; */
 }
 /* 상세보기 부분 */
@@ -1443,4 +1444,12 @@ ul {
     font-weight: 400;
     color: #495057;
     box-sizing: border-box;
+}
+
+.bottom-full-wrapper {
+    margin-top:180px;
+}
+
+.store_tab_contents {
+    z-index: 999;
 }
