@@ -13,7 +13,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(exclude = {"announcement", "review", "nowKids", "parentsBoard", "event"})
+@Getter
 @Table(name = "TBL_FILE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class File {

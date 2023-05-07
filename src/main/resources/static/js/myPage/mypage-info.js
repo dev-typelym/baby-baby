@@ -90,7 +90,31 @@ $(".allow-btn, .not-allow-btn").on('click', function(){
 /* 이력서 넣었을때 그 파일에 대한 정보를 띄워주기 */
 $("#resume").on('change', function(){
     const file = $(this)[0].files[0]
-    console.log(file)
     let fileName = file.name
     $(".resume-info").html(fileName)
+
+    $('.resume-img').attr('src', '../../static/images/member/ppt.png')
 })
+
+
+/* 이메일 정규식 */
+  $("#userEmail").keyup(function(){
+    let emailRegex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    let email = $(this).val()
+    if(!emailRegex.test(email)){
+        $(".err-email").html("잘못된 이메일 형식입니다")
+    } else{
+        $(".err-email").hide();
+    }
+  })
+
+  /* 회원 닉네임 정규식? */
+  $('#memberNickname').keyup(function(){
+    let value = $(this).val()
+    if(value == ''){
+        $('.err-nickname').html("변경할 닉네임을 넣어주세요")
+    } else{
+        $('.err-nickname').hide()
+    }
+  })
+
