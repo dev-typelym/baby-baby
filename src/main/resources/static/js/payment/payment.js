@@ -1,7 +1,7 @@
 /**
  *
  */
-
+ const paymentButton = $("#paymentbutton");
 let check = false;
 $('.Checkbox_icon').on('click', $('.Checkbox_icon'), function () {
     /*check=$("#checkboxtf").is(":checked");*/
@@ -9,10 +9,22 @@ $('.Checkbox_icon').on('click', $('.Checkbox_icon'), function () {
     if (!check) {
         $('#realbutton').css('opacity', '1');
         $('#checkboxmint').css('backgroundColor', '#00c4c4');
+
+        paymentButton.prop("disabled", false);
+        paymentButton.css("backgroundColor", "#00c4c4");
+        paymentButton.css("borderColor", "#00c4c4");
+        paymentButton.css("cursor", "pointer");
+
         check = true;
     } else {
+        paymentButton.prop("disabled", true);
+        paymentButton.css("backgroundColor", "grey");
+        paymentButton.css("borderColor", "grey");
+        paymentButton.css("cursor", "default");
+
         $('#realbutton').css('opacity', '0');
         $('#checkboxmint').css('backgroundColor', '#fff');
+        
         check = false;
     }
 });
@@ -62,5 +74,4 @@ agreeBtn.onclick = function() {
 closeBtn.onclick = function() {
     agrModal.style.display = "none";
 }
-
 
