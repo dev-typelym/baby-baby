@@ -83,4 +83,19 @@ public class User {
     private String userResumeFileUUID;
     private String userResumeFileOriginalName;
 
+    public User(String userEmail, String userName, String userPassword, String userNickname, String userHiSentence, String userPhone, Address userAddress, LocalDateTime userRegisterDate, UserType userType, AcceptanceType userGuideStatus, SleepType userSleep, GuideType userGuideType, CategoryType userGuideInterest) {
+        this.userEmail = userEmail;
+        this.userName = userName;
+        this.userPassword = userPassword;
+        this.userNickname = userNickname;
+        this.userHiSentence = userHiSentence;
+        this.userPhone = userPhone;
+        this.userAddress = userAddress;
+        this.userRegisterDate = userRegisterDate;
+        this.userType = userType;
+        this.userGuideStatus = userGuideStatus;
+        this.userSleep = userSleep;
+        this.userGuideType = userGuideType;
+        this.userGuideInterest = userGuideInterest;
+    }
 }

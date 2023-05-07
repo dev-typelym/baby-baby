@@ -33,5 +33,12 @@ public class Ask extends BoardInfo {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    public Ask(ProcessType askStatus) {
+        this.askStatus = askStatus;
+    }
 
+    public Ask(String boardTitle, String boardContent, ProcessType askStatus) {
+        super(boardTitle, boardContent);
+        this.askStatus = askStatus;
+    }
 }

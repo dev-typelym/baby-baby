@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "TBL_CALENDAR")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Calendar {
+
     @Id
     @GeneratedValue
     @EqualsAndHashCode.Include
@@ -30,4 +31,11 @@ public class Calendar {
 
     @NotNull
     private LocalDateTime endDate;
+
+    public Calendar(String calendarName, CategoryType categoryType, LocalDateTime startDate, LocalDateTime endDate) {
+        this.calendarName = calendarName;
+        this.categoryType = categoryType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }

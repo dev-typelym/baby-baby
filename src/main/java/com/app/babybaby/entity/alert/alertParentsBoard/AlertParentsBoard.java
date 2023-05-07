@@ -2,12 +2,14 @@ package com.app.babybaby.entity.alert.alertParentsBoard;
 
 import com.app.babybaby.entity.alert.Alert;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.type.AlertType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,4 +23,12 @@ public class AlertParentsBoard extends Alert {
     @JoinColumn(name = "PARENTS_BOARD_ID")
     private ParentsBoard parentsBoard;
 
+    public AlertParentsBoard(ParentsBoard parentsBoard) {
+        this.parentsBoard = parentsBoard;
+    }
+
+    public AlertParentsBoard(String alertTitle, String alertContent, AlertType alertType, LocalDateTime alertRegisterDate, ParentsBoard parentsBoard) {
+        super(alertTitle, alertContent, alertType, alertRegisterDate);
+        this.parentsBoard = parentsBoard;
+    }
 }

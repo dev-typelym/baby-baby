@@ -19,4 +19,8 @@ public abstract class BoardInfo extends Period {
     private String boardTitle;
     private String boardContent;
 
+    public BoardInfo(String boardTitle, String boardContent) {
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+    }
 }

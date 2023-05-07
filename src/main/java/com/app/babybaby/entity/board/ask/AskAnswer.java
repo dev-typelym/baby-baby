@@ -26,5 +26,12 @@ public class AskAnswer extends BoardInfo {
     @JoinColumn(name = "ADMIN_ID")
     private User admin;
 
+    public AskAnswer(Ask ask) {
+        this.ask = ask;
+    }
 
+    public AskAnswer(String boardTitle, String boardContent, Ask ask) {
+        super(boardTitle, boardContent);
+        this.ask = ask;
+    }
 }

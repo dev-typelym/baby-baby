@@ -37,5 +37,10 @@ public class Coupon {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-
+    public Coupon(CouponType couponType, CouponStatus couponStatus, Long couponPrice, User user) {
+        this.couponType = couponType;
+        this.couponStatus = couponStatus;
+        this.couponPrice = couponPrice;
+        this.user = user;
+    }
 }

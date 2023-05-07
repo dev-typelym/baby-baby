@@ -30,5 +30,9 @@ public class GuideSchedule {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-
+    public GuideSchedule(Calendar calendar, Event event, User user) {
+        this.calendar = calendar;
+        this.event = event;
+        this.user = user;
+    }
 }

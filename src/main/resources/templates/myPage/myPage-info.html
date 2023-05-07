@@ -180,7 +180,7 @@
                           </div>
                         </div>
 
-                        <div class="profile-wrapper">
+                        <!-- <div class="profile-wrapper">
                           <h5 style="text-align: center">이력서</h5>
 
                           <div class="resume-area">
@@ -189,8 +189,8 @@
                             </label>
                             <div class="resume-info"></div>
                           </div>
-                        </div>
-                        <input type="file" style="display: none" id="resume" />
+                        </div> -->
+                        <!-- <input type="file" style="display: none" id="resume" /> -->
                         <input type="file" style="display: none" id="profile" />
                       </div>
                       <!-- <h5 style="margin-top: 15px">관심분야 변경</h5>
@@ -217,24 +217,16 @@
                         </li>
                       </ul> -->
                       <h5>주소 변경</h5>
-                      <form id="shippingDetailForm">
-                        <input
-                          type="text"
-                          id="location1"
-                          name="address"
-                          value="주소를 입력해주세요"
-                          class="input-text"
-                        />
-                        <input
-                          type="text"
-                          id="location2"
-                          maxlength="96"
-                          name="addressDetails"
-                          value="상세 주소를 입력해주세요"
-                          class="input-text"
-                          style="margin-top: 10px"
-                        />
-                      </form>
+                      <div class="form-group">
+                        <label for="address-btu" class="address-label" onclick="sample6_execDaumPostcode()">주소</label>
+                        <div class="address-div" id="" >
+                            <input type="text" id="sample6_postcode"  onclick="sample6_execDaumPostcode()" placeholder="우편번호">
+                            <input type="button" name="address-btu" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                        </div>
+                        <input type="text" id="sample6_address"  onclick="sample6_execDaumPostcode()" placeholder="주소"><br>
+                        <input type="text" id="sample6_detailAddress" placeholder="상세주소1">
+                        <input type="text" id="sample6_extraAddress" placeholder="상세주소2">
+                    </div>
                       <h5>한줄 소개 변경</h5>
                       <div class="textarea-wrap">
                         <textarea id="introduceme" maxlength="80"></textarea>
@@ -303,10 +295,6 @@
                   </div>
                 </div>
               </div>
-
-              <div class="my-info">
-                <h3><a href="#">회원 탈퇴</a></h3>
-              </div>
             </div>
             <!-- //account-wrap with-footer -->
           </div>
@@ -316,5 +304,6 @@
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="../../static/js/myPage/mypage-info.js"></script>
 </html>

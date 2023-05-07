@@ -27,4 +27,10 @@ public abstract class Alert {
 
     private LocalDateTime alertRegisterDate;
 
+    public Alert(String alertTitle, String alertContent, AlertType alertType, LocalDateTime alertRegisterDate) {
+        this.alertTitle = alertTitle;
+        this.alertContent = alertContent;
+        this.alertType = alertType;
+        this.alertRegisterDate = alertRegisterDate;
+    }
 }

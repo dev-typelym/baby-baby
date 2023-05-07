@@ -34,4 +34,10 @@ public class Guide {
     @JoinColumn(name = "ADMIN_GUIDE_ID")
     private User adminGuide;
 
+    public Guide(Event event, GuideSchedule guideSchedule, User generalGuide, User adminGuide) {
+        this.event = event;
+        this.guideSchedule = guideSchedule;
+        this.generalGuide = generalGuide;
+        this.adminGuide = adminGuide;
+    }
 }

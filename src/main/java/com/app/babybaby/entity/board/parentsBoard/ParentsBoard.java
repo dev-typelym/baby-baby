@@ -31,8 +31,16 @@ public class ParentsBoard extends BoardInfo {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parentsBoard")
     private List<ParentsBoardReply> parentsBoardReplies;
 
-    public void addParentsBoardReply(ParentsBoardReply parentsBoardReply){
-        this.parentsBoardReplies.add(parentsBoardReply);
+    public ParentsBoard(Event event, User user, List<ParentsBoardReply> parentsBoardReplies) {
+        this.event = event;
+        this.user = user;
+        this.parentsBoardReplies = parentsBoardReplies;
     }
 
+    public ParentsBoard(String boardTitle, String boardContent, Event event, User user, List<ParentsBoardReply> parentsBoardReplies) {
+        super(boardTitle, boardContent);
+        this.event = event;
+        this.user = user;
+        this.parentsBoardReplies = parentsBoardReplies;
+    }
 }

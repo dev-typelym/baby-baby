@@ -26,4 +26,8 @@ public class EventLike {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    public EventLike(Event event, User user) {
+        this.event = event;
+        this.user = user;
+    }
 }
