@@ -91,6 +91,7 @@ body>#root, #wadizTopBanner, #page-container {
     width: 100%;
     padding-bottom: 160px;
     background: #f9f9f9;
+    height: 100vh;
 }
 
 #newContainer {
@@ -440,4 +441,29 @@ h2{
 .err-email, .err-nickname{
     font-size: 11px;
     color: red;
+}
+
+.inputs{
+    margin-top: 10px;
+    width: 100%;
+    padding: 13px;
+}
+
+input[name=address-btu]{
+    width: 34%;
+    background-color: #00c4c4;
+    color: #fff;
+    line-height: 50px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    height: 48px;
+    padding-top: 0;
+    margin-bottom: 18px;
+}
+
+#sample6_postcode{
+    padding: 12px;
+    width: 60%;
+    margin-right: 15px;
 }
