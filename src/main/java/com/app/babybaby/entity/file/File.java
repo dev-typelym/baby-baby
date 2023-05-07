@@ -32,24 +32,24 @@ public abstract class File {
     @Enumerated(EnumType.STRING)
     private FileType fileStatus;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ANNOUNCEMENT_ID")
-    private Announcement announcement;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "REVIEW_ID")
-    private Review review;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "NOW_KIDS_ID")
-    private NowKids nowKids;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PARENTS_BOARD_ID")
-    private ParentsBoard parentsBoard;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "EVENT_ID")
-    private Event event;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "ANNOUNCEMENT_ID")
+//    private Announcement announcement;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "REVIEW_ID")
+//    private Review review;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "NOW_KIDS_ID")
+//    private NowKids nowKids;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "PARENTS_BOARD_ID")
+//    private ParentsBoard parentsBoard;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "EVENT_ID")
+//    private Event event;
 
 }
