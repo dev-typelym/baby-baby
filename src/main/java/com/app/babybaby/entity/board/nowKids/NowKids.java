@@ -25,4 +25,13 @@ public class NowKids extends BoardInfo {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GUIDE_ID")
     private User guide;
+
+    public NowKids(Event event) {
+        this.event = event;
+    }
+
+    public NowKids(String boardTitle, String boardContent, Event event) {
+        super(boardTitle, boardContent);
+        this.event = event;
+    }
 }

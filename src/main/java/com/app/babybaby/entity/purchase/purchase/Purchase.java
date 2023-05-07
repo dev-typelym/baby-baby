@@ -46,5 +46,12 @@ public class Purchase {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-
+    public Purchase(LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, Event event, User user) {
+        this.purchaseRegisterDate = purchaseRegisterDate;
+        this.purchaseCount = purchaseCount;
+        this.purchasePrice = purchasePrice;
+        this.coupon = coupon;
+        this.event = event;
+        this.user = user;
+    }
 }

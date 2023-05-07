@@ -21,5 +21,12 @@ public class Announcement extends BoardInfo {
     @JoinColumn(name = "ADMIN_ID")
     private User admin;
 
+    public Announcement(User admin) {
+        this.admin = admin;
+    }
 
+    public Announcement(String boardTitle, String boardContent, User admin) {
+        super(boardTitle, boardContent);
+        this.admin = admin;
+    }
 }

@@ -26,4 +26,8 @@ public class NowKidsLike {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    public NowKidsLike(NowKids nowKids, User user) {
+        this.nowKids = nowKids;
+        this.user = user;
+    }
 }

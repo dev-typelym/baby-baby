@@ -29,6 +29,10 @@ public class Kid {
     @JoinColumn(name = "PARENT_ID")
     private User parent;
 
-
-
+    public Kid(String kidName, Long kidAge, GenderType kidGender, User parent) {
+        this.kidName = kidName;
+        this.kidAge = kidAge;
+        this.kidGender = kidGender;
+        this.parent = parent;
+    }
 }

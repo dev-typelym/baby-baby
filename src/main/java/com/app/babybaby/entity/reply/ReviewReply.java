@@ -28,4 +28,9 @@ public class ReviewReply extends Period {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    public ReviewReply(String reviewReplyContent, Review review, User user) {
+        ReviewReplyContent = reviewReplyContent;
+        this.review = review;
+        this.user = user;
+    }
 }

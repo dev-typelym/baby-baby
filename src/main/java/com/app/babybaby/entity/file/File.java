@@ -31,7 +31,14 @@ public abstract class File {
     @Enumerated(EnumType.STRING)
     private FileType fileStatus;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
+    public File(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus) {
+        this.fileOriginalName = fileOriginalName;
+        this.fileUUID = fileUUID;
+        this.filePath = filePath;
+        this.fileStatus = fileStatus;
+    }
+
+    //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "ANNOUNCEMENT_ID")
 //    private Announcement announcement;
 //

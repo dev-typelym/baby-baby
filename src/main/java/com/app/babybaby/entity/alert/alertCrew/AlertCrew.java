@@ -19,4 +19,9 @@ public class AlertCrew extends Alert {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CREW_ID")
     private Crew crew;
+
+    public AlertCrew(Crew crew) {
+        super();
+        this.crew = crew;
+    }
 }

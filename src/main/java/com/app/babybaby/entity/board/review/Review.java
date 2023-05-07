@@ -42,4 +42,11 @@ public class Review extends BoardInfo {
         this.reviewReplies.add(reviewReply);
     }
 
+    public Review(int reviewScore, Event event, User user, List<ReviewReply> reviewReplies) {
+        super();
+        ReviewScore = reviewScore;
+        this.event = event;
+        this.user = user;
+        this.reviewReplies = reviewReplies;
+    }
 }

@@ -25,4 +25,8 @@ public class Crew{
     @JoinColumn(name = "GUIDES_ID")
     private Guide guides;
 
+    public Crew(Kid kid, Guide guides) {
+        this.kid = kid;
+        this.guides = guides;
+    }
 }
