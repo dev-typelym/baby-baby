@@ -14,7 +14,6 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@Table(name = "TBL_FILE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class File {
 
