@@ -45,24 +45,15 @@
                         type="text"
                         id="memberNickname"
                         name="memberNickname"
-                        class="disable input-text"
+                        class="input-text"
                         placeholder="닉네임"
                         value="린먕"
                       />
+                      <div class="err-nickname"></div>
                     </div>
                     <div id="emailChangeBtn" class="changeBtnTop btn" data-status="change">
                       <a href="#" onclick="return false;">
                         <span>변경</span>
-                      </a>
-                    </div>
-                    <div
-                      id="emailCheckBtn"
-                      class="changeBtn btn"
-                      style="display: none"
-                      data-status="check"
-                    >
-                      <a href="#" onclick="return false;">
-                        <span>인증하기</span>
                       </a>
                     </div>
                   </div>
@@ -77,6 +68,7 @@
                         placeholder="이메일 계정"
                         value="rladnrtjdsla@gmail.com"
                       />
+                      <div class="err-email"></div>
                     </div>
                     <div id="emailChangeBtn" class="changeBtn btn" data-status="change">
                       <a href="#" onclick="return false;">
@@ -193,7 +185,7 @@
 
                           <div class="resume-area">
                             <label for="resume">
-                              <img src="../../static/images/myPage/resume.png" alt="" />
+                              <img src="../../static/images/myPage/resume.png" class="resume-img" alt="" />
                             </label>
                             <div class="resume-info"></div>
                           </div>
@@ -201,7 +193,7 @@
                         <input type="file" style="display: none" id="resume" />
                         <input type="file" style="display: none" id="profile" />
                       </div>
-                      <h5 style="margin-top: 15px">직업 / 직책</h5>
+                      <!-- <h5 style="margin-top: 15px">관심분야 변경</h5>
                       <ul class="input-div2">
                         <li>
                           <input
@@ -223,23 +215,22 @@
                             value=""
                           />
                         </li>
-                      </ul>
-                      <h5>이메일 변경</h5>
+                      </ul> -->
+                      <h5>주소 변경</h5>
                       <form id="shippingDetailForm">
                         <input
                           type="text"
                           id="location1"
                           name="address"
-                          value="이메일을 입력해주세요"
+                          value="주소를 입력해주세요"
                           class="input-text"
                         />
-                        <h5>전화번호 변경</h5>
                         <input
                           type="text"
                           id="location2"
                           maxlength="96"
                           name="addressDetails"
-                          value="전화번호를 입력해주세요"
+                          value="상세 주소를 입력해주세요"
                           class="input-text"
                           style="margin-top: 10px"
                         />
