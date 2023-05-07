@@ -75,11 +75,12 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     -moz-appearance: none;
     appearance: none;
     border: none;
+    padding-left: 10px;
 }
 
 .drop-down-image-wrapper{
     position: absolute;
-    right: 0;
+    right: 2px;
     top: 2px;
     width: 17px;
     height: 15px;
@@ -108,7 +109,7 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     display: inline-block;
     margin-bottom: 8px;
     line-height: 1.67;
-    color: #868e96;
+    color: #00c4c4;
     font-size: 12px;
 }
 .parents-yard-board-item-container{
@@ -292,4 +293,73 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 
 .active{
     color: #00b2b2;
+}
+
+.search-form-wrapper{
+    display: flex;
+    align-items: center;
+    width: 400px;
+    margin-top: 40px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.filter-container{
+    position: relative;
+    float: left;
+    margin-right: 8px;
+    border: none;
+    height: 48px;
+    outline: none;
+}
+
+.filter-for-serach{
+    border-color: #00c4c4;
+    outline: none;
+    border-radius: 4px;
+    background-color: #fff;
+    padding-right: 20px;
+    padding-left: 16px;
+    width: 100%;
+    height: 100%;
+    line-height: 2.82;
+    letter-spacing: normal;
+    color: #0000008a;
+    font-size: 17px;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.search-input-wrapper{
+    position: relative;
+    height: 48px;
+    border: 1px solid #00c4c4;
+    padding-left: 10px;
+    padding-right: 38px;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.go-search-btn{
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    right: 3px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.search-input{
+    height: 45px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: #0000008a;
+    Pretendard,Apple SD Gothic Neo,Segoe UI,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,-apple-system,blinkmacsystemfont,sans-serif;
+
 }

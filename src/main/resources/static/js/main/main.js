@@ -8,12 +8,10 @@ const firstImageDiv = document.createElement('div');
 const next = document.querySelector('div.next');
 const prev = document.querySelector('div.prev');
 const buttons = document.querySelectorAll('.buttons button');
-const loadingBar = document.querySelector('.loading-bar-now');
-
 
 let checkArrow = false;
 let count = 1;
-let auto = setInterval(autoSlide, 4000);
+let auto = setInterval(autoSlide, 3000);
 let temp = buttons[0];
 const pageNow = document.querySelector('#page-now');
 
@@ -25,52 +23,31 @@ buttons.forEach((button) => {
         changeButtonStyle();
         banner.style.transition = 'transform 0.3s';
         banner.style.transform = `translate(${-1519.2 * count}px)`;
-        auto = setInterval(autoSlide, 4000);
+        auto = setInterval(autoSlide, 3000);
     });
 });
 
-const imageDivArray = Array.from(imageDiv);
-imageDivArray.forEach((div, i) => {
-  const imageUrl = `url(../../static/css/main/images/main-00${i + 1}.jpg)`;
-  const gradient = 'linear-gradient(to bottom, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.64))';
-  div.style.backgroundImage = `${gradient}, ${imageUrl}`;
-});
+imageDiv.forEach(
+    (div, i) => (div.style.backgroundImage = `url(../../static/images/main/images/main-00${i + 1}.jpg)`)
+);
 
 banner.appendChild(lastImageDiv);
-lastImageDiv.style.background = `linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.64)), url(../../static/css/main/images/main-001.jpg)`;
-lastImageDiv.style.backgroundSize = '100%';
-lastImageDiv.style.backgroundRepeat = 'no-repeat';
-lastImageDiv.style.backgroundPosition = '50% 50%';
+lastImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-001.jpg)`;
 
 banner.insertBefore(firstImageDiv, document.querySelector('div.banner div'));
-firstImageDiv.style.background = `linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.64)), url(../../static/css/main/images/main-00${imageDiv.length}.jpg)`;
-firstImageDiv.style.backgroundSize = '100%';
-firstImageDiv.style.backgroundRepeat = 'no-repeat';
-firstImageDiv.style.backgroundPosition = '50% 50%';
-
+firstImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-00${imageDiv.length}.jpg)`;
 
 banner.style.transform = `translate(-1519.2px)`;
 
 function changeButtonStyle() {
-  if(temp){
-      temp.style.background = "rgba(255, 255, 255, 0.4)";
-      temp.style.color = "black";
-  }
-  buttons[count - 1].style.background = "white";
-  buttons[count - 1].style.color = "white";
-  temp = buttons[count - 1];
-
-  if (count === 1) {
-    loadingBar.style.width = "20%";
-  } else if (count === 2) {
-    loadingBar.style.width = "40%";
-  } else if (count === 3) {
-    loadingBar.style.width = "60%";
-  } else if (count === 4) {
-    loadingBar.style.width = "80%";
-  } else {
-    loadingBar.style.width = "100%";
-  }
+    if (temp) {
+        temp.style.background = 'white';
+        temp.style.color = 'black';
+    }
+    buttons[count - 1].style.background = 'black';
+    buttons[count - 1].style.color = 'white';
+    temp = buttons[count - 1];
+    pageNow.innerHTML = count;
 }
 
 function autoSlide() {
@@ -103,7 +80,7 @@ prev.addEventListener('click', function () {
         }, 300);
     }
     changeButtonStyle();
-    auto = setInterval(autoSlide, 4000);
+    auto = setInterval(autoSlide, 3000);
     setTimeout(() => {
         checkArrow = false;
     }, 300);
@@ -125,7 +102,7 @@ next.addEventListener('click', function () {
         }, 300);
     }
     changeButtonStyle();
-    auto = setInterval(autoSlide, 4000);
+    auto = setInterval(autoSlide, 3000);
     setTimeout(() => {
         checkArrow = false;
     }, 300);
@@ -146,7 +123,7 @@ const eventPageNow = document.querySelector('#event-page-now');
 
 
 eventImageDiv.forEach(
-  (div, i) => (div.style.backgroundImage = `url(../../static/css/main/images/event-00${i + 1}.jpg)`)
+  (div, i) => (div.style.backgroundImage = `url(../../static/images/main/images/event-00${i + 1}.jpg)`)
 );
 
 const clonedEventBanner1 = $('.event-banner1').clone()[0];
@@ -230,7 +207,7 @@ const thirdPageNow = document.querySelector('#third-page-now');
 
 
 thirdImageDiv.forEach(
-  (div, i) => (div.style.backgroundImage = `url(../../static/css/main/images/third-00${i + 1}.jpg)`)
+  (div, i) => (div.style.backgroundImage = `url(../../static/images/main/images/third-00${i + 1}.jpg)`)
 );
 
 const clonedThirdBanner1 = $('.third-banner1').clone()[0];
@@ -308,7 +285,7 @@ let secondCheckArrow = false;
 let secondCount = 1;
 
 secondImageDiv.forEach((div, i) => {
-  div.style.backgroundImage = `url(../../static/css/main/images/second-00${i + 1}.jpg)`;
+  div.style.backgroundImage = `url(../../static/images/main/images/second-00${i + 1}.jpg)`;
 });
 
 const clonedsecondBanners = document.querySelectorAll('.second-banner > div').values();
@@ -456,10 +433,10 @@ let modalCheck;
 function showWarnModal(modalMessage){
     modalCheck = false;
     $("div#content-wrap").html(modalMessage)
-    $("div.modal").css("display", "flex").hide().fadeIn(500);
-    $("div.ask-modal").css("animation", "popUp 0.5s");
-    $("div.ask-modal").css("display", "block").hide().fadeIn(500);
-    setTimeout(function(){modalCheck = true;}, 500);
+    $("div.modal").css("display", "flex").hide().fadeIn(400);
+    $("div.ask-modal").css("animation", "popUp 0.4s");
+    $("div.ask-modal").css("display", "block").hide().fadeIn(400);
+    setTimeout(function(){modalCheck = true;}, 400);
 }
 
 function categoryModal() {
@@ -474,9 +451,8 @@ function categoryModal() {
 $(".close-btn").on("click", function(){
     $('html, body').css('overflow', 'auto');
     if(modalCheck){
-        $("div.modal").fadeOut(500);
-        $("div.ask-modal").css("animation", "popDown 0.5s");
-        $("div.ask-modal").fadeOut(500);
+        $("div.modal").fadeOut(0);
+        $("div.ask-modal").fadeOut(0);
     }
 });
 
@@ -601,3 +577,44 @@ if (reserveSelect) {
   useSelect.style.backgroundColor = 'rgb(231, 249, 249)';
 });
  */
+
+/* 글자수 */
+function getLength(num)
+{
+    var contentValue = document.getElementById("write-section"+num).value;
+    var txtlenValue = document.getElementById("text_length"+num);
+    var max_byte = contentValue.length;
+    var str_len = contentValue.length;
+
+    if (max_byte == 1001)
+    {
+        document.getElementById("write-section"+num).value = document.getElementById("write-section"+num).value.substring(0, str_len-1);
+        txtlenValue.value = max_byte-1;
+        return;
+    }
+    else
+    {
+        txtlenValue.value = max_byte;
+    }
+
+}
+
+/* 문의 모달 시간 */
+function getTime() {
+  const date = new Date();
+  const hour = date.getHours();
+  const min = date.getMinutes();
+  const ampm = hour < 12 ? "오전" : "오후";
+  const hour12 = hour % 12 || 12; // 0시를 12시로 변환
+  const minute = min < 10 ? `0${min}` : min;
+
+  const adminTime = document.querySelector('.ask-admin-time');
+  if (adminTime) {
+    adminTime.innerText = `${ampm} ${hour12}:${minute}`;
+  }
+}
+
+window.onload = function() {
+  getTime();
+  setInterval(getTime, 1000); // 1초마다 getTime 함수 호출
+};
