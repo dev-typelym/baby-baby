@@ -573,6 +573,15 @@ ul, li{
     margin-bottom: 8px;
     width: 300px;
 }
+
+.event-box-title{
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
 .event-box-context-container {
     color: rgb(144, 148, 156);
     font-size: 13px;
@@ -820,6 +829,8 @@ ul, li{
     font-size: 18px;
 }
 
+/* 메인 배너 */
+
 .banner-container{
     position: relative;
     overflow: hidden;
@@ -831,27 +842,20 @@ div.banner {
     transition: transform 0.3s;
 }
 
-.banners{
-    background:  #f2f4f6 no-repeat 50%/cover;
-}
-
 div.banner div {
     width: 1519.2px;
-    height: 275.5px;
+    height: 275px;
     float: left;
     background-size: 100%;
+    background-position: center;
     transition: transform 0.4s ease-in-out;
 }
 
 div.move-arrow {
-    position: absolute;
-    right: 158px;
-    bottom: 0;
     z-index: 1;
     cursor: pointer;
     display: flex;
     justify-content: space-around;
-    padding:30px 0;
 }
 
 div.move-arrow div {
@@ -860,54 +864,31 @@ div.move-arrow div {
     background-position: center;
 }
 
-.next-icon{
-    color: rgba(255,255,255,.5);
-    fill: currentColor;
-    transform: scale(1);
-    transition: transform .3s ease-out;
-}
-
-.prev-icon{
-    color: rgba(255,255,255,.5);
-    fill: currentColor;
-    transform: scale(1);
-    transition: transform .3s ease-out;
-}
-
 div.prev {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    background: rgba(0,0,0,.4);
-    width: 40px;
-    height: 40px;
-}
-
-div.prev:hover > .prev-icon{
-    color: #fff;
+    position: absolute;
+    transform: rotate(180deg) translate(0px, 50%) !important;
+    top: 50%;
+    left: 30px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 100%;
 }
 
 .prev-image{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
 
 div.next {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    background: rgba(0,0,0,.4);
-    width: 40px;
-    height: 40px;
-}
-
-div.next:hover > .next-icon{
-    color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translate(0, -50%);  
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 100%;
 }
 
 div.buttons {
+    display: none;
     position: absolute;
     width: 100%;
     text-align: center;
@@ -915,57 +896,19 @@ div.buttons {
 }
 
 div.buttons button {
-    opacity: 0;
-    background-color: rgba(255, 255, 255, 0.4);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px;
-    width: 7px;
-    height: 7px;
-    border-radius: 4px;
-    line-height: 0;
-    margin-right: 5px;
-    margin-bottom: 5px;
-}
-
-.loading-bar{
-    position: absolute;
-    bottom: 20px;
-    left: 120px;
-    width: 375px;
-    background: rgba(255,255,255,.3);
-    height: 2.5px;
-    padding-right: env(safe-area-inset-right);
-    padding-left: env(safe-area-inset-left);
-    box-sizing: border-box!important;
-}
-
-.loading-bar-now{
-    width: 20%;
-    transition: width .2s;
-    background: #fff;
-    height: 100%;
-}
-
-div.buttons button span{
-    opacity: 0;
-    height: 7px;
-    display: block;
+    background: white;
 }
 
 div.buttons button:nth-child(1) {
-    opacity: 1;
-    background-color: rgba(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px;
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 4px;
+    background-color: black;
+    color: white;
 }
 
 .page-move-wrapper {
     display: flex;
     align-items: center;
     position: absolute;
-    right: 12px;
+    right: 32px;
     bottom: 12px;
     text-align: center;
     height: 28px;
@@ -989,6 +932,7 @@ div.buttons button:nth-child(1) {
 #page-total{
     margin-right: 2px;
 }
+
  
 /* 카테고리 */
 .category-tabs{
@@ -1405,6 +1349,12 @@ div.third-next {
     width: 295px;
 }
 
+.third-banner-text{
+    width: 300px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 
 .third-banner-text{
     color: rgb(33, 37, 41);
@@ -1469,6 +1419,8 @@ div.third-next {
 div.modal {
     display: none;
     position: fixed;
+    right: 20px;
+    bottom: 20px;
     flex-direction: column;
     inset: 0px;
     z-index: 1000;
@@ -1481,11 +1433,11 @@ div.modal {
 div.ask-modal {
     display: none;
     position: fixed;
-    inset: 0px;
-    z-index: 1000;
+    right: 20px;
+    bottom: 20px;
+    z-index: 10001;
     box-sizing: border-box;
-    width: 770px;
-    margin: 0 auto;
+    width: 356px;
     margin-top: 100px;
     background: rgb(255, 255, 255);
     box-shadow: rgb(33 35 41 / 12%) 0px 2px 12px;
@@ -1579,20 +1531,20 @@ div.modal-background {
     padding: 0px;
     border: none;
     cursor: pointer;
-    background-color: #E9E9EC;
 }
 
 .ask-modal-body{
     position: relative;
-    padding: 0px 14px 20px;
 }
 
 .ask-modal-content-wrapper{
     box-shadow: rgba(255, 255, 255, 0.12) 0px 0px 2px 0px inset, rgba(0, 0, 0, 0.05) 0px 0px 2px 1px, rgba(0, 0, 0, 0.08) 0px 2px 6px;
-    padding: 12px 0px 6px;
+    padding: 0px 0px 6px;
     overflow: hidden;
     background-color: rgb(255, 255, 255);
-    border-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    height: 537px;
 }
 
 .ask-modal-content-hi-sentence{
@@ -1618,11 +1570,33 @@ div.modal-background {
 
 .ask-title-wrapper{
     display: flex;
-    padding: 0px 14px 2px;
+    padding: 0px 21px 2px;
     box-sizing: border-box;
+    margin-bottom: 5px;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
 }
 
 .ask-title-container{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 1.3rem;
+    line-height: 1.82rem;
+    letter-spacing: -0.1px;
+    color: rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+}
+
+.ask-content-wrapper{
+    display: flex;
+    padding: 0px 21px 2px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
+}
+
+.ask-content-container{
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -1646,11 +1620,263 @@ div.modal-background {
     font-size: 1rem;
     line-height: 1.82rem;
     letter-spacing: -0.1px;
+    color: black;
+}
+
+.ask-content{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 1rem;
+    line-height: 1.82rem;
+    letter-spacing: -0.1px;
+    color: black;
+}
+
+.ask-admin-title-input-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.ask-admin-title-input{
+    width: 315px;
+    padding: 0px 12px 2px;
+    line-height: 2rem;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 300;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+}
+
+.ask-admin-title-input:focus{
+    border: 1px solid #00c4c4;
+}
+
+.descript-ask-admin-wrapper{
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px 14px;
+    margin-top: 18px;
+    box-sizing: border-box;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
+}
+
+.descript-ask-admin-title{
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.85);
+    text-align: center;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    font-size: 20px;
+    letter-spacing: -0.1px;
+    box-sizing: border-box;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
+}
+
+.descript-ask-admin-text{
+    padding: 0px 10px;
+    margin-top: 4px;
+    font-weight: 500;
     color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    font-size: 15px;
+    letter-spacing: -0.1px;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
+}
+
+.descript-ask-admin-error-wrapper{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 22px;
+    margin-top: 4px;
+    overflow: hidden;
+    box-sizing: border-box;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
+}
+
+.error-icon{
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    cursor: initial;
+    visibility: visible;
+    box-sizing: border-box;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
 }
 
 
+.error-icon::before{
+    display: block;
+    width: 14px;
+    height: 14px;
+    content: "";
+    background-image: url(https://cf.channel.io/asset/plugin/images/chat-error-filled.svg);
+    background-size: cover;
+    opacity: 1;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
+}
 
+.descript-ask-admin-error{
+    margin-left: 4px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 13px;
+    letter-spacing: -0.1px;
+    box-sizing: border-box;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
+}
+
+.ask-admin-time{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 16px 14px 8px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    font-size: 12px;
+    letter-spacing: -0.1px;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
+}
+
+/* 내용 부분 */
+.write-section{
+    margin: 0 auto;
+    padding: 12px;
+    padding-bottom: 0;
+    width: 315px;
+    height: 150px;
+    font-size: 1rem;
+    font-weight: 300;
+    resize: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    outline: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 0;
+    box-sizing: border-box;
+    line-height: 150%;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.write-section:focus{
+    border-top: 1px solid #00c4c4;
+    border-bottom: 0;
+    border-left: 1px solid #00c4c4;
+    border-right: 1px solid #00c4c4;
+    box-sizing: border-box;
+}
+
+.text_send_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0 auto;
+    width: 315px;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.05);
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.write-section:focus + .text_send_wrap{
+    border-bottom: 1px solid #00c4c4;
+    border-top: 0;
+    border-left: 1px solid #00c4c4;
+    border-right: 1px solid #00c4c4;
+    box-sizing: border-box;
+}
+
+.send_btn{
+    cursor: pointer;
+    width: 64px;
+    height: 32px;
+    background-color: #009a3e;
+    color: #ffffff;
+    outline: none;
+    border: 0;
+    border-radius: 4px;
+    margin-left: 10px;
+    box-sizing: border-box;
+}
+
+.count_letter{
+    display: inline;
+    border: 0;
+    outline: none;
+    text-align: end;
+    font-size: 12px;
+    color: #b3b3b3;
+    padding: 0;
+    background-color: rgba(0, 0, 0, -1.95);
+
+}
+
+.count_letter_max{
+    display: inline;
+    border: 0;
+    outline: none;
+    width: 37px;
+    text-align: end;
+    font-size: 12px;
+    color: #b3b3b3;
+    padding: 0;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: content-box;
+}
+
+.ask-admin-btn{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 315px;
+    padding: 14px;
+    font-size: 15px;
+    letter-spacing: -0.1px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 17px;
+    opacity: 1;
+    font-family: NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, "system-ui", "sans-serif";
+    transition: box-shadow 0.2s;
+    margin: 0 auto;
+    margin-top: 14px;
+}
+
+.ask-admin-btn:hover{
+    background-color: rgba(0, 0, 0, 0.08);
+}
 
 .category-list-wrapper {
     width: 100%;

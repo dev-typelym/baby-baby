@@ -985,9 +985,6 @@ input[type='date']::-webkit-calendar-picker-indicator {
     box-sizing: border-box;
 }
 
-.field-study-date-input:hover{
-    border-color: black;
-}
 
 .example {
     margin-top: 8px;
@@ -1021,9 +1018,6 @@ input[type='date']::-webkit-calendar-picker-indicator {
     box-sizing: border-box;
 }
 
-.normal-text-input:hover{
-    border-color: black;
-}
 
 .parents-yard-title-input:hover{
     border-color: black;
@@ -1055,3 +1049,28 @@ input[type='date']::-webkit-calendar-picker-indicator {
     color: #f66;
     content: "*";
 }
+
+.review-my-star-wrap{
+    display: flex;
+}
+
+.review-my-star{
+    fill: rgba(0, 0, 0, 0.5);
+    width: 30px;
+    height: 30px;
+    margin-right: 3px;
+}
+
+.star-wrapper{
+    display: flex;
+}
+
+.yellow-score-image{
+    display: none;
+}
+
+.score-wrapper{
+    margin-right: 7px;
+    cursor: pointer;
+}
+

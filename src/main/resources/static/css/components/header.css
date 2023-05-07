@@ -465,12 +465,12 @@ input::placeholder {
     justify-content: center;
     width: inherit;
     height: inherit;
+    cursor: pointer;
 }
 
 .alarm-image-wrapper{
     width: 34px;
     height: 32px;
-    margin-bottom: 6px;
 }
 
 .alarm-image{
@@ -512,15 +512,232 @@ input::placeholder {
     border-radius: 100%;
 }
 
-.logo-image{
-    width: 80%;
-    height: 80%;
+.header-menu-category-logo{
+    display: flex;
+    justify-content: flex-end
 }
 
+.logo-image{
+    padding-bottom: 3px;
+    width: 70%;
+    height: 70%;
+}
+
+.logo-li{
+    display: flex;
+    align-items: center;
+}
+
+canvas{z-index:10;pointer-events: none;position: fixed;top: 0;transform: scale(1.1);}
+
+.buttonContainer{
+    display: none;
+}
+
+/* 알람 모달 */
+@keyframes popUp {
+    from {scale: 0;}
+    to {scale: 1;}
+}
+
+@keyframes popDown {
+    from {scale: 1;}
+    to {scale: 0;}
+}
+
+div.modal {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    inset: 0px;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #8586898a;
+}
+
+div.alarm-modal {
+    display: none;
+    position: absolute;
+    right: 128px;
+    z-index: 10000;
+    box-sizing: border-box;
+    width: 528px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(33 35 41 / 12%) 0px 2px 12px;
+    border-radius: 8px;
+    height: fit-content;
+}
+
+div#content-wrap span{
+    display: block;
+}
+
+div.modal-background {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    inset: 0px;
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* 모달 내부 */
 
 
+.alarm-modal-body{
+    position: absolute;
+    border-radius: 16px;
+    width: 528px;
+    height: 410px;
+    top: -7px;
+    left: 50%;
+    transform: translate(-50%);
+    border-width: 0 7px 7px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0);
+    content: "";
+    background-color: #fff;
+    box-shadow: 0 32px 40px -2px rgba(10,22,70,.12), 0 0 5px rgba(10,22,70,.06);
+    border: 1px solid rgba(0,0,0,.1);
+}
 
+.alarm-modal-content-wrapper{
+    width: 730px;
+}
 
+.modal-alarm-title{
+    line-height: 34px;
+    letter-spacing: -.51px;
+    font-size: 24px;
+    font-weight: 700;
+    position: absolute;
+    top: 24px;
+    padding-left: 24px;
+    color: #212529;
+}
+
+.modal-alarm-btn-wrapper{
+    margin-top:  54px;
+    width: 100%;
+    height: 292px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    font-family: Pretendard,Apple SD Gothic Neo,Segoe UI,Malgun Gothic,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,-apple-system,blinkmacsystemfont,sans-serif;
+}
+
+.modal-alarm-btn{
+    display: block;
+    position: relative;
+    padding-top: 12px;
+    padding-right: 14px;
+    padding-bottom: 12px;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.message-image{
+    position: absolute;
+    left: 24px;
+    width: 20px;
+    height: 20px;
+}
+
+.modal-alarm-content-wrapper{
+    margin-left: 48px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+
+.modal-alarm-content-container{
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+}
+
+.modal-alarm-content-title{
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    flex-grow: 2;
+    color: #495057;
+}
+
+.modal-alarm-content-time{
+    display: block;
+    margin: 4px 0 0;
+    word-break: break-all;
+    color: #212529;
+    line-height: 20px;
+    letter-spacing: 0;
+    font-size: 12px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.modal-alarm-content-text{
+    line-height: 18px;
+    letter-spacing: 0;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 1px 0;
+    color: #495057;
+}
+
+.alram-list-link{
+    position: absolute;
+    bottom: 0;
+    z-index: 9999;
+    margin: 24px;
+    border: 0;
+    border-radius: 3px;
+    width: calc(100% - 48px);
+    padding: 9px 16px;
+    line-height: 1.45;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    border-color: #F3F4F6;
+    background-color: #F3F4F6;
+    color: #343a40;
+}
+
+.alram-list-link:hover{
+    border-color: #EAECEF;
+    background-color: #EAECEF;
+}
+
+.modal-alarm-btn-wrapper::-webkit-scrollbar{
+    background-color: #fff;
+    width: 10px;
+}
+
+.modal-alarm-btn-wrapper::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: #f2f4f6;
+    height: 30%;
+}
+
+.alarm-list-link-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #343a40
+}
+
+.alarm-list-link-title{
+
+}
 
 
 
