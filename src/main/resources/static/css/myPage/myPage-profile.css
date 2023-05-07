@@ -609,8 +609,8 @@ a.Mint {
     height: 100px;
 }
 .lecture-list-info{
-    float: right;
     width: 515px;
+    margin-left: 68px;
 }
 
 .lecture-list-month{
