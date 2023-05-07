@@ -954,9 +954,10 @@ button[class*='Button_button'] {
     vertical-align: top;
 }
 
-#paymentbutton:hover {
-    border-color: #00b2b2;
-    background-color: #00b2b2;
+#paymentbutton{
+    border-color: grey;
+    background-color: grey;
+    cursor: default;
 }
 
 /* ======================================media======================================= */
@@ -1305,6 +1306,7 @@ button[class*='Button_button'] {
     padding: 20px;
     border: 1px solid #888;
     width: 32%; 
+    min-width: 480px;
   }
   
   .modal-content h2 {
@@ -1412,4 +1414,18 @@ p.summary span{
     line-height: 36px;
     letter-spacing: -0.72px;
     color: #00b2b2;
+}
+
+.payment.coupon-wrapper p.confirm-coupon-used {
+    border: 0;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 36px;
+    letter-spacing: -0.72px;
+    color: #00b2b2;
+}
+
+.FloatingSection {
+    position: sticky;
+    top: 0;
 }
