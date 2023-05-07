@@ -1,5 +1,6 @@
 package com.app.babybaby.entity.file;
 
+import com.app.babybaby.entity.audit.Period;
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.announcement.Announcement;
 import com.app.babybaby.entity.board.event.Event;
@@ -13,9 +14,11 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter
+@Getter @ToString
+@Table(name = "TBL_FILE")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class File {
+public abstract class File extends Period {
 
     @Id
     @GeneratedValue
