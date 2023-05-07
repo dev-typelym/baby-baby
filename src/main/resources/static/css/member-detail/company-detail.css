@@ -24,7 +24,7 @@ body li, body ol, body ul {
     list-style: none;
 }
 .container{
-    padding: 0 24px;
+    padding: 24px 24px;
     position: relative;
     background-color: #f9fafb;
 }
@@ -732,4 +732,7 @@ body li, body ol, body ul {
     padding: 16px;
     word-break: keep-all;
     word-wrap: break-word;
+}
+.event-info-wrap{
+    width: 70%;
 }
