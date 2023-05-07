@@ -105,7 +105,7 @@ body {
 }
 
 .photo-thumbnail {
-    background-image: url('../../images/play/place.png');
+    /* background-image: url('../../images/play/place.png'); */
     border-radius: 8px;
     opacity: 1;
     position: absolute;
@@ -144,6 +144,7 @@ body {
     -webkit-box-orient: vertical;
     color: #212529;
     font-family: inherit;
+    height: 44px;
 }
 
 .list-writer {
