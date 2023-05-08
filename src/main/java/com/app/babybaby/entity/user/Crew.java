@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(exclude = {"kid", "guides"})
+@ToString(exclude = {"kid", "guide"})
 @Table(name = "TBL_CREW")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Crew{
@@ -22,11 +22,11 @@ public class Crew{
     private Kid kid;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "GUIDES_ID")
-    private Guide guides;
+    @JoinColumn(name = "GUIDE_ID")
+    private Guide guide;
 
-    public Crew(Kid kid, Guide guides) {
+    public Crew(Kid kid, Guide guide) {
         this.kid = kid;
-        this.guides = guides;
+        this.guide = guide;
     }
 }
