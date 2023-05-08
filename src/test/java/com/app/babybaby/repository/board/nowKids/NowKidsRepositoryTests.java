@@ -5,8 +5,10 @@ import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.user.User;
+import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
-import com.app.babybaby.type.CategoryType;
+import com.app.babybaby.repository.user.user.UserRepository;
+import com.app.babybaby.type.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,12 @@ public class NowKidsRepositoryTests {
     @Autowired
     NowKidsRepository nowKidsRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    EventRepository eventRepository;
+
     @Test
     public void saveTest(){
         Address address = new Address();
@@ -33,21 +41,27 @@ public class NowKidsRepositoryTests {
         address.setAddressSubDetail("dfa");
         address.setPostcode("12342132");
         Calendar calendar = new Calendar("이벤트1", CategoryType.AGRICULTURE, LocalDateTime.now(), LocalDateTime.now());
-
-//        Event event = new Event(10L, address, 10000L, "놀러가요", "안녕하세요", CategoryType.ART, calendar, );
+        Event event = new Event("Test1","test",10L,address,10000L,"TEST","TEst",CategoryType.MUSEUM, calendar);
+        User user = new User("you@naver.com", "정유찬", "1234", "Bool", "안녕하세요",
+                "01012341234", address, LocalDateTime.now(), UserType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED,CategoryType.AGRICULTURE);
+        userRepository.save(user);
+        eventRepository.save(event);
+        NowKids nowKids = new NowKids(event, user);
+        nowKidsRepository.save(nowKids);
     }
 
     @Test @Transactional
     public void findAllTest() {
-        List<NowKids> nowKidsList = nowKidsRepository.findAll();
-        for (NowKids nowKids : nowKidsList) {
-            log.info(nowKids.getEvent().toString());
-            log.info(nowKids.getGuide().toString());
-        }
+       log.info(nowKidsRepository.findAll().toString());
     }
 
     @Test
     public void findByIdTest(){
+        log.info(nowKidsRepository.findNowKidsEventByDate().toString());
+    }
+
+    @Test
+    public void findByIdTest2(){
         log.info(nowKidsRepository.findById(1L).toString());
     }
 

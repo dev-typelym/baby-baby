@@ -26,12 +26,20 @@ public class NowKids extends BoardInfo {
     @JoinColumn(name = "GUIDE_ID")
     private User guide;
 
-    public NowKids(Event event) {
+    public NowKids(Event event, User guide) {
         this.event = event;
+        this.guide = guide;
     }
 
-    public NowKids(String boardTitle, String boardContent, Event event) {
+    public NowKids(Long id, String boardTitle, String boardContent, Event event, User guide) {
+        super(id, boardTitle, boardContent);
+        this.event = event;
+        this.guide = guide;
+    }
+
+    public NowKids(String boardTitle, String boardContent, Event event, User guide) {
         super(boardTitle, boardContent);
         this.event = event;
+        this.guide = guide;
     }
 }
