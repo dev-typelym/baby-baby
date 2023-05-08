@@ -18,6 +18,7 @@ import javax.persistence.*;
 @Table(name = "TBL_FILE")
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public abstract class File extends Period {
 
     @Id
