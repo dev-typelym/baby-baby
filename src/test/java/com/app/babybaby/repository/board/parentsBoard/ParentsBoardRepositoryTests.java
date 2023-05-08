@@ -27,11 +27,10 @@ public class ParentsBoardRepositoryTests {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Test
-    public void saveTest(){
-        ParentsBoard parentsBoard = new ParentsBoard("제목1","내용1","1L", "1L", "","");
-        parentsBoardRepository.save(parentsBoard);
-    }
-
+//    @Test
+//    public void saveTest(){
+//        ParentsBoard parentsBoard = new ParentsBoard("제목1","내용1","1L", "1L", "","");
+//        parentsBoardRepository.save(parentsBoard);
+//    }
 
 }

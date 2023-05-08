@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface ParentsBoardQueryDsl {
 //    전체 목록
-    public Page<ParentsBoard> findAllWithPaging(Pageable pageable);
+//    public Page<ParentsBoard> findAllWithPaging(Pageable pageable);
 }

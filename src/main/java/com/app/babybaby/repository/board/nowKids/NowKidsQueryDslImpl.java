@@ -16,19 +16,4 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
     @Autowired
     private final JPAQueryFactory query;
 
-    @Override
-    public Page<ParentsBoard> findAllWithPaging(Pageable pageable) {
-        List<ParentsBoard> foundParentsBoard = query.select(QParentsBoard.parentsBoard)
-                .from(QParentsBoard.parentsBoard)
-                .orderBy(QParentsBoard.parentsBoard.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        Long count = query.select(QParentsBoard.parentsBoard.count())
-                .from(QParentsBoard.parentsBoard)
-                .fetchOne();
-
-        return new PageImpl<>(foundParentsBoard, pageable, count);
-    }
 }
