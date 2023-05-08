@@ -775,7 +775,7 @@ ul {
     padding-left: 37px;
     max-width: 68.01%;
     display: flex;
-    padding-top: 99px;
+    margin-top: -87px;
     /*     justify-content: center; */
 }
 /* 상세보기 부분 */
@@ -1217,6 +1217,7 @@ ul {
 /* 오른쪽 고정시키는 부분 */
 .wrapper {
     position: relative;
+    z-index: 300;
     height: 1000px; /* 스크롤이 생기도록 높이 설정 */
 }
 
