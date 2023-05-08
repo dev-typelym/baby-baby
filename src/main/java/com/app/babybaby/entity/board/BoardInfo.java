@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "TBL_BOARD_INFO")
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public abstract class BoardInfo extends Period {
     @Id
     @GeneratedValue
