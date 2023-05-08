@@ -734,3 +734,35 @@ button {
     z-index: 1;
     background-position: center;
 }
+
+.go-write {
+    width: 102px;
+    padding: 0 16px 0 8px;
+}
+
+.go-write-button {
+    width: 74px;
+    height: 74px;
+    border-radius: 8px;
+    margin-right: 20px;
+    padding: 0;
+    color: #212529;
+    font-weight: 400;
+    border-color: #f2f4f6;
+    background-color: #f2f4f6;
+    line-height: 1.5;
+    font-size: 12px;
+}
+
+.go-write-svg {
+    margin-right: 0;
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+}
+
+.go-write-sentence {
+    vertical-align: top;
+    display: inline-flex;
+    align-items: center;
+}
