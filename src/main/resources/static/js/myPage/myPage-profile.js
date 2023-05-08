@@ -6,6 +6,7 @@ const options = {
   defaultView: 'month',
   useFormPopup: true,
   useDetailPopup: true,
+  isReadOnly: true,
 
   gridSelection: {
     enableDblClick: false,
@@ -138,15 +139,16 @@ $("#today").click(() => {
     대신 모든 정보는 string으로 받아야함
     달력에 점을 넣기 위한 코드
     하루에 하나씩만 넣어줘도 됨
+    id는 무조거 달라야함
     *무조건 있어야함
 */
 calendar.createEvents([
   {
-    id: 'event1',
-    calendarId: 'cal2',
-    title: 'Weekly meeting',
-    start: '2023-05-05T09:00:00',
-    end: '2023-05-05T10:00:00',
+    id: 'event3',
+    calendarId: 'cal1',
+    title: 'Lunch appointment',
+    start: '2023-05-06T12:00:00',
+    end: '2023-05-06T13:00:00',
   },
   {
     id: 'event2',
@@ -154,28 +156,19 @@ calendar.createEvents([
     title: 'Lunch appointment',
     start: '2023-05-05T12:00:00',
     end: '2023-05-05T13:00:00',
-  },
-  {
-    id: 'event3',
-    calendarId: 'cal2',
-    title: 'Vacation',
-    start: '2022-06-08',
-    end: '2022-06-10',
-    isAllday: true,
-    category: 'allday',
-  },
+  }
 ]);
 
 
 
   /* 상세 일정을 띄워주는 코드 */
   $(document).ready(function() {
+    let monthText = $('.month').text().trim();
+      let monthMatch = monthText.match(/(\d+)월/);
+      let month = monthMatch ? parseInt(monthMatch[1]) : null;
 
     /* document.ready를 무조건 해야 이 클래스를 로드할 수 있음 */
     $('.toastui-calendar-daygrid-cell').on('click', function() {
-      let monthText = $('.month').text().trim();
-      let monthMatch = monthText.match(/(\d+)월/);
-      let month = monthMatch ? parseInt(monthMatch[1]) : null;
       let day = $(this).text();
       let passText = '';
       let now = new Date();
@@ -225,7 +218,9 @@ calendar.createEvents([
       /* 한국어로 변경 코드 끝 */
 
 
+
       if(end < now ){
+        /* status 받기? */
         passText = '이미 지나간 체험학습 입니다'
       } else {
         passText = '현재 진행가능한 체험학습 입니다'
@@ -248,16 +243,16 @@ calendar.createEvents([
 
 
       /* 클릭시마다 파란색으로 바뀌기 */
-      for(let i =0; i< 30;i++){
+      for(let i =0; i< 37;i++){
         clickedDay = $($('.toastui-calendar-daygrid-cell').children().children().children()[i])
-        console.log(clickedDay.hasClass('toastui-calendar-weekday-grid-date-decorator'))
         if(clickedDay.hasClass('toastui-calendar-weekday-grid-date-decorator')){
           clickedDay.removeClass('toastui-calendar-weekday-grid-date-decorator')
           clickedDay.css('color', 'black')
+          $(this).children().children().children().addClass('toastui-calendar-weekday-grid-date-decorator')
+          $(this).children().children().children().css('color', 'white')
         }
+        
       }
-      $(this).children().children().children().addClass('toastui-calendar-weekday-grid-date-decorator')
-      $(this).children().children().children().css('color', 'white')
 
       let eventAll = 
       `
