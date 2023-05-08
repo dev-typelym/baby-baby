@@ -127,7 +127,7 @@ imageList.forEach((e, i) => {
             참여인원 보기
                 <button type="button" id="table${i}" class="table-button">
                     <span>
-                        <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="nav-arrow-icon" aria-hidden="true" style="width: 20px; height: 20px; margin-top: 3px; margin-left: 5px;">
+                        <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="nav-arrow-icon" aria-hidden="true" style="width: 18px; height: 20px; margin-left: 5px;">
                             <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
                         </svg>
                     </span>
