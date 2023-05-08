@@ -104,7 +104,7 @@ $("#resume").on('change', function(){
     if(!emailRegex.test(email)){
         $(".err-email").html("잘못된 이메일 형식입니다")
     } else{
-        $(".err-email").hide();
+        $(".err-email").html();
     }
   })
 
@@ -114,7 +114,7 @@ $("#resume").on('change', function(){
     if(value == ''){
         $('.err-nickname').html("변경할 닉네임을 넣어주세요")
     } else{
-        $('.err-nickname').hide()
+        $('.err-nickname').html()
     }
   })
 
