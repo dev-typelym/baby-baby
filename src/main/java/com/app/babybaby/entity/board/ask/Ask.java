@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = "user")
+@ToString(callSuper = true, exclude = "member")
 @Table(name = "TBL_ASK")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,8 +30,8 @@ public class Ask extends BoardInfo {
     private ProcessType askStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private Member user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
     public Ask(ProcessType askStatus) {
         this.askStatus = askStatus;

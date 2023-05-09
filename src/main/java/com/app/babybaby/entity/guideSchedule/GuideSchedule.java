@@ -8,7 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(exclude = {"user", "event", "calendar"})
+@Getter @ToString(exclude = {"member", "event", "calendar"})
 @Table(name = "TBL_GUIDE_SCHEDULE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GuideSchedule {
@@ -27,12 +27,12 @@ public class GuideSchedule {
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private Member user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    public GuideSchedule(Calendar calendar, Event event, Member user) {
+    public GuideSchedule(Calendar calendar, Event event, Member member) {
         this.calendar = calendar;
         this.event = event;
-        this.user = user;
+        this.member = member;
     }
 }

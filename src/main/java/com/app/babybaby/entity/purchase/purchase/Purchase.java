@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@ToString(exclude = {"coupon", "event", "user"})
+@ToString(exclude = {"coupon", "event", "member"})
 @Table(name = "TBL_PURCHASE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
@@ -43,15 +43,15 @@ public class Purchase {
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private Member user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    public Purchase(LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, Event event, Member user) {
+    public Purchase(LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, Event event, Member member) {
         this.purchaseRegisterDate = purchaseRegisterDate;
         this.purchaseCount = purchaseCount;
         this.purchasePrice = purchasePrice;
         this.coupon = coupon;
         this.event = event;
-        this.user = user;
+        this.member = member;
     }
 }

@@ -23,11 +23,11 @@ public class NowKidsLike {
     private NowKids nowKids;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private Member user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    public NowKidsLike(NowKids nowKids, Member user) {
+    public NowKidsLike(NowKids nowKids, Member member) {
         this.nowKids = nowKids;
-        this.user = user;
+        this.member = member;
     }
 }

@@ -11,25 +11,25 @@ import java.time.LocalDateTime;
 @ToString
 public class MemberDTO {
     private Long id;
-    private String  userEmail;
-    private String userName;
-    private String userPassword;
-    private String userNickname;
-    private String userHiSentence;
-    private String userPhone;
-    private Address userAddress;
-    private String userProfileOriginalName;
-    private String userProfileUUID;
-    private String userProfilePath;
-    private LocalDateTime userRegisterDate;
+    private String  memberEmail;
+    private String memberName;
+    private String memberPassword;
+    private String memberNickname;
+    private String memberHiSentence;
+    private String memberPhone;
+    private Address memberAddress;
+    private String memberProfileOriginalName;
+    private String memberProfileUUID;
+    private String memberProfilePath;
+    private LocalDateTime memberRegisterDate;
     private MemberType memberType;
-    private AcceptanceType userGuideStatus;
-    private SleepType userSleep;
-    private GuideType userGuideType;
-    private CategoryType userGuideInterest;
-    private String userResumeFilePath;
-    private String userResumeFileUUID;
-    private String userResumeFileOriginalName;
+    private AcceptanceType memberGuideStatus;
+    private SleepType memberSleep;
+    private GuideType memberGuideType;
+    private CategoryType memberGuideInterest;
+    private String memberResumeFilePath;
+    private String memberResumeFileUUID;
+    private String memberResumeFileOriginalName;
 
 
 

@@ -41,7 +41,7 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
     public List<Kid> findAllKidsByGeneralGuideId_QueryDsl(Long sessionId) {
         return query.select(kid)
                 .from(guide)
-                .join(guide.crews, crew)
+//                .join(guide.crews, crew)
                 .join(crew.kid, kid)
                 .where((guide.generalGuide.id.eq(sessionId)).or((guide.adminGuide.id).eq(sessionId)))
                 .fetch();

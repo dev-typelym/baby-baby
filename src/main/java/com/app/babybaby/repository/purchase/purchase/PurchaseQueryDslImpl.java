@@ -18,17 +18,17 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Slice<PurchaseDTO> findAllByUserWithDetail_QueryDSL(Pageable pageable, Member user) {
+    public Slice<PurchaseDTO> findAllByUserWithDetail_QueryDSL(Pageable pageable, Member member) {
         List<PurchaseDTO> purchaseDTOList = query.select(new QPurchaseDTO(
                 purchase.id,
                 purchase.purchaseRegisterDate,
                 purchase.purchaseCount,
                 purchase.purchasePrice,
                 purchase.event.boardTitle,
-                purchase.event.company.userName
+                purchase.event.company.memberName
         ))
                 .from(purchase)
-                .where(purchase.user.eq(user))
+                .where(purchase.member.eq(member))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

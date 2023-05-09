@@ -15,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = {"event", "user"})
+@ToString(callSuper = true, exclude = {"event", "member"})
 @Table(name = "TBL_PARENTS_BOARD")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -29,23 +29,23 @@ public class ParentsBoard extends BoardInfo {
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private Member user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parentsBoard")
     private List<ParentsBoardReply> parentsBoardReplies;
 
-    public ParentsBoard(Event event, Member user, List<ParentsBoardReply> parentsBoardReplies) {
+    public ParentsBoard(Event event, Member member, List<ParentsBoardReply> parentsBoardReplies) {
         this.event = event;
-        this.user = user;
+        this.member = member;
         this.parentsBoardReplies = parentsBoardReplies;
     }
 
 
-    public ParentsBoard(String boardTitle, String boardContent, Event event, Member user, List<ParentsBoardReply> parentsBoardReplies) {
+    public ParentsBoard(String boardTitle, String boardContent, Event event, Member member, List<ParentsBoardReply> parentsBoardReplies) {
         super(boardTitle, boardContent);
         this.event = event;
-        this.user = user;
+        this.member = member;
         this.parentsBoardReplies = parentsBoardReplies;
     }
 }

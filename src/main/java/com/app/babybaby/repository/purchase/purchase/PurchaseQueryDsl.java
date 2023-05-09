@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
 public interface PurchaseQueryDsl {
-    public Slice<PurchaseDTO> findAllByUserWithDetail_QueryDSL(Pageable pageable, Member user);
+    public Slice<PurchaseDTO> findAllByUserWithDetail_QueryDSL(Pageable pageable, Member member);
 }

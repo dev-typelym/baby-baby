@@ -23,11 +23,11 @@ public class EventLike {
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private Member user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    public EventLike(Event event, Member user) {
+    public EventLike(Event event, Member member) {
         this.event = event;
-        this.user = user;
+        this.member = member;
     }
 }

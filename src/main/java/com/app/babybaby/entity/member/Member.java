@@ -11,12 +11,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-//@Table(
-//        name = "TBL_USER",
-//        uniqueConstraints = {
-//                @UniqueConstraint(columnNames = {"userEmail", "userNickname", "userPhone"})
-//        }
-//)
 
 @Entity
 @Getter @ToString
@@ -77,12 +71,12 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private CategoryType memberGuideInterest;
 
-    private String memberResumeFilePath;
-    @Column(name = "MEMBER_RESUME_UUID")
-    private String memberResumeFileUUID;
-    private String memberResumeFileOriginalName;
+    private String memberFilePath;
+    @Column(name = "MEMBER_FILE_UUID")
+    private String memberFileUUID;
+    private String memberFileOriginalName;
 
-    public Member(String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, LocalDateTime memberRegisterDate, memberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest) {
+    public Member(String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName) {
         this.memberEmail = memberEmail;
         this.memberName = memberName;
         this.memberPassword = memberPassword;
@@ -90,11 +84,17 @@ public class Member {
         this.memberHiSentence = memberHiSentence;
         this.memberPhone = memberPhone;
         this.memberAddress = memberAddress;
+        this.memberProfileOriginalName = memberProfileOriginalName;
+        this.memberProfileUUID = memberProfileUUID;
+        this.memberProfilePath = memberProfilePath;
         this.memberRegisterDate = memberRegisterDate;
         this.memberType = memberType;
         this.memberGuideStatus = memberGuideStatus;
         this.memberSleep = memberSleep;
         this.memberGuideType = memberGuideType;
         this.memberGuideInterest = memberGuideInterest;
+        this.memberFilePath = memberFilePath;
+        this.memberFileUUID = memberFileUUID;
+        this.memberFileOriginalName = memberFileOriginalName;
     }
 }

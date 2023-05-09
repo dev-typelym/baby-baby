@@ -1,7 +1,7 @@
 package com.app.babybaby.repository.purchase.purchase;
 
 import com.app.babybaby.entity.purchase.PurchaseDTO;
-import com.app.babybaby.repository.user.user.UserRepository;
+import com.app.babybaby.repository.member.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class PurchaseRepositoryTests {
     @Autowired
     PurchaseRepository purchaseRepository;
     @Autowired
-    private UserRepository userRepository;
+    private MemberRepository userRepository;
 
     @Test
     public void findAllByUserWithDetail_QueryDSL_Test() {

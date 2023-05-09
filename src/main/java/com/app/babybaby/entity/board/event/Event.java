@@ -42,7 +42,7 @@ public class Event extends BoardInfo {
     @JoinColumn(name = "COMPANY_ID")
     private Member company;
 
-    public Event(Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar, User company) {
+    public Event(Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar, Member company) {
         this.eventRecruitCount = eventRecruitCount;
         this.eventLocation = eventLocation;
         this.eventPrice = eventPrice;
@@ -53,7 +53,7 @@ public class Event extends BoardInfo {
     }
 
 
-    public Event(String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar, User company) {
+    public Event(String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar, Member company) {
         super(boardTitle, boardContent);
         this.eventRecruitCount = eventRecruitCount;
         this.eventLocation = eventLocation;
