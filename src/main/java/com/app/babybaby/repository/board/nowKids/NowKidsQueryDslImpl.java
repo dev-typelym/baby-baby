@@ -2,6 +2,9 @@ package com.app.babybaby.repository.board.nowKids;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
+import com.app.babybaby.entity.file.File;
+import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
+import com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile;
 import com.app.babybaby.entity.member.*;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +14,7 @@ import java.util.stream.Collectors;
 
 import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
+import static com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile.nowKidsFile;
 import static com.app.babybaby.entity.member.QCrew.crew;
 import static com.app.babybaby.entity.member.QGuide.guide;
 import static com.app.babybaby.entity.member.QKid.kid;
@@ -32,16 +36,17 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
     public List<Event> findEventInfoByGuideId_QueryDsl(Long generalGuideId) {
         return query.select(event)
                 .from(guide)
+                .orderBy(event.id.desc())
                 .join(guide.event, event)
                 .where(guide.generalGuide.id.eq(generalGuideId))
                 .fetch();
     }
 
-    /* GeneralGuide의 아이디로 참여자 목록 가져오기 */
+    /* 세션에 있는 아이디로 참여자 목록 가져오기 */
     public List<Kid> findAllKidsByGeneralGuideId_QueryDsl(Long sessionId) {
         return query.select(kid)
                 .from(guide)
-//                .join(guide.crews, crew)
+                .join(guide.crews, crew)
                 .join(crew.kid, kid)
                 .where((guide.generalGuide.id.eq(sessionId)).or((guide.adminGuide.id).eq(sessionId)))
                 .fetch();
@@ -73,5 +78,25 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .map(NowKids::getGuide)
                 .collect(Collectors.toList());
     }
+
+    /* 해당 보드의 모든 파일 가져오기  수정필요*/
+    public List<NowKidsFile> findAllFileNowKidsById_QueryDsl(Long nowKidsId){
+        return query.selectFrom(nowKidsFile)
+                .where(nowKidsFile.nowKids.id.eq(nowKidsId))
+                .orderBy(nowKidsFile.id.desc())
+                .fetch();
+    }
+    
+    /* 한방쿼리 실패 */
+//    public List<NowKids> findAllInfo(){
+//        return query.select(nowKids)
+//                .from(nowKids)
+//                .orderBy(nowKids.id.desc())
+//                .join(nowKids.guide).fetchJoin()
+//                .join(nowKids.event).fetchJoin()
+//                .fetch();
+//
+//    }
+
 
 }
