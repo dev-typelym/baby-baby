@@ -71,11 +71,17 @@ public class NowKidsRepositoryTests {
         address.setAddressSubDetail("dfa");
         address.setPostcode("12342132");
         for (int i = 0; i < 50; i++) {
-            Calendar calendar = new Calendar("이벤트1", CategoryType.AGRICULTURE, LocalDateTime.now(), LocalDateTime.now());
-            Event event = new Event("Test" + (i + 1), "test", 10L, address, 10000L, "TEST", "TEst", CategoryType.MUSEUM, calendar);
             String uniqueNickname = "Bool" + i;
+<<<<<<< HEAD
             Member user = new Member("you" + i + "@naver.com", "정유찬", "1234", uniqueNickname, "안녕하세요",
                     "0101234123" + i, address, LocalDateTime.now(), MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED, CategoryType.AGRICULTURE);
+=======
+            User user = new User("you" + i + "@naver.com", "정유찬", "1234", uniqueNickname, "안녕하세요",
+                    "0101234123" + i, address, LocalDateTime.now(), UserType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED, CategoryType.AGRICULTURE);
+            Calendar calendar = new Calendar("이벤트1", CategoryType.AGRICULTURE, LocalDateTime.now(), LocalDateTime.now());
+//            public Event(String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar) {
+            Event event = new Event("Test" + (i + 1), "test" +(i+1), 10L, address, 10000L, "TEST", CategoryType.MUSEUM, calendar, user);
+>>>>>>> 691d186b4f72fd5f518fc62d62cd89117ec840c6
             userRepository.save(user);
             eventRepository.save(event);
             NowKids nowKids = new NowKids(event, user);
@@ -99,7 +105,7 @@ public class NowKidsRepositoryTests {
     public void kidsKidsSaveTest(){
         Optional<Member> parent = userRepository.findById(452L);
         for (int i = 0; i < 10; i++){
-            Kid kid = new Kid("김동한" + i, 4L + i, GenderType.MAN, parent.get());
+            Kid kid = new Kid("김동한" + i, 4 + i, GenderType.MAN, parent.get());
             kidRepository.save(kid);
         }
     }

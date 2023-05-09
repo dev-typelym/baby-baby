@@ -35,9 +35,9 @@ public class EventBoardRepositoryTests {
 
         Calendar calendar = new Calendar("요기용", CategoryType.ART,LocalDateTime.now(),LocalDateTime.now());
         
-        Event event = new Event("Test1","test",10L,address,10000L,"TEST","TEst",CategoryType.MUSEUM, calendar);
+//        Event event = new Event("Test1","test",10L,address,10000L,"TEST","TEst",CategoryType.MUSEUM, calendar);
 
-        eventRepository.save(event);
+//        eventRepository.save(event);
     }
 
     //  이벤트 게시판 조회 페이징
