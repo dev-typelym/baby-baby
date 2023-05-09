@@ -29,9 +29,6 @@ public class Event extends BoardInfo {
     private Long eventPrice;
 
     @NotNull
-    private String eventContent;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
     private CategoryType category;
 
@@ -42,23 +39,21 @@ public class Event extends BoardInfo {
     @JoinColumn(name = "COMPANY_ID")
     private Member company;
 
-    public Event(Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar, Member company) {
+    public Event(Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, Calendar calendar, Member company) {
         this.eventRecruitCount = eventRecruitCount;
         this.eventLocation = eventLocation;
         this.eventPrice = eventPrice;
-        this.eventContent = eventContent;
         this.category = category;
         this.calendar = calendar;
         this.company = company;
     }
 
 
-    public Event(String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar, Member company) {
+    public Event(String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, Calendar calendar, Member company) {
         super(boardTitle, boardContent);
         this.eventRecruitCount = eventRecruitCount;
         this.eventLocation = eventLocation;
         this.eventPrice = eventPrice;
-        this.eventContent = eventContent;
         this.category = category;
         this.calendar = calendar;
         this.company = company;

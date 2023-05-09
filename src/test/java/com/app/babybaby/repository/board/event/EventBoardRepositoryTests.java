@@ -47,7 +47,7 @@ public class EventBoardRepositoryTests {
 
         Calendar calendar = new Calendar("요기용", CategoryType.ART,LocalDateTime.now(),LocalDateTime.now());
 
-        Event event = new Event(10L, address, 100000L, "안녕?", CategoryType.MUSEUM,calendar,member);
+        Event event = new Event(10L, address, 100000L, CategoryType.MUSEUM,calendar,member);
         eventRepository.save(event);
     }
 
