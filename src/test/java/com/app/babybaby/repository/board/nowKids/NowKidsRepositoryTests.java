@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @SpringBootTest
@@ -87,10 +88,10 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void nowKidsFileSaveTest(){
-        Optional<NowKids> nowKids = nowKidsRepository.findById(455L);
-        NowKidsFile nowKidsFile = new NowKidsFile("Mainfdsafdsa23", "Mainfdsafdsa", "123213", FileType.MAIN, nowKids.get());
-        NowKidsFile nowKidsFile2 = new NowKidsFile("Subfdsafdsa32", "Subfdsafdsa1", "123213", FileType.SUBS, nowKids.get());
-        NowKidsFile nowKidsFile3 = new NowKidsFile("Subfdsafdsa2", "Subfdsafdsa2", "123213", FileType.SUBS, nowKids.get());
+        NowKids nowKids = nowKidsRepository.findById(4L).get();
+        NowKidsFile nowKidsFile = new NowKidsFile("Mainfdsafdsa23", "Mainfdsafdsa", "123213", FileType.MAIN, nowKids);
+        NowKidsFile nowKidsFile2 = new NowKidsFile("Subfdsafdsa32", "Subfdsafdsa1", "123213", FileType.SUBS, nowKids);
+        NowKidsFile nowKidsFile3 = new NowKidsFile("Subfdsafdsa2", "Subfdsafdsa2", "123213", FileType.SUBS, nowKids);
 
         nowKidsFileFileRepository.save(nowKidsFile);
         nowKidsFileFileRepository.save(nowKidsFile2);
@@ -99,7 +100,7 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void kidsKidsSaveTest(){
-        Optional<Member> parent = userRepository.findById(452L);
+        Optional<Member> parent = userRepository.findById(1L);
         for (int i = 0; i < 10; i++){
             Kid kid = new Kid("김동한" + i, 4 + i, GenderType.MAN, parent.get());
             kidRepository.save(kid);
@@ -108,10 +109,10 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void  guideInsertTest(){
-        Member guide = userRepository.findById(456L).get();
-        Member adminGuide = userRepository.findById(460L).get();
-        Optional<Calendar> calendar = calendarRepository.findById(454L);
-        Optional<Event> event = eventRepository.findById(453L);
+        Member guide = userRepository.findById(21L).get();
+        Member adminGuide = userRepository.findById(1L).get();
+        Optional<Calendar> calendar = calendarRepository.findById(3L);
+        Optional<Event> event = eventRepository.findById(2L);
         GuideSchedule guideSchedule = new GuideSchedule(calendar.get(), event.get(), guide);
         List<Crew> crews = crewRepository.findAll();
         Guide guide1 = new Guide(event.get(), guideSchedule, guide ,adminGuide, crews);
@@ -167,7 +168,25 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void findAllKidsByGeneralGuideId_QueryDslTest(){
-        log.info(nowKidsRepository.findAllKidsByGeneralGuideId_QueryDsl(456L).toString());
+        log.info(nowKidsRepository.findAllKidsByGeneralGuideId_QueryDsl(1L).toString());
     }
+
+    /* 해당 보드의 모든 파일 가져오기*/
+    @Test
+    public void findAllFileInNowKidsTest(){
+        log.info(nowKidsRepository.findAllFileNowKidsById_QueryDsl(4L).toString());
+    }
+
+    
+    /* N+1 문제 따라서 이건 DTO에서 작업한다, */
+//    @Test
+//    public void findAllInfoTest(){
+//        log.info(nowKidsRepository.findAllInfo().stream()
+//                .map(NowKids::toString)
+//                .collect(Collectors.toList())
+//                .toString()
+//        );
+//    }
+
 
 }
