@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+    <html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../static/images/myPage/favicon.png">
+    <title>우리 아이</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/css/myPage/myPage-like.css" />
+    <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon2.ico">
+  </head>
+  <body>
+    <main>
+        <div class="main-wrapper">
+            <div class="main-contents">
+                <p class="head-text">우리 아이</p>
+                <div class="follow-nav">
+                    <!-- <ul class="nav-lists">
+                    <li class="follow">
+                        <button class="follow-nav-btn nav-btn">
+                        <span>놀러가요!</span>
+                        </button>
+                    </li>
+                    <li class="following">
+                        <button class="following-nav-btn nav-btn active">
+                        <span>지금 우리 아이들은?</span>
+                        </button>
+                    </li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+<div class="main-wrapper-content">
+    <!-- 모달창 -->
+    <div class="collection-container">
+        <div class="collection-table">
+
+             <!-- 게시글 1개 시작 -->
+             <div role="presentation" class="instance">
+                <a class="item" href="">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail-list">
+                            <div class="photo-thumbnail"></div>
+                            <!-- 사진 div -->
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <div class="list-title">
+                            타이틀
+                        </div>
+                        <div class="for-price-full-contain">
+                            <div class="for-price-wrap">
+                                <div class="list-writer">삼성</div>
+                                <div class="list-date-container">
+                                    <span class="print-data"
+                                        >역삼역 4번 출구</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div clsas="list-footer">
+                            <div class="list-footer-container">
+                                <div class="loca-status-container">
+                                    <div class="status-community">
+                                        <i class="second-confirm"></i>
+                                        <span class="ing">
+                                            <span class="event-start-day"
+                                                >2023-04-12</span
+                                            >
+                                            <div class="like-count-container">
+                                                <div class="people-icon"></div>
+                                                <span class="like-count"
+                                                    >10</span
+                                                >
+                                                <span>명 모집</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button type="button" class="wish-button" aria-pressed="false">
+                    <svg
+                        viewBox="0 0 32 32"
+                        focusable="false"
+                        role="presentation"
+                        class="wish-button-svg"
+                        aria-hidden="true"
+                    >
+                        <path style="fill:red"
+                            d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- 게시글 1개 끝 -->
+
+            <!-- 게시글 1개 시작 -->
+            <div role="presentation" class="instance">
+                <a class="item" href="">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail-list">
+                            <div class="photo-thumbnail"></div>
+                            <!-- 사진 div -->
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <div class="list-title">
+                            타이틀
+                        </div>
+                        <div class="for-price-full-contain">
+                            <div class="for-price-wrap">
+                                <div class="list-writer">삼성</div>
+                                <div class="list-date-container">
+                                    <span class="print-data"
+                                        >역삼역 4번 출구</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div clsas="list-footer">
+                            <div class="list-footer-container">
+                                <div class="loca-status-container">
+                                    <div class="status-community">
+                                        <i class="second-confirm"></i>
+                                        <span class="ing">
+                                            <span class="event-start-day"
+                                                >2023-04-12</span
+                                            >
+                                            <div class="like-count-container">
+                                                <div class="people-icon"></div>
+                                                <span class="like-count"
+                                                    >10</span
+                                                >
+                                                <span>명 모집</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button type="button" class="wish-button" aria-pressed="false">
+                    <svg
+                        viewBox="0 0 32 32"
+                        focusable="false"
+                        role="presentation"
+                        class="wish-button-svg"
+                        aria-hidden="true"
+                    >
+                        <path style="fill:red"
+                            d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- 게시글 1개 끝 -->
+
+            <!-- 게시글 1개 시작 -->
+            <div role="presentation" class="instance">
+                <a class="item" href="">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail-list">
+                            <div class="photo-thumbnail"></div>
+                            <!-- 사진 div -->
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <div class="list-title">
+                            타이틀
+                        </div>
+                        <div class="for-price-full-contain">
+                            <div class="for-price-wrap">
+                                <div class="list-writer">삼성</div>
+                                <div class="list-date-container">
+                                    <span class="print-data"
+                                        >역삼역 4번 출구</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div clsas="list-footer">
+                            <div class="list-footer-container">
+                                <div class="loca-status-container">
+                                    <div class="status-community">
+                                        <i class="second-confirm"></i>
+                                        <span class="ing">
+                                            <span class="event-start-day"
+                                                >2023-04-12</span
+                                            >
+                                            <div class="like-count-container">
+                                                <div class="people-icon"></div>
+                                                <span class="like-count"
+                                                    >10</span
+                                                >
+                                                <span>명 모집</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button type="button" class="wish-button" aria-pressed="false">
+                    <svg
+                        viewBox="0 0 32 32"
+                        focusable="false"
+                        role="presentation"
+                        class="wish-button-svg"
+                        aria-hidden="true"
+                    >
+                        <path style="fill:red"
+                            d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- 게시글 1개 끝 -->
+
+            <!-- 게시글 1개 시작 -->
+            <div role="presentation" class="instance">
+                <a class="item" href="">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail-list">
+                            <div class="photo-thumbnail"></div>
+                            <!-- 사진 div -->
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <div class="list-title">
+                            타이틀
+                        </div>
+                        <div class="for-price-full-contain">
+                            <div class="for-price-wrap">
+                                <div class="list-writer">삼성</div>
+                                <div class="list-date-container">
+                                    <span class="print-data"
+                                        >역삼역 4번 출구</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div clsas="list-footer">
+                            <div class="list-footer-container">
+                                <div class="loca-status-container">
+                                    <div class="status-community">
+                                        <i class="second-confirm"></i>
+                                        <span class="ing">
+                                            <span class="event-start-day"
+                                                >2023-04-12</span
+                                            >
+                                            <div class="like-count-container">
+                                                <div class="people-icon"></div>
+                                                <span class="like-count"
+                                                    >10</span
+                                                >
+                                                <span>명 모집</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button type="button" class="wish-button" aria-pressed="false">
+                    <svg
+                        viewBox="0 0 32 32"
+                        focusable="false"
+                        role="presentation"
+                        class="wish-button-svg"
+                        aria-hidden="true"
+                    >
+                        <path style="fill:red"
+                            d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- 게시글 1개 끝 -->
+
+            <!-- 게시글 1개 시작 -->
+            <div role="presentation" class="instance">
+                <a class="item" href="">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail-list">
+                            <div class="photo-thumbnail"></div>
+                            <!-- 사진 div -->
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <div class="list-title">
+                            타이틀
+                        </div>
+                        <div class="for-price-full-contain">
+                            <div class="for-price-wrap">
+                                <div class="list-writer">삼성</div>
+                                <div class="list-date-container">
+                                    <span class="print-data"
+                                        >역삼역 4번 출구</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div clsas="list-footer">
+                            <div class="list-footer-container">
+                                <div class="loca-status-container">
+                                    <div class="status-community">
+                                        <i class="second-confirm"></i>
+                                        <span class="ing">
+                                            <span class="event-start-day"
+                                                >2023-04-12</span
+                                            >
+                                            <div class="like-count-container">
+                                                <div class="people-icon"></div>
+                                                <span class="like-count"
+                                                    >10</span
+                                                >
+                                                <span>명 모집</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button type="button" class="wish-button" aria-pressed="false">
+                    <svg
+                        viewBox="0 0 32 32"
+                        focusable="false"
+                        role="presentation"
+                        class="wish-button-svg"
+                        aria-hidden="true"
+                    >
+                        <path style="fill:red"
+                            d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- 게시글 1개 끝 -->
+
+            <!-- 게시글 1개 시작 -->
+            <div role="presentation" class="instance">
+                <a class="item" href="">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail-list">
+                            <div class="photo-thumbnail"></div>
+                            <!-- 사진 div -->
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <div class="list-title">
+                            타이틀
+                        </div>
+                        <div class="for-price-full-contain">
+                            <div class="for-price-wrap">
+                                <div class="list-writer">삼성</div>
+                                <div class="list-date-container">
+                                    <span class="print-data"
+                                        >역삼역 4번 출구</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div clsas="list-footer">
+                            <div class="list-footer-container">
+                                <div class="loca-status-container">
+                                    <div class="status-community">
+                                        <i class="second-confirm"></i>
+                                        <span class="ing">
+                                            <span class="event-start-day"
+                                                >2023-04-12</span
+                                            >
+                                            <div class="like-count-container">
+                                                <div class="people-icon"></div>
+                                                <span class="like-count"
+                                                    >10</span
+                                                >
+                                                <span>명 모집</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button type="button" class="wish-button" aria-pressed="false">
+                    <svg
+                        viewBox="0 0 32 32"
+                        focusable="false"
+                        role="presentation"
+                        class="wish-button-svg"
+                        aria-hidden="true"
+                    >
+                        <path style="fill:red"
+                            d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- 게시글 1개 끝 -->
+
+            <!-- 게시글 1개 시작 -->
+            <div role="presentation" class="instance">
+                <a class="item" href="">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail-list">
+                            <div class="photo-thumbnail"></div>
+                            <!-- 사진 div -->
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <div class="list-title">
+                            타이틀
+                        </div>
+                        <div class="for-price-full-contain">
+                            <div class="for-price-wrap">
+                                <div class="list-writer">삼성</div>
+                                <div class="list-date-container">
+                                    <span class="print-data"
+                                        >역삼역 4번 출구</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div clsas="list-footer">
+                            <div class="list-footer-container">
+                                <div class="loca-status-container">
+                                    <div class="status-community">
+                                        <i class="second-confirm"></i>
+                                        <span class="ing">
+                                            <span class="event-start-day"
+                                                >2023-04-12</span
+                                            >
+                                            <div class="like-count-container">
+                                                <div class="people-icon"></div>
+                                                <span class="like-count"
+                                                    >10</span
+                                                >
+                                                <span>명 모집</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button type="button" class="wish-button" aria-pressed="false">
+                    <svg
+                        viewBox="0 0 32 32"
+                        focusable="false"
+                        role="presentation"
+                        class="wish-button-svg"
+                        aria-hidden="true"
+                    >
+                        <path style="fill:red"
+                            d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- 게시글 1개 끝 -->
+
+        </div>
+    </div>
+</div>
+    </main>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <script src="../../static/js/myPage/mypage-like.js"></script>
+</html>
