@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = {"company"})
+@ToString(callSuper = true)
 @Table(name = "TBL_EVENT")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -35,7 +35,7 @@ public class Event extends BoardInfo {
     @Enumerated(EnumType.STRING)
     private CategoryType category;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Calendar calendar;
 
     @ManyToOne(fetch = FetchType.LAZY)
