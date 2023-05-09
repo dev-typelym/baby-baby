@@ -4,7 +4,7 @@ import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
 import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.entity.reply.ParentsBoardReply;
+import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
