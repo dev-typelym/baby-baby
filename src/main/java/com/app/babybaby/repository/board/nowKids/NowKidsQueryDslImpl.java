@@ -40,12 +40,12 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
     }
 
     /* GeneralGuide의 아이디로 참여자 목록 가져오기 */
-    public List<Kid> findAllKidsByGeneralGuideId_QueryDsl(Long generalGuideId) {
+    public List<Kid> findAllKidsByGeneralGuideId_QueryDsl(Long sessionId) {
         return query.select(kid)
                 .from(guide)
                 .join(guide.crews, crew)
                 .join(crew.kid, kid)
-                .where(guide.generalGuide.id.eq(generalGuideId))
+                .where((guide.generalGuide.id.eq(sessionId)).or((guide.adminGuide.id).eq(sessionId)))
                 .fetch();
     }
 

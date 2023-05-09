@@ -22,6 +22,6 @@ public interface NowKidsQueryDsl {
     public List<Event> findEventInfoByGuideId_QueryDsl(Long guideId);
 
     /* GeneralGuide의 아이디로 참여자 목록 가져오기 */
-    public List<Kid> findAllKidsByGeneralGuideId_QueryDsl(Long generalGuideId);
+    public List<Kid> findAllKidsByGeneralGuideId_QueryDsl(Long sessionId);
 
 }
