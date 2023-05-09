@@ -1,7 +1,7 @@
 package com.app.babybaby.entity.alert.alertFollow;
 
 import com.app.babybaby.entity.alert.Alert;
-import com.app.babybaby.entity.user.Follow;
+import com.app.babybaby.entity.member.Follow;
 import com.app.babybaby.type.AlertType;
 import lombok.AccessLevel;
 import lombok.Getter;

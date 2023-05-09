@@ -1,7 +1,6 @@
 package com.app.babybaby.repository.board.event;
 
 import com.app.babybaby.entity.board.event.Event;
-import com.app.babybaby.entity.board.event.QEvent;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;

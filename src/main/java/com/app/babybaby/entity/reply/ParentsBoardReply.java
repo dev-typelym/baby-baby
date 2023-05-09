@@ -2,7 +2,7 @@ package com.app.babybaby.entity.reply;
 
 import com.app.babybaby.entity.audit.Period;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(exclude = {"user", "parentsBoard"})
+@ToString(exclude = {"member", "parentsBoard"})
 @Table(name = "TBL_PARENTS_BOARD_REPLY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ParentsBoardReply extends Period {
@@ -25,12 +25,12 @@ public class ParentsBoardReply extends Period {
     private ParentsBoard parentsBoard;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    public ParentsBoardReply(String parentsBoardReplyContent, ParentsBoard parentsBoard, User user) {
+    public ParentsBoardReply(String parentsBoardReplyContent, ParentsBoard parentsBoard, Member member) {
         ParentsBoardReplyContent = parentsBoardReplyContent;
         this.parentsBoard = parentsBoard;
-        this.user = user;
+        this.member = member;
     }
 }

@@ -1,6 +1,6 @@
 package com.app.babybaby.entity.purchase.coupon;
 
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.CouponStatus;
 import com.app.babybaby.type.CouponType;
 import com.sun.istack.NotNull;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(exclude = "user")
+@ToString(exclude = "member")
 @Table(name = "TBL_COUPON")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Coupon {
@@ -34,13 +34,13 @@ public class Coupon {
     private Long couponPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    public Coupon(CouponType couponType, CouponStatus couponStatus, Long couponPrice, User user) {
+    public Coupon(CouponType couponType, CouponStatus couponStatus, Long couponPrice, Member member) {
         this.couponType = couponType;
         this.couponStatus = couponStatus;
         this.couponPrice = couponPrice;
-        this.user = user;
+        this.member = member;
     }
 }

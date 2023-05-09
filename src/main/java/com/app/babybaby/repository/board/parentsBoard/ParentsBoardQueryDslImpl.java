@@ -53,7 +53,7 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
                     .from(parentsBoard)
                     .join(parentsBoard.event)
                     .join(parentsBoard.parentsBoardFiles)
-                    .join(parentsBoard.user)
+                    .join(parentsBoard.member)
                     .join(parentsBoard.parentsBoardReplies)
                     .fetchJoin()
                     .orderBy(parentsBoard.event.id.desc())

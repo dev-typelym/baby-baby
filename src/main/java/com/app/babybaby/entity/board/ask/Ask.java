@@ -1,7 +1,7 @@
 package com.app.babybaby.entity.board.ask;
 
 import com.app.babybaby.entity.board.BoardInfo;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.ProcessType;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = "user")
+@ToString(callSuper = true, exclude = "member")
 @Table(name = "TBL_ASK")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,8 +30,8 @@ public class Ask extends BoardInfo {
     private ProcessType askStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
     public Ask(ProcessType askStatus) {
         this.askStatus = askStatus;

@@ -8,9 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 
-/**
- * @author 강민구
- * */
+
 @Getter @ToString
 public class PurchaseDTO {
     private Long id;

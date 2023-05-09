@@ -1,7 +1,7 @@
 package com.app.babybaby.entity.alert.alertCrew;
 
 import com.app.babybaby.entity.alert.Alert;
-import com.app.babybaby.entity.user.Crew;
+import com.app.babybaby.entity.member.Crew;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

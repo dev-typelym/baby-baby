@@ -1,7 +1,7 @@
 package com.app.babybaby.entity.like.nowKidsLike;
 
 import com.app.babybaby.entity.board.nowKids.NowKids;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,11 +23,11 @@ public class NowKidsLike {
     private NowKids nowKids;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    public NowKidsLike(NowKids nowKids, User user) {
+    public NowKidsLike(NowKids nowKids, Member member) {
         this.nowKids = nowKids;
-        this.user = user;
+        this.member = member;
     }
 }

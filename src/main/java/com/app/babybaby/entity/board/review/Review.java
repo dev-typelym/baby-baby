@@ -2,8 +2,8 @@ package com.app.babybaby.entity.board.review;
 
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.ReviewReply;
-import com.app.babybaby.entity.user.User;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = "user")
+@ToString(callSuper = true, exclude = "member")
 @Table(name = "TBL_REVIEW")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -32,8 +32,8 @@ public class Review extends BoardInfo {
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "review")
     private List<ReviewReply> reviewReplies;
@@ -42,11 +42,11 @@ public class Review extends BoardInfo {
         this.reviewReplies.add(reviewReply);
     }
 
-    public Review(int reviewScore, Event event, User user, List<ReviewReply> reviewReplies, String boardTitle, String boardContent) {
+    public Review(int reviewScore, Event event, Member member, List<ReviewReply> reviewReplies, String boardTitle, String boardContent) {
         super(boardTitle, boardContent);
         ReviewScore = reviewScore;
         this.event = event;
-        this.user = user;
+        this.member = member;
         this.reviewReplies = reviewReplies;
     }
 }

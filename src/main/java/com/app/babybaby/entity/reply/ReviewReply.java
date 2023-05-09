@@ -2,7 +2,7 @@ package com.app.babybaby.entity.reply;
 
 import com.app.babybaby.entity.audit.Period;
 import com.app.babybaby.entity.board.review.Review;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(exclude = {"review", "user"})
+@ToString(exclude = {"review", "member"})
 @Table(name = "TBL_REVIEW_REPLY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ReviewReply extends Period {
@@ -25,12 +25,12 @@ public class ReviewReply extends Period {
     private Review review;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    public ReviewReply(String reviewReplyContent, Review review, User user) {
+    public ReviewReply(String reviewReplyContent, Review review, Member member) {
         ReviewReplyContent = reviewReplyContent;
         this.review = review;
-        this.user = user;
+        this.member = member;
     }
 }

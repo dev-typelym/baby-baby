@@ -1,8 +1,8 @@
 package com.app.babybaby.entity.purchase.purchase;
 
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
-import com.app.babybaby.entity.user.User;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@ToString(exclude = {"coupon", "event", "user"})
+@ToString(exclude = {"coupon", "event", "member"})
 @Table(name = "TBL_PURCHASE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
@@ -43,15 +43,15 @@ public class Purchase {
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
 
-    public Purchase(LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, Event event, User user) {
+    public Purchase(LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, Event event, Member member) {
         this.purchaseRegisterDate = purchaseRegisterDate;
         this.purchaseCount = purchaseCount;
         this.purchasePrice = purchasePrice;
         this.coupon = coupon;
         this.event = event;
-        this.user = user;
+        this.member = member;
     }
 }
