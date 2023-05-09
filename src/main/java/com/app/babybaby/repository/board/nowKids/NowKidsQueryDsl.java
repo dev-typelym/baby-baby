@@ -2,6 +2,7 @@ package com.app.babybaby.repository.board.nowKids;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
+import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 
@@ -22,5 +23,11 @@ public interface NowKidsQueryDsl {
 
     /* GeneralGuide의 아이디로 참여자 목록 가져오기 */
     public List<Kid> findAllKidsByGeneralGuideId_QueryDsl(Long sessionId);
+
+    /* 해당 보드의 모든 파일 가져오기  수정필요*/
+    public List<NowKidsFile> findAllFileNowKidsById_QueryDsl(Long nowKidsId);
+
+    /*한방쿼리로 모든 정보 다 가져오기 */
+//    public List<NowKids> findAllInfo();
 
 }
