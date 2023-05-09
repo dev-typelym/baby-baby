@@ -1,7 +1,7 @@
-package com.app.babybaby.repository.user.kid;
+package com.app.babybaby.repository.file.nowKidsFile;
 
-import com.app.babybaby.repository.user.kid.KidRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -11,10 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class KidRepositoryTests {
+public class nowKidsFileRepositoryTests {
     @Autowired
-    KidRepository kidRepository;
+    NowKidsFileFileRepository nowKidsFileFileRepository;
 
-    public void findAllKidsByEventId_QueryDslTest(){
+
+
+    @Test
+    public void findAllNowKidsFilesWithNowKidsIdTest(){
+        log.info(nowKidsFileFileRepository.findAllNowKidsFilesWithNowKidsId(455L).toString());
     }
 }

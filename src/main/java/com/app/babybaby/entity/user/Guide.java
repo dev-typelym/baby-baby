@@ -5,6 +5,7 @@ import com.app.babybaby.entity.guideSchedule.GuideSchedule;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -34,10 +35,14 @@ public class Guide {
     @JoinColumn(name = "ADMIN_GUIDE_ID")
     private User adminGuide;
 
-    public Guide(Event event, GuideSchedule guideSchedule, User generalGuide, User adminGuide) {
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "guide")
+    private List<Crew> crews;
+
+    public Guide( Event event, GuideSchedule guideSchedule, User generalGuide, User adminGuide, List<Crew> crews) {
         this.event = event;
         this.guideSchedule = guideSchedule;
         this.generalGuide = generalGuide;
         this.adminGuide = adminGuide;
+        this.crews = crews;
     }
 }

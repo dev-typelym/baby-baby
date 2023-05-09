@@ -2,6 +2,7 @@ package com.app.babybaby.entity.board.nowKids;
 
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.user.User;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,6 +27,9 @@ public class NowKids extends BoardInfo {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GUIDE_ID")
     private User guide;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nowKids")
+    private List<NowKidsFile> nowKidsFile;
 
     public NowKids(Event event, User guide) {
         this.event = event;
