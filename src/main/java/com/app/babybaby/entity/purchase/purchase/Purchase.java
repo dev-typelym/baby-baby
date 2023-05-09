@@ -1,8 +1,8 @@
 package com.app.babybaby.entity.purchase.purchase;
 
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
-import com.app.babybaby.entity.user.User;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -44,9 +44,9 @@ public class Purchase {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Member user;
 
-    public Purchase(LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, Event event, User user) {
+    public Purchase(LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, Event event, Member user) {
         this.purchaseRegisterDate = purchaseRegisterDate;
         this.purchaseCount = purchaseCount;
         this.purchasePrice = purchasePrice;

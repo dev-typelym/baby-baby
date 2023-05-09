@@ -2,7 +2,7 @@ package com.app.babybaby.entity.reply;
 
 import com.app.babybaby.entity.audit.Period;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -26,9 +26,9 @@ public class ParentsBoardReply extends Period {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Member user;
 
-    public ParentsBoardReply(String parentsBoardReplyContent, ParentsBoard parentsBoard, User user) {
+    public ParentsBoardReply(String parentsBoardReplyContent, ParentsBoard parentsBoard, Member user) {
         ParentsBoardReplyContent = parentsBoardReplyContent;
         this.parentsBoard = parentsBoard;
         this.user = user;

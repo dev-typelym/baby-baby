@@ -1,8 +1,7 @@
 package com.app.babybaby.entity.board.ask;
 
 import com.app.babybaby.entity.board.BoardInfo;
-import com.app.babybaby.entity.board.ask.Ask;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class AskAnswer extends BoardInfo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ADMIN_ID")
-    private User admin;
+    private Member admin;
 
     public AskAnswer(Ask ask) {
         this.ask = ask;

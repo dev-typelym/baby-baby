@@ -1,8 +1,6 @@
 package com.app.babybaby.repository.purchase.purchase;
 
 import com.app.babybaby.entity.purchase.PurchaseDTO;
-import com.app.babybaby.entity.user.User;
-import com.app.babybaby.repository.purchase.purchase.PurchaseRepository;
 import com.app.babybaby.repository.user.user.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

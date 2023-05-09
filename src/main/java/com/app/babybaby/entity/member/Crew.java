@@ -1,7 +1,5 @@
-package com.app.babybaby.entity.user;
+package com.app.babybaby.entity.member;
 
-import com.app.babybaby.entity.board.event.Event;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;

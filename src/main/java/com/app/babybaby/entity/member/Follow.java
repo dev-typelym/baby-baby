@@ -1,4 +1,4 @@
-package com.app.babybaby.entity.user;
+package com.app.babybaby.entity.member;
 
 import lombok.*;
 
@@ -16,13 +16,13 @@ public class Follow {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FOLLOWING_ID")
-    private User following;
+    private Member following;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FOLLOWER_ID")
-    private User follower;
+    private Member follower;
 
-    public Follow(User following, User follower) {
+    public Follow(Member following, Member follower) {
         this.following = following;
         this.follower = follower;
     }

@@ -1,21 +1,19 @@
 package com.app.babybaby.repository.board.nowKids;
 
 import com.app.babybaby.entity.board.event.Event;
-import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.nowKids.NowKids;
-import com.app.babybaby.entity.user.*;
+import com.app.babybaby.entity.member.*;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
-import static com.app.babybaby.entity.user.QCrew.crew;
-import static com.app.babybaby.entity.user.QGuide.guide;
-import static com.app.babybaby.entity.user.QKid.kid;
+import static com.app.babybaby.entity.member.QCrew.crew;
+import static com.app.babybaby.entity.member.QGuide.guide;
+import static com.app.babybaby.entity.member.QKid.kid;
 
 @RequiredArgsConstructor
 public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
@@ -51,7 +49,7 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
 
 
     /* 통솔자의 모든 정보(User)만 뿌려주기 */
-    public List<User> findGuideBoard_QueryDsl() {
+    public List<Member> findGuideBoard_QueryDsl() {
         return query.select(nowKids)
                 .from(nowKids)
                 .join(nowKids.guide)
@@ -63,7 +61,7 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
     }
     
 /* pageNo는 0부터 시작 */
-    public List<User> findGuideBoardWithPaging_QueryDsl(int pageNo, int pageSize) {
+    public List<Member> findGuideBoardWithPaging_QueryDsl(int pageNo, int pageSize) {
         return query.selectFrom(nowKids)
                 .orderBy(nowKids.id.desc())
                 .join(nowKids.guide)

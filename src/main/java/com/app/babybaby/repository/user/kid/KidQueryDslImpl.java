@@ -1,13 +1,12 @@
 package com.app.babybaby.repository.user.kid;
 
-import com.app.babybaby.entity.user.Kid;
-import com.app.babybaby.entity.user.QKid;
+import com.app.babybaby.entity.member.Kid;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import static com.app.babybaby.entity.user.QKid.kid;
+import static com.app.babybaby.entity.member.QKid.kid;
 
 @RequiredArgsConstructor
 public class KidQueryDslImpl implements KidQueryDsl {

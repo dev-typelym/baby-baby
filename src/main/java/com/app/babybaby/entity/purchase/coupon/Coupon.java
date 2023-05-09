@@ -1,6 +1,6 @@
 package com.app.babybaby.entity.purchase.coupon;
 
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.CouponStatus;
 import com.app.babybaby.type.CouponType;
 import com.sun.istack.NotNull;
@@ -35,9 +35,9 @@ public class Coupon {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Member user;
 
-    public Coupon(CouponType couponType, CouponStatus couponStatus, Long couponPrice, User user) {
+    public Coupon(CouponType couponType, CouponStatus couponStatus, Long couponPrice, Member user) {
         this.couponType = couponType;
         this.couponStatus = couponStatus;
         this.couponPrice = couponPrice;

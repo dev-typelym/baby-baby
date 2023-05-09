@@ -1,7 +1,7 @@
 package com.app.babybaby.entity.like.eventLike;
 
 import com.app.babybaby.entity.board.event.Event;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,9 +24,9 @@ public class EventLike {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Member user;
 
-    public EventLike(Event event, User user) {
+    public EventLike(Event event, Member user) {
         this.event = event;
         this.user = user;
     }

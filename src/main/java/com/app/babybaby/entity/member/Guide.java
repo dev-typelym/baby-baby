@@ -1,4 +1,4 @@
-package com.app.babybaby.entity.user;
+package com.app.babybaby.entity.member;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.guideSchedule.GuideSchedule;
@@ -29,16 +29,16 @@ public class Guide {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GENERAL_GUIDE_ID")
-    private User generalGuide;
+    private Member generalGuide;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ADMIN_GUIDE_ID")
-    private User adminGuide;
+    private Member adminGuide;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "guide")
     private List<Crew> crews;
 
-    public Guide( Event event, GuideSchedule guideSchedule, User generalGuide, User adminGuide, List<Crew> crews) {
+    public Guide(Event event, GuideSchedule guideSchedule, Member generalGuide, Member adminGuide, List<Crew> crews) {
         this.event = event;
         this.guideSchedule = guideSchedule;
         this.generalGuide = generalGuide;

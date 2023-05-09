@@ -2,7 +2,7 @@ package com.app.babybaby.entity.reply;
 
 import com.app.babybaby.entity.audit.Period;
 import com.app.babybaby.entity.board.review.Review;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -26,9 +26,9 @@ public class ReviewReply extends Period {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Member user;
 
-    public ReviewReply(String reviewReplyContent, Review review, User user) {
+    public ReviewReply(String reviewReplyContent, Review review, Member user) {
         ReviewReplyContent = reviewReplyContent;
         this.review = review;
         this.user = user;

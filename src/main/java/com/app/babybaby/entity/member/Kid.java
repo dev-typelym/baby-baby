@@ -1,4 +1,4 @@
-package com.app.babybaby.entity.user;
+package com.app.babybaby.entity.member;
 
 
 import com.app.babybaby.type.GenderType;
@@ -33,9 +33,9 @@ public class Kid {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID")
-    private User parent;
+    private Member parent;
 
-    public Kid(String kidName, Integer kidAge, GenderType kidGender, User parent) {
+    public Kid(String kidName, Integer kidAge, GenderType kidGender, Member parent) {
         this.kidName = kidName;
         this.kidAge = kidAge;
         this.kidGender = kidGender;

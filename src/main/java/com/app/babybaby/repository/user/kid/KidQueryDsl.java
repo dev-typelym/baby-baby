@@ -1,7 +1,6 @@
 package com.app.babybaby.repository.user.kid;
 
-import com.app.babybaby.entity.board.event.Event;
-import com.app.babybaby.entity.user.Kid;
+import com.app.babybaby.entity.member.Kid;
 
 import java.util.List;
 

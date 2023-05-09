@@ -1,4 +1,4 @@
-package com.app.babybaby.entity.user;
+package com.app.babybaby.entity.member;
 
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -19,6 +19,6 @@ public class RandomKey {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Member user;
 
 }

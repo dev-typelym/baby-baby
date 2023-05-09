@@ -1,4 +1,4 @@
-package com.app.babybaby.entity.user;
+package com.app.babybaby.entity.member;
 
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.type.*;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @ToString
-public class UserDTO {
+public class MemberDTO {
     private Long id;
     private String  userEmail;
     private String userName;
@@ -22,7 +22,7 @@ public class UserDTO {
     private String userProfileUUID;
     private String userProfilePath;
     private LocalDateTime userRegisterDate;
-    private UserType userType;
+    private MemberType memberType;
     private AcceptanceType userGuideStatus;
     private SleepType userSleep;
     private GuideType userGuideType;

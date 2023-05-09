@@ -6,12 +6,11 @@ import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.guideSchedule.GuideSchedule;
-import com.app.babybaby.entity.user.Crew;
-import com.app.babybaby.entity.user.Guide;
-import com.app.babybaby.entity.user.Kid;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Crew;
+import com.app.babybaby.entity.member.Guide;
+import com.app.babybaby.entity.member.Kid;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
-import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import com.app.babybaby.repository.calendar.CalendarRepository;
 import com.app.babybaby.repository.file.nowKidsFile.NowKidsFileFileRepository;
 import com.app.babybaby.repository.guideSchedule.GuideScheduleRepository;
@@ -27,7 +26,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -76,8 +74,8 @@ public class NowKidsRepositoryTests {
             Calendar calendar = new Calendar("이벤트1", CategoryType.AGRICULTURE, LocalDateTime.now(), LocalDateTime.now());
             Event event = new Event("Test" + (i + 1), "test", 10L, address, 10000L, "TEST", "TEst", CategoryType.MUSEUM, calendar);
             String uniqueNickname = "Bool" + i;
-            User user = new User("you" + i + "@naver.com", "정유찬", "1234", uniqueNickname, "안녕하세요",
-                    "0101234123" + i, address, LocalDateTime.now(), UserType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED, CategoryType.AGRICULTURE);
+            Member user = new Member("you" + i + "@naver.com", "정유찬", "1234", uniqueNickname, "안녕하세요",
+                    "0101234123" + i, address, LocalDateTime.now(), MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED, CategoryType.AGRICULTURE);
             userRepository.save(user);
             eventRepository.save(event);
             NowKids nowKids = new NowKids(event, user);
@@ -99,7 +97,7 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void kidsKidsSaveTest(){
-        Optional<User> parent = userRepository.findById(452L);
+        Optional<Member> parent = userRepository.findById(452L);
         for (int i = 0; i < 10; i++){
             Kid kid = new Kid("김동한" + i, 4L + i, GenderType.MAN, parent.get());
             kidRepository.save(kid);
@@ -108,8 +106,8 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void  guideInsertTest(){
-        User guide = userRepository.findById(456L).get();
-        User adminGuide = userRepository.findById(460L).get();
+        Member guide = userRepository.findById(456L).get();
+        Member adminGuide = userRepository.findById(460L).get();
         Optional<Calendar> calendar = calendarRepository.findById(454L);
         Optional<Event> event = eventRepository.findById(453L);
         GuideSchedule guideSchedule = new GuideSchedule(calendar.get(), event.get(), guide);

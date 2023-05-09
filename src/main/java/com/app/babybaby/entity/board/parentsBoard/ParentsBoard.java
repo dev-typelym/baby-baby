@@ -3,8 +3,8 @@ package com.app.babybaby.entity.board.parentsBoard;
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.ParentsBoardReply;
-import com.app.babybaby.entity.user.User;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,19 +30,19 @@ public class ParentsBoard extends BoardInfo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Member user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parentsBoard")
     private List<ParentsBoardReply> parentsBoardReplies;
 
-    public ParentsBoard(Event event, User user, List<ParentsBoardReply> parentsBoardReplies) {
+    public ParentsBoard(Event event, Member user, List<ParentsBoardReply> parentsBoardReplies) {
         this.event = event;
         this.user = user;
         this.parentsBoardReplies = parentsBoardReplies;
     }
 
 
-    public ParentsBoard(String boardTitle, String boardContent, Event event, User user, List<ParentsBoardReply> parentsBoardReplies) {
+    public ParentsBoard(String boardTitle, String boardContent, Event event, Member user, List<ParentsBoardReply> parentsBoardReplies) {
         super(boardTitle, boardContent);
         this.event = event;
         this.user = user;

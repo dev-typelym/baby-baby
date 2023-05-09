@@ -2,8 +2,8 @@ package com.app.babybaby.entity.board.review;
 
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.ReviewReply;
-import com.app.babybaby.entity.user.User;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -33,7 +33,7 @@ public class Review extends BoardInfo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Member user;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "review")
     private List<ReviewReply> reviewReplies;
@@ -42,7 +42,7 @@ public class Review extends BoardInfo {
         this.reviewReplies.add(reviewReply);
     }
 
-    public Review(int reviewScore, Event event, User user, List<ReviewReply> reviewReplies, String boardTitle, String boardContent) {
+    public Review(int reviewScore, Event event, Member user, List<ReviewReply> reviewReplies, String boardTitle, String boardContent) {
         super(boardTitle, boardContent);
         ReviewScore = reviewScore;
         this.event = event;

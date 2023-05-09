@@ -1,7 +1,7 @@
 package com.app.babybaby.entity.board.ask;
 
 import com.app.babybaby.entity.board.BoardInfo;
-import com.app.babybaby.entity.user.User;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.ProcessType;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
@@ -31,7 +31,7 @@ public class Ask extends BoardInfo {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Member user;
 
     public Ask(ProcessType askStatus) {
         this.askStatus = askStatus;
