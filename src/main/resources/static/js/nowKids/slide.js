@@ -8,8 +8,8 @@ $(function () {
             $('#like-modal').css({ right: '-30%' }); //오->왼 슬라이드 등장
             $('#like-modal').animate({ right: '30px' }, { duration: 500 }); //오->왼 슬라이드 등장
             $('#like-modal').show(); //슬라이드 보이기
-            $('#like-modal').css({'display': 'flex'}); 
-            $('#like-modal').css({'align-items': 'center'});
+            $('#like-modal').css({ display: 'flex' });
+            $('#like-modal').css({ 'align-items': 'center' });
             $('.like-text').show(); //찜 추가 문구
             $('#like-modal').fadeOut(); //사라지기
         } else {
@@ -25,32 +25,45 @@ $(function () {
 });
 /* 좋아요 끝 */
 
-const $banner = $(".banner");
+/* 글쓰러가기 나타나게 하기 */
+$(window).scroll(function () {
+    var topContentOffset = $('.top-content-flex-wrapper').offset().top;
+    var scrollTop = $(window).scrollTop();
+
+    if (scrollTop >= topContentOffset) {
+        $('.go-write-wrapper').css('display', 'flex');
+    } else {
+        $('.go-write-wrapper').css('display', 'none');
+    }
+});
+
+/* 글쓰러가기 나타나게 하기 끝 */
+
+const $banner = $('.banner');
 const width = 344;
 
 var bannerImage1 = [
-    "../../static/images/nowKids/001.jpg",
-    "../../static/images/nowKids/002.jpg",
-    "../../static/images/nowKids/003.jpg",
-    "../../static/images/nowKids/004.jpg",
-    "../../static/images/nowKids/005.jpg",
+    '../../static/images/nowKids/001.jpg',
+    '../../static/images/nowKids/002.jpg',
+    '../../static/images/nowKids/003.jpg',
+    '../../static/images/nowKids/004.jpg',
+    '../../static/images/nowKids/005.jpg',
 ];
 
 var bannerImage2 = [
-    "https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/2048xauto.webp",
-    "../../static/images/nowKids/002.jpg",
-    "../../static/images/nowKids/003.jpg",
-    "../../static/images/nowKids/004.jpg",
-    "../../static/images/nowKids/005.jpg",
-    "../../static/images/nowKids/001.jpg",
+    'https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/2048xauto.webp',
+    '../../static/images/nowKids/002.jpg',
+    '../../static/images/nowKids/003.jpg',
+    '../../static/images/nowKids/004.jpg',
+    '../../static/images/nowKids/005.jpg',
+    '../../static/images/nowKids/001.jpg',
 ];
 
-let imageList = [bannerImage1,bannerImage2];
+let imageList = [bannerImage1, bannerImage2];
 
-const $imageWrap = $(".bottom-content-full-flex");
+const $imageWrap = $('.bottom-content-full-flex');
 
 imageList.forEach((e, i) => {
-
     let text = `
                 <div class="bottom-content-flex" id ="${i}">
                     <section class="feed-header-full-wrap">
@@ -89,14 +102,14 @@ imageList.forEach((e, i) => {
                             <div class="banner" id="banner${i}">
                             /* 이미지가 없으면 이 이미지아래로 이미지 태그 전부를 if로 감싸야한다. */
                             <div>
-                                <img src="${e[e.length-1]}">
+                                <img src="${e[e.length - 1]}">
                             </div>
     
     `;
 
     e.forEach((image, j) => {
         let totalWidth = width * (image.length + 2);
-        $($banner[j]).css("width",`${totalWidth}px`);
+        $($banner[j]).css('width', `${totalWidth}px`);
         text += `
                     <div>
                         <img src="${image}">
@@ -168,61 +181,65 @@ imageList.forEach((e, i) => {
 
 let checkArrow = false;
 
-$imageWrap.on("click","div.prev", (e) => {
-    if(checkArrow){return;}
+$imageWrap.on('click', 'div.prev', (e) => {
+    if (checkArrow) {
+        return;
+    }
     checkArrow = true;
 
-    let i = e.currentTarget.id.replace("prev","");
+    let i = e.currentTarget.id.replace('prev', '');
     let bannerId = '#banner' + i;
     let $banner = $(bannerId);
-    let currentPos = parseInt($banner.css("transform").split(",")[4]);
+    let currentPos = parseInt($banner.css('transform').split(',')[4]);
 
-    $banner.css("transition","transform 0.3s");
-    $banner.css("transform",`translate(${currentPos + width}px)`);
+    $banner.css('transition', 'transform 0.3s');
+    $banner.css('transform', `translate(${currentPos + width}px)`);
 
     if (currentPos == -width) {
-        setTimeout(function(){
-            $banner.css("transition","transform 0s");
-            $banner.css("transform",`translate(-${width * ($banner.children().length - 2)}px)`);
+        setTimeout(function () {
+            $banner.css('transition', 'transform 0s');
+            $banner.css('transform', `translate(-${width * ($banner.children().length - 2)}px)`);
         }, 300);
-    }   
-    setTimeout(()=>{checkArrow = false}, 300);
+    }
+    setTimeout(() => {
+        checkArrow = false;
+    }, 300);
 });
 
-$imageWrap.on("click","div.next", (e) => {
-    if(checkArrow){return;}
+$imageWrap.on('click', 'div.next', (e) => {
+    if (checkArrow) {
+        return;
+    }
     checkArrow = true;
 
-    let i = e.currentTarget.id.replace("next","");
+    let i = e.currentTarget.id.replace('next', '');
     let bannerId = '#banner' + i;
     let $banner = $(bannerId);
-    let currentPos = parseInt($banner.css("transform").split(",")[4]);
-    
-    $banner.css("transition","transform 0.3s");
-    $banner.css("transform",`translate(${currentPos - width}px)`);
+    let currentPos = parseInt($banner.css('transform').split(',')[4]);
 
-    if(currentPos == -width * ($banner.children().length-2)){
-        setTimeout(function(){
-            $banner.css("transition","transform 0s");
-            $banner.css("transform",`translate(${-width}px)`);
+    $banner.css('transition', 'transform 0.3s');
+    $banner.css('transform', `translate(${currentPos - width}px)`);
+
+    if (currentPos == -width * ($banner.children().length - 2)) {
+        setTimeout(function () {
+            $banner.css('transition', 'transform 0s');
+            $banner.css('transform', `translate(${-width}px)`);
         }, 300);
     }
-    setTimeout(()=>{checkArrow = false}, 300);
+    setTimeout(() => {
+        checkArrow = false;
+    }, 300);
 });
 
-$imageWrap.on("click","button.table-button",(e) => {
-    let idx = e.currentTarget.id.replace("table","");
-    let $arrowButton = $($(".nav-arrow-icon")[idx]);
+$imageWrap.on('click', 'button.table-button', (e) => {
+    let idx = e.currentTarget.id.replace('table', '');
+    let $arrowButton = $($('.nav-arrow-icon')[idx]);
 
-    if(!$arrowButton.hasClass("active-arrow")){
-        $arrowButton.addClass("active-arrow");
-        $($(".table-display")[idx]).slideDown();
-    }else {
-        $arrowButton.removeClass("active-arrow");
-        $($(".table-display")[idx]).slideUp();
+    if (!$arrowButton.hasClass('active-arrow')) {
+        $arrowButton.addClass('active-arrow');
+        $($('.table-display')[idx]).slideDown();
+    } else {
+        $arrowButton.removeClass('active-arrow');
+        $($('.table-display')[idx]).slideUp();
     }
-    
 });
-
-  
-

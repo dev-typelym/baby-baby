@@ -630,13 +630,27 @@ button {
 
 .title-line {
     background-color: #00c4c4;
-    color: #fff;
+    color: white;
     height: 40px;
     display: flex;
     font-weight: 500;
     font-size: 20px;
     align-items: center;
     font-family: Roboto, Noto Sans KR, -apple-system, Dotum, sans-serif;
+    justify-content: space-between;
+}
+
+.go-write-wrapper {
+    background-color: #00c4c4;
+    color: #fff;
+    height: 40px;
+    display: flex;
+    width: 554px;
+    font-weight: 500;
+    font-size: 20px;
+    align-items: center;
+    font-family: Roboto, Noto Sans KR, -apple-system, Dotum, sans-serif;
+    justify-content: center;
 }
 
 .table-kids-count {
@@ -744,7 +758,7 @@ button {
     width: 74px;
     height: 74px;
     border-radius: 8px;
-    margin-right: 20px;
+    margin-right: 5px;
     padding: 0;
     color: #212529;
     font-weight: 400;
@@ -765,4 +779,20 @@ button {
     vertical-align: top;
     display: inline-flex;
     align-items: center;
+}
+
+.go-to-write-button {
+    width: 25px;
+    height: 25px;
+    margin-top: 4px;
+    margin-right: 5px;
+}
+
+.write-icon {
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.go-write-wrapper{
+    display: none;
 }
