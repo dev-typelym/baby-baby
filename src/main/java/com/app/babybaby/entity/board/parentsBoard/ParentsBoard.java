@@ -2,6 +2,7 @@ package com.app.babybaby.entity.board.parentsBoard;
 
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
 import com.app.babybaby.entity.reply.ParentsBoardReply;
 import com.app.babybaby.entity.user.User;
 import lombok.AccessLevel;
@@ -20,6 +21,9 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ParentsBoard extends BoardInfo {
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parentsBoard", cascade = CascadeType.REMOVE)
+    private List<ParentsBoardFile> parentsBoardFiles;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EVENT_ID")
     private Event event;
@@ -36,6 +40,7 @@ public class ParentsBoard extends BoardInfo {
         this.user = user;
         this.parentsBoardReplies = parentsBoardReplies;
     }
+
 
     public ParentsBoard(String boardTitle, String boardContent, Event event, User user, List<ParentsBoardReply> parentsBoardReplies) {
         super(boardTitle, boardContent);
