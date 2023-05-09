@@ -42,8 +42,8 @@ public class Review extends BoardInfo {
         this.reviewReplies.add(reviewReply);
     }
 
-    public Review(int reviewScore, Event event, User user, List<ReviewReply> reviewReplies) {
-        super();
+    public Review(int reviewScore, Event event, User user, List<ReviewReply> reviewReplies, String boardTitle, String boardContent) {
+        super(boardTitle, boardContent);
         ReviewScore = reviewScore;
         this.event = event;
         this.user = user;
