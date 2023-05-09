@@ -1,7 +1,7 @@
 package com.app.babybaby.repository.purchase.purchase;
 
 import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.entity.purchase.PurchaseDTO;
+import com.app.babybaby.domain.purchaseDTO.PurchaseDTO;
 import com.app.babybaby.entity.purchase.QPurchaseDTO;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

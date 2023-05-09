@@ -7,6 +7,5 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @NoArgsConstructor
-public class AlertCrewDTO {
-
+public class AlertReviewDTO {
 }

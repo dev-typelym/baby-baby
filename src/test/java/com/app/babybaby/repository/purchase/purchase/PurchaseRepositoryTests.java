@@ -1,6 +1,6 @@
 package com.app.babybaby.repository.purchase.purchase;
 
-import com.app.babybaby.entity.purchase.PurchaseDTO;
+import com.app.babybaby.domain.purchaseDTO.PurchaseDTO;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

@@ -3,7 +3,7 @@ package com.app.babybaby.entity.board.review;
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.entity.reply.ReviewReply;
+import com.app.babybaby.entity.reply.reviewReply.ReviewReply;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
