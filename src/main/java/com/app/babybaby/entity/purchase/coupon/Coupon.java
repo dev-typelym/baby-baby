@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(exclude = "member")
+@ToString(exclude = "member",callSuper = true)
 @Table(name = "TBL_COUPON")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Coupon {
@@ -34,7 +34,6 @@ public class Coupon {
     private Long couponPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     public Coupon(CouponType couponType, CouponStatus couponStatus, Long couponPrice, Member member) {
