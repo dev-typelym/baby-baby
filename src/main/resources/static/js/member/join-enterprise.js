@@ -231,49 +231,6 @@ $nameInput.on("blur", function() {
 });
 
 
-/* 담당자 이름  */
-const $managerNameInput = $("#manager-name-input");
-const $managerNameWarning = $(".manager-name-error");
-let managerNameFlag = false;
-// 이름 정규식 이벤트 사용 및 함수
-$managerNameInput.on("blur", function() {
-	let $managerNameInputValue = $managerNameInput.val();
-	var name = $managerNameInputValue.search(/^[가-힣a-zA-Z]{2,20}$/);
-
-	// $nameInput.css("border-color", "#f66");
-	// $nameInput.css("border-color", "#dde2e6");
-	if ($managerNameInputValue.length < 1) {
-		$managerNameWarning.text("이름을 입력해주세요.");
-		$managerNameWarning.css("display", "block");
-		$managerNameInput.css("border-color", "#f66");
-		managerNameFlag = false;
-	} else if ($managerNameInputValue.length < 2) {
-		$managerNameWarning.text("최소 2자입니다.");
-		$managerNameWarning.css("display", "block");
-		$managerNameInput.css("border-color", "#f66");
-		managerNameFlag = false;
-	} else if ($managerNameInputValue.search(/\s/) != -1) {
-		$managerNameWarning.text("다시 확인해주세요.");
-		$managerNameWarning.css("display", "block");
-		$managerNameInput.css("border-color", "#f66");
-		managerNameFlag = false;
-	} else if (name < 0) {
-		$managerNameWarning.text("다시 확인해주세요.");
-		$managerNameWarning.css("display", "block");
-		$managerNameInput.css("border-color", "#f66");
-		managerNameFlag = false;
-	} else {
-		$managerNameWarning.css("display", "none");
-		$managerNameInput.css("border-color", "#dde2e6");
-		managerNameFlag = true;
-		console.log(managerNameFlag);
-		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
-			$(".signup-submit-button").css("opacity","3");
-		}
-	}
-});
-
-
 //핸드폰 변수
 const $phoneInput = $('#input-phone-number');
 //핸드폰 에러 변수
@@ -402,7 +359,7 @@ function sample6_execDaumPostcode() {
 
 
 function send() {
-	if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && managerNameFlag && address1Flag && address2Flag){
+	if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag && address1Flag && address2Flag){
 		document.joinForm.submit();
 	}else if(identificationFlag == false){
 		$identificationInput.focus();
@@ -414,8 +371,6 @@ function send() {
 		$nicknameInput.focus();
 	}else if(nameFlag == false){
 		$nameInput.focus();
-	}else if(managerNameFlag == false){
-		$managerNameInput.focus();
 	}else if(phoneFlag == false){
 		$phoneInput.focus();
 	}else if(address1Flag == false){
