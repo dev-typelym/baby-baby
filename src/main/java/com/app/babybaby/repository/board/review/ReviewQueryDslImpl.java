@@ -12,9 +12,23 @@ import java.util.List;
 
 import static com.app.babybaby.entity.board.review.QReview.review;
 
+import java.util.List;
+
+import static com.app.babybaby.entity.board.review.QReview.review;
+
 @RequiredArgsConstructor
 public class ReviewQueryDslImpl implements ReviewQueryDsl {
     private final JPAQueryFactory query;
+
+//    나의리뷰 조회
+    @Override
+    public List<Review> findReviewById(Long memberId) {
+        return query.select(review)
+                .from(review)
+                .join(review.member).fetchJoin()
+                .where(review.member.id.eq(memberId))
+                .fetch();
+    }
 
     @Override
     public Slice<Review> findAllByMemberId(Pageable pageable, Long memberId) {
