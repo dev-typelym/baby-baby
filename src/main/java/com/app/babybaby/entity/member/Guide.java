@@ -45,4 +45,11 @@ public class Guide {
         this.adminGuide = adminGuide;
         this.crews = crews;
     }
+
+    public Guide(Event event, GuideSchedule guideSchedule, Member adminGuide, List<Crew> crews) {
+        this.event = event;
+        this.guideSchedule = guideSchedule;
+        this.adminGuide = adminGuide;
+        this.crews = crews;
+    }
 }

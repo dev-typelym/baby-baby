@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @SpringBootTest
@@ -70,14 +71,14 @@ public class NowKidsRepositoryTests {
         address.setAddressDetail("d");
         address.setAddressSubDetail("dfa");
         address.setPostcode("12342132");
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 1; i++) {
             String uniqueNickname = "Bool" + i;
 
-        Member member = new Member("you" + i + "@naver.com", "정유찬", "1234", uniqueNickname, "안녕하세요",
+            Member member = new Member("you" + i + "@naver.com", "정유찬", "1234", uniqueNickname, "안녕하세요",
                     "0101234123" + i, address, null, null,null,LocalDateTime.now(), MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED, CategoryType.AGRICULTURE,null,null,null);
             Calendar calendar = new Calendar("이벤트1", CategoryType.AGRICULTURE, LocalDateTime.now(), LocalDateTime.now());
 //            public Event (String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar) {
-            Event event = new Event("Test" + (i + 1), "test" +(i+1), 10L, address, 10000L, CategoryType.MUSEUM, calendar, member);
+            Event event = new Event( "Test" + (i + 1), "test" +(i+1), 10L, address, 10000L, CategoryType.MUSEUM, calendar, member);
             userRepository.save(member);
             eventRepository.save(event);
             NowKids nowKids = new NowKids(event, member);
@@ -87,7 +88,7 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void nowKidsFileSaveTest(){
-        NowKids nowKids = nowKidsRepository.findById(4L).get();
+        NowKids nowKids = nowKidsRepository.findById(2L).get();
         NowKidsFile nowKidsFile = new NowKidsFile("Mainfdsafdsa23", "Mainfdsafdsa", "123213", FileType.MAIN, nowKids);
         NowKidsFile nowKidsFile2 = new NowKidsFile("Subfdsafdsa32", "Subfdsafdsa1", "123213", FileType.SUBS, nowKids);
         NowKidsFile nowKidsFile3 = new NowKidsFile("Subfdsafdsa2", "Subfdsafdsa2", "123213", FileType.SUBS, nowKids);
@@ -108,7 +109,7 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void  guideInsertTest(){
-        Member guide = userRepository.findById(21L).get();
+        Member guide = userRepository.findById(1L).get();
         Member adminGuide = userRepository.findById(1L).get();
         Optional<Calendar> calendar = calendarRepository.findById(3L);
         Optional<Event> event = eventRepository.findById(2L);
@@ -118,9 +119,9 @@ public class NowKidsRepositoryTests {
         guideScheduleRepository.save(guideSchedule);
         guidRepository.save(guide1);
     }
-    
+
 //    나의 생각 정리
-    /* 
+    /*
     모든 정보는 화면에서 DTO로 뿌린다
     먼저 NowKids의 모든 정보를 가져온다.
     NowKids에는 Event와 User(parent)가 있음으로
@@ -129,18 +130,18 @@ public class NowKidsRepositoryTests {
     따라서 NowKidsFileDTO를 하나 더 만들어서 그 NowKidsDTO에 담아준다.
      */
 
-//  여기서 필요한 것
+    //  여기서 필요한 것
     /* NowKids를 모두 가져오는 메소드 */
     /* NowKids의 아이디로 해당 이벤트의 정보를 조회하는 메소드? Callsuper=true라서 굳이 안불러도 되나? 왜냐하면 어차피 내가 필요한건 BoardTitle밖에 없기에
-    * 무조건 Event를 가져와야한다 왜냐하면 내가 조회한 BoardTitle은 NowKids의 필드이기때문에, Event의 필드가 아니다. 따라서 나는 Event를 조회해야하기에
-    * Event를 가져와야한다.
-    * */
+     * 무조건 Event를 가져와야한다 왜냐하면 내가 조회한 BoardTitle은 NowKids의 필드이기때문에, Event의 필드가 아니다. 따라서 나는 Event를 조회해야하기에
+     * Event를 가져와야한다.
+     * */
     @Test
     public void findAllTest() {
-       log.info(nowKidsRepository.findAll().toString());
+        log.info(nowKidsRepository.findAll().toString());
     }
 
-    @Test 
+    @Test
     public void findNowKidsByGuideId_QueryDslTest(){
         log.info(nowKidsRepository.findNowKidsByGuideId_QueryDsl(452L).toString());
     }
@@ -170,13 +171,18 @@ public class NowKidsRepositoryTests {
         log.info(nowKidsRepository.findAllKidsByGeneralGuideId_QueryDsl(1L).toString());
     }
 
-    /* 해당 보드의 모든 파일 가져오기*/
+    /* 해당 보드의 모든 파일 가져오기 */
     @Test
     public void findAllFileInNowKidsTest(){
         log.info(nowKidsRepository.findAllFileNowKidsById_QueryDsl(4L).toString());
     }
 
-    
+
+    @Test
+    public void findAllKidsByEventIdTest(){
+        nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(1L, 2L).stream().map(Kid::toString).forEach(log::info);
+    }
+
     /* N+1 문제 따라서 이건 DTO에서 작업한다, */
 //    @Test
 //    public void findAllInfoTest(){

@@ -108,5 +108,28 @@ public class Member {
         this.memberFileUUID = memberFileUUID;
         this.memberFileOriginalName = memberFileOriginalName;
     }
-
+    @Builder
+    public Member(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, List<Alert> alerts, String memberFilePath, String memberFileUUID, String memberFileOriginalName) {
+        this.id = id;
+        this.memberEmail = memberEmail;
+        this.memberName = memberName;
+        this.memberPassword = memberPassword;
+        this.memberNickname = memberNickname;
+        this.memberHiSentence = memberHiSentence;
+        this.memberPhone = memberPhone;
+        this.memberAddress = memberAddress;
+        this.memberProfileOriginalName = memberProfileOriginalName;
+        this.memberProfileUUID = memberProfileUUID;
+        this.memberProfilePath = memberProfilePath;
+        this.memberRegisterDate = memberRegisterDate;
+        this.memberType = memberType;
+        this.memberGuideStatus = memberGuideStatus;
+        this.memberSleep = memberSleep;
+        this.memberGuideType = memberGuideType;
+        this.memberGuideInterest = memberGuideInterest;
+        this.alerts = alerts;
+        this.memberFilePath = memberFilePath;
+        this.memberFileUUID = memberFileUUID;
+        this.memberFileOriginalName = memberFileOriginalName;
+    }
 }

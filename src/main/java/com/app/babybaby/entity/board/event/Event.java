@@ -65,4 +65,15 @@ public class Event extends BoardInfo {
         this.calendar = calendar;
         this.company = company;
     }
+
+    @Builder
+    public Event(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, Calendar calendar, Member company) {
+        super(id, boardTitle, boardContent);
+        this.eventRecruitCount = eventRecruitCount;
+        this.eventLocation = eventLocation;
+        this.eventPrice = eventPrice;
+        this.category = category;
+        this.calendar = calendar;
+        this.company = company;
+    }
 }
