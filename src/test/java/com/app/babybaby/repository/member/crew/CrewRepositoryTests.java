@@ -6,7 +6,7 @@ import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.member.kid.KidRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
-import com.app.babybaby.type.GenderType;
+import com.app.babybaby.type.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
