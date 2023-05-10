@@ -1,6 +1,7 @@
 package com.app.babybaby.entity.member;
 
 import com.app.babybaby.entity.embeddable.Address;
+import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.type.*;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -75,6 +77,9 @@ public class Member {
     @Column(name = "MEMBER_FILE_UUID")
     private String memberFileUUID;
     private String memberFileOriginalName;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    private List<Coupon> coupons;
 
     @Builder
     public Member(String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName) {
