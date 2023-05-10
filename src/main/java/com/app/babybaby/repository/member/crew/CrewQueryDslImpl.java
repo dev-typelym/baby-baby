@@ -1,7 +1,6 @@
 package com.app.babybaby.repository.member.crew;
 
 import com.app.babybaby.entity.member.Kid;
-import com.app.babybaby.entity.member.QKid;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 

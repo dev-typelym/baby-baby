@@ -1,6 +1,5 @@
 package com.app.babybaby.repository.board.review;
 
-import com.app.babybaby.repository.board.review.ReviewRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

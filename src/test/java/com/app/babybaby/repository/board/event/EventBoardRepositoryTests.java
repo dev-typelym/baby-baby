@@ -4,15 +4,12 @@ import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.type.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 

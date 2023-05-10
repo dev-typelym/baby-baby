@@ -1,8 +1,6 @@
 package com.app.babybaby.repository.board.parentsBoard;
 
-import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
-import org.hibernate.annotations.Parent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

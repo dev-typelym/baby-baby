@@ -1,6 +1,5 @@
 package com.app.babybaby.repository.reply.parentsBoardReply;
 
-import com.app.babybaby.entity.reply.parentsBoardReply.QParentsBoardReply;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 

@@ -1,14 +1,11 @@
 package com.app.babybaby.repository.file.nowKidsFile;
 
-import com.app.babybaby.entity.board.nowKids.NowKids;
-import com.app.babybaby.entity.board.nowKids.QNowKids;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 import static com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile.nowKidsFile;
 
 @RequiredArgsConstructor
