@@ -1,4 +1,4 @@
-package com.app.babybaby.repository.like.nowKids;
+package com.app.babybaby.repository.like.nowKidsLike;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
