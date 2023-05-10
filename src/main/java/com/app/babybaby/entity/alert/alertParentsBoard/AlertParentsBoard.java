@@ -2,6 +2,7 @@ package com.app.babybaby.entity.alert.alertParentsBoard;
 
 import com.app.babybaby.entity.alert.Alert;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.AlertType;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -27,8 +28,8 @@ public class AlertParentsBoard extends Alert {
         this.parentsBoard = parentsBoard;
     }
 
-    public AlertParentsBoard(String alertTitle, String alertContent, AlertType alertType, LocalDateTime alertRegisterDate, ParentsBoard parentsBoard) {
-        super(alertTitle, alertContent, alertType, alertRegisterDate);
+    public AlertParentsBoard(String alertTitle, String alertContent, AlertType alertType, Member member, LocalDateTime alertRegisterDate, ParentsBoard parentsBoard) {
+        super(alertTitle, alertContent, alertType, member, alertRegisterDate);
         this.parentsBoard = parentsBoard;
     }
 }

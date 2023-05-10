@@ -1,5 +1,6 @@
 package com.app.babybaby.entity.alert;
 
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.AlertType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -25,12 +26,17 @@ public abstract class Alert {
     @Enumerated(EnumType.STRING)
     private AlertType alertType;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn
+    private Member member;
+
     private LocalDateTime alertRegisterDate;
 
-    public Alert(String alertTitle, String alertContent, AlertType alertType, LocalDateTime alertRegisterDate) {
+    public Alert(String alertTitle, String alertContent, AlertType alertType, Member member, LocalDateTime alertRegisterDate) {
         this.alertTitle = alertTitle;
         this.alertContent = alertContent;
         this.alertType = alertType;
+        this.member = member;
         this.alertRegisterDate = alertRegisterDate;
     }
 }
