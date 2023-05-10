@@ -1,4 +1,4 @@
-package com.app.babybaby.repository.like.nowKids;
+package com.app.babybaby.repository.like.nowKidsLike;
 
 
 public interface NowKidsLikeQueryDsl {

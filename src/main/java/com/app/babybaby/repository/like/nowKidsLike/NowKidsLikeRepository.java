@@ -1,4 +1,4 @@
-package com.app.babybaby.repository.like.nowKids;
+package com.app.babybaby.repository.like.nowKidsLike;
 
 import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import org.springframework.data.jpa.repository.JpaRepository;

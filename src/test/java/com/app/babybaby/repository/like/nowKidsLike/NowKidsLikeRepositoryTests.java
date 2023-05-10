@@ -4,7 +4,6 @@ import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
-import com.app.babybaby.repository.like.nowKids.NowKidsLikeRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
