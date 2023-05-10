@@ -9,5 +9,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class ParentsBoardRepositoryTests {
+public class ParentsBoardFileRepositoryTests {
 }

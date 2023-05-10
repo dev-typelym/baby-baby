@@ -13,7 +13,7 @@ public interface ParentsBoardQueryDsl {
     public Page<ParentsBoard> findAllWithSearch(ParentsBoardSearch parentsBoardSearch, Pageable pageable);
 
     //    상세보기
-    public Optional<ParentsBoard> findById(Long id);
+    public Optional<ParentsBoard> findDetailById(Long id);
 
     //    작성하기(1단계)
     public Optional<Event> findByEventId(Long id);

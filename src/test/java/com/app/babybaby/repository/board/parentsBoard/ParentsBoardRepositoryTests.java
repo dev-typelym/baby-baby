@@ -3,9 +3,11 @@ package com.app.babybaby.repository.board.parentsBoard;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.embeddable.Address;
+import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import com.app.babybaby.repository.board.event.EventRepository;
+import com.app.babybaby.repository.file.parentsBoardFile.ParentsBoardFileRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.repository.reply.parentsBoardReply.ParentsBoardReplyRepository;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
@@ -45,14 +47,17 @@ public class ParentsBoardRepositoryTests {
     @Autowired
     ParentsBoardReplyRepository parentsBoardReplyRepository;
 
+    @Autowired
+    ParentsBoardFileRepository parentsBoardFileRepository;
+
     @PersistenceUnit
     private EntityManagerFactory entityManagerFactory;
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    
-//    회원 20명 저장
+
+    //    회원 20명 저장
     @Test
     @Transactional
     public void save20MemberTest() {
@@ -92,7 +97,7 @@ public class ParentsBoardRepositoryTests {
 
     }
 
-//  게시글 20개 저장
+    //  게시글 20개 저장
     @Transactional
     @Test
     public void save20EventTest() {
@@ -119,7 +124,7 @@ public class ParentsBoardRepositoryTests {
     }
 
 
-//    부모님마당 20개 저장
+    //    부모님마당 20개 저장
     @Transactional
     @Test
     public void save20ParentsBoardTest() {
@@ -144,7 +149,7 @@ public class ParentsBoardRepositoryTests {
     }
 
 
-//    부모님 마당 댓글 20개 저장
+    //    부모님 마당 댓글 20개 저장
     @Transactional
     @Test
     public void save20ParentsBoardReplyTest() {
@@ -164,18 +169,47 @@ public class ParentsBoardRepositoryTests {
         }
     }
 
+    //    댓글삭제
+    @Transactional
+    @Test
+    public void deleteParentsBoardReplyTest() {
+        List<ParentsBoardReply> parentsBoardreplys = parentsBoardReplyRepository.findAll();
+
+        for (int i = 0; i < 20; i++) {
+            ParentsBoardReply parentsBoardReply = parentsBoardreplys.get(i % parentsBoardreplys.size());
+            parentsBoardReplyRepository.delete(parentsBoardReply);
+        }
+
+    }
+
+//    @Test
+//    public void findFreeBoardListByCategoryTypeAndMemberIdTest(){
+//        Pageable pageable = PageRequest.of(0, 10);
+//        freeBoardRepository.findFreeBoardListByCategoryTypeAndMemberId(pageable,CategoryType.CULTURE, 5L).stream().map(FreeBoard::toString).forEach(log::info);
+//    }
+
     @Test
     @Transactional
-    public void createBooleanExpressionTest() {
+    public void parentsBoardListTest() {
         ParentsBoardSearch parentsBoardSearch = new ParentsBoardSearch();
-        Pageable pageable = PageRequest.of(0, 10);
-        parentsBoardRepository.findAllWithSearch(parentsBoardSearch, pageable);
+        Pageable pageable = PageRequest.of(1, 10);
+        parentsBoardRepository.findAllWithSearch(parentsBoardSearch, pageable)
+                .get()
+                .map(ParentsBoard::toString)
+                .forEach(log::info);
     }
 
     @Test
     @Transactional
-    public void findByIdTest() {
+    public void findByEventIdTest() {
         log.info(parentsBoardRepository.findByEventId(1L).toString());
     }
+
+    @Test
+    @Transactional
+    public void findDetailByIdTest() {
+        log.info(parentsBoardRepository.findDetailById(521L).toString());
+    }
+
 
 }

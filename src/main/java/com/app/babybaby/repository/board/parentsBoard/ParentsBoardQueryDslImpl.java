@@ -5,11 +5,13 @@ import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.CategoryType;
+import com.app.babybaby.type.SearchTextOption;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -21,30 +23,31 @@ import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
 
 @RequiredArgsConstructor
+@Slf4j
 public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
     private final JPAQueryFactory query;
 
     @Override
     public Page<ParentsBoard> findAllWithSearch(ParentsBoardSearch parentsBoardSearch, Pageable pageable) {
-        BooleanExpression parentsBoardTitleLike = parentsBoardSearch.getParentsBoardTitle() == null ? null : parentsBoard.boardTitle.like("%" + parentsBoardSearch.getParentsBoardTitle() + "%");
-        BooleanExpression parentsBoardContentLike = parentsBoardSearch.getParentsBoardContent() == null ? null : parentsBoard.boardContent.like("%" + parentsBoardSearch.getParentsBoardContent() + "%");
+
 
 //       전체 목록 불러오기(페이징)
         List<ParentsBoard> foundParentsBoard = query.select(parentsBoard)
                 .from(parentsBoard)
                 .join(parentsBoard.event)
                 .fetchJoin()
-                .join(parentsBoard.parentsBoardFiles)
+                .leftJoin(parentsBoard.parentsBoardFiles)
                 .fetchJoin()
                 .orderBy(parentsBoard.id.desc())
-                .where(createBooleanExpression(parentsBoardSearch),(parentsBoardTitleLike.or(parentsBoardContentLike)))
-                .offset(pageable.getOffset() - 1)
+                .where(createBooleanExpression(parentsBoardSearch), createTextSearchOption(parentsBoardSearch))
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         Long count = query.select(parentsBoard.count())
                 .from(parentsBoard)
+                .where(createBooleanExpression(parentsBoardSearch), createTextSearchOption(parentsBoardSearch))
                 .fetchOne();
 
         return new PageImpl<>(foundParentsBoard, pageable, count);
@@ -52,19 +55,18 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
     //    상세보기
     @Override
-    public Optional<ParentsBoard> findById(Long id) {
+    public Optional<ParentsBoard> findDetailById(Long id) {
 
         return Optional.ofNullable(
                 query.select(parentsBoard)
                         .from(parentsBoard)
                         .join(parentsBoard.event)
                         .fetchJoin()
-                        .join(parentsBoard.parentsBoardFiles)
+                        .leftJoin(parentsBoard.parentsBoardFiles)
                         .fetchJoin()
                         .join(parentsBoard.member)
                         .fetchJoin()
-                        .join(parentsBoard.parentsBoardReplies)
-                        .fetchJoin()
+                        .where(parentsBoard.event.id.eq(id))
                         .orderBy(parentsBoard.event.id.desc())
                         .fetchOne()
         );
@@ -87,6 +89,10 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
         CategoryType categoryType = parentsBoardSearch.getCategoryType();
 
+        if(categoryType == null) {
+            return null;
+        }
+        log.info("===============" + parentsBoardSearch.getCategoryType());
         switch (categoryType){
             case AGRICULTURE:
                 booleanExpression = event.category.eq(categoryType.AGRICULTURE);
@@ -112,12 +118,35 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
             case ETC:
                 booleanExpression = event.category.eq(categoryType.ETC);
                 break;
+            default:
+                break;
         }
-
 
         return booleanExpression;
     }
 
+    private BooleanExpression createTextSearchOption(ParentsBoardSearch parentsBoardSearch) {
+        SearchTextOption option = parentsBoardSearch.getSearchTextOption();
+        BooleanExpression booleanExpression = null;
+        String searchText = parentsBoardSearch.getSearchText();
 
+        if (searchText == null || searchText == "") {
+            return null;
+        }
+
+        switch (option) {
+            case TITLE:
+                booleanExpression = event.boardTitle.like(searchText);
+                break;
+            case CONTENT:
+                booleanExpression = event.boardContent.like(searchText);
+                break;
+            case BOTH:
+                booleanExpression = event.boardTitle.like(searchText).or(event.boardContent.like(searchText));
+                break;
+        }
+
+        return booleanExpression;
+    }
 
 }
