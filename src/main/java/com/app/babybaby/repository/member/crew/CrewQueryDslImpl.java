@@ -18,4 +18,5 @@ public class CrewQueryDslImpl implements CrewQueryDsl {
         return query.select(kid).from(kid).where(kid.parent.id.eq(userId)).orderBy(kid.id.desc()).fetch();
     }
 
+
 }

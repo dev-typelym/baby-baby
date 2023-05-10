@@ -2,6 +2,7 @@ package com.app.babybaby.entity.alert.alertFollow;
 
 import com.app.babybaby.entity.alert.Alert;
 import com.app.babybaby.entity.member.Follow;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.AlertType;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,8 +27,8 @@ public class AlertFollow extends Alert {
         this.follow = follow;
     }
 
-    public AlertFollow(String alertTitle, String alertContent, AlertType alertType, LocalDateTime alertRegisterDate, Follow follow) {
-        super(alertTitle, alertContent, alertType, alertRegisterDate);
+    public AlertFollow(String alertTitle, String alertContent, AlertType alertType, Member member, LocalDateTime alertRegisterDate, Follow follow) {
+        super(alertTitle, alertContent, alertType, member, alertRegisterDate);
         this.follow = follow;
     }
 }
