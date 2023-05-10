@@ -1,8 +1,9 @@
-package com.app.babybaby.service.boardService.nowKids;
+package com.app.babybaby.service.boardService.nowKidsService;
 
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
 import com.app.babybaby.entity.board.nowKids.NowKids;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Qualifier("nowKids") @Primary
-public class NowKidsServiceImpl implements NowKidsService {
+public class NowKidsServicesImpl implements NowKidsServices {
 
     private final NowKidsRepository nowKidsRepository;
 
@@ -25,8 +26,15 @@ public class NowKidsServiceImpl implements NowKidsService {
     @Override
     public List<NowKidsDTO> getAllInfoForList() {
         List<NowKids> nowKidsList = nowKidsRepository.findAll();
-        return nowKidsList.stream()
+        List<NowKidsDTO> nowKidsDTOList = nowKidsList.stream()
                 .map(this::toNowKidsDTO)
                 .collect(Collectors.toList());
+
+        nowKidsDTOList.forEach(nowKidsDTO -> {
+            List<Kid> kids = nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(nowKidsDTO.getMemberId(), nowKidsDTO.getId());
+            nowKidsDTO.setKids(kids);
+        });
+
+        return nowKidsDTOList;
     }
 }

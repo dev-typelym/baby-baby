@@ -34,7 +34,7 @@ public class Kid {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Member parent;
-
+    @Builder
     public Kid(String kidName, Integer kidAge, GenderType kidGender, Member parent) {
         this.kidName = kidName;
         this.kidAge = kidAge;

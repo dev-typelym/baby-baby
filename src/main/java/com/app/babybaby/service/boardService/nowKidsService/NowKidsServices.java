@@ -1,25 +1,24 @@
-package com.app.babybaby.service.boardService.nowKids;
+package com.app.babybaby.service.boardService.nowKidsService;
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 
 import java.util.List;
 import java.util.stream.Collectors;
-public interface NowKidsService {
+//이름 바꾸지 말기
+public interface NowKidsServices {
+
     public List<NowKidsDTO> getAllInfoForList();
 
-    default NowKids toNowKidsEntity(NowKidsDTO nowKidsDTO){
-        return NowKids.builder()
-                .id(nowKidsDTO.getId())
-                .build();
-    }
 
 
     default Member toMemberEntity(NowKidsDTO nowKidsDTO){
         return Member.builder()
+                .id(nowKidsDTO.getMemberId())
                 .memberProfileOriginalName(nowKidsDTO.getMemberProfileOriginalName())
                 .memberProfilePath(nowKidsDTO.getMemberProfilePath())
                 .memberProfileUUID(nowKidsDTO.getMemberProfileUUID())
@@ -35,6 +34,7 @@ public interface NowKidsService {
 
     default Event toEventEntity(NowKidsDTO nowKidsDTO){
         return Event.builder()
+                .id(nowKidsDTO.getId())
                 .boardTitle(nowKidsDTO.getBoardTitle())
                 .boardContent(nowKidsDTO.getBoardContent())
                 .eventRecruitCount(nowKidsDTO.getEventRecruitCount())
@@ -54,10 +54,22 @@ public interface NowKidsService {
                 .collect(Collectors.toList());
     }
 
+    default List<Kid> toKidEntity(NowKidsDTO nowKidsDTO){
+        return nowKidsDTO.getKids().stream()
+                .map(kid -> Kid.builder()
+                .kidAge(kid.getKidAge())
+                        .kidGender(kid.getKidGender())
+                        .kidName(kid.getKidName())
+                        .kidAge(kid.getKidAge())
+                        .build()
+                ).collect(Collectors.toList());
+    }
+
 
     default NowKidsDTO toNowKidsDTO(NowKids nowKids) {
         return NowKidsDTO.builder()
-                .id(nowKids.getId())
+                .id(nowKids.getEvent().getId())
+                .memberId(nowKids.getGuide().getId())
                 .boardTitle(nowKids.getEvent().getBoardTitle())
                 .memberProfileOriginalName(nowKids.getGuide().getMemberProfileOriginalName())
                 .memberProfilePath(nowKids.getGuide().getMemberProfilePath())
@@ -81,6 +93,7 @@ public interface NowKidsService {
                         .collect(Collectors.toList()))
                 .build();
     }
+
 
 
 

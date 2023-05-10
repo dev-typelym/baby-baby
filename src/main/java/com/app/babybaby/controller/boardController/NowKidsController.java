@@ -13,4 +13,14 @@ public class NowKidsController {
     public String writeNowKidFiles(){
         return "/nowKids/now-kids-write-multi";
     }
+
+    @GetMapping("write")
+    public String goWriteNowKids(){
+        return "/nowKids/now-kids-write";
+    }
+
+    @GetMapping("list")
+    public String goNowKidsList(){
+        return "nowKids/now-kids-list";
+    }
 }
