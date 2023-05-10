@@ -2,6 +2,7 @@ package com.app.babybaby.entity.alert.alertReview;
 
 import com.app.babybaby.entity.alert.Alert;
 import com.app.babybaby.entity.board.review.Review;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.AlertType;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,8 +27,8 @@ public class AlertReview extends Alert {
         this.review = review;
     }
 
-    public AlertReview(String alertTitle, String alertContent, AlertType alertType, LocalDateTime alertRegisterDate, Review review) {
-        super(alertTitle, alertContent, alertType, alertRegisterDate);
+    public AlertReview(String alertTitle, String alertContent, AlertType alertType, Member member, LocalDateTime alertRegisterDate, Review review) {
+        super(alertTitle, alertContent, alertType, member, alertRegisterDate);
         this.review = review;
     }
 }

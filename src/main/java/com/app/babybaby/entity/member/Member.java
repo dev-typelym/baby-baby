@@ -1,5 +1,6 @@
 package com.app.babybaby.entity.member;
 
+import com.app.babybaby.entity.alert.Alert;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.type.*;
@@ -11,11 +12,12 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
-@Getter @ToString
+@Getter @ToString(exclude = "alerts")
 @Table(name = "TBL_MEMBER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
@@ -72,6 +74,9 @@ public class Member {
     /* 가이드 관심분야 */
     @Enumerated(EnumType.STRING)
     private CategoryType memberGuideInterest;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member", orphanRemoval = true, cascade = CascadeType.REMOVE)
+    private List<Alert> alerts = new ArrayList<>();
 
     private String memberFilePath;
     @Column(name = "MEMBER_FILE_UUID")
