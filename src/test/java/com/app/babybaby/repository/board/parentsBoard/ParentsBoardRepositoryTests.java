@@ -8,11 +8,14 @@ import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.repository.reply.parentsBoardReply.ParentsBoardReplyRepository;
+import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,6 +51,8 @@ public class ParentsBoardRepositoryTests {
     @PersistenceContext
     private EntityManager entityManager;
 
+    
+//    회원 20명 저장
     @Test
     @Transactional
     public void save20MemberTest() {
@@ -87,7 +92,7 @@ public class ParentsBoardRepositoryTests {
 
     }
 
-
+//  게시글 20개 저장
     @Transactional
     @Test
     public void save20EventTest() {
@@ -114,6 +119,7 @@ public class ParentsBoardRepositoryTests {
     }
 
 
+//    부모님마당 20개 저장
     @Transactional
     @Test
     public void save20ParentsBoardTest() {
@@ -138,6 +144,7 @@ public class ParentsBoardRepositoryTests {
     }
 
 
+//    부모님 마당 댓글 20개 저장
     @Transactional
     @Test
     public void save20ParentsBoardReplyTest() {
@@ -155,6 +162,20 @@ public class ParentsBoardRepositoryTests {
             );
             parentsBoardReplyRepository.save(parentsBoardReply);
         }
+    }
+
+    @Test
+    @Transactional
+    public void createBooleanExpressionTest() {
+        ParentsBoardSearch parentsBoardSearch = new ParentsBoardSearch();
+        Pageable pageable = PageRequest.of(0, 10);
+        parentsBoardRepository.findAllWithSearch(parentsBoardSearch, pageable);
+    }
+
+    @Test
+    @Transactional
+    public void findByIdTest() {
+        log.info(parentsBoardRepository.findByEventId(1L).toString());
     }
 
 }
