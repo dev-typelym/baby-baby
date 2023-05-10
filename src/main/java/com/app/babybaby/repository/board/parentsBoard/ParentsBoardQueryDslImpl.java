@@ -1,9 +1,6 @@
 package com.app.babybaby.repository.board.parentsBoard;
 
-import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
-import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

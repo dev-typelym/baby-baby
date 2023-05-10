@@ -2,9 +2,7 @@ package com.app.babybaby.repository.board.nowKids;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
-import com.app.babybaby.entity.file.File;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
-import com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile;
 import com.app.babybaby.entity.member.*;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
