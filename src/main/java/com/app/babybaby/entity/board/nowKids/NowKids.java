@@ -4,10 +4,7 @@ import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Member;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -35,7 +32,7 @@ public class NowKids extends BoardInfo {
         this.event = event;
         this.guide = guide;
     }
-
+    @Builder
     public NowKids(Long id, String boardTitle, String boardContent, Event event, Member guide) {
         super(id, boardTitle, boardContent);
         this.event = event;
