@@ -54,7 +54,25 @@ public class CrewRepositoryTests {
 
         LocalDateTime registerDate = LocalDateTime.now();
 
-        Member member = new Member("member2@example.com", "홍길동", "password", "nickname2", "hi sentence2", "011-1234-5178", address, "profile_original_name.png", "profile_uuid", "/profile/path", registerDate, MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.DISABLED, CategoryType.SPORTS, "file_path", "file_uuid", "file_original_name");
+        Member member = new Member(
+                "member2@example.com",
+                "홍길동",
+                "password",
+                "nickname2",
+                "hi sentence2",
+                "011-1234-5178",
+                address,
+                "profile_original_name.png",
+                "profile_uuid",
+                "/profile/path", registerDate,
+                MemberType.COMPANY,
+                AcceptanceType.ACCEPTED,
+                SleepType.AWAKE,
+                GuideType.DISABLED,
+                CategoryType.SPORTS,
+                "file_path",
+                "file_uuid",
+                "file_original_name");
 
         memberRepository.save(member);
 
