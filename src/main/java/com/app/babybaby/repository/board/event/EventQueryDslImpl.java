@@ -52,7 +52,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
                         .join(coupon)
                         .fetchJoin()
                         .on(coupon.member.id.eq(memberId))
-                        .where(event.id.eq(eventId), coupon.id.eq(memberId))
+                        .where(event.id.eq(eventId), event.company.id.eq(memberId))
                         .fetchOne()
         );
     }
