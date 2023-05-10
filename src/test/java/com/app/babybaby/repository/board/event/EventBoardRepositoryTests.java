@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +30,7 @@ public class EventBoardRepositoryTests {
 
     //  이벤트 게시판 등록
     @Test
-    public void saveTest(){
+    public void saveTest() {
 //        Event event = new Event(10L,new Address(),10000L,"Test","Test111", CategoryType.MUSEUM);
         Address address = new Address();
         address.setAddress("서울시");
@@ -42,9 +44,9 @@ public class EventBoardRepositoryTests {
 
         memberRepository.save(member);
 
-        Calendar calendar = new Calendar("요기용", CategoryType.ART,LocalDateTime.now(),LocalDateTime.now());
+        Calendar calendar = new Calendar("요기용", CategoryType.ART, LocalDateTime.now(), LocalDateTime.now());
 
-        Event event = new Event(10L, address, 100000L, CategoryType.MUSEUM,calendar,member);
+        Event event = new Event(10L, address, 100000L, CategoryType.MUSEUM, calendar, member);
         eventRepository.save(event);
     }
 
@@ -58,25 +60,22 @@ public class EventBoardRepositoryTests {
 
     //    이벤트 게시판 상세
     @Test
-    public void findEventByIdTest(){
+    public void findEventByIdTest() {
         eventRepository.findEventById(2L).ifPresent(event -> log.info(event.toString()));
     }
 
 
     //    결제 상세페이지 멤버 쿠폰까지 조회
     @Test
-    public void findEventPayByIdTest(){
-        eventRepository.findEventPayById(1L,2L).ifPresent(event -> log.info(event.toString()));
+    public void findEventPayByIdTest() {
+        eventRepository.findEventPayById(1L, 2L).ifPresent(event -> log.info(event.toString()));
     }
 
-
-
-
-
-
-
-
-
+    @Test
+    public void findAllByMemberLikesWithPaging_QueryDSL_Test() {
+        Slice<Event> events = eventRepository.findAllByMemberLikesWithPaging_QueryDSL(PageRequest.of(0, 10), 1L);
+        events.get().map(Event::toString).forEach(log::info);
+    }
 
 
 }
