@@ -76,6 +76,7 @@ public class Member {
     private String memberFileUUID;
     private String memberFileOriginalName;
 
+    @Builder
     public Member(String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName) {
         this.memberEmail = memberEmail;
         this.memberName = memberName;
@@ -97,4 +98,5 @@ public class Member {
         this.memberFileUUID = memberFileUUID;
         this.memberFileOriginalName = memberFileOriginalName;
     }
+
 }

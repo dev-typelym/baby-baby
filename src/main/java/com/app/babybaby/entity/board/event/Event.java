@@ -48,7 +48,7 @@ public class Event extends BoardInfo {
         this.company = company;
     }
 
-
+    @Builder
     public Event(String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, Calendar calendar, Member company) {
         super(boardTitle, boardContent);
         this.eventRecruitCount = eventRecruitCount;

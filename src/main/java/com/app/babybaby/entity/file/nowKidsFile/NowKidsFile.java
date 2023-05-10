@@ -3,10 +3,7 @@ package com.app.babybaby.entity.file.nowKidsFile;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.file.File;
 import com.app.babybaby.type.FileType;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -24,7 +21,7 @@ public class NowKidsFile extends File {
     public NowKidsFile(NowKids nowKids) {
         this.nowKids = nowKids;
     }
-
+    @Builder
     public NowKidsFile(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus, NowKids nowKids) {
         super(fileOriginalName, fileUUID, filePath, fileStatus);
         this.nowKids = nowKids;
