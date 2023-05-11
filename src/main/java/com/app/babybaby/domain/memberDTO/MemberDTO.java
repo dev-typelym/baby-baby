@@ -43,4 +43,5 @@ public class MemberDTO {
     private List<Coupon> coupons;
 
 
+
 }

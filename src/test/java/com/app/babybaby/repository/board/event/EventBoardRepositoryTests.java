@@ -78,4 +78,11 @@ public class EventBoardRepositoryTests {
     }
 
 
+    @Test
+    public void findTopEventByCategoryDescTest(){
+        log.info(eventRepository.findTop1ByCategoryOrderByRegisterDateDesc(CategoryType.SPORTS)+"");
+    }
+
+
+
 }
