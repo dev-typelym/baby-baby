@@ -16,6 +16,7 @@ public class GlobalExceptionHandler {
     protected RedirectView handleBoardNotFoundException(BoardNotFoundException e, HttpServletRequest request) {
 //        request.getRequestURL()
         // boardlist 경로
-        return new RedirectView("");
+        log.info("들어옴");
+        return new RedirectView("/parentsYards/list");
     }
 }

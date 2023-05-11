@@ -94,8 +94,8 @@ public class ParentsBoardRepositoryTests {
 
             memberRepository.save(member);
         }
-
     }
+
 
     //  게시글 20개 저장
     @Transactional
@@ -193,7 +193,7 @@ public class ParentsBoardRepositoryTests {
     public void parentsBoardListTest() {
         ParentsBoardSearch parentsBoardSearch = new ParentsBoardSearch();
         Pageable pageable = PageRequest.of(1, 10);
-        parentsBoardRepository.findAllWithSearch(parentsBoardSearch, pageable)
+        parentsBoardRepository.findAllWithSearch(pageable, parentsBoardSearch)
                 .get()
                 .map(ParentsBoard::toString)
                 .forEach(log::info);

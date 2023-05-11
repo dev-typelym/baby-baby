@@ -2,8 +2,14 @@ package com.app.babybaby.service.boardService.parentsBoardService;
 
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.fileDTO.parentsBoardFileDTO.ParentsBoardFileDTO;
+import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDTO;
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
+import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
+import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,15 +17,21 @@ import java.util.stream.Collectors;
 
 public interface ParentsBoardService {
 
-//    게시글 상세보기
+    //    게시글 상세보기
     public ParentsBoardDTO getParentsBoardDetail(Long id);
 
-    //    게시글 목록 불러오기 DTO
+    //    게시글 목록 불러오기
+    public Page<ParentsBoardDTO> getFindAllWithSearchParentsBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
+
+    //    참여예정인 게시판 불러오기(작성쪽)
+    public Event getFindByEventId(Long id);
+
     default ParentsBoardDTO toParentsBoardDTO(ParentsBoard parentsBoard) {
         return ParentsBoardDTO.builder()
                 .id(parentsBoard.getId())
                 .eventTitle(parentsBoard.getEvent().getBoardTitle())
                 .eventCategory(parentsBoard.getEvent().getCategory())
+                .memberNickName((parentsBoard.getMember().getMemberNickname()))
                 .parentsBoardContent(parentsBoard.getBoardContent())
                 .parensBoardTitle(parentsBoard.getBoardTitle())
                 .parentsBoardRegisterDate(parentsBoard.getRegisterDate())
@@ -28,11 +40,13 @@ public interface ParentsBoardService {
                 .representFilePath(parentsBoard.getRepresentFilePath())
                 .representFileUUID(parentsBoard.getRepresentFileUUID())
                 .parentsBoardFileDTOS(parentsBoard.getParentsBoardFiles().stream()
-                        .map(this::parentsBoardToDTO).collect(Collectors.toList()))
+                        .map(this::parentsBoardFileToDTO).collect(Collectors.toList()))
+//                .parentsBoardReplyDTOS(parentsBoard.getParentsBoardReplies().stream()
+//                        .map(this::parentsBoardReplyToDTO).collect(Collectors.toList()))
                 .build();
     }
 
-    default ParentsBoardFileDTO parentsBoardToDTO(ParentsBoardFile file) {
+    default ParentsBoardFileDTO parentsBoardFileToDTO(ParentsBoardFile file) {
         return ParentsBoardFileDTO.builder()
                 .fileOriginalName(file.getFileOriginalName())
                 .filePath(file.getFilePath())
@@ -42,6 +56,15 @@ public interface ParentsBoardService {
                 .build();
     }
 
-//    게시글 목록 불러오기
-    public List<ParentsBoardDTO> getParentsBoardList();
+//    default ParentsBoardReplyDTO parentsBoardReplyToDTO(ParentsBoardReply reply) {
+//        return ParentsBoardReplyDTO.builder()
+//                .id(reply.getId())
+//                .registerDate(reply.getRegisterDate())
+//                .updateDate(reply.getUpdateDate())
+//                .parentsBoardReplyContent(reply.getParentsBoardReplyContent())
+//                .memberId(reply.getMember().getId())
+//                .parentsBoardId(reply.getParentsBoard().getId())
+//                .build();
+//    }
+
 }

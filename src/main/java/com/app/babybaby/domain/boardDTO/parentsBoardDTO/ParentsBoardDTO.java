@@ -1,7 +1,9 @@
 package com.app.babybaby.domain.boardDTO.parentsBoardDTO;
 
 import com.app.babybaby.domain.fileDTO.parentsBoardFileDTO.ParentsBoardFileDTO;
+import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDTO;
 import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
+import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import com.app.babybaby.type.CategoryType;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
@@ -15,6 +17,7 @@ import java.util.List;
 public class ParentsBoardDTO {
     private Long id;
     private String eventTitle;
+    private String memberNickName;
     private CategoryType eventCategory;
     private String parentsBoardContent;
     private String parensBoardTitle;
@@ -24,4 +27,5 @@ public class ParentsBoardDTO {
     private String representFilePath;
     private String representFileUUID;
     private List<ParentsBoardFileDTO> parentsBoardFileDTOS;
+    private List<ParentsBoardReplyDTO> parentsBoardReplyDTOS;
 }

@@ -29,7 +29,7 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<ParentsBoard> findAllWithSearch(ParentsBoardSearch parentsBoardSearch, Pageable pageable) {
+    public Page<ParentsBoard> findAllWithSearch(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
 
 
 //       전체 목록 불러오기(페이징)
