@@ -58,6 +58,10 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
 
+//    로그인 시 멤버 종류 나누기 위한 column
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Role memberRole;
 
     /* 가이드 신청 시 HOLD -> 승인 후 가이드 ACCEPTED, 일반 회원 NULL */
     @Enumerated(EnumType.STRING)
@@ -131,5 +135,23 @@ public class Member {
         this.memberFilePath = memberFilePath;
         this.memberFileUUID = memberFileUUID;
         this.memberFileOriginalName = memberFileOriginalName;
+    }
+
+    @Builder /* 회원 가입 용 */
+    public Member(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, Role memberRole) {
+        this.id = id;
+        this.memberEmail = memberEmail;
+        this.memberName = memberName;
+        this.memberPassword = memberPassword;
+        this.memberNickname = memberNickname;
+        this.memberHiSentence = memberHiSentence;
+        this.memberPhone = memberPhone;
+        this.memberAddress = memberAddress;
+        this.memberProfileOriginalName = memberProfileOriginalName;
+        this.memberProfileUUID = memberProfileUUID;
+        this.memberProfilePath = memberProfilePath;
+        this.memberRegisterDate = memberRegisterDate;
+        this.memberType = memberType;
+        this.memberRole = memberRole;
     }
 }
