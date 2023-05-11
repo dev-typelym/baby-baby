@@ -51,4 +51,18 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         query.update(member).set(member.memberPassword, memberPassword).where(member.id.eq(id)).execute();
     }
 
+    /*회원정보 수정*/
+    @Override
+    public void setMemberInfoMyId(Member member) {
+        query.update(QMember.member)
+                .set(QMember.member.memberNickname, member.getMemberNickname())
+                .set(QMember.member.memberEmail, member.getMemberName())
+                .set(QMember.member.memberPhone, member.getMemberPhone())
+                .set(QMember.member.memberPassword, member.getMemberPassword())
+                .set(QMember.member.memberAddress, member.getMemberAddress())
+                .where(QMember.member.eq(member))
+                .execute();
+    }
+
+
 }

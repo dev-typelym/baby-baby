@@ -31,4 +31,8 @@ public interface MemberQueryDsl {
     /* 일반 회원 가입 */
 
     /* 기업 회원 가입 */
+
+//   회원정보 수정
+    public void setMemberInfoMyId(Member member);
+
 }
