@@ -17,7 +17,7 @@ public class CouponQueryDslImpl implements CouponQueryDsl {
 
     //    memberId 로 나의 쿠폰 목록
     @Override
-    public Slice<Coupon> findCouponByMemberId(Pageable pageable, Long memberId) {
+    public Slice<Coupon> findCouponByMemberId_QueryDSL(Pageable pageable, Long memberId) {
         List<Coupon> memberCoupons = query.select(coupon)
                 .from(coupon)
                 .where(coupon.member.id.eq(memberId))

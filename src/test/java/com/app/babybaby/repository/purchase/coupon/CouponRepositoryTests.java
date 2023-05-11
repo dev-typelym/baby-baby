@@ -23,7 +23,7 @@ public class CouponRepositoryTests {
     public void findCouponByMemberIdTest(){
         Pageable pageable = PageRequest.of(0, 5);
 
-        couponRepository.findCouponByMemberId(pageable,1L).stream().map(Coupon::toString).forEach(log::info);
+        couponRepository.findCouponByMemberId_QueryDSL(pageable,1L).stream().map(Coupon::toString).forEach(log::info);
     }
 
 
