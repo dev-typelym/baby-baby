@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface ParentsBoardQueryDsl {
     //    전체 목록
-    public Page<ParentsBoard> findAllWithSearch(ParentsBoardSearch parentsBoardSearch, Pageable pageable);
+    public Page<ParentsBoard> findAllWithSearch(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
 
     //    상세보기
     public Optional<ParentsBoard> findDetailById(Long id);
@@ -24,3 +24,4 @@ public interface ParentsBoardQueryDsl {
 
     public Page<ParentsBoard> findListByMemberIdWithPaging_QueryDSL(Pageable pageable,Long memberId);
 }
+
