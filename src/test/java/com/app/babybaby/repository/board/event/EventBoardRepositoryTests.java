@@ -66,7 +66,7 @@ public class EventBoardRepositoryTests {
         Pageable pageable = PageRequest.of(0, 10);
         EventBoardSearch eventBoardSearch = new EventBoardSearch();
 
-        eventBoardSearch.setBoardTitle("검색");
+        eventBoardSearch.setBoardContent("사랑");
         eventBoardSearch.setCategoryType(CategoryType.ART);
         eventRepository.findEventList(eventBoardSearch,pageable).stream().map(Event::toString).forEach(log::info);
     }
@@ -85,6 +85,13 @@ public class EventBoardRepositoryTests {
         eventRepository.findEventPayById(1L, 2L).ifPresent(event -> log.info(event.toString()));
     }
 
+
+//    이벤트 게시판 삭제 아시죠 ?
+//    @Test
+//    public void deleteTest(){
+//        Event event = eventRepository.findById(2L).get();
+//        eventRepository.delete(event);
+//    }
 
 
 
