@@ -5,12 +5,14 @@ import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.member.member.MemberRepository;
+import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.type.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +29,6 @@ public class EventBoardRepositoryTests {
     @Autowired
     MemberRepository memberRepository;
 
-
     //  이벤트 게시판 등록
     @Test
     public void saveTest() {
@@ -40,22 +41,35 @@ public class EventBoardRepositoryTests {
 
         LocalDateTime registerDate = LocalDateTime.now();
 
-        Member member = new Member("member@example.com", "홍길동", "password", "nickname", "hi sentence", "010-1234-5678", address, "profile_original_name.png", "profile_uuid", "/profile/path", registerDate, MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.DISABLED, CategoryType.SPORTS, "file_path", "file_uuid", "file_original_name");
+        Member member = new Member("membe112r@example.com", "홍길동1", "password", "nickname21", "hi sentence", "010-1134-5644", address, "profile_original_name.png", "profile_uuid", "/profile/path", registerDate, MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.DISABLED, CategoryType.SPORTS, "file_path", "file_uuid", "file_original_name");
 
         memberRepository.save(member);
 
         Calendar calendar = new Calendar("요기용", CategoryType.ART, LocalDateTime.now(), LocalDateTime.now());
 
-        Event event = new Event(10L, address, 100000L, CategoryType.MUSEUM, calendar, member);
-        eventRepository.save(event);
+//        Event event = new Event(10L, address, 100000L, CategoryType.MUSEUM, calendar, member);
+        Event event1 = Event.builder().boardTitle("검색조건")
+                .boardContent("사랑해요~")
+                .calendar(calendar)
+                .category(CategoryType.ART)
+                .company(member)
+                .eventLocation(address)
+                .eventPrice(10000L)
+                .eventRecruitCount(1L)
+                .build();
+        eventRepository.save(event1);
     }
 
     //  이벤트 게시판 조회 페이징
-//    @Test
-//    public void findEventListTest() {
-//        Pageable pageable = PageRequest.of(0, 10);
-//        eventRepository.findEventList(pageable).stream().map(Event::toString).forEach(log::info);
-//    }
+    @Test
+    public void findEventListTest() {
+        Pageable pageable = PageRequest.of(0, 10);
+        EventBoardSearch eventBoardSearch = new EventBoardSearch();
+
+        eventBoardSearch.setBoardTitle("검색");
+        eventBoardSearch.setCategoryType(CategoryType.ART);
+        eventRepository.findEventList(eventBoardSearch,pageable).stream().map(Event::toString).forEach(log::info);
+    }
 
 
     //    이벤트 게시판 상세
