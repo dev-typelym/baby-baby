@@ -10,7 +10,7 @@ import org.springframework.data.domain.Slice;
 import java.util.Optional;
 
 public interface EventQueryDsl {
-    //    이벤트 게시판 목록
+    //    이벤트 게시판 목록(무한스크롤)
     public Slice<Event> findEventList(EventBoardSearch eventBoardSearch,Pageable pageable);
     //    이벤트 게시판 상세 페이지
     public Optional<Event> findEventById(Long id);
