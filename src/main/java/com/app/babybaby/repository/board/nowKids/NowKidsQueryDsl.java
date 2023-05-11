@@ -6,13 +6,14 @@ import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface NowKidsQueryDsl {
     /* 통솔자가 가지고있는 행사 가져오기 */
     public NowKids findNowKidsByGuideId_QueryDsl(Long guideId);
 
-    /* NowKids 리스트를 위한 전체 솔자의 정보 */
+    /* NowKids 리스트를 위한 전체 통솔자의 정보 */
     public List<Member> findGuideBoard_QueryDsl();
 
     /* NowKids 리스트를 위한 전체 솔자의 정보 + 페이징 처리 */
@@ -29,6 +30,8 @@ public interface NowKidsQueryDsl {
 
     /* 해당 이벤트에 어떤 아이들이 참석했는지 */
     public List<Kid> findAllKidsByEventIdAndGuideId_QueryDsl(Long guideId, Long eventId);
+
+    public LocalDateTime findUpdateTime_QueryDsl(Long nowKidsId);
 
     /*한방쿼리로 모든 정보 다 가져오기 */
 //    public List<NowKids> findAllInfo();
