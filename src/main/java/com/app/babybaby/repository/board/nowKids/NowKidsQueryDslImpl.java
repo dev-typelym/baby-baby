@@ -46,6 +46,16 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .fetch();
     }
 
+
+    /* AdminGuide 아이디로 그 사람이 통솔중인 이벤트 정보 가져오기 (통솔중인것은 가져오면 안됨), (통솔완료인 것도 가져오면 안됨) */
+    public List<Event> findEventInfoByAdminGuideId_QueryDsl(Long adminGuideId) {
+        return query.select(guide.event)
+                .from(guide)
+                .join(guide.event)
+                .where(guide.adminGuide.id.eq(adminGuideId))
+                .fetch();
+    }
+
     /* 세션에 있는 아이디로 참여자 목록 가져오기 */
     public List<Kid> findAllKidsByGeneralGuideId_QueryDsl(Long sessionId) {
         BooleanBuilder builder = new BooleanBuilder();

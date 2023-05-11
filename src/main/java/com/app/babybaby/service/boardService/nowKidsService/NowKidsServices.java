@@ -34,9 +34,6 @@ public interface NowKidsServices {
                 .memberNickname(nowKidsDTO.getMemberNickname())
                 .memberRegisterDate(nowKidsDTO.getMemberRegisterDate())
                 .memberType(nowKidsDTO.getMemberType())
-                .memberGuideStatus(nowKidsDTO.getMemberGuideStatus())
-                .memberSleep(nowKidsDTO.getMemberSleep())
-                .memberGuideType(nowKidsDTO.getMemberGuideType())
                 .build();
 
     }
