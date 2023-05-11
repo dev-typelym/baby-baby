@@ -1,18 +1,15 @@
 package com.app.babybaby.domain.boardDTO.nowKidsDTO;
 
+import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.type.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 import java.util.List;
 
 @Component
