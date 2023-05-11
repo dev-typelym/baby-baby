@@ -15,6 +15,6 @@ public interface EventQueryDsl {
     public Optional<Event> findEventById(Long id);
     //     결제 상세 페이지
     public Optional<Event> findEventPayById(Long memberId, Long eventId);
-//    회원이 좋아요 누른 이벤트 게시글 조회
-    public Slice<Event> findAllByMemberLikesWithPaging_QueryDSL(Pageable pageable, Long memberId);
+
+
 }
