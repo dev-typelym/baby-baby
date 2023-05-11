@@ -1,23 +1,14 @@
 package com.app.babybaby.domain.boardDTO.nowKidsDTO;
 
 
-import com.app.babybaby.domain.fileDTO.nowKidsFileDTO.NowKidsFileDTO;
-import com.app.babybaby.entity.board.event.Event;
-import com.app.babybaby.entity.board.nowKids.NowKids;
-import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
-import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.*;
-import com.sun.istack.NotNull;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 

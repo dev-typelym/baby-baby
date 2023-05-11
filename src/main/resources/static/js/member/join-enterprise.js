@@ -194,7 +194,7 @@ let nameFlag = false;
 $nameInput.on("blur", function() {
 	const $nameInputValue = $nameInput.val();
 	const nameInputValue = $nameInput.val();
-	var name = nameInputValue.search(/^[가-힣a-zA-Z]{2,20}$/);
+	var name = nameInputValue
 
 	// $nameInput.css("border-color", "#f66");
 	// $nameInput.css("border-color", "#dde2e6");
