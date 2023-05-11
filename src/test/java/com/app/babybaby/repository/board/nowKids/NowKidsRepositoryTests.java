@@ -14,6 +14,7 @@ import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.calendar.CalendarRepository;
 import com.app.babybaby.repository.file.nowKidsFile.NowKidsFileFileRepository;
 import com.app.babybaby.repository.guideSchedule.GuideScheduleRepository;
+import com.app.babybaby.repository.like.nowKidsLike.NowKidsLikeRepository;
 import com.app.babybaby.repository.member.crew.CrewRepository;
 import com.app.babybaby.repository.member.guide.GuidRepository;
 import com.app.babybaby.repository.member.kid.KidRepository;
@@ -64,6 +65,9 @@ public class NowKidsRepositoryTests {
     @Autowired
     CrewRepository crewRepository;
 
+    @Autowired
+    NowKidsLikeRepository nowKidsLikeRepository;
+
     @Test
     public void save50NowKids() {
         Address address = new Address();
@@ -71,7 +75,7 @@ public class NowKidsRepositoryTests {
         address.setAddressDetail("d");
         address.setAddressSubDetail("dfa");
         address.setPostcode("12342132");
-        for (int i = 0; i < 1; i++) {
+        for (int i = 4; i < 10; i++) {
             String uniqueNickname = "Bool" + i;
 
             Member member = new Member("you" + i + "@naver.com", "정유찬", "1234", uniqueNickname, "안녕하세요",
@@ -88,7 +92,7 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void nowKidsFileSaveTest(){
-        NowKids nowKids = nowKidsRepository.findById(2L).get();
+        NowKids nowKids = nowKidsRepository.findById(4L).get();
         NowKidsFile nowKidsFile = new NowKidsFile("Mainfdsafdsa23", "Mainfdsafdsa", "123213", FileType.MAIN, nowKids);
         NowKidsFile nowKidsFile2 = new NowKidsFile("Subfdsafdsa32", "Subfdsafdsa1", "123213", FileType.SUBS, nowKids);
         NowKidsFile nowKidsFile3 = new NowKidsFile("Subfdsafdsa2", "Subfdsafdsa2", "123213", FileType.SUBS, nowKids);
@@ -142,6 +146,11 @@ public class NowKidsRepositoryTests {
     }
 
     @Test
+    public void findByIdTest(){
+        log.info(nowKidsRepository.findById(4L).toString());
+    }
+
+    @Test
     public void findNowKidsByGuideId_QueryDslTest(){
         log.info(nowKidsRepository.findNowKidsByGuideId_QueryDsl(452L).toString());
     }
@@ -163,7 +172,7 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void findEventInfoByGuideIdTest(){
-        log.info(nowKidsRepository.findEventInfoByGuideId_QueryDsl(456L).toString());
+        log.info(nowKidsRepository.findEventInfoByGuideId_QueryDsl(1L).toString());
     }
 
     @Test
@@ -181,6 +190,16 @@ public class NowKidsRepositoryTests {
     @Test
     public void findAllKidsByEventIdTest(){
         nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(1L, 2L).stream().map(Kid::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findUpdateTime_QueryDslTest(){
+        log.info(nowKidsRepository.findUpdateTime_QueryDsl(4L).toString());
+    }
+
+    @Test
+    public void findAllNowKidsLikeByMemberId_QueryDslTest(){
+        log.info(nowKidsLikeRepository.findAllNowKidsLikeByMemberId_QueryDsl(1L).toString());
     }
 
     /* N+1 문제 따라서 이건 DTO에서 작업한다, */

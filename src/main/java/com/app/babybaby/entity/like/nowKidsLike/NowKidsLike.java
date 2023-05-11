@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString
+@ToString(exclude = {"nowKids", "member"})
 @Table(name = "TBL_NOW_KIDS_LIKE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class NowKidsLike {

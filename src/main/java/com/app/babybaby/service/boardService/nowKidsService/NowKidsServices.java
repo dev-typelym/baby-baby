@@ -6,13 +6,22 @@ import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.stream.Collectors;
 //이름 바꾸지 말기
 public interface NowKidsServices {
 
-    public List<NowKidsDTO> getAllInfoForList();
+    public Page<NowKidsDTO> getAllInfoForListDesc(int pageNum, int pageSize, Long sessionId);
+    public List<Event> getBoardAndCalendarByGeneralGuideId(Long sessionId);
+
+    default NowKids toNowKidsEntity(NowKidsDTO nowKidsDTO){
+        return NowKids.builder()
+                .id(nowKidsDTO.getNowKidsId())
+                .build();
+    }
 
 
 
@@ -34,7 +43,7 @@ public interface NowKidsServices {
 
     default Event toEventEntity(NowKidsDTO nowKidsDTO){
         return Event.builder()
-                .id(nowKidsDTO.getId())
+                .id(nowKidsDTO.getEventId())
                 .boardTitle(nowKidsDTO.getBoardTitle())
                 .boardContent(nowKidsDTO.getBoardContent())
                 .eventRecruitCount(nowKidsDTO.getEventRecruitCount())
@@ -68,7 +77,12 @@ public interface NowKidsServices {
 
     default NowKidsDTO toNowKidsDTO(NowKids nowKids) {
         return NowKidsDTO.builder()
-                .id(nowKids.getEvent().getId())
+                .calendar(nowKids.getEvent().getCalendar())
+                .uploadTime(nowKids.getUpdateDate())
+                .eventUpdateTime(nowKids.getUpdateDate())
+                .eventUploadTIme(nowKids.getRegisterDate())
+                .nowKidsId(nowKids.getId())
+                .eventId(nowKids.getEvent().getId())
                 .memberId(nowKids.getGuide().getId())
                 .boardTitle(nowKids.getEvent().getBoardTitle())
                 .memberProfileOriginalName(nowKids.getGuide().getMemberProfileOriginalName())

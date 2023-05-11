@@ -1,5 +1,6 @@
 package com.app.babybaby.repository.board.nowKids;
 
+import com.app.babybaby.entity.board.QBoardInfo;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.file.File;
@@ -10,9 +11,11 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.app.babybaby.entity.board.QBoardInfo.boardInfo;
 import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 import static com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile.nowKidsFile;
@@ -23,6 +26,7 @@ import static com.app.babybaby.entity.member.QKid.kid;
 @RequiredArgsConstructor
 public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
     private final JPAQueryFactory query;
+    
 
     /* 통솔자의 아이디로 통솔자(User)의 모든 정보 가져오기 */
     public NowKids findNowKidsByGuideId_QueryDsl(Long guideId) {
@@ -33,13 +37,11 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .fetchOne();
     }
 
-    /* 통솔자의 아이디로 그 사람이 통솔중인 모든 정보 가져오기 */
-    /* GeneralGuide의 아이디로 그 사람이 통솔중인 이벤트 정보 가져오기 */
+    /* GeneralGuide의 아이디로 그 사람이 통솔중인 이벤트 정보 가져오기 (통솔중인것은 가져오면 안됨), (통솔완료인 것도 가져오면 안됨) */
     public List<Event> findEventInfoByGuideId_QueryDsl(Long generalGuideId) {
-        return query.select(event)
+        return query.select(guide.event)
                 .from(guide)
-                .orderBy(event.id.desc())
-                .join(guide.event, event)
+                .join(guide.event)
                 .where(guide.generalGuide.id.eq(generalGuideId))
                 .fetch();
     }
@@ -102,6 +104,13 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .where(crew.guide.generalGuide.id.eq(guideId)
                         .and(crew.guide.event.id.eq(eventId)))
                 .fetch();
+    }
+
+    public LocalDateTime findUpdateTime_QueryDsl(Long nowKidsId){
+        return query.select(boardInfo.updateDate)
+                .from(boardInfo)
+                .where(boardInfo.id.eq(nowKidsId))
+                .fetchOne();
     }
 
     /* 한방쿼리 실패 */
