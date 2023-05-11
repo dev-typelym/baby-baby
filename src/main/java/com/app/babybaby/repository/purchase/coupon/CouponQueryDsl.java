@@ -5,5 +5,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
 public interface CouponQueryDsl {
+//    나의 쿠폰 조회
     public Slice<Coupon> findCouponByMemberId(Pageable pageable, Long memberId);
 }

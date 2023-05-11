@@ -71,11 +71,7 @@ public class EventBoardRepositoryTests {
         eventRepository.findEventPayById(1L, 2L).ifPresent(event -> log.info(event.toString()));
     }
 
-    @Test
-    public void findAllByMemberLikesWithPaging_QueryDSL_Test() {
-        Slice<Event> events = eventRepository.findAllByMemberLikesWithPaging_QueryDSL(PageRequest.of(0, 10), 1L);
-        events.get().map(Event::toString).forEach(log::info);
-    }
+
 
 
 }

@@ -12,6 +12,7 @@ import static com.app.babybaby.entity.guideSchedule.QGuideSchedule.guideSchedule
 public class GuideScheduleQueryDslImpl implements GuideScheduleQueryDsl {
     private final JPAQueryFactory query;
 
+//    가이드 스케줄 조회 목록
     @Override
     public List<Calendar> findCalendarByUserId(Long userId) {
         return query.select(guideSchedule.calendar).from(guideSchedule).where(guideSchedule.member.id.eq(userId)).orderBy(guideSchedule.id.desc()).fetch();
