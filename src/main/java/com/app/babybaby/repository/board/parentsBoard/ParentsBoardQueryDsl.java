@@ -5,6 +5,7 @@ import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import java.util.Optional;
 
@@ -20,4 +21,6 @@ public interface ParentsBoardQueryDsl {
 
 
 //    작성하기(2단계 대표사진)
+
+    public Page<ParentsBoard> findListByMemberIdWithPaging_QueryDSL(Pageable pageable,Long memberId);
 }

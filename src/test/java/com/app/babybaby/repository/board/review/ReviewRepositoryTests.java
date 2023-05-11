@@ -29,7 +29,7 @@ public class ReviewRepositoryTests {
 
     @Test
     public void saveTest(){
-        Review review = new Review(5, eventRepository.findEventById(2L).get(), memberRepository.findById(1L).get(), null, "asd", "asd");
+        Review review = new Review(5, eventRepository.findEventById_QueryDSL(2L).get(), memberRepository.findById(1L).get(), null, "asd", "asd");
         reviewRepository.save(review);
     }
 
@@ -37,7 +37,7 @@ public class ReviewRepositoryTests {
 //    memberId 로 내가쓴 후기 조회
     @Test
     public void findReviewByIdTest(){
-        reviewRepository.findReviewById(1L).stream().map(Review::toString).forEach(log::info);
+        reviewRepository.findReviewById_QueryDSL(1L).stream().map(Review::toString).forEach(log::info);
     }
 
 

@@ -11,4 +11,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @Rollback(false)
 public class EventServiceTests {
+
 }

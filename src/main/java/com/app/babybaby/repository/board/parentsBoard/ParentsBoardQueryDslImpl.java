@@ -81,6 +81,25 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
                         .fetchOne());
     }
 
+    @Override
+    public Page<ParentsBoard> findListByMemberIdWithPaging_QueryDSL(Pageable pageable,Long memberId) {
+        List<ParentsBoard> parentsBoards = query.select(parentsBoard)
+                .from(parentsBoard)
+                .join(parentsBoard.member).fetchJoin()
+                .join(parentsBoard.parentsBoardFiles).fetchJoin()
+                .where(parentsBoard.member.id.eq(memberId))
+                .orderBy(parentsBoard.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(parentsBoard.count()).from(parentsBoard).where(parentsBoard.member.id.eq(memberId)).fetchOne();
+
+
+        return new PageImpl<>(parentsBoards, pageable, count);
+    }
+
+
     //    맨위 카테고리 검색 설정
     private BooleanExpression createBooleanExpression(ParentsBoardSearch parentsBoardSearch) {
 

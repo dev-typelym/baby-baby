@@ -66,23 +66,23 @@ public class EventBoardRepositoryTests {
         Pageable pageable = PageRequest.of(0, 10);
         EventBoardSearch eventBoardSearch = new EventBoardSearch();
 
-        eventBoardSearch.setBoardContent("사랑");
-        eventBoardSearch.setCategoryType(CategoryType.ART);
-        eventRepository.findEventList(eventBoardSearch,pageable).stream().map(Event::toString).forEach(log::info);
+//        eventBoardSearch.setBoardContent("사랑");
+//        eventBoardSearch.setCategoryType(CategoryType.ART);
+        eventRepository.findEventListWithPaging_QueryDSL(eventBoardSearch,pageable).stream().map(Event::toString).forEach(log::info);
     }
 
 
     //    이벤트 게시판 상세
     @Test
     public void findEventByIdTest() {
-        eventRepository.findEventById(2L).ifPresent(event -> log.info(event.toString()));
+        eventRepository.findEventById_QueryDSL(2L).ifPresent(event -> log.info(event.toString()));
     }
 
 
     //    결제 상세페이지 멤버 쿠폰까지 조회
     @Test
     public void findEventPayByIdTest() {
-        eventRepository.findEventPayById(1L, 2L).ifPresent(event -> log.info(event.toString()));
+        eventRepository.findEventPayById_QueryDSL(1L, 2L).ifPresent(event -> log.info(event.toString()));
     }
 
 

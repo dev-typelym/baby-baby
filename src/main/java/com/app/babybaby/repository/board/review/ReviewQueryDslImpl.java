@@ -22,7 +22,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
 
 //    나의리뷰 조회
     @Override
-    public List<Review> findReviewById(Long memberId) {
+    public List<Review> findReviewById_QueryDSL(Long memberId) {
         return query.select(review)
                 .from(review)
                 .join(review.member).fetchJoin()
@@ -31,7 +31,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
     }
 
     @Override
-    public Slice<Review> findAllByMemberId(Pageable pageable, Long memberId) {
+    public Slice<Review> findAllByMemberId_QueryDSL(Pageable pageable, Long memberId) {
         List<Review> reviewList = query.select(review)
                 .from(review)
                 .where(review.member.id.eq(memberId))
