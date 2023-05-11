@@ -1,4 +1,4 @@
-/* myPage-follow.html */
+/* myPage-follow.html, mypage-review, myPage-parent-yards */
 
 @charset "UTF-8";
 
@@ -1053,4 +1053,23 @@ div.search input:focus {
 
 .parents-yard-board-item-content{
     width: 70%;
+}
+
+
+/* 마이페이지 부모님 마당 */
+
+.line-text{
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.line-wrapper{
+    margin: 0 auto;
+    width: 768px;
+    padding-left: 19px;
+}
+
+.line-parent{
+    border-bottom: 1px black solid;
+    padding-bottom: 10px;
 }

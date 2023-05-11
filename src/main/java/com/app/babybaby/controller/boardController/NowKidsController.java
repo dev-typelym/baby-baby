@@ -81,7 +81,7 @@ public class NowKidsController {
             JSONObject json = new JSONObject(event);
             jsonArray.put(json);
         });
-        model.addAttribute("events", events);
+        model.addAttribute("events", jsonArray.toString());
 
         return "/nowKids/now-kids-write";
     }
