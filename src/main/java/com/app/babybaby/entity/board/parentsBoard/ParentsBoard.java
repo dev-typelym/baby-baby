@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,7 @@ import java.util.List;
 public class ParentsBoard extends BoardInfo {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parentsBoard", cascade = CascadeType.REMOVE)
-    private List<ParentsBoardFile> parentsBoardFiles;
+    private List<ParentsBoardFile> parentsBoardFiles = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EVENT_ID")
@@ -34,6 +35,11 @@ public class ParentsBoard extends BoardInfo {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parentsBoard")
     private List<ParentsBoardReply> parentsBoardReplies;
+
+    private String representFileUUID;
+    private String representFileOrginName;
+    private String representFilePath;
+
 
     public ParentsBoard(Event event, Member member, List<ParentsBoardReply> parentsBoardReplies) {
         this.event = event;
