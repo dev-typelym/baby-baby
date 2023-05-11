@@ -49,4 +49,9 @@ public class GuideRepositoryTests {
         guideScheduleRepository.findCalendarByUserId(4L).stream().map(Calendar::toString).forEach(log::info);
     }
 
+    @Test
+    public void findEventByIdTest(){
+        guideRepository.findEventById(6L, 2L).stream().map(Guide::toString).forEach(log::info);
+    }
+
 }
