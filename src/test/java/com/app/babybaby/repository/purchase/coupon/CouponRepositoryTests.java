@@ -26,9 +26,5 @@ public class CouponRepositoryTests {
         couponRepository.findCouponByMemberId(pageable,1L).stream().map(Coupon::toString).forEach(log::info);
     }
 
-    @Test
-    public void countTest(){
-        couponRepository.findAllByMemberId(1L).stream().map(Coupon::toString).forEach(log::info);
-    }
 
 }
