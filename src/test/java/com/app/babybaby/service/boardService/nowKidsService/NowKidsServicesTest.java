@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,6 @@ public class NowKidsServicesTest {
 
     @Test
     public void findAllTest(){
-        nowKidsServices.getAllInfoForList().stream().map(NowKidsDTO::toString).forEach(log::info);
+        nowKidsServices.getAllInfoForListDesc_QueryDsl(1, 1, 1L).stream().map(NowKidsDTO::toString).forEach(log::info);
     }
 }

@@ -3,6 +3,7 @@ package com.app.babybaby.entity.board.nowKids;
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
+import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import com.app.babybaby.entity.member.Member;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = {"event", "guide"})
+@ToString(callSuper = true, exclude = {"event", "guide","nowKidsLikes", "nowKidsFile"})
 @Table(name = "TBL_NOW_KIDS")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,6 +25,9 @@ public class NowKids extends BoardInfo {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GUIDE_ID")
     private Member guide;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nowKids")
+    private List<NowKidsLike> nowKidsLikes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "nowKids")
     private List<NowKidsFile> nowKidsFile;
