@@ -20,6 +20,53 @@
     <link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
     <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css"/>
     <link rel="stylesheet" href="../../static/css/myPage/myPage-profile.css" />
+
+
+    <style>
+.lecture-list-title {
+    width: 100%;
+    float: left;
+    margin-bottom: 24px;
+    background: #2c3d50;
+    height: 100px;
+}
+
+.lecture-type-selection {
+    float: left;
+    width: 100%;
+    height: 100px;
+}
+
+.lecture-list-header{
+    position:static;
+    top: 0;
+    border-bottom: 1px solid #e4e4e4;
+    height: 103px;
+    z-index: 100;
+}
+
+.calender {
+    position: absolute;
+    right: 9px;
+    top: 85px;
+}
+
+.lecture-list-title{
+    display: flex;
+    justify-content: center;
+}
+
+.lecture-type-selection{
+    display: flex;
+    justify-content: center;
+}
+
+.lecture{
+    margin-left: 21px;
+}
+    </style>
+
+
   </head>
   <body>
     <div id="container">
@@ -60,7 +107,7 @@
                   <dl class="ProfileInfo_box" aria-label="회원정보">
                     <dt class="BlindText">회원닉네임</dt>
                     <dd class="ProfileInfo_nickname">
-                      <img src="../../static/images/myPage/tongsol.png" width="20" style = "margin-bottom: -3px;" alt="">
+                      <img src="/../../static/images/myPage/tongsol.png" width="20" style = "margin-bottom: -3px;" alt="">
                       린먕
                     </dd>
                     <dt class="BlindText">회원유형</dt>
@@ -87,7 +134,7 @@
                     </div>
                   </dl>
                 </div>
-                <!-- 통솔자일 경우 통솔자 신청하기 버튼은 빨간색으로 바껴야함 -->
+                <!-- 프로필 설정 버튼 -->
                 <a href="#" class="ProfileSet Mint" id="apply">
                   <span>
                     <span class="ProfileSet_button">통솔자 신청하기</span>
@@ -108,27 +155,22 @@
                 <!-- 참여한 -->
               </ul>
             </div>
-            <div class="project-list1" id="tabFunding" tabindex="0">
-              <div class="top-area">
-                <p id="fundingInfoMessage" class="status-text fundingCount" style="display: none">
-                </p>
-              </div>
 
               <div class="lecture-list-header">
                 <div class="lecture-list-title">
                   <div class="lecture-list-info">
                     <p class="lecture-list-month"></p>
                     <p class="lecture-list-description">
-                      현재 나의 체험학습
-                      <span>현재 내가 신청한 체험학습은 오른쪽 달력에 표시됩니다</span>
+                      현재 나의 체험학습<span
+                        >현재 내가 신청한 체험학습은 오른쪽 달력에 표시됩니다</span
+                      >
                     </p>
                   </div>
                 </div>
-                <!-- 전체 ajax로 가져오기 -->
                 <div class="lecture-type-selection">
                   <ul class="lecture-type-buttons">
-                    <li class="all-type-button">
-                      <a class="all"> <em>ALL</em><span>전체보기</span> </a>
+                    <li class="special-type-button">
+                      <div class="choice"> <em></em><span>분류</span> </a>
                     </li>
                     <li class="intro-type-button">
                       <a class="science-btn"> <em></em><span>과학</span> </a>
@@ -142,6 +184,18 @@
                     <li class="special-type-button">
                       <a class="musium"> <em></em><span>박물관</span> </a>
                     </li>
+                    <li class="special-type-button">
+                      <a class="agriculture"> <em></em><span>농촌</span> </a>
+                    </li>
+                    <li class="special-type-button">
+                        <a class="art"> <em></em><span>미술관</span> </a>
+                      </li>
+                      <li class="special-type-button">
+                        <a class="make"> <em></em><span>공방</span> </a>
+                      </li>
+                      <li class="special-type-button">
+                        <a class="etc"> <em></em><span>기타</span> </a>
+                      </li>
                   </ul>
                 </div>
               </div>
@@ -267,5 +321,5 @@
   <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
   <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
   <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
-  <script src="../../static/js/myPage/myPage-profile.js"></script>
+  <script src=" ../../static/js/myPage/myPage-profile.js"></script>
 </html>
