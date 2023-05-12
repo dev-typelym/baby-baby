@@ -20,12 +20,13 @@ import java.util.List;
 @Data
 @Builder
 public class EventDTO {
-    private BoardInfo board;
+    private String boardTitle;
+    private String boardContent;
     private Long eventRecruitCount;
     private Address eventLocation;
     private Long eventPrice;
     private CategoryType category;
     private CalendarDTO calendar;
-    private Member company;
+    private MemberDTO company;
     private List<EventFileDTO> eventFileDTOS;
 }

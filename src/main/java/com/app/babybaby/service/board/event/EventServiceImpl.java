@@ -1,7 +1,11 @@
 package com.app.babybaby.service.board.event;
 
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
+import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.file.eventFile.EventFile;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import lombok.RequiredArgsConstructor;
@@ -42,4 +46,20 @@ public class EventServiceImpl implements EventService {
     public void deleteEvent(Long eventId) {
 
     }
+
+    @Override
+    public EventDTO eventToDTO(Event event) {
+        return null;
+    }
+
+    @Override
+    public EventFileDTO eventFileToDTO(EventFile eventFile) {
+        return null;
+    }
+
+    @Override
+    public MemberDTO memberToDTO(Member Member) {
+        return null;
+    }
+
 }

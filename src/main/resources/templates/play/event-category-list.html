@@ -56,35 +56,35 @@
                                     <li class="active">
                                         <a href="">전체</a>
                                     </li>
-            
+
                                     <li class="">
                                         <a href="">농촌</a>
                                     </li>
-            
+
                                     <li>
                                         <a href="">미술관/박람회</a>
                                     </li>
-                                    
+
                                     <li>
                                         <a href="">전통</a>
                                     </li>
-                                    
+
                                     <li>
                                         <a href="">공방</a>
                                     </li>
-            
+
                                     <li>
                                         <a href="">과학</a>
                                     </li>
-            
+
                                     <li>
                                         <a href="">박물관</a>
                                     </li>
-            
+
                                     <li>
                                         <a href="">스포츠</a>
                                     </li>
-            
+
                                     <li>
                                         <a href="">기타</a>
                                     </li>
@@ -140,22 +140,22 @@
                                     </div>
                                 </section>
                                 <!-- 게시글 1개 시작 -->
-                                <div role="presentation" class="instance" th:each="event : ${eventList}">
+                                <!--<div role="presentation" class="instance">
                                     <a class="item" href="">
                                         <div class="thumbnail-container">
                                             <div class="thumbnail-list">
                                                 <div class="photo-thumbnail" style="background-image:url('/images/main/images/event-001.jpg')"></div>
-                                                <!-- 사진 div -->
+                                                &lt;!&ndash; 사진 div &ndash;&gt;
                                             </div>
                                         </div>
                                         <div class="list-content">
-                                            <div class="list-title" th:text="${event.eventRecruitCount}">
+                                            <div class="list-title" >
                                                 장항준 감독 영화 리바운드 재밌다던데 같이 보러 가실
                                                 분
                                             </div>
                                             <div class="for-price-full-contain">
                                                 <div class="for-price-wrap">
-                                                    <div class="list-writer" th:text="${event.company.memberName}">정세인</div>
+                                                    <div class="list-writer" >정세인</div>
                                                     <div class="list-date-container">
                                                         <span class="print-data"
                                                             >역삼역 4번 출구</span
@@ -163,7 +163,7 @@
                                                     </div>
                                                 </div>
                                                 <span class="event-price-wrap">
-                                                    <span class="event-price" th:text="${event.eventPrice}">45000</span
+                                                    <span class="event-price" >45000</span
                                                     ><span>원</span>
                                                 </span>
                                             </div>
@@ -206,10 +206,11 @@
                                             ></path>
                                         </svg>
                                     </button>
-                                </div>
+                                </div>-->
                                 <!-- 게시글 1개 끝 -->
 
                                 <!-- 게시글 1개 시작 -->
+
                                 <!--<div role="presentation" class="instance">
                                     <a class="item" href="">
                                         <div class="thumbnail-container">

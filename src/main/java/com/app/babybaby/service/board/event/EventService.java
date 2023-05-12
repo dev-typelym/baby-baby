@@ -7,6 +7,7 @@ import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.member.QMember;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,9 @@ public interface EventService {
 
     default EventDTO eventToDTO(Event event){
         return EventDTO.builder()
-                .company(event.getCompany())
+                .company(memberToDTO(event.getCompany()))
+                .boardContent(event.getBoardContent())
+                .boardTitle(event.getBoardTitle())
                 .category(event.getCategory())
                 .eventLocation(event.getEventLocation())
                 .eventPrice(event.getEventPrice())
@@ -44,6 +47,34 @@ public interface EventService {
                 .filePath(eventFile.getFilePath())
                 .fileStatus(eventFile.getFileStatus())
                 .fileUUID(eventFile.getFileUUID())
+                .build();
+    }
+
+    default MemberDTO memberToDTO(Member Member){
+        return MemberDTO.builder()
+                .memberAddress(Member.getMemberAddress())
+                .memberEmail(Member.getMemberEmail())
+                .memberFileOriginalName(Member.getMemberFileOriginalName())
+                .memberFilePath(Member.getMemberFilePath())
+                .memberFileUUID(Member.getMemberFileUUID())
+                .memberGuideInterest(Member.getMemberGuideInterest())
+                .memberGuideStatus(Member.getMemberGuideStatus())
+                .memberGuideType(Member.getMemberGuideType())
+                .memberHiSentence(Member.getMemberHiSentence())
+                .alerts(Member.getAlerts())
+                .coupons(Member.getCoupons())
+                .memberName(Member.getMemberName())
+                .memberNickname(Member.getMemberNickname())
+                .memberPassword(Member.getMemberPassword())
+                .memberPhone(Member.getMemberPhone())
+                .memberProfileOriginalName(Member.getMemberProfileOriginalName())
+                .memberProfilePath(Member.getMemberProfilePath())
+                .memberProfileUUID(Member.getMemberProfileUUID())
+                .memberRegisterDate(Member.getMemberRegisterDate())
+                .memberRole(Member.getMemberRole())
+                .memberSleep(Member.getMemberSleep())
+                .memberType(Member.getMemberType())
+                .id(Member.getId())
                 .build();
     }
 
