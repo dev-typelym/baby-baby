@@ -367,6 +367,7 @@ dl {
 .description-inner{
     width: 85%;
     line-height: 18px;
+    height: 100px;
     letter-spacing: 0;
     font-size: 14px;
     font-weight: 400;
@@ -390,6 +391,7 @@ dl {
 
 .first-wrapper, .second-wrapper{
     display: flex;
+    margin-top: 10px;
     margin-bottom: 10px;
 }
 
