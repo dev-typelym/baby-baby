@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class ReviewServiceRepositoryTests {
+public class ReviewRepositoryTests {
     @Autowired
     ReviewRepository reviewRepository;
     @Autowired

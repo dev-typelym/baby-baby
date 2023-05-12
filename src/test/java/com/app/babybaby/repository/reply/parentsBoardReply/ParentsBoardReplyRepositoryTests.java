@@ -20,7 +20,7 @@ import javax.persistence.PersistenceUnit;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class ParentsBoardServiceReplyServiceRepositoryTests {
+public class ParentsBoardReplyRepositoryTests {
 
     @Autowired
     private ParentsBoardReplyRepository parentsBoardReplyRepository;

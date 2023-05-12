@@ -1,4 +1,4 @@
-package com.app.babybaby.service.board.nowKidsService;
+package com.app.babybaby.service.board.nowKids;
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
 import lombok.extern.slf4j.Slf4j;

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class CalendarServiceRepositoryTests {
+public class CalendarRepositoryTests {
     @Autowired
     CalendarRepository calendarRepository;
 

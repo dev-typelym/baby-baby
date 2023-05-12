@@ -19,7 +19,7 @@ import java.util.Optional;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class MemberServiceRepositoryTests {
+public class MemberRepositoryTests {
     @Autowired
     MemberRepository memberRepository;
 
