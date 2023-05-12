@@ -843,7 +843,7 @@ div.banner {
 }
 
 div.banner div {
-    width: 1519.2px;
+    width: 100vw;
     height: 275px;
     float: left;
     background-size: 100%;
