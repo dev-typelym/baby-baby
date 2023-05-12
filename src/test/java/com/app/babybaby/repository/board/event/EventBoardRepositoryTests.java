@@ -40,24 +40,26 @@ public class EventBoardRepositoryTests {
         address.setPostcode("1111");
 
         LocalDateTime registerDate = LocalDateTime.now();
-
-        Member member = new Member("membe112r@example.com", "홍길동1", "password", "nickname21", "hi sentence", "010-1134-5644", address, "profile_original_name.png", "profile_uuid", "/profile/path", registerDate, MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.DISABLED, CategoryType.SPORTS, "file_path", "file_uuid", "file_original_name");
-
-        memberRepository.save(member);
+//
+//        Member member = new Member("membe112r@example.com", "홍길동1", "password", "nickname21", "hi sentence", "010-1134-5644", address, "profile_original_name.png", "profile_uuid", "/profile/path", registerDate, MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.DISABLED, CategoryType.SPORTS, "file_path", "file_uuid", "file_original_name");
+//
+//        memberRepository.save(member);
 
         Calendar calendar = new Calendar("요기용", CategoryType.ART, LocalDateTime.now(), LocalDateTime.now());
 
 //        Event event = new Event(10L, address, 100000L, CategoryType.MUSEUM, calendar, member);
-        Event event1 = Event.builder().boardTitle("검색조건")
-                .boardContent("사랑해요~")
-                .calendar(calendar)
-                .category(CategoryType.ART)
-                .company(member)
-                .eventLocation(address)
-                .eventPrice(10000L)
-                .eventRecruitCount(1L)
-                .build();
-        eventRepository.save(event1);
+        for (int i = 0; i < 20; i++) {
+            Event event1 = Event.builder().boardTitle("검색조건")
+                    .boardContent("사랑해요~")
+                    .calendar(calendar)
+                    .category(CategoryType.ART)
+                    .company(memberRepository.findById(1L).get())
+                    .eventLocation(address)
+                    .eventPrice(10000L)
+                    .eventRecruitCount(1L)
+                    .build();
+            eventRepository.save(event1);
+        }
     }
 
     //  이벤트 게시판 조회 페이징
