@@ -1,9 +1,15 @@
 
+
 /* 상세보기 모달 ===================== */
 const $showDetail = $(".row");
 
+// $showDetail.on('click', function(e){
+//     $(".user-modal").show();
+// })
 $showDetail.on('click', function(e){
-    $(".user-modal").show();
+    if (!$(e.target).is('input[type="checkbox"]') && !$(e.target).hasClass('no-modal')) {
+        $(".user-modal").show();
+    }
 })
 
 /* 상세 모달 닫기 */
