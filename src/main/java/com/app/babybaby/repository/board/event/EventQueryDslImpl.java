@@ -31,15 +31,15 @@ public class EventQueryDslImpl implements EventQueryDsl {
     @Override
     public Slice<Event> findEventListWithPaging_QueryDSL(EventBoardSearch eventBoardSearch,Pageable pageable) {
 
-        BooleanExpression eventTitleContains = eventBoardSearch.getBoardTitle() == null ? null : event.boardTitle.contains(eventBoardSearch.getBoardTitle());
-        BooleanExpression eventContentContains = eventBoardSearch.getBoardContent() == null ? null : event.boardContent.contains(eventBoardSearch.getBoardContent());
-        BooleanExpression eventCategoryContains = eventBoardSearch.getCategoryType() == null ? null : event.category.eq(eventBoardSearch.getCategoryType());
+//        BooleanExpression eventTitleContains = eventBoardSearch.getBoardTitle() == null ? null : event.boardTitle.contains(eventBoardSearch.getBoardTitle());
+//        BooleanExpression eventContentContains = eventBoardSearch.getBoardContent() == null ? null : event.boardContent.contains(eventBoardSearch.getBoardContent());
+//        BooleanExpression eventCategoryContains = eventBoardSearch.getCategoryType() == null ? null : event.category.eq(eventBoardSearch.getCategoryType());
 
         List<Event> events = query.select(event)
                 .from(event)
                 .join(event.company).fetchJoin()
                 .leftJoin(event.eventFiles).fetchJoin()
-                .where(eventTitleContains, eventContentContains, eventCategoryContains)
+//                .where(eventTitleContains, eventContentContains, eventCategoryContains)
                 .orderBy(event.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
