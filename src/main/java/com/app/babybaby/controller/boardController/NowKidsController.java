@@ -2,7 +2,7 @@ package com.app.babybaby.controller.boardController;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.member.Kid;
-import com.app.babybaby.service.board.nowKidsService.NowKids;
+import com.app.babybaby.service.board.nowKidsService.NowKidsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
@@ -22,7 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/nowKid/*")
 public class NowKidsController {
-    private final NowKids nowKids;
+    private final NowKidsService nowKidsService;
 
     @GetMapping("write")
     public String goWriteNowKids(Long sessionId, Model model, RedirectAttributes redirectAttributes) {
@@ -69,8 +69,8 @@ public class NowKidsController {
 //        model.addAttribute("nowKidsDTOS", jsonArray.toString());
 
 
-        log.info(nowKids.getBoardAndCalendarByGeneralGuideId(sessionId).toString());
-        List<Event> events = nowKids.getBoardAndCalendarByGeneralGuideId(sessionId);
+        log.info(nowKidsService.getBoardAndCalendarByGeneralGuideId(sessionId).toString());
+        List<Event> events = nowKidsService.getBoardAndCalendarByGeneralGuideId(sessionId);
         JSONArray jsonArray = new JSONArray();
         events.forEach(event -> {
             JSONObject json = new JSONObject(event);
