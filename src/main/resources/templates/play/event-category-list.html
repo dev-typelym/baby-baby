@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>모집 게시판</title>
-        <link rel="stylesheet" href="../../static/css/play/event-category-list.css" />
-        <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
+        <link rel="stylesheet" href="/css/play/event-category-list.css" />
+        <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -140,12 +140,82 @@
                                     </div>
                                 </section>
                                 <!-- 게시글 1개 시작 -->
-                                <div role="presentation" class="instance">
+                                <div role="presentation" class="instance" th:each="event : ${eventList}">
                                     <a class="item" href="">
                                         <div class="thumbnail-container">
                                             <div class="thumbnail-list">
-                                                <div class="photo-thumbnail" style="background-image:url('../../static/images/main/images/event-001.jpg')"></div>
+                                                <div class="photo-thumbnail" style="background-image:url('/images/main/images/event-001.jpg')"></div>
                                                 <!-- 사진 div -->
+                                            </div>
+                                        </div>
+                                        <div class="list-content">
+                                            <div class="list-title" th:text="${event.eventRecruitCount}">
+                                                장항준 감독 영화 리바운드 재밌다던데 같이 보러 가실
+                                                분
+                                            </div>
+                                            <div class="for-price-full-contain">
+                                                <div class="for-price-wrap">
+                                                    <div class="list-writer" th:text="${event.company.memberName}">정세인</div>
+                                                    <div class="list-date-container">
+                                                        <span class="print-data"
+                                                            >역삼역 4번 출구</span
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <span class="event-price-wrap">
+                                                    <span class="event-price" th:text="${event.eventPrice}">45000</span
+                                                    ><span>원</span>
+                                                </span>
+                                            </div>
+                                            <div clsas="list-footer">
+                                                <div class="list-footer-container">
+                                                    <div class="loca-status-container">
+                                                        <div class="status-community">
+                                                            <i class="second-confirm"></i>
+                                                            <span class="ing">
+                                                                <span class="event-start-day"
+                                                                      >2023-04-12</span
+                                                                >
+                                                                ~<span class="event-end-day"
+                                                                    >2023-06-24</span
+                                                                >
+                                                                <div class="like-count-container">
+                                                                    <div class="people-icon"></div>
+                                                                    <span class="like-count"
+                                                                        >10</span
+                                                                    >
+                                                                    <span>명 모집</span>
+                                                                </div>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <button type="button" class="wish-button" aria-pressed="false">
+                                        <svg
+                                            viewBox="0 0 32 32"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="wish-button-svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
+                                            ></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <!-- 게시글 1개 끝 -->
+
+                                <!-- 게시글 1개 시작 -->
+                                <!--<div role="presentation" class="instance">
+                                    <a class="item" href="">
+                                        <div class="thumbnail-container">
+                                            <div class="thumbnail-list">
+                                                <div class="photo-thumbnail" style="background-image:url('/images/main/images/event-003.jpg')"></div>
+                                                &lt;!&ndash; 사진 div &ndash;&gt;
                                             </div>
                                         </div>
                                         <div class="list-content">
@@ -207,85 +277,15 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <!-- 게시글 1개 끝 -->
+                                &lt;!&ndash; 게시글 1개 끝 &ndash;&gt;
 
-                                <!-- 게시글 1개 시작 -->
+                                &lt;!&ndash; 게시글 1개 시작 &ndash;&gt;
                                 <div role="presentation" class="instance">
                                     <a class="item" href="">
                                         <div class="thumbnail-container">
                                             <div class="thumbnail-list">
-                                                <div class="photo-thumbnail" style="background-image:url('../../static/images/main/images/event-003.jpg')"></div>
-                                                <!-- 사진 div -->
-                                            </div>
-                                        </div>
-                                        <div class="list-content">
-                                            <div class="list-title">
-                                                장항준 감독 영화 리바운드 재밌다던데 같이 보러 가실
-                                                분
-                                            </div>
-                                            <div class="for-price-full-contain">
-                                                <div class="for-price-wrap">
-                                                    <div class="list-writer">정세인</div>
-                                                    <div class="list-date-container">
-                                                        <span class="print-data"
-                                                            >역삼역 4번 출구</span
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <span class="event-price-wrap">
-                                                    <span class="event-price">45000</span
-                                                    ><span>원</span>
-                                                </span>
-                                            </div>
-                                            <div clsas="list-footer">
-                                                <div class="list-footer-container">
-                                                    <div class="loca-status-container">
-                                                        <div class="status-community">
-                                                            <i class="second-confirm"></i>
-                                                            <span class="ing">
-                                                                <span class="event-start-day"
-                                                                    >2023-04-12</span
-                                                                >
-                                                                ~<span class="event-end-day"
-                                                                    >2023-06-24</span
-                                                                >
-                                                                <div class="like-count-container">
-                                                                    <div class="people-icon"></div>
-                                                                    <span class="like-count"
-                                                                        >10</span
-                                                                    >
-                                                                    <span>명 모집</span>
-                                                                </div>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <button type="button" class="wish-button" aria-pressed="false">
-                                        <svg
-                                            viewBox="0 0 32 32"
-                                            focusable="false"
-                                            role="presentation"
-                                            class="wish-button-svg"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
-                                            ></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <!-- 게시글 1개 끝 -->
-
-                                <!-- 게시글 1개 시작 -->
-                                <div role="presentation" class="instance">
-                                    <a class="item" href="">
-                                        <div class="thumbnail-container">
-                                            <div class="thumbnail-list">
-                                                <div class="photo-thumbnail" style="background-image:url('../../static/images/main/images/event-004.jpg')"></div>
-                                                <!-- 사진 div -->
+                                                <div class="photo-thumbnail" style="background-image:url('/images/main/images/event-004.jpg')"></div>
+                                                &lt;!&ndash; 사진 div &ndash;&gt;
                                             </div>
                                         </div>
                                         <div class="list-content">
@@ -346,15 +346,15 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <!-- 게시글 1개 끝 -->
+                                &lt;!&ndash; 게시글 1개 끝 &ndash;&gt;
 
-                                <!-- 게시글 1개 시작 -->
+                                &lt;!&ndash; 게시글 1개 시작 &ndash;&gt;
                                 <div role="presentation" class="instance">
                                     <a class="item" href="">
                                         <div class="thumbnail-container">
                                             <div class="thumbnail-list">
-                                                <div class="photo-thumbnail" style="background-image:url('../../static/images/main/images/event-001.jpg')"></div>
-                                                <!-- 사진 div -->
+                                                <div class="photo-thumbnail" style="background-image:url('/images/main/images/event-001.jpg')"></div>
+                                                &lt;!&ndash; 사진 div &ndash;&gt;
                                             </div>
                                         </div>
                                         <div class="list-content">
@@ -415,15 +415,15 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <!-- 게시글 1개 끝 -->
+                                &lt;!&ndash; 게시글 1개 끝 &ndash;&gt;
 
-                                <!-- 게시글 1개 시작 -->
+                                &lt;!&ndash; 게시글 1개 시작 &ndash;&gt;
                                 <div role="presentation" class="instance">
                                     <a class="item" href="">
                                         <div class="thumbnail-container">
                                             <div class="thumbnail-list">
-                                                <div class="photo-thumbnail" style="background-image:url('../../static/images/main/images/event-001.jpg')"></div>
-                                                <!-- 사진 div -->
+                                                <div class="photo-thumbnail" style="background-image:url('/images/main/images/event-001.jpg')"></div>
+                                                &lt;!&ndash; 사진 div &ndash;&gt;
                                             </div>
                                         </div>
                                         <div class="list-content">
@@ -484,15 +484,15 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <!-- 게시글 1개 끝 -->
+                                &lt;!&ndash; 게시글 1개 끝 &ndash;&gt;
 
-                                <!-- 게시글 1개 시작 -->
+                                &lt;!&ndash; 게시글 1개 시작 &ndash;&gt;
                                 <div role="presentation" class="instance">
                                     <a class="item" href="">
                                         <div class="thumbnail-container">
                                             <div class="thumbnail-list">
-                                                <div class="photo-thumbnail" style="background-image:url('../../static/images/main/images/event-003.jpg')"></div>
-                                                <!-- 사진 div -->
+                                                <div class="photo-thumbnail" style="background-image:url('/images/main/images/event-003.jpg')"></div>
+                                                &lt;!&ndash; 사진 div &ndash;&gt;
                                             </div>
                                         </div>
                                         <div class="list-content">
@@ -553,15 +553,15 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <!-- 게시글 1개 끝 -->
+                                &lt;!&ndash; 게시글 1개 끝 &ndash;&gt;
 
-                                <!-- 게시글 1개 시작 -->
+                                &lt;!&ndash; 게시글 1개 시작 &ndash;&gt;
                                 <div role="presentation" class="instance">
                                     <a class="item" href="">
                                         <div class="thumbnail-container">
                                             <div class="thumbnail-list">
-                                                <div class="photo-thumbnail" style="background-image:url('../../static/images/main/images/event-004.jpg')"></div>
-                                                <!-- 사진 div -->
+                                                <div class="photo-thumbnail" style="background-image:url('/images/main/images/event-004.jpg')"></div>
+                                                &lt;!&ndash; 사진 div &ndash;&gt;
                                             </div>
                                         </div>
                                         <div class="list-content">
@@ -621,7 +621,7 @@
                                             ></path>
                                         </svg>
                                     </button>
-                                </div>
+                                </div>-->
                                 <!-- 게시글 1개 끝 -->
 
                                 <!-- top 버튼 -->
@@ -661,8 +661,7 @@
         <!-- page container -->
     </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="../../static/js/play/event-category-list.js"></script>
-
+    <script src="/js/play/event-category-list.js"></script>
     <script>
         /* 좋아요 버튼 */
         $(function () {

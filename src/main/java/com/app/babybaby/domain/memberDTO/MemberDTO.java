@@ -4,6 +4,7 @@ import com.app.babybaby.entity.alert.Alert;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.type.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,6 +43,31 @@ public class MemberDTO {
     private List<Alert> alerts;
     private List<Coupon> coupons;
 
+    @Builder
 
-
+    public MemberDTO(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName, List<Alert> alerts, List<Coupon> coupons) {
+        this.id = id;
+        this.memberEmail = memberEmail;
+        this.memberName = memberName;
+        this.memberPassword = memberPassword;
+        this.memberNickname = memberNickname;
+        this.memberHiSentence = memberHiSentence;
+        this.memberPhone = memberPhone;
+        this.memberAddress = memberAddress;
+        this.memberProfileOriginalName = memberProfileOriginalName;
+        this.memberProfileUUID = memberProfileUUID;
+        this.memberProfilePath = memberProfilePath;
+        this.memberRegisterDate = memberRegisterDate;
+        this.memberType = memberType;
+        this.memberRole = memberRole;
+        this.memberGuideStatus = memberGuideStatus;
+        this.memberSleep = memberSleep;
+        this.memberGuideType = memberGuideType;
+        this.memberGuideInterest = memberGuideInterest;
+        this.memberFilePath = memberFilePath;
+        this.memberFileUUID = memberFileUUID;
+        this.memberFileOriginalName = memberFileOriginalName;
+        this.alerts = alerts;
+        this.coupons = coupons;
+    }
 }
