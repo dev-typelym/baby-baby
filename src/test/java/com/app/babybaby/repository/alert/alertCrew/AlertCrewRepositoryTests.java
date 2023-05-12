@@ -20,7 +20,7 @@ import java.util.Optional;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class AlertCrewServiceServiceRepositoryTests {
+public class AlertCrewRepositoryTests {
     @Autowired
     private AlertCrewRepository alertCrewRepository;
 

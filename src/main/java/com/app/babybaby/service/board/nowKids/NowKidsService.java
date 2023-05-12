@@ -1,4 +1,4 @@
-package com.app.babybaby.service.board.nowKidsService;
+package com.app.babybaby.service.board.nowKids;
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
 import com.app.babybaby.entity.board.event.Event;

@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class ParentsBoardServiceFileServiceRepositoryTests {
+public class ParentsBoardFileRepositoryTests {
 
     @Autowired
     private ParentsBoardFileRepository parentsBoardFileRepository;

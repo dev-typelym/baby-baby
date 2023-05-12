@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class CouponServiceRepositoryTests {
+public class CouponRepositoryTests {
     @Autowired
     CouponRepository couponRepository;
 

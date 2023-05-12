@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class GuideServiceRepositoryTests {
+public class GuideRepositoryTests {
     @Autowired
     MemberRepository memberRepository;
     @Autowired

@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class NowKidsServiceRepositoryTests {
+public class NowKidsRepositoryTests {
     @Autowired
     NowKidsRepository nowKidsRepository;
 

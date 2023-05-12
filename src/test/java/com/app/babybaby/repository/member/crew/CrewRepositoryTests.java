@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class CrewServiceRepositoryTests {
+public class CrewRepositoryTests {
     @Autowired
     CrewRepository crewRepository;
     @Autowired

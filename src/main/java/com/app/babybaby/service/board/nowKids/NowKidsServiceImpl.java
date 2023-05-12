@@ -1,8 +1,7 @@
-package com.app.babybaby.service.board.nowKidsService;
+package com.app.babybaby.service.board.nowKids;
 
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
-import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import com.app.babybaby.repository.like.nowKidsLike.NowKidsLikeRepository;

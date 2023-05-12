@@ -3,7 +3,7 @@ package com.app.babybaby.controller.boardController;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.member.Kid;
-import com.app.babybaby.service.board.nowKidsService.NowKidsService;
+import com.app.babybaby.service.board.nowKids.NowKidsService;
 import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

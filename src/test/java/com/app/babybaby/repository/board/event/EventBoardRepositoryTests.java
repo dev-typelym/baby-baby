@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class EventServiceBoardRepositoryTests {
+public class EventBoardRepositoryTests {
     @Autowired
     EventRepository eventRepository;
     @Autowired

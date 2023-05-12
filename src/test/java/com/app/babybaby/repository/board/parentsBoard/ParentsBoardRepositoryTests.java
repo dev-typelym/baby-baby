@@ -33,7 +33,7 @@ import java.util.List;
 @Slf4j
 @Transactional
 @Rollback(false)
-public class ParentsBoardServiceRepositoryTests {
+public class ParentsBoardRepositoryTests {
     @Autowired
     MemberRepository memberRepository;
 
