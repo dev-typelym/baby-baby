@@ -610,7 +610,7 @@ a.Mint {
 }
 .lecture-list-info{
     width: 515px;
-    margin-left: 68px;
+    margin-right: 564px;
 }
 
 .lecture-list-month{
@@ -769,6 +769,11 @@ a.Mint {
     line-height: 18px;
     font-weight: 500;
     background: #7a87f5;
+}
+
+.choice {
+    font-size: 17px;
+    line-height: 51px;
 }
 
 .lecture-type-buttons li:hover{
