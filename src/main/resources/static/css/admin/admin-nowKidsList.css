@@ -80,11 +80,11 @@
 }
 
 .user-modal-shape {
-    width: 1245px;
-    height: 650px;
+    min-width: 1245px;
+    height: 71%;
     position: absolute;
     left: 17%;
-    top: 15%;
+    top: 13%;
     padding: 12px;
     overflow-y: scroll;
     background-color: #fff;

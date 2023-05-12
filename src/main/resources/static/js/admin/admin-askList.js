@@ -7,7 +7,7 @@ const $showDetail = $(".row");
 // })
 $showDetail.on('click', function(e){
     if (!$(e.target).is('input[type="checkbox"]') && !$(e.target).hasClass('no-modal')) {
-        $(".user-modal").show();
+        $("#ask-detail").show();
     }
 })
 
