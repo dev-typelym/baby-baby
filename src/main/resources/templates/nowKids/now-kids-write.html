@@ -294,6 +294,12 @@
             }); */
 </script>
 <script th:inline="javascript">
+    let calendars = [[${calendars}]];
+    console.log(calendars)
+    console.log(JSON.parse(calendars))
+    let eventTitles = [[${eventTitle}]]
+    console.log(JSON.parse(eventTitles))
+
 </script>
 
 

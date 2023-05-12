@@ -18,6 +18,11 @@ public class NowKidsServiceTest {
 
     @Test
     public void findAllTest(){
-        nowKidsService.getAllInfoForListDesc(1, 1, 1L).stream().map(NowKidsDTO::toString).forEach(log::info);
+        nowKidsService.getAllInfoForListDesc(1, 1).stream().map(NowKidsDTO::toString).forEach(log::info);
+    }
+
+    @Test
+    public void getBoardAndCalendarByGeneralGuideIdTest(){
+        log.info(nowKidsService.getBoardAndCalendarByGeneralGuideId(1L).toString());
     }
 }

@@ -7,6 +7,7 @@ import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.querydsl.core.Tuple;
+import lombok.Builder;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -14,8 +15,9 @@ import java.util.stream.Collectors;
 //이름 바꾸지 말기
 public interface NowKidsService {
 
-    public Page<NowKidsDTO> getAllInfoForListDesc(int pageNum, int pageSize, Long sessionId);
-    public List<Tuple> getBoardAndCalendarByGeneralGuideId(Long sessionId);
+    public Page<NowKidsDTO> getAllInfoForListDesc(int pageNum, int pageSize);
+
+    public List<NowKidsDTO>  getBoardAndCalendarByGeneralGuideId(Long sessionId);
 
     default com.app.babybaby.entity.board.nowKids.NowKids toNowKidsEntity(NowKidsDTO nowKidsDTO){
         return com.app.babybaby.entity.board.nowKids.NowKids.builder()
@@ -44,37 +46,40 @@ public interface NowKidsService {
                 .boardTitle(nowKidsDTO.getBoardTitle())
                 .boardContent(nowKidsDTO.getBoardContent())
                 .eventRecruitCount(nowKidsDTO.getEventRecruitCount())
-                .eventLocation(nowKidsDTO.getEventLocation())
                 .category(nowKidsDTO.getCategory())
                 .build();
     }
 
-    default List<NowKidsFile> toNowKidsFileEntity(NowKidsDTO nowKidsDTO){
-        return nowKidsDTO.getNowKidsFiles().stream()
-                .map(nowKidsFile -> NowKidsFile.builder()
-                        .fileOriginalName(nowKidsFile.getFileOriginalName())
-                        .fileUUID(nowKidsFile.getFileUUID())
-                        .filePath(nowKidsFile.getFilePath())
-                        .fileStatus(nowKidsFile.getFileStatus())
-                        .build())
-                .collect(Collectors.toList());
-    }
+//    default List<NowKidsFile> toNowKidsFileEntity(NowKidsDTO nowKidsDTO){
+//        return nowKidsDTO.getNowKidsFiles().stream()
+//                .map(nowKidsFile -> NowKidsFile.builder()
+//                        .fileOriginalName(nowKidsFile.getFileOriginalName())
+//                        .fileUUID(nowKidsFile.getFileUUID())
+//                        .filePath(nowKidsFile.getFilePath())
+//                        .fileStatus(nowKidsFile.getFileStatus())
+//                        .build())
+//                .collect(Collectors.toList());
+//    }
 
-    default List<Kid> toKidEntity(NowKidsDTO nowKidsDTO){
-        return nowKidsDTO.getKids().stream()
-                .map(kid -> Kid.builder()
-                .kidAge(kid.getKidAge())
-                        .kidGender(kid.getKidGender())
-                        .kidName(kid.getKidName())
-                        .kidAge(kid.getKidAge())
-                        .build()
-                ).collect(Collectors.toList());
-    }
-
+//    default List<Kid> toKidEntity(NowKidsDTO nowKidsDTO){
+//        return nowKidsDTO.getKids().stream()
+//                .map(kid -> Kid.builder()
+//                .kidAge(kid.getKidAge())
+//                        .kidGender(kid.getKidGender())
+//                        .kidName(kid.getKidName())
+//                        .kidAge(kid.getKidAge())
+//                        .build()
+//                ).collect(Collectors.toList());
+//    }
 
     default NowKidsDTO toNowKidsDTO(com.app.babybaby.entity.board.nowKids.NowKids nowKids) {
         return NowKidsDTO.builder()
-                .calendar(nowKids.getEvent().getCalendar())
+                .eventAddress(nowKids.getEvent().getEventLocation().getAddress())
+                .eventAddressDetail(nowKids.getEvent().getEventLocation().getAddressDetail())
+                .eventAddressSubDetail(nowKids.getEvent().getEventLocation().getAddressSubDetail())
+                .eventPostCode(nowKids.getEvent().getEventLocation().getPostcode())
+                .eventStartDate(nowKids.getEvent().getCalendar().getStartDate())
+                .eventEndDate(nowKids.getEvent().getCalendar().getEndDate())
                 .uploadTime(nowKids.getUpdateDate())
                 .eventUpdateTime(nowKids.getUpdateDate())
                 .eventUploadTIme(nowKids.getRegisterDate())
@@ -91,17 +96,16 @@ public interface NowKidsService {
                 .memberSleep(nowKids.getGuide().getMemberSleep())
                 .memberGuideType(nowKids.getGuide().getMemberGuideType())
                 .eventRecruitCount(nowKids.getEvent().getEventRecruitCount())
-                .eventLocation(nowKids.getEvent().getEventLocation())
                 .category(nowKids.getEvent().getCategory())
-                .nowKidsFiles(nowKids.getNowKidsFile()
-                        .stream()
-                        .map(nowKidsFile -> NowKidsFile.builder()
-                                .fileOriginalName(nowKidsFile.getFileOriginalName())
-                                .fileUUID(nowKidsFile.getFileUUID())
-                                .filePath(nowKidsFile.getFilePath())
-                                .fileStatus(nowKidsFile.getFileStatus())
-                                .build())
-                        .collect(Collectors.toList()))
+//                .nowKidsFiles(nowKids.getNowKidsFile()
+//                        .stream()
+//                        .map(nowKidsFile -> NowKidsFile.builder()
+//                                .fileOriginalName(nowKidsFile.getFileOriginalName())
+//                                .fileUUID(nowKidsFile.getFileUUID())
+//                                .filePath(nowKidsFile.getFilePath())
+//                                .fileStatus(nowKidsFile.getFileStatus())
+//                                .build())
+//                        .collect(Collectors.toList()))
                 .build();
     }
 
