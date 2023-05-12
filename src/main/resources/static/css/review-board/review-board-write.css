@@ -92,9 +92,8 @@ input[type='text'] {
     font-size: 10px;
     font-weight: 400;
     margin-right: 8px;
-    border: 1px solid #fff;
-    background-color: #fff;
-    color: black;
+    color: #fff;
+    border: 1px solid white;
     border-radius: 4px;
     padding: 2px 4px;
     overflow: hidden;

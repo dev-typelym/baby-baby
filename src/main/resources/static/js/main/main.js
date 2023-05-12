@@ -16,13 +16,13 @@ let temp = buttons[0];
 const pageNow = document.querySelector('#page-now');
 
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
-buttons.forEach((button) => {;
-    button.addEventListener('click', () => {;
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
         clearInterval(auto);
         count = parseInt(button.innerHTML);
         changeButtonStyle();
         banner.style.transition = 'transform 0.3s';
-        banner.style.transform = `translate(${-100 * count}vw)`;
+        banner.style.transform = `translate(${-1519.2 * count}px)`;
         auto = setInterval(autoSlide, 3000);
     });
 });
@@ -37,189 +37,76 @@ lastImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-0
 banner.insertBefore(firstImageDiv, document.querySelector('div.banner div'));
 firstImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-00${imageDiv.length}.jpg)`;
 
-banner.style.transform = `translate(-100vw)`;
+banner.style.transform = `translate(-1519.2px)`;
 
-function changeButtonStyle() {;
-    if (temp) {;
+function changeButtonStyle() {
+    if (temp) {
         temp.style.background = 'white';
         temp.style.color = 'black';
-    };
+    }
     buttons[count - 1].style.background = 'black';
     buttons[count - 1].style.color = 'white';
     temp = buttons[count - 1];
     pageNow.innerHTML = count;
-};
+}
 
-function autoSlide() {;
+function autoSlide() {
     banner.style.transition = 'transform 0.3s';
-    banner.style.transform = `translate(${-100 * ++count}vw)`;
+    banner.style.transform = `translate(${-1519.2 * ++count}px)`;
     console.log(count);
-    if (count == 6) {;
+    if (count == 6) {
         count = 1;
-        setTimeout(function () {;
+        setTimeout(function () {
             banner.style.transition = 'transform 0s';
-            banner.style.transform = 'translate(-100vw)';
+            banner.style.transform = 'translate(-1519.2px)';
         }, 300);
-    };
+    }
     changeButtonStyle();
-};
+}
 
-prev.addEventListener('click', function () {;
-    if (checkArrow) {;
+prev.addEventListener('click', function () {
+    if (checkArrow) {
         return;
-    };
+    }
     checkArrow = true;
     clearInterval(auto);
     banner.style.transition = 'transform 0.3s';
-    banner.style.transform = `translate(${-100 * --count}vw)`;
-    if (count == 0) {;
+    banner.style.transform = `translate(${-1519.2 * --count}px)`;
+    if (count == 0) {
         count = 5;
-        setTimeout(function () {;
+        setTimeout(function () {
             banner.style.transition = 'transform 0s';
-            banner.style.transform = `translate(${-100 * imageDiv.length}vw)`;
+            banner.style.transform = `translate(${-1519.2 * imageDiv.length}px)`;
         }, 300);
-    };
+    }
     changeButtonStyle();
     auto = setInterval(autoSlide, 3000);
-    setTimeout(() => {;
+    setTimeout(() => {
         checkArrow = false;
     }, 300);
 });
 
-next.addEventListener('click', function () {;
-    if (checkArrow) {;
+next.addEventListener('click', function () {
+    if (checkArrow) {
         return;
-    };
+    }
     checkArrow = true;
     clearInterval(auto);
     banner.style.transition = 'transform 0.3s';
-    banner.style.transform = `translate(${-100 * ++count}vw)`;
-    if (count == 6) {;
+    banner.style.transform = `translate(${-1519.2 * ++count}px)`;
+    if (count == 6) {
         count = 1;
-        setTimeout(function () {;
+        setTimeout(function () {
             banner.style.transition = 'transform 0s';
-            banner.style.transform = 'translate(-100vw)';
+            banner.style.transform = 'translate(-1519.2px)';
         }, 300);
-    };
+    }
     changeButtonStyle();
     auto = setInterval(autoSlide, 3000);
-    setTimeout(() => {;
+    setTimeout(() => {
         checkArrow = false;
     }, 300);
 });
-
-/* banner.html */
-
-/* HTMLCollection.prototype.forEach = Array.prototype.forEach;
-const banner = document.querySelector('div.banner');
-const imageDiv = document.querySelectorAll('div.banner div');
-const lastImageDiv = document.createElement('div');
-const firstImageDiv = document.createElement('div');
-const next = document.querySelector('div.next');
-const prev = document.querySelector('div.prev');
-const buttons = document.querySelectorAll('.buttons button');
-
-let checkArrow = false;
-let count = 1;
-let auto = setInterval(autoSlide, 3000);
-let temp = buttons[0];
-const pageNow = document.querySelector('#page-now');
-const width = window.innerWidth * -1;
-
-
-HTMLCollection.prototype.forEach = Array.prototype.forEach;
-buttons.forEach((button) => {;
-    button.addEventListener('click', () => {;
-        clearInterval(auto);
-        count = parseInt(button.innerHTML);
-        changeButtonStyle();
-        banner.style.transition = 'transform 0.3s';
-        banner.style.transform = `translate(${width * count}vw)`;
-        auto = setInterval(autoSlide, 3000);
-    });
-});
-
-imageDiv.forEach(;
-    (div, i) => (div.style.backgroundImage = `url(../../static/images/main/images/main-00${i + 1}.jpg)`);
-);
-
-banner.appendChild(lastImageDiv);
-lastImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-001.jpg)`;
-
-banner.insertBefore(firstImageDiv, document.querySelector('div.banner div'));
-firstImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-00${imageDiv.length}.jpg)`;
-
-
-banner.style.transform = `translate(${width}vw)`;
-
-function changeButtonStyle() {;
-    if (temp) {;
-        temp.style.background = 'white';
-        temp.style.color = 'black';
-    };
-    buttons[count - 1].style.background = 'black';
-    buttons[count - 1].style.color = 'white';
-    temp = buttons[count - 1];
-    pageNow.innerHTML = count;
-};
-
-function autoSlide() {;
-    banner.style.transition = 'transform 0.3s';
-    banner.style.transform = `translate( ${width} * ++count}vw)`;
-    console.log(count);
-    if (count == 6) {;
-        count = 1;
-        setTimeout(function () {;
-            banner.style.transition = 'transform 0s';
-            banner.style.transform = `translate(${width}vw)`;
-        }, 300);
-    };
-    changeButtonStyle();
-};
-
-prev.addEventListener('click', function () {;
-    if (checkArrow) {;
-        return;
-    };
-    checkArrow = true;
-    clearInterval(auto);
-    banner.style.transition = 'transform 0.3s';
-    banner.style.transform = `translate(${width * --count}vw)`;
-    if (count == 0) {;
-        count = 5;
-        setTimeout(function () {;
-            banner.style.transition = 'transform 0s';
-            banner.style.transform = `translate(${width * imageDiv.length}vw)`;
-        }, 300);
-    };
-    changeButtonStyle();
-    auto = setInterval(autoSlide, 3000);
-    setTimeout(() => {;
-        checkArrow = false;
-    }, 300);
-});
-
-next.addEventListener('click', function () {;
-    if (checkArrow) {;
-        return;
-    };
-    checkArrow = true;
-    clearInterval(auto);
-    banner.style.transition = 'transform 0.3s';
-    banner.style.transform = `translate(${width * ++count}vw)`;
-    if (count == 6) {;
-        count = 1;
-        setTimeout(function () {;
-            banner.style.transition = 'transform 0s';
-            banner.style.transform = `translate(${width}vw)`;
-        }, 300);
-    };
-    changeButtonStyle();
-    auto = setInterval(autoSlide, 3000);
-    setTimeout(() => {;
-        checkArrow = false;
-    }, 300);
-}); */
 
 /* 이벤트 배너 js */
 HTMLCollection.prototype.forEach = Array.prototype.forEach;

@@ -7,7 +7,6 @@
       name="gender"
       id="option-select"
       class="option-select"
-      style="width: 30%; margin-left: 10px"
     >
       <option value="">* 성별 선택</option>
       <option value="남">남자</option>
@@ -17,7 +16,6 @@
       name="age"
       id="option-select"
       class="option-select"
-      style="width: 30%"
     >
       <option value="">* 나이 선택</option>
       <option value="5">5</option>
@@ -36,7 +34,6 @@
       class="children-name"
       name="name"
       placeholder=" 아이의 이름을 입력해주세요"
-      style="width: 30%; height: 18px"
     />
   </div>
 `;
