@@ -289,7 +289,7 @@ svg:not(:root) {
 .header-menu-category-a { /* 헤더 상단 카테고리 메뉴 - a태그 */
     line-height: 30px;
     letter-spacing: -.6px;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     position: relative;
     transition: .2s;
