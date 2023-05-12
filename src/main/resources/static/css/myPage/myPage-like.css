@@ -14,7 +14,6 @@
 body{
     font-family: Roboto, 'Noto Sans KR', sans-serif;
     -webkit-font-smoothing: antialiased;
-    zoom:90%;
 }
 
 a{
@@ -42,7 +41,6 @@ html {
     box-sizing: border-box;
     border: 0;
     -webkit-locale: 'ko';
-    zoom: 90%;
 }
 
 a {
@@ -91,6 +89,7 @@ body {
 .collection-container {
     margin: 0 auto;
     max-width: 768px;
+    margin-bottom: 120px;
 }
 
 .collection-list {
@@ -951,6 +950,8 @@ div.search input:focus {
 
 .parents-yard-board-item-wrapper{
     border-bottom: 1px solid #f2f4f6;
+    border-top: 1px solid #f2f4f6;
+    margin-top: -1px;
     padding: 16px 0;
     text-align: left;
     box-sizing: border-box;
@@ -1006,8 +1007,9 @@ div.search input:focus {
 }
 
 .parents-yard-board-item-date{
-    display: block;
+    display: flex;
     text-align: left;
+    align-items: center;
     line-height: 1.67;
     color: #868e96;
     font-size: 12px;
@@ -1045,6 +1047,20 @@ div.search input:focus {
     box-sizing: border-box;
 }
 
+.star_svg{
+    display: block;
+    transform: scale(1);
+    transition: transform .3s ease-out;
+    width: 1em;
+    height: 1em;
+    fill: #00c4c4;
+}
+
+.bottom-divide-line{
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
 
 /* 나의 후기 */
 .parents-yard-board-item-title{
@@ -1072,4 +1088,108 @@ div.search input:focus {
 .line-parent{
     border-bottom: 1px black solid;
     padding-bottom: 10px;
+}
+
+/*나의 후기 페이징 */
+.paging-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.paging-btn-wrapper{
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: -.02em;
+    color: rgba(0,0,0,.84);
+}
+
+.paging-btn-prev{
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    color: #0000008a;
+    font-size: 20px;
+    background-color: #fff;
+    border: none;
+}   
+
+.paging-btn-next{
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    color: #0000008a;
+    font-size: 20px;
+    background-color: #fff;
+    border: none;
+}
+
+.paging-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.paging-list-item{
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    padding: 0;
+
+}
+
+
+.paging-list-item-btn{
+    width: 34px;
+    height: 34px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    color: #0000008a;
+    font-size: 15px;
+}
+
+.paging-btn-prev-image-wrapper{
+    width: 20px;
+    height: 20px;
+}
+
+.paging-btn-prev-image{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 9px;
+}
+
+.paging-btn-next-image-wrapper{
+    width: 20px;
+    height: 20px;
+}
+
+.paging-btn-next-image{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 9px;
+}
+
+.active-color{
+    color: #00b2b2;
 }
