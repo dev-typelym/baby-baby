@@ -1,14 +1,19 @@
 package com.app.babybaby.controller.boardController;
 
+import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
+import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
+import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
+import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import com.app.babybaby.service.board.nowKids.NowKidsService;
 import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,61 +31,35 @@ import java.util.List;
 @RequestMapping("/nowKid/*")
 public class NowKidsController {
     private final NowKidsService nowKidsService;
+    private final NowKidsRepository nowKidsRepository;
 
     @GetMapping("write")
     public String goWriteNowKids(Long sessionId, Model model, RedirectAttributes redirectAttributes) {
         sessionId = 1L;
-//        Page<NowKidsDTO> nowKidsDTOS = nowKidsServices.getAllInfoForListDesc_QueryDsl(1, 30, sessionId);
-//
-//        JSONArray jsonArray = new JSONArray();
-//        nowKidsDTOS.forEach(dto -> {
-//            JSONObject json = new JSONObject(dto);
-//            try {
-//                json.put("nowKidsId", dto.getNowKidsId());
-//                json.put("eventId", dto.getEventId());
-//                json.put("boardTitle", dto.getBoardTitle());
-//                json.put("eventAddress", dto.getEventLocation().getAddress());
-//                json.put("eventAddressDetail", dto.getEventLocation().getAddressDetail());
-//                json.put("eventAddressSubDetail", dto.getEventLocation().getAddressSubDetail());
-//                json.put("eventAddressSubDetail", dto.getEventLocation().getAddressSubDetail());
-//                json.put("eventPostCode", dto.getEventLocation().getPostcode());
-//                json.put("category", dto.getCategory());
-//                json.put("startDate", dto.getCalendar().getStartDate());
-//                json.put("endDate", dto.getCalendar().getEndDate());
-//                json.put("eventUploadTIme", dto.getEventUploadTIme());
-//                json.put("eventUpdateTime", dto.getEventUpdateTime());
-//                json.put("memberId", dto.getMemberId());
-//                json.put("memberNickname", dto.getMemberNickname());
-//                json.put("memberProfileOriginalName", dto.getMemberProfileOriginalName());
-//                json.put("memberProfileUUID", dto.getMemberProfileUUID());
-//                json.put("memberProfilePath", dto.getMemberProfilePath());
-//                json.put("memberRegisterDate", dto.getMemberRegisterDate());
-//                json.put("memberType", dto.getMemberType());
-//                json.put("memberGuideStatus", dto.getMemberGuideStatus());
-//                json.put("memberSleep", dto.getMemberSleep());
-//                json.put("memberGuideType", dto.getMemberGuideType());
-//                json.put("uploadTime", dto.getUploadTime());
-//                json.put("kids", dto.getKids());
-//            } catch (Exception e){
-//                return;
-//            }
-//            jsonArray.put(json);
-//        });
-//
-//        log.info(jsonArray.toString());
-//
-//        model.addAttribute("nowKidsDTOS", jsonArray.toString());
+        List<Tuple> nowKidsEvents = nowKidsRepository.findEventAndCalendarInfoByGuideId_QueryDsl(sessionId);
+        JSONArray calendars = new JSONArray();
+        JSONArray events = new JSONArray();
+
+        for (Tuple tuple : nowKidsEvents) {
+            Event event = tuple.get(0, Event.class);
+            Calendar calendar = tuple.get(1, Calendar.class);
 
 
-        log.info(nowKidsService.getBoardAndCalendarByGeneralGuideId(sessionId).toString());
-        List<Tuple> events = nowKidsService.getBoardAndCalendarByGeneralGuideId(sessionId);
-        JSONArray jsonArray = new JSONArray();
-        events.stream().forEach(event -> {
-            JSONObject json = convertTupleToJson(event);
-            jsonArray.put(json);
-        });
-        model.addAttribute("events", jsonArray.toString());
+            JSONObject eventJSON = new JSONObject();
+            eventJSON.put("boardTitle", event.getBoardTitle());
+            log.info(event.toString());
+            log.info(calendar.toString());
 
+            JSONObject calendarJSON = new JSONObject(calendar);
+            events.put(eventJSON);
+            calendars.put(calendarJSON);
+        }
+//        log.info(events.toString());
+//        log.info(calendars.toString());
+        log.info("eventTITLE가져오기 : " + events);
+        log.info("======================================================================");
+        model.addAttribute("calendars", calendars.toString());
+        model.addAttribute("eventTitle", events.toString());
         return "/nowKids/now-kids-write";
     }
 
@@ -89,13 +69,38 @@ public class NowKidsController {
         return null;
     }
 
+
+
+
+
     @GetMapping("multi")
     public String writeNowKidFiles(){
         return "/nowKids/now-kids-write-multi";
     }
 
+
+
+
+
     @GetMapping("list")
-    public String goNowKidsList(){
+    public String goNowKidsList(Long sessionId, Model model){
+
+        sessionId = 1L;
+        Page<NowKidsDTO> nowKidsDTOS = nowKidsService.getAllInfoForListDesc(1, 5);
+        JSONArray jsonArray = new JSONArray();
+        nowKidsDTOS.forEach(nowKidsDTO -> {
+            List<Kid> kids = nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(nowKidsDTO.getMemberId(), nowKidsDTO.getEventId());
+            List<NowKidsFile> nowKidsFiles = nowKidsRepository.findAllFileNowKidsById_QueryDsl(nowKidsDTO.getNowKidsId());
+
+            JSONObject jsonObject = new JSONObject(nowKidsDTO);
+            jsonObject.put("kids", kids);
+            jsonObject.put("files", nowKidsFiles);
+
+            jsonArray.put(jsonObject);
+        });
+
+        log.info(jsonArray.toString());
+        model.addAttribute("nowKidsDTOS", nowKidsDTOS);
         return "/nowKids/now-kids-list";
     }
 
