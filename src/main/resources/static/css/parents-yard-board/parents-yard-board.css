@@ -151,6 +151,22 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     -webkit-box-orient: vertical;
 }
 
+.parents-yard-board-item-writer{
+    line-height: 1.67;
+    color: #868e96;
+    font-size: 12px;
+}
+
+.parents-yard-board-item-bottom-wrapper{
+    width: 480px;
+    display: flex;
+}
+
+.bottom-divide-line{
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
 .parents-yard-board-item-date{
     display: block;
     text-align: left;
@@ -293,6 +309,25 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 
 .active{
     color: #00b2b2;
+}
+
+
+.write-text-wrapper{
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.write-text{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    background-color: #00c4c4;
+    padding: 5px;
+    font-size: 15px;
+    color: #fff;
+    width: 50px;
 }
 
 .search-form-wrapper{
