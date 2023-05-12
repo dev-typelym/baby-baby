@@ -11,7 +11,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(exclude = "member",callSuper = true)
+@ToString(exclude = "member")
 @Table(name = "TBL_COUPON")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Coupon {

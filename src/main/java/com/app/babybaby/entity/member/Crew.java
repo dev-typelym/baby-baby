@@ -15,8 +15,8 @@ public class Crew{
     @EqualsAndHashCode.Include
     private Long id;
 
-    @OneToOne
-    @JoinColumn
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "KID_ID")
     private Kid kid;
 
     @ManyToOne(fetch = FetchType.LAZY)

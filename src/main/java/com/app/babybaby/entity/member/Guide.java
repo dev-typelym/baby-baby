@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString(exclude = {"event", "generalGuide", "adminGuide", "guideSchedule"})
+@ToString(exclude = {"event", "generalGuide", "adminGuide", "guideSchedule, crew"})
 @Table(name = "TBL_GUIDE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Guide {
