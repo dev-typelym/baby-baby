@@ -31,7 +31,7 @@ public class ParentsBoardReplyQueryDslImpl implements ParentsBoardReplyQueryDsl 
 
     //    목록 가져오기(페이징)
     @Override
-    public Page<ParentsBoardReply> findAllByBoardIdWithPaging(Long id, Pageable pageable) {
+    public Page<ParentsBoardReply> findAllReplyByBoardIdWithPaging(Pageable pageable, Long id) {
         List<ParentsBoardReply> foundParentsBoardReply = query.select(parentsBoardReply)
                 .from(parentsBoardReply)
                 .join(parentsBoardReply.parentsBoard)

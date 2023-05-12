@@ -10,6 +10,6 @@ public interface ParentsBoardReplyQueryDsl {
     public Long parentsBoardReplyCount();
 
 //    댓글 전체 조회
-    public Page<ParentsBoardReply> findAllByBoardIdWithPaging(Long id, Pageable pageable);
+    public Page<ParentsBoardReply> findAllReplyByBoardIdWithPaging(Pageable pageable, Long id);
 
 }

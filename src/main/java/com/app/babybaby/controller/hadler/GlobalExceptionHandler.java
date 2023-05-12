@@ -17,6 +17,6 @@ public class GlobalExceptionHandler {
 //        request.getRequestURL()
         // boardlist 경로
         log.info("들어옴");
-        return new RedirectView("/parentsYards/list");
+        return new RedirectView("/parentsYard/list");
     }
 }
