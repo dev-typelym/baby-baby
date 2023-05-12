@@ -51,15 +51,6 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
     text-align: center;
 }
 
-.event-title{
-    margin-bottom: 15px;
-    line-height: 1.33;
-    word-break: normal;
-    color:  #99752e;
-    font-size: 15px;
-    font-weight: 700;
-}
-
 .parents-yard-board-detail-title{
     margin-bottom: 24px;
     line-height: 1.33;
