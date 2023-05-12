@@ -10,6 +10,27 @@
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+.delete-no-check-modal {
+  display: none;
+  position: absolute;
+  top: 0%;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.delete-no-check-modal-shape {
+  position: absolute;
+  width: 390px;
+  height: 160px;
+  left: 44%;
+  top: 30%;
+  background-color: #fff;
+  border-radius: 8px;
+  animation: fade-in 0.5s ease-out;
+}
+
 .delete-modal-shape {
   position: absolute;
   width: 390px;
@@ -19,6 +40,12 @@
   background-color: #fff;
   border-radius: 8px;
   animation: fade-in 0.5s ease-out;
+}
+
+.modal-body {
+  padding: 8px 0;
+  text-align: center;
+  font-size: 18px;
 }
 
 .modal-body {
@@ -38,7 +65,11 @@
   cursor: pointer;
 }
 
-.confirm-delete:hover {
+.no-check-confirm-delete {
+  cursor: pointer;
+}
+
+.no-check-confirm-delete:hover {
   color: #c97793;
 }
 
