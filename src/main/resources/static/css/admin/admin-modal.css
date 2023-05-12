@@ -72,18 +72,22 @@
     background-color: rgba(0, 0, 0, 0.4);
   }
 
-  .user-modal-shape {
-    position: absolute;
-    left: 37%;
-    top: 15%;;
-    width: 600px;
-    height: 600px;
-    padding: 12px;
-    overflow-y: scroll;
-    background-color: #fff;
-    border: 1px solid #8080806e;
-    border-radius: 5px;
-    animation: fade-in 0.4s ease-in-out forwards;
+.user-modal-shape {
+      position: absolute;
+      left: 37%;
+      top: 9%;
+      width: 600px;
+      height: 80%;
+      padding: 12px;
+      overflow-y: scroll;
+      background-color: #fff;
+      border: 1px solid #8080806e;
+      border-radius: 5px;
+      animation: fade-in 0.4s ease-in-out forwards;
+  }
+  #ask-detail.user-modal-shape {
+    height: 63%;
+    top: 16%;
   }
 
   /* 스크롤바  */
