@@ -35,7 +35,7 @@ public class ParentsBoardReplyRepositoryTests {
     @Transactional
     public void ParentsBoardReplyListTest() {
         Pageable pageable = PageRequest.of(0, 10);
-        log.info(parentsBoardReplyRepository.findAllByBoardIdWithPaging(541L,pageable).getContent().toString());
+        log.info(parentsBoardReplyRepository.findAllReplyByBoardIdWithPaging(pageable, 541L).getContent().toString());
     }
 
 }

@@ -66,7 +66,7 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
                         .fetchJoin()
                         .join(parentsBoard.member)
                         .fetchJoin()
-                        .where(parentsBoard.event.id.eq(id))
+                        .where(parentsBoard.id.eq(id))
                         .fetchOne()
         );
     }

@@ -13,6 +13,9 @@ public class ParentsBoardReplyDTO {
     private LocalDateTime updateDate;
     private String parentsBoardReplyContent;
     private Long memberId;
+    private String memberNickName;
+    private String memberFileOriginalName;
+    private String memberFilePath;
+    private String memberFileUUID;
     private Long parentsBoardId;
-
 }
