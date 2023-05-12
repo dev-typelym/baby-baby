@@ -1,8 +1,10 @@
 package com.app.babybaby.repository.board.parentsBoard;
 
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
+import com.app.babybaby.search.admin.AdminParentsBoardSearch;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.CategoryType;
 import com.app.babybaby.type.SearchTextOption;
@@ -167,4 +169,56 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
         return booleanExpression;
     }
 
+
+    //[관리자] 보호자마당 전체 목록 조회
+    @Override
+    public Page<ParentsBoard> findAllParentsBoardWithSearch_queryDSL(Pageable pageable, AdminParentsBoardSearch adminParentsBoardSearch) {
+        BooleanExpression parentsBoardNameEq = adminParentsBoardSearch.getParentsBoardTitle() == null ? null : parentsBoard.boardTitle.eq(adminParentsBoardSearch.getParentsBoardTitle());
+
+        QParentsBoard parentsBoard = QParentsBoard.parentsBoard;
+        QEvent event = QEvent.event;
+
+        List<ParentsBoard> foundParentsBoard = query.select(parentsBoard)
+                .from(parentsBoard)
+                .join(parentsBoard.event)
+                .join(parentsBoard.member)
+                .fetchJoin()
+                .where(parentsBoardNameEq)
+                .orderBy(parentsBoard.id.asc())
+                .offset(pageable.getOffset() - 1)
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(parentsBoard.count())
+                .from(parentsBoard)
+                .where(parentsBoardNameEq)
+                .fetchOne();
+
+        return new PageImpl<>(foundParentsBoard, pageable, count);
+    }
+
+    //[관리자] 부모님마당 상세 조회
+    @Override
+    public Optional<ParentsBoard> findParentsBoardById_queryDSL(Long parentsBoardId) {
+        return Optional.ofNullable(
+                query.select(parentsBoard)
+                        .from(parentsBoard)
+                        .join(parentsBoard.event)
+                        .fetchJoin()
+                        .leftJoin(parentsBoard.parentsBoardFiles)
+                        .fetchJoin()
+                        .join(parentsBoard.member)
+                        .fetchJoin()
+                        .where(parentsBoard.event.id.eq(parentsBoardId))
+                        .fetchOne()
+        );
+    }
+
+    //  [관리자] 보호자마당 삭제
+    @Override
+    public void deleteAdminParentsBoardByIds_queryDSL(List<Long> parentsBoardIds) {
+        query.delete(parentsBoard)
+                .where(parentsBoard.id.in(parentsBoardIds))
+                .execute();
+    }
 }

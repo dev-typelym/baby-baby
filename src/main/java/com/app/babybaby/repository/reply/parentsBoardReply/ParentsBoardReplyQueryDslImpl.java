@@ -2,6 +2,9 @@ package com.app.babybaby.repository.reply.parentsBoardReply;
 
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
+import com.app.babybaby.entity.reply.parentsBoardReply.QParentsBoardReply;
+import com.app.babybaby.search.admin.AdminParentsBoardReplySearch;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -49,6 +52,37 @@ public class ParentsBoardReplyQueryDslImpl implements ParentsBoardReplyQueryDsl 
                 .fetchOne();
 
         return new PageImpl<>(foundParentsBoardReply, pageable, count);
+    }
+
+    //    [관리자] 부모님마당 댓글 목록 조회
+    @Override
+    public Page<ParentsBoardReply> findAlLParentsBoardReplyWithSearch_queryDSL(Pageable pageable , AdminParentsBoardReplySearch adminParentsBoardReplySearch) {
+        BooleanExpression parentsBoardContentEq = adminParentsBoardReplySearch.getParentsBoardReplyContent() == null ? null : parentsBoardReply.ParentsBoardReplyContent.eq(adminParentsBoardReplySearch.getParentsBoardReplyContent());
+
+        QParentsBoardReply parentsBoardReply = QParentsBoardReply.parentsBoardReply;
+
+        List<ParentsBoardReply> foundParentsBoardReply = query.select(parentsBoardReply)
+                .from(parentsBoardReply)
+                .where(parentsBoardContentEq)
+                .orderBy(parentsBoardReply.id.asc())
+                .offset(pageable.getOffset() - 1)
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(parentsBoardReply.count())
+                .from(parentsBoardReply)
+                .where(parentsBoardContentEq)
+                .fetchOne();
+
+        return new PageImpl<>(foundParentsBoardReply, pageable, count);
+    }
+
+    //  [관리자] 부모님마당 댓글 목록 삭제
+    @Override
+    public void deleteParentsBoardReplyByIds_queryDSL(List<Long> parentsBoardReplyIds) {
+        query.delete(parentsBoardReply)
+                .where(parentsBoardReply.id.in(parentsBoardReplyIds))
+                .execute();
     }
 
 }

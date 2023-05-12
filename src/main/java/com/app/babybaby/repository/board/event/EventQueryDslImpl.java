@@ -1,21 +1,26 @@
 package com.app.babybaby.repository.board.event;
 
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.like.eventLike.QEventLike;
 import com.app.babybaby.entity.purchase.coupon.QCoupon;
 import com.app.babybaby.entity.purchase.purchase.Purchase;
 import com.app.babybaby.entity.purchase.purchase.QPurchase;
+import com.app.babybaby.search.admin.AdminEventSearch;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
+import com.app.babybaby.type.CategoryType;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import static com.app.babybaby.entity.board.event.QEvent.event;
+import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
 import static com.app.babybaby.entity.like.eventLike.QEventLike.eventLike;
 import static com.app.babybaby.entity.purchase.coupon.QCoupon.coupon;
@@ -122,6 +127,73 @@ public class EventQueryDslImpl implements EventQueryDsl {
     }
 
 
+    //    [관리자] 놀러가요 카테고리 및 상태별 목록
+    @Override
+    public List<Event> findNowKidsEvents_queryDSL(AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus) {
+        BooleanExpression eventNameEq = adminEventSearch.getEventTitle() == null ? null : event.boardTitle.eq(adminEventSearch.getEventTitle());
+        LocalDateTime now = LocalDateTime.now();
+        QEvent event = QEvent.event;
+
+        return query.select(event)
+                .from(event)
+                .join(event.calendar)
+                .fetchJoin()
+                .leftJoin(event.eventFiles)
+                .fetchJoin()
+                .where(
+                        eventCategory != null
+                                ? event.category.eq(eventCategory)
+                                .and(eventStatus.equals("전체")
+                                        ? event.calendar.startDate.isNotNull()
+                                        : eventStatus.equals("대기")
+                                        ? event.calendar.startDate.after(now)
+                                        : eventStatus.equals("진행중")
+                                        ? event.calendar.startDate.after(now)
+                                        .and(event.calendar.endDate.before(now))
+                                        : eventStatus.equals("종료")
+                                        ? event.calendar.endDate.before(now)
+                                        : event.category.isNotNull())
+                                : event.category.isNotNull()
+                                .and(eventStatus.equals("전체")
+                                        ? event.calendar.startDate.isNotNull()
+                                        : eventStatus.equals("대기")
+                                        ? event.calendar.startDate.after(now)
+                                        : eventStatus.equals("진행중")
+                                        ? event.calendar.startDate.after(now)
+                                        .and(nowKids.event.calendar.endDate.before(now))
+                                        : eventStatus.equals("종료")
+                                        ? event.calendar.endDate.before(now)
+                                        : event.category.isNotNull())
+                                .and(eventNameEq)
+                )
+                .orderBy(event.id.asc())
+                .fetch();
+
+
+    }
+
+//    [관리자] 놀러가요 상세
+
+    @Override
+    public Optional<Event> findForAdminEventById_queryDSL(Long eventId) {
+        return Optional.ofNullable(
+                query.select(event)
+                        .from(event)
+                        .join(event.eventFiles)
+                        .fetchJoin()
+                        .where(event.id.eq(eventId))
+                        .fetchJoin()
+                        .fetchOne()
+        );
+    }
+//    [관리자] 놀러가요 삭제
+
+    @Override
+    public void deleteEventByIds_queryDSL(List<Long> eventIds) {
+        query.delete(event)
+                .where(event.id.in(eventIds))
+                .execute();
+    }
 }
 
 

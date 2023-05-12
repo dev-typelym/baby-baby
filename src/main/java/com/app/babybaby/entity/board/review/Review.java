@@ -2,6 +2,7 @@ package com.app.babybaby.entity.board.review;
 
 import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.file.reviewFile.ReviewFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.reviewReply.ReviewReply;
 import com.sun.istack.NotNull;
@@ -26,6 +27,9 @@ public class Review extends BoardInfo {
     @NotNull
     @ColumnDefault("0")
     private int ReviewScore;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "review", cascade = CascadeType.REMOVE)
+    private List<ReviewFile> reviewFiles;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
