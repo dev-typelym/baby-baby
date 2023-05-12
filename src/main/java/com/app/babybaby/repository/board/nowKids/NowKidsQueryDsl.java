@@ -5,10 +5,13 @@ import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.search.admin.AdminEventSearch;
+import com.app.babybaby.type.CategoryType;
 import com.querydsl.core.Tuple;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface NowKidsQueryDsl {
     /* 통솔자가 가지고있는 행사 가져오기 */
@@ -40,4 +43,12 @@ public interface NowKidsQueryDsl {
     /*한방쿼리로 모든 정보 다 가져오기 */
 //    public List<NowKids> findAllInfo();
 
+    //    [관리자페이지] 지금 우리아이들은 카테고리별 게시글 목록 조회
+    public List<NowKids> findNowKidsEvents_queryDSL(AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus);
+
+    //    [관리자페이지] 지금 우리아이들은 카테고리별 게시글 상세보기
+    public Optional<NowKids> findNowKidsById_queryDSL(Long nowKidsId);
+
+    //    [관리자페이지] 지금 우리아이들은 게시글 삭제
+    public void deleteNowKidsByIds_queryDSL(List<Long> nowKidsIds);
 }
