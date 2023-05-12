@@ -7,6 +7,7 @@ import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import com.app.babybaby.repository.like.nowKidsLike.NowKidsLikeRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
+import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -45,8 +46,8 @@ public class NowKidsServiceImpl implements NowKidsService {
         return nowKidsDTOPage;
     }
 
-    public List<Event> getBoardAndCalendarByGeneralGuideId(Long sessionId){
-        return nowKidsRepository.findEventInfoByGuideId_QueryDsl(sessionId);
+    public List<Tuple> getBoardAndCalendarByGeneralGuideId(Long sessionId){
+        return nowKidsRepository.findEventAndCalendarInfoByGuideId_QueryDsl(sessionId);
     }
 
 }

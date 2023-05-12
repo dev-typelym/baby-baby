@@ -172,7 +172,7 @@ public class NowKidsServiceRepositoryTests {
 
     @Test
     public void findEventInfoByGuideIdTest(){
-        log.info(nowKidsRepository.findEventInfoByGuideId_QueryDsl(1L).toString());
+        log.info(nowKidsRepository.findEventAndCalendarInfoByGuideId_QueryDsl(1L).toString());
     }
 
     @Test

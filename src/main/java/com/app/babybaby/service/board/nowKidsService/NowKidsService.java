@@ -6,6 +6,7 @@ import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
+import com.querydsl.core.Tuple;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.stream.Collectors;
 public interface NowKidsService {
 
     public Page<NowKidsDTO> getAllInfoForListDesc(int pageNum, int pageSize, Long sessionId);
-    public List<Event> getBoardAndCalendarByGeneralGuideId(Long sessionId);
+    public List<Tuple> getBoardAndCalendarByGeneralGuideId(Long sessionId);
 
     default com.app.babybaby.entity.board.nowKids.NowKids toNowKidsEntity(NowKidsDTO nowKidsDTO){
         return com.app.babybaby.entity.board.nowKids.NowKids.builder()

@@ -3,11 +3,13 @@ package com.app.babybaby.repository.board.nowKids;
 import com.app.babybaby.entity.board.QBoardInfo;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
+import com.app.babybaby.entity.calendar.QCalendar;
 import com.app.babybaby.entity.file.File;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile;
 import com.app.babybaby.entity.member.*;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 import static com.app.babybaby.entity.board.QBoardInfo.boardInfo;
 import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
+import static com.app.babybaby.entity.calendar.QCalendar.calendar;
 import static com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile.nowKidsFile;
 import static com.app.babybaby.entity.member.QCrew.crew;
 import static com.app.babybaby.entity.member.QGuide.guide;
@@ -38,10 +41,11 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
     }
 
     /* GeneralGuide의 아이디로 그 사람이 통솔중인 이벤트 정보 가져오기 (통솔중인것은 가져오면 안됨), (통솔완료인 것도 가져오면 안됨) */
-    public List<Event> findEventInfoByGuideId_QueryDsl(Long generalGuideId) {
-        return query.select(guide.event)
+    public List<Tuple> findEventAndCalendarInfoByGuideId_QueryDsl(Long generalGuideId) {
+        return query.select(event, calendar)
                 .from(guide)
-                .join(guide.event)
+                .join(guide.event, event)
+                .join(event.calendar, calendar)
                 .where(guide.generalGuide.id.eq(generalGuideId))
                 .fetch();
     }

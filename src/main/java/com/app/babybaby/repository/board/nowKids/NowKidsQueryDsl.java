@@ -5,6 +5,7 @@ import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
+import com.querydsl.core.Tuple;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,7 +21,7 @@ public interface NowKidsQueryDsl {
     public List<Member> findGuideBoardWithPaging_QueryDsl(int pageNo, int pageSize);
 
     /* 통솔자의 아이디로 통솔자가 신청한 모든 이벤트 가져오기 */
-    public List<Event> findEventInfoByGuideId_QueryDsl(Long guideId);
+    public List<Tuple> findEventAndCalendarInfoByGuideId_QueryDsl(Long guideId);
     
     /* 만약 generalId가 없을시 GuideId로 조회 */
     public List<Event> findEventInfoByAdminGuideId_QueryDsl(Long adminGuideId);

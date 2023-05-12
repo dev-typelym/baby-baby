@@ -1,8 +1,10 @@
 package com.app.babybaby.controller.boardController;
 
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.service.board.nowKidsService.NowKidsService;
+import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
@@ -70,10 +72,10 @@ public class NowKidsController {
 
 
         log.info(nowKidsService.getBoardAndCalendarByGeneralGuideId(sessionId).toString());
-        List<Event> events = nowKidsService.getBoardAndCalendarByGeneralGuideId(sessionId);
+        List<Tuple> events = nowKidsService.getBoardAndCalendarByGeneralGuideId(sessionId);
         JSONArray jsonArray = new JSONArray();
-        events.forEach(event -> {
-            JSONObject json = new JSONObject(event);
+        events.stream().forEach(event -> {
+            JSONObject json = convertTupleToJson(event);
             jsonArray.put(json);
         });
         model.addAttribute("events", jsonArray.toString());
@@ -95,5 +97,16 @@ public class NowKidsController {
     @GetMapping("list")
     public String goNowKidsList(){
         return "/nowKids/now-kids-list";
+    }
+
+
+    public JSONObject convertTupleToJson(Tuple tuple) {
+        JSONObject json = new JSONObject();
+
+        json.put("event", tuple.get(0, Event.class));
+        json.put("calendar", tuple.get(1, Calendar.class));
+        // 필요한 경우 다른 필드도 JSON에 추가
+
+        return json;
     }
 }
