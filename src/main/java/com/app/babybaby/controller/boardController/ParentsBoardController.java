@@ -3,8 +3,8 @@ package com.app.babybaby.controller.boardController;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDTO;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
-import com.app.babybaby.service.boardService.parentsBoardService.ParentsBoardService;
-import com.app.babybaby.service.replyService.parentsBoardReplyService.ParentsBoardReplyService;
+import com.app.babybaby.service.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.service.reply.parentsBoardReply.ParentsBoardReply;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Slf4j
 public class ParentsBoardController {
-    private final ParentsBoardService parentsBoardService;
-    private final ParentsBoardReplyService parentsBoardReplyService;
+    private final ParentsBoard parentsBoard;
+    private final ParentsBoardReply parentsBoardReply;
 
 
     //    첫 게시글 목록 화면으로 가기
@@ -36,7 +36,7 @@ public class ParentsBoardController {
     @GetMapping("list/show")
     @ResponseBody
     public Page<ParentsBoardDTO> getParentsBoards(@PageableDefault(page = 1,size = 10) Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
-        Page<ParentsBoardDTO> result = parentsBoardService.getFindAllWithSearchParentsBoardList(
+        Page<ParentsBoardDTO> result = parentsBoard.getFindAllWithSearchParentsBoardList(
                 PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize())
                 , parentsBoardSearch
         );
@@ -46,7 +46,7 @@ public class ParentsBoardController {
     //    부모님 마당 게시글 상세보기
     @GetMapping("detail/{id}")
     public String goParentsBoardDetail(@PathVariable Long id, Model model) {
-        model.addAttribute("parentsBoard", parentsBoardService.getParentsBoardDetail(id));
+        model.addAttribute("parentsBoard", parentsBoard.getParentsBoardDetail(id));
         return "parents-yard-board/parents-yard-board-detail";
     }
 
@@ -54,7 +54,7 @@ public class ParentsBoardController {
     @GetMapping("detail/reply/{id}")
     @ResponseBody
     public Slice<ParentsBoardReplyDTO> getParentsBoardReplies(@PageableDefault(page = 1,size = 5) Pageable pageable, @PathVariable Long id) {
-        return parentsBoardReplyService.findAllReplyByBoardIdWithPaging(
+        return parentsBoardReply.findAllReplyByBoardIdWithPaging(
                 PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize()), id
         );
     }

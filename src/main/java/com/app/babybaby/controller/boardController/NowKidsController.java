@@ -1,16 +1,12 @@
 package com.app.babybaby.controller.boardController;
 
-import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
 import com.app.babybaby.entity.board.event.Event;
-import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.member.Kid;
-import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
-import com.app.babybaby.service.boardService.nowKidsService.NowKidsServices;
+import com.app.babybaby.service.board.nowKidsService.NowKids;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/nowKid/*")
 public class NowKidsController {
-    private final NowKidsServices nowKidsServices;
+    private final NowKids nowKids;
 
     @GetMapping("write")
     public String goWriteNowKids(Long sessionId, Model model, RedirectAttributes redirectAttributes) {
@@ -74,8 +69,8 @@ public class NowKidsController {
 //        model.addAttribute("nowKidsDTOS", jsonArray.toString());
 
 
-        log.info(nowKidsServices.getBoardAndCalendarByGeneralGuideId(sessionId).toString());
-        List<Event> events = nowKidsServices.getBoardAndCalendarByGeneralGuideId(sessionId);
+        log.info(nowKids.getBoardAndCalendarByGeneralGuideId(sessionId).toString());
+        List<Event> events = nowKids.getBoardAndCalendarByGeneralGuideId(sessionId);
         JSONArray jsonArray = new JSONArray();
         events.forEach(event -> {
             JSONObject json = new JSONObject(event);
