@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,11 +9,12 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-	<link rel="stylesheet" href="../../static/css/admin/admin-default.css">
-	<link rel="stylesheet" href="../../static/css/admin/admin-boardList.css">
-	<link rel="stylesheet" href="../../static/css/admin/admin-modal.css">
-	<link rel="stylesheet" href="../../static/css/admin/admin-reviewList.css">
-	<link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
+	<link rel="stylesheet" href="/css/admin/side-menu.css">
+	<link rel="stylesheet" href="/css/admin/admin-default.css">
+	<link rel="stylesheet" href="/css/admin/admin-boardList.css">
+	<link rel="stylesheet" href="/css/admin/admin-modal.css">
+	<link rel="stylesheet" href="/css/admin/admin-reviewList.css">
+	<link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
 </head>
 <body>
 	<section class="header-section">
@@ -37,7 +38,7 @@
 	</section>
 	<main class="main-section">
 		<!-- 임시 사이드바 -->
-		<div id="side-bar"></div>
+		<div th:insert="~{/admin/side-menu:: side-menu}"></div>
 		<!-- 임시 사이드바 끝 -->
 		<section class="content-section">
 			<div class="container">
@@ -325,8 +326,8 @@
 	</section>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/admin/menuLoad.js"></script>
-<script src="../../static/js/admin/checkbox.js"></script>
-<script src="../../static/js/admin/page.js"></script>
-<script src="../../static/js/admin/admin-reviewList.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
+<script src="/js/admin/checkbox.js"></script>
+<script src="/js/admin/page.js"></script>
+<script src="/js/admin/admin-reviewList.js"></script>
 </html>

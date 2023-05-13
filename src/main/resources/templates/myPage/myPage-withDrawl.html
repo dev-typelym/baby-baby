@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-  <html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원탈퇴</title>
-    <link rel="shortcut icon" href="../../static/images/myPage/favicon.png">
+    <link rel="shortcut icon" href="/images/myPage/favicon.png">
     <!-- link 적용 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/myPage/myPage-withDrawal.css">
-    <link rel="stylesheet" href="../../static/css/myPage/modal.css">
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-withDrawal.css">
+    <link rel="stylesheet" href="/css/myPage/modal.css">
+
   </head>
 <body>
+<div th:insert="~{/components/header:: header}"></div>
     <div>
         <div id="wz-header"></div>
         <main class="account-drop wzui">
@@ -72,7 +75,11 @@
         </div>
       </div>
     </div>
+<div th:insert="~{/components/footer:: footer}"></div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="../../static/js/myPage/myPage-wthiDrawal.js"></script>
+<script src="/js/myPage/myPage-withDrawl.js"></script>
+<script src="/js/components/header.js"></script>
+
 </html>

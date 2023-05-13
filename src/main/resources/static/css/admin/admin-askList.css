@@ -1,3 +1,16 @@
+.user-modal-shape {
+    position: absolute;
+    left: 37%;
+    top: 9%;
+    min-width: 600px;
+    height: 61%;
+    padding: 12px;
+    overflow-y: scroll;
+    background-color: #fff;
+    border: 1px solid #8080806e;
+    border-radius: 5px;
+    animation: fade-in 0.4s ease-in-out forwards;
+}
 .btn-row{
     position: absolute;
     top: 0;

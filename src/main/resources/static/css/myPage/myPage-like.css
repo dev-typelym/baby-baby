@@ -387,7 +387,7 @@ svg:not(:root) {
 
 .second-confirm {
     background: url('../../images/play/calendar.png');
-    no-repeat 100% center/contain;
+    no-repeat: 100% center/contain;
     width: 16px;
     height: 16px;
     background-size: 16px 16px;
@@ -701,6 +701,7 @@ div.search input:focus {
     width: 100%;
     min-height: 48px;
     overflow: hidden;
+    margin-top:10px
 }
 
 .nav-lists{

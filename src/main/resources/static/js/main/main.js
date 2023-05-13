@@ -28,14 +28,14 @@ buttons.forEach((button) => {;
 });
 
 imageDiv.forEach(
-    (div, i) => (div.style.backgroundImage = `url(../../static/images/main/images/main-00${i + 1}.jpg)`)
+    (div, i) => (div.style.backgroundImage = `url(/images/main/images/main-00${i + 1}.jpg)`)
 );
 
 banner.appendChild(lastImageDiv);
-lastImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-001.jpg)`;
+lastImageDiv.style.backgroundImage = `url(/images/main/images/main-001.jpg)`;
 
 banner.insertBefore(firstImageDiv, document.querySelector('div.banner div'));
-firstImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-00${imageDiv.length}.jpg)`;
+firstImageDiv.style.backgroundImage = `url(/images/main/images/main-00${imageDiv.length}.jpg)`;
 
 banner.style.transform = `translate(-100vw)`;
 
@@ -140,14 +140,14 @@ buttons.forEach((button) => {;
 });
 
 imageDiv.forEach(;
-    (div, i) => (div.style.backgroundImage = `url(../../static/images/main/images/main-00${i + 1}.jpg)`);
+    (div, i) => (div.style.backgroundImage = `url(/images/main/images/main-00${i + 1}.jpg)`);
 );
 
 banner.appendChild(lastImageDiv);
-lastImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-001.jpg)`;
+lastImageDiv.style.backgroundImage = `url(/images/main/images/main-001.jpg)`;
 
 banner.insertBefore(firstImageDiv, document.querySelector('div.banner div'));
-firstImageDiv.style.backgroundImage = `url(../../static/images/main/images/main-00${imageDiv.length}.jpg)`;
+firstImageDiv.style.backgroundImage = `url(/images/main/images/main-00${imageDiv.length}.jpg)`;
 
 
 banner.style.transform = `translate(${width}vw)`;
@@ -236,7 +236,7 @@ const eventPageNow = document.querySelector('#event-page-now');
 
 
 eventImageDiv.forEach(
-  (div, i) => (div.style.backgroundImage = `url(../../static/images/main/images/event-00${i + 1}.jpg)`)
+  (div, i) => (div.style.backgroundImage = `url(/images/main/images/event-00${i + 1}.jpg)`)
 );
 
 const clonedEventBanner1 = $('.event-banner1').clone()[0];
@@ -320,7 +320,7 @@ const thirdPageNow = document.querySelector('#third-page-now');
 
 
 thirdImageDiv.forEach(
-  (div, i) => (div.style.backgroundImage = `url(../../static/images/main/images/third-00${i + 1}.jpg)`)
+  (div, i) => (div.style.backgroundImage = `url(/images/main/images/third-00${i + 1}.jpg)`)
 );
 
 const clonedThirdBanner1 = $('.third-banner1').clone()[0];
@@ -398,7 +398,7 @@ let secondCheckArrow = false;
 let secondCount = 1;
 
 secondImageDiv.forEach((div, i) => {
-  div.style.backgroundImage = `url(../../static/images/main/images/second-00${i + 1}.jpg)`;
+  div.style.backgroundImage = `url(/images/main/images/second-00${i + 1}.jpg)`;
 });
 
 const clonedsecondBanners = document.querySelectorAll('.second-banner > div').values();

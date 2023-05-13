@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>주문 및 결제</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
-<link rel="stylesheet" href="../../static/css/payment/payment.css">
-<link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
+	<link rel="stylesheet" href="/css/components/header.css">
+	<link rel="stylesheet" href="/css/components/footer.css">
+	<link rel="stylesheet" href="/css/payment/payment.css">
+<link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
 </head>
 <body>
+<div th:insert="~{/components/header:: header}"></div>
+
 	<div id="page-container">
 		<main id="main-app">
 			<!-- 헤더 적용 -->
@@ -112,7 +116,7 @@
 													</div>
 													<button type="button" class="coupon-right-full-wrap">
 														<i class="coupon-right-icon">
-															<img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+															<img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
 														</i>
 														<span class="coupon-right-can-use">사용 가능</span>
 													</button>
@@ -136,7 +140,7 @@
 													</div>
 													<button type="button" class="coupon-right-full-wrap">
 														<i class="coupon-right-icon">
-															<img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+															<img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
 														</i>
 														<span class="coupon-right-can-use">사용 가능</span>
 													</button>
@@ -160,7 +164,7 @@
 													</div>
 													<button type="button" class="coupon-right-full-wrap">
 														<i class="coupon-right-icon">
-															<img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+															<img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
 														</i>
 														<span class="coupon-right-can-use">사용 가능</span>
 													</button>
@@ -347,7 +351,10 @@
 			<!-- footer적용 -->
 		</main>
 	</div>
+<div th:insert="~{/components/footer:: footer}"></div>
+
 </body>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="../../static/js/payment/payment.js"></script>
+<script src="/js/components/header.js"></script>
+<script type="text/javascript" src="/js/payment/payment.js"></script>
 </html>

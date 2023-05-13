@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상세페이지</title>
-    <link rel="stylesheet" href="../../static/css/play/event-board-detail.css" />
-    <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico" />
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/play/event-board-detail.css" />
+    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico" />
 </head>
 <body>
+<div th:insert="~{/components/header:: header}"></div>
     <div class="main_wrapper">
         <section>
             <div style="background-color: #fff">
@@ -1610,11 +1613,15 @@
             </div>
         </section>
     </div>
+<div th:insert="~{/components/footer:: footer}"></div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script
     type="text/javascript"
     src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e010e1c47083a81e5873ca2682380a56&libraries=services"
 ></script>
-<script src="../../static/js/play/event-board-detail.js"></script>
+<script src="/js/play/event-board-detail.js"></script>
+<script src="/js/components/header.js"></script>
+
 </html>

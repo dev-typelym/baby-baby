@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-  <html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>결제 내역</title>
-  <link rel="shortcut icon" href="../../static/images/myPage/favicon.png">
+  <link rel="shortcut icon" href="/images/myPage/favicon.png">
   <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-  <link rel="stylesheet" href="../../static/css/myPage/myPage-payment.css">
-  
+  <link rel="stylesheet" href="/css/components/header.css">
+  <link rel="stylesheet" href="/css/components/footer.css">
+  <link rel="stylesheet" href="/css/myPage/myPage-payment.css">
+
 </head>
 <body>
+<div th:insert="~{/components/header:: header}"></div>
   <div class="all-content-wrapper">
     <section class="main-content"> 
       <h2>나의 구매</h2>
@@ -185,5 +187,8 @@
 
     </section>
   </div>
+<div th:insert="~{/components/footer:: footer}"></div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/components/header.js"></script>
 </html>

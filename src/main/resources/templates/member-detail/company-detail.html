@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>기업상세</title>
-    <link rel="stylesheet" href="../../static/css/member-detail/company-detail.css">
-    <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/member-detail/company-detail.css">
+    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
+
 </head>
 <body>
+<div th:insert="~{/components/header:: header}"></div>
     <main>
         <div>
             <div class="container">
@@ -504,7 +508,9 @@
             </div>
         </div>
     </main>
+<div th:insert="~{/components/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="../../static/js/member-detail/company-detail.js"></script>
+<script src="/js/member-detail/company-detail.js"></script>
+<script src="/js/components/header.js"></script>
 </html>
