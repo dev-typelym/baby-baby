@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-    <html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>쿠폰페이지</title>
-    <link rel="shortcut icon" href="../../static/images/myPage/favicon.png">
-    <link rel="stylesheet" href="../../static/css/myPage/myPage-coupon.css" >
+    <link rel="shortcut icon" href="/images/myPage/favicon.png">
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-coupon.css" >
+
 </head>
 <body>
+
+<div th:insert="~{/components/header:: header}"></div>
     <div class="header"></div>
     <div class="full-content-wrap"> <!--  -->
         <section class="full-content-section-wrap">
@@ -24,14 +28,14 @@
             <div class="description">
                 <div class="description-inner">
                     <div class="first-wrapper">
-                        <div class="caution-icon"><img src="../../static/images/myPage/caution.png" alt=""></div>
+                        <div class="caution-icon"><img src="/images/myPage/caution.png" alt=""></div>
                         <div class="caution-text">
                             <span>후기를 작성하시면 쿠폰이 자동으로 발급됩니다</span>
                         </div>
                     </div>
 
                     <div class="second-wrapper" style="margin-top: 13px;">
-                        <div class="caution-icon"><img src="../../static/images/myPage/caution.png" alt=""></div>
+                        <div class="caution-icon"><img src="/images/myPage/caution.png" alt=""></div>
                         <div class="caution-text">
                             <span>한번에 두개의 쿠폰은 사용하실수없습니다</span>
                         </div>
@@ -60,7 +64,7 @@
                                 </div>
                                 <button type="button" class="coupon-right-full-wrap">
                                     <i class="coupon-right-icon">
-                                        <img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+                                        <img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
                                     </i>
                                     <span class="coupon-right-can-use">사용 가능</span>
                                 </button>
@@ -85,7 +89,7 @@
                                 </div>
                                 <button type="button" class="coupon-right-full-wrap">
                                     <i class="coupon-right-icon">
-                                        <img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+                                        <img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
                                     </i>
                                     <span class="coupon-right-can-use">사용 가능</span>
                                 </button>
@@ -110,7 +114,7 @@
                                 </div>
                                 <button type="button" class="coupon-right-full-wrap">
                                     <i class="coupon-right-icon">
-                                        <img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+                                        <img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
                                     </i>
                                     <span class="coupon-right-can-use">사용 가능</span>
                                 </button>
@@ -135,7 +139,7 @@
                                 </div>
                                 <button type="button" class="coupon-right-full-wrap">
                                     <i class="coupon-right-icon">
-                                        <img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+                                        <img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
                                     </i>
                                     <span class="coupon-right-can-use">사용 가능</span>
                                 </button>
@@ -160,7 +164,7 @@
                                 </div>
                                 <button type="button" class="coupon-right-full-wrap">
                                     <i class="coupon-right-icon">
-                                        <img width="40px" height="40px" src="../../static/images/payment/coupon-use-S.png">
+                                        <img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
                                     </i>
                                     <span class="coupon-right-can-use">사용 가능</span>
                                 </button>
@@ -185,6 +189,9 @@
         </div>
     </div>
 
-    <div class="footer"></div>
+<div th:insert="~{/components/footer:: footer}"></div>
+
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/components/header.js"></script>
 </html>

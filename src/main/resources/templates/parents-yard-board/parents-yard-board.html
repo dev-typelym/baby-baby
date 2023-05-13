@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/parents-yard-board/parents-yard-board.css">
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/parents-yard-board/parents-yard-board.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gugi&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
+    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
     <title>부모님마당</title>
 </head>
 <body>
+<div th:insert="~{/components/header:: header}"></div>
     <div class="parents-yard-board-wrapper">
         <div class="parents-yard-board-top">
             <div class="parents-yard-board-title">부모님마당</div>
@@ -32,7 +35,7 @@
                             <option value="etc">기타</option>
                         </select>
                         <div class="drop-down-image-wrapper">
-                            <img class="drop-down-image" src="../../static/images/parents-yard-board/parents-yard-board/drop-down.png">
+                            <img class="drop-down-image" src="/images/parents-yard-board/parents-yard-board/drop-down.png">
                         </div>
                     </label>
                 </div>
@@ -299,7 +302,7 @@
                 <li class="paging-list-item">
                     <button class="paging-btn-prev" disabled="" aria-label="이전 목록">
                         <div class="paging-btn-prev-image-wrapper">
-                            <img class="paging-btn-prev-image" src="../../static/images/parents-yard-board/parents-yard-board/paging-left.png">
+                            <img class="paging-btn-prev-image" src="/images/parents-yard-board/parents-yard-board/paging-left.png">
                         </div>
                     </button>
                 </li>
@@ -321,7 +324,7 @@
                 <li class="paging-list-item">
                     <button class="paging-btn-next" aria-label="다음 목록">
                         <div class="paging-btn-next-image-wrapper">
-                            <img class="paging-btn-next-image" src="../../static/images/parents-yard-board/parents-yard-board/paging-right.png">
+                            <img class="paging-btn-next-image" src="/images/parents-yard-board/parents-yard-board/paging-right.png">
                         </div>
                     </button>
                 </li>
@@ -346,6 +349,9 @@
             </div>
         </form>
     </div>
+<div th:insert="~{/components/footer:: footer}"></div>
 </body>
-<script src="../../static/js/parents-yard-board/parents-yard-board.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/parents-yard-board/parents-yard-board.js"></script>
+<script src="/js/components/header.js"></script>
 </html>

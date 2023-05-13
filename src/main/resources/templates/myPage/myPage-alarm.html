@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=
     , initial-scale=1.0">
     <title>알림</title>
-    <link rel="shortcut icon" href="../../static/images/myPage/favicon.png">
+    <link rel="shortcut icon" href="/images/myPage/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../static/css/myPage/alarm.css">
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/myPage/alarm.css">
+
 </head>
 <body>
+<div th:insert="~{/components/header:: header}"></div>
     <main>
         <div class="main-content">
             <div class="header">
@@ -71,12 +74,10 @@
         </div>
         </div>
         <!-- 알림 한개 끝 -->
-
-
-
-
-
         </div>
     </main>
+<div th:insert="~{/components/footer:: footer}"></div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/components/header.js"></script>
 </html>

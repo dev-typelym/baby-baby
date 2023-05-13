@@ -1,22 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/review-board/review-board-detail.css">
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/review-board/review-board-detail.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gugi&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
+    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
     <title>후기게시판 - 상세보기</title>
 </head>
 <body>
+<div th:insert="~{/components/header:: header}"></div>
     <div class="parents-yard-board-detail-wrapper">
         <div class="parents-yard-board-detail-top">
             <div class="parents-yard-board-detail-user-profile">
-                <img class="parents-yard-board-detail-user-profile-image" src="../../static/images/parents-yard-board/parents-yard-board-detail/profile-image.png">
+                <img class="parents-yard-board-detail-user-profile-image" src="/images/parents-yard-board/parents-yard-board-detail/profile-image.png">
             </div>
             <span class="parents-yard-board-detail-user-name">보호자1호</span>
             <h2 class="event-title"><span>[박물관]</span> <span>아이들과 VR로 즐기는 신나는 실내 체험</span></h2>
@@ -104,7 +107,7 @@
                             <li class="top" style="display: list-item;">
                                 <div class="comment-wrap">
                                     <div class="comment-info">
-                                        <img src="../../static/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">
+                                        <img src="/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">
                                         <span class="name">임의택</span>
                                         <button class="comment-util" onclick="showList()"></button>
                                         <ul class="comment-util-list">
@@ -154,7 +157,7 @@
                                         </p>
                                     </div>
                                     <div class="img-wrap">
-                                        <img src="../../static/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">
+                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">
                                     </div>
                                 </div>
                             </a>
@@ -171,7 +174,7 @@
                                         </p>
                                     </div>
                                     <div class="img-wrap">
-                                        <img src="../../static/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">
+                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">
                                     </div>
                                 </div>
                             </a>
@@ -186,8 +189,11 @@
         <!-- 댓글 끝 -->
         </div>
     </div>
+<div th:insert="~{/components/footer:: footer}"></div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/parents-yard-board/parents-yard-board-detail.js"></script>
+<script src="/js/parents-yard-board/parents-yard-board-detail.js"></script>
+<script src="/js/components/header.js"></script>
+
 </html>

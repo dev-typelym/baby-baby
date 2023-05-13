@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,9 +13,14 @@
   href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
   rel="stylesheet"
 />
-<link rel="stylesheet" href="../../static/css/myPage/myPage-banner.css" >
-<link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
+<link rel="stylesheet" href="/css/components/header.css">
+<link rel="stylesheet" href="/css/components/footer.css">
+<link rel="stylesheet" href="/css/myPage/myPage-banner.css" >
+<link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
+
+
 <body>
+<div th:insert="~{/components/header:: header}"></div>
 	<form action="#">
     <div class="body1" data-react-modal-body-trap="" tabindex="0" style="position: absolute; opacity: 0;"></div>
     <div id="root">
@@ -167,9 +172,10 @@
 	</form>
 <!-- test -->
 <!-- HTML 코드 -->
-  
 
+<div th:insert="~{/components/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../../static/js/myPage/myPage-banner.js"></script>
+<script type="text/javascript" src="/js/myPage/myPage-banner.js"></script>
+<script src="/js/components/header.js"></script>
 </html>

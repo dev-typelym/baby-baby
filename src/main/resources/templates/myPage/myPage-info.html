@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-  <html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My 정보설정</title>
-    <link rel="shortcut icon" href="../../static/images/myPage/favicon.png">
+    <link rel="shortcut icon" href="/images/myPage/favicon.png">
     <!-- link 적용 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,9 +13,13 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../static/css/myPage/myPage-info.css" />
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-info.css" />
+
   </head>
   <body>
+  <div th:insert="~{/components/header:: header}"></div>
     <div id="page-container">
       <main id="main-app">
         <!-- main -->
@@ -175,7 +178,7 @@
 
                           <div class="profile-area">
                             <label for="profile">
-                              <img src="../../static/images/myPage/children.png" alt="" />
+                              <img src="/images/myPage/children.png" alt="" />
                             </label>
                           </div>
                         </div>
@@ -185,7 +188,7 @@
 
                           <div class="resume-area">
                             <label for="resume">
-                              <img src="../../static/images/myPage/resume.png" class="resume-img" alt="" />
+                              <img src="/images/myPage/resume.png" class="resume-img" alt="" />
                             </label>
                             <div class="resume-info"></div>
                           </div>
@@ -217,7 +220,7 @@
                         </li>
                       </ul> -->
                       <div class="form-group">
-                        <label for="address-btu" class="address-label" class="inputs" onclick="sample6_execDaumPostcode()">주소 변경</label>
+                        <label for="address-btu" class="address-label inputs" onclick="sample6_execDaumPostcode()">주소 변경</label>
                         <div class="address-div" id="" >
                             <input type="text" id="sample6_postcode"  class="inputs" onclick="sample6_execDaumPostcode()" placeholder="우편번호">
                             <input type="button" name="address-btu" class="inputs" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
@@ -300,9 +303,11 @@
           <!-- E : #newContainer -->
         </div>
       </main>
+      <div th:insert="~{/components/footer:: footer}"></div>
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <script src="../../static/js/myPage/mypage-info.js"></script>
+  <script src="/js/myPage/myPage-info.js"></script>
+  <script src="/js/components/header.js"></script>
 </html>

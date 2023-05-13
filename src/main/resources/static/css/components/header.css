@@ -177,7 +177,7 @@ button {
     background: none;
     color: inherit;
 }
-body, body button, body input, body li, 
+body, body button, body input, body li,
 body ol, body select, body textarea, body ul {
     box-sizing: border-box;
     margin: 0;

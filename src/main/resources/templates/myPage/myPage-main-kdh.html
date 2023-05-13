@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="../../static/images/myPage/favicon.png">
+    <link rel="shortcut icon" href="/images/myPage/favicon.png">
     <title>마이페이지</title>
     <!--css 연결하는곳-->
-    <link rel="shortcut icon" href="../../static/images/myPage/favicon.png">
+    <link rel="shortcut icon" href="/images/myPage/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../static/css/myPage/myPage-main-kdh.css" />
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-main-kdh.css" />
+
   </head>
   <body>
+  <div th:insert="~{/components/header:: header}"></div>
     <main id="main-app">
       <div class="full-content-wrapper">
         <section class="full-content-wrapper-section">
@@ -41,7 +45,7 @@
                       <div class="profile-name-area">
                         <div class="profile-name">
                       <!-- 통솔자 -->
-                      <img src="../../static/images/myPage/tongsol.png">
+                      <img src="/images/myPage/tongsol.png">
                       <!-- 만약에 일반 회원이면 children.png사용 
                       아니다 싶으면 사용 하지 말기 -->
                           <span>정유찬</span>
@@ -65,7 +69,7 @@
                           <a href="#">
                             <div class="a-inner-content">
                               <div class="store-area">
-                                <img src="../../static/images/myPage/store.png" alt="" />
+                                <img src="/images/myPage/store.png" alt="" />
                                 <span>구매내역</span>
                               </div>
                               <div class="store-amount">1</div>
@@ -105,7 +109,7 @@
                           <a href="#">
                             <div class="a-inner-content">
                               <div class="store-area">
-                                <img src="../../static/images/myPage/toys.png" alt="" />
+                                <img src="/images/myPage/toys.png" alt="" />
                                 <span>우리 아이들 목록</span>
                               </div>
                               <div class="store-amount"><span>3 </span>명</div>
@@ -210,7 +214,7 @@
                     <a href="#">
                       <div>
                         <span class="link-icon">
-                          <img src="../../static/images/myPage/review-icon.png" alt="">
+                          <img src="/images/myPage/review-icon.png" alt="">
                         </span>
                         <span class="link-text">내가 쓴 게시글</span>
                       </div>
@@ -231,7 +235,7 @@
                     <a href="#">
                       <div>
                         <span class="link-icon">
-                          <img src="../../static/images/myPage/toys.png" alt="">
+                          <img src="/images/myPage/toys.png" alt="">
                         </span>
                         <span class="link-text">우리 아이 등록하기</span>
                       </div>
@@ -252,7 +256,7 @@
                     <a href="#">
                       <div>
                         <span class="link-icon">
-                          <img src="../../static/images/myPage/apply.png" alt="">
+                          <img src="/images/myPage/apply.png" alt="">
                         </span>
                         <span class="link-text">통솔자 지원</span>
                       </div>
@@ -276,7 +280,7 @@
                     <a href="#">
                       <div>
                         <span class="link-icon">
-                          <img src="../../static/images/myPage/announcement.png" alt="">
+                          <img src="/images/myPage/announcement.png" alt="">
                         </span>
                         <span class="link-text">공지 사항</span>
                       </div>
@@ -298,7 +302,7 @@
                     <a href="#">
                       <div>
                         <span class="link-icon">
-                          <img src="../../static/images/myPage/support.png" alt="">
+                          <img src="/images/myPage/support.png" alt="">
                         </span>
                         <span class="link-text">1:1문의</span>
                       </div>
@@ -343,7 +347,7 @@
                     <a href="#">
                       <div>
                         <span class="link-icon">
-                          <img src="../../static/images/myPage/withdraw.png" alt="">
+                          <img src="/images/myPage/withdraw.png" alt="">
                         </span>
                         <span class="link-text">회원탈퇴</span>
                       </div>
@@ -379,7 +383,7 @@
             <div class="ask-modal-header-wrapper">
                 <div class="ask-modal-header-container">
                     <div class="ask-modal-image-wrapper" size="30">
-                        <img width="30" height="30" src="../../static/images/myPage/favicon.png" alt="avatar">
+                        <img width="30" height="30" src="/images/myPage/favicon.png" alt="avatar">
                     </div>
                     <span class="ask-modal-text-span" data-testid="bezier-react-text">
                         <div class="ask-modal-text">아기자기 고객센터</div>
@@ -439,7 +443,9 @@
         <div id="content-wrap"></div>
     </div>
     </main>
+  <div th:insert="~{/components/footer:: footer}"></div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-  <script src="../../static/js/myPage/myPage-main.js"></script>
+  <script src="/js/myPage/myPage-main.js"></script>
+  <script src="/js/components/header.js"></script>
 </html>

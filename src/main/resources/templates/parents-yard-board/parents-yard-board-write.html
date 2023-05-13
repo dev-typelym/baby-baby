@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="ko">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>부모님마당 글작성</title>
-    <link rel="stylesheet" href="../../static/css/parents-yard-board/parents-yard-board-write.css">
-    <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/parents-yard-board/parents-yard-board-write.css">
+    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
 </head>
 
 <body>
-    <div>
-        <div id="header"></div>
+<div th:insert="~{/components/header:: header}"></div>
 
+    <div>
         <div class="wrap">
             <div class="now-kids.container">
                 <div class="nav-header-box nav-header-background">
@@ -187,15 +188,19 @@
             </form>
         </div>
     </div>
+<div th:insert="~{/components/footer:: footer}"></div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../static/js/parents-yard-board/parents-yard-board-write.js"></script>
+<script src="/js/parents-yard-board/parents-yard-board-write.js"></script>
+<script src="/js/components/header.js"></script>
+
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
 <script>
     ClassicEditor.create( document.querySelector( '#editor' ), {
         ckfinder: {
-			uploadUrl : '../../static/css/images/ck-editor-upload'
+			uploadUrl : '/css/images/ck-editor-upload'
 		},
         language: "ko"
     } );

@@ -10,6 +10,7 @@ dd{
 
 .all-content-wrapper{
     padding: 0;
+    margin-bottom: 56px;
 }
 
 .main-content{
@@ -40,6 +41,7 @@ dd{
     margin-right: 0px;
     margin-bottom: 0px;
     cursor: pointer;
+    margin-top:10px
 }
 
 .list-inner{
@@ -68,6 +70,7 @@ dd{
     display: flex;
     justify-content: space-between;
     margin-top: 0;
+    margin-bottom: 13px;
 }
 
 .order-info dt{

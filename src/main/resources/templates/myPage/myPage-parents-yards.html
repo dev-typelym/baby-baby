@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-  <html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="../../static/images/myPage/favicon.png" />
+    <link rel="shortcut icon" href="/images/myPage/favicon.png" />
     <title>나의 후기</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,10 +12,14 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../static/css/myPage/myPage-like.css" />
-    <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon2.ico" />
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/myPage/myPage-like.css" />
+    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon2.ico" />
+
   </head>
   <body>
+  <div th:insert="~{/components/header:: header}"></div>
     <main>
       <div class="main-wrapper">
         <div class="main-contents">
@@ -316,14 +319,13 @@
                 </div>
               </div>
             </a>
-
-
-
           </div>
         </div>
       </div>
     </main>
+  <div th:insert="~{/components/footer:: footer}"></div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-  <script src="../../static/js/myPage/mypage-like.js"></script>
+  <script src="/js/myPage/myPage-like.js"></script>
+  <script src="/js/components/header.js"></script>
 </html>

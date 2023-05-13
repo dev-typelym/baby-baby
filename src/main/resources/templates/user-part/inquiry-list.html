@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,20 +8,21 @@
     <title>문의</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="shortcut icon" href="../../static/images/logo_favi/favi/favicon.ico">
+    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../static/css/user-part/announcement.css">
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
+    <link rel="stylesheet" href="/css/user-part/announcement.css">
 </head>
 <body>
+<div th:insert="~{/components/header:: header}"></div>
     <div class="all-wrapper">
         <div class="title-wrapper">
             <h1>문의</h1>
         </div>
-
-
         <div class="main-content">
             <div class="search-wrapper">
                 <div class="search">
@@ -91,9 +92,10 @@
             </ul>
         </div>
     </div>
-
+<div th:insert="~{/components/footer:: footer}"></div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/components/header.js"></script>
 <script src="/static/js/user-part/announcement.js"></script>
 </html>
