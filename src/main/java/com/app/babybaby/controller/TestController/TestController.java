@@ -170,4 +170,7 @@ public class TestController {
     @GetMapping("/admin/admin-reviewReplyList")
     public void reviewReplyList(){}
 
+    @GetMapping("/myPage/children-register-clone")
+    public void pageClone(){}
+
 }
