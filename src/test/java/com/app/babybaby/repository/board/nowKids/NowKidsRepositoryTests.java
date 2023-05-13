@@ -12,7 +12,7 @@ import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.calendar.CalendarRepository;
-import com.app.babybaby.repository.file.nowKidsFile.NowKidsFileFileRepository;
+import com.app.babybaby.repository.file.nowKidsFile.NowKidsFileRepository;
 import com.app.babybaby.repository.guideSchedule.GuideScheduleRepository;
 import com.app.babybaby.repository.like.nowKidsLike.NowKidsLikeRepository;
 import com.app.babybaby.repository.member.crew.CrewRepository;
@@ -28,9 +28,9 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @SpringBootTest
@@ -48,7 +48,7 @@ public class NowKidsRepositoryTests {
     EventRepository eventRepository;
 
     @Autowired
-    NowKidsFileFileRepository nowKidsFileFileRepository;
+    NowKidsFileRepository nowKidsFileRepository;
 
     @Autowired
     KidRepository kidRepository;
@@ -97,9 +97,9 @@ public class NowKidsRepositoryTests {
         NowKidsFile nowKidsFile2 = new NowKidsFile("Subfdsafdsa32", "Subfdsafdsa1", "123213", FileType.SUBS, nowKids);
         NowKidsFile nowKidsFile3 = new NowKidsFile("Subfdsafdsa2", "Subfdsafdsa2", "123213", FileType.SUBS, nowKids);
 
-        nowKidsFileFileRepository.save(nowKidsFile);
-        nowKidsFileFileRepository.save(nowKidsFile2);
-        nowKidsFileFileRepository.save(nowKidsFile3);
+        nowKidsFileRepository.save(nowKidsFile);
+        nowKidsFileRepository.save(nowKidsFile2);
+        nowKidsFileRepository.save(nowKidsFile3);
     }
 
     @Test
@@ -123,6 +123,7 @@ public class NowKidsRepositoryTests {
         guideScheduleRepository.save(guideSchedule);
         guidRepository.save(guide1);
     }
+
 
 //    나의 생각 정리
     /*

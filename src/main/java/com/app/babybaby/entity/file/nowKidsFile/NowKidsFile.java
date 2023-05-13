@@ -21,9 +21,14 @@ public class NowKidsFile extends File {
     public NowKidsFile(NowKids nowKids) {
         this.nowKids = nowKids;
     }
+
     @Builder
     public NowKidsFile(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus, NowKids nowKids) {
         super(fileOriginalName, fileUUID, filePath, fileStatus);
+        this.nowKids = nowKids;
+    }
+
+    public void setNowKids(NowKids nowKids) {
         this.nowKids = nowKids;
     }
 }

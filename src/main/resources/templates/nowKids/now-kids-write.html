@@ -13,22 +13,22 @@
 <body>
     <div>
         <div id="header"></div>
-
+        <form action="/nowKid/multi" id="write-submit-form">
         <div class="wrap">
             <div class="now-kids.container">
                 <div class="nav-header-box nav-header-background">
-                    <div style="display: flex">
+                    <div class="left-category-box" style="display: flex">
                         <span class="nav-header-span">통솔자</span>
-                        <span class="nav-header-span">농촌</span>
+<!--                        <span class="nav-header-span">농촌</span>-->
                     </div>
                     <a href="javascript:void(0)" class="profile-box">
-                        <span class="profile-name">임종욱</span><span>의</span>
+                        <span class="profile-name" th:text="${member}">임종욱</span><span>의</span>
                         <p>지금 우리 아이들은</p>
                     </a>
                     <button type="button" class="profile-btn">
                         <span class="profile-span">
-                            <span>게시글 번호</span>
-                            <span class="profile-span">1</span>
+<!--                            <span>게시글 번호</span>-->
+<!--                            <span class="profile-span">1</span>-->
 <!--                             <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="arrow-icon"
                                 aria-hidden="true" style="width: 20px; height: 20px">
                                 <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
@@ -113,7 +113,7 @@
                                             </div>
                                             <div class="select-menu-box">
                                                 <div class="select-menu-layout">
-                                                    <div class="select-option">안녕하세요.</div>
+<!--                                                    <div class="select-option">안녕하세요.</div>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -155,62 +155,65 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>닉네임</th>
+<!--                                                <th>닉네임</th>-->
                                                 <th>이름</th>
-                                                <th>나이</th>                                
-                                                <th>참여행사</th>                                
-                                                <th>참여일자</th>    
+                                                <th>나이</th>
+                                                <th>참여행사</th>
+                                                <th>참여일자</th>
                                             </tr>
                                         </thead>
-                                        <tbody>       
-                                            <!-- 여기에 요소 추가 -->                                 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>뚝딱이</td>
-                                                <td>임종욱</td>
-                                                <td>27</td>
-                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</td>
-                                                <td>2023.04.27 13:00:00</td>
-                                            </tr>    
-                                            <!-- 여기에 요소 추가 -->                                 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>뚝딱이</td>
-                                                <td>임종욱</td>
-                                                <td>27</td>
-                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</td>
-                                                <td>2023.04.27 13:00:00</td>
-                                            </tr>    
-                                            <!-- 여기에 요소 추가 -->                                 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>뚝딱이</td>
-                                                <td>임종욱</td>
-                                                <td>27</td>
-                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세녕하세녕하세녕하세녕하세요안녕하세요</td>
-                                                <td>2023.04.27 13:00:00</td>
-                                            </tr>    
-                                            <!-- 여기에 요소 추가 -->                                 
-                                            <tr>
-                                                <td>1</td>
-                                                <td>뚝딱이</td>
-                                                <td>임종욱</td>
-                                                <td>27</td>
-                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</td>
-                                                <td>2023.04.27 13:00:00</td>
-                                            </tr>    
+                                        <tbody>
+<!--                                            &lt;!&ndash; 여기에 요소 추가 &ndash;&gt;                                 -->
+<!--                                            <tr>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>뚝딱이</td>-->
+<!--                                                <td>임종욱</td>-->
+<!--                                                <td>27</td>-->
+<!--                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</td>-->
+<!--                                                <td>2023.04.27 13:00:00</td>-->
+<!--                                            </tr>    -->
+<!--                                            &lt;!&ndash; 여기에 요소 추가 &ndash;&gt;                                 -->
+<!--                                            <tr>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>뚝딱이</td>-->
+<!--                                                <td>임종욱</td>-->
+<!--                                                <td>27</td>-->
+<!--                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</td>-->
+<!--                                                <td>2023.04.27 13:00:00</td>-->
+<!--                                            </tr>    -->
+<!--                                            &lt;!&ndash; 여기에 요소 추가 &ndash;&gt;                                 -->
+<!--                                            <tr>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>뚝딱이</td>-->
+<!--                                                <td>임종욱</td>-->
+<!--                                                <td>27</td>-->
+<!--                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세녕하세녕하세녕하세녕하세요안녕하세요</td>-->
+<!--                                                <td>2023.04.27 13:00:00</td>-->
+<!--                                            </tr>    -->
+<!--                                            &lt;!&ndash; 여기에 요소 추가 &ndash;&gt;                                 -->
+<!--                                            <tr>-->
+<!--                                                <td>1</td>-->
+<!--                                                <td>뚝딱이</td>-->
+<!--                                                <td>임종욱</td>-->
+<!--                                                <td>27</td>-->
+<!--                                                <td>1팀 고쳐주러 온 뚝딱이 안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요</td>-->
+<!--                                                <td>2023.04.27 13:00:00</td>-->
+<!--                                            </tr>    -->
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </section>
-                        <button type="button" class="btn confirm-button">
+                        <button type="submit" class="btn confirm-button">
                             <span>다음으로</span>
                         </button>
                     </div>
                 </section>
             </div>
         </div>
+            <input type="hidden" name="eventId">
+            <input type="hidden" name="eventDate">
+        </form>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>

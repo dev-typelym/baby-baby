@@ -13,12 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Rollback(false)
 public class nowKidsFileRepositoryTests {
     @Autowired
-    NowKidsFileFileRepository nowKidsFileFileRepository;
+    NowKidsFileRepository nowKidsFileRepository;
 
 
 
     @Test
     public void findAllNowKidsFilesWithNowKidsIdTest(){
-        log.info(nowKidsFileFileRepository.findAllNowKidsFilesWithNowKidsId(455L).toString());
+        log.info(nowKidsFileRepository.findAllNowKidsFilesWithNowKidsId(455L).toString());
     }
 }
