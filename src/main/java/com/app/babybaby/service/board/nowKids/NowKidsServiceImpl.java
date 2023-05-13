@@ -40,8 +40,6 @@ public class NowKidsServiceImpl implements NowKidsService {
 
         nowKidsDTOPage.forEach(nowKidsDTO -> {
             List<Kid> kids = nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(nowKidsDTO.getMemberId(), nowKidsDTO.getEventId());
-//            nowKidsDTO.setKids(kids);
-//            nowKidsDTO.setNowKidsLikes(nowKidsLikeRepository.findAllNowKidsLikeByMemberId_QueryDsl(sessionId));
         });
 
         log.info(String.valueOf(pageNum));

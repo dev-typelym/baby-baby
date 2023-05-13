@@ -3,21 +3,17 @@ package com.app.babybaby.repository.admin;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
-import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
-import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import com.app.babybaby.entity.reply.parentsBoardReply.QParentsBoardReply;
 import com.app.babybaby.entity.reply.reviewReply.QReviewReply;
-import com.app.babybaby.entity.reply.reviewReply.ReviewReply;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
 import com.app.babybaby.repository.board.review.ReviewRepository;
 import com.app.babybaby.repository.calendar.CalendarRepository;
-import com.app.babybaby.repository.file.nowKidsFile.NowKidsFileFileRepository;
+import com.app.babybaby.repository.file.nowKidsFile.NowKidsFileRepository;
 import com.app.babybaby.repository.guideSchedule.GuideScheduleRepository;
 import com.app.babybaby.repository.member.crew.CrewRepository;
 import com.app.babybaby.repository.member.guide.GuidRepository;
@@ -37,7 +33,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -72,7 +67,7 @@ public class AdminRepositoryTests {
     ParentsBoardReplyRepository parentsBoardReplyRepository;
 
     @Autowired
-    NowKidsFileFileRepository nowKidsFileFileRepository;
+    NowKidsFileRepository nowKidsFileRepository;
 
     @Autowired
     KidRepository kidRepository;

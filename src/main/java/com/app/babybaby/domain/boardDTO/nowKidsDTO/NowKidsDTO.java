@@ -1,5 +1,6 @@
 package com.app.babybaby.domain.boardDTO.nowKidsDTO;
 
+import com.app.babybaby.domain.fileDTO.nowKidsFileDTO.NowKidsFileDTO;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
-@Getter @Setter @ToString(exclude = {"nowKidsLikes", "nowKidsFiles", "kids"})
+@Getter @Setter @ToString(exclude = {"nowKidsLikes", "nowKidsFiles", "kids", "files"})
 @NoArgsConstructor
 public class NowKidsDTO {
     /* 이벤트 id */
@@ -51,7 +52,8 @@ public class NowKidsDTO {
     private Boolean isRecent;
     private LocalDateTime uploadTime;
 
-
+    @JsonIgnore
+    private List<NowKidsFileDTO> files;
 //    //    좋아요 가져오기
 //    @JsonIgnore
 //    private List<NowKidsLike> nowKidsLikes;
@@ -65,7 +67,8 @@ public class NowKidsDTO {
 //    private List<Kid> kids;
 
     @Builder
-    public NowKidsDTO(Long nowKidsId, Long eventId, String boardTitle, String boardContent, Long eventRecruitCount, CategoryType category, LocalDateTime eventStartDate, LocalDateTime eventEndDate, String eventAddress, String eventAddressDetail, String eventAddressSubDetail, String eventPostCode, LocalDateTime eventUploadTIme, LocalDateTime eventUpdateTime, Long memberId, String memberNickname, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, Boolean isRecent, LocalDateTime uploadTime) {
+
+    public NowKidsDTO(Long nowKidsId, Long eventId, String boardTitle, String boardContent, Long eventRecruitCount, CategoryType category, LocalDateTime eventStartDate, LocalDateTime eventEndDate, String eventAddress, String eventAddressDetail, String eventAddressSubDetail, String eventPostCode, LocalDateTime eventUploadTIme, LocalDateTime eventUpdateTime, Long memberId, String memberNickname, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, Boolean isRecent, LocalDateTime uploadTime, List<NowKidsFileDTO> files) {
         this.nowKidsId = nowKidsId;
         this.eventId = eventId;
         this.boardTitle = boardTitle;
@@ -92,5 +95,6 @@ public class NowKidsDTO {
         this.memberGuideType = memberGuideType;
         this.isRecent = isRecent;
         this.uploadTime = uploadTime;
+        this.files = files;
     }
 }

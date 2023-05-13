@@ -1,11 +1,13 @@
 package com.app.babybaby.service.board.nowKids;
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
+import com.app.babybaby.domain.fileDTO.nowKidsFileDTO.NowKidsFileDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.service.file.nowKidsFile.NowKidsFileService;
 import com.querydsl.core.Tuple;
 import lombok.Builder;
 import org.springframework.data.domain.Page;
@@ -97,15 +99,14 @@ public interface NowKidsService {
                 .memberGuideType(nowKids.getGuide().getMemberGuideType())
                 .eventRecruitCount(nowKids.getEvent().getEventRecruitCount())
                 .category(nowKids.getEvent().getCategory())
-//                .nowKidsFiles(nowKids.getNowKidsFile()
-//                        .stream()
-//                        .map(nowKidsFile -> NowKidsFile.builder()
-//                                .fileOriginalName(nowKidsFile.getFileOriginalName())
-//                                .fileUUID(nowKidsFile.getFileUUID())
-//                                .filePath(nowKidsFile.getFilePath())
-//                                .fileStatus(nowKidsFile.getFileStatus())
-//                                .build())
-//                        .collect(Collectors.toList()))
+                .files(nowKids.getNowKidsFile()
+                                .stream().map(nowKidsFile -> NowKidsFileDTO.builder()
+                                        .fileOriginalName(nowKidsFile.getFileOriginalName())
+                                        .fileUUID(nowKidsFile.getFileUUID())
+                                        .filePath(nowKidsFile.getFilePath())
+                                        .build())
+                                .collect(Collectors.toList())
+                         )
                 .build();
     }
 
