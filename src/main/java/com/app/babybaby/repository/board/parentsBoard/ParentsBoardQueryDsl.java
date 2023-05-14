@@ -13,16 +13,19 @@ import java.util.Optional;
 
 public interface ParentsBoardQueryDsl {
     //    전체 목록
-    public Page<ParentsBoard> findAllWithSearch(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
+    public Page<ParentsBoard> findAllWithSearch_QueryDsl(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
+
+    //    내가쓴 게시글
+    public Page<ParentsBoard> findParentBoardListByMemberId(Pageable pageable,Long memberId);
 
 //    내가쓴 게시글
     public Page<ParentsBoard> findParentBoardListByMemberId(Pageable pageable,Long memberId);
 
     //    상세보기
-    public Optional<ParentsBoard> findDetailById(Long id);
+    public Optional<ParentsBoard> findDetailById_QueryDsl(Long id);
 
     //    작성하기(1단계)
-    public Optional<Event> findByEventId(Long id);
+    public Optional<Event> findByEventId_QueryDsl(Long id);
 
 
 //    작성하기(2단계 대표사진)
