@@ -1,9 +1,11 @@
 package com.app.babybaby.repository.board.review;
 
 import com.app.babybaby.entity.board.event.QEvent;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.review.QReview;
 import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.search.admin.AdminReviewSearch;
+import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.CategoryType;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.*;
 
 import java.util.List;
 
+import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
 import static com.app.babybaby.entity.board.review.QReview.review;
 
 import java.util.List;
@@ -23,15 +26,23 @@ import static com.app.babybaby.entity.board.review.QReview.review;
 public class ReviewQueryDslImpl implements ReviewQueryDsl {
     private final JPAQueryFactory query;
 
+
 //    나의리뷰 조회
     @Override
-    public List<Review> findReviewById_QueryDSL(Long memberId) {
-        return query.select(review)
+    public Page<Review> findReviewById_QueryDSL(Pageable pageable,Long memberId) {
+
+        List<Review> reviews = query.select(review)
                 .from(review)
                 .join(review.member).fetchJoin()
                 .join(review.reviewFiles).fetchJoin()
                 .where(review.member.id.eq(memberId))
                 .fetch();
+
+        Long count = query.select(review.count())
+                .from(review)
+                .where(review.member.id.eq(memberId))
+                .fetchOne();
+        return new PageImpl<>(reviews,pageable,count);
     }
 
     @Override

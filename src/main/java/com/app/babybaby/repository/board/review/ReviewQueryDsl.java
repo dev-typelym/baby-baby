@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface ReviewQueryDsl {
 
-    public List<Review> findReviewById_QueryDSL(Long memberId);
+    public Page<Review> findReviewById_QueryDSL(Pageable pageable,Long memberId);
 
     public Slice<Review> findAllByMemberId_QueryDSL(Pageable pageable, Long memberId);
 

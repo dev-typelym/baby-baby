@@ -55,6 +55,30 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
         return new PageImpl<>(foundParentsBoard, pageable, count);
     }
 
+//    내가쓴 게시글
+    @Override
+    public Page<ParentsBoard> findParentBoardListByMemberId(Pageable pageable, Long memberId) {
+
+        List<ParentsBoard> foundParentsBoard = query.select(parentsBoard)
+                .from(parentsBoard)
+                .join(parentsBoard.event)
+                .fetchJoin()
+                .leftJoin(parentsBoard.parentsBoardFiles)
+                .fetchJoin()
+                .orderBy(parentsBoard.id.desc())
+                .where(parentsBoard.member.id.eq(memberId))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(parentsBoard.count())
+                .from(parentsBoard)
+                .where(parentsBoard.member.id.eq(memberId))
+                .fetchOne();
+
+        return new PageImpl<>(foundParentsBoard, pageable, count);
+    }
+
     //    상세보기
     @Override
     public Optional<ParentsBoard> findDetailById(Long id) {

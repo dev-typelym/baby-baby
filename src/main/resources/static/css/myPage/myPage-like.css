@@ -947,6 +947,7 @@ div.search input:focus {
 /* 나의 후기 */
 .parents-yard-board-item-link{
     text-decoration: none;
+    width: 98%;
 }
 
 .parents-yard-board-item-wrapper{
@@ -959,6 +960,7 @@ div.search input:focus {
     vertical-align: baseline;
     font: inherit;
     cursor: pointer;
+    margin-left: 12px;
 }
 
 .category{
@@ -1018,7 +1020,7 @@ div.search input:focus {
 
 .parents-yard-board-item-thumbnail-wrapper{
     position: absolute;
-    top: 0;
+    top: -17px;
     right: 0;
     border: 1px solid rgba(0,0,0,.06);
     border-radius: 3px;
