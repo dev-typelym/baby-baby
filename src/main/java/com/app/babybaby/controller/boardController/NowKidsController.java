@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -51,8 +53,8 @@ public class NowKidsController {
     private final NowKidsFileRepository nowKidsFileRepository;
 
     @GetMapping("write")
-    public String goWriteNowKids(Long sessionId, Model model, RedirectAttributes redirectAttributes) {
-        sessionId = 1L;
+    public String goWriteNowKids(Model model, RedirectAttributes redirectAttributes) {
+        Long sessionId = 1L;
         Member member = memberRepository.findById(sessionId).get();
         JSONObject memberJSON = new JSONObject();
         List<Tuple> nowKidsEvents = nowKidsRepository.findEventAndCalendarInfoByGuideId_QueryDsl(sessionId);
@@ -141,8 +143,8 @@ public class NowKidsController {
         NowKids nowKids = new NowKids(event, member);
         NowKids nowKids1 = nowKidsRepository.save(nowKids);
 
-        nowKidsFileService.saveAllFiles(nowKidsDTO.getFiles(), nowKids1.getId());
-        nowKidsDTO.getFiles().stream().map(NowKidsFileDTO::toString).forEach(log::info);
+//        nowKidsFileService.saveAllFiles(nowKidsDTO.getFiles(), nowKids1.getId());
+//        nowKidsDTO.getFiles().stream().map(NowKidsFileDTO::toString).forEach(log::info);
 
         return new RedirectView("/nowKid/list");
     }
@@ -150,24 +152,30 @@ public class NowKidsController {
 
 
     @GetMapping("list")
-    public String goNowKidsList(Long sessionId, Model model){
-
+    public String goNowKidsList(Long sessionId, Model model, Pageable pageable){
+        int pageNum = pageable.getPageNumber();
         sessionId = 1L;
         Page<NowKidsDTO> nowKidsDTOS = nowKidsService.getAllInfoForListDesc(1, 5);
         JSONArray jsonArray = new JSONArray();
+
         nowKidsDTOS.forEach(nowKidsDTO -> {
             List<Kid> kids = nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(nowKidsDTO.getMemberId(), nowKidsDTO.getEventId());
             List<NowKidsFile> nowKidsFiles = nowKidsRepository.findAllFileNowKidsById_QueryDsl(nowKidsDTO.getNowKidsId());
-
+            List<KidDTO> kidDTOS = kids.stream().map(kidService::toKidDTO).collect(Collectors.toList());
+            List<NowKidsFileDTO> nowKidsFileDTOS = nowKidsFiles.stream().map(nowKidsFileService::toNowKidsFileDTO).collect(Collectors.toList());
+            log.info("현재 페이지는 + " + String.valueOf(pageNum));
+            log.info(kidDTOS.toString());
+            log.info(nowKidsFileDTOS.toString());
             JSONObject jsonObject = new JSONObject(nowKidsDTO);
-            jsonObject.put("kids", kids);
-            jsonObject.put("files", nowKidsFiles);
+            jsonObject.put("kids", kidDTOS);
+            jsonObject.put("files", nowKidsFileDTOS);
+
+            log.info(jsonObject.toString());
 
             jsonArray.put(jsonObject);
         });
 
-        log.info(jsonArray.toString());
-        model.addAttribute("nowKidsDTOS", nowKidsDTOS);
+        model.addAttribute("nowKidsDTOS", jsonArray.toString());
         return "/nowKids/now-kids-list";
     }
 
