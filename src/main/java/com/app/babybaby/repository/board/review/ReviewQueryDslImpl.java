@@ -29,6 +29,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
         return query.select(review)
                 .from(review)
                 .join(review.member).fetchJoin()
+                .join(review.reviewFiles).fetchJoin()
                 .where(review.member.id.eq(memberId))
                 .fetch();
     }

@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface EventQueryDsl {
     //    이벤트 게시판 목록(무한스크롤)
-    public Slice<Event> findEventListWithPaging_QueryDSL(/*EventBoardSearch eventBoardSearch,*/Pageable pageable);
+    public Slice<Event> findEventListWithPaging_QueryDSL(EventBoardSearch eventBoardSearch,Pageable pageable);
     //    이벤트 게시판 상세 페이지
     public Optional<Event> findEventById_QueryDSL(Long id);
     //     결제 상세 페이지

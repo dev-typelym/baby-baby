@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public interface EventService {
-    Slice<EventDTO> findEventListWithPaging(/*EventBoardSearch eventBoardSearch,*/ Pageable pageable);
+    Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable);
 
     Event createEvent(Event event);
 

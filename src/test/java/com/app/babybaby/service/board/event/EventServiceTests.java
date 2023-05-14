@@ -29,7 +29,7 @@ public class EventServiceTests {
         Pageable pageable = PageRequest.of(0, 10);
         EventBoardSearch eventBoardSearch = new EventBoardSearch();
         eventBoardSearch.setBoardTitle("검색조건");
-        eventService.findEventListWithPaging(/*eventBoardSearch,*/pageable).stream().map(EventDTO::getBoardTitle).forEach(log::info);
+        eventService.findEventListWithPaging(eventBoardSearch,pageable).stream().map(EventDTO::getBoardTitle).forEach(log::info);
 //        eventService.findEventListWithPaging(eventBoardSearch, pageable);
     }
 

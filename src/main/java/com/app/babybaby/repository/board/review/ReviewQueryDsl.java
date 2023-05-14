@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ReviewQueryDsl {
+
     public List<Review> findReviewById_QueryDSL(Long memberId);
+
     public Slice<Review> findAllByMemberId_QueryDSL(Pageable pageable, Long memberId);
 
     //[관리자] 리뷰 게시판 목록 조회
