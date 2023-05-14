@@ -2,6 +2,7 @@ package com.app.babybaby.service.board.parentsBoard;
 
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.exception.BoardNotFoundException;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
@@ -24,7 +25,7 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
     //    게시글 상세보기
     @Override
     public ParentsBoardDTO getParentsBoardDetail(Long id) {
-        com.app.babybaby.entity.board.parentsBoard.ParentsBoard parentsBoard = parentsBoardRepository.findDetailById(id).orElseThrow(() -> {
+        com.app.babybaby.entity.board.parentsBoard.ParentsBoard parentsBoard = parentsBoardRepository.findDetailById_QueryDsl(id).orElseThrow(() -> {
             throw new BoardNotFoundException();
         });
         return toParentsBoardDTO(parentsBoard);
@@ -33,7 +34,7 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
     //    목록 불러오기
     @Override
     public Page<ParentsBoardDTO> getFindAllWithSearchParentsBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
-        Page<com.app.babybaby.entity.board.parentsBoard.ParentsBoard> boards = parentsBoardRepository.findAllWithSearch(pageable, parentsBoardSearch);
+        Page<com.app.babybaby.entity.board.parentsBoard.ParentsBoard> boards = parentsBoardRepository.findAllWithSearch_QueryDsl(pageable, parentsBoardSearch);
         List<ParentsBoardDTO> parentsBoardDTOS = boards.stream().map(parentsBoard -> toParentsBoardDTO(parentsBoard)).collect(Collectors.toList());
 
         return new PageImpl<>(parentsBoardDTOS, pageable, boards.getTotalElements());
@@ -42,9 +43,17 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
     //    작성 쪽 참여예정인 행상 불러오기
     @Override
     public Event getFindByEventId(Long id) {
-        Event event = parentsBoardRepository.findByEventId(id).get();
+        Event event = parentsBoardRepository.findByEventId_QueryDsl(id).get();
         return event;
     }
 
+    //    내가쓴 게시글
+    @Override
+    public Page<ParentsBoardDTO> getFindParentBoardListByMemberId(Pageable pageable, Long memberId) {
+        Page<ParentsBoard> boards = parentsBoardRepository.findParentBoardListByMemberId(pageable, memberId);
+        List<ParentsBoardDTO> parentsBoardDTOS = boards.stream().map(parentsBoard -> toParentsBoardDTO(parentsBoard)).collect(Collectors.toList());
+
+        return new PageImpl<>(parentsBoardDTOS, pageable, boards.getTotalElements());
+    }
 
 }

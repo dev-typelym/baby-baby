@@ -31,7 +31,7 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<ParentsBoard> findAllWithSearch(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
+    public Page<ParentsBoard> findAllWithSearch_QueryDsl(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
 
 
 //       전체 목록 불러오기(페이징)
@@ -55,9 +55,33 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
         return new PageImpl<>(foundParentsBoard, pageable, count);
     }
 
+    //    내가쓴 게시글
+    @Override
+    public Page<ParentsBoard> findParentBoardListByMemberId(Pageable pageable, Long memberId) {
+
+        List<ParentsBoard> foundParentsBoard = query.select(parentsBoard)
+                .from(parentsBoard)
+                .join(parentsBoard.event)
+                .fetchJoin()
+                .leftJoin(parentsBoard.parentsBoardFiles)
+                .fetchJoin()
+                .orderBy(parentsBoard.id.desc())
+                .where(parentsBoard.member.id.eq(memberId))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(parentsBoard.count())
+                .from(parentsBoard)
+                .where(parentsBoard.member.id.eq(memberId))
+                .fetchOne();
+
+        return new PageImpl<>(foundParentsBoard, pageable, count);
+    }
+
     //    상세보기
     @Override
-    public Optional<ParentsBoard> findDetailById(Long id) {
+    public Optional<ParentsBoard> findDetailById_QueryDsl(Long id) {
 
         return Optional.ofNullable(
                 query.select(parentsBoard)
@@ -75,7 +99,7 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
     //    작성하기 참여예정 체험학습 select 해오기
     @Override
-    public Optional<Event> findByEventId(Long id) {
+    public Optional<Event> findByEventId_QueryDsl(Long id) {
         return Optional.ofNullable(
                 query.select(event)
                         .from(event)
