@@ -1,3 +1,35 @@
+// JSON 가져온 값
+console.log(nowKidsDTOS);
+
+// 내가 받은 calendar를 한국어로 바꾸는 코드
+function convertDate(eventDate) {
+    let dateObj = new Date(eventDate);
+    let convertedDate = dateObj.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+    return convertedDate;
+}
+
+
+function getTimeAgo(pastTime) {
+    let currentTime = new Date();
+
+    let diff = Math.abs(currentTime - new Date(pastTime));
+    let hours = Math.floor(diff / (1000 * 60 * 60));
+
+    if (hours < 1) {
+        return "방금 전";
+    } else if (hours < 24) {
+        return hours + "시간 전";
+    } else {
+        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        if (days < 7) {
+            return days + "일 전";
+        } else {
+            let weeks = Math.floor(days / 7);
+            return weeks + "주 전";
+        }
+    }
+}
+
 /* 좋아요 */
 $(function () {
     $('.wish-button').click(function (e) {
@@ -63,7 +95,9 @@ let imageList = [bannerImage1, bannerImage2];
 
 const $imageWrap = $('.bottom-content-full-flex');
 
-imageList.forEach((e, i) => {
+nowKidsDTOS.forEach((e, i) => {
+    let kidText = '';
+    console.log(e)
     let text = `
                 <div class="bottom-content-flex" id ="${i}">
                     <section class="feed-header-full-wrap">
@@ -80,11 +114,11 @@ imageList.forEach((e, i) => {
                                 </a>
                                 <div class="feed-header-new-board">
                                     <em class="feed-header-user-name">
-                                        김동한
+                                        ${nowKidsDTOS[i].memberNickname}
                                     </em>
                                 </div>
                             </div>
-                            <span class="feed-header-time">3시간 전</span>
+                            <span class="feed-header-time">${getTimeAgo(nowKidsDTOS[i].eventStartDate)}</span>
                         </div>
                     </section>
                     <div class=title-like-wrap>
@@ -93,7 +127,7 @@ imageList.forEach((e, i) => {
                                 <path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"></path>
                             </svg>
                         </button>
-                        <span class="bottom-event-title">뚝딱이가 왔어요 [체험학습 제목]</span>
+                        <span class="bottom-event-title">${nowKidsDTOS[i].boardTitle}</span>
                     </div>
 
                     <div class="board-component-image-wrapper">
@@ -102,25 +136,42 @@ imageList.forEach((e, i) => {
                             <div class="banner" id="banner${i}">
                             /* 이미지가 없으면 이 이미지아래로 이미지 태그 전부를 if로 감싸야한다. */
                             <div>
-                                <img src="${e[e.length - 1]}">
+                                <img src="/nowKidsFiles/display?fileName=NowKids/${e.files[e.files.length - 1].filePath}/${e.files[e.files.length - 1].fileUUID}_${e.files[e.files.length - 1].fileOriginalName}">
                             </div>
     
     `;
+    console.log("----------------------------파일 출력")
+    console.log(e.files)
+    console.log("----------------------------파일 출력")
 
-    e.forEach((image, j) => {
-        let totalWidth = width * (image.length + 2);
+    e.files.forEach((image, j) => {
+        let totalWidth = width * (image.length);
         $($banner[j]).css('width', `${totalWidth}px`);
         text += `
                     <div>
-                        <img src="${image}">
+                       <img src="/nowKidsFiles/display?fileName=NowKids/${nowKidsDTOS[i].files[j].filePath}/${nowKidsDTOS[i].files[j].fileUUID}_${nowKidsDTOS[i].files[j].fileOriginalName}">
                     </div>
         `;
+    });
+
+    e.kids.forEach((kid, k) => {
+        kidText += `
+            <!-- 하나의 데이터 -->
+                        <tr>  
+                            <td>${k}</td>
+                            <td>${kid.kidName}</td>
+                            <td>${kid.kidAge}</td>
+                            <td>${nowKidsDTOS[i].memberNickname}</td>
+                            <td>${convertDate(nowKidsDTOS[i].eventStartDate)}</td>  
+                        </tr>   
+                    `;
+
     });
 
     text += `
 
                 <div>
-                    <img src="${e[0]}">
+                    <img src="/nowKidsFiles/display?fileName=NowKids/${e.files[0].filePath}/${e.files[0].fileUUID}_${e.files[0].fileOriginalName}">
                 </div>
             </div>
             <div class="move-arrow">
@@ -147,12 +198,11 @@ imageList.forEach((e, i) => {
                 </button>
             </section>
             <div class="table-display">
-            <div class="table-kids-count">홍길동<span>&nbsp;외&nbsp;</span><span>4</span>명</div>
+            <div class="table-kids-count">${nowKidsDTOS[i].kids[0].kidName}<span>&nbsp;외&nbsp;</span><span>${nowKidsDTOS[i].kids.length - 1}</span>명</div>
                 <table class="table-box">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>닉네임</th>
                             <th>이름</th>
                             <th>나이</th>                                
                             <th>통솔자 이름</th>                                
@@ -161,14 +211,14 @@ imageList.forEach((e, i) => {
                     </thead>
                     <tbody>
                         <!-- 하나의 데이터 -->
-                        <tr>  
-                            <td>1</td>
-                            <td>뚝딱이</td>
-                            <td>임종욱</td>
-                            <td>27</td>
-                            <td>뚝딱이</td>
-                            <td>2023.04.27</td>  
-                        </tr>   
+<!--                        <tr>  -->
+<!--                            <td>1</td>-->
+<!--                            <td>임종욱</td>-->
+<!--                            <td>27</td>-->
+<!--                            <td>뚝딱이</td>-->
+<!--                            <td>2023.04.27</td>  -->
+<!--                        </tr>   -->
+                        ${kidText}
                     </tbody>
                 </table>
             </div>
@@ -243,3 +293,59 @@ $imageWrap.on('click', 'button.table-button', (e) => {
         $($('.table-display')[idx]).slideUp();
     }
 });
+
+
+
+/*****************************************************/
+function leftPad(value) {
+    if (value >= 10) {
+        return value;
+    }
+    return `0${value}`;
+}
+
+$(document).ready(function () {
+    $('.feed-header-user-img').each(function () {
+        let profilePath = $(this).data('profile-path');
+        let profileUUID = $(this).data('profile-uuid');
+        let profileFileOriginalName = $(this).data('profile-original-name');
+        let profileURL = '/nowKidFiles/display?fileName=NowKids/' + profilePath + '/' + profileUUID + '_' + profileFileOriginalName;
+
+        // 데이터를 변수에 저장
+        $(this).data('profile-url', profileURL);
+
+        // 또는 직접 스타일 속성에 할당
+        // $(this).css('background-image', 'url(' + profileURL + ')');
+    });
+
+    // 데이터를 사용하는 다른 부분에서 접근 가능
+    $('.feed-header-user-img').each(function () {
+        let profileURL = $(this).data('profile-url');
+
+        // 데이터를 사용하여 작업 수행
+        $(this).css('background-image', 'url(' + profileURL + ')');
+    });
+
+    console.log("123214124");
+});
+
+/* 프로필 이미지 불러오기 끝 */
+
+/* 좋아요 */
+// $('.wish-button').on('click', function () {
+//     let nowKidsDTO = new JSON.stringify("nowKidsDTO", nowKidsDTOS);
+//     console.log(nowKidsDTO)
+//
+//     $.ajax({
+//         url: '/nowKid/getKids',
+//         type: 'POST',
+//         data: {"nowKidsDTO": nowKidsDTO},
+//         success: function(text) {
+//             console.log(text)
+//         },
+//
+//     });
+// }) 작업중
+
+
+

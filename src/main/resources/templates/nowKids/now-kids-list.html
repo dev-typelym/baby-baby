@@ -196,5 +196,11 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+    let nowKidsDTOJSON = [[${nowKidsDTOS}]];
+    let nowKidsDTOS = JSON.parse(nowKidsDTOJSON)
+    console.log(nowKidsDTOS)
+</script>
 <script src="/js/nowKids/slide.js"></script>
+<!--<script src="/js/nowKids/now-kids-list.js"></script>-->
 </html>

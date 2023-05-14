@@ -21,4 +21,14 @@ public interface NowKidsFileService {
                 .build();
     }
 
+    default NowKidsFileDTO toNowKidsFileDTO(NowKidsFile nowKidsFile){
+        return NowKidsFileDTO.builder()
+                .filePath(nowKidsFile.getFilePath())
+                .fileUUID(nowKidsFile.getFileUUID())
+                .fileOriginalName(nowKidsFile.getFileOriginalName())
+                .fileType(nowKidsFile.getFileStatus())
+                .nowKidsId(nowKidsFile.getNowKids().getId())
+                .build();
+    }
+
 }

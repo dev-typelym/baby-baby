@@ -8,6 +8,7 @@ import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.type.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
-@Getter @Setter @ToString(exclude = {"nowKidsLikes", "nowKidsFiles", "kids", "files"})
+@Getter @Setter @ToString
+@JsonIgnoreProperties({"files"})
 @NoArgsConstructor
 public class NowKidsDTO {
     /* 이벤트 id */
@@ -52,8 +54,8 @@ public class NowKidsDTO {
     private Boolean isRecent;
     private LocalDateTime uploadTime;
 
-    @JsonIgnore
-    private List<NowKidsFileDTO> files;
+//    @JsonIgnore
+//    private List<NowKidsFileDTO> files;
 //    //    좋아요 가져오기
 //    @JsonIgnore
 //    private List<NowKidsLike> nowKidsLikes;
@@ -95,6 +97,6 @@ public class NowKidsDTO {
         this.memberGuideType = memberGuideType;
         this.isRecent = isRecent;
         this.uploadTime = uploadTime;
-        this.files = files;
+//        this.files = files;
     }
 }
