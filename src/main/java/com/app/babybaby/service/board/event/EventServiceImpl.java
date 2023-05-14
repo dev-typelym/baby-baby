@@ -27,8 +27,8 @@ public class EventServiceImpl implements EventService {
 
 
     @Override
-    public Slice<EventDTO> findEventListWithPaging(/*EventBoardSearch eventBoardSearch,*/ Pageable pageable) {
-        Slice<Event> events = eventRepository.findEventListWithPaging_QueryDSL(/*eventBoardSearch,*/ pageable);
+    public Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable) {
+        Slice<Event> events = eventRepository.findEventListWithPaging_QueryDSL(eventBoardSearch, pageable);
         events.get().map(event -> event.toString()).forEach(log::info);
 
         List<EventDTO> collect = events.get().map(event -> eventToDTO(event)).collect(Collectors.toList());

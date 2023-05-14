@@ -68,7 +68,7 @@ public class ParentsBoardRepositoryTests {
         address.setPostcode("12342132");
 
         for (int i = 0; i < 20; i++) {
-            String uniqueNickname = "Nickname" + i;
+            String uniqueNickname = "Nickname1234" + i;
 
             Member member = new Member(
                     "you" + i + "@gmail.com",
@@ -76,7 +76,7 @@ public class ParentsBoardRepositoryTests {
                     "1234",
                     uniqueNickname,
                     "안녕하세요",
-                    "0101234123" + i,
+                    "1111111111" + i,
                     address,
                     "defaultImage.png",
                     "defaultImageUUID",
@@ -109,8 +109,8 @@ public class ParentsBoardRepositoryTests {
             address.setPostcode("");
 
             Event event = new Event(
-                    "",
-                    "",
+                    "Test",
+                    "Testc",
                     (long) (i + 1),
                     address,
                     40000L,

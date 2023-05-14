@@ -21,6 +21,8 @@ public interface ParentsBoardService {
 
     //    참여예정인 게시판 불러오기(작성쪽)
     public Event getFindByEventId(Long id);
+    //    내가쓴 게시글
+    public Page<ParentsBoardDTO> getFindParentBoardListByMemberId(Pageable pageable,Long memberId);
 
     default ParentsBoardDTO toParentsBoardDTO(com.app.babybaby.entity.board.parentsBoard.ParentsBoard parentsBoard) {
         return ParentsBoardDTO.builder()

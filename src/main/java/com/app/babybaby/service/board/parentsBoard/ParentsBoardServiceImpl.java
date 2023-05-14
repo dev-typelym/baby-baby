@@ -2,6 +2,7 @@ package com.app.babybaby.service.board.parentsBoard;
 
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.exception.BoardNotFoundException;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
@@ -44,6 +45,15 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
     public Event getFindByEventId(Long id) {
         Event event = parentsBoardRepository.findByEventId(id).get();
         return event;
+    }
+
+//    내가쓴 게시글
+    @Override
+    public Page<ParentsBoardDTO> getFindParentBoardListByMemberId(Pageable pageable, Long memberId) {
+        Page<ParentsBoard> boards = parentsBoardRepository.findParentBoardListByMemberId(pageable, memberId);
+        List<ParentsBoardDTO> parentsBoardDTOS = boards.stream().map(parentsBoard -> toParentsBoardDTO(parentsBoard)).collect(Collectors.toList());
+
+        return new PageImpl<>(parentsBoardDTOS, pageable, boards.getTotalElements());
     }
 
 

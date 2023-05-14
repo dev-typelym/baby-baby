@@ -35,7 +35,7 @@
           <div class="collection-table">
 
 
-            <a class="parents-yard-board-item-link" th:each="asd : ${}">
+            <a class="parents-yard-board-item-link" th:each="review : ${review}">
               <div class="parents-yard-board-item-wrapper">
                 <!-- 카테고리 -->
                 <span class="category"> <span>[박물관]</span> <span>온 가족이 함께 즐기는 VR 행사</span></span>
@@ -45,7 +45,7 @@
                     Z세대/알파세대의 새로운 놀이터, ‘메타버스’
                   </h3>
                   <!-- 내가 쓴 리뷰 내용 -->
-                  <p class="parents-yard-board-item-content" th:text="">
+                  <p class="parents-yard-board-item-content" th:text="${review.reviewScore}">
                     주식시장에서도 부는 ‘메타버스’ 바람이미지 출처: 로블록스 /
                     매일경제‘메타버스(metaverse)’의 대표 주자인, 미국 게임 플랫폼
                     ‘로블록스(ROBLOX)’가 지난달 10일(현지시간) 뉴욕 증시에 화려하게 입성했습니다.
