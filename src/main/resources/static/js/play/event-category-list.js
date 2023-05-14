@@ -6,7 +6,6 @@ $('.event-price').each(function() {
 });
 
 
-/**/
 
 let page = 0;
 const boardService = (() => {
@@ -37,7 +36,9 @@ const boardService = (() => {
 
 function appendList(eventListDTO) {
     let boardText3 = '';
-    eventListDTO.content.forEach(event => {
+    console.log(eventListDTO.content[0]);
+    eventListDTO.content.forEach(eventList => {
+        console.log(eventList);
         boardText3 +=  `
              <div role="presentation" class="instance">
                             <a class="item" href="">
@@ -55,7 +56,7 @@ function appendList(eventListDTO) {
                                     </div>
                                     <div class="for-price-full-contain">
                                         <div class="for-price-wrap">
-                                            <div class="list-writer">s</div>
+                                            <div class="list-writer">ss</div>
                                             <div class="list-date-container">
                                                         <span class="print-data"
                                                         >역삼역 4번 출구</span

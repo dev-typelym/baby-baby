@@ -15,12 +15,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public interface EventService {
-    Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable);
+    Slice<EventDTO> findEventListWithPaging(/*EventBoardSearch eventBoardSearch,*/ Pageable pageable);
 
     Event createEvent(Event event);
 
@@ -30,6 +30,7 @@ public interface EventService {
 
     default EventDTO eventToDTO(Event event){
         return EventDTO.builder()
+                .id(event.getId())
                 .company(memberToDTO(event.getCompany()))
                 .boardContent(event.getBoardContent())
                 .boardTitle(event.getBoardTitle())
