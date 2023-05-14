@@ -14,7 +14,6 @@
 body{
     font-family: Roboto, 'Noto Sans KR', sans-serif;
     -webkit-font-smoothing: antialiased;
-    zoom: 90%;
 }
 
 a{
@@ -36,12 +35,12 @@ li{
     margin: 0 auto;
 }
 
-.head-text{
+.head-text-mypage{
     line-height: 44px;
     letter-spacing: -.6px;
     font-size: 32px;
     font-weight: 700;
-    /* padding: 10px 12px 29px; */
+     padding: 10px 12px 29px;
     margin: 0;
     margin-top: 36px;
 }

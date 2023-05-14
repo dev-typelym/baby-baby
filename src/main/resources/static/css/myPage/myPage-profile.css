@@ -28,18 +28,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-body, html {
-    -webkit-text-size-adjust: none;
-}
 
-a, address, article, aside, audio, b, body, button, canvas, caption, dd, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, html, i, img, input, label, legend, li, nav, ol, p, pre, section, small, span, strong, summary, table, tbody, td, th, thead, time, tr, ul, video {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    vertical-align: baseline;
-    font: inherit;
-    box-sizing: border-box;
-}
 
 
 article, main, section {
@@ -256,6 +245,7 @@ a.Mint {
 /* 참여한 */
 .mypage-project.bg {
     background: #F5F7FA;
+    padding-bottom: 700px;
 }
 
 .mypage-project .tab-list {
@@ -264,7 +254,6 @@ a.Mint {
     left: 0;
     width: 100%;
     background: #fff;
-    box-shadow: 0 1px 0 0 rgb(0 0 0 / 8%);
     z-index: 100;
     transition-property: background-color,-webkit-backdrop-filter,backdrop-filter;
     transition-duration: .5s;
@@ -332,7 +321,6 @@ a.Mint {
     padding: 80px 0;
     text-align: center;
     line-height: 24px;
-    letter-spacing: -0.5;
     font-size: 17px;
     color: #44484B;
 }

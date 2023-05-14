@@ -23,14 +23,14 @@ $checkbox.on('click', function() {
 
 /* 모달 */
 $dropBtn.on('click', function() {
-  $(".modal").show();
+  $(".modal-mypage").show();
 })
 
-$('.modal-cancel').on('click', function(){
-  $('.modal').hide();
+$('.modal-cancel-mypage').on('click', function(){
+  $('.modal-mypage').hide();
 })
 
 /* 제출 코드 */
-$('.modal-ok').on('click', function(){
+$('.modal-ok-mypage').on('click', function(){
   $('.form-submit').submit();
 })

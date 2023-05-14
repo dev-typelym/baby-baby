@@ -18,9 +18,17 @@ article, main, section {
     display: block;
 }
 
+body{
+    background-color: #f7f7f7;
+}
+
 .full-content-wrapper {
     transition: padding-top .25s;
     padding-top: 0;
+}
+
+.main-content{
+    margin-top: 60px;
 }
 
 @media screen and (min-width: 1097px) {
