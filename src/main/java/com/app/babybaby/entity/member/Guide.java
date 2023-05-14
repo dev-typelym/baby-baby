@@ -24,10 +24,6 @@ public class Guide {
     private Event event;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "GUIDE_SCHEDULE")
-    private GuideSchedule guideSchedule;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GENERAL_GUIDE_ID")
     private Member generalGuide;
 
@@ -38,17 +34,15 @@ public class Guide {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "guide")
     private List<Crew> crews;
 
-    public Guide(Event event, GuideSchedule guideSchedule, Member generalGuide, Member adminGuide, List<Crew> crews) {
+    public Guide(Event event, Member generalGuide, Member adminGuide, List<Crew> crews) {
         this.event = event;
-        this.guideSchedule = guideSchedule;
         this.generalGuide = generalGuide;
         this.adminGuide = adminGuide;
         this.crews = crews;
     }
 
-    public Guide(Event event, GuideSchedule guideSchedule, Member adminGuide, List<Crew> crews) {
+    public Guide(Event event, Member adminGuide, List<Crew> crews) {
         this.event = event;
-        this.guideSchedule = guideSchedule;
         this.adminGuide = adminGuide;
         this.crews = crews;
     }

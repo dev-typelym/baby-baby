@@ -45,11 +45,11 @@ public class Member {
     @ColumnDefault("'defaultImage.png'")
     @NotNull
     private String memberProfileOriginalName;
-    @ColumnDefault("'defaultImage.png'")
+    @ColumnDefault("'defaultImageUUID'")
     @Column(name = "MEMBER_PROFILE_UUID")
     @NotNull
     private String memberProfileUUID;
-    @ColumnDefault("'/defaultImage'")
+    @ColumnDefault("'defaultImage'")
     @NotNull
     private String memberProfilePath;
     @NotNull
