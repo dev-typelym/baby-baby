@@ -34,7 +34,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
     //    이벤트 게시판 목록
     //    이벤트 게시판 검색 페이징
     @Override
-    public Slice<Event> findEventListWithPaging_QueryDSL(EventBoardSearch eventBoardSearch,Pageable pageable) {
+    public Slice<Event> findEventListWithPaging_QueryDSL(/*EventBoardSearch eventBoardSearch,*/Pageable pageable) {
 
 //        BooleanExpression eventTitleContains = eventBoardSearch.getBoardTitle() == null ? null : event.boardTitle.contains(eventBoardSearch.getBoardTitle());
 //        BooleanExpression eventContentContains = eventBoardSearch.getBoardContent() == null ? null : event.boardContent.contains(eventBoardSearch.getBoardContent());

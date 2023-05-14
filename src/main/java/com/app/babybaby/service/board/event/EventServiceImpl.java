@@ -9,6 +9,7 @@ import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -19,15 +20,19 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
 
 
     @Override
-    public Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable) {
-        Slice<Event> events = eventRepository.findEventListWithPaging_QueryDSL(eventBoardSearch, pageable);
+    public Slice<EventDTO> findEventListWithPaging(/*EventBoardSearch eventBoardSearch,*/ Pageable pageable) {
+        Slice<Event> events = eventRepository.findEventListWithPaging_QueryDSL(/*eventBoardSearch,*/ pageable);
+        events.get().map(event -> event.toString()).forEach(log::info);
+
         List<EventDTO> collect = events.get().map(event -> eventToDTO(event)).collect(Collectors.toList());
+//        List<EventDTO> collect = events.get().collect(Collectors.toList());
         return new SliceImpl<>(collect,pageable,events.hasNext());
     }
 

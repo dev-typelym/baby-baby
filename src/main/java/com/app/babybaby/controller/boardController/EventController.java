@@ -36,23 +36,24 @@ public class EventController {
     /*test 용 */
 
     @GetMapping("lists")
-    public Slice<EventDTO> getList(@RequestParam(required = false) EventBoardSearch eventBoardSearch, @PageableDefault(size = 10) Pageable pageable, Model model){
-        Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(eventBoardSearch, PageRequest.of(0,10));
+    public Slice<EventDTO> getList(/*@RequestParam(required = false) EventBoardSearch eventBoardSearch,*/ @PageableDefault(size = 10) Pageable pageable, Model model){
+        Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(/*eventBoardSearch,*/ PageRequest.of(0,10));
         return eventListDTO;
     }
 
     @GetMapping("list")
-    public String getList(Model model,@RequestParam(required = false) EventBoardSearch eventBoardSearch, @PageableDefault(size = 10) Pageable pageable){
-        model.addAttribute("eventList",eventService.findEventListWithPaging(eventBoardSearch, PageRequest.of(0,10)));
+    public String getList(Model model/*,@RequestParam(required = false) EventBoardSearch eventBoardSearch*/, @PageableDefault(size = 10) Pageable pageable){
+        model.addAttribute("eventList",eventService.findEventListWithPaging(/*eventBoardSearch,*/ PageRequest.of(0,10)));
         return "play/event-category-list";
     }
 
 
     @ResponseBody
     @PostMapping("list")
-    public Slice<EventDTO> getEvents(@RequestParam(required = false) EventBoardSearch eventBoardSearch,@RequestBody PageRequestDTO pageRequestDTO){
-        Pageable pageable = PageRequest.of(3, 8);
-        Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(eventBoardSearch,pageable);
+    public Slice<EventDTO> getEvents(/*@RequestParam(required = false) EventBoardSearch eventBoardSearch,*/@RequestBody PageRequestDTO pageRequestDTO){
+        Pageable pageable = PageRequest.of(pageRequestDTO.getPage(), 8);
+        Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(/*eventBoardSearch,*/pageable);
+        log.info(eventListDTO.getContent()+"");
         log.info("들어왓니 ?");
         log.info(pageable.toString());
 
