@@ -18,6 +18,9 @@ public interface ParentsBoardQueryDsl {
     //    내가쓴 게시글
     public Page<ParentsBoard> findParentBoardListByMemberId(Pageable pageable,Long memberId);
 
+//    내가쓴 게시글
+    public Page<ParentsBoard> findParentBoardListByMemberId(Pageable pageable,Long memberId);
+
     //    상세보기
     public Optional<ParentsBoard> findDetailById_QueryDsl(Long id);
 
