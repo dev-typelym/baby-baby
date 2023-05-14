@@ -1,8 +1,10 @@
 package com.app.babybaby.entity.member;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -23,8 +25,20 @@ public class Crew{
     @JoinColumn(name = "GUIDE_ID")
     private Guide guide;
 
+    @NotNull
+    private LocalDateTime eventRegisterDate;
+
+    @Builder
     public Crew(Kid kid, Guide guide) {
         this.kid = kid;
         this.guide = guide;
+    }
+
+    @Builder
+    public Crew(Long id, Kid kid, Guide guide, LocalDateTime eventRegisterDate) {
+        this.id = id;
+        this.kid = kid;
+        this.guide = guide;
+        this.eventRegisterDate = eventRegisterDate;
     }
 }

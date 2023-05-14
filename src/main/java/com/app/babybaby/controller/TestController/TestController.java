@@ -71,9 +71,6 @@ public class TestController {
     @GetMapping("/myPage/myPage-profile")
     public void profile(){}
 
-    @GetMapping("/myPage/myPage-register-Clone")
-    public void register(){}
-
     @GetMapping("/myPage/myPage-review")
     public void review(){}
 
