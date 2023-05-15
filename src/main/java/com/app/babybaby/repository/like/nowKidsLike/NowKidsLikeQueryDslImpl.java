@@ -3,6 +3,7 @@ package com.app.babybaby.repository.like.nowKidsLike;
 import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import com.app.babybaby.entity.like.nowKidsLike.QNowKidsLike;
 import com.app.babybaby.entity.member.QMember;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
@@ -22,4 +23,14 @@ public class NowKidsLikeQueryDslImpl implements NowKidsLikeQueryDsl {
                 .fetch()
                 ;
     }
+
+    @Override
+    public boolean hasMemberLikedNowKids(Long memberId) {
+        BooleanExpression hasMemberLiked = nowKidsLike.member.id.eq(memberId);
+        return query.selectFrom(nowKidsLike)
+                .where(hasMemberLiked)
+                .fetchFirst() != null;
+    }
+
+
 }

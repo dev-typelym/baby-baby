@@ -70,7 +70,7 @@ public class EventBoardRepositoryTests {
 
 //        eventBoardSearch.setBoardContent("사랑");
 //        eventBoardSearch.setCategoryType(CategoryType.ART);
-        eventRepository.findEventListWithPaging_QueryDSL(eventBoardSearch,pageable).stream().map(Event::toString).forEach(log::info);
+//        eventRepository.findEventListWithPaging_QueryDSL(eventBoardSearch,pageable).stream().map(Event::toString).forEach(log::info);
     }
 
 

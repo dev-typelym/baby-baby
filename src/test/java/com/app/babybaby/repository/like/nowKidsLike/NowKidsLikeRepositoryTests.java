@@ -34,4 +34,9 @@ public class NowKidsLikeRepositoryTests {
         nowKidsLikeRepository.save(nowKidsLike);
     }
 
+    @Test
+    public void hasMemberLikedNowKidsTest(){
+        log.info(String.valueOf(nowKidsLikeRepository.hasMemberLikedNowKids(4L)));
+    }
+
 }

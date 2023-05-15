@@ -26,6 +26,7 @@ public class NowKidsLike {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @Builder
     public NowKidsLike(NowKids nowKids, Member member) {
         this.nowKids = nowKids;
         this.member = member;
