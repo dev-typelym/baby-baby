@@ -33,11 +33,11 @@ public class ParentsBoardController {
 
     //    ajax로 불러온다 부모님 마당 게시글 목록
     //    pageableDefault는 몇개 뿌릴지를 저기서 정해주는 것이다.
-    @GetMapping("list/show")
+    @GetMapping("list/show/{page}")
     @ResponseBody
-    public Page<ParentsBoardDTO> getParentsBoards(@PageableDefault(page = 1,size = 10) Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
+    public Page<ParentsBoardDTO> getParentsBoards(@PathVariable("page") Integer page, ParentsBoardSearch parentsBoardSearch) {
         Page<ParentsBoardDTO> result = parentsBoardService.getFindAllWithSearchParentsBoardList(
-                PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize())
+                PageRequest.of(page - 1, 10)
                 , parentsBoardSearch
         );
         return result;

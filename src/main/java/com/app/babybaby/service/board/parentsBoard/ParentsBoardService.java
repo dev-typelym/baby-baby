@@ -31,7 +31,7 @@ public interface ParentsBoardService {
                 .eventCategory(parentsBoard.getEvent().getCategory())
                 .memberNickName((parentsBoard.getMember().getMemberNickname()))
                 .parentsBoardContent(parentsBoard.getBoardContent())
-                .parensBoardTitle(parentsBoard.getBoardTitle())
+                .parentsBoardTitle(parentsBoard.getBoardTitle())
                 .parentsBoardRegisterDate(parentsBoard.getRegisterDate())
                 .parentsBoardUpdateDate(parentsBoard.getUpdateDate())
                 .representFileOriginName(parentsBoard.getRepresentFileOrginName())
@@ -39,8 +39,6 @@ public interface ParentsBoardService {
                 .representFileUUID(parentsBoard.getRepresentFileUUID())
                 .parentsBoardFileDTOS(parentsBoard.getParentsBoardFiles().stream()
                         .map(this::parentsBoardFileToDTO).collect(Collectors.toList()))
-//                .parentsBoardReplyDTOS(parentsBoard.getParentsBoardReplies().stream()
-//                        .map(this::parentsBoardReplyToDTO).collect(Collectors.toList()))
                 .build();
     }
 

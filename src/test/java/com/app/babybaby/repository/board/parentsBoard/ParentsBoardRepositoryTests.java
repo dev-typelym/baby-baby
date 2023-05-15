@@ -156,7 +156,7 @@ public class ParentsBoardRepositoryTests {
         List<ParentsBoard> parentsBoards = parentsBoardRepository.findAll();
         List<Member> members = memberRepository.findAll();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 40; i++) {
             ParentsBoard parentsBoard = parentsBoards.get(i % parentsBoards.size());
             Member member = members.get(i % members.size());
 
@@ -193,7 +193,7 @@ public class ParentsBoardRepositoryTests {
     public void parentsBoardListTest() {
         ParentsBoardSearch parentsBoardSearch = new ParentsBoardSearch();
         Pageable pageable = PageRequest.of(1, 10);
-        parentsBoardRepository.findAllWithSearch(pageable, parentsBoardSearch)
+        parentsBoardRepository.findAllWithSearch_QueryDsl(pageable, parentsBoardSearch)
                 .get()
                 .map(ParentsBoard::toString)
                 .forEach(log::info);
@@ -202,13 +202,13 @@ public class ParentsBoardRepositoryTests {
     @Test
     @Transactional
     public void findByEventIdTest() {
-        log.info(parentsBoardRepository.findByEventId(1L).toString());
+        log.info(parentsBoardRepository.findByEventId_QueryDsl(1L).toString());
     }
 
     @Test
     @Transactional
     public void findDetailByIdTest() {
-        log.info(parentsBoardRepository.findDetailById(521L).toString());
+        log.info(parentsBoardRepository.findDetailById_QueryDsl(521L).toString());
     }
 
 
