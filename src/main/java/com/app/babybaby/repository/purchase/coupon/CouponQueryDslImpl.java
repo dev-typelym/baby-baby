@@ -21,6 +21,7 @@ public class CouponQueryDslImpl implements CouponQueryDsl {
         List<Coupon> memberCoupons = query.select(coupon)
                 .from(coupon)
                 .where(coupon.member.id.eq(memberId))
+                .orderBy(coupon.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
