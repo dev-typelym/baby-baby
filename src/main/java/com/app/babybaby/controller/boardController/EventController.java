@@ -35,11 +35,6 @@ public class EventController {
 
     /*test 용 */
 
-    @GetMapping("lists")
-    public Slice<EventDTO> getList(@RequestParam(required = false) EventBoardSearch eventBoardSearch, @PageableDefault(size = 10) Pageable pageable, Model model){
-        Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(eventBoardSearch, PageRequest.of(0,10));
-        return eventListDTO;
-    }
 
     @GetMapping("list")
     public String getList(Model model,@RequestParam(required = false) EventBoardSearch eventBoardSearch, @PageableDefault(size = 10) Pageable pageable){

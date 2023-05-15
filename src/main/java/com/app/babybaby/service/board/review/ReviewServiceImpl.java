@@ -22,11 +22,14 @@ public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
 
     @Override
-    public Page<Review> findReviewById(Long memberId, Pageable pageable) {
+    public Page<ReviewDTO> findReviewById(Long memberId, Pageable pageable) {
 
         Page<Review> reviews = reviewRepository.findReviewById_QueryDSL(pageable,memberId);
-//        List<ReviewDTO> reviewDTOS = reviews.stream().map(review -> );
-
-    return null;
+        List<ReviewDTO> reviewDTOS = reviews.stream().map(review -> ReviewToDTO(review)).collect(Collectors.toList());
+        log.info(reviewDTOS.toString()+"서비스");
+        log.info(reviews.toString()+"리뷰스");
+        return new PageImpl<>(reviewDTOS,pageable,reviews.getTotalElements());
     }
+
+
 }

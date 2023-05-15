@@ -35,16 +35,16 @@
           <div class="collection-table">
 
 
-            <a class="parents-yard-board-item-link" th:each="review : ${review}">
+          <!--  <a class="parents-yard-board-item-link" th:each="review : ${review}">
               <div class="parents-yard-board-item-wrapper">
-                <!-- 카테고리 -->
+                &lt;!&ndash; 카테고리 &ndash;&gt;
                 <span class="category"> <span>[박물관]</span> <span>온 가족이 함께 즐기는 VR 행사</span></span>
                 <div class="parents-yard-board-item-container">
-                    <!-- 내가 쓴 체험학습 이름 -->
+                    &lt;!&ndash; 내가 쓴 체험학습 이름 &ndash;&gt;
                   <h3 class="parents-yard-board-item-title">
                     Z세대/알파세대의 새로운 놀이터, ‘메타버스’
                   </h3>
-                  <!-- 내가 쓴 리뷰 내용 -->
+                  &lt;!&ndash; 내가 쓴 리뷰 내용 &ndash;&gt;
                   <p class="parents-yard-board-item-content" th:text="${review.reviewScore}">
                     주식시장에서도 부는 ‘메타버스’ 바람이미지 출처: 로블록스 /
                     매일경제‘메타버스(metaverse)’의 대표 주자인, 미국 게임 플랫폼
@@ -113,7 +113,7 @@
                 </div>
                 </div>
               </div>
-            </a>
+            </a>-->
 
             <!--<a class="parents-yard-board-item-link">
               <div class="parents-yard-board-item-wrapper">
@@ -836,7 +836,7 @@
             </a>-->
 
 
-            <div class="paging-container">
+           <!-- <div class="paging-container">
               <ul class="paging-list" aria-label="pagination">
                   <li class="paging-list-item">
                       <button class="paging-btn-prev" disabled="" aria-label="이전 목록">
@@ -868,9 +868,44 @@
                       </button>
                   </li>
               </ul>
-          </div>
+          </div>-->
 
           </div>
+            <!--sad-->
+            <div class="paging-container">
+                <ul class="paging-list" aria-label="pagination">
+                    <li class="paging-list-item">
+                        <button class="paging-btn-prev" disabled="" aria-label="이전 목록">
+                            <div class="paging-btn-prev-image-wrapper">
+                                <img class="paging-btn-prev-image" src="/images/parents-yard-board/parents-yard-board/paging-left.png">
+                            </div>
+                        </button>
+                    </li>
+                    <li class="paging-list-item">
+                        <button type="button" class="paging-list-item-btn active-color">1</button>
+                    </li>
+                    <li class="paging-list-item">
+                        <button type="button" class="paging-list-item-btn">2</button>
+                    </li>
+                    <li class="paging-list-item">
+                        <button type="button" class="paging-list-item-btn">3</button>
+                    </li>
+                    <li class="paging-list-item">
+                        <button type="button" class="paging-list-item-btn">4</button>
+                    </li>
+                    <li class="paging-list-item">
+                        <button type="button" class="paging-list-item-btn">5</button>
+                    </li>
+                    <li class="paging-list-item">
+                        <button class="paging-btn-next" aria-label="다음 목록">
+                            <div class="paging-btn-next-image-wrapper">
+                                <img class="paging-btn-next-image" src="/images/parents-yard-board/parents-yard-board/paging-right.png">
+                            </div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <!--asd-->
         </div>
       </div>
     </main>
@@ -879,6 +914,7 @@
   </body>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="/js/myPage/myPage-like.js"></script>
+  <script src="/js/review-board/review-mypage.js"></script>
   <script src="/js/components/header.js"></script>
 
 </html>

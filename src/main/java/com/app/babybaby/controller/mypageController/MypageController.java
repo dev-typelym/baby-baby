@@ -1,24 +1,32 @@
 package com.app.babybaby.controller.mypageController;
 
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
+import com.app.babybaby.domain.boardDTO.eventDTO.PageRequestDTO;
+import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.memberDTO.KidDTO;
+import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.repository.member.member.MemberRepository;
+import com.app.babybaby.repository.purchase.purchase.PurchaseRepository;
+import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.service.member.kid.KidService;
 import com.app.babybaby.service.member.member.MemberService;
 import com.app.babybaby.service.purchase.coupon.CouponService;
+import com.app.babybaby.service.purchase.purchase.PurchaseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -40,6 +48,8 @@ public class MypageController {
     private final MemberService memberService;
     @Autowired
     private final CouponService couponService;
+    @Autowired
+    private final PurchaseService purchaseService;
 
 
     @GetMapping("coupon")
@@ -48,13 +58,32 @@ public class MypageController {
         return "myPage/myPage-coupon";
     }
 
+    @GetMapping("payment")
+    public String getPayment(Model model,HttpSession httpSession,@PageableDefault(size = 5)Pageable pageable){
+        model.addAttribute("payment",purchaseService.findAllByMemberPaymentWithPage(pageable, 1L));
+        return "myPage/myPage-payment";
+    }
+
+    @ResponseBody
+    @PostMapping("payment")
+    public Page<PurchaseDTO> getPayment(Pageable pageable){
+       Page<PurchaseDTO> purchaseDTO = purchaseService.findAllByMemberPaymentWithPage(pageable, 1L);
+        return purchaseDTO;
+    }
 
 
 //   리뷰 페이지
     @GetMapping("review")
-    public String getReview(Model model){
-//        model.addAttribute("review",reviewService.);
+    public String getReview(){
         return "myPage/myPage-review";
+    }
+
+    @ResponseBody
+    @PostMapping("review/{page}")
+    public Page<ReviewDTO> getReview(@PathVariable("page") Integer page){
+        Page<ReviewDTO> reviewDTOS = reviewService.findReviewById(1L, PageRequest.of(page-1, 8));
+        log.info(reviewDTOS.getContent().toString());
+        return reviewDTOS;
     }
 
 
@@ -65,6 +94,8 @@ public class MypageController {
         model.addAttribute("parent",parentsBoardService.getFindParentBoardListByMemberId(pageable,1L));
         return "myPage/myPage-parents-yards";
     }
+
+
 
 
 //    아이등록 페이지
