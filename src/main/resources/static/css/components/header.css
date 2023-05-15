@@ -7,7 +7,14 @@
 }
 body {
     line-height: 1.33;
-    font-family: Roboto,Noto Sans KR,-apple-system,Dotum,sans-serif
+    font-family: Roboto,Noto Sans KR,-apple-system,Dotum,sans-serif;
+    overflow-y: scroll; /* 내용이 넘칠때 어떻게 보여줄지 지정 */
+    line-height: 1.5em;
+    letter-spacing: -.02em;
+    color: rgba(0,0,0,.84);
+    font-size: 15px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
 }
 @font-face {
     font-family: Noto Sans KR;
@@ -127,15 +134,6 @@ body {
     speak: none
 } */
 
-body {
-	overflow-y: scroll; /* 내용이 넘칠때 어떻게 보여줄지 지정 */
-    line-height: 1.5em;
-    letter-spacing: -.02em;
-    color: rgba(0,0,0,.84);
-    font-size: 15px;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-}
 body, body button, body input, body select, body textarea {
     font-family: roboto,Noto Sans KR,-apple-system,dotum,sans-serif;
 }
