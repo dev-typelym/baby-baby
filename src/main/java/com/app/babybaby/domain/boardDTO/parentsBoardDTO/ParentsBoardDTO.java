@@ -17,7 +17,7 @@ import java.util.List;
 public class ParentsBoardDTO {
     private Long id;
     private String eventTitle;
-    private String memberNickname;
+    private String memberNickName;
     private CategoryType eventCategory;
     private String parentsBoardContent;
     private String parentsBoardTitle;
