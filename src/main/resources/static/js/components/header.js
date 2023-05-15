@@ -233,23 +233,23 @@ $(document).ready(function(){
   });
 
   /* 알람 모달 */
-  let modalCheck = false;
+  let alarmModalCheck = false;
 
   function showAlarmModal(modalMessage) {
     $("div#content-wrap").html(modalMessage);
     $("div.alarm-modal").css("animation", "popUp 0.5s");
     $("div.alarm-modal").css("display", "block").hide().fadeIn(500);
-    modalCheck = true;
+      alarmModalCheck = true;
   }
   
   function hideAlarmModal() {
     $("div.modal").fadeOut(500);
     $("div.alarm-modal").fadeOut(500);
-    modalCheck = false;
+      alarmModalCheck = false;
   }
   
   $(".alarm-modal-btn").on("click", function() {
-    if (!modalCheck) {
+    if (!alarmModalCheck) {
       let modalMessage = '';
       showAlarmModal(modalMessage);
     } else {
