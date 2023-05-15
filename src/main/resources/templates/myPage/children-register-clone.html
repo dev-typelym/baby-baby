@@ -11,7 +11,7 @@
 </head>
 <body>
 <div th:insert="~{/components/header:: header}"></div>
-<form action="#">
+<form th:action="@{children-register}" method="post" th:object="${kid}">
   <div
           class="body1"
           data-react-modal-body-trap=""
@@ -54,16 +54,16 @@
               <div class="input-full-wrapper">
                 <div class="input-wrapper">
                   <select
-                          name="gender"
+                          name="kidGender"
                           id="option-select"
                           class="option-select"
                   >
                     <option value="">* 성별 선택</option>
-                    <option value="남">남자</option>
-                    <option value="여">여자</option>
+                    <option value="MAN">남자</option>
+                    <option value="WOMAN">여자</option>
                   </select>
                   <select
-                          name="age"
+                          name="kidAge"
                           id="option-select"
                           class="option-select"
                   >
@@ -82,8 +82,9 @@
                   <input
                           type="text"
                           class="children-name"
-                          name="name"
+                          name="kidName"
                           placeholder=" 아이의 이름을 입력해주세요"
+                          th:field="*{kidName}"
                   />
                 </div>
               </div>
@@ -98,7 +99,7 @@
                       </span>
                     </span>
               </button>
-              <button id="bottom-button" type="button">
+              <button id="bottom-button" type="submit">
                     <span id="button-inner-text">
                       <span id="button-icon">
                         <span id="button-text"> 등록 하기 </span>

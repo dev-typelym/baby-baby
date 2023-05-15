@@ -44,7 +44,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
                 .from(event)
                 .join(event.company).fetchJoin()
                 .leftJoin(event.eventFiles).fetchJoin()
-                .where(eventTitleContains, eventContentContains, eventCategoryContains)
+                .where(eventTitleContains.eq(eventTitleContains), eventContentContains.eq(eventContentContains), eventCategoryContains.eq(eventCategoryContains))
                 .orderBy(event.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

@@ -3,8 +3,11 @@ package com.app.babybaby.service.member.kid;
 import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.member.Kid;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
+import com.app.babybaby.repository.member.kid.KidRepository;
+import com.app.babybaby.repository.member.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,10 @@ public class KidServiceImpl implements KidService {
     NowKidsRepository nowKidsRepository;
     @Autowired
     EventRepository eventRepository;
+    @Autowired
+    KidRepository kidRepository;
+    @Autowired
+    MemberRepository memberRepository;
 
     @Override
     public List<KidDTO> findAllKidsByMemberIdAndEventId(Long sessionId, Long eventId) {
@@ -35,4 +42,11 @@ public class KidServiceImpl implements KidService {
         }).collect(Collectors.toList());
         return  kidDTOS;
     }
+
+    @Override
+    public void save(KidDTO kidDTO){
+        Kid kid = toKid(kidDTO);
+        kidRepository.save(kid);
+    }
+
 }
