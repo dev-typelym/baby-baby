@@ -15,9 +15,6 @@ public interface ParentsBoardQueryDsl {
     //    전체 목록
     public Page<ParentsBoard> findAllWithSearch_QueryDsl(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
 
-    //    내가쓴 게시글
-    public Page<ParentsBoard> findParentBoardListByMemberId(Pageable pageable,Long memberId);
-
 //    내가쓴 게시글
     public Page<ParentsBoard> findParentBoardListByMemberId(Pageable pageable,Long memberId);
 
