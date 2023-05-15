@@ -1,6 +1,9 @@
 package com.app.babybaby.repository.purchase.coupon;
 
 import com.app.babybaby.entity.purchase.coupon.Coupon;
+import com.app.babybaby.repository.member.member.MemberRepository;
+import com.app.babybaby.type.CouponStatus;
+import com.app.babybaby.type.CouponType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,14 @@ import org.springframework.transaction.annotation.Transactional;
 public class CouponRepositoryTests {
     @Autowired
     CouponRepository couponRepository;
+    @Autowired
+    MemberRepository memberRepository;
+
+    @Test
+    public void saveTest(){
+        Coupon coupon = new Coupon(CouponType.PARENT, CouponStatus.USED,5000L,memberRepository.findById(1L).get());
+        couponRepository.save(coupon);
+    }
 
     //    memberId 로 나의 쿠폰조회
     @Test

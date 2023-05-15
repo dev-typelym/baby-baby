@@ -1,5 +1,6 @@
 package com.app.babybaby.entity.purchase.coupon;
 
+import com.app.babybaby.entity.audit.Period;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.CouponStatus;
 import com.app.babybaby.type.CouponType;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @ToString(exclude = "member")
 @Table(name = "TBL_COUPON")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Coupon {
+public class Coupon extends Period {
     @Id
     @GeneratedValue
     @EqualsAndHashCode.Include

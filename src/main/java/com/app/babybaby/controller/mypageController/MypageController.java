@@ -8,6 +8,7 @@ import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.service.member.kid.KidService;
 import com.app.babybaby.service.member.member.MemberService;
+import com.app.babybaby.service.purchase.coupon.CouponService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,25 +38,43 @@ public class MypageController {
     private final KidService kidService;
     @Autowired
     private final MemberService memberService;
+    @Autowired
+    private final CouponService couponService;
 
+
+    @GetMapping("coupon")
+    public String getCoupon(Model model,@PageableDefault(size = 5)Pageable pageable,HttpSession httpSession){
+        model.addAttribute("coupon",couponService.findCouponByMemberId(pageable,1L));
+        return "myPage/myPage-coupon";
+    }
+
+
+
+//   리뷰 페이지
     @GetMapping("review")
     public String getReview(Model model){
 //        model.addAttribute("review",reviewService.);
         return "myPage/myPage-review";
     }
 
+
+
+//    내가쓴 부모님 마당
     @GetMapping("parent")
     public String getParent(Model model,@PageableDefault(size = 10) Pageable pageable){
         model.addAttribute("parent",parentsBoardService.getFindParentBoardListByMemberId(pageable,1L));
         return "myPage/myPage-parents-yards";
     }
 
+
+//    아이등록 페이지
     @GetMapping("children-register")
     public String getChildren(Model model, HttpSession httpSession){
         httpSession.setAttribute("memberId", 1L);
         model.addAttribute(new Kid());
         return "myPage/children-register-clone";
     }
+
 
     @PostMapping("children-register")
     public RedirectView getChildren(HttpSession httpSession, KidDTO kidDTO,Kid kid, RedirectAttributes redirectAttributes){

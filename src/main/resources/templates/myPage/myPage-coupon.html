@@ -48,17 +48,17 @@
                 <div class="coupon-body-right-margin">
                     <div class="coupon-body-full-inner">
                         <!-- 쿠폰하나 시작 -->
-                        <div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
+                        <div class="coupon-full-wrap-margin" th:each="coupon : ${coupon}" th:if="${coupon.couponStatus.toString.equals('UNUSED')}"> <!-- = CouponDownloadItem_container__1hk2 -->
                             <div class="coupon-full-wrap">
                                 <div class="coupon-left-full-wrap">
                                     <dl>
                                         <dd class="coupon-left-title">후기</dd>
                                         <dd class="coupon-left-title-explain">성실한 후기 작성 쿠폰</dd>
                                         <dd class="coupon-left-price-wrap">
-                                            <span class="coupon-left-price">5000</span><span>원</span>
+                                            <span class="coupon-left-price" th:text="${coupon.couponPrice}">5000</span><span>원</span>
                                         </dd>
                                         <dd class="coupon-left-deadline-wrap">
-                                            <span>발행일</span><span class="coupon-left-deadline">2023.05.03</span>
+                                            <span>발행일</span><span class="coupon-left-deadline"th:text="${#temporals.format(coupon.registerDate,'yyyy-MM-dd')}">2023.05.03</span>
                                         </dd>
                                     </dl>
                                 </div>
@@ -73,7 +73,7 @@
                         <!-- 쿠폰하나 끝 -->
                         
                         <!-- 쿠폰하나 시작 -->
-                        <div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
+                       <!-- <div class="coupon-full-wrap-margin"> &lt;!&ndash; = CouponDownloadItem_container__1hk2 &ndash;&gt;
                             <div class="coupon-full-wrap">
                                 <div class="coupon-left-full-wrap">
                                     <dl>
@@ -94,11 +94,11 @@
                                     <span class="coupon-right-can-use">사용 가능</span>
                                 </button>
                             </div>
-                        </div>
+                        </div>-->
                         <!-- 쿠폰하나 끝 -->
 
                         <!-- 쿠폰하나 시작 -->
-                        <div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
+                        <!--<div class="coupon-full-wrap-margin"> &lt;!&ndash; = CouponDownloadItem_container__1hk2 &ndash;&gt;
                             <div class="coupon-full-wrap">
                                 <div class="coupon-left-full-wrap">
                                     <dl>
@@ -119,11 +119,11 @@
                                     <span class="coupon-right-can-use">사용 가능</span>
                                 </button>
                             </div>
-                        </div>
+                        </div>-->
                         <!-- 쿠폰하나 끝 -->
 
                         <!-- 쿠폰하나 시작 -->
-                        <div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
+                       <!-- <div class="coupon-full-wrap-margin"> &lt;!&ndash; = CouponDownloadItem_container__1hk2 &ndash;&gt;
                             <div class="coupon-full-wrap">
                                 <div class="coupon-left-full-wrap">
                                     <dl>
@@ -144,11 +144,11 @@
                                     <span class="coupon-right-can-use">사용 가능</span>
                                 </button>
                             </div>
-                        </div>
+                        </div>-->
                         <!-- 쿠폰하나 끝 -->
 
                         <!-- 쿠폰하나 시작 -->
-                        <div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
+                      <!--  <div class="coupon-full-wrap-margin"> &lt;!&ndash; = CouponDownloadItem_container__1hk2 &ndash;&gt;
                             <div class="coupon-full-wrap">
                                 <div class="coupon-left-full-wrap">
                                     <dl>
@@ -169,7 +169,7 @@
                                     <span class="coupon-right-can-use">사용 가능</span>
                                 </button>
                             </div>
-                        </div>
+                        </div>-->
                         <!-- 쿠폰하나 끝 -->
                 </div>
             </div>

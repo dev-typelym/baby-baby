@@ -43,10 +43,10 @@
             <a class="parents-yard-board-item-link" th:each="parent : ${parent}">
               <div class="parents-yard-board-item-wrapper">
                 <!-- 카테고리 -->
-                <span class="category"><span   th:text="${parent.eventCategory + ' ' + parent.eventTitle}">온 가족이 함께 즐기는 VR 행사</span></span>
+                <span class="category"><span   th:text="${'['+parent.eventCategory+']' + ' ' + parent.eventTitle}">온 가족이 함께 즐기는 VR 행사</span></span>
                 <div class="parents-yard-board-item-container">
                     <!-- 내가 쓴 체험학습 이름 -->
-                  <h3 class="parents-yard-board-item-title" th:text="${parent.parensBoardTitle}">
+                  <h3 class="parents-yard-board-item-title" th:text="${parent.parentsBoardTitle}">
                     Z세대/알파세대의 새로운 놀이터, ‘메타버스’
                   </h3>
                   <!-- 내가 쓴 리뷰 내용 -->
