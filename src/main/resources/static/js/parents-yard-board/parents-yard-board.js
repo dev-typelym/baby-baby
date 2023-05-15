@@ -89,7 +89,7 @@ function showPage(data) {
 function showList(boardDTOS) {
     var content = "";
     boardDTOS.forEach(board => {
-        // const formattedDate = formatDate(new Date(board.parentsBoardRegisterDate));
+        const formattedDate = formatDate(new Date(board.parentsBoardRegisterDate));
         content += ` 
                          <a class="parents-yard-board-item-link">
             <div class="parents-yard-board-item-wrapper">
@@ -106,7 +106,7 @@ function showList(boardDTOS) {
                             작성자: ${board.memberNickname}<span class="bottom-divide-line">ㅣ</span>
                         </p>
                         <span class="parents-yard-board-item-date">
-                            
+                            ${formattedDate}
                         </span>
                     </div>
                     <div class="parents-yard-board-item-thumbnail-wrapper">
