@@ -7,7 +7,6 @@ import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.entity.member.QMember;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

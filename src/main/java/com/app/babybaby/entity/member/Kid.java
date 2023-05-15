@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Getter
 @ToString(exclude = {"parent"})
 @Table(name = "TBL_KID")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @DynamicUpdate
 public class Kid {
@@ -34,11 +34,21 @@ public class Kid {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Member parent;
-    @Builder
-    public Kid(String kidName, Integer kidAge, GenderType kidGender, Member parent) {
-        this.kidName = kidName;
-        this.kidAge = kidAge;
-        this.kidGender = kidGender;
+
+    public void setParent(Member parent) {
         this.parent = parent;
     }
+
+    @Builder
+    public static Kid createKid(Long id, String kidName, Integer kidAge, GenderType kidGender,Member parent) {
+        Kid kid = new Kid();
+        kid.id = id;
+        kid.kidName = kidName;
+        kid.kidAge = kidAge;
+        kid.kidGender = kidGender;
+        kid.parent = parent;
+        return kid;
+    }
+
+
 }

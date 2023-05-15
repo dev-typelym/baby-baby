@@ -48,4 +48,6 @@ public class NowKids extends BoardInfo {
         this.event = event;
         this.guide = guide;
     }
+
+
 }
