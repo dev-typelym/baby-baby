@@ -137,10 +137,9 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
     }
 
     /* list페이지를 위한 최근 올린 8명 가져오기 */
-    public List<Member> find8AuthorDesc(){
-       return  query.select(member)
+    public List<Member> find8AuthorDesc() {
+        return query.select(nowKids.guide)
                 .from(nowKids)
-                .join(nowKids.guide)
                 .orderBy(nowKids.id.desc())
                 .limit(8)
                 .fetch();

@@ -25,10 +25,12 @@ public class NowKidsLikeQueryDslImpl implements NowKidsLikeQueryDsl {
     }
 
     @Override
-    public boolean hasMemberLikedNowKids(Long memberId) {
+    public boolean hasMemberLikedNowKids(Long memberId, Long nowKidsId) {
         BooleanExpression hasMemberLiked = nowKidsLike.member.id.eq(memberId);
+        BooleanExpression hasEventLike = nowKidsLike.nowKids.id.eq(nowKidsId);
         return query.selectFrom(nowKidsLike)
                 .where(hasMemberLiked)
+                .where(hasEventLike)
                 .fetchFirst() != null;
     }
 

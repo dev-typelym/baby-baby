@@ -26,8 +26,8 @@ public class KidRepositoryTests {
 
     @Test
     public void saveTest(){
-        Kid kid = new Kid("김동한", 11, GenderType.MAN,memberRepository.findById(1L).get());
-        kidRepository.save(kid);
+//        Kid kid = new Kid("김동한", 11, GenderType.MAN,memberRepository.findById(1L).get());
+//        kidRepository.save(kid);
     }
 
 

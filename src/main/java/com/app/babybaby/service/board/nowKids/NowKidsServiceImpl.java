@@ -2,13 +2,16 @@ package com.app.babybaby.service.board.nowKids;
 
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.member.Kid;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import com.app.babybaby.repository.like.nowKidsLike.NowKidsLikeRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
+import com.app.babybaby.service.member.member.MemberService;
 import com.querydsl.core.Tuple;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -45,7 +49,7 @@ public class NowKidsServiceImpl implements NowKidsService {
         Page<NowKidsDTO> nowKidsDTOPage = nowKidsPage.map(this::toNowKidsDTO);
 
         nowKidsDTOPage = nowKidsDTOPage.map(nowKidsDTO -> {
-            boolean isLiked = nowKidsLikeRepository.hasMemberLikedNowKids(nowKidsDTO.getMemberId());
+            boolean isLiked = nowKidsLikeRepository.hasMemberLikedNowKids(nowKidsDTO.getMemberId(), nowKidsDTO.getNowKidsId());
             nowKidsDTO.setIsLiked(isLiked);
             return nowKidsDTO;
         });
@@ -59,6 +63,16 @@ public class NowKidsServiceImpl implements NowKidsService {
         List<Tuple> nowKidsEvents = nowKidsRepository.findEventAndCalendarInfoByGuideId_QueryDsl(sessionId);
 
         return nowKidsDTOS;
+    }
+    
+    /* 최근 올린 8명 가져오기 */
+    public List<MemberDTO> find8AuthorDesc(){
+        List<Member> members = nowKidsRepository.find8AuthorDesc();
+        List<MemberDTO> memberDTOS = members.stream()
+                .map(MemberService::toMemberDTO)
+                .collect(Collectors.toList());
+
+        return memberDTOS;
     }
 
 }

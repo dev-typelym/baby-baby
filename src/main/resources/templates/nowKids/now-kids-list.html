@@ -201,6 +201,9 @@
 <script th:inline="javascript">
     let nowKidsDTOJSON = [[${nowKidsDTOS}]];
     let nowKidsDTOS = JSON.parse(nowKidsDTOJSON)
+
+    let members = [[${memberDTOS}]]
+    console.log(members)
     // console.log(nowKidsDTOS)
 </script>
 <script src="/js/nowKids/slide.js"></script>

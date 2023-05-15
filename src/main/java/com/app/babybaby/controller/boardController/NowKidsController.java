@@ -4,6 +4,7 @@ import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
 import com.app.babybaby.domain.fileDTO.nowKidsFileDTO.NowKidsFileDTO;
 import com.app.babybaby.domain.fileDTO.nowKidsFileDTO.NowKidsFileDTOForParameter;
 import com.app.babybaby.domain.memberDTO.KidDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.calendar.Calendar;
@@ -55,7 +56,7 @@ public class NowKidsController {
 
     @GetMapping("writeFirst")
     public String goWriteNowKids(Model model, RedirectAttributes redirectAttributes) {
-        Long sessionId = 4L;
+        Long sessionId = 110L;
         Member member = memberRepository.findById(sessionId).get();
         List<Tuple> nowKidsEvents = nowKidsRepository.findEventAndCalendarInfoByGuideId_QueryDsl(sessionId);
         JSONArray calendars = new JSONArray();
@@ -94,7 +95,7 @@ public class NowKidsController {
     @PostMapping("getKids")
     @ResponseBody
     public String getAllKids(Long eventId) {
-        Long sessionId = 4L;
+        Long sessionId = 110L;
         log.info("eventID는 : " + eventId.toString());
         log.info("Kids들은" + nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(sessionId, eventId).toString());
         JSONArray jsonArray = new JSONArray();
@@ -113,7 +114,7 @@ public class NowKidsController {
 
     @GetMapping("writeSecond")
     public String writeNowKidFiles(Long eventId, String eventDate, Model model){
-        Long sessionId = 4L;
+        Long sessionId = 110L;
         log.info(eventDate.toString());
         log.info(eventId.toString());
 
@@ -135,7 +136,7 @@ public class NowKidsController {
 
     @PostMapping("save")
     public RedirectView saveAllNowKids(Long eventId, String eventDate, NowKidsFileDTOForParameter nowKidsFileDTOForParameter){
-        Long sessionId = 4L;
+        Long sessionId = 110L;
         log.info("eventDate는 : " + eventDate);
         log.info("EventId는 : " + eventId.toString());
         log.info("save에서의 nowKidsFileDTO는 : " + nowKidsFileDTOForParameter.toString());
@@ -155,8 +156,8 @@ public class NowKidsController {
 
     @GetMapping("list")
     public String goNowKidsList( Model model){
-        Long sessionId = 4L;
-//        가장 초기에 하나 불러오기
+        Long sessionId = 119L;
+//        가장 초기에 2개 불러오기
         Page<NowKidsDTO> nowKidsDTOS = nowKidsService.getAllInfoForListDesc(1, 2 );
         JSONArray jsonArray = new JSONArray();
         /* 모든 게시글 */
@@ -177,6 +178,10 @@ public class NowKidsController {
             jsonArray.put(jsonObject);
         });
 
+        /* 8명 위에 맴버 가져오기 */
+        List<MemberDTO> memberDTOS = nowKidsService.find8AuthorDesc();
+        log.info("내가 가져온 맴버들 : " + memberDTOS);
+        model.addAttribute("memberDTOS", memberDTOS);
         model.addAttribute("nowKidsDTOS", jsonArray.toString());
         return "/nowKids/now-kids-list";
     }
