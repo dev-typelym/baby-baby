@@ -20,7 +20,7 @@ public class ParentsBoardDTO {
     private String memberNickName;
     private CategoryType eventCategory;
     private String parentsBoardContent;
-    private String parensBoardTitle;
+    private String parentsBoardTitle;
     private LocalDateTime parentsBoardRegisterDate;
     private LocalDateTime parentsBoardUpdateDate;
     private String representFileOriginName;
