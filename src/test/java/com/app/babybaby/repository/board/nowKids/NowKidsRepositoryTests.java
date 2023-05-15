@@ -91,6 +91,11 @@ public class NowKidsRepositoryTests {
     }
 
     @Test
+    public void nowKidsFindByIdTest(){
+        log.info(nowKidsRepository.findById(28L).get().toString());
+    }
+
+    @Test
     public void nowKidsFileSaveTest(){
         NowKids nowKids = nowKidsRepository.findById(4L).get();
         NowKidsFile nowKidsFile = new NowKidsFile("Mainfdsafdsa23", "Mainfdsafdsa", "123213", FileType.MAIN, nowKids);
@@ -111,18 +116,18 @@ public class NowKidsRepositoryTests {
         }
     }
 
-//    @Test
-//    public void  guideInsertTest(){
-//        Member guide = userRepository.findById(1L).get();
-//        Member adminGuide = userRepository.findById(4L).get();
-//        Optional<Calendar> calendar = calendarRepository.findById(3L);
-//        Optional<Event> event = eventRepository.findById(2L);
-//        GuideSchedule guideSchedule = new GuideSchedule(calendar.get(), event.get(), guide);
-//        List<Crew> crews = crewRepository.findAll();
-////        Guide guide1 = new Guide(event.get(), guideSchedule, guide ,adminGuide, crews);
-//        guideScheduleRepository.save(guideSchedule);
+    @Test
+    public void  guideInsertTest(){
+        Member guide = userRepository.findById(1L).get();
+        Member adminGuide = userRepository.findById(4L).get();
+        Optional<Calendar> calendar = calendarRepository.findById(3L);
+        Optional<Event> event = eventRepository.findById(2L);
+        GuideSchedule guideSchedule = new GuideSchedule(calendar.get(), event.get(), guide);
+        List<Crew> crews = crewRepository.findAll();
+//        Guide guide1 = new Guide(event.get(), guideSchedule, guide ,adminGuide, crews);
+        guideScheduleRepository.save(guideSchedule);
 //        guidRepository.save(guide1);
-//    }
+    }
 
 
 //    나의 생각 정리

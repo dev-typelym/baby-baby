@@ -53,6 +53,7 @@ public class NowKidsDTO {
 
     private Boolean isRecent;
     private LocalDateTime uploadTime;
+    private Boolean isLiked;
 
 //    @JsonIgnore
 //    private List<NowKidsFileDTO> files;
@@ -69,7 +70,6 @@ public class NowKidsDTO {
 //    private List<Kid> kids;
 
     @Builder
-
     public NowKidsDTO(Long nowKidsId, Long eventId, String boardTitle, String boardContent, Long eventRecruitCount, CategoryType category, LocalDateTime eventStartDate, LocalDateTime eventEndDate, String eventAddress, String eventAddressDetail, String eventAddressSubDetail, String eventPostCode, LocalDateTime eventUploadTIme, LocalDateTime eventUpdateTime, Long memberId, String memberNickname, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, Boolean isRecent, LocalDateTime uploadTime, List<NowKidsFileDTO> files) {
         this.nowKidsId = nowKidsId;
         this.eventId = eventId;
@@ -99,4 +99,5 @@ public class NowKidsDTO {
         this.uploadTime = uploadTime;
 //        this.files = files;
     }
+
 }

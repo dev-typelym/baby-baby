@@ -32,6 +32,7 @@ import static com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile.nowKidsFile;
 import static com.app.babybaby.entity.member.QCrew.crew;
 import static com.app.babybaby.entity.member.QGuide.guide;
 import static com.app.babybaby.entity.member.QKid.kid;
+import static com.app.babybaby.entity.member.QMember.member;
 
 @RequiredArgsConstructor
 public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
@@ -54,6 +55,7 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .join(guide.event, event)
                 .join(event.calendar, calendar)
                 .where(guide.generalGuide.id.eq(generalGuideId))
+                .where()
                 .fetch();
     }
 
@@ -134,16 +136,16 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .fetchOne();
     }
 
-    /* 한방쿼리 실패 */
-//    public List<NowKids> findAllInfo(){
-//        return query.select(nowKids)
-//                .from(nowKids)
-//                .orderBy(nowKids.id.desc())
-//                .join(nowKids.guide).fetchJoin()
-//                .join(nowKids.event).fetchJoin()
-//                .fetch();
-//
-//    }
+    /* list페이지를 위한 최근 올린 8명 가져오기 */
+    public List<Member> find8AuthorDesc(){
+       return  query.select(member)
+                .from(nowKids)
+                .join(nowKids.guide)
+                .orderBy(nowKids.id.desc())
+                .limit(8)
+                .fetch();
+    }
+
 
     // [관리자페이지] 지금 우리 아이들은 카테고리별 전체 목록 조회
     @Override

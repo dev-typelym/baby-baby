@@ -3,6 +3,7 @@ package com.app.babybaby.domain.fileDTO.nowKidsFileDTO;
 
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.app.babybaby.type.FileType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;

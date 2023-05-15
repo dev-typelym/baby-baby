@@ -60,7 +60,7 @@ public class MypageController {
     @PostMapping("children-register")
     public RedirectView getChildren(HttpSession httpSession, KidDTO kidDTO,Kid kid, RedirectAttributes redirectAttributes){
         Long memberId = (Long) httpSession.getAttribute("memberId");
-        memberService.getMemberById(memberId).ifPresent(member -> kidDTO.setParent(member));
+//        memberService.getMemberById(memberId).ifPresent(member -> kidDTO.setParent(member));
         log.info(kidDTO.toString());
         kidService.save(kidDTO);
         return new RedirectView("parent"); // <<<< 경로 수정할것

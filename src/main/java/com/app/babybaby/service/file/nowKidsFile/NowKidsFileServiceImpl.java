@@ -31,12 +31,12 @@ public class NowKidsFileServiceImpl implements NowKidsFileService {
 
     @Override
     public void saveAllFiles(List<NowKidsFileDTO> files, Long nowKidsId) {
-        List<NowKidsFile> nowKidsFiles = files.stream()
-                .peek(nowKidsFileDTO -> nowKidsFileDTO.setNowKidsId(nowKidsId))
-                .map(this::toNowKidsFileEntity)
-                .collect(Collectors.toList());
         NowKids nowKids = nowKidsRepository.findById(nowKidsId).get();
-        nowKidsFiles.stream().peek(nowKidsFile -> nowKidsFile.setNowKids(nowKids)).collect(Collectors.toList());
-        nowKidsFileRepository.saveAll(nowKidsFiles);
+        files.stream().peek(nowKidsFileDTO -> nowKidsFileDTO.setNowKidsId(nowKidsId))
+                .map(this::toNowKidsFileEntity)
+                .forEach(nowKidsFile -> {
+                    nowKidsFile.setNowKids(nowKids);
+                    nowKidsFileRepository.save(nowKidsFile);
+                });
     }
 }
