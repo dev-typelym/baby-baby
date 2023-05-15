@@ -76,8 +76,8 @@ public class CrewRepositoryTests {
 
         memberRepository.save(member);
 
-        Kid kid = new Kid("김동한", 13, GenderType.MAN, member);
-        kidRepository.save(kid);
+//        Kid kid = new Kid("김동한", 13, GenderType.MAN, member);
+//        kidRepository.save(kid);
     }
 
 

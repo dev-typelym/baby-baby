@@ -36,7 +36,7 @@ public class NowKidsLikeRepositoryTests {
 
     @Test
     public void hasMemberLikedNowKidsTest(){
-        log.info(String.valueOf(nowKidsLikeRepository.hasMemberLikedNowKids(4L)));
+        log.info(String.valueOf(nowKidsLikeRepository.hasMemberLikedNowKids(1L, 42L)));
     }
 
 }

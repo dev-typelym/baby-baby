@@ -75,7 +75,7 @@ public class NowKidsRepositoryTests {
         address.setAddressDetail("d");
         address.setAddressSubDetail("dfa");
         address.setPostcode("12342132");
-        for (int i = 0; i < 5; i++) {
+        for (int i = 5; i < 10; i++) {
             String uniqueNickname = "Test닉네임 " + i;
 
             Member member = new Member("you" + i + "@naver.com", "정유찬" + i, "1234", uniqueNickname, "안녕하세요",
@@ -111,8 +111,8 @@ public class NowKidsRepositoryTests {
     public void kidsKidsSaveTest(){
         Optional<Member> parent = userRepository.findById(1L);
         for (int i = 0; i < 10; i++){
-            Kid kid = new Kid("김동한" + i, 4 + i, GenderType.MAN, parent.get());
-            kidRepository.save(kid);
+//            Kid kid = new Kid("김동한" + i, 4 + i, GenderType.MAN, parent.get());
+//            kidRepository.save(kid);
         }
     }
 
@@ -206,6 +206,11 @@ public class NowKidsRepositoryTests {
     @Test
     public void findAllNowKidsLikeByMemberId_QueryDslTest(){
         log.info(nowKidsLikeRepository.findAllNowKidsLikeByMemberId_QueryDsl(1L).toString());
+    }
+
+    @Test
+    public void find8AuthorDescTEst(){
+        log.info(nowKidsRepository.find8AuthorDesc().toString());
     }
 
     /* N+1 문제 따라서 이건 DTO에서 작업한다, */

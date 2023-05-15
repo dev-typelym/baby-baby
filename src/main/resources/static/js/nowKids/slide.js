@@ -1,5 +1,5 @@
 // JSON 가져온 값
-// console.log(nowKidsDTOS);
+console.log(nowKidsDTOS);
 // console.log(nowKidsDTOJSON)
 
 // 내가 받은 calendar를 한국어로 바꾸는 코드
@@ -96,6 +96,8 @@ let pageNumber = 2;
 $(window).scroll(function() {
     // 문서 맨 아래에서 스크롤이 발생한 경우
     if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+        console.log($(window).scrollTop())
+        console.log($(document).height() - $(window).height())
         $.ajax({
             url: '/nowKid/getList',
             type: 'POST',
@@ -107,7 +109,7 @@ $(window).scroll(function() {
                     let nowKidsDTO = JSON.parse(nowKidsDTOSAjax);
                     loadMoreContent(nowKidsDTO);
 
-                    $('.wish-button').each(function() {
+                    $('.wish-button').click(function() {
                         handleLikeButtonClick(this);
                     });
                     pageNumber++; // 페이지 번호를 증가시킵니다.
@@ -503,6 +505,10 @@ function leftPad(value) {
 /* 좋아요 끝 */
 
 /* 좋아요 */
+$('.wish-button').on('click', function () {
+    handleLikeButtonClick(this)
+})
+
 function handleLikeButtonClick(element) {
     let nowKidsIdString = $(element).attr('nowkidsid');
     let nowKidsId = parseInt(nowKidsIdString);
@@ -580,5 +586,5 @@ $('.wish-button').on('click', function (e) {
 //     });
 // })
 
-
+console.log()
 

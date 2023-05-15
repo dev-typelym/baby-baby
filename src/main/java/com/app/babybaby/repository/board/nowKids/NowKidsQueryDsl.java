@@ -38,6 +38,9 @@ public interface NowKidsQueryDsl {
     /* 해당 이벤트에 어떤 아이들이 참석했는지 */
     public List<Kid> findAllKidsByEventIdAndGuideId_QueryDsl(Long guideId, Long eventId);
 
+    /* NowKids 최근 올린 8명 가져오기 */
+    public List<Member> find8AuthorDesc();
+
     public LocalDateTime findUpdateTime_QueryDsl(Long nowKidsId);
 
     /*한방쿼리로 모든 정보 다 가져오기 */

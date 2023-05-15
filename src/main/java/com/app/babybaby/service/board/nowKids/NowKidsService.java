@@ -2,6 +2,7 @@ package com.app.babybaby.service.board.nowKids;
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
 import com.app.babybaby.domain.fileDTO.nowKidsFileDTO.NowKidsFileDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
@@ -20,6 +21,8 @@ public interface NowKidsService {
     public Page<NowKidsDTO> getAllInfoForListDesc(int pageNum, int pageSize);
 
     public List<NowKidsDTO>  getBoardAndCalendarByGeneralGuideId(Long sessionId);
+
+    public List<MemberDTO> find8AuthorDesc();
 
     default com.app.babybaby.entity.board.nowKids.NowKids toNowKidsEntity(NowKidsDTO nowKidsDTO){
         return com.app.babybaby.entity.board.nowKids.NowKids.builder()
