@@ -94,7 +94,7 @@ $fileInput.change((e) => {
                 j++;
             });
             j=0;
-            $('#header').append(inputFiles1);
+            $('#header-nowKids').append(inputFiles1);
         }
     });
 

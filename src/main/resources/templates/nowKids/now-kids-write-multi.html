@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>작성하기</title>
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
     <link rel="stylesheet" href="/css/nowKids/now-kids-write.css" />
     <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico" />
     <style>
@@ -17,10 +19,10 @@
   </head>
 
   <body>
+  <div th:insert="~{/components/header:: header}"></div>
     <form action="/nowKid/save" id="goList" method="post">
       <div>
-        <div id="header">
-<!--          <input type="hidden" name="files[0].fileOriginalName" value="ERD.png">-->
+        <div id="header-nowKids">
         </div>
 
         <div class="wrap">
@@ -267,8 +269,10 @@
       <input type="hidden" name="eventId">
       <input type="hidden" name="eventDate">
     </form>
+  <div th:insert="~{/components/footer:: footer}"></div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <script src="/js/components/header.js"></script>
   <script th:inline="javascript">
     let englishCategory = [[${eventCategory}]];
   </script>

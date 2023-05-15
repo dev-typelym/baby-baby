@@ -6,11 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>통솔중인 행사 정보</title>
+    <link rel="stylesheet" href="/css/components/header.css">
+    <link rel="stylesheet" href="/css/components/footer.css">
     <link rel="stylesheet" href="/css/nowKids/now-kids-write2.css">
     <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
 </head>
 
 <body>
+<div th:insert="~{/components/header:: header}"></div>
     <div>
         <div id="header"></div>
         <form action="/nowKid/writeSecond" id="write-submit-form">
@@ -27,6 +30,8 @@
                     </a>
                     <button type="button" class="profile-btn">
                         <span class="profile-span">
+                            <span>체험학습 번호 </span>
+                            <span class="play-number"></span>
 <!--                            <span>게시글 번호</span>-->
 <!--                            <span class="profile-span">1</span>-->
 <!--                             <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="arrow-icon"
@@ -215,6 +220,7 @@
             <input type="hidden" name="eventDate">
         </form>
     </div>
+<div th:insert="~{/components/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <!-- <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
@@ -222,8 +228,7 @@
 <script src="jquery.js"></script>
 <script src="jquery-ui.js"></script>
 <script src="datepicker-ko.js"></script> -->
-<script>
-</script>
+<script src="/js/components/header.js"></script>
 <script th:inline="javascript">
     let calendarsJSON = [[${calendars}]];
     let calendars = JSON.parse(calendarsJSON);

@@ -8,6 +8,7 @@ import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import com.app.babybaby.repository.file.nowKidsFile.NowKidsFileRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class NowKidsFileServiceImpl implements NowKidsFileService {
 
     private final NowKidsFileRepository nowKidsFileRepository;
@@ -35,6 +37,7 @@ public class NowKidsFileServiceImpl implements NowKidsFileService {
         files.stream().peek(nowKidsFileDTO -> nowKidsFileDTO.setNowKidsId(nowKidsId))
                 .map(this::toNowKidsFileEntity)
                 .forEach(nowKidsFile -> {
+                    log.info("현재 나우키즈 파일 데이터 : " + nowKidsFile.toString());
                     nowKidsFile.setNowKids(nowKids);
                     nowKidsFileRepository.save(nowKidsFile);
                 });
