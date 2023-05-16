@@ -88,25 +88,25 @@ public interface MemberService extends UserDetailsService {
 
 
     /* 이메일 중복 검사 */
-    public Long overlapByMemberEmail_QueryDSL(String memberEmail);
+    public Long overlapByMemberEmail(String memberEmail);
 
     /* 휴대폰 중복 검사 */
-    public Long overlapByPhone_QueryDSL(String memberPhone);
+    public Long overlapByPhone(String memberPhone);
 
     /* 닉네임 중복 검사 */
-    public Long overlapByMemberNickname_QueryDSL(String memberNickname);
+    public Long overlapByMemberNickname(String memberNickname);
 
     /* 비밀 번호, 이메일 찾기 */
-    public Member findByMemberEmail_QueryDSL(String memberEmail);
+    public Member findByMemberEmail(String memberEmail);
 
     /* 비밀 번호 변경 */
-    public void updatePassword_QueryDSL(Long id, String memberPassword);
+    public void updatePassword(Long id, String memberPassword);
 
     /* 회원 탈퇴 */
-    public void updateMemberStatus_QueryDSL(Long id, SleepType memberSleep);
+    public void updateMemberStatus(Long id, SleepType memberSleep);
 
     // 회원 정보 수정
-    public void setMemberInfoMyId_QueryDSL(MemberDTO memberDTO);
+    public void setMemberInfoMyId(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
 
 
     /* 카카오 토큰 접근 */

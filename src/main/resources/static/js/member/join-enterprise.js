@@ -44,29 +44,6 @@ var emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-
 let identificationFlag = false;
 
 $identificationInput.on("blur",function(){
-	console.log("zzzz")
-	 if ($identificationInput.val() < 1) {
-		$identificationWarning.text("이메일을 입력해주세요.");
-		$identificationWarning.css("display", "block");
-		$identificationInput.css("border-color", "#f66");
-		identificationFlag = false;
-		// !isPhoneNum.test(mobile.value)
-	} else if (!emailPattern.test($identificationInput.val())) {
-		$identificationWarning.text("이메일 주소를 다시 확인해주세요.");
-		$identificationWarning.css("display", "block");
-		$identificationInput.css("border-color", "#f66");
-		identificationFlag = false;
-	} else {
-		$identificationWarning.css("display", "none");
-		$identificationInput.css("border-color", "#dde2e6");
-		identificationFlag = true;
-		// #dde2e6;
-		if(identificationFlag && passwordFlag && passwordCheckFlag && nameFlag && phoneFlag && address1Flag){
-			console.log("asdasd")
-			$(".signup-submit-button").css("opacity","3");
-			console.log("zz11")
-		}
-	}
 	$.ajax({
 		url:"/members/checkEmail" ,
 		data: {"memberEmail": $identificationInput.val()},
@@ -230,33 +207,6 @@ $nameInput.on("blur", function() {
 	const nameInputValue = $nameInput.val();
 	var name = nameInputValue
 
-	// $nameInput.css("border-color", "#f66");
-	// $nameInput.css("border-color", "#dde2e6");
-	if ($nameInputValue.length < 1) {
-		$nameWarning.text("회사명을 입력해주세요.");
-		$nameWarning.css("display", "block");
-		$nameInput.css("border-color", "#f66");
-		nameFlag = false;
-	} else if ($nameInput.val().search(/\s/) != -1) {
-		$nameWarning.text("다시 확인 해주세요.");
-		$nameWarning.css("display", "block");
-		$nameInput.css("border-color", "#f66");
-		nameFlag = false;
-	} else if (name < 0) {
-		$nameWarning.text("필수 입력 사항 입니다.");
-		$nameWarning.css("display", "block");
-		$nameInput.css("border-color", "#f66");
-		nameFlag = false;
-	} else {
-		$nameWarning.css("display", "none");
-		$nameInput.css("border-color", "#dde2e6");
-		nameFlag = true;
-		if(identificationFlag && passwordFlag && passwordCheckFlag && nameFlag && phoneFlag && address1Flag){
-			console.log("asdasd")
-			$(".signup-submit-button").css("opacity","3");
-			console.log("zz11")
-		}
-	}
 	$.ajax({
 		url:"/members/checkNickname",
 		data: {"memberNickname": $nameInput.val()},
@@ -309,30 +259,6 @@ $phoneInput.on("blur", function() {
 	var isPhoneNum = /([01]{2,})([01679]{1,})([0-9]{3,4})([0-9]{4})/;
 	var $phoneInputVal = $phoneInput.val();
 	var phoneInputVal = $phoneInput.val();
-
-
-	// $phoneInput.css("border-color", "#f66");
-	// $phoneInput.css("border-color", "#dde2e6");
-	if ($phoneInputVal.length < 1) {
-		$phoneWarning.text("핸드폰 번호를 입력해주세요.");
-		$phoneWarning.css("display", "block");
-		$phoneInput.css("border-color", "#f66");
-		phoneFlag = false;
-	} else if (!isPhoneNum.test($phoneInputVal)) {
-		$phoneWarning.text("잘못된 형식입니다. 다시 입력해주세요.");
-		$phoneWarning.css("display", "block");
-		$phoneInput.css("border-color", "#f66");
-		phoneFlag = false;
-	} else {
-		$phoneWarning.css("display", "none");
-		$phoneInput.css("border-color", "#dde2e6");
-		phoneFlag = true;
-		if(identificationFlag && passwordFlag && passwordCheckFlag && nameFlag && phoneFlag && address1Flag){
-			console.log("asdasd")
-			$(".signup-submit-button").css("opacity","3");
-			console.log("zz11")
-		}
-	}
 	$.ajax({
 		url:"/members/checkPhone" ,
 		data: {"memberPhone": $phoneInput.val()},
@@ -367,7 +293,7 @@ $phoneInput.on("blur", function() {
 					console.log("zz11")
 				}
 			}
-			$nameWarning.text(message);
+			$phoneWarning.text(message);
 		}
 	});
 });

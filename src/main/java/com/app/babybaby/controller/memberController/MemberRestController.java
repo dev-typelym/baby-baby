@@ -19,19 +19,19 @@ public class MemberRestController {
     //   아이디 중복 검사
     @GetMapping("checkEmail")
     public Long checkId(@RequestParam("memberEmail") String memberEmail){
-        return memberService.overlapByMemberEmail_QueryDSL(memberEmail);
+        return memberService.overlapByMemberEmail(memberEmail);
     }
 
     //  닉네임 중복 검사
     @GetMapping("checkNickname")
     public Long checkNickname(@RequestParam("memberNickname") String memberNickname){
-        return memberService.overlapByMemberNickname_QueryDSL(memberNickname);
+        return memberService.overlapByMemberNickname(memberNickname);
     }
 
     //  휴대폰 번호 중복 검사
     @GetMapping("checkPhone")
     public Long checkPhone(@RequestParam("memberPhone") String memberPhone){
-        return memberService.overlapByPhone_QueryDSL(memberPhone);
+        return memberService.overlapByPhone(memberPhone);
     }
 
 //    // 아이디 찾기
