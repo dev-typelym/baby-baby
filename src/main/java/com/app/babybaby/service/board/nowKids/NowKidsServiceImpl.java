@@ -30,6 +30,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class NowKidsServiceImpl implements NowKidsService {
 
+    private final MemberService memberService;
+
     private final NowKidsRepository nowKidsRepository;
 
     private final NowKidsLikeRepository nowKidsLikeRepository;
@@ -69,7 +71,7 @@ public class NowKidsServiceImpl implements NowKidsService {
     public List<MemberDTO> find8AuthorDesc(){
         List<Member> members = nowKidsRepository.find8AuthorDesc();
         List<MemberDTO> memberDTOS = members.stream()
-                .map(MemberService::toMemberDTO)
+                .map(memberService::toMemberDTO)
                 .collect(Collectors.toList());
 
         return memberDTOS;

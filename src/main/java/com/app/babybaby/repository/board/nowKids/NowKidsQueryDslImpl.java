@@ -138,10 +138,15 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
 
     /* list페이지를 위한 최근 올린 8명 가져오기 */
     public List<Member> find8AuthorDesc() {
-        return query.select(nowKids.guide)
-                .from(nowKids)
-                .orderBy(nowKids.id.desc())
+        QNowKids subNowKids = new QNowKids("subNowKids");
+        List<Member> subQueryResult = query.select(subNowKids.guide)
+                .from(subNowKids)
+                .orderBy(subNowKids.id.desc())
                 .limit(8)
+                .fetch();
+        return query.selectDistinct(nowKids.guide)
+                .from(nowKids)
+                .where(nowKids.guide.in(subQueryResult))
                 .fetch();
     }
 
