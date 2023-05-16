@@ -10,22 +10,25 @@ import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.service.board.event.EventService;
 import com.app.babybaby.service.board.event.EventServiceImpl;
 import com.app.babybaby.service.board.review.ReviewService;
+import com.app.babybaby.type.SleepType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service
-public interface MemberService {
+
+public interface MemberService extends UserDetailsService {
 
     public Optional<Member> getMemberById(Long memberId);
 
     public CompanyDTO getAllMemberInfo(Long companyId);
 
     default MemberDTO toMemberDTO(Member member){
-        return MemberDTO.builder()
+        return MemberDTO.DTOBuilder()
                 .memberNickname(member.getMemberNickname())
                 .id(member.getId())
                 .memberProfileUUID(member.getMemberProfileUUID())
@@ -78,5 +81,84 @@ public interface MemberService {
                         member.getReviews().stream().map(this::ReviewToDTO).collect(Collectors.toList()))
                 .build();
     }
+
+    //    회원가입
+    public void joinGeneral(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
+    public void joinCompany(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
+
+
+    /* 이메일 중복 검사 */
+    public Long overlapByMemberEmail_QueryDSL(String memberEmail);
+
+    /* 휴대폰 중복 검사 */
+    public Long overlapByPhone_QueryDSL(String memberPhone);
+
+    /* 닉네임 중복 검사 */
+    public Long overlapByMemberNickname_QueryDSL(String memberNickname);
+
+    /* 비밀 번호, 이메일 찾기 */
+    public Member findByMemberEmail_QueryDSL(String memberEmail);
+
+    /* 비밀 번호 변경 */
+    public void updatePassword_QueryDSL(Long id, String memberPassword);
+
+    /* 회원 탈퇴 */
+    public void updateMemberStatus_QueryDSL(Long id, SleepType memberSleep);
+
+    // 회원 정보 수정
+    public void setMemberInfoMyId_QueryDSL(MemberDTO memberDTO);
+
+
+    /* 카카오 토큰 접근 */
+    public String getKaKaoAccessToken(String code, String type);
+
+    /* 카카오 사용자 정보 불러오기 */
+//    public Member getKakaoInfo(String token) throws Exception;
+
+    public List<Member> getMemberList(Long id);
+
+    default Member memberDTOToEntity(MemberDTO memberDTO) {
+        return Member.joinMemberBuilder()
+                .id(memberDTO.getId())
+                .memberName(memberDTO.getMemberName())
+                .memberEmail(memberDTO.getMemberEmail())
+                .memberPassword(memberDTO.getMemberPassword())
+                .memberNickname(memberDTO.getMemberNickname())
+                .memberPhone(memberDTO.getMemberPhone())
+                .memberAddress(memberDTO.getMemberAddress())
+                .memberProfileOriginalName(memberDTO.getMemberProfileOriginalName())
+                .memberProfilePath(memberDTO.getMemberFilePath())
+                .memberRegisterDate(memberDTO.getMemberRegisterDate())
+                .memberType(memberDTO.getMemberType())
+                .memberRole(memberDTO.getMemberRole())
+                .build();
+    }
+
+    default MemberDTO entityToMemberDTO(Member member){
+        return MemberDTO.DTOBuilder()
+                .id(member.getId())
+                .memberName(member.getMemberName())
+                .memberEmail(member.getMemberEmail())
+                .memberPassword(member.getMemberPassword())
+                .memberNickname(member.getMemberNickname())
+                .memberHiSentence(member.getMemberHiSentence())
+                .memberPhone(member.getMemberPhone())
+                .memberAddress(member.getMemberAddress())
+                .memberProfileOriginalName(member.getMemberProfileOriginalName())
+                .memberProfileUUID(member.getMemberProfileUUID())
+                .memberProfilePath(member.getMemberFilePath())
+                .memberRegisterDate(member.getMemberRegisterDate())
+                .memberType(member.getMemberType())
+                .memberRole(member.getMemberRole())
+                .memberGuideStatus(member.getMemberGuideStatus())
+                .memberSleep(member.getMemberSleep())
+                .memberGuideType(member.getMemberGuideType())
+                .memberGuideInterest(member.getMemberGuideInterest())
+                .memberFilePath(member.getMemberFilePath())
+                .memberFileOriginalName(member.getMemberFileOriginalName())
+                .memberFileUUID(member.getMemberFileUUID())
+                .build();
+    }
+
 
 }

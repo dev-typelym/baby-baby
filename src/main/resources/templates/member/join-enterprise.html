@@ -10,27 +10,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
-    <link rel="stylesheet" href="/css/components/header.css">
-    <link rel="stylesheet" href="/css/components/footer.css">
     <link rel="stylesheet" href="/css/member/join.css">
 
 </head>
 <body>
     <!-- header 시작 -->
-    <div th:insert="~{/components/header:: header}"></div>
     <!-- header 끝 -->
     <div id="page-container">
         <main id="iam-account-app">
             <div class="account-container-email">
                 <h3 class="signup-intro-email">기업 회원가입</h3>
                 <!-- 회원가입 정보 입력 폼 -->
-                <form action="" name="joinForm" method="post">
+                <form th:action="@{/member/join/company}" name="joinForm" method="post">
                		 <div class="email-signup-form-container">
                         <div class="email-field-container">
                             <label class="EmailAuthField">아이디</label>
                             <div class="email-field-input-continer">
                                 <div class="EmailAuthField_inputField">
-                                    <input name="userIdentification" placeholder="아이디 입력(이메일)" type="text" class="email-field id_confirm" id="identification-input">
+                                    <input name="memberEmail" placeholder="아이디 입력(이메일)" type="text" class="email-field id_confirm" id="identification-input">
                                  	<!-- <div class="check_font" id="id_check"></div> -->
                                  	<span id="id_ok" style="color:green; display:none; font-size:13px;">사용 가능한 아이디입니다.</span>
                                  	<span id="id_already" style="color:red; display:none; font-size:13px;">중복된 아이디입니다!</span>
@@ -43,7 +40,7 @@
                         <div class="password-field">
                             <label>비밀번호</label><!-- 비밀번호 -->
                             <div class="password-field-text">
-                                <input name="userPassword" placeholder="비밀번호 입력" type="password" class="input-password-container" id="password-input" aria-invalid="false">
+                                <input name="memberPassword" placeholder="비밀번호 입력" type="password" class="input-password-container" id="password-input" aria-invalid="false">
                                 <!-- 비밀번호 확인 -->
                                 <button aria-label="비밀번호 보기" class="Button_TextField_icon" type="button">
                                     <span class="eye" id="eye1">
@@ -61,7 +58,7 @@
                         <!-- password 1  -->
                         <div class="recheck-password"><label></label>
                             <div class="TextField_field__1B2AH">
-                                <input name="userPassword" placeholder="비밀번호 확인" type="password"
+                                <input name="memberPassword" placeholder="비밀번호 확인" type="password"
                                     class="re-input-password-container" aria-invalid="false">
                                 <button aria-label="비밀번호 보기" class="Button_TextField_icon1" id="eye-wrapper" type="button">
                                     <span class="eye">
@@ -76,38 +73,28 @@
                         </div>
                         <!-- test -->
                         <em class="recheck-password-error error-message">비밀번호가 일치하지 않습니다.</em>
-                        
-                        <div class="email-field-container" id="nickName-title">
-                            <label class="EmailAuthField">닉네임</label>
-                            <div class="email-field-input-continer">
-                                <div class="EmailAuthField_inputField">
-                                    <input name="userNickname" placeholder="닉네임 입력" type="text" class="nickname-field email-field" id="nickname">
-                                </div>
-                            </div>
-                            <em class="nickname-error error-message">최소 2자입니다.</em>
-                        </div>
                          <!-- 주소 -->
                         <div class="form-group">
                             <label for="address-btu" class="address-label" onclick="sample6_execDaumPostcode()">주소</label>
                             <div class="address-div" id="" >
-                                <input type="text" id="sample6_postcode"  onclick="sample6_execDaumPostcode()" placeholder="우편번호">
+                                <input name="memberAddress.postcode" type="text" id="sample6_postcode"  onclick="sample6_execDaumPostcode()" placeholder="우편번호">
                                 <input type="button" name="address-btu" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                             </div>
-                            <input type="text" id="sample6_address"  onclick="sample6_execDaumPostcode()" placeholder="주소"><br>
-                            <input type="text" id="sample6_detailAddress" placeholder="상세주소1">
-                            <input type="text" id="sample6_extraAddress" placeholder="상세주소2">
+                            <input name="memberAddress.address" type="text" id="sample6_address"  onclick="sample6_execDaumPostcode()" placeholder="주소"><br>
+                            <input name="memberAddress.addressDetail" type="text" id="sample6_detailAddress" placeholder="상세주소1">
+                            <input name="memberAddress.addressSubDetail" type="text" id="sample6_extraAddress" placeholder="상세주소2">
                         </div>
                 	</div>
                     <div class="name-field" id="name-name"><label>기업 이름</label>
                         <div class="TextField_field__1B2AH">
-                            <input name="userName" placeholder="이름 입력" type="text" class="name-input" id="name-input">
+                            <input name="memberName" placeholder="이름 입력" type="text" class="name-input" id="name-input">
                         </div>
                         <em class="name-error error-message">이름을 입력해주세요.</em>
                     </div>
 
                     <div class="name-field phone-field" id="phone-name"><label>대표 번호</label>
                         <div class="TextField_field__1B2AH">
-                            <input name="userPhone" placeholder="핸드폰 번호 입력" type="text" class="name-input" id="input-phone-number" maxlength="11">
+                            <input name="memberPhone" placeholder="핸드폰 번호 입력" type="text" class="name-input" id="input-phone-number" maxlength="11">
                         </div>
                         <em class="phone-error error-message">대표 번호를 입력해주세요.</em>
                     </div>
@@ -155,12 +142,10 @@
             </div>
         </main>
     </div>
-    <div th:insert="~{/components/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="/js/member/join-enterprise.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/components/header.js"></script>
 <script>
 </script>
 </html>

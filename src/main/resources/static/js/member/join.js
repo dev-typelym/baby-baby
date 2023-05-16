@@ -67,6 +67,44 @@ $identificationInput.on("blur",function(){
 			$(".signup-submit-button").css("opacity","3");
 		}
 	}
+	$.ajax({
+		url:"/members/checkEmail" ,
+		data: {"memberEmail": $identificationInput.val()},
+		success: function(result){
+			let message;
+			if(result == 1){
+				message = "중복된 이메일입니다.";
+				$identificationWarning.css('color', 'red')
+				$identificationWarning.css('display', 'block');
+				identificationFlag = false;
+
+			} else if($identificationInput.val().length < 1){
+				$identificationWarning.css('display', 'block');
+				$identificationWarning.css('color', 'red');
+				message = "필수 입력 사항입니다";
+				identificationFlag = false;
+
+			} else if(!emailPattern.test($identificationInput.val())){
+				$identificationWarning.css('display', 'block');
+				$identificationWarning.css('color', 'red');
+				message = "이메일 형식에 맞춰주세요";
+				identificationFlag = false;
+
+			} else{
+				message = "사용 가능한 이메일입니다.";
+				$identificationWarning.css('display', 'block');
+				$identificationWarning.css('color', '#2bb673');
+				identificationFlag = true;
+				if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
+					console.log("asdasd")
+					$(".signup-submit-button").css("opacity","3");
+					console.log("zz11")
+				}
+			}
+
+			$identificationWarning.text(message);
+		}
+	});
 })
 
 
@@ -201,6 +239,44 @@ $nicknameInput.on("blur", function() {
 			console.log("zz11")
 		}
 	}
+	$.ajax({
+		url:"/members/checkNickname" ,
+		data: {"memberNickname": $nicknameInput.val()},
+		success: function(result){
+			let message;
+			if(result == 1){
+				message = "중복된 닉네임 입니다.";
+				$nicknameWarning.css('color', 'red')
+				$nicknameWarning.css('display', 'block');
+				nicknameFlag = false;
+
+			} else if($nicknameInput.val().length < 1){
+				$nicknameWarning.css('display', 'block');
+				$nicknameWarning.css('color', 'red');
+				message = "필수 입력 사항입니다";
+				nicknameFlag = false;
+
+			} else if($nicknameInput.val().length > 20 || $nicknameInput.val().length < 2){
+				$nicknameWarning.css('display', 'block');
+				$nicknameWarning.css('color', 'red');
+				message = "닉네임은 2자 이상, 20자 이하입니다.";
+				nicknameFlag = false;
+
+			} else{
+				message = "사용가능한 닉네임 입니다.";
+				$nicknameWarning.css('display', 'block');
+				$nicknameWarning.css('color', '#2bb673');
+				nicknameFlag = true;
+				if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
+					console.log("asdasd")
+					$(".signup-submit-button").css("opacity","3");
+					console.log("zz11")
+				}
+			}
+
+			$nicknameWarning.text(message);
+		}
+	});
 });
 
 
@@ -321,7 +397,43 @@ $phoneInput.on("blur", function() {
 			console.log("zz11")
 		}
 	}
+	$.ajax({
+		url:"/members/checkPhone" ,
+		data: {"memberPhone": $phoneInput.val()},
+		success: function(result){
+			let message;
+			if(result == 1){
+				message = "중복된 번호입니다";
+				$phoneWarning.css('color', 'red')
+				$phoneWarning.css('display', 'block');
+				phoneFlag = false;
 
+			} else if($phoneInput.val().length < 1){
+				$phoneWarning.css('display', 'block');
+				$phoneWarning.css('color', 'red');
+				message = "필수 입력 사항입니다";
+				phoneFlag = false;
+
+			} else if(!isPhoneNum.test($phoneInput.val())){
+				$phoneWarning.css('display', 'block');
+				$phoneWarning.css('color', 'red');
+				message = "잘못된 형식입니다. 다시 입력해주세요.";
+				phoneFlag = false;
+
+			} else{
+				message = "등록 가능한 핸드폰 번호 입니다.";
+				$phoneWarning.css('display', 'block');
+				$phoneWarning.css('color', '#2bb673');
+				phoneFlag = true;
+				if(identificationFlag && passwordFlag && passwordCheckFlag && nameFlag && phoneFlag && address1Flag) {
+					console.log("asdasd")
+					$(".signup-submit-button").css("opacity", "3");
+					console.log("zz11")
+				}
+			}
+			$phoneWarning.text(message);
+		}
+	});
 });
 
 

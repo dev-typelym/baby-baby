@@ -31,26 +31,26 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
     /* 이메일 중복 검사 */
     @Override
-    public Optional<Member> overlapByMemberEmail_QueryDSL(String memberEmail) {
-        return Optional.ofNullable(query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne());
+    public Long overlapByMemberEmail_QueryDSL(String memberEmail) {
+        return query.select(member.count()).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne();
     }
 
     /* 핸드폰 중복 검사 */
     @Override
-    public Optional<Member> overlapByPhone_QueryDSL(String memberPhone) {
-        return Optional.ofNullable(query.select(member).from(member).where(member.memberPhone.eq(memberPhone)).fetchOne());
+    public Long overlapByPhone_QueryDSL(String memberPhone) {
+        return query.select(member.count()).from(member).where(member.memberPhone.eq(memberPhone)).fetchOne();
     }
 
     /* 닉네임 중복 검사 */
     @Override
-    public Optional<Member> overlapByMemberNickname_QueryDSL(String memberNickname) {
-        return Optional.ofNullable(query.select(member).from(member).where(member.memberNickname.eq(memberNickname)).fetchOne());
+    public Long overlapByMemberNickname_QueryDSL(String memberNickname) {
+        return query.select(member.count()).from(member).where(member.memberNickname.eq(memberNickname)).fetchOne();
     }
 
     /* 비밀번호, 이메일 찾기 */
     @Override
-    public Optional<Member> findByMemberEmail_QueryDSL(String memberEmail) {
-        return Optional.ofNullable(query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne());
+    public Member findByMemberEmail_QueryDSL(String memberEmail) {
+        return query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne();
     }
 
     /* 비번 변경 */
@@ -71,6 +71,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .where(QMember.member.eq(member))
                 .execute();
     }
+
 
 //----------------------------------------------관리자 페이지 ------------------------------------------------------------
 

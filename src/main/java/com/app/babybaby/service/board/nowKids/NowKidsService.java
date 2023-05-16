@@ -33,7 +33,7 @@ public interface NowKidsService {
 
 
     default Member toMemberEntity(NowKidsDTO nowKidsDTO){
-        return Member.builder()
+        return Member.joinMemberBuilder()
                 .id(nowKidsDTO.getMemberId())
                 .memberProfileOriginalName(nowKidsDTO.getMemberProfileOriginalName())
                 .memberProfilePath(nowKidsDTO.getMemberProfilePath())

@@ -11,26 +11,26 @@ public class TestController {
     @GetMapping("/main/main")
     public void main(){}
 
-    @GetMapping("/member/find-id")
-    public void findId(){}
-
-    @GetMapping("/member/find-password")
-    public void findPassword(){}
-
-    @GetMapping("/member/join")
-    public void join(){}
-
-    @GetMapping("/member/join-enterprise")
-    public void joinEnterprise(){}
-
-    @GetMapping("/member/login")
-    public void login(){}
-
-    @GetMapping("/member/myPage-crew")
-    public void myPageCrew(){}
-
-    @GetMapping("/member/password-change")
-    public void passwordChange(){}
+//    @GetMapping("/member/find-id")
+//    public void findId(){}
+//
+//    @GetMapping("/member/find-password")
+//    public void findPassword(){}
+//
+//    @GetMapping("/member/join")
+//    public void join(){}
+//
+//    @GetMapping("/member/join-enterprise")
+//    public void joinEnterprise(){}
+//
+//    @GetMapping("/member/login")
+//    public void login(){}
+//
+//    @GetMapping("/member/myPage-crew")
+//    public void myPageCrew(){}
+//
+//    @GetMapping("/member/password-change")
+//    public void passwordChange(){}
 
     @GetMapping("/member-detail/member-detail")
     public void memberDetail(){}
