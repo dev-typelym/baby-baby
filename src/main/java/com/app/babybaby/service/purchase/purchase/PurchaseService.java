@@ -22,6 +22,7 @@ public interface PurchaseService {
                 .purchaseCount(purchase.getPurchaseCount())
                 .purchasePrice(purchase.getPurchasePrice())
                 .purchaseRegisterDate(purchase.getPurchaseRegisterDate())
+                .memberName(purchase.getMember().getMemberName())
                 .build();
     }
 
