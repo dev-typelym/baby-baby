@@ -70,6 +70,11 @@ public class MemberRepositoryTests {
 
     }
 
+    @Test
+    public void findAllTest(){
+        log.info(memberRepository.findById(1L).toString());;
+    }
+
 
 
 }

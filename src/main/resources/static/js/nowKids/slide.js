@@ -51,8 +51,8 @@ function getTimeAgo(pastTime) {
 
 /* 글쓰러가기 나타나게 하기 */
 $(window).scroll(function () {
-    var topContentOffset = $('.top-content-flex-wrapper').offset().top;
-    var scrollTop = $(window).scrollTop();
+    let topContentOffset = $('.top-content-flex-wrapper').offset().top;
+    let scrollTop = $(window).scrollTop();
 
     if (scrollTop >= topContentOffset) {
         $('.go-write-wrapper').css('display', 'flex');
@@ -63,15 +63,29 @@ $(window).scroll(function () {
 
 /* 글쓰러가기 나타나게 하기 끝 */
 
-/* 위에 프로필 최신순 */
 
+
+/* 위에 프로필 최신순 */
+let topRecentTag = '';
 members.forEach((e, i) => {
+    // if(!isRecentPost(e.eventUpdateTime)){
+    //     topRecentTag = `<span class="feed-header-new-img"></span>>`;
+    // } else{
+    //     topRecentTag = '';
+    // }
+    console.log(e)
+
     let profilesText =
         `
                 <div class="user-info-wrap" onclick="location.href='/member/details/${e.id}'">
-                                <span class="top-content-new-img" ></span>
+<!--                                <span class="top-content-new-img" ></span>-->
+                                ${topRecentTag}
                                 <div class="user-img-wrap">
-                                    <span class="top-content-user-img"></span>
+                                    <span class="top-content-user-img"
+                                    data-member-profile-path="${e.memberProfilePath}" 
+                                    data-member-profile-uuid="${e.memberProfileUUID}"
+                                    data-member-profile-original-name="${e.memberProfileOriginalName}">
+                                    </span>
                                 </div>
                                 <div class="top-content-user-name">
                                     ${e.memberNickname}
@@ -82,7 +96,7 @@ members.forEach((e, i) => {
     $(".top-content-inner-flex").append(profilesText)
 })
 
-
+getProfileImg(".top-content-user-img")
 
 
 
@@ -144,18 +158,17 @@ function isRecentPost(eventTime) {
     return hours > 24;
 }
 
-
 let recentTag = '';
 function appendList(nowKidsDTOS) {
     console.log(nowKidsDTOS)
 
     nowKidsDTOS.forEach((e, i) => {
-        // console.log(isRecentPost(e.eventUpdateTime));
-        // if(!isRecentPost(e.eventUpdateTime)){
-        //     recentTag = `<span class="feed-header-new-img">`;
-        // } else{
-        //     recentTag = '';
-        // }
+        console.log(isRecentPost(e.eventUpdateTime));
+        if(!isRecentPost(e.eventUpdateTime)){
+            recentTag = `<span class="feed-header-new-img"></span>>`;
+        } else{
+            recentTag = '';
+        }
 
         let kidText = '';
         let text = '';
@@ -169,7 +182,8 @@ function appendList(nowKidsDTOS) {
                         <div class="feed-header-inner-flex">
                             <div class="feed-header-left-flex">
                                 <a class="feed-header-user-img-wrap" onclick="location.href='/member/details/${e.memberId}'">
-                                <span class="feed-header-new-img">
+<!--                                <span class="feed-header-new-img"></span>-->
+                                       ${recentTag}
                                     <span class="feed-header-user-img"
                                     data-member-profile-path="${e.memberProfilePath}" 
                                     data-member-profile-uuid="${e.memberProfileUUID}"

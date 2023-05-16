@@ -1,6 +1,8 @@
 package com.app.babybaby.entity.member;
 
 import com.app.babybaby.entity.alert.Alert;
+import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.type.*;
@@ -89,6 +91,12 @@ public class Member {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
     private List<Coupon> coupons;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
+    private List<Event> events;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    private List<Review> reviews;
 
     @Builder
     public Member(String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName) {

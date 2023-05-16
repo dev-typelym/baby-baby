@@ -1,25 +1,24 @@
 package com.app.babybaby.domain.memberDTO;
 
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
-import com.app.babybaby.entity.alert.Alert;
+import com.app.babybaby.domain.calendarDTO.CalendarDTO;
+import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.entity.embeddable.Address;
-import com.app.babybaby.entity.purchase.coupon.Coupon;
+import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.type.*;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
 @Data
-@NoArgsConstructor
-public class MemberDTO {
-
-    private Long id;
+@RequiredArgsConstructor
+public class CompanyDTO {
+    private Long memberId;
     private String  memberEmail;
     private String memberName;
     private String memberPassword;
@@ -30,28 +29,20 @@ public class MemberDTO {
     private String memberProfileOriginalName;
     private String memberProfileUUID;
     private String memberProfilePath;
-    @DateTimeFormat(pattern = "yyyy.MM.dd")
-    private LocalDateTime memberRegisterDate;
     private MemberType memberType;
     private Role memberRole;
     private AcceptanceType memberGuideStatus;
     private SleepType memberSleep;
     private GuideType memberGuideType;
     private CategoryType memberGuideInterest;
-    private String memberFilePath;
-    private String memberFileUUID;
-    private String memberFileOriginalName;
-    private List<Alert> alerts;
-    private List<Coupon> coupons;
 
-    @DateTimeFormat(pattern = "yyyy.MM.dd")
-    private LocalDateTime uploadTime;
+    private List<EventDTO> events;
 
     private List<ReviewDTO> reviews;
 
     @Builder
-    public MemberDTO(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName, List<Alert> alerts, List<Coupon> coupons, LocalDateTime uploadTime) {
-        this.id = id;
+    public CompanyDTO(Long memberId, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, List<EventDTO> events, List<ReviewDTO> reviews) {
+        this.memberId = memberId;
         this.memberEmail = memberEmail;
         this.memberName = memberName;
         this.memberPassword = memberPassword;
@@ -62,18 +53,13 @@ public class MemberDTO {
         this.memberProfileOriginalName = memberProfileOriginalName;
         this.memberProfileUUID = memberProfileUUID;
         this.memberProfilePath = memberProfilePath;
-        this.memberRegisterDate = memberRegisterDate;
         this.memberType = memberType;
         this.memberRole = memberRole;
         this.memberGuideStatus = memberGuideStatus;
         this.memberSleep = memberSleep;
         this.memberGuideType = memberGuideType;
         this.memberGuideInterest = memberGuideInterest;
-        this.memberFilePath = memberFilePath;
-        this.memberFileUUID = memberFileUUID;
-        this.memberFileOriginalName = memberFileOriginalName;
-        this.alerts = alerts;
-        this.coupons = coupons;
-        this.uploadTime = uploadTime;
+        this.events = events;
+        this.reviews = reviews;
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.data.domain.*;
 
 import java.util.List;
 
+import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
 import static com.app.babybaby.entity.board.review.QReview.review;
 
@@ -66,6 +67,15 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
         }
 
         return new SliceImpl<>(reviewList, pageable, hasNext);
+    }
+
+//    [회원상세] 해당 이벤트의 리뷰 조회하기
+    public List<Review> findAllReivewByEventId(Long eventId){
+        return query.select(review)
+                .from(review.event)
+                .leftJoin(event)
+                .where(event.id.eq(eventId))
+                .fetch();
     }
 
     //  [관리자] 리뷰 전체 목록 조회
