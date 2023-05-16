@@ -78,38 +78,40 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Long overlapByMemberEmail_QueryDSL(String memberEmail) {
+    public Long overlapByMemberEmail(String memberEmail) {
         return (memberRepository.overlapByMemberEmail_QueryDSL(memberEmail));
     }
 
     @Override
-    public Long overlapByPhone_QueryDSL(String memberPhone) {
+    public Long overlapByPhone(String memberPhone) {
         return (memberRepository.overlapByPhone_QueryDSL(memberPhone));
     }
 
     @Override
-    public Long overlapByMemberNickname_QueryDSL(String memberNickname) {
+    public Long overlapByMemberNickname(String memberNickname) {
         return (memberRepository.overlapByMemberNickname_QueryDSL(memberNickname));
     }
 
     @Override
-    public Member findByMemberEmail_QueryDSL(String memberEmail) {
+    public Member findByMemberEmail(String memberEmail) {
         return (memberRepository.findByMemberEmail_QueryDSL(memberEmail));
     }
 
     @Override
-    public void updatePassword_QueryDSL(Long id, String memberPassword) {
+    public void updatePassword(Long id, String memberPassword) {
 
     }
 
     @Override
-    public void updateMemberStatus_QueryDSL(Long id, SleepType memberSleep) {
+    public void updateMemberStatus(Long id, SleepType memberSleep) {
 
     }
 
     @Override
-    public void setMemberInfoMyId_QueryDSL(MemberDTO memberDTO) {
-
+    public void setMemberInfoMyId(MemberDTO memberDTO, PasswordEncoder passwordEncoder) {
+        memberDTO.setMemberPassword(passwordEncoder.encode(memberDTO.getMemberPassword()));
+        memberRepository.setMemberInfoMyId(memberDTOToEntity(memberDTO));
+//        memberDTOToEntity --> 빌더 다 안 들어가 있을 수도 있으니까 확인하고 말해주기!!
     }
 
     @Override
@@ -120,6 +122,7 @@ public class MemberServiceImpl implements MemberService {
                 .memberEmail(member.getMemberEmail())
                 .memberPassword(member.getMemberPassword())
                 .memberRole(member.getMemberRole())
+
                 .build();
     }
 

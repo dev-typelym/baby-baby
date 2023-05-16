@@ -47,26 +47,6 @@ var emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-
 let identificationFlag = false;
 
 $identificationInput.on("blur",function(){
-	console.log("zzzz")
-	 if ($identificationInput.val() < 1) {
-		$identificationWarning.text("이메일을 입력해주세요.");
-		$identificationWarning.css("display", "block");
-		$identificationInput.css("border-color", "#f66");
-		identificationFlag = false;
-		// !isPhoneNum.test(mobile.value)
-	} else if (!emailPattern.test($identificationInput.val())) {
-		$identificationWarning.text("이메일 주소를 다시 확인해주세요.");
-		$identificationWarning.css("display", "block");
-		$identificationInput.css("border-color", "#f66");
-		identificationFlag = false;
-	} else {
-		$identificationWarning.css("display", "none");
-		$identificationInput.css("border-color", "#dde2e6");
-		identificationFlag = true;
-		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
-			$(".signup-submit-button").css("opacity","3");
-		}
-	}
 	$.ajax({
 		url:"/members/checkEmail" ,
 		data: {"memberEmail": $identificationInput.val()},
@@ -217,28 +197,6 @@ $nicknameInput.on("blur", function() {
 	var $nicknameInputVal = $nicknameInput.val();
 	var $nicknameWarningVal = $nicknameWarning.val();
 
-	// $nicknameInput.css("border-color", "#f66");
-	// $nicknameInput.css("border-color", "#dde2e6");
-	if ($nicknameInputVal.length < 2) {
-		$nicknameWarning.text("최소 2자입니다.");
-		$nicknameWarning.css("display", "block");
-		$nicknameInput.css("border-color", "#f66");
-		nicknameFlag = false;
-	} else if ($nicknameInputVal.length > 20) {
-		$nicknameWarning.text("닉네임 최대 길이는 20자 입니다. 확인해 주세요.");
-		$nicknameWarning.css("display", "block");
-		$nicknameInput.css("border-color", "#f66");
-		nicknameFlag = false;
-	} else {
-		$nicknameWarning.css("display", "none");
-		$nicknameInput.css("border-color", "#dde2e6");
-		nicknameFlag = true;
-		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
-			console.log("asdasd")
-			$(".signup-submit-button").css("opacity","3");
-			console.log("zz11")
-		}
-	}
 	$.ajax({
 		url:"/members/checkNickname" ,
 		data: {"memberNickname": $nicknameInput.val()},
@@ -373,30 +331,6 @@ $phoneInput.on("blur", function() {
 	var isPhoneNum = /([01]{2,})([01679]{1,})([0-9]{3,4})([0-9]{4})/;
 	var $phoneInputVal = $phoneInput.val();
 	var phoneInputVal = $phoneInput.val();
-
-
-	// $phoneInput.css("border-color", "#f66");
-	// $phoneInput.css("border-color", "#dde2e6");
-	if ($phoneInputVal.length < 1) {
-		$phoneWarning.text("핸드폰 번호를 입력해주세요.");
-		$phoneWarning.css("display", "block");
-		$phoneInput.css("border-color", "#f66");
-		phoneFlag = false;
-	} else if (!isPhoneNum.test($phoneInputVal)) {
-		$phoneWarning.text("잘못된 형식입니다. 다시 입력해주세요.");
-		$phoneWarning.css("display", "block");
-		$phoneInput.css("border-color", "#f66");
-		phoneFlag = false;
-	} else {
-		$phoneWarning.css("display", "none");
-		$phoneInput.css("border-color", "#dde2e6");
-		phoneFlag = true;
-		if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
-			console.log("asdasd")
-			$(".signup-submit-button").css("opacity","3");
-			console.log("zz11")
-		}
-	}
 	$.ajax({
 		url:"/members/checkPhone" ,
 		data: {"memberPhone": $phoneInput.val()},
@@ -419,30 +353,19 @@ $phoneInput.on("blur", function() {
 				$phoneWarning.css('color', 'red');
 				message = "잘못된 형식입니다. 다시 입력해주세요.";
 				phoneFlag = false;
-
 			} else{
 				message = "등록 가능한 핸드폰 번호 입니다.";
 				$phoneWarning.css('display', 'block');
 				$phoneWarning.css('color', '#2bb673');
 				phoneFlag = true;
-				if(identificationFlag && passwordFlag && passwordCheckFlag && nameFlag && phoneFlag && address1Flag) {
-					console.log("asdasd")
+				if(identificationFlag && passwordFlag && passwordCheckFlag && nameFlag && phoneFlag) {
 					$(".signup-submit-button").css("opacity", "3");
-					console.log("zz11")
 				}
 			}
 			$phoneWarning.text(message);
 		}
 	});
 });
-
-
-
-
-
-
-const $checkAddress1 = $(".sample6_detailAddress");
-const $checkAddress2 = $(".sample6_extraAddress");
 
 
 /* 주소 */
@@ -504,16 +427,13 @@ function sample6_execDaumPostcode() {
 
 $(".signup-submit-button").on("change",function(){
 	if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
-		console.log("asdasd")
 		$(".signup-submit-button").css("opacity","3");
-		console.log("zz11")
 	}
 });
 
 function send() {
 	if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
 		document.joinForm.submit();
-		console.log("zz11")
 	}else if(identificationFlag == false){
 		$identificationInput.focus();
 	}else if(passwordFlag == false){
