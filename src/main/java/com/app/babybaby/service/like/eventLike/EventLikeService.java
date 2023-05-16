@@ -22,6 +22,7 @@ public interface EventLikeService {
                 .boardTitle(event.getBoardTitle())
                 .address(event.getEventLocation())
                 .id(event.getId())
+                .eventRecruitCount(event.getEventRecruitCount())
                 .build();
     }
 

@@ -1,13 +1,22 @@
 /* mypage-like */
 /* 하트 누르면 없어지게 하는 버튼 */
-$('.wish-button').on('click', function(){
-    let svgPath = $(this).children().children()
+// $('.wish-button').on('click', function(){
+//     let svgPath = $(this).children().children()
+//     if(svgPath.css('fill') == 'rgb(255, 0, 0)'){
+//         svgPath.css('fill', 'none')
+//     } else{
+//         svgPath.css('fill', 'red')
+//     }
+// })
+
+$(document).on('click', '.wish-button', function(){
+    let svgPath = $(this).children().children();
     if(svgPath.css('fill') == 'rgb(255, 0, 0)'){
         svgPath.css('fill', 'none')
     } else{
         svgPath.css('fill', 'red')
     }
-})
+});
 
 
 let page = 0;
@@ -42,8 +51,12 @@ function appendList(eventLikeDTOS) {
     let boardText3 = '';
     console.log(eventLikeDTOS.content);
     eventLikeDTOS.content.forEach(eventLike => {
+        let date = new Date(eventLike.registerDate); // assuming eventLike.registerDate is a valid date string
+        let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+
         console.log(eventLikeDTOS);
         boardText3 +=  `
+        
                                   <div role="presentation" class="instance">
                 <a class="item" href="">
                     <div class="thumbnail-container">
@@ -61,7 +74,7 @@ function appendList(eventLikeDTOS) {
                                 <div class="list-writer" >${eventLike.memberName}</div>
                                 <div class="list-date-container">
                                     <span class="print-data"
-                                        >역삼역 4번 출구</span
+                                        >${eventLike.address.address} ${eventLike.address.addressDetail} ${eventLike.address.addressSubDetail}</span
                                     >
                                 </div>
                             </div>
@@ -77,15 +90,15 @@ function appendList(eventLikeDTOS) {
                                         <i class="second-confirm"></i>
                                         <span class="ing">
                                             <span class="event-start-day"
-                                                >${eventLike.registerDate}</span
+                                                >${formattedDate}</span
                                             >
-                                            ~<span class="event-end-day"
-                                                >${eventLike.registerDate}</span
+                                            ~ <span class="event-end-day"
+                                                >${formattedDate}</span
                                             >
                                             <div class="like-count-container">
                                                 <div class="people-icon"></div>
                                                 <span class="like-count"
-                                                    >10</span
+                                                    >${eventLike.eventRecruitCount}</span
                                                 >
                                                 <span>명 모집</span>
                                             </div>

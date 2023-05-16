@@ -17,7 +17,6 @@ import java.time.LocalDateTime;
 @Component
 @RequiredArgsConstructor
 public class EventLikeDTO {
-
     private Long id;
     private String boardTitle;
     private Long eventPrice;
@@ -26,9 +25,10 @@ public class EventLikeDTO {
     private LocalDateTime registerDate;
     private LocalDateTime updateDate;
     private Address address;
+    private Long eventRecruitCount;
 
     @Builder
-    public EventLikeDTO(Long id, String boardTitle, Long eventPrice, Long memberId, String memberName, LocalDateTime registerDate, LocalDateTime updateDate, Address address) {
+    public EventLikeDTO(Long id, String boardTitle, Long eventPrice, Long memberId, String memberName, LocalDateTime registerDate, LocalDateTime updateDate, Address address, Long eventRecruitCount) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.eventPrice = eventPrice;
@@ -37,5 +37,6 @@ public class EventLikeDTO {
         this.registerDate = registerDate;
         this.updateDate = updateDate;
         this.address = address;
+        this.eventRecruitCount = eventRecruitCount;
     }
 }
