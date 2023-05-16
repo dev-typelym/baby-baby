@@ -72,15 +72,15 @@
         type: 'post',
         data: JSON.stringify({page:page}),
         contentType: "application/json;charset=utf-8",
-        success: function(purchaseDTO){
+        success: function(purchaseDTOS){
           console.log("들어왓다")
-          if (purchaseDTO.length === 0) { // 불러올 데이터가 없으면
+          if (purchaseDTOS.length === 0) { // 불러올 데이터가 없으면
             console.log("막힘")
             $(window).off('scroll'); // 스크롤 이벤트를 막음
             return;
           }
           if(callback){
-            callback(purchaseDTO);
+            callback(purchaseDTOS);
             console.log("들어왓다")
           }
         }
@@ -89,12 +89,15 @@
     }
     return {getList: getList};
   })();
-console.log(purchaseDTO.content.toString());
-  function appendList(purchaseDTO) {
+
+  function appendList(purchaseDTOS) {
     let boardText3 = '';
-    console.log(purchaseDTO.content);
-    purchaseDTO.content.forEach(purchase => {
-      console.log(purchaseDTO);
+    console.log(purchaseDTOS.content);
+    purchaseDTOS.content.forEach(purchase => {
+      console.log(purchaseDTOS);
+      let date = new Date(purchase.purchaseRegisterDate); // assuming eventLike.registerDate is a valid date string
+      let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+
       boardText3 +=  `
                                          <li class="one-list">
                                 <div class="list-inner">
@@ -102,7 +105,7 @@ console.log(purchaseDTO.content.toString());
                                 <dt>주문번호</dt>
                                 <dd>230426-174637-0001</dd>
                                 <dt>주문 일자</dt>
-                            <dd style="text-align: right;">2023-04-26 13:01:56</dd>
+                            <dd style="text-align: right;">${formattedDate}</dd>
                             </dl>
                             
                             <div class="product-info">
@@ -114,11 +117,11 @@ console.log(purchaseDTO.content.toString());
                                 <dl class="product-info">
                                 <dt class="product-name" style="display:none">상품명</dt>
                                 <dd>
-                                "[플렉스토어][30%]레시피앤코 자극없이 피지,모공 청소 녹차팩 녹탄팩"
+                                "${purchase.eventTitle}"
                                 </dd>
                                 </dl>
                                 <div class="more-info">
-                                <span>삼성</span>
+                                <span>${purchase.memberName}</span>
                                 <span class="more-text">상세 보기 <span class="more-text-icon"> > </span></span>
                             </div>
                             
@@ -130,16 +133,16 @@ console.log(purchaseDTO.content.toString());
                           `
       ;
     });
-    if (purchaseDTO.length === 0) { // 불러올 데이터가 없으면
+    if (purchaseDTOS.length === 0) { // 불러올 데이터가 없으면
       $(window).off('scroll'); // 스크롤이벤트 x
     }
-    $('.collection-table').append(boardText3);
+    $('.order-lists').append(boardText3);
   }
 
-  boardService.getList(function(purchaseDTO) {
+  boardService.getList(function(purchaseDTOS) {
     page = 0;
-    console.log(purchaseDTO.content);
-    appendList(purchaseDTO);
+    console.log(purchaseDTOS.content);
+    appendList(purchaseDTOS);
     console.log(page + "페이지 로딩 시 초기화면")
   });
 

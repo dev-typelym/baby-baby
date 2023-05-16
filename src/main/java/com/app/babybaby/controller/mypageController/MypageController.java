@@ -83,19 +83,25 @@ public class MypageController {
         model.addAttribute("coupon",couponService.findCouponByMemberId(pageable,1L));
         return "myPage/myPage-coupon";
     }
-    
+    @GetMapping("payment/detail")
+    public String getPaymentDetail(){
+        return "myPage/payment-detail";
+    }
+
+
 //    결제 목록 페이지
     @GetMapping("payment")
-    public String getPayment(Model model,HttpSession httpSession,@PageableDefault(size = 5)Pageable pageable){
-//        model.addAttribute("payment",purchaseService.findAllByMemberPaymentWithPage(pageable, 1L));
+    public String getPayment(){
         return "myPage/myPage-payment";
     }
 
     @ResponseBody
     @PostMapping("payment/{page}")
-    public Page<PurchaseDTO> getPayment(Pageable pageable,@PathVariable("page") Integer page){
-       Page<PurchaseDTO> purchaseDTO = purchaseService.findAllByMemberPaymentWithPage(PageRequest.of(page-1, 10), 1L);
-        return purchaseDTO;
+    public Page<PurchaseDTO> getPayment(@PathVariable(value = "page") Integer page){
+       Page<PurchaseDTO> purchaseDTOS = purchaseService.findAllByMemberPaymentWithPage(PageRequest.of(page, 10), 1L);
+        log.info(page + "1111111111111111111");
+        log.info(purchaseDTOS + "컨트롤러 들어옴");
+        return purchaseDTOS;
     }
 
 
@@ -108,7 +114,7 @@ public class MypageController {
     @ResponseBody
     @PostMapping("review/{page}")
     public Page<ReviewDTO> getReview(@PathVariable("page") Integer page){
-        Page<ReviewDTO> reviewDTOS = reviewService.findReviewById(1L, PageRequest.of(page-1, 8));
+        Page<ReviewDTO> reviewDTOS = reviewService.findReviewById(1L, PageRequest.of(page, 8));
         log.info(reviewDTOS.getContent().toString());
         return reviewDTOS;
     }

@@ -10,14 +10,16 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 public class EventFileDTO {
-    private Long id;
+    private LocalDateTime registerDate;
+    private LocalDateTime updateDate;
     private String fileOriginalName;
-    private String fileUUID;
     private String filePath;
     private FileType fileStatus;
-
+    private String fileUUID;
+    private Long id;
 }

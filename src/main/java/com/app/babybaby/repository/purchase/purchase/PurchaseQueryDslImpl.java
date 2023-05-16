@@ -6,6 +6,7 @@ import com.app.babybaby.entity.purchase.purchase.Purchase;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
+import org.springframework.data.jpa.repository.EntityGraph;
 
 import java.util.List;
 
@@ -17,10 +18,25 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
 
 //    구매내역
     @Override
+    @EntityGraph
     public Page<Purchase> findAllByMemberPaymentWithPage_QueryDSL(Pageable pageable, Long memberId) {
         List<Purchase> purchases = query.select(purchase)
                 .from(purchase)
-                .join(purchase.event).fetchJoin()
+                .leftJoin(purchase.event).fetchJoin()
+                .where(purchase.member.id.eq(memberId))
+                .orderBy(purchase.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(purchase.count()).from(purchase).where(purchase.member.id.eq(memberId)).fetchOne();
+        return new PageImpl<>(purchases, pageable, count);
+    }
+
+    @Override
+    public Page<Purchase> findAllByMemberPaymentFileWithPage_QueryDSL(Pageable pageable, Long memberId) {
+        List<Purchase> purchases = query.select(purchase)
+                .from(purchase)
                 .leftJoin(purchase.event.eventFiles).fetchJoin()
                 .where(purchase.member.id.eq(memberId))
                 .orderBy(purchase.id.desc())
