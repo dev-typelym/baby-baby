@@ -10,3 +10,126 @@ $('.wish-button').on('click', function(){
 })
 
 
+let page = 0;
+const boardService = (() => {
+    function getList(callback){
+        $.ajax({
+            url: `/mypage/play-like/${page}`,
+            type: 'post',
+            data: JSON.stringify({page:page}),
+            contentType: "application/json;charset=utf-8",
+            success: function(eventLikeDTOS){
+                console.log("들어왓다")
+                if (eventLikeDTOS.length === 0) { // 불러올 데이터가 없으면
+                    console.log("막힘")
+                    $(window).off('scroll'); // 스크롤 이벤트를 막음
+                    return;
+                }
+                if(callback){
+                    callback(eventLikeDTOS);
+                    console.log("들어왓다")
+                }
+            }
+        });
+        page++;
+    }
+    return {getList: getList};
+})();
+
+
+function appendList(eventLikeDTOS) {
+    let boardText3 = '';
+    console.log(eventLikeDTOS.content);
+    eventLikeDTOS.content.forEach(eventLike => {
+        console.log(eventLikeDTOS);
+        boardText3 +=  `
+                                  <div role="presentation" class="instance">
+                <a class="item" href="">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail-list">
+                            <div class="photo-thumbnail"></div>
+                            <!-- 사진 div -->
+                        </div>
+                    </div>
+                    <div class="list-content">
+                        <div class="list-title" >
+                            ${eventLike.boardTitle}
+                        </div>
+                        <div class="for-price-full-contain">
+                            <div class="for-price-wrap">
+                                <div class="list-writer" >${eventLike.memberName}</div>
+                                <div class="list-date-container">
+                                    <span class="print-data"
+                                        >역삼역 4번 출구</span
+                                    >
+                                </div>
+                            </div>
+                            <span class="event-price-wrap">
+                                <span class="event-price">${eventLike.eventPrice}</span
+                                ><span>원</span>
+                            </span>
+                        </div>
+                        <div clsas="list-footer">
+                            <div class="list-footer-container">
+                                <div class="loca-status-container">
+                                    <div class="status-community">
+                                        <i class="second-confirm"></i>
+                                        <span class="ing">
+                                            <span class="event-start-day"
+                                                >${eventLike.registerDate}</span
+                                            >
+                                            ~<span class="event-end-day"
+                                                >${eventLike.registerDate}</span
+                                            >
+                                            <div class="like-count-container">
+                                                <div class="people-icon"></div>
+                                                <span class="like-count"
+                                                    >10</span
+                                                >
+                                                <span>명 모집</span>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <button type="button" class="wish-button" aria-pressed="false">
+                    <svg
+                        viewBox="0 0 32 32"
+                        focusable="false"
+                        role="presentation"
+                        class="wish-button-svg"
+                        aria-hidden="true"
+                    >
+                        <path style="fill:#ff0000"
+                            d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+                          `
+        ;
+    });
+    if (eventLikeDTOS.length === 0) { // 불러올 데이터가 없으면
+        $(window).off('scroll'); // 스크롤이벤트 x
+    }
+    $('.collection-table').append(boardText3);
+}
+
+// 페이지 로딩 시 초기 리스트를 불러옴
+boardService.getList(function(eventLikeDTOS) {
+    console.log(eventLikeDTOS.content);
+    appendList(eventLikeDTOS);
+});
+
+console.log("sadasdasd");
+
+$(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        page++;
+        boardService.getList(appendList);
+        console.log("페이지 들어옴")
+    }
+});

@@ -38,7 +38,7 @@ public class ReviewRepositoryTests {
 
     @Test
     public void saveTest(){
-        Review review = new Review(5, eventRepository.findEventById_QueryDSL(2L).get(), memberRepository.findById(1L).get(), null, "asd", "asd");
+        Review review = new Review(2, eventRepository.findEventById_QueryDSL(2L).get(), memberRepository.findById(1L).get(), null, "asd", "asd");
         reviewRepository.save(review);
     }
 
