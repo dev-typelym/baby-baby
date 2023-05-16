@@ -1,6 +1,7 @@
 package com.app.babybaby.entity.board.event;
 
 import com.app.babybaby.entity.board.BoardInfo;
+import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.eventFile.EventFile;
@@ -45,6 +46,9 @@ public class Event extends BoardInfo {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COMPANY_ID")
     private Member company;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "event")
+    private List<Review> reviews;
 
     public Event(Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, Calendar calendar, Member company) {
         this.eventRecruitCount = eventRecruitCount;

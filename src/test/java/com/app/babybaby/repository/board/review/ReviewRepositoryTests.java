@@ -66,6 +66,9 @@ public class ReviewRepositoryTests {
     }
 
 
-
+    @Test
+    public void findAllReivewByEventId(){
+        
+    }
 
 }

@@ -738,7 +738,7 @@ button {
     background-position: center;
 }
 
-.feed-header-new-img {
+span.feed-header-new-img {
     width: 20px;
     height: 20px;
     position: absolute;
