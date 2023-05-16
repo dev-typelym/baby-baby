@@ -78,7 +78,7 @@ public class MypageController {
 //    통솔자 지원
     @GetMapping("crew")
     public String getCrew(){
-        return "member/myPage-crew";
+        return "myPage/myPage-crew";
     }
 
 
