@@ -1,6 +1,7 @@
 package com.app.babybaby.service.board.nowKids;
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ public class NowKidsServiceTest {
     @Test
     public void getBoardAndCalendarByGeneralGuideIdTest(){
         log.info(nowKidsService.getBoardAndCalendarByGeneralGuideId(1L).toString());
+    }
+
+    @Test
+    public void find8AuthorTest(){
+        nowKidsService.find8AuthorDesc().stream().map(MemberDTO::toString).forEach(log::info);
     }
 }

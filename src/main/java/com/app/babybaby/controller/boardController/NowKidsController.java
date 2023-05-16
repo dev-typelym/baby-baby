@@ -155,24 +155,6 @@ public class NowKidsController {
     @GetMapping("list")
     public String goNowKidsList( Model model){
         Long sessionId = 110L;
-//        가장 초기에 2개 불러오기
-//        Page<NowKidsDTO> nowKidsDTOS = nowKidsService.getAllInfoForListDesc(1, 2 );
-//        JSONArray jsonArray = new JSONArray();
-//        /* 모든 게시글 */
-//        nowKidsDTOS.forEach(nowKidsDTO -> {
-//            List<Kid> kids = nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(nowKidsDTO.getMemberId(), nowKidsDTO.getEventId());
-//            List<NowKidsFile> nowKidsFiles = nowKidsRepository.findAllFileNowKidsById_QueryDsl(nowKidsDTO.getNowKidsId());
-//            List<KidDTO> kidDTOS = kids.stream().map(kidService::toKidDTO).collect(Collectors.toList());
-//            List<NowKidsFileDTO> nowKidsFileDTOS = nowKidsFiles.stream().map(nowKidsFileService::toNowKidsFileDTO).collect(Collectors.toList());
-//            JSONObject jsonObject = new JSONObject(nowKidsDTO);
-//            jsonObject.put("files", new JSONArray(nowKidsFileDTOS));
-//            jsonObject.put("kids", new JSONArray(kidDTOS));
-//
-//            log.info("내가 넣은 JOSNArray : " + jsonObject.toString());
-//
-//            jsonArray.put(jsonObject);
-//        });
-
         /* 8명 위에 맴버 가져오기 */
         List<MemberDTO> memberDTOS = nowKidsService.find8AuthorDesc();
         log.info("내가 가져온 맴버들 : " + memberDTOS);

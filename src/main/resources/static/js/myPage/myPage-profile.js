@@ -320,13 +320,25 @@ calendar.createEvents([
 <!-- 한개 끝 -->
       `
       $(".lecture-list").html(eventAll)
-      
+      $('.lecture').on('click', handleLectureClick);
+      /* 상세 페이지 누르면 table 나오게 */
     });
   
 
   });
+/* 눌렀을때 또르륵 이벤트 핸들러 */
+function handleLectureClick() {
+  let i = $(this).index();
+  let tableWrapper = $('.table-wrapper').eq(i);
 
-
+  if (tableWrapper.is(':hidden')) {
+    // 해당 테이블이 숨겨져 있는 경우
+    $('.table-wrapper').slideUp(); // 다른 테이블 숨김 처리
+    tableWrapper.slideDown(); // 해당 테이블 슬라이드 다운
+  } else {
+    tableWrapper.slideUp(); // 해당 테이블 슬라이드 업
+  }
+}
 
 
       /* 달력 끝 */
@@ -347,16 +359,3 @@ calendar.createEvents([
       })
 
 
-      /* 상세 페이지 누르면 table 나오게 */
-
-$('.lecture').on('click', function(){
-  let i = $(this).index();
-  let tableWrapper = $('.table-wrapper').eq(i);
-
-  if (tableWrapper.is(':visible')) { // 이미 표시되어 있는 경우
-    tableWrapper.hide(); // 숨김 처리
-  } else {
-    $('.table-wrapper').hide(); // 모든 테이블 숨김 처리
-    tableWrapper.show(); // 해당 테이블만 표시
-  }
-})

@@ -210,7 +210,7 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void find8AuthorDescTEst(){
-        log.info(nowKidsRepository.find8AuthorDesc().toString());
+        nowKidsRepository.find8AuthorDesc().stream().map(Member::toString).forEach(log::info);
     }
 
     /* N+1 문제 따라서 이건 DTO에서 작업한다, */

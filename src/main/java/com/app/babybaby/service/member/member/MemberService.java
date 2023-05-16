@@ -11,13 +11,13 @@ public interface MemberService {
 
     public Optional<Member> getMemberById(Long memberId);
 
-    static MemberDTO toMemberDTO(Member member){
+    default MemberDTO toMemberDTO(Member member){
         return MemberDTO.builder()
-                .memberFileOriginalName(member.getMemberFileOriginalName())
-                .memberFilePath(member.getMemberFilePath())
-                .memberFileUUID(member.getMemberFileUUID())
                 .memberNickname(member.getMemberNickname())
                 .id(member.getId())
+                .memberProfileUUID(member.getMemberProfileUUID())
+                .memberProfilePath(member.getMemberProfilePath())
+                .memberProfileOriginalName(member.getMemberProfileOriginalName())
                 .build();
     }
 }

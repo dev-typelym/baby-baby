@@ -42,10 +42,11 @@ public class MemberDTO {
     private String memberFileOriginalName;
     private List<Alert> alerts;
     private List<Coupon> coupons;
+    @DateTimeFormat(pattern = "yyyy.MM.dd")
+    private LocalDateTime uploadTime;
 
     @Builder
-
-    public MemberDTO(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName, List<Alert> alerts, List<Coupon> coupons) {
+    public MemberDTO(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName, List<Alert> alerts, List<Coupon> coupons, LocalDateTime uploadTime) {
         this.id = id;
         this.memberEmail = memberEmail;
         this.memberName = memberName;
@@ -69,5 +70,6 @@ public class MemberDTO {
         this.memberFileOriginalName = memberFileOriginalName;
         this.alerts = alerts;
         this.coupons = coupons;
+        this.uploadTime = uploadTime;
     }
 }
