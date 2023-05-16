@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @Entity
-@Getter @ToString(exclude = "alerts")
+@Getter @ToString(exclude = {"alerts"})
 @Table(name = "TBL_MEMBER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate

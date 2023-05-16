@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = "member")
+@ToString(callSuper = true, exclude = {"member"})
 @Table(name = "TBL_ASK")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(exclude = "member")
+@Getter @ToString(exclude = {"member"})
 @Table(name = "TBL_RANDOM_KEY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RandomKey {

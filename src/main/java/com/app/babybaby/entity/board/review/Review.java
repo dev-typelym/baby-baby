@@ -16,7 +16,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = "member, event, ReviewReplies")
+@ToString(callSuper = true, exclude = {"member", "event", "ReviewReplies"})
 @Table(name = "TBL_REVIEW")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

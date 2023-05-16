@@ -14,7 +14,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = "admin")
+@ToString(callSuper = true, exclude = {"admin"})
 @Table(name = "TBL_ANNOUNCEMENT")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

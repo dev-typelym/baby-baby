@@ -8,7 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter
+@Getter @Setter
 @ToString(callSuper = true, exclude = {"parentsBoard"})
 @Table(name = "TBL_PARENTS_BOARD_FILE")
 @PrimaryKeyJoinColumn(name = "ID")
@@ -21,8 +21,8 @@ public class ParentsBoardFile extends File {
     public ParentsBoardFile(ParentsBoard parentsBoard) {
         this.parentsBoard = parentsBoard;
     }
-
-    public ParentsBoardFile(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus, ParentsBoard parentsBoard) {
+//
+    public ParentsBoardFile(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus) {
         super(fileOriginalName, fileUUID, filePath, fileStatus);
         this.parentsBoard = parentsBoard;
     }

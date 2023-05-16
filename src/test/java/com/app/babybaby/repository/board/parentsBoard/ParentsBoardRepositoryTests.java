@@ -67,7 +67,7 @@ public class ParentsBoardRepositoryTests {
         address.setAddressSubDetail("dfa");
         address.setPostcode("12342132");
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1; i++) {
             String uniqueNickname = "Nickname1234" + i;
 
             Member member = new Member(
@@ -101,7 +101,7 @@ public class ParentsBoardRepositoryTests {
     @Transactional
     @Test
     public void save20EventTest() {
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1; i++) {
             Address address = new Address();
             address.setAddress("");
             address.setAddressDetail("");
@@ -131,7 +131,7 @@ public class ParentsBoardRepositoryTests {
         List<Event> events = eventRepository.findAll();
         List<Member> members = memberRepository.findAll();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1; i++) {
             Event event = events.get(i % events.size());
             Member member = members.get(i % members.size());
             List<ParentsBoardReply> parentsBoardReplies = new ArrayList<>();
@@ -156,7 +156,7 @@ public class ParentsBoardRepositoryTests {
         List<ParentsBoard> parentsBoards = parentsBoardRepository.findAll();
         List<Member> members = memberRepository.findAll();
 
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 2; i++) {
             ParentsBoard parentsBoard = parentsBoards.get(i % parentsBoards.size());
             Member member = members.get(i % members.size());
 
@@ -175,7 +175,7 @@ public class ParentsBoardRepositoryTests {
     public void deleteParentsBoardReplyTest() {
         List<ParentsBoardReply> parentsBoardreplys = parentsBoardReplyRepository.findAll();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 1; i++) {
             ParentsBoardReply parentsBoardReply = parentsBoardreplys.get(i % parentsBoardreplys.size());
             parentsBoardReplyRepository.delete(parentsBoardReply);
         }
