@@ -10,6 +10,7 @@ import com.app.babybaby.type.CategoryType;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.Optional;
 import static com.app.babybaby.entity.board.review.QReview.review;
 
 @RequiredArgsConstructor
+@Slf4j
 public class ReviewQueryDslImpl implements ReviewQueryDsl {
     private final JPAQueryFactory query;
 
@@ -30,15 +32,16 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
 //    나의리뷰 조회
     @Override
     public Page<Review> findReviewById_QueryDSL(Pageable pageable,Long memberId) {
-
+        log.info(memberId.toString());
         List<Review> reviews = query.select(review)
                 .from(review)
                 .join(review.member).fetchJoin()
-                .join(review.reviewFiles).fetchJoin()
+                .leftJoin(review.event).fetchJoin()
+                .leftJoin(review.reviewFiles).fetchJoin()
                 .where(review.member.id.eq(memberId))
                 .fetch();
 
-        Long count = query.select(review.count())
+        Long count = query.select(review.member.id.count())
                 .from(review)
                 .where(review.member.id.eq(memberId))
                 .fetchOne();

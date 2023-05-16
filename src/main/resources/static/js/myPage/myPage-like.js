@@ -8,3 +8,5 @@ $('.wish-button').on('click', function(){
         svgPath.css('fill', 'red')
     }
 })
+
+
