@@ -41,12 +41,11 @@ const boardService = (() => {
                 }
             }
         });
-        page++;
     }
     return {getList: getList};
 })();
 
-
+/*${formattedDate}*/
 function appendList(eventLikeDTOS) {
     let boardText3 = '';
     console.log(eventLikeDTOS.content);
@@ -90,8 +89,7 @@ function appendList(eventLikeDTOS) {
                                         <i class="second-confirm"></i>
                                         <span class="ing">
                                             <span class="event-start-day"
-                                                >${formattedDate}</span
-                                            >
+                                                >${formattedDate}</span>
                                             ~ <span class="event-end-day"
                                                 >${formattedDate}</span
                                             >
@@ -142,25 +140,21 @@ boardService.getList(function(eventLikeDTOS) {
 
 console.log("sadasdasd");
 
+// $(window).scroll(function() {
+//     if($(window).scrollTop() + $(window).height() == $(document).height()) {
+//         page++;
+//         boardService.getList(appendList);
+//         console.log(page)
+//     }
+// });
+
 $(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+    if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
         page++;
         boardService.getList(appendList);
         console.log(page)
     }
 });
 
-// $(window).on('scroll', function() {
-//     let zoomLevel = $('body').css('zoom');
-//     if (zoomLevel === '0.8') {
-//         if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && page > 0) {
-//             console.log("스크롤")
-//             page++;
-//             console.log(page)
-//             boardService.getList(function(eventLikeDTOS) {
-//                 appendList(eventLikeDTOS);
-//             });
-//         }
-//     }
-// });
+
 

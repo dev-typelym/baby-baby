@@ -21,7 +21,7 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
         List<Purchase> purchases = query.select(purchase)
                 .from(purchase)
                 .join(purchase.event).fetchJoin()
-                .join(purchase.event.eventFiles).fetchJoin()
+                .leftJoin(purchase.event.eventFiles).fetchJoin()
                 .where(purchase.member.id.eq(memberId))
                 .orderBy(purchase.id.desc())
                 .offset(pageable.getOffset())
