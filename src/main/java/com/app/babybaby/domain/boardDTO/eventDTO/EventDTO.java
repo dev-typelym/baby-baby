@@ -25,4 +25,6 @@ public class EventDTO {
     private CalendarDTO calendar;
     private MemberDTO company;
     private List<EventFileDTO> eventFileDTOS;
+
+    private CalendarDTO calendarDTO;
 }

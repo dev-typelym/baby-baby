@@ -602,7 +602,7 @@ body li, body ol, body ul {
     font-size: 15px;
 }
 .satisfaction_rating{
-    padding: 40px 40px 0;
+    padding: 40px 40px 40px;
     margin-top: 12px;
     background-color: #fff;
     display: block;
