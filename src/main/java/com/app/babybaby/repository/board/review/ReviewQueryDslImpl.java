@@ -72,9 +72,9 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
 //    [회원상세] 해당 이벤트의 리뷰 조회하기
     public List<Review> findAllReivewByEventId(Long eventId){
         return query.select(review)
-                .from(review.event)
-                .leftJoin(event)
-                .where(event.id.eq(eventId))
+                .from(review)
+                .leftJoin(review.event)
+                .where(review.event.id.eq(eventId))
                 .fetch();
     }
 
