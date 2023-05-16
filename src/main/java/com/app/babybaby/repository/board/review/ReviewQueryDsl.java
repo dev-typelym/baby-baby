@@ -15,6 +15,9 @@ public interface ReviewQueryDsl {
     public Page<Review> findReviewById_QueryDSL(Pageable pageable,Long memberId);
 
     public Slice<Review> findAllByMemberId_QueryDSL(Pageable pageable, Long memberId);
+    
+//    [회원상세] 해당 이벤트의 아이디로 모든 리뷰 가져오기
+        public List<Review> findAllReivewByEventId(Long eventId);
 
     //[관리자] 리뷰 게시판 목록 조회
     public Page<Review> findAllReviewBoardWithSearch_queryDSL(Pageable pageable, AdminReviewSearch adminReviewSearch, CategoryType eventCategory);

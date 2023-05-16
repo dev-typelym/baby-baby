@@ -67,8 +67,8 @@ public class ReviewRepositoryTests {
 
 
     @Test
-    public void findAllReivewByEventId(){
-        
+    public void findAllReviewByEventId(){
+        log.info(reviewRepository.findAllReivewByEventId(2L).toString());
     }
 
 }
