@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(exclude = "event, member")
+@ToString(exclude = {"event", "member"})
 @Table(name = "TBL_EVENT_LIKE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class EventLike {

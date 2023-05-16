@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(exclude = "member")
+@ToString(exclude = {"member"})
 @Table(name = "TBL_COUPON")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Coupon extends Period {
