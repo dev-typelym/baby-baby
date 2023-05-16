@@ -16,27 +16,21 @@ import java.util.Optional;
 public interface MemberQueryDsl {
 
     /* 이메일 중복 검사 */
-    public Optional<Member> overlapByMemberEmail_QueryDSL(String memberEmail);
+    public Long overlapByMemberEmail_QueryDSL(String memberEmail);
 
     /* 휴대폰 중복 검사 */
-    public Optional<Member> overlapByPhone_QueryDSL(String memberPhone);
+    public Long overlapByPhone_QueryDSL(String memberPhone);
 
     /* 닉네임 중복 검사 */
-    public Optional<Member> overlapByMemberNickname_QueryDSL(String memberNickname);
+    public Long overlapByMemberNickname_QueryDSL(String memberNickname);
 
     /* 비밀 번호, 이메일 찾기 */
-    public Optional<Member> findByMemberEmail_QueryDSL(String memberEmail);
+    public Member findByMemberEmail_QueryDSL(String memberEmail);
 
     /* 비밀 번호 변경 */
     public void updatePassword_QueryDSL(Long id, String memberPassword);
 
-    /* 이메일로 회원 정보 조회 */
-
-    /* 일반 회원 가입 */
-
-    /* 기업 회원 가입 */
-
-//   회원정보 수정
+    /* 회원정보 수정 */
     public void setMemberInfoMyId(Member member);
 
 //    ------------------------------------------- 관리자페이지 -------------------------------------------

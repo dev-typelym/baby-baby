@@ -51,7 +51,7 @@ public interface EventService {
     }
 
     default MemberDTO memberToDTO(Member Member){
-        return MemberDTO.builder()
+        return MemberDTO.DTOBuilder()
                 .memberAddress(Member.getMemberAddress())
                 .memberEmail(Member.getMemberEmail())
                 .memberFileOriginalName(Member.getMemberFileOriginalName())
