@@ -34,14 +34,14 @@ public class CompanyDTO {
     private AcceptanceType memberGuideStatus;
     private SleepType memberSleep;
     private GuideType memberGuideType;
-    private CategoryType memberGuideInterest;
+    private CategoryType eventCategory;
 
     private List<EventDTO> events;
 
     private List<ReviewDTO> reviews;
 
     @Builder
-    public CompanyDTO(Long memberId, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, List<EventDTO> events, List<ReviewDTO> reviews) {
+    public CompanyDTO(Long memberId, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType eventCategory, List<EventDTO> events, List<ReviewDTO> reviews) {
         this.memberId = memberId;
         this.memberEmail = memberEmail;
         this.memberName = memberName;
@@ -58,7 +58,7 @@ public class CompanyDTO {
         this.memberGuideStatus = memberGuideStatus;
         this.memberSleep = memberSleep;
         this.memberGuideType = memberGuideType;
-        this.memberGuideInterest = memberGuideInterest;
+        this.eventCategory = eventCategory;
         this.events = events;
         this.reviews = reviews;
     }

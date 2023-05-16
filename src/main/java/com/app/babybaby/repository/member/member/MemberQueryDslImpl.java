@@ -72,6 +72,14 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .execute();
     }
 
+//    --------------------------------------------회원 상세 페이지---------------------------------------------------
+public Member getCompanyInfoByMemberId_QueryDSL(Long memberId) {
+    return query.selectFrom(member)
+            .leftJoin(member.events)
+            .where(member.id.eq(memberId).and(member.memberType.eq(MemberType.COMPANY)))
+            .fetchOne();
+}
+
 
 //----------------------------------------------관리자 페이지 ------------------------------------------------------------
 

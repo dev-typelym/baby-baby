@@ -1,5 +1,6 @@
 package com.app.babybaby.controller.memberController;
 
+import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.service.member.member.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -103,5 +104,18 @@ public class MemberController {
 //        /*session.setAttribute("user", userVO);*/
 //        return new RedirectView("/main/");
 //    }
+
+    //    [회원 상세] 회원 상세 페이지가지
+    @GetMapping("details/{id}")
+    public String goDetails(@PathVariable Long id){
+        return "/member-detail/company-detail";
+    }
+    
+//    [회원 상세] 회사 정보 가져오기
+    @PostMapping("details/{id}")
+    @ResponseBody
+    public CompanyDTO getMemberInfoForDetail(@PathVariable Long id){
+        return memberService.getAllMemberInfo(id);
+    }
 
 }

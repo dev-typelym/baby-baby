@@ -75,6 +75,11 @@ public class MemberRepositoryTests {
         log.info(memberRepository.findById(1L).toString());;
     }
 
+    @Test
+    public void getCompanyInfoByMemberId_QueryDSLTest(){
+        log.info(memberRepository.getCompanyInfoByMemberId_QueryDSL(4L).toString());
+    }
+
 
 
 }

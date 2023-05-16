@@ -2,14 +2,19 @@ package com.app.babybaby.service.member.member;
 
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
+import com.app.babybaby.domain.calendarDTO.CalendarDTO;
+import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.review.Review;
+import com.app.babybaby.entity.calendar.Calendar;
+import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.service.board.event.EventService;
 import com.app.babybaby.service.board.event.EventServiceImpl;
 import com.app.babybaby.service.board.review.ReviewService;
+import com.app.babybaby.service.calendar.CalendarService;
 import com.app.babybaby.type.SleepType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +24,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 
 public interface MemberService extends UserDetailsService {
 
@@ -37,6 +41,15 @@ public interface MemberService extends UserDetailsService {
                 .build();
     }
 
+    default CalendarDTO toCalendarDTO(Calendar calendar){
+        return CalendarDTO.builder()
+                .calendarName(calendar.getCalendarName())
+                .endDate(calendar.getEndDate())
+                .startDate(calendar.getStartDate())
+                .id(calendar.getId())
+                .build();
+    }
+
     default EventDTO eventToDTO(Event event){
         return EventDTO.builder()
                 .id(event.getId())
@@ -46,6 +59,17 @@ public interface MemberService extends UserDetailsService {
                 .eventLocation(event.getEventLocation())
                 .eventPrice(event.getEventPrice())
                 .eventRecruitCount(event.getEventRecruitCount())
+                .calendar(toCalendarDTO(event.getCalendar()))
+                .eventFileDTOS(event.getEventFiles().stream().map(this::toEventFileDTO).collect(Collectors.toList()))
+                .build();
+    }
+
+    default EventFileDTO toEventFileDTO(EventFile eventFile){
+        return EventFileDTO.builder()
+                .fileOriginalName(eventFile.getFileOriginalName())
+                .filePath(eventFile.getFilePath())
+                .fileUUID(eventFile.getFileUUID())
+                .fileStatus(eventFile.getFileStatus())
                 .build();
     }
 
@@ -58,14 +82,16 @@ public interface MemberService extends UserDetailsService {
                 .build();
     }
 
+
+
     default CompanyDTO toCompanyDTO(Member member){
         return CompanyDTO.builder()
+                .memberPhone(member.getMemberPhone())
                 .memberNickname(member.getMemberNickname())
                 .memberAddress(member.getMemberAddress())
                 .memberEmail(member.getMemberEmail())
                 .memberGuideStatus(member.getMemberGuideStatus())
                 .memberHiSentence(member.getMemberHiSentence())
-                .memberGuideInterest(member.getMemberGuideInterest())
                 .memberId(member.getId())
                 .memberProfileOriginalName(member.getMemberProfileOriginalName())
                 .memberProfilePath(member.getMemberProfilePath())
