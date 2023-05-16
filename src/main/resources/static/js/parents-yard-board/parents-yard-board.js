@@ -3,20 +3,34 @@ const $itemWrap = $(".show-item-wrap");
 const SEARCH_URL = "/parentsYard/list/show";
 const $pageWrap = $(".paging-list");
 const $contentWrap = $(".parents-yard-board-item-link");
+const parentsBoardSearch = {
+    searchText : null,
+    categoryType : null,
+    searchTextOption : null
+};
 
+// 카테고리 별 정렬
 
 function getParensBoardList() {
+    const selectedOption = $('#filter-select option:selected');
+    const categoryType = selectedOption.data('categoryType');
+
+    parentsBoardSearch.categoryType = categoryType;
+
+
     $.ajax({
         url: `list/show/${globalThis.page}`,
-        success: function (data) {
+        data: {"parentsBoardSearch" : parentsBoardSearch},
+        success: function(data) {
             $pageWrap.empty();
             showPage(data);
             $contentWrap.empty();
             showList(data.content);
         }
-
-    })
+    });
 }
+
+
 
 globalThis.page = 1;
 
@@ -24,6 +38,8 @@ function findPage(page) {
     globalThis.page = page;
     getParensBoardList();
 }
+
+
 
 
 // 페이지 불러오기
@@ -112,7 +128,7 @@ function showList(boardDTOS) {
                     <div class="parents-yard-board-item-thumbnail-wrapper">
 <!--                        <span class="thumbnail">-->
                         <span>
-                            <img class="thumbnail"  src="/parentsBoardFiles/display?fileName=ParentsBoard/${board.parentsBoardFileDTOS[0].filePath}/_${board.parentsBoardFileDTOS[0].fileUUID}_${board.parentsBoardFileDTOS[0].fileOriginalName}">
+                            <img class="thumbnail"  src="/parentsBoardFiles/display?fileName=ParentsBoard/${board.parentsBoardFileDTOS[0].filePath}/${board.parentsBoardFileDTOS[0].fileUUID}_${board.parentsBoardFileDTOS[0].fileOriginalName}">
                         </span>
                     </div>
                 </div>
@@ -122,6 +138,7 @@ function showList(boardDTOS) {
     $contentWrap.append(content);
 
 }
+
 
 getParensBoardList();
 

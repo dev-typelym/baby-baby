@@ -5,6 +5,7 @@ import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDT
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.reply.parentsBoardReply.ParentsBoardReplyService;
+import com.app.babybaby.type.CategoryType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -35,13 +36,15 @@ public class ParentsBoardController {
     //    pageableDefault는 몇개 뿌릴지를 저기서 정해주는 것이다.
     @GetMapping("list/show/{page}")
     @ResponseBody
-    public Page<ParentsBoardDTO> getParentsBoards(@PathVariable("page") Integer page, ParentsBoardSearch parentsBoardSearch) {
+    public Page<ParentsBoardDTO> getParentsBoards(@PathVariable("page") Integer page, @RequestParam(value = "parentsBoardSearch", required = false) ParentsBoardSearch parentsBoardSearch) {
+
         Page<ParentsBoardDTO> result = parentsBoardService.getFindAllWithSearchParentsBoardList(
-                PageRequest.of(page - 1, 10)
-                , parentsBoardSearch
+                PageRequest.of(page - 1, 10),
+                parentsBoardSearch
         );
         return result;
     }
+
 
     //    부모님 마당 게시글 상세보기
     @GetMapping("detail/{id}")
@@ -57,6 +60,16 @@ public class ParentsBoardController {
         return parentsBoardReplyService.findAllReplyByBoardIdWithPaging(
                 PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize()), id
         );
+    }
+
+    @GetMapping("write")
+    public String getParentsBoardWrite() {
+        return "parents-yard-board/parents-yard-board-thumbnail";
+    }
+
+    @PostMapping("write")
+    public String getParentsBoardWritePost() {
+        return "parents-yard-board/parents-yard-board-thumbnail";
     }
 
 }
