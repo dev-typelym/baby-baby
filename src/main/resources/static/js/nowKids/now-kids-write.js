@@ -85,7 +85,7 @@ $('.select-menu-layout').on("click",".select-option",function(e) {
     
 //    왼쪽 카테고리 바꾸는 코드
     $($('.left-category-box')[0]).html(`<span class="nav-header-span">통솔자</span> <span class="nav-header-span">${$(this).attr('categoryType')}</span>`)
-
+    $('.play-number').html($('input[name=eventId]').val())
 });
 
 let kidsList = null;

@@ -596,7 +596,7 @@ button {
     cursor: pointer;
 }
 
-.table-display {
+[class^="table-display"] {
     display: none;
 }
 
@@ -651,6 +651,7 @@ button {
     align-items: center;
     font-family: Roboto, Noto Sans KR, -apple-system, Dotum, sans-serif;
     justify-content: center;
+    cursor: pointer;
 }
 
 .table-kids-count {
@@ -707,7 +708,8 @@ button {
     display: none;
     padding: 25px;
     /* text-align: center; */
-    width: 240px;
+    width: 530px;
+    /* 270px */
     height: 30px;
     background-color: black;
     color: #fff;
