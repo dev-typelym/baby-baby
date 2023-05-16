@@ -13,6 +13,7 @@ $('.wish-button').on('click', function(){
 let page = 0;
 const boardService = (() => {
     function getList(callback){
+        console.log(page)
         $.ajax({
             url: `/mypage/play-like/${page}`,
             type: 'post',
@@ -120,8 +121,10 @@ function appendList(eventLikeDTOS) {
 
 // 페이지 로딩 시 초기 리스트를 불러옴
 boardService.getList(function(eventLikeDTOS) {
+    page = 0;
     console.log(eventLikeDTOS.content);
     appendList(eventLikeDTOS);
+    console.log(page + "페이지 로딩 시 초기화면")
 });
 
 console.log("sadasdasd");
@@ -130,6 +133,21 @@ $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
         page++;
         boardService.getList(appendList);
-        console.log("페이지 들어옴")
+        console.log(page)
     }
 });
+
+// $(window).on('scroll', function() {
+//     let zoomLevel = $('body').css('zoom');
+//     if (zoomLevel === '0.8') {
+//         if (Math.ceil($(window).scrollTop()/(zoomLevel)) + Math.ceil($(window).height()/zoomLevel) + 5 > $(document).height() && page > 0) {
+//             console.log("스크롤")
+//             page++;
+//             console.log(page)
+//             boardService.getList(function(eventLikeDTOS) {
+//                 appendList(eventLikeDTOS);
+//             });
+//         }
+//     }
+// });
+
