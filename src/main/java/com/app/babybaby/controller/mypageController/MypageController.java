@@ -1,17 +1,10 @@
 package com.app.babybaby.controller.mypageController;
 
-import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
-import com.app.babybaby.domain.boardDTO.eventDTO.PageRequestDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
 import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
-import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDTO;
-import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.member.Kid;
-import com.app.babybaby.repository.member.member.MemberRepository;
-import com.app.babybaby.repository.purchase.purchase.PurchaseRepository;
-import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.service.like.eventLike.EventLikeService;
@@ -94,14 +87,14 @@ public class MypageController {
 //    결제 목록 페이지
     @GetMapping("payment")
     public String getPayment(Model model,HttpSession httpSession,@PageableDefault(size = 5)Pageable pageable){
-        model.addAttribute("payment",purchaseService.findAllByMemberPaymentWithPage(pageable, 1L));
+//        model.addAttribute("payment",purchaseService.findAllByMemberPaymentWithPage(pageable, 1L));
         return "myPage/myPage-payment";
     }
 
     @ResponseBody
-    @PostMapping("payment")
-    public Page<PurchaseDTO> getPayment(Pageable pageable){
-       Page<PurchaseDTO> purchaseDTO = purchaseService.findAllByMemberPaymentWithPage(pageable, 1L);
+    @PostMapping("payment/{page}")
+    public Page<PurchaseDTO> getPayment(Pageable pageable,@PathVariable("page") Integer page){
+       Page<PurchaseDTO> purchaseDTO = purchaseService.findAllByMemberPaymentWithPage(PageRequest.of(page-1, 10), 1L);
         return purchaseDTO;
     }
 
