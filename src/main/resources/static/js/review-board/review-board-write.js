@@ -41,13 +41,15 @@ let $selectOption2 = $(".select-option2");
 $selectOption2.each((i, e) => {
 
     $(e).click(() => {
-        $selectOption.css("color", "#0c0c0c");
-        $(".select-placeholder2").css("color","#0c0c0c"); 
-        $(".select-placeholder2").text($(e).text()); 
+        $selectOption2.css("color", "#0c0c0c");
+        $(".select-placeholder2").css("color","#0c0c0c");
+        $(".select-placeholder2").text($(e).text());
         $(e).css("color", "#e1e1e1");
-        $selectKidsCount.hide();       
+        $selectKidsCount.hide();
     });
 });
+
+
 
 const $inputTitle = $(".title");
 const $maxCount = $(".text-max-count");
