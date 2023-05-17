@@ -13,22 +13,22 @@
   </head>
   <body>
   <div th:insert="~{/components/header:: header}"></div>
-    <main>
+    <main th:object="${paymentDetail}">
       <div class="main-content">
         <div class="main-content-inner">
           <div>
             <div class="white-background">
               <div class="title-area">
                 <div class="order-info">
-                  <span>주문번호 230426-174637-0001</span>
-                  <span>2023-04-26 17:48 구매</span>
+                  <span >주문번호 <span th:text="*{id}"></span> </span>
+                  <span th:text="*{#temporals.format(purchaseRegisterDate,'yyyy-MM-dd HH:mm')}" >2023-04-26 17:48 구매</span>
                 </div>
                 <div class="order-name-area">
                   <div class="order-name-inner">
                     <a href="#" class="order-name"
-                      >놀이동산 체험학습 놀러가요~</a
+                       th:text="*{event.boardTitle}" >놀이동산 체험학습 놀러가요~</a
                     >
-                    <div class="company-name">와디즈 주식회사</div>
+                    <div class="company-name" th:text="*{member.memberName}" >와디즈 주식회사</div>
                   </div>
                 </div>
               </div>
@@ -42,15 +42,15 @@
                   <div class="payment-info">
                     <dl class="price">
                       <dt>체험학습 금액</dt>
-                      <dd><span>45000원</span></dd>
+                      <dd><span th:text="*{event.eventPrice}">45000원</span><span>원</span> </dd>
                     </dl>
 
                     <dl class="price">
                       <dt>참여 아이 수</dt>
-                      <dd><span>3명</span></dd>
+                      <dd><span><span th:text="*{purchaseCount}"></span><span>명</span></span></dd>
                     </dl>
 
-                    <dl class="price">
+                    <dl class="price" th:if="*{coupon != null}">
                       <dt>쿠폰 할인 금액</dt>
                       <dd><span>-5000원</span></dd>
                     </dl>
@@ -59,7 +59,7 @@
                   <div class="last-price-area">
                     <dl class="price">
                       <dt>최종 결제 금액</dt>
-                      <dd class="last-price">150000원</dd>
+                      <dd class="last-price"><span th:text="*{event.eventPrice * purchaseCount}">원</span><span>원</span></dd>
                     </dl>
 
                     <dl class="card-info">
@@ -73,8 +73,8 @@
                     <div class="product-info-wrapper">
                       <div class="product-info">
                         <div class="">놀이동산 체험학습 놀러가요~</div>
-                        <div class="product-quantity">3명</div>
-                        <div class="product-price">155000원</div>
+                        <div class="product-quantity"><span th:text="*{purchaseCount}"></span><span>명</span></div>
+                        <div class="product-price" ><span th:text="*{event.eventPrice}"></span><span>원</span></div>
                       </div>
                       <!-- 이벤트 써ㅓㅁ네일 -->
                       <div class="product-thumbnail">
@@ -94,12 +94,12 @@
                       <dl class="maker-item">
                         <dt class="maker-label"><span>기업 이름</span></dt>
                         <dd class="maker-value">
-                          <span title="와디즈 주식회사">와디즈 주식회사</span>
+                          <span title="와디즈 주식회사" th:text="*{member.memberName}">와디즈 주식회사</span>
                         </dd>
                       </dl>
                       <dl class="maker-item">
                         <dt class="maker-label"><span>연락처</span></dt>
-                        <dd class="maker-value"><span>01012341234</span></dd>
+                        <dd class="maker-value"><span th:text="*{member.memberPhone}">01012341234</span></dd>
                       </dl>
                     </div>
                   </div>

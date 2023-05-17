@@ -12,6 +12,7 @@ public interface PurchaseService {
     //    나의 쿠폰 조회
     public Page<PurchaseDTO> findAllByMemberPaymentWithPage(Pageable pageable, Long memberId);
 
+    public Purchase findMemberIdByPaymentDetail(Long purchaseId);
 
     default PurchaseDTO PurchaseToDTO(Purchase purchase){
         return PurchaseDTO.builder()
