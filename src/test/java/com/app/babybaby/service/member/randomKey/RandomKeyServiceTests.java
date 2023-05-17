@@ -32,8 +32,12 @@ public class RandomKeyServiceTests {
 
         randomKeyRepository.save(randomKey);
 
-        log.info(memberRepository.findMemberByRandomKey(randomKey.getRandomKey()).toString());
+        log.info(memberRepository.findMemberByMemberEmailAndRandomKey(randomKey.getMember().getMemberEmail(), randomKey.getRandomKey()).toString());
 
     }
 
+    @Test
+    public void getLatestRK(){
+        log.info(randomKeyRepository.getLatestRandomKey(1L).toString());
+    }
 }

@@ -18,7 +18,6 @@ public class RandomKey {
     private String randomKey;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     public String getTmpPassword() {

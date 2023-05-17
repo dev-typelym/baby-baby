@@ -62,7 +62,19 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .join(randomKey1.member, member)
                 .where(randomKey1.randomKey.eq(randomKey))
                 .fetchOne();
-    };
+    }
+
+    /* 랜덤키로 회원 찾기 */
+    @Override
+    public Member findMemberByMemberEmailAndRandomKey(String memberEmail, String randomKey) {
+        return query.select(member)
+                .from(randomKey1)
+                .join(randomKey1.member, member)
+                .where(randomKey1.randomKey.eq(randomKey),randomKey1.member.memberEmail.eq(memberEmail))
+                .fetchOne();
+    }
+
+    ;
 
     /*회원정보 수정*/
     @Override
