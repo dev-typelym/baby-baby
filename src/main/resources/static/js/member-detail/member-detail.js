@@ -40,11 +40,12 @@ $.ajax({
     type: 'POST',
     success: function (generalMember) {
         console.log(generalMember)
-
         $('.company_title_strong').html(generalMember.memberNickname)
         $('.company_title_p').html(generalMember.memberHiSentence)
         $('.supporter_value').html(generalMember.followingCount)
         $('.supporter_value').html(generalMember.followCount)
+        $('.proceeding_span').html(generalMember.parentsBoards.length + '건')
+        $(".plus_satisfaction").html(generalMember.reviews.length + "개 평가")
 
         let parentsBoardsText = '';
 
@@ -55,17 +56,21 @@ $.ajax({
                                         <div class="real_content_div">
                                                 <div class="project_card">
                                                     <a class="project_card_a">
-                                                        <div class="project_card_img" style="background-image: url('http://www.christiantoday.co.kr/files/article/db/2010/9/20/1284941413_9ad64ba26b.jpg?w=654');"></div>
+                                                        <div class="project_card_img" 
+                                                           data-event-filePath="${e.filePath}"
+                                                           data-event-fileOriginalName="${e.fileOriginalName}"
+                                                           data-event-fileUUID="${e.fileUUID}"
+                                                        ></div>
                                                     </a>
                                                     <div class="project_card_div">
-                                                        <div class="air_ear">[온 가족이 함께하는] 진흙놀이</div>
+                                                        <div class="air_ear">${e.eventTitle}</div>
                                                         <div class="participation">
                                                             <div class="event-info-wrap">
                                                                 <div class="proceeding_span total_amount">
-                                                                    <span>아이들과 함께하는 진흙놀이 즐겁고 행복한 하루를 보내세요</span>
+                                                                    <span>${e.eventContent}</span>
                                                                 </div>
                                                                 <div class="proceeding_span total_amount write-date" style="color: #000;">
-                                                                    <span>2022.02.13</span>
+                                                                    <span>${formatDate(e.parentsBoardUpdateDate)}</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -89,7 +94,7 @@ $.ajax({
                     `
             <li class="review_li">
                                     <div class="page_content_ul reviews-container">
-                                        <span class="real_name">${e.boardTitle}</span>
+                                        <span class="real_name">${e.eventTitle}</span>
                                         <div style="display: inline-block; position: relative;">
                                             <div class="rating_star">
                                                 <button class="one_rating_star">
@@ -137,4 +142,83 @@ $.ajax({
         }
     }
 })
-  
+
+
+
+
+/* 별점 생성 코드 */
+function addStarsToContainer(starCount) {
+    let coloredStar = `
+    <div class="rating_star">
+      <button class="one_rating_star">
+        <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+          <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+        </svg>
+        </button>
+    </div>
+  `;
+
+    let unColoredStar = `
+    <div class="rating_star">
+      <button class="one_down_star">
+      <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+             <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+        </svg>
+</button>
+    </div>
+  `;
+
+    let stars = '';
+
+    // 채워진 별점 생성
+    for (let i = 0; i < starCount; i++) {
+        stars += coloredStar;
+    }
+
+    // 빈 별점 생성
+    for (let i = starCount; i < 5; i++) {
+        stars += unColoredStar;
+    }
+
+    return stars;
+}
+
+/* localDateTime을 Date로 깔끔하게 만드는 코드 */
+function formatDate(originalDate) {
+    let date = new Date(originalDate);
+    let formattedDate = date.toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    });
+
+    // 마지막 점 제거
+    formattedDate = formattedDate.replace(/\.$/, "");
+
+    return formattedDate;
+}
+
+
+function getEventImg(selector) {
+    $(selector).each(function () {
+        let eventPath = $(this).data('event-file-Path');
+        let eventUUID = $(this).data('event-file-UUID');
+        let eventOriginalName = $(this).data('event-file-OriginalName');
+        let eventURL = '/nowKidFiles/display?fileName = Event/' + eventPath + '/' + eventUUID + '_' + eventOriginalName;
+
+        // 데이터를 변수에 저장
+        $(this).css('background-image', 'url(' + eventURL + ')');
+    });
+}
+
+function getProfileImg(selector) {
+    $(selector).each(function () {
+        let profilePath = $(this).data('member-profile-path');
+        let profileUUID = $(this).data('member-profile-uuid');
+        let profileFileOriginalName = $(this).data('member-profile-original-name');
+        let profileURL = '/nowKidFiles/display?fileName=NowKids/' + profilePath + '/' + profileUUID + '_' + profileFileOriginalName;
+
+        // 데이터를 변수에 저장
+        $(this).css('background-image', 'url(' + profileURL + ')');
+    });
+}
