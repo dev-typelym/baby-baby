@@ -17,6 +17,11 @@ public class MemberServiceTests {
 
     @Test
     public void getAllMemberInfoTest() {
-        log.info(memberService.getAllMemberInfo(1L).toString());
+        log.info(memberService.getAllCompanyInfo(1L).toString());
+    }
+
+    @Test
+    public void getAllUserInfoTest(){
+        log.info(memberService.getAllUserInfo(1L).toString());
     }
 }

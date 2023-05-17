@@ -1,5 +1,6 @@
 package com.app.babybaby.domain.memberDTO;
 
+import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.entity.alert.Alert;
 import com.app.babybaby.entity.board.event.Event;
@@ -52,6 +53,10 @@ public class MemberDTO {
 
     private List<ReviewDTO> reviews;
 
+    private List<ParentsBoardDTO> parentsBoards;
+
+    private Long followerCount;
+    private Long followingCount;
 //    public static class MemberDTOBuilder {
 //        private Long id;
 //        private String  memberEmail;
@@ -216,7 +221,8 @@ public class MemberDTO {
 //    }
 
     @Builder(builderClassName = "DTOBuilder", builderMethodName = "DTOBuilder")
-    public MemberDTO(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName, List<Alert> alerts, List<Coupon> coupons, LocalDateTime uploadTime) {
+
+    public MemberDTO(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName, List<Alert> alerts, List<Coupon> coupons, LocalDateTime uploadTime, List<ReviewDTO> reviews, List<ParentsBoardDTO> parentsBoards, Long followerCount, Long followingCount) {
         this.id = id;
         this.memberEmail = memberEmail;
         this.memberName = memberName;
@@ -241,5 +247,9 @@ public class MemberDTO {
         this.alerts = alerts;
         this.coupons = coupons;
         this.uploadTime = uploadTime;
+        this.reviews = reviews;
+        this.parentsBoards = parentsBoards;
+        this.followerCount = followerCount;
+        this.followingCount = followingCount;
     }
 }

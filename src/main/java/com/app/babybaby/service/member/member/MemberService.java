@@ -28,13 +28,21 @@ import java.util.stream.Collectors;
 public interface MemberService extends UserDetailsService {
 
     public Optional<Member> getMemberById(Long memberId);
+    
+//      [회원 상세] 회사 정보 가져오기
+    public CompanyDTO getAllCompanyInfo(Long companyId);
 
-    public CompanyDTO getAllMemberInfo(Long companyId);
+    public MemberDTO getAllUserInfo(Long memberId);
 
     default MemberDTO toMemberDTO(Member member){
         return MemberDTO.DTOBuilder()
-                .memberNickname(member.getMemberNickname())
                 .id(member.getId())
+                .memberSleep(member.getMemberSleep())
+                .memberHiSentence(member.getMemberHiSentence())
+                .memberNickname(member.getMemberNickname())
+                .memberAddress(member.getMemberAddress())
+                .memberEmail(member.getMemberEmail())
+                .memberNickname(member.getMemberNickname())
                 .memberProfileUUID(member.getMemberProfileUUID())
                 .memberProfilePath(member.getMemberProfilePath())
                 .memberProfileOriginalName(member.getMemberProfileOriginalName())
@@ -98,7 +106,7 @@ public interface MemberService extends UserDetailsService {
                 .memberProfileUUID(member.getMemberProfileUUID())
                 .memberName(member.getMemberName())
                 .memberPhone(member.getMemberPhone())
-                .memberRole(member.getMemberRole())
+                .memberType(member.getMemberType())
                 .memberSleep(member.getMemberSleep())
                 .memberRole(member.getMemberRole())
                 .events(

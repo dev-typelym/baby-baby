@@ -42,7 +42,7 @@ let memberId = segments.pop();
 let index = 0;
 
 $.ajax({
-  url: '/member/details/' + memberId,
+  url: '/member/details/companies/' + memberId,
   type: 'POST',
   success: function(companyInfo) {
     console.log(companyInfo);
@@ -54,7 +54,10 @@ $.ajax({
     $($(".satisfaction_amount")[0]).text(companyInfo.reviews.length)
     $($(".satisfaction_amount")[1]).text(companyInfo.events.length)
 
-    let avgScore =  getAvgScore(companyInfo.reviews)
+    let avgScore = getAvgScore(companyInfo.reviews);
+    if (isNaN(avgScore)) {
+      avgScore = "아직 후기가 없습니다";
+    }
 
     let markerContentText =
         `
@@ -83,7 +86,6 @@ $.ajax({
                             </div>
                         </div>
         `;
-
 
     /* 기업 정보 끝 */
 
@@ -142,32 +144,31 @@ $.ajax({
     let nowEvents = [];
     let endedEvents = [];
     let upcomingEvents = [];
+    if(companyInfo.length > 0) {
+      companyInfo.events.forEach(event => {
+        const eventStatus = classifyEvent(event.startDate, event.endDate);
+        const eventObj = {
+          eventId: event.id,
+          eventTitle: event.boardTitle,
+          eventFileUUID: event.eventFileDTOS[0].fileUUID,
+          eventFileStatus: event.eventFileDTOS[0].fileStatus,
+          eventFilePath: event.eventFileDTOS[0].filePath,
+          eventFileOriginalName: event.eventFileDTOS[0].fileOriginalName,
+          eventStartDate: formatDate(event.calendar.startDate),
+          eventEndDate: formatDate(event.calendar.endDate),
+          location: event.eventLocation,
+          price: event.eventPrice,
 
-    companyInfo.events.forEach(event => {
-      const eventStatus = classifyEvent(event.startDate, event.endDate);
-      const eventObj = {
-        eventId : event.id,
-        eventTitle: event.boardTitle,
-        eventFileUUID: event.eventFileDTOS[0].fileUUID,
-        eventFileStatus: event.eventFileDTOS[0].fileStatus,
-        eventFilePath : event.eventFileDTOS[0].filePath,
-        eventFileOriginalName : event.eventFileDTOS[0].fileOriginalName,
-        eventStartDate : formatDate(event.calendar.startDate),
-        eventEndDate : formatDate(event.calendar.endDate),
-        location: event.eventLocation,
-        price: event.eventPrice,
-
-      };
-
-      if (eventStatus === "진행 중인 행사") {
-        nowEvents.push(eventObj);
-      } else if (eventStatus === "이미 지나간 행사") {
-        endedEvents.push(eventObj);
-      } else if (eventStatus === "예정된 행사") {
-        upcomingEvents.push(eventObj);
-      }
-    });
-
+        };
+        if (eventStatus === "진행 중인 행사") {
+          nowEvents.push(eventObj);
+        } else if (eventStatus === "이미 지나간 행사") {
+          endedEvents.push(eventObj);
+        } else if (eventStatus === "예정된 행사") {
+          upcomingEvents.push(eventObj);
+        }
+      });
+    }
     console.log(nowEvents)
     console.log(endedEvents)
     console.log(upcomingEvents)
@@ -175,12 +176,13 @@ $.ajax({
     let nowEventsText = '';
     let endedEventText = '';
     let upcommingText = '';
+    /* 수정필요 -- 링크 넣기 */
     nowEvents.forEach((e,i) => {
       nowEventsText +=
           `
         <div class="real_content_div">
                                                 <div class="project_card">
-                                                    <a class="project_card_a">
+                                                    <a class="project_card_a" href="">
                                                         <div class="project_card_img"
                                                         data-event-file-Path="${e.eventFilePath}"
                                                         data-event-file-OriginalName="${e.eventFileOriginalName}"

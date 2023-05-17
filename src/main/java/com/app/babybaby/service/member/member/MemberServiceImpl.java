@@ -6,8 +6,11 @@ import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
+import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
 import com.app.babybaby.repository.board.review.ReviewRepository;
+import com.app.babybaby.repository.member.follow.FollowRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
+import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.type.MemberType;
 import com.app.babybaby.type.Role;
@@ -16,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,14 +44,20 @@ public class MemberServiceImpl implements MemberService {
 
     private final EventRepository eventRepository;
 
+    private final FollowRepository followRepository;
+
+    private final ParentsBoardService parentsBoardService;
+
+    private final ParentsBoardRepository parentsBoardRepository;
+
     @Override
     public Optional<Member> getMemberById(Long memberId) {
         return memberRepository.findById(memberId);
 
     }
-
+//    [회원 상세] 회사의 정보 가져오기
     @Override
-    public CompanyDTO getAllMemberInfo(Long companyId) {
+    public CompanyDTO getAllCompanyInfo(Long companyId) {
        Member member = memberRepository.findById(companyId).get();
        CompanyDTO companyDTO = toCompanyDTO(member);
         List<ReviewDTO> reviews = companyDTO.getEvents().stream()
@@ -56,6 +66,22 @@ public class MemberServiceImpl implements MemberService {
                 .collect(Collectors.toList());
         companyDTO.setReviews(reviews);
        return companyDTO;
+    }
+    
+//    [회원 상세] 유저의 회사타입이 아닌 일반 유저 상세페이지
+    public MemberDTO getAllUserInfo(Long memberId){
+        Member member = memberRepository.findById(memberId).get();
+        MemberDTO memberDTO = toMemberDTO(member);
+        memberDTO.setFollowerCount(followRepository.findFollowerMemberCountByMemberId_QueryDSL(memberId));
+        memberDTO.setFollowingCount(followRepository.findFollowerMemberCountByMemberId_QueryDSL(memberId));
+
+        memberDTO.setParentsBoards(
+                followRepository.findAllParentsBoardByMemberId_QueryDSL(memberId).stream().map(parentsBoardService::toParentsBoardDTO).collect(Collectors.toList())
+        );
+        memberDTO.setReviews(
+                followRepository.findALlReviewByMemberId_QueryDSL(memberId).stream().map(reviewService::ReviewToDTO).collect(Collectors.toList())
+        );
+        return memberDTO;
     }
 
     @Override
