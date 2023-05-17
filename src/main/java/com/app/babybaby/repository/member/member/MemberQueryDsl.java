@@ -27,11 +27,12 @@ public interface MemberQueryDsl {
     /* 비밀 번호, 이메일 찾기 */
     public Member findByMemberEmail_QueryDSL(String memberEmail);
 
-    /* 비밀 번호 변경 */
-    public void updatePassword_QueryDSL(Long id, String memberPassword);
+    /* 비밀 번호 변경 계정 찾기 */
+    public Member findMemberByRandomKey(String randomKey);
 
     /* 회원정보 수정 */
     public void setMemberInfoMyId(Member member);
+
 
 
 //    ---------------------------------------------회원 상세 -----------------------------------------

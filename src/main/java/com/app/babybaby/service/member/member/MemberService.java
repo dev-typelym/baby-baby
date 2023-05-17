@@ -134,22 +134,13 @@ public interface MemberService extends UserDetailsService {
     public Member findByMemberEmail(String memberEmail);
 
     /* 비밀 번호 변경 */
-    public void updatePassword(Long id, String memberPassword);
+    public void updatePassword(Long id, String memberPassword, PasswordEncoder passwordEncoder);
 
     /* 회원 탈퇴 */
     public void updateMemberStatus(Long id, SleepType memberSleep);
 
     // 회원 정보 수정
-    public void setMemberInfoMyId(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
-
-
-    /* 카카오 토큰 접근 */
-    public String getKaKaoAccessToken(String code, String type);
-
-    /* 카카오 사용자 정보 불러오기 */
-//    public Member getKakaoInfo(String token) throws Exception;
-
-    public List<Member> getMemberList(Long id);
+    public void setMemberInfoById(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
 
     default Member memberDTOToEntity(MemberDTO memberDTO) {
         return Member.joinMemberBuilder()
@@ -193,6 +184,5 @@ public interface MemberService extends UserDetailsService {
                 .memberFileUUID(member.getMemberFileUUID())
                 .build();
     }
-
 
 }

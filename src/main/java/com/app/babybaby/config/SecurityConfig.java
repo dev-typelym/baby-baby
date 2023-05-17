@@ -1,5 +1,6 @@
 package com.app.babybaby.config;
 
+import com.app.babybaby.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -25,7 +26,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
     private static final String MAIN_PATH = "/main/**";
     private static final String ADMIN_PATH = "/admin/**";
-    private static final String MYPAGE_PATH = "//**";
+    private static final String MYPAGE_PATH = "/mypage/**";
 
     private static final String BOARD_PATH = "/board/**";
     private static final String IGNORE_FAVICON = "/favicon.ico";
@@ -42,7 +43,7 @@ public class SecurityConfig {
     private final AuthenticationFailureHandler authenticationFailureHandler;
     private final UserDetailsService userDetailsService;
 
-//    비밀번호 암호화
+    //    비밀번호 암호화
     @Bean
     public PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
 
@@ -51,7 +52,6 @@ public class SecurityConfig {
 //        WebSecurity에서 관여하지 않을 경로
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON) //favicon은 필터에서 제외
-                .mvcMatchers(MAIN_PATH)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()); //static 경로도 필터에서 제외
     }
 
@@ -59,9 +59,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(MAIN_PATH).authenticated()
-//                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
-//                .antMatchers(BOARD_PATH).hasRole(Role.GENERAL.name())
+                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
+                .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
                 .exceptionHandling()

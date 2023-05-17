@@ -37,12 +37,14 @@ public class MemberController {
         memberService.joinGeneral(memberDTO, passwordEncoder);
         return new RedirectView("/member/login");
     }
+
     /* 회원가입후 login 페이지로 이동*/
     @PostMapping("join/company")
     public RedirectView joinCompany(MemberDTO memberDTO) {
         memberService.joinCompany(memberDTO, passwordEncoder);
         return new RedirectView("/member/login");
     }
+
     /* 로그아웃 */
     @GetMapping("logout")
     public void goToLogout() {;}
@@ -69,69 +71,7 @@ public class MemberController {
     @GetMapping("login")
     public void goToLogin(){;}
 
-//    /* 카카오 회원가입 */
-//    @GetMapping("kakao")
-//    public RedirectView kakaoJoin(String code, RedirectAttributes redirectAttributes) throws Exception {
-//        String token = memberService.getKaKaoAccessToken(code, "join");
-//        MemberDTO kakaoInfo = memberService.getKakaoInfo(token);
-//
-//        kakaoInfo.setMemberJoinType(MemberJoinType.카카오);
-//
-//        MemberDTO memberDTO = memberService.getMemberByEmail(kakaoInfo.getMemberEmail());
-//
-//        //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
-//        if (memberDTO == null || memberDTO.getMemberJoinType() != MemberJoinType.카카오) {
-//            redirectAttributes.addFlashAttribute("kakaoInfo", kakaoInfo.getMemberEmail());
-//            return new RedirectView("/member/join");
-//        }
-//
-//        return new RedirectView("/member/join-select?join=false");
-//    }
-//
-//    /* 카카오 로그인 */
-//    @GetMapping("kakao-login")
-//    public RedirectView kakaoLogin(String code) throws Exception {
-//        /*String userIdentification = null;*/
-//
-//        String token = memberService.getKaKaoAccessToken(code, "login");
-//        memberService.getKakaoInfo(token);
-//
-//        MemberDTO kakaoInfo = memberService.getKakaoInfo(token);
-//        MemberDTO memberDTO = memberService.getMemberByEmail(kakaoInfo.getMemberEmail());
-//
-//        if(memberDTO == null || memberDTO.getMemberJoinType() != MemberJoinType.카카오){
-//            return new RedirectView("/member/login?check=false");
-//        }
-//
-//        /*session.setAttribute("user", userVO);*/
-//        return new RedirectView("/main/");
-//    }
-
-//    //    [회원 상세] 회사 상세 페이지가지
-//    @GetMapping("company/{id}")
-//    public String goCompanyDetails(@PathVariable Long id){
-//        return "/member-detail/company-detail";
-//    }
-//
-//    //    [회원 상세] 회원 상세 페이지가지
-//    @GetMapping("generalMember/{id}")
-//    public String goUserDetails(@PathVariable Long id){
-//        return "/member-detail/member-detail";
-//    }
-//
-////    [회원 상세] 회사 정보 가져오기
-//    @PostMapping("companies/{memberId}")
-//    @ResponseBody
-//    public CompanyDTO getCompanyInfoForDetail(@PathVariable Long memberId){
-//        return memberService.getAllCompanyInfo(memberId);
-//    }
-//
-////    [회원 상세] 일반 유저 정보 가져오기
-//    @PostMapping("generalMember/{memberId}")
-//    @ResponseBody
-//    public MemberDTO getAllMemberInfoForDetail(@PathVariable Long memberId){
-//        return memberService.getAllUserInfo(memberId);
-//    }
+/* ****************************** 멤버 로그인 / 회원 가입 끝 *************************************************** */
 
     @GetMapping("detail/{memberId}")
     public RedirectView goDetail(@PathVariable Long memberId){

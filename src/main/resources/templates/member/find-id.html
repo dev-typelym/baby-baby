@@ -49,9 +49,6 @@
 </div>
 <!-- header 끝 -->
     <div id="page-container">
-        <form id="forwardForm" method="get">
-            <input type="hidden" id="returnURL" name="returnURL">
-        </form>
         <div class="account-find">
             <div class="page-header">
                 <h2 class="find-title">아이디∙비밀번호 찾기</h2>
@@ -73,38 +70,21 @@
                         <br>
                         가입여부를 확인해드립니다.
                     </p>
-                    <form action=""name="login" method="post" class="" id="form-findId" onsubmit="checkEmail(); return false;">
+                    <div id="form-findId">
                         <div class="label-hidden field">
-                            <label class="text-hidden" for="userName">이메일 계정</label>
+                            <label class="text-hidden" for="memberEmail">이메일 계정</label>
                             <div class="input-email">
-                                <input id="userName" class="input-text" type="email" name="memberEmail" value="" placeholder="이메일 계정" onkeydown="hitEnterkey(event);">
+                                <input id="memberEmail" class="input-text" type="email" name="memberEmail" value="" placeholder="이메일 계정">
                             </div>
                             <p class="helper error"></p>
                         </div>
-                        <button id="" class="primary block button check" type="button" onclick="showPage()">
+                        <button id="find-id" class="primary block button check" type="button" >
                             확인하기
                         </button>
-                        <button id="" class="primary block button re-check" type="button" onclick="showPage()" style="display: none;">
-                            다시 확인
-                        </button>
-                    </form>
+                    </div>
                 </div>
                 <!-- 확인하기 버튼 후 페이지 시작 -->
                 <div class="common id-result" style="display: none;">
-                    <div class="email-wrap">
-                        <p class="headline">pdy0722@gmail.com</p>
-                        <p class="result-text">
-                            회원으로 등록된 이메일 아이디입니다.
-                            <br>
-                            해당 이메일로 로그인하고 와디즈를 이용하세요!
-                        </p>
-                        <p class="" style="display: none;">는 와디즈에 등록되어 있지 않은 계정입니다.</p>
-                        <div class="inner-container">
-                            <button type="button" class="primary block button" style="display: none;">회원가입하러 가기</button>
-                            <button type="button" class="primary block button">로그인</button>
-                            <button type="button" class="block button" onclick="showRePage()">다시 확인</button>
-                        </div>
-                    </div>
                 </div>
                 <!-- 확인하기 버튼 후 페이지 끝 -->
             </div>
