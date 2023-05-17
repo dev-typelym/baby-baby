@@ -37,7 +37,7 @@ public interface EventService {
                 .eventLocation(event.getEventLocation())
                 .eventPrice(event.getEventPrice())
                 .eventRecruitCount(event.getEventRecruitCount())
-                .eventFileDTOS(event.getEventFiles().stream().map(eventFile -> eventFileToDTO(eventFile)).collect(Collectors.toList()))
+                .files(event.getEventFiles().stream().map(eventFile -> eventFileToDTO(eventFile)).collect(Collectors.toList()))
                 .build();
         }
 

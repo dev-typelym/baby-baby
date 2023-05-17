@@ -24,7 +24,9 @@ public class EventDTO {
     private EventBoardSearch eventBoardSearch;
     private CalendarDTO calendar;
     private MemberDTO company;
-    private List<EventFileDTO> eventFileDTOS;
+
+    private EventFileDTO mainFile;
+    private List<EventFileDTO> files;
 
     private CalendarDTO calendarDTO;
 }
