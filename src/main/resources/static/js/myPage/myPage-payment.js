@@ -74,7 +74,7 @@
         contentType: "application/json;charset=utf-8",
         success: function(purchaseDTOS){
           console.log("들어왓다")
-          if (purchaseDTOS.length === 0) { // 불러올 데이터가 없으면
+          if (purchaseDTOS.content.length === 0) { // 불러올 데이터가 없으면
             console.log("막힘")
             $(window).off('scroll'); // 스크롤 이벤트를 막음
             return;
@@ -133,7 +133,8 @@
                           `
       ;
     });
-    if (purchaseDTOS.length === 0) { // 불러올 데이터가 없으면
+    if (purchaseDTOS.content.length === 0) { // 불러올 데이터가 없으면
+      console.log("막힘?")
       $(window).off('scroll'); // 스크롤이벤트 x
     }
     $('.order-lists').append(boardText3);
