@@ -11,9 +11,9 @@ const parentsBoardSearch = {
 
 // 카테고리 별 정렬
 
-function getParensBoardList() {
+function getParentsBoardList() {
     $.ajax({
-        url: `list/show/${globalThis.page}`,
+        url: `/parentsYard/list/show/${globalThis.page}`,
         data: parentsBoardSearch,
         success: function (data) {
             console.log(data)
@@ -40,7 +40,7 @@ $("#filter-select").on("change", function () {
 
     parentsBoardSearch.categoryType = val;
 
-    getParensBoardList();
+    getParentsBoardList();
 });
 
 // 검색 조건 별 수행 민구버젼
@@ -59,30 +59,31 @@ $("#filter-select").on("change", function () {
 //     getParensBoardList();
 // });
 
-let $selectedValue;
 
-$('.filter-for-serach').change(function() {
-    $selectedValue = $(this).val();
-    console.log($selectedValue);
-});
-
+// 동한 버전
 $("form[name='search-form']").on("submit", function (e) {
     e.preventDefault();
     let val;
+    let searchSelected = $(".filter-for-serach").val();
 
     let $search = $(".search-input");
     if ($search.val() === "") return;
 
     val = $search.val();
-    if ($selectedValue === "title") {
+    console.log(searchSelected);
+    if (searchSelected === "title") {
         parentsBoardSearch.searchTitle = val;
-    } else if ($selectedValue === "titleContents") {
+    } else if (searchSelected === "titleContents") {
         parentsBoardSearch.searchContent = val;
         parentsBoardSearch.searchTitle = val;
     }
-
-    getParensBoardList();
+    console.log(parentsBoardSearch.searchContent + "777");
+    console.log(parentsBoardSearch.searchTitle + "888");
+    getParentsBoardList();
+    parentsBoardSearch.searchContent = "null";
+    parentsBoardSearch.searchTitle = "null";
 });
+
 
 
 // 페이지 불러오기
@@ -188,7 +189,7 @@ function showList(boardDTOS) {
 }
 
 
-getParensBoardList();
+getParentsBoardList();
 
 
 // $(document).ready(function() {

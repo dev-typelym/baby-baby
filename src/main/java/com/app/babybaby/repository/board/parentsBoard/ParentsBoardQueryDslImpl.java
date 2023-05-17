@@ -29,15 +29,17 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
     @Override
     public Page<ParentsBoard> findAllWithSearch_QueryDsl(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
-//        searchText : null,
-//                categoryType : null,
-//                searchTextOption : null
-
-        log.info(parentsBoardSearch.toString());
         BooleanExpression categoryType = parentsBoardSearch.getCategoryType() == null ? null : parentsBoard.event.category.eq(parentsBoardSearch.getCategoryType());
         BooleanExpression searchTitle = parentsBoardSearch.getSearchTitle() == null ? null : parentsBoard.boardTitle.contains(parentsBoardSearch.getSearchTitle());
         BooleanExpression searchContent = parentsBoardSearch.getSearchContent() == null ? null : parentsBoard.boardContent.contains(parentsBoardSearch.getSearchContent());
-        BooleanExpression searchAll = parentsBoardSearch.getSearchAll() == null ? null : parentsBoard.boardTitle.contains(parentsBoardSearch.getSearchAll()).or(parentsBoard.boardContent.contains(parentsBoardSearch.getSearchAll()));
+        BooleanExpression searchAll = parentsBoardSearch.getSearchContent() == null && parentsBoardSearch.getSearchTitle() == null
+                ? null
+                : parentsBoard.boardContent.contains(parentsBoardSearch.getSearchContent())
+                .or(parentsBoard.boardTitle.contains(parentsBoardSearch.getSearchTitle()));
+
+        log.info(categoryType + "카테고리임~~~~");
+        log.info(searchTitle + "검색제목임~~~~");
+        log.info(searchContent + "검색내용임~~~~");
 
 //       전체 목록 불러오기(페이징)
         List<ParentsBoard> foundParentsBoard = query.select(parentsBoard)
@@ -48,7 +50,7 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
                 .fetchJoin()
                 .orderBy(parentsBoard.id.desc())
 //                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
-                .where(searchTitle,searchAll,searchContent,categoryType)
+                .where(searchAll,categoryType)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -56,9 +58,9 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
         Long count = query.select(parentsBoard.count())
                 .from(parentsBoard)
 //                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
-                .where(searchAll,searchContent,searchTitle)
+                .where(categoryType,searchAll)
                 .fetchOne();
-
+        log.info("asdsadasdd" + foundParentsBoard);
         return new PageImpl<>(foundParentsBoard, pageable, count);
     }
 

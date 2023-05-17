@@ -10,5 +10,4 @@ public class ParentsBoardSearch {
     private CategoryType categoryType;
     private String searchTitle;
     private String searchContent;
-    private String searchAll;
 }
