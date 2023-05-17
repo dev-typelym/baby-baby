@@ -2,7 +2,9 @@ package com.app.babybaby.controller.memberController;
 
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.service.member.member.MemberService;
+import com.app.babybaby.type.MemberType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -105,17 +107,60 @@ public class MemberController {
 //        return new RedirectView("/main/");
 //    }
 
-    //    [회원 상세] 회원 상세 페이지가지
-    @GetMapping("details/{id}")
-    public String goDetails(@PathVariable Long id){
+//    //    [회원 상세] 회사 상세 페이지가지
+//    @GetMapping("company/{id}")
+//    public String goCompanyDetails(@PathVariable Long id){
+//        return "/member-detail/company-detail";
+//    }
+//
+//    //    [회원 상세] 회원 상세 페이지가지
+//    @GetMapping("generalMember/{id}")
+//    public String goUserDetails(@PathVariable Long id){
+//        return "/member-detail/member-detail";
+//    }
+//
+////    [회원 상세] 회사 정보 가져오기
+//    @PostMapping("companies/{memberId}")
+//    @ResponseBody
+//    public CompanyDTO getCompanyInfoForDetail(@PathVariable Long memberId){
+//        return memberService.getAllCompanyInfo(memberId);
+//    }
+//
+////    [회원 상세] 일반 유저 정보 가져오기
+//    @PostMapping("generalMember/{memberId}")
+//    @ResponseBody
+//    public MemberDTO getAllMemberInfoForDetail(@PathVariable Long memberId){
+//        return memberService.getAllUserInfo(memberId);
+//    }
+
+    @GetMapping("detail/{memberId}")
+    public RedirectView goDetail(@PathVariable Long memberId){
+        Member member = memberService.getMemberById(memberId).get();
+        return member.getMemberType() == MemberType.COMPANY ?
+                new RedirectView("/member/details/companies/" + memberId) : new RedirectView("/member/details/generals/" + memberId);
+    }
+
+    @GetMapping("/details/companies/{memberId}")
+    public String goCompany(@PathVariable Long memberId){
         return "/member-detail/company-detail";
     }
-    
-//    [회원 상세] 회사 정보 가져오기
-    @PostMapping("details/{id}")
-    @ResponseBody
-    public CompanyDTO getMemberInfoForDetail(@PathVariable Long id){
-        return memberService.getAllMemberInfo(id);
+
+    @GetMapping("/details/generals/{memberId}")
+    public String goUser(@PathVariable Long memberId){
+        return "/member-detail/member-detail";
     }
+
+    @PostMapping("details/companies/{memberId}")
+    @ResponseBody
+    public CompanyDTO goCompanyRest(@PathVariable Long memberId){
+        return memberService.getAllCompanyInfo(memberId);
+    }
+
+    @PostMapping("details/generals/{memberId}")
+    @ResponseBody
+    public MemberDTO goGeneralRest(@PathVariable Long memberId){
+        return memberService.getAllUserInfo(memberId);
+    }
+
 
 }

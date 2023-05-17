@@ -794,13 +794,13 @@ cursor: pointer;
     flex-direction: column;
 }
 
-.lecture-image{
-    background-image:(url(https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/253/format/jpg/quality/95/) 1x, url(https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/506/format/jpg/quality/95/) 2x);
+.lecture-image {
+    background-image: url('https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/253/format/jpg/quality/95/');
     transform: scale(1);
     opacity: 1;
     display: inline-block;
     width: 100%;
-    }
+}
 
 .lecture-image img{
     width: 100%;
