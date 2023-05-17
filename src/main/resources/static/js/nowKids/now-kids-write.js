@@ -75,7 +75,7 @@ $('.select-menu-layout').on("click",".select-option",function(e) {
         $($(".select-menu-layout").children()[j]).css("color","black");
     }
     //그리고 내가 클릭한 것의 색 변경
-    $($(".select-placeholder")[i]).text($(e.currentTarget).text());
+    $($(".select-placeholder")[0]).text($(e.currentTarget).text());
     $(e.currentTarget).css("color", "#e1e1e1");
 
     $(".select-menu-box").hide();

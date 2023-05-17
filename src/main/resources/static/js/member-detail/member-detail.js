@@ -42,10 +42,33 @@ $.ajax({
         console.log(generalMember)
         $('.company_title_strong').html(generalMember.memberNickname)
         $('.company_title_p').html(generalMember.memberHiSentence)
-        $('.supporter_value').html(generalMember.followingCount)
-        $('.supporter_value').html(generalMember.followCount)
         $('.proceeding_span').html(generalMember.parentsBoards.length + '건')
         $(".plus_satisfaction").html(generalMember.reviews.length + "개 평가")
+
+
+        let followCountText =
+            `
+                     <div>
+                            <span class="supporter_icon" aria-hidden="true"></span>
+                            <span class="supporter_value">
+                                팔로잉
+                            </span>
+                            <span class="supporter_value">
+                                ${generalMember.followingCount} 명
+                            </span>
+                        </div>
+                        <div>
+                            <span class="supporter_icon" aria-hidden="true"></span>
+                            <span class="supporter_value">
+                                팔로워
+                            </span>
+                            <span class="supporter_value">
+                                ${generalMember.followerCount} 명
+                            </span>
+                        </div>
+                    </div>
+            `
+        $('.main_content_second').html(followCountText)
 
         let parentsBoardsText = '';
 
@@ -63,11 +86,11 @@ $.ajax({
                                                         ></div>
                                                     </a>
                                                     <div class="project_card_div">
-                                                        <div class="air_ear">${e.eventTitle}</div>
+                                                        <div class="air_ear">${e.parentsBoardTitle}</div>
                                                         <div class="participation">
                                                             <div class="event-info-wrap">
                                                                 <div class="proceeding_span total_amount">
-                                                                    <span>${e.eventContent}</span>
+                                                                    <span>${e.parentsBoardContent}</span>
                                                                 </div>
                                                                 <div class="proceeding_span total_amount write-date" style="color: #000;">
                                                                     <span>${formatDate(e.parentsBoardUpdateDate)}</span>
@@ -94,47 +117,12 @@ $.ajax({
                     `
             <li class="review_li">
                                     <div class="page_content_ul reviews-container">
-                                        <span class="real_name">${e.eventTitle}</span>
+                                        <span class="real_name">${e.boardTitle}</span>
                                         <div style="display: inline-block; position: relative;">
-                                            <div class="rating_star">
-                                                <button class="one_rating_star">
-                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
-                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="rating_star">
-                                                <button class="one_rating_star">
-                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
-                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="rating_star">
-                                                <button class="one_rating_star">
-                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
-                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="rating_star">
-                                                <button class="one_rating_star">
-                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
-                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="rating_star">
-                                                <button class="one_rating_star">
-                                                    <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
-                                                        <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
+                                            ${addStarsToContainer(e.reviewScore)}
                                         </div>
                                     </div>
-                                    <p class="like_p">좋아요~~~~~~~~~~~~~~~~~~~~~~~~~\`</p>
-                                    <span class="review_span">나로우주센터 우주과학관</span>
+                                    <p class="like_p">${e.eventContent}</p>
                                 </li>
                     `;
             })
@@ -143,8 +131,7 @@ $.ajax({
     }
 })
 
-
-
+/*<span class="review_span">${e.eventType}</span>*/
 
 /* 별점 생성 코드 */
 function addStarsToContainer(starCount) {
@@ -222,3 +209,33 @@ function getProfileImg(selector) {
         $(this).css('background-image', 'url(' + profileURL + ')');
     });
 }
+
+
+// 팔로잉
+let $followBtn = $('.follow_button')
+
+$followBtn .click(function () {
+    let isFollowed = $(this).attr('follow')
+    console.log(typeof(isFollowed))
+    $.ajax({
+        url: '/follows/save',
+        type: 'POST',
+        data: {memberId:memberId, isFollowed : isFollowed},
+        success: function () {
+            if(isFollowed == 'false'){
+                $('.follow_button_span svg').hide()
+                $followBtn.css('color', 'black')
+                $followBtn.css('backgroundColor', "white")
+                $('.follow_button_span span').text("팔로잉중")
+                $('.follow_button').attr('follow', 'true')
+            } else if(isFollowed == 'true'){
+                $('.follow_button_span svg').show()
+                $followBtn.css('color', 'white')
+                $followBtn.css('backgroundColor', "#00c4c4")
+                $('.follow_button_span span').text("팔로우")
+                $('.follow_button').attr('follow', 'false')
+            }
+
+        }
+    })
+})

@@ -16,8 +16,16 @@ public class FollowServiceTests {
     @Autowired
     FollowRepository followRepository;
 
+    @Autowired
+    FollowService followService;
+
     @Test
     public void findAllParentsBoardByMemberId_QueryDSLTest(){
         followRepository.findAllParentsBoardByMemberId_QueryDSL(1L);
+    }
+
+    @Test
+    public void deleteFollowTest(){
+        followService.deleteFollow(7L, 13L);
     }
 }

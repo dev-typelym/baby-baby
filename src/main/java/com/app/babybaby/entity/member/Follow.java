@@ -23,7 +23,7 @@ public class Follow {
     private Member follower;
 
     public Follow(Member following, Member follower) {
-        this.following = following;
         this.follower = follower;
+        this.following = following;
     }
 }
