@@ -177,8 +177,9 @@
                     </div>
                 </div>
                 <div class="file-modal-content-box">
-                    <form class="input-dataset" action="" method="post" >
+                    <form class="input-dataset" name="write" th:action="@{/parentsYard/write}" method="post" th:object="${parentsBoardDTO}">
                         <input type="file" style="display: none;">
+
                     </form>
                     <div class="file-modal-content-layout">
                         <div>

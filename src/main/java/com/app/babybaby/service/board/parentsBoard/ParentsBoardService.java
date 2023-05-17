@@ -24,6 +24,9 @@ public interface ParentsBoardService {
     //    내가쓴 게시글
     public Page<ParentsBoardDTO> getFindParentBoardListByMemberId(Pageable pageable,Long memberId);
 
+//    파일 업로드 저장
+    public void save(ParentsBoardDTO parentsBoardDTO);
+
     default ParentsBoardDTO toParentsBoardDTO(com.app.babybaby.entity.board.parentsBoard.ParentsBoard parentsBoard) {
         return ParentsBoardDTO.builder()
                 .id(parentsBoard.getId())
@@ -41,6 +44,7 @@ public interface ParentsBoardService {
                         .map(this::parentsBoardFileToDTO).collect(Collectors.toList()))
                 .build();
     }
+
 
     default ParentsBoardFileDTO parentsBoardFileToDTO(ParentsBoardFile file) {
         return ParentsBoardFileDTO.builder()
@@ -62,5 +66,15 @@ public interface ParentsBoardService {
 //                .parentsBoardId(reply.getParentsBoard().getId())
 //                .build();
 //    }
+
+//    파일 업로드용 빌더
+    default ParentsBoard toParentsBoardDTOEntity(ParentsBoardDTO parentsBoardDTO) {
+        return ParentsBoard.builder()
+                .id(parentsBoardDTO.getId())
+                .representFileUUID(parentsBoardDTO.getRepresentFileUUID())
+                .representFileOrginName(parentsBoardDTO.getRepresentFileOriginName())
+                .representFilePath(parentsBoardDTO.getRepresentFilePath())
+                .build();
+    }
 
 }

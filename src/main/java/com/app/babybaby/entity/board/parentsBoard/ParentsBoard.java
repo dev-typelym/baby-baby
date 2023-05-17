@@ -5,10 +5,7 @@ import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -54,4 +51,14 @@ public class ParentsBoard extends BoardInfo {
         this.member = member;
         this.parentsBoardReplies = parentsBoardReplies;
     }
+
+//    부모님 마당 파일 업로드 용 빌더
+    @Builder
+    public ParentsBoard(Long id, String boardTitle, String boardContent, List<ParentsBoardFile> parentsBoardFiles, Event event, Member member, List<ParentsBoardReply> parentsBoardReplies, String representFileUUID, String representFileOrginName, String representFilePath) {
+        super(id, boardTitle, boardContent);
+        this.representFileUUID = representFileUUID;
+        this.representFileOrginName = representFileOrginName;
+        this.representFilePath = representFilePath;
+    }
+
 }
