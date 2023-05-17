@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import java.util.List;
 import java.util.Optional;
@@ -58,5 +59,12 @@ public class AskQueryDslImpl implements AskQueryDsl {
         query.delete(ask)
                 .where(ask.id.in(askIds))
                 .execute();
+    }
+
+    
+//    내가쓴 문의 목록
+    @Override
+    public Slice<Ask> findAllAskByMemberId(Long memberId, Pageable pageable, AdminAskSearch AdminAskSearch) {
+        return null;
     }
 }
