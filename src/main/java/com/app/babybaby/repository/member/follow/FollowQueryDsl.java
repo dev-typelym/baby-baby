@@ -10,7 +10,7 @@ import org.springframework.data.domain.Slice;
 import java.util.List;
 
 public interface FollowQueryDsl {
-    public Slice<Member> findFollowersByMemberId(Long memberId);
+    public Slice<Member> findFollowersByMemberId(Pageable pageable, Long memberId);
 
     public Slice<Member> findFollowingsByMemberId(Pageable pageable, Long memberId);
 

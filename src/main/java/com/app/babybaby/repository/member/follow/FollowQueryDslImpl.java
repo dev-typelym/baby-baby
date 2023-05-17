@@ -42,6 +42,7 @@ public class FollowQueryDslImpl implements FollowQueryDsl {
         return new SliceImpl<>(memberList, pageable, hasNext);
     }
 
+
     @Override
     public Slice<Member> findFollowingsByMemberId(Pageable pageable, Long memberId) {
         List<Member> memberList = query.select(follow.following)
