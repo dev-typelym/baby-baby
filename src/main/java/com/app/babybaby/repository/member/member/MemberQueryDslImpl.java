@@ -5,6 +5,7 @@ import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.member.QGuide;
 import com.app.babybaby.entity.member.QMember;
+import com.app.babybaby.entity.member.QRandomKey;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.entity.purchase.coupon.QCoupon;
 import com.app.babybaby.search.admin.AdminMemberSearch;
@@ -23,6 +24,7 @@ import java.util.Optional;
 import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.member.QFollow.follow;
 import static com.app.babybaby.entity.member.QMember.member;
+import static com.app.babybaby.entity.member.QRandomKey.randomKey1;
 import static com.app.babybaby.entity.purchase.coupon.QCoupon.coupon;
 
 @RequiredArgsConstructor
@@ -53,11 +55,14 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         return query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne();
     }
 
-    /* 비번 변경 */
-    @Override
-    public void updatePassword_QueryDSL(Long id, String memberPassword) {
-        query.update(member).set(member.memberPassword, memberPassword).where(member.id.eq(id)).execute();
-    }
+    /* 랜덤키로 회원 찾기 */
+    public Member findMemberByRandomKey(String randomKey){
+        return query.select(member)
+                .from(randomKey1)
+                .join(randomKey1.member, member)
+                .where(randomKey1.randomKey.eq(randomKey))
+                .fetchOne();
+    };
 
     /*회원정보 수정*/
     @Override
@@ -72,7 +77,8 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .execute();
     }
 
-//    --------------------------------------------회원 상세 페이지---------------------------------------------------
+
+    //    --------------------------------------------회원 상세 페이지---------------------------------------------------
 public Member getCompanyInfoByMemberId_QueryDSL(Long memberId) {
     return query.selectFrom(member)
             .leftJoin(member.events)

@@ -46,6 +46,7 @@ let identificationFlag = false;
 $identificationInput.on("blur",function(){
 	$.ajax({
 		url:"/members/checkEmail" ,
+		method: 'post',
 		data: {"memberEmail": $identificationInput.val()},
 		success: function(result){
 			let message;
@@ -209,6 +210,7 @@ $nameInput.on("blur", function() {
 
 	$.ajax({
 		url:"/members/checkNickname",
+		method: 'post',
 		data: {"memberNickname": $nameInput.val()},
 		success: function(result){
 			let message;
@@ -261,6 +263,7 @@ $phoneInput.on("blur", function() {
 	var phoneInputVal = $phoneInput.val();
 	$.ajax({
 		url:"/members/checkPhone" ,
+		method: 'post',
 		data: {"memberPhone": $phoneInput.val()},
 		success: function(result){
 			let message;
