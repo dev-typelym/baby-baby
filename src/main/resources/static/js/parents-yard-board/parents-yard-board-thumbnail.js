@@ -33,11 +33,10 @@ $fileRegisterButton.click(() => {
 });
 
 let file;
-
-// upload ajax로 받아온 데이터
-let getOrgName = []
-let getPath = []
-let getUuid = []
+// upload ajax로 받아온 대표이미지 데이터
+let getOrgName = [];
+let getPath = [];
+let getUuid = [];
 
 
 $fileInput.change((event) => {
@@ -54,10 +53,11 @@ $fileInput.change((event) => {
         $fileModal.hide();
     }
     formData.append("file", file)
-    console.log(formData.get("file"))
     getFilePath(formData)
+    setFile();
 
     reader.readAsDataURL(file);
+
 });
 
 // 파일을 올리면 path 받아오는 ajax
@@ -68,16 +68,34 @@ function getFilePath(formData) {
         data: formData,
         contentType: false,
         processData: false,
+        async: false,
+        enctype: 'multipart/form-data', // 멀티파트 요청 설정
         success: function (data) {
-            console.log(data)
-            getOrgName = data.orgNames
-            getUuid = data.uuids
-            getPath = data.paths
+            console.log(data);
+            getOrgName = data.orgNames;
+            getUuid = data.uuids;
+            getPath = data.paths;
         }
-    })
+    });
 }
 
-// 입
+const $form = $('.input-dataset');
+
+function setFile() {
+    let text = "";
+    text = `
+        <input type="hidden" name = "representFileOriginName" value= "${getOrgName[0]}" th:field="*{representFileOriginName}"/>
+        <input type="hidden" name = "representFilePath" value= "${getPath[0]}" th:field="*{representFilePath}"/>
+        <input type="hidden" name = "representFileUUID" value= "${getUuid[0]}" th:field="*{representFileUUID}"/>
+    `;
+    $form.append(text);
+}
+
+const $confirmButton = $('.confirm-button');
+
+$confirmButton.on('click', function () {
+    document.write.submit();
+})
 
 // 이미지 삭제 버튼
 const $imageCancelButton = $(".image-cancel");

@@ -4,24 +4,19 @@ const SEARCH_URL = "/parentsYard/list/show";
 const $pageWrap = $(".paging-list");
 const $contentWrap = $(".parents-yard-board-item-link");
 const parentsBoardSearch = {
-    searchText : null,
-    categoryType : null,
-    searchTextOption : null
+    searchTitle: null,
+    categoryType: null,
+    searchContent: null
 };
 
 // 카테고리 별 정렬
 
 function getParensBoardList() {
-    const selectedOption = $('#filter-select option:selected');
-    const categoryType = selectedOption.data('categoryType');
-
-    parentsBoardSearch.categoryType = categoryType;
-
-
     $.ajax({
         url: `list/show/${globalThis.page}`,
-        data: {"parentsBoardSearch" : parentsBoardSearch},
-        success: function(data) {
+        data: parentsBoardSearch,
+        success: function (data) {
+            console.log(data)
             $pageWrap.empty();
             showPage(data);
             $contentWrap.empty();
@@ -30,8 +25,6 @@ function getParensBoardList() {
     });
 }
 
-
-
 globalThis.page = 1;
 
 function findPage(page) {
@@ -39,7 +32,57 @@ function findPage(page) {
     getParensBoardList();
 }
 
+/* 카테고리 바꿨을 때 */
+$("#filter-select").on("change", function () {
+    let val;
+    if ($(this).val() === "RECENT") val = null;
+    val = $(this).val();
 
+    parentsBoardSearch.categoryType = val;
+
+    getParensBoardList();
+});
+
+// 검색 조건 별 수행 민구버젼
+// $("form[name='search-form']").on("submit", function (e) {
+//     e.preventDefault();
+//     let val;
+//
+//     // 빈 문자열이면 검색 수행 안됨
+//     let $search = $(".search-input");
+//     if($search.val() === "") return;
+//
+//     val = $search.val();
+//
+//     parentsBoardSearch.searchTitle = val;
+//
+//     getParensBoardList();
+// });
+
+let $selectedValue;
+
+$('.filter-for-serach').change(function() {
+    $selectedValue = $(this).val();
+    console.log($selectedValue);
+});
+
+$("form[name='search-form']").on("submit", function (e) {
+    e.preventDefault();
+    let val;
+
+    let $search = $(".search-input");
+    if ($search.val() === "") return;
+
+    val = $search.val();
+    if ($selectedValue === "title") {
+        parentsBoardSearch.searchTitle = val;
+    } else if ($selectedValue === "titleContents") {
+        parentsBoardSearch.searchContent = val;
+        parentsBoardSearch.searchTitle = val;
+    }
+
+    getParensBoardList();
+});
 
 
 // 페이지 불러오기
@@ -126,10 +169,15 @@ function showList(boardDTOS) {
                         </span>
                     </div>
                     <div class="parents-yard-board-item-thumbnail-wrapper">
-<!--                        <span class="thumbnail">-->
+            `
+            if(board.parentsBoardFileDTOS.length != 0) {
+                content += `
                         <span>
                             <img class="thumbnail"  src="/parentsBoardFiles/display?fileName=ParentsBoard/${board.parentsBoardFileDTOS[0].filePath}/${board.parentsBoardFileDTOS[0].fileUUID}_${board.parentsBoardFileDTOS[0].fileOriginalName}">
                         </span>
+                        `
+            }
+                content += `
                     </div>
                 </div>
             </div>
@@ -142,3 +190,42 @@ function showList(boardDTOS) {
 
 getParensBoardList();
 
+
+// $(document).ready(function() {
+//     let selectedValue;
+//     let searchKeyword;
+//     $('.filter-for-serach').change(function() {
+//         selectedValue = $(this).val();
+//         console.log(selectedValue);
+//     });
+
+    // $('.search-input').on('input', function() {
+    //     searchKeyword = $(this).val();
+    //     console.log(searchKeyword);
+    // }).on('keydown', function(event) {
+    //     if (event.key === 'Enter') {
+    //         event.preventDefault();
+    //     }
+    // });
+
+    /* 함수 사용부 */
+    /* 어쩌고.click.function
+    * searchAjax(selectedValue, searchKeyword) */
+//     const $searchButton = $('.go-search-btn');
+//     $searchButton.on('click', function () {
+//         searchAjax(selectedValue, searchKeyword);
+//     })
+// });
+
+/* ajax */
+// function searchAjax(selectedValue, searchKeyword) {
+//     $.ajax({
+//         url: `list/show/${globalThis.page}`,
+//         type: "get",
+//         data: {selectedValue : selectedValue, searchKeyword : searchKeyword},
+//         success: function (data) {
+//             console.log(data.content);
+//
+//         }
+//     })
+// }
