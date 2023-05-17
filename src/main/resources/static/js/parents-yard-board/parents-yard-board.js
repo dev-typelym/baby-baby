@@ -29,17 +29,31 @@ globalThis.page = 1;
 
 function findPage(page) {
     globalThis.page = page;
-    getParensBoardList();
+    getParentsBoardList();
 }
 
-/* 카테고리 바꿨을 때 */
+/* 카테고리 바꿨을 때 */ /*민구버전*/
+// $("#filter-select").on("change", function () {
+//     let val;
+//     if ($(this).val() === "RECENT") val = null;
+//     val = $(this).val();
+//
+//     parentsBoardSearch.categoryType = val;
+//
+//     getParentsBoardList();
+// });
+
+console.log(parentsBoardSearch.categoryType+"카아테에고오리이");
+/* 카테고리 바꿨을 때 */ /*동한 버전*/
 $("#filter-select").on("change", function () {
     let val;
-    if ($(this).val() === "RECENT") val = null;
-    val = $(this).val();
-
+    if ($(this).val() === "ALL") {
+        val = null;
+    } else {
+        val = $(this).val();
+    }
+    console.log(val + "123456789");
     parentsBoardSearch.categoryType = val;
-
     getParentsBoardList();
 });
 
@@ -65,14 +79,14 @@ $("form[name='search-form']").on("submit", function (e) {
     e.preventDefault();
     let val;
     let searchSelected = $(".filter-for-serach").val();
-
     let $search = $(".search-input");
     if ($search.val() === "") return;
 
     val = $search.val();
-    console.log(searchSelected);
+
     if (searchSelected === "title") {
         parentsBoardSearch.searchTitle = val;
+        parentsBoardSearch.searchContent = "null";
     } else if (searchSelected === "titleContents") {
         parentsBoardSearch.searchContent = val;
         parentsBoardSearch.searchTitle = val;
@@ -80,10 +94,14 @@ $("form[name='search-form']").on("submit", function (e) {
     console.log(parentsBoardSearch.searchContent + "777");
     console.log(parentsBoardSearch.searchTitle + "888");
     getParentsBoardList();
-    parentsBoardSearch.searchContent = "null";
-    parentsBoardSearch.searchTitle = "null";
+    // parentsBoardSearch.searchContent = "null";
+    // parentsBoardSearch.searchTitle = "null";
 });
 
+// 검색 옵션 바뀔 때마다 검색어 창 비우기
+$(".filter-for-serach").on("change", function () {
+    $(".search-input").val("");
+});
 
 
 // 페이지 불러오기
