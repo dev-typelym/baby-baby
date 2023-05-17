@@ -21,14 +21,16 @@ public class ReviewDTO {
     private int ReviewScore;
     private List<ReviewFileDTO> reviewFiles;
     private String boardTitle;
+    private String boardContent;
     private Long memberId;
 
     @Builder
-    public ReviewDTO(Long id, int reviewScore, List<ReviewFileDTO> reviewFiles, String boardTitle, Long memberId) {
+    public ReviewDTO(Long id, int reviewScore, List<ReviewFileDTO> reviewFiles, String boardTitle, String boardContent, Long memberId) {
         this.id = id;
         ReviewScore = reviewScore;
         this.reviewFiles = reviewFiles;
         this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
         this.memberId = memberId;
     }
 }
