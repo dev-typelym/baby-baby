@@ -13,4 +13,6 @@ public interface PurchaseQueryDsl {
     @EntityGraph
     public Page<Purchase> findAllByMemberPaymentWithPage_QueryDSL(Pageable pageable, Long memberId);
     public Page<Purchase> findAllByMemberPaymentFileWithPage_QueryDSL(Pageable pageable, Long memberId);
+
+    public Purchase findMemberIdByPaymentDetail_QueryDSL(Long PurchaseId);
 }

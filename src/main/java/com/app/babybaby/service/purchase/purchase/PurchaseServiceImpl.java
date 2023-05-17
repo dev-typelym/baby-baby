@@ -28,4 +28,10 @@ public class PurchaseServiceImpl implements PurchaseService {
         return new PageImpl<>(purchaseDTOS,pageable,purchases.getTotalElements());
     }
 
+//    구매 상세
+    @Override
+    public Purchase findMemberIdByPaymentDetail(Long purchaseId) {
+        return purchaseRepository.findMemberIdByPaymentDetail_QueryDSL(purchaseId);
+    }
+
 }

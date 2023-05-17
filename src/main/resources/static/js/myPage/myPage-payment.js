@@ -94,7 +94,7 @@
     let boardText3 = '';
     console.log(purchaseDTOS.content);
     purchaseDTOS.content.forEach(purchase => {
-      console.log(purchaseDTOS);
+      console.log(purchase.id);
       let date = new Date(purchase.purchaseRegisterDate); // assuming eventLike.registerDate is a valid date string
       let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
 
@@ -102,10 +102,8 @@
                                          <li class="one-list">
                                 <div class="list-inner">
                                 <dl class="order-info">
-                                <dt>주문번호</dt>
-                                <dd>230426-174637-0001</dd>
-                                <dt>주문 일자</dt>
-                            <dd style="text-align: right;">${formattedDate}</dd>
+                                <dd> 주문 번호 : ${purchase.id}</dd>
+                            <dd style="text-align: right;"> 주문 일시 : ${formattedDate}</dd>
                             </dl>
                             
                             <div class="product-info">
@@ -122,7 +120,7 @@
                                 </dl>
                                 <div class="more-info">
                                 <span>${purchase.memberName}</span>
-                                <span class="more-text">상세 보기 <span class="more-text-icon"> > </span></span>
+                                <span class="more-text" onclick="location.href ='/mypage/payment/detail/${purchase.id}'">상세 보기 <span class="more-text-icon"> > </span></span>
                             </div>
                             
                             </div>

@@ -48,5 +48,15 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
         return new PageImpl<>(purchases, pageable, count);
     }
 
+    @Override
+    public Purchase findMemberIdByPaymentDetail_QueryDSL(Long PurchaseId) {
+        return query.select(purchase)
+                .from(purchase)
+                .leftJoin(purchase.member).fetchJoin()
+                .leftJoin(purchase.event).fetchJoin()
+                .where(purchase.id.eq(PurchaseId))
+                .fetchOne();
+    }
+
 
 }

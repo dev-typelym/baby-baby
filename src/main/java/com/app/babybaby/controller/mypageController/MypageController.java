@@ -54,11 +54,16 @@ public class MypageController {
 
 //    캘린더 페이지
     @GetMapping("profile")
-    public String getInfo(){
+    public String getPofile(){
         return "myPage/myPage-profile";
     }
 
 
+//    회원정보수정페이지
+    @GetMapping("info")
+    public String getInfo(){
+        return "myPage/myPage-info";
+    }
 
 
 //    1:1 문의 목록
@@ -83,17 +88,21 @@ public class MypageController {
         model.addAttribute("coupon",couponService.findCouponByMemberId(pageable,1L));
         return "myPage/myPage-coupon";
     }
-    @GetMapping("payment/detail")
-    public String getPaymentDetail(){
+
+//  결제 상세 페이지
+    @GetMapping("payment/detail/{purchaseId}")
+    public String getPaymentDetail(Model model,@PathVariable(value = "purchaseId") Long purchaseId){
+        model.addAttribute("paymentDetail",purchaseService.findMemberIdByPaymentDetail(purchaseId));
+        log.info(purchaseId.toString());
         return "myPage/payment-detail";
     }
-
-
+    
 //    결제 목록 페이지
     @GetMapping("payment")
-    public String getPayment(){
+    public String getPayment(Model model){
         return "myPage/myPage-payment";
     }
+
 
     @ResponseBody
     @PostMapping("payment/{page}")
@@ -119,6 +128,7 @@ public class MypageController {
         return reviewDTOS;
     }
 
+
     //  내가좋아요한 이벤트게시글 페이지
     @GetMapping("play-like")
     public String getLike(){
@@ -132,8 +142,6 @@ public class MypageController {
         log.info(eventLikeDTOS + "컨트롤러");
         return eventLikeDTOS;
     }
-
-
 
 
 //    내가쓴 부모님 마당
