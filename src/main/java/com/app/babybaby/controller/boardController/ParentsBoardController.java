@@ -36,8 +36,7 @@ public class ParentsBoardController {
     //    pageableDefault는 몇개 뿌릴지를 저기서 정해주는 것이다.
     @GetMapping("list/show/{page}")
     @ResponseBody
-    public Page<ParentsBoardDTO> getParentsBoards(@PathVariable("page") Integer page, @RequestParam(value = "parentsBoardSearch", required = false) ParentsBoardSearch parentsBoardSearch) {
-
+    public Page<ParentsBoardDTO> getParentsBoards(@PathVariable("page") Integer page, ParentsBoardSearch parentsBoardSearch, String keyword) {
         Page<ParentsBoardDTO> result = parentsBoardService.getFindAllWithSearchParentsBoardList(
                 PageRequest.of(page - 1, 10),
                 parentsBoardSearch
@@ -68,7 +67,9 @@ public class ParentsBoardController {
     }
 
     @PostMapping("write")
-    public String getParentsBoardWritePost() {
+    public String getParentsBoardWritePost(ParentsBoardDTO parentsBoardDTO) {
+        log.info("============================================" + parentsBoardDTO);
+        parentsBoardService.save(parentsBoardDTO);
         return "parents-yard-board/parents-yard-board-thumbnail";
     }
 

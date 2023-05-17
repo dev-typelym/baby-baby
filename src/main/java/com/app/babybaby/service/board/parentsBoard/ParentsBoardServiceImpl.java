@@ -56,4 +56,9 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
         return new PageImpl<>(parentsBoardDTOS, pageable, boards.getTotalElements());
     }
 
+    @Override
+    public void save(ParentsBoardDTO parentsBoardDTO) {
+        parentsBoardRepository.save(toParentsBoardDTOEntity(parentsBoardDTO));
+    }
+
 }

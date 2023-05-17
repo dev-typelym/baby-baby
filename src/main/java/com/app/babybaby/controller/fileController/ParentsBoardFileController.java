@@ -26,6 +26,7 @@ public class ParentsBoardFileController {
         List<String> uuids = new ArrayList<>();
         List<String> filePaths = new ArrayList<>();
         List<String> fileOrgNames = new ArrayList<>();
+        log.info(uuids.toString() + "sadsad");
         String path = ABSOLUTE_PATH + "/" + getPath();
         String filePath = "";
         File file = new File(path);

@@ -7,9 +7,6 @@ import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
 import com.app.babybaby.search.admin.AdminParentsBoardSearch;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.CategoryType;
-import com.app.babybaby.type.SearchTextOption;
-import com.querydsl.core.types.Order;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +29,15 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
     @Override
     public Page<ParentsBoard> findAllWithSearch_QueryDsl(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
+//        searchText : null,
+//                categoryType : null,
+//                searchTextOption : null
 
+        log.info(parentsBoardSearch.toString());
+        BooleanExpression categoryType = parentsBoardSearch.getCategoryType() == null ? null : parentsBoard.event.category.eq(parentsBoardSearch.getCategoryType());
+        BooleanExpression searchTitle = parentsBoardSearch.getSearchTitle() == null ? null : parentsBoard.boardTitle.contains(parentsBoardSearch.getSearchTitle());
+        BooleanExpression searchContent = parentsBoardSearch.getSearchContent() == null ? null : parentsBoard.boardContent.contains(parentsBoardSearch.getSearchContent());
+        BooleanExpression searchAll = parentsBoardSearch.getSearchAll() == null ? null : parentsBoard.boardTitle.contains(parentsBoardSearch.getSearchAll()).or(parentsBoard.boardContent.contains(parentsBoardSearch.getSearchAll()));
 
 //       전체 목록 불러오기(페이징)
         List<ParentsBoard> foundParentsBoard = query.select(parentsBoard)
@@ -42,14 +47,16 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
                 .leftJoin(parentsBoard.parentsBoardFiles)
                 .fetchJoin()
                 .orderBy(parentsBoard.id.desc())
-                .where(createBooleanExpression(parentsBoardSearch), createTextSearchOption(parentsBoardSearch))
+//                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
+                .where(searchTitle,searchAll,searchContent,categoryType)
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         Long count = query.select(parentsBoard.count())
                 .from(parentsBoard)
-                .where(createBooleanExpression(parentsBoardSearch), createTextSearchOption(parentsBoardSearch))
+//                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
+                .where(searchAll,searchContent,searchTitle)
                 .fetchOne();
 
         return new PageImpl<>(foundParentsBoard, pageable, count);
@@ -169,29 +176,29 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
         return booleanExpression;
     }
 
-    private BooleanExpression createTextSearchOption(ParentsBoardSearch parentsBoardSearch) {
-        SearchTextOption option = parentsBoardSearch.getSearchTextOption();
-        BooleanExpression booleanExpression = null;
-        String searchText = parentsBoardSearch.getSearchText();
-
-        if (searchText == null || searchText == "") {
-            return null;
-        }
-
-        switch (option) {
-            case TITLE:
-                booleanExpression = event.boardTitle.like(searchText);
-                break;
-            case CONTENT:
-                booleanExpression = event.boardContent.like(searchText);
-                break;
-            case BOTH:
-                booleanExpression = event.boardTitle.like(searchText).or(event.boardContent.like(searchText));
-                break;
-        }
-
-        return booleanExpression;
-    }
+//    private BooleanExpression createTextSearchOption(ParentsBoardSearch parentsBoardSearch) {
+////        SearchTextOption option = parentsBoardSearch.getSearchTextOption();
+//        BooleanExpression booleanExpression = null;
+////        String searchText = parentsBoardSearch.getSearchText();
+//
+//        if (searchText == null || searchText == "") {
+//            return null;
+//        }
+//
+//        switch (option) {
+//            case TITLE:
+//                booleanExpression = event.boardTitle.like(searchText);
+//                break;
+//            case CONTENT:
+//                booleanExpression = event.boardContent.like(searchText);
+//                break;
+//            case BOTH:
+//                booleanExpression = event.boardTitle.like(searchText).or(event.boardContent.like(searchText));
+//                break;
+//        }
+//
+//        return booleanExpression;
+//    }
 
 
     //[관리자] 보호자마당 전체 목록 조회
