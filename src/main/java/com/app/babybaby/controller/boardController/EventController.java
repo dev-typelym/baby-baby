@@ -34,6 +34,36 @@ public class EventController {
 //    }
 
     /*test 용 */
+    /* 학부모회원의 이벤트 신청하기 */
+    @GetMapping("applyEvent")
+    public String applyEvent(){
+        return "play/event-join-write";
+    }
+
+
+
+    /* 기업회원 글쓰기 게시글 내용 작성 */
+    @GetMapping("writeFirst")
+    public String goFirstWrite(){
+        Long sessionId = 1L;
+        return "play/play-write-field";
+    }
+
+
+
+    /* 기업회원 글쓰기 - 대표사진 등록 */
+    @GetMapping("writeSecond")
+    public String goSecondWrite(EventDTO eventDTO){
+        return "play/play-write-single";
+    }
+
+
+
+    /* 기업회원 글쓰기 게시글 내용사진 등록*/
+    @GetMapping("writeThird")
+    public String goThirdWrite(){
+        return "play/play-write-multi";
+    }
 
 
     @GetMapping("list")

@@ -267,13 +267,22 @@
 <script src="/js/components/header.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
-<script>
-    ClassicEditor.create( document.querySelector( '#editor' ), {
+<script type="module">
+    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+    import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
+
+    ClassicEditor.create(document.querySelector('#editor'), {
+        plugins: [EasyImage],
         ckfinder: {
-			uploadUrl : '/css/images/ck-editor-upload'
-		},
-        language: "ko"
-    } );
+            uploadUrl: '/image/upload'
+        }
+    })
+        .then(editor => {
+            console.log('Editor was initialized');
+        })
+        .catch(error => {
+            console.error(error);
+        });
 </script>
 <style>
     .ck.ck-editor {
