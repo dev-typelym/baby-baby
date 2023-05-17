@@ -14,7 +14,12 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -53,9 +58,16 @@ public class EventController {
 
     /* 기업회원 글쓰기 - 대표사진 등록 */
     @GetMapping("writeSecond")
-    public String goSecondWrite(EventDTO eventDTO){
+    public String goSecondWrite(){
+        Long sessionId = 1L;
         return "play/play-write-single";
     }
+
+    @GetMapping("moveData")
+    public RedirectView goThirdWithData(){
+        return new RedirectView("/member/writeThird");
+    }
+
 
 
 
@@ -65,6 +77,23 @@ public class EventController {
         return "play/play-write-multi";
     }
 
+    @GetMapping("save")
+    public RedirectView goSaveWithData(EventDTO eventDTO, @RequestParam String stringStartDate, @RequestParam String stringEndDate, RedirectAttributes redirectAttributes){
+        LocalDate localStartDate = LocalDate.parse(stringStartDate, DateTimeFormatter.ISO_DATE);
+        LocalDate localEndDate = LocalDate.parse(stringEndDate, DateTimeFormatter.ISO_DATE);
+
+        LocalDateTime startDate = localStartDate.atStartOfDay();
+        LocalDateTime endDate = localEndDate.atStartOfDay();
+
+        log.info("First에서 받아오는 시작하는 날짜 " + startDate +"  First에서 받아오는 끝나는 날짜 " +  endDate);
+        log.info(eventDTO.toString());
+
+        log.info("마지막에 가져온 eventDTO는 : " + eventDTO.toString());
+        log.info("마지막에 가져온 startDate는 : " + startDate);
+        log.info("마지막에 가져온 endDate는 : " + endDate);
+
+        return new RedirectView("/member/list");
+    }
 
     @GetMapping("list")
     public String getList(Model model,@RequestParam(required = false) EventBoardSearch eventBoardSearch, @PageableDefault(size = 10) Pageable pageable){
