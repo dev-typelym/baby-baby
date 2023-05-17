@@ -37,8 +37,9 @@ public class Ask extends BoardInfo {
         this.askStatus = askStatus;
     }
 
-    public Ask(String boardTitle, String boardContent, ProcessType askStatus) {
+    public Ask(String boardTitle, String boardContent, ProcessType askStatus,Member member) {
         super(boardTitle, boardContent);
         this.askStatus = askStatus;
+        this.member = member;
     }
 }

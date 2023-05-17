@@ -1,10 +1,12 @@
 package com.app.babybaby.controller.mypageController;
 
+import com.app.babybaby.domain.boardDTO.askDTO.AskDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
 import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
 import com.app.babybaby.entity.member.Kid;
+import com.app.babybaby.service.board.ask.AskService;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.service.like.eventLike.EventLikeService;
@@ -20,6 +22,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +54,13 @@ public class MypageController {
     @Autowired
     private final EventLikeService eventLikeService;
 
+    @Autowired
+    private final AskService askService;
+
+
+
+
+
 
 //    캘린더 페이지
     @GetMapping("profile")
@@ -71,6 +81,15 @@ public class MypageController {
     public String getInquiry(){
         return "user-part/inquiry-list";
     }
+
+//    @ResponseBody
+//    @GetMapping("inquiry/{page}")
+//    public Page<AskDTO> getInquiry(@PathVariable(value = "page") Integer page,HttpSession httpSession){
+////        Page<AskDTO> AskDTOS = askService.findAllAsk_queryDSL(PageRequest.of(page, 10),)
+//        log.info(page + "1111111111111111111");
+//        log.info(AskDTOS + "컨트롤러 들어옴");
+//        return AskDTOS;
+//    }
 
 
 //    통솔자 지원
