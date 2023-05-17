@@ -36,7 +36,8 @@ public class ParentsBoardController {
     //    pageableDefault는 몇개 뿌릴지를 저기서 정해주는 것이다.
     @GetMapping("list/show/{page}")
     @ResponseBody
-    public Page<ParentsBoardDTO> getParentsBoards(@PathVariable("page") Integer page, ParentsBoardSearch parentsBoardSearch, String keyword) {
+    public Page<ParentsBoardDTO> getParentsBoards(@PathVariable("page") Integer page, ParentsBoardSearch parentsBoardSearch) {
+        log.info("================================" + parentsBoardSearch);
         Page<ParentsBoardDTO> result = parentsBoardService.getFindAllWithSearchParentsBoardList(
                 PageRequest.of(page - 1, 10),
                 parentsBoardSearch
