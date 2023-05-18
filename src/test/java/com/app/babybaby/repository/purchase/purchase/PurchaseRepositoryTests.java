@@ -35,7 +35,7 @@ public class PurchaseRepositoryTests {
     @Test
     public void saveTest(){
         for (int i = 0; i < 3; i++) {
-            Purchase purchase = new Purchase(LocalDateTime.now(), 12L, 123L, null, eventRepository.findById(16L).get(), memberRepository.findById(1L).get());
+            Purchase purchase = new Purchase(LocalDateTime.now(), 12L, 150000L, null, eventRepository.findById(274L).get(), memberRepository.findById(1L).get());
             purchaseRepository.save(purchase);
         }
     }

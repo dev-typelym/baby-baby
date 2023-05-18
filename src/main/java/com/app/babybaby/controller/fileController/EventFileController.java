@@ -17,6 +17,7 @@ import java.util.UUID;
 @RequestMapping("/eventFiles/*")
 @Slf4j
 public class EventFileController {
+    
     //    파일 업로드 하면 Ajax로 들어옴
     @PostMapping("upload")
     @ResponseBody

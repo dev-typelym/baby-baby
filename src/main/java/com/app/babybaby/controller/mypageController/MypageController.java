@@ -1,10 +1,12 @@
 package com.app.babybaby.controller.mypageController;
 
 import com.app.babybaby.domain.boardDTO.askDTO.AskDTO;
+import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
 import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.search.admin.AdminAskSearch;
 import com.app.babybaby.service.board.ask.AskService;
@@ -169,8 +171,15 @@ public class MypageController {
 //    내가쓴 부모님 마당
     @GetMapping("parent")
     public String getParent(Model model,@PageableDefault(size = 10) Pageable pageable){
-        model.addAttribute("parent",parentsBoardService.getFindParentBoardListByMemberId(pageable,1L));
+//        model.addAttribute("parent",parentsBoardService.getFindParentBoardListByMemberId(pageable,1L));
         return "myPage/myPage-parents-yards";
+    }
+
+    @PostMapping("parent/{page}")
+    @ResponseBody
+    public Page<ParentsBoardDTO> getParent(@PathVariable(value = "page") Integer page){
+        Page<ParentsBoardDTO> parentsBoardDTOS = parentsBoardService.getFindParentBoardListByMemberId(PageRequest.of(page, 10), 1L);
+        return parentsBoardDTOS;
     }
 
 
