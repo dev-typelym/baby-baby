@@ -7,6 +7,7 @@ import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.eventFile.EventFile;
+import com.app.babybaby.entity.file.reviewFile.ReviewFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.calendar.CalendarRepository;
@@ -15,6 +16,7 @@ import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.service.member.member.MemberService;
 import com.app.babybaby.type.CategoryType;
+import com.app.babybaby.type.FileType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,7 @@ public class EventServiceImpl implements EventService {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("Invalid memberId: " + memberId));
         eventDTO.setCompany(this.memberToDTO(member));
         eventDTO.setCalendar(this.toCalendarDTO(calendar));
+//            public EventFile(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus, Event event) {
         log.info("내가 가져온 맴버: " + member);
         log.info("내가 가져온 Calendar: " + calendar);
         log.info(eventDTO.toString());
@@ -75,6 +78,8 @@ public class EventServiceImpl implements EventService {
             eventFile.setEvent(savedEvent); // eventFile에 외래 키 설정
             eventFileRepository.save(eventFile);
         }
+        EventFile eventFile = new EventFile(eventDTO.getMainFileOriginalName(), eventDTO.getMainFileUUID(), eventDTO.getMainFilePath(), eventDTO.getFileType(), savedEvent);
+        eventFileRepository.save(eventFile);
     }
 
 

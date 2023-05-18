@@ -126,6 +126,15 @@ public class EventQueryDslImpl implements EventQueryDsl {
         return new PageImpl<>(purchases, pageable, count);
     }
 
+//    [리뷰] 내가 참석한 이벤트 목록가져오기
+public List<Event> findAllPurchasedEvents(Long memberId) {
+    return query.select(event)
+            .from(purchase)
+            .innerJoin(purchase.event, event)
+            .innerJoin(purchase.member)
+            .where(purchase.member.id.eq(memberId))
+            .fetch();
+}
 
     //    [관리자] 놀러가요 카테고리 및 상태별 목록
     @Override

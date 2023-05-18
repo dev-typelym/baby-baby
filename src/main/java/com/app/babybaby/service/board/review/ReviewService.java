@@ -1,5 +1,6 @@
 package com.app.babybaby.service.board.review;
 
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.fileDTO.reviewFileDTO.ReviewFileDTO;
 import com.app.babybaby.entity.board.review.Review;
@@ -13,6 +14,9 @@ import java.util.stream.Collectors;
 
 public interface ReviewService {
     public Page<ReviewDTO> findReviewById(Long memberId, Pageable pageable);
+
+    //    [리뷰] 회원 아이디로 모든 결제한 이벤트 가져오기
+    public List<EventDTO> findAllEventsByMemberId(Long memberId);
 
     public void saveReview(Long memberId, Long eventId, ReviewDTO reviewDTO);
 
