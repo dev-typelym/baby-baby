@@ -54,6 +54,7 @@ public interface EventService {
                     .boardContent(eventDTO.getBoardContent())
                     .boardTitle(eventDTO.getBoardTitle())
                     .company(memberDTOToEntity(eventDTO.getCompany()))
+                    .eventFiles(eventDTO.getFiles().stream().map(this::toEventFileEntity).collect(Collectors.toList()))
                     .build();
         }
 
@@ -82,6 +83,15 @@ public interface EventService {
                 .filePath(eventFile.getFilePath())
                 .fileStatus(eventFile.getFileStatus())
                 .fileUUID(eventFile.getFileUUID())
+                .build();
+    }
+
+    default EventFile toEventFileEntity(EventFileDTO eventFileDTO){
+        return EventFile.builder()
+                .fileOriginalName(eventFileDTO.getFileOriginalName())
+                .filePath(eventFileDTO.getFilePath())
+                .fileStatus(eventFileDTO.getFileStatus())
+                .fileUUID(eventFileDTO.getFileUUID())
                 .build();
     }
 

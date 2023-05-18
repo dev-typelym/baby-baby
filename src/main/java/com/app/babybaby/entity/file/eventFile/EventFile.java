@@ -3,10 +3,7 @@ package com.app.babybaby.entity.file.eventFile;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.file.File;
 import com.app.babybaby.type.FileType;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -25,9 +22,13 @@ public class EventFile extends File {
     public EventFile(Event event) {
         this.event = event;
     }
-
+    @Builder
     public EventFile(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus, Event event) {
         super(fileOriginalName, fileUUID, filePath, fileStatus);
+        this.event = event;
+    }
+
+    public void setEvent(Event event) {
         this.event = event;
     }
 }

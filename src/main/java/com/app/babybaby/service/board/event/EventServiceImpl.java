@@ -9,6 +9,7 @@ import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
+import com.app.babybaby.repository.calendar.CalendarRepository;
 import com.app.babybaby.repository.file.eventFile.EventFileRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
@@ -35,6 +36,8 @@ public class EventServiceImpl implements EventService {
 
     private final EventFileRepository eventFileRepository;
 
+    private final CalendarRepository calendarRepository;
+
 
     @Override
     public Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable) {
@@ -46,20 +49,32 @@ public class EventServiceImpl implements EventService {
         return new SliceImpl<>(collect,pageable,events.hasNext());
     }
 
-    public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar){
-        Member member = memberRepository.findById(memberId).get();
+    public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar) {
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("Invalid memberId: " + memberId));
         eventDTO.setCompany(this.memberToDTO(member));
         eventDTO.setCalendar(this.toCalendarDTO(calendar));
-        log.info("내가 가져온 맴버 : " + member);
-        log.info("내가 가져온 Calendar : " + calendar);
+        log.info("내가 가져온 맴버: " + member);
+        log.info("내가 가져온 Calendar: " + calendar);
         log.info(eventDTO.toString());
+
         Event event = this.toEventEntity(eventDTO);
-        eventRepository.save(event);
-        log.info("엔티티로 바뀐 eventFile은 " + event.getEventFiles().toString());
-        log.info("엔티티로 바뀐 member는 : "+ event.getCompany());
+        event.setCalendar(calendar); // calendar를 event와 연결
 
-        event.getEventFiles().stream().map(eventFile -> eventFileRepository.save(eventFile));
+        List<EventFile> eventFiles = event.getEventFiles();
+        if (eventFiles != null) {
+            for (EventFile eventFile : eventFiles) {
+                eventFile.setEvent(event); // eventFile을 event와 연결
+            }
+        }
 
+        Event savedEvent = eventRepository.save(event);
+        log.info("엔티티로 바뀐 eventFile은 " + savedEvent.getEventFiles().toString());
+        log.info("엔티티로 바뀐 member는: " + savedEvent.getCompany());
+
+        for (EventFile eventFile : eventFiles) {
+            eventFile.setEvent(savedEvent); // eventFile에 외래 키 설정
+            eventFileRepository.save(eventFile);
+        }
     }
 
 
