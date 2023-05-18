@@ -2,6 +2,7 @@ package com.app.babybaby.service.board.parentsBoard;
 
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.fileDTO.parentsBoardFileDTO.ParentsBoardFileDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
@@ -9,6 +10,7 @@ import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public interface ParentsBoardService {
@@ -26,6 +28,9 @@ public interface ParentsBoardService {
 
 //    파일 업로드 저장
     public void save(ParentsBoardDTO parentsBoardDTO);
+
+//    상세보기 카테고리 최신글 2개 가져오기
+    public List<Event> find2RecentDesc();
 
     default ParentsBoardDTO toParentsBoardDTO(com.app.babybaby.entity.board.parentsBoard.ParentsBoard parentsBoard) {
         return ParentsBoardDTO.builder()

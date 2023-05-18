@@ -28,6 +28,7 @@ public class ParentsBoardReply extends Period {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @Builder
     public ParentsBoardReply(String parentsBoardReplyContent, ParentsBoard parentsBoard, Member member) {
         ParentsBoardReplyContent = parentsBoardReplyContent;
         this.parentsBoard = parentsBoard;
