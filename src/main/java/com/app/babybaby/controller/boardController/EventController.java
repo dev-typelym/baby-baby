@@ -3,8 +3,10 @@ package com.app.babybaby.controller.boardController;
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.eventDTO.PageRequestDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.service.board.event.EventService;
+import com.app.babybaby.service.calendar.CalendarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +31,9 @@ import java.util.List;
 public class EventController {
     private final EventService eventService;
 
-    
+    private final CalendarService calendarService;
+
+
 //    /*test 용 컨트롤러*/
 //    @ResponseBody
 //    @GetMapping("lists")
@@ -63,14 +67,6 @@ public class EventController {
         return "play/play-write-single";
     }
 
-    @GetMapping("moveData")
-    public RedirectView goThirdWithData(){
-        return new RedirectView("/member/writeThird");
-    }
-
-
-
-
     /* 기업회원 글쓰기 게시글 내용사진 등록*/
     @GetMapping("writeThird")
     public String goThirdWrite(){
@@ -78,13 +74,16 @@ public class EventController {
     }
 
     @GetMapping("save")
-    public RedirectView goSaveWithData(EventDTO eventDTO, @RequestParam String stringStartDate, @RequestParam String stringEndDate, RedirectAttributes redirectAttributes){
+    public RedirectView goSaveWithData(EventDTO eventDTO, @RequestParam String stringStartDate, @RequestParam String stringEndDate){
+        Long sessionId = 1L;
         LocalDate localStartDate = LocalDate.parse(stringStartDate, DateTimeFormatter.ISO_DATE);
         LocalDate localEndDate = LocalDate.parse(stringEndDate, DateTimeFormatter.ISO_DATE);
 
         LocalDateTime startDate = localStartDate.atStartOfDay();
         LocalDateTime endDate = localEndDate.atStartOfDay();
 
+        Calendar calendar = new Calendar("", eventDTO.getCategory(), startDate, endDate);
+        eventService.saveAll(sessionId, eventDTO, calendar);
         log.info("First에서 받아오는 시작하는 날짜 " + startDate +"  First에서 받아오는 끝나는 날짜 " +  endDate);
         log.info(eventDTO.toString());
 
@@ -92,12 +91,12 @@ public class EventController {
         log.info("마지막에 가져온 startDate는 : " + startDate);
         log.info("마지막에 가져온 endDate는 : " + endDate);
 
-        return new RedirectView("/member/list");
+        return new RedirectView("/event/list");
     }
 
     @GetMapping("list")
     public String getList(Model model,@RequestParam(required = false) EventBoardSearch eventBoardSearch, @PageableDefault(size = 10) Pageable pageable){
-        model.addAttribute("eventList",eventService.findEventListWithPaging(eventBoardSearch, PageRequest.of(0,10)));
+//        model.addAttribute("eventList",eventService.findEventListWithPaging(eventBoardSearch, PageRequest.of(0,10)));
         return "play/event-category-list";
     }
 
@@ -105,13 +104,14 @@ public class EventController {
     @ResponseBody
     @PostMapping("list")
     public Slice<EventDTO> getEvents(@RequestParam(required = false) EventBoardSearch eventBoardSearch,@RequestBody PageRequestDTO pageRequestDTO){
-        Pageable pageable = PageRequest.of(pageRequestDTO.getPage(), 8);
-        Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(eventBoardSearch,pageable);
-        log.info(eventListDTO.getContent()+"");
-        log.info("들어왓니 ?");
-        log.info(pageable.toString());
-
-        return eventListDTO;
+//        Pageable pageable = PageRequest.of(pageRequestDTO.getPage(), 8);
+//        Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(eventBoardSearch,pageable);
+//        log.info(eventListDTO.getContent()+"");
+//        log.info("들어왓니 ?");
+//        log.info(pageable.toString());
+//
+//        return eventListDTO;
+        return null;
     }
 
 //

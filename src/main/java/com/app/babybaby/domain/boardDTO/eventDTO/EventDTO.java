@@ -9,12 +9,14 @@ import com.app.babybaby.type.CategoryType;
 import com.app.babybaby.type.FileType;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 @Data
-@Builder
+@RequiredArgsConstructor
 public class EventDTO {
     private Long id;
     private String boardTitle;
@@ -28,10 +30,29 @@ public class EventDTO {
     private MemberDTO company;
     private String mainFileOriginalName;
     private String mainFileUUID;
+    private String mainFilePath;
     private FileType fileType;
-
     private List<EventFileDTO> files;
-//    private List<EventFileDTO> eventFileDTOS;
+
+    @Builder
+    public EventDTO(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, EventBoardSearch eventBoardSearch, CalendarDTO calendar, MemberDTO company, String mainFileOriginalName, String mainFileUUID, String mainFilePath, FileType fileType, List<EventFileDTO> files) {
+        this.id = id;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.eventRecruitCount = eventRecruitCount;
+        this.eventLocation = eventLocation;
+        this.eventPrice = eventPrice;
+        this.category = category;
+        this.eventBoardSearch = eventBoardSearch;
+        this.calendar = calendar;
+        this.company = company;
+        this.mainFileOriginalName = mainFileOriginalName;
+        this.mainFileUUID = mainFileUUID;
+        this.mainFilePath = mainFilePath;
+        this.fileType = fileType;
+        this.files = files;
+    }
+    //    private List<EventFileDTO> eventFileDTOS;
 
 //    private CalendarDTO calendarDTO;
 }

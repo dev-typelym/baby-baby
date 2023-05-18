@@ -18,7 +18,12 @@
 
 <body>
 <div th:insert="~{/components/header:: header}"></div>
+<form action="/review/save" method="post">
     <div>
+        <input type="hidden" name="reviewScore">
+        <input type="hidden" name="eventId">
+        <input type="hidden" name="boardTitle">
+        <input type="hidden" name="boardContent">
         <div class="wrap">
             <div class="container">
                 <div class="nav-header-box nav-header-background">
@@ -32,8 +37,7 @@
                     </a>
                     <button type="button" class="profile-btn">
                         <span class="profile-span">
-                            <span>1</span>
-                            <span class="profile-span">번째 글작성</span>
+                            <span class="profile-span">후기 글작성</span>
                         </span>
                     </button>
                 </div>
@@ -49,7 +53,7 @@
                                     <a href="" class="nav-detail-title info-title">후기게시판 내용 작성</a>
                                 </li>
                                 <li>
-                                    <a href="" class="nav-detail-title thumbnail-title">대표사진 등록</a>
+                                    <a href="" class="nav-detail-title thumbnail-title"> 후기 사진 등록</a>
                                 </li>
                             </ul>
                         </li>
@@ -62,9 +66,9 @@
                     <ol class="content-ol">
                         <li class="content-ol-li">후기게시판</li>
                         <li class="content-ol-li">후기게시판 내용 작성</li>
-                        <li class="content-ol-li">대표사진 등록</li>
+                        <li class="content-ol-li">후기 사진 등록</li>
                     </ol>
-                    <div class="content-title">대표사진 등록</div>
+                    <div class="content-title">후기사진 등록</div>
                     <div class="content-sub-title">글작성을 대표하는 이미지를 등록 해주세요.</div>
                     <div class="content-side-box">
                         <button type="button" class="side-button">
@@ -72,7 +76,7 @@
                                 <i></i>
                             </div>
                             <div>
-                                <div class="side-button-sub-title">대표사진 등록 가이드</div>
+                                <div class="side-button-sub-title">후기사진 등록 가이드</div>
                             </div>
                         </button>
                     </div>
@@ -94,7 +98,7 @@
                                         <div class="file-input-flex">
                                             첨부 파일을 업로드해 주세요.
                                             <div class="file-input-div">
-                                                <input type="file" class="image-file" style="display:none">
+                                                <input type="file" class="image-file" multiple style="display:none">
                                                 <button type="button" class="btn file-button">
                                                     <span>
                                                         <span class="file-button-span">업로드</span>
@@ -146,7 +150,7 @@
                                 <p>대표 이미지에는 텍스트나 로고를 넣을 수 없어요.</p>
                             </div>
                         </section>
-                        <button type="button" class="btn confirm-button">
+                        <button type="submit" class="btn confirm-button">
                             <span>작성하기</span>
                         </button>
                     </div>
@@ -214,7 +218,7 @@
                 </div>
                 <div class="image-register-button-box">
                     <div class="image-register-button-layout">
-                        <button class="btn image-register-button">
+                        <button type="button" class="btn image-register-button">
                             <span>
                                 <span>이미지 등록하기</span>
                             </span>
@@ -224,10 +228,11 @@
             </div>
         </div>
     </div>
+</form>
     <div th:insert="~{/components/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/parents-yard-board/parents-yard-board-thumbnail.js"></script>
 <script src="/js/components/header.js"></script>
+<script src="/js/review-board/review-board-thumbnail.js"></script>
 
 </html>

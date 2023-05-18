@@ -13,4 +13,12 @@ public interface CalendarService {
                 .id(calendar.getId())
                 .build();
     }
+
+    default Calendar toCalendarEntity(CalendarDTO calendarDTO){
+        return Calendar.builder()
+                .calendarName(calendarDTO.getCalendarName())
+                .endDate(calendarDTO.getEndDate())
+                .startDate(calendarDTO.getStartDate())
+                .build();
+    }
 }
