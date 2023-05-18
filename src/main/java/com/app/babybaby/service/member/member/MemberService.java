@@ -70,7 +70,7 @@ public interface MemberService extends UserDetailsService {
                 .eventPrice(event.getEventPrice())
                 .eventRecruitCount(event.getEventRecruitCount())
                 .calendar(toCalendarDTO(event.getCalendar()))
-                .eventFileDTOS(event.getEventFiles().stream().map(this::toEventFileDTO).collect(Collectors.toList()))
+                .files(event.getEventFiles().stream().map(this::toEventFileDTO).collect(Collectors.toList()))
                 .build();
     }
 

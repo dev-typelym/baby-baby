@@ -13,7 +13,7 @@
 
 <body>
 <div th:insert="~{/components/header:: header}"></div>
-
+<form action="/event/writeSecond"  id="firstForm" method="get">
     <div>
         <div class="wrap">
             <div class="now-kids.container">
@@ -25,7 +25,7 @@
                         <span class="profile-name">임종욱</span><span>의</span>
                         <p>체험제공 신청</p>
                     </a>
-                    <button type="button" class="profile-btn">
+                    <div>
                         <span class="profile-span">
                             <span>게시글 번호</span>
                             <span class="profile-span">1</span>
@@ -34,7 +34,7 @@
                                 <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
                             </svg> -->
                         </span>
-                    </button>
+                    </div>
                 </div>
                 <nav class="side-nav-box">
                     <div class="side-nav-layout"></div>
@@ -87,7 +87,7 @@
                                 <div class="input-title-box">
                                     <div class="input-box">
                                         <div class="input-layout">
-                                            <input type="text" class="normal-text-input input-size title" maxlength="40"
+                                            <input name="boardTitle" type="text" class="normal-text-input input-size title" maxlength="40"
                                                 placeholder="등록할 체험학습 정보를 입력해주세요.">
                                             <span class="text-max-count">40자 남음</span>
                                         </div>
@@ -106,7 +106,7 @@
                                 <div class="input-content-box">
                                     <div class="input-box">
                                         <div class="input-layout">
-                                            <textarea class="input-content-area"></textarea>
+                                            <textarea class="input-content-area" name="boardContent"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -143,20 +143,21 @@
                                             </div>
                                             <div class="select-menu-box">
                                                 <div class="select-menu-layout">
-                                                    <div class="select-option">농촌</div>
-                                                    <div class="select-option">미술관/박람회</div>
-                                                    <div class="select-option">전통</div>
-                                                    <div class="select-option">공방</div>
-                                                    <div class="select-option">과학</div>
-                                                    <div class="select-option">박물관</div>
-                                                    <div class="select-option">스포츠</div>
-                                                    <div class="select-option">기타</div>
+                                                    <div class="select-option" value="농촌">농촌</div>
+                                                    <div class="select-option" value="미술관">미술관/박람회</div>
+                                                    <div class="select-option" value="전통">전통</div>
+                                                    <div class="select-option" value="공방">공방</div>
+                                                    <div class="select-option" value="과학">과학</div>
+                                                    <div class="select-option" value="농촌">박물관</div>
+                                                    <div class="select-option" value="농촌">스포츠</div>
+                                                    <div class="select-option" value="농촌">기타</div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="category">
                         </section>
                         <section class="content-section">
                             <div class="input-title-box">
@@ -220,6 +221,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="eventRecruitCount">
                         </section>
                         <section class="content-section">
                             <div class="input-content-box">
@@ -232,7 +234,7 @@
                                 <div class="input-content-box">
                                     <div class="input-box">
                                         <div class="input-layout">
-                                            <input name="groupLocation" id="address-kakao" class="location-input" type="text" placeholder="상세 주소">
+                                            <input name="eventLocation.address" id="address-kakao" class="location-input" type="text" placeholder="상세 주소">
                                         </div>
                                     </div>
                                 </div>
@@ -268,7 +270,7 @@
                                 <div class="input-content-box">
                                     <div class="input-box">
                                         <div class="input-layout">
-                                            <input class="price-input" type="text" placeholder="숫자로 가격을 입력해주세요.">
+                                            <input class="price-input" name="eventPrice" type="text" placeholder="숫자로 가격을 입력해주세요.">
                                         </div>
                                     </div>
                                 </div>
@@ -291,13 +293,13 @@
                                             <div class="date-wrap2">
                                                 <div class="date-container-start">
                                                     <div class="date-input-box">
-                                                        <input type="date" class="form-control date-box"
+                                                        <input type="date" name="stringStartDate" class="form-control date-box startDate"
                                                             placeholder="예시) 2023-04-28" autocomplete="off" size="12" />
                                                     </div>
                                                 </div>
                                                 <div class="date-container-end">
                                                     <div class="date-input-box-end">
-                                                        <input type="date" class="form-control date-box"
+                                                        <input type="date" name="stringEndDate" class="form-control date-box endDate"
                                                             placeholder="예시) 2023-04-28" autocomplete="off" size="12" />
                                                     </div>
                                                 </div>
@@ -315,6 +317,7 @@
             </div>
         </div>
     </div>
+</form>
 <div th:insert="~{/components/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>

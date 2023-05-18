@@ -114,7 +114,7 @@ public class ParentsBoardRepositoryTests {
                     (long) (i + 1),
                     address,
                     40000L,
-                    CategoryType.AGRICULTURE,
+                    CategoryType.ART,
                     null,
                     null
             );

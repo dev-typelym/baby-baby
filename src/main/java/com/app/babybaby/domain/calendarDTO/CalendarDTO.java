@@ -2,6 +2,7 @@ package com.app.babybaby.domain.calendarDTO;
 
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
