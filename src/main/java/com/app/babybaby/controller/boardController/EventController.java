@@ -82,7 +82,7 @@ public class EventController {
         LocalDateTime startDate = localStartDate.atStartOfDay();
         LocalDateTime endDate = localEndDate.atStartOfDay();
 
-        Calendar calendar = new Calendar("", eventDTO.getCategory(), startDate, endDate);
+        Calendar calendar = new Calendar("123", eventDTO.getCategory(), startDate, endDate);
         eventService.saveAll(sessionId, eventDTO, calendar);
         log.info("First에서 받아오는 시작하는 날짜 " + startDate +"  First에서 받아오는 끝나는 날짜 " +  endDate);
         log.info(eventDTO.toString());

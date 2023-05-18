@@ -60,7 +60,7 @@ public class Event extends BoardInfo {
     }
 
     @Builder
-    public Event(String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, Calendar calendar, Member company) {
+    public Event(String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, Calendar calendar, Member company, List<EventFile> eventFiles) {
         super(boardTitle, boardContent);
         this.eventRecruitCount = eventRecruitCount;
         this.eventLocation = eventLocation;
@@ -68,10 +68,11 @@ public class Event extends BoardInfo {
         this.category = category;
         this.calendar = calendar;
         this.company = company;
+        this.eventFiles = eventFiles;
     }
 
     @Builder
-    public Event(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, Calendar calendar, Member company) {
+    public Event(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, Calendar calendar, Member company, List<EventFile> eventFiles) {
         super(id, boardTitle, boardContent);
         this.eventRecruitCount = eventRecruitCount;
         this.eventLocation = eventLocation;
@@ -79,5 +80,10 @@ public class Event extends BoardInfo {
         this.category = category;
         this.calendar = calendar;
         this.company = company;
+        this.eventFiles = eventFiles;
+    }
+
+    public void setCalendar(Calendar calendar) {
+        this.calendar = calendar;
     }
 }
