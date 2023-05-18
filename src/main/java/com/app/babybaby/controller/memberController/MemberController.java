@@ -4,6 +4,7 @@ import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MailDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.member.RandomKey;
 import com.app.babybaby.service.member.member.MemberService;
 import com.app.babybaby.service.member.randomKey.RandomKeyService;
 import com.app.babybaby.type.MemberType;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.view.RedirectView;
 public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
+    private final RandomKeyService randomKeyService;
 
     /* 회원 가입 페이지 이동*/
     @GetMapping("join/general")
@@ -64,16 +67,38 @@ public class MemberController {
         return "/member/find-id";
     }
 
-    /* 비밀번호 재설정 페이지 */
-    @GetMapping("password-change")
-    public String changePassword(){
-        return "/member/password-change";
-    }
+//    /* 비밀번호 재설정 페이지 */
+//    @GetMapping("changePW")
+//    public String changePassword(){
+//        return "/member/password-change";
+//    }
 
     /* 로그인 페이지 */
     @GetMapping("login")
     public void goToLogin(){;}
 
+    /* 비밀번호 변경페이지 */
+    @GetMapping("change-password-request/{memberEmail}/{randomKey}")
+    public String goChangePassword(@PathVariable("memberEmail") String memberEmail, @PathVariable("randomKey") String randomKey, Model model) {
+        log.info("email: " + memberEmail);
+        log.info("randomKey: " + randomKey);
+
+        String latest = randomKeyService.getLatestRandomKey(memberService.findByMemberEmail(memberEmail).getId()).getRandomKey();
+        log.info("latest: " + latest);
+
+        if(latest.equals(randomKey)){
+            model.addAttribute("memberEmail", memberEmail);
+            model.addAttribute("result", true);
+            model.addAttribute("errorMessage", "경로 인증에 성공 했습니다.");
+        }
+        else {
+            model.addAttribute("result", false);
+            model.addAttribute("errorMessage", "만료된 경로 입니다.");
+        }
+        log.info("model: " + model.getAttribute("errorMessage"));
+
+        return "/member/password-change";
+    }
 
     /* ****************************** 멤버 로그인 / 회원 가입 끝 *************************************************** */
 

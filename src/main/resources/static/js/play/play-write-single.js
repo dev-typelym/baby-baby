@@ -131,7 +131,7 @@ $fileInput.change((e) => {
                     <input type="hidden" name="mainFileOriginalName" value="${files[0].name}">
                     <input type="hidden" name="mainFileUUID" value="${globalThis.uuids[0]}">
                     <input type="hidden" name="mainFilePath" value="${toStringByFormatting(new Date())}">
-                    <input type="hidden" name="fileType" value="FileType.MAIN">
+                    <input type="hidden" name="fileType" value="MAIN">
                     `
             $('.image-inputs').append(inputFiles1);
         }

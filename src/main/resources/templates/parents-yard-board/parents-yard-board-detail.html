@@ -20,13 +20,37 @@
     <div class="parents-yard-board-detail-wrapper">
         <div class="parents-yard-board-detail-top">
             <div class="parents-yard-board-detail-user-profile">
-                <img class="parents-yard-board-detail-user-profile-image" src="/images/parents-yard-board/parents-yard-board-detail/profile-image.png">
+                <img class="parents-yard-board-detail-user-profile-image" th:src="@{/parentBoardFiles/display(fileName='parentsBoard/' + parentsBoard.memberProfilePath + '/' + parentsBoard.memberProfileUUID + '_' + parentsBoard.memberProfileOriginalName)}">
             </div>
-            <span class="parents-yard-board-detail-user-name">보호자1호</span>
-            <h2 class="event-title"><span>[박물관]</span> <span>아이들과 VR로 즐기는 신나는 실내 체험</span></h2>
-            <h2 class="parents-yard-board-detail-title">Z세대/알파세대의 새로운 놀이터, ‘메타버스’</h2>
+            <span class="parents-yard-board-detail-user-name" th:text="${parentsBoard.memberNickname}"></span>
+            <input class="boardId" type="hidden" th:value="${parentsBoard.id}" style="display: none;">
+            <h2 class="event-title"><span>[</span> <span th:text="${parentsBoard.eventCategory}"></span><span>]</span><span th:text="${parentsBoard.eventTitle}"></span></h2>
+            <h2 class="parents-yard-board-detail-title" th:text="${parentsBoard.parentsBoardTitle}"></h2>
             <div>
-                <span class="parents-yard-board-detail-date">2020.11.26</span>
+                <span class="parents-yard-board-detail-date" th:attr="data-original-date=${parentsBoard.parentsBoardUpdateDate}">
+            <script th:inline="javascript">
+                let boardId = [[${parentsBoard.id}]];
+                var originalDate = /*[[${parentsBoard.parentsBoardUpdateDate}]]*/ '';
+                var formattedDate = formatDate(originalDate);
+
+                // 기존 내용을 지우고 포맷팅된 날짜 값을 삽입
+                document.write(formattedDate);
+
+                function formatDate(originalDate) {
+                    let date = new Date(originalDate);
+                    let formattedDate = date.toLocaleDateString("ko-KR", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit"
+                    });
+
+                    // 마지막 점 제거
+                    formattedDate = formattedDate.replace(/\.$/, "");
+
+                    return formattedDate;
+                }
+            </script>
+        </span>
             </div>
         </div>
         <div class="divide-line"></div>
@@ -87,34 +111,34 @@
                         </div>
                     </div>
                     <div class="comment-list">
-                        <ul id="comment-list-detail">
-                            <li class="top" style="display: list-item;">
-                                <div class="comment-wrap">
-                                    <div class="comment-info">
-                                        <img src="/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">
-                                        <span class="name">임의택</span>
-                                        <button class="comment-util" onclick="showList()"></button>
-                                        <ul class="comment-util-list">
-                                            <li>
-                                                <button type="button" class="modify-button">수정</button>
-                                            </li>
-                                            <li>
-                                                <button>삭제</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <p class="comment-content">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</p>
-                                    <textarea id="" class="modify-textarea" style="display: none;">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</textarea>
-                                    <div class="comment-date">
-                                        2023.04.23 23:56
-                                    </div>
-                                    <div class="comment-bottom" style="display:none;">
-                                        <button type="button" class="modify-cancel">취소</button>
-                                        <button type="button" class="modify-confirm">수정완료</button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+<!--                        <ul id="comment-list-detail">-->
+<!--                            <li class="top" style="display: list-item;">-->
+<!--                                <div class="comment-wrap">-->
+<!--                                    <div class="comment-info">-->
+<!--                                        <img src="/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">-->
+<!--                                        <span class="name">임의택</span>-->
+<!--                                        <button class="comment-util" onclick="showList()"></button>-->
+<!--                                        <ul class="comment-util-list">-->
+<!--                                            <li>-->
+<!--                                                <button type="button" class="modify-button">수정</button>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <button>삭제</button>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <p class="comment-content">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</p>-->
+<!--                                    <textarea id="" class="modify-textarea" style="display: none;">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</textarea>-->
+<!--                                    <div class="comment-date">-->
+<!--                                        2023.04.23 23:56-->
+<!--                                    </div>-->
+<!--                                    <div class="comment-bottom" style="display:none;">-->
+<!--                                        <button type="button" class="modify-cancel">취소</button>-->
+<!--                                        <button type="button" class="modify-confirm">수정완료</button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
                     </div>
                 </div>
                 <div class="btn-place">
@@ -122,47 +146,48 @@
                     <button class="btn-comment" style="display: none;">댓글 닫기</button>
                 </div>
             </div>
-            <div class="free-board-other">
-                <h4>
-                    <em>박물관</em>
-                    카테고리의 최신글
-                </h4>
-                <div class="other-list">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <div class="other-story">
-                                    <div class="story-info">
-                                        <em class="category">박물관</em>
-                                        <p class="other-title">Z세대/알파세대의 새로운 놀이터, ‘메타버스’</p>
-                                        <p class="other-content">실내에서 놀수 있는 새로운 놀이터를 아시나요?</p>
-                                        <p class="info">
-                                            <em class="date">23.04.24</em>
-                                        </p>
-                                    </div>
-                                    <div class="img-wrap">
-                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <div class="other-story">
-                                    <div class="story-info">
-                                        <em class="category">박물관</em>
-                                        <p class="other-title">Z세대/알파세대의 새로운 놀이터, ‘메타버스’</p>
-                                        <p class="other-content">실내에서 놀수 있는 새로운 놀이터를 아시나요?</p>
-                                        <p class="info">
-                                            <em class="date">23.04.24</em>
-                                        </p>
-                                    </div>
-                                    <div class="img-wrap">
-                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+            <!--여기가 같은 카테고리 중 최신순-->
+<!--            <div class="free-board-other" th:each=" category: ${categoryList}">-->
+<!--                <h4>-->
+<!--                    <em th:text="${category.eventCategory}"></em>-->
+<!--                    카테고리의 최신글-->
+<!--                </h4>-->
+<!--                <div class="other-list">-->
+<!--                    <ul>-->
+<!--                        <li>-->
+<!--                            <a>-->
+<!--                                <div class="other-story">-->
+<!--                                    <div class="story-info">-->
+<!--                                        <em class="category" th:text="${category.eventCategory}"></em>-->
+<!--                                        <p class="other-title" th:text="${category.parentsBoardTitle}"></p>-->
+<!--                                        <p class="other-content" th:text="${category.parentsBoardContent}"></p>-->
+<!--                                        <p class="info">-->
+<!--                                            <em class="date" th:text="${parentsBoard.parentsBoardRegisterDate}></em>-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                    <div class="img-wrap">-->
+<!--                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="#">-->
+<!--                                <div class="other-story">-->
+<!--                                    <div class="story-info">-->
+<!--                                        <em class="category">박물관</em>-->
+<!--                                        <p class="other-title">Z세대/알파세대의 새로운 놀이터, ‘메타버스’</p>-->
+<!--                                        <p class="other-content">실내에서 놀수 있는 새로운 놀이터를 아시나요?</p>-->
+<!--                                        <p class="info">-->
+<!--                                            <em class="date">23.04.24</em>-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                    <div class="img-wrap">-->
+<!--                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </li>-->
                     </ul>
                 </div>
                 <!-- <div class="btn-place">
@@ -178,5 +203,4 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/parents-yard-board/parents-yard-board-detail.js"></script>
 <script src="/js/components/header.js"></script>
-
 </html>

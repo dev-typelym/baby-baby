@@ -90,6 +90,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
     }
 
 
+
     //    --------------------------------------------회원 상세 페이지---------------------------------------------------
 public Member getCompanyInfoByMemberId_QueryDSL(Long memberId) {
     return query.selectFrom(member)

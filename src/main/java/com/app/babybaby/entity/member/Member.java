@@ -106,6 +106,21 @@ public class Member {
         this.memberPassword = memberPassword;
     }
 
+    @Builder(builderClassName = "OAuthBuilder", builderMethodName = "OAuthBuilder")
+    public Member(String memberName, String memberPhone, String memberEmail, Role memberRole) {
+        this.memberName = memberName;
+        this.memberPhone = memberPhone;
+        this.memberEmail = memberEmail;
+        this.memberRole = memberRole;
+    }
+
+    public Member update(String memberName, String memberPhone, String memberEmail){
+        this.memberName = memberName;
+        this.memberPhone = memberPhone;
+        this.memberEmail = memberEmail;
+
+        return this;
+    }
     @Builder(builderClassName = "ShortBuilder", builderMethodName = "ShortBuilder")
     public Member(String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName) {
         this.memberEmail = memberEmail;

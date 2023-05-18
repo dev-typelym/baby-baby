@@ -1,13 +1,11 @@
 /* 모달  */
 function showModal(){
-	if(passwordFlag && passwordCheckFlag){
-		$('.modal').css('display', 'block');
-	}
-    
+	$('.modal').css('display', 'block');
 }
 
 function closeModal(){
     $('.modal').css('display', 'none');
+    location.href="/member/login"
 }
 
 // 비밀번호 변수
@@ -43,6 +41,10 @@ $passwordInput.on("blur", function() {
 		$passwordInput.css("border-color", "#dde2e6");
         $(".check-icon img").css("display", "block")
 		passwordFlag = true;
+		if(passwordFlag && passwordCheckFlag) {
+			$confirmBtn.prop('disabled', false);
+			$confirmBtn.css('background-color', '#00c4c4').css('cursor', 'pointer');
+		}
 	}
 });
 
@@ -67,6 +69,10 @@ $passwordCheckInput.on("blur", function() {
 		$passwordCheckInput.css("border-color", "#dde2e6");
         $(".re-check-icon img").css("display", "block")
 		passwordCheckFlag = true;
+		if(passwordFlag && passwordCheckFlag) {
+			$confirmBtn.prop('disabled', false);
+			$confirmBtn.css('background-color', '#00c4c4').css('cursor', 'pointer');
+		}
 	} else {
         $passwordCheckError.css("display", "block");
 		$passwordCheckError.css("color", "#f66");
@@ -76,10 +82,21 @@ $passwordCheckInput.on("blur", function() {
 	}
 });
 
-function send() {
-	/*비밀번호 암호화*/
-	$("input[name='userPassword']").val(btoa($("input[name='userPassword']").val()));
-	$("#password-check").val(btoa($("#password-check").val()));
+let $confirmBtn = $(".password-submit");
 
-	document.joinForm.submit();
-}
+$confirmBtn.on("click", function(){
+	if(passwordFlag && passwordCheckFlag) {
+		$.ajax({
+			url:"/members/changePassword" ,
+			method: 'post',
+			data: {"memberEmail": memberEmail,
+					"memberPassword" : $passwordInput.val()},
+			success: function(result){
+				showModal();
+			}
+		});
+	}else{
+		$confirmBtn.prop('disabled', true);
+		$confirmBtn.css('background-color', 'gray').css('cursor','default');
+	}
+});

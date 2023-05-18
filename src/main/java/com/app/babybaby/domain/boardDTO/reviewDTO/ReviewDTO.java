@@ -1,36 +1,60 @@
 package com.app.babybaby.domain.boardDTO.reviewDTO;
 
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.fileDTO.reviewFileDTO.ReviewFileDTO;
+import com.app.babybaby.domain.replyDTO.reviewReplyDTO.ReviewReplyDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.file.reviewFile.ReviewFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.reviewReply.ReviewReply;
+import com.app.babybaby.type.CategoryType;
+import com.app.babybaby.type.FileType;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class ReviewDTO {
     private Long id;
-    private int ReviewScore;
-    private List<ReviewFileDTO> reviewFiles;
+    private int reviewScore;
     private String boardTitle;
     private String boardContent;
+    private LocalDateTime uploadDate;
+    private LocalDateTime updateDate;
+    private List<ReviewFileDTO> files;
+    private List<ReviewReplyDTO> replies;
+
     private Long memberId;
+    private String memberProfilePath;
+    private String memberProfileUUID;
+    private String memberProfileOriginalName;
+    private String memberNickName;
+
+    private EventDTO eventDTO;
 
     @Builder
-    public ReviewDTO(Long id, int reviewScore, List<ReviewFileDTO> reviewFiles, String boardTitle, String boardContent, Long memberId) {
+    public ReviewDTO(Long id, int reviewScore, String boardTitle, String boardContent, LocalDateTime uploadDate, LocalDateTime updateDate, List<ReviewFileDTO> files, List<ReviewReplyDTO> replies, Long memberId, String memberProfilePath, String memberProfileUUID, String memberProfileOriginalName, String memberNickName, EventDTO eventDTO) {
         this.id = id;
-        ReviewScore = reviewScore;
-        this.reviewFiles = reviewFiles;
+        this.reviewScore = reviewScore;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
+        this.uploadDate = uploadDate;
+        this.updateDate = updateDate;
+        this.files = files;
+        this.replies = replies;
         this.memberId = memberId;
+        this.memberProfilePath = memberProfilePath;
+        this.memberProfileUUID = memberProfileUUID;
+        this.memberProfileOriginalName = memberProfileOriginalName;
+        this.memberNickName = memberNickName;
+        this.eventDTO = eventDTO;
     }
 }
