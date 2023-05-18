@@ -151,6 +151,16 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Member findMemberByRandomKey(String randomKey) {
+        return memberRepository.findMemberByRandomKey(randomKey);
+    }
+
+    @Override
+    public Member findMemberByMemberEmailAndRandomKey(String memberEmail, String randomKey) {
+        return findMemberByMemberEmailAndRandomKey(memberEmail, randomKey);
+    }
+
+    @Override
     public void sendMail(MailDTO mail) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(mail.getAddress());

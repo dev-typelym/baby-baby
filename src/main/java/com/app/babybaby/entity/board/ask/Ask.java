@@ -33,6 +33,9 @@ public class Ask extends BoardInfo {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "ask")
+    private AskAnswer askAnswer;
+
     public Ask(ProcessType askStatus) {
         this.askStatus = askStatus;
     }

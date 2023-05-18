@@ -1,15 +1,18 @@
 package com.app.babybaby.controller.memberController;
 
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
+import com.app.babybaby.domain.memberDTO.MailDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.service.member.member.MemberService;
+import com.app.babybaby.service.member.randomKey.RandomKeyService;
 import com.app.babybaby.type.MemberType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
@@ -71,7 +74,8 @@ public class MemberController {
     @GetMapping("login")
     public void goToLogin(){;}
 
-/* ****************************** 멤버 로그인 / 회원 가입 끝 *************************************************** */
+
+    /* ****************************** 멤버 로그인 / 회원 가입 끝 *************************************************** */
 
     @GetMapping("detail/{memberId}")
     public RedirectView goDetail(@PathVariable Long memberId){
