@@ -56,9 +56,30 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
         return new PageImpl<>(parentsBoardDTOS, pageable, boards.getTotalElements());
     }
 
+//    대표사진 파일 업로드
     @Override
     public void save(ParentsBoardDTO parentsBoardDTO) {
         parentsBoardRepository.save(toParentsBoardDTOEntity(parentsBoardDTO));
     }
+
+//    상세보기 카테고리 최신글 2개 가져오기
+    @Override
+    public List<Event> find2RecentDesc() {
+        List<Event> events = parentsBoardRepository.find2RecentDesc();
+        List<Event> eventList = events.stream()
+                .collect(Collectors.toList());
+        return eventList;
+    }
+
+
+//        /* 최근 올린 8명 가져오기 */
+//    public List<MemberDTO> find8AuthorDesc(){
+//        List<Member> members = nowKidsRepository.find8AuthorDesc();
+//        List<MemberDTO> memberDTOS = members.stream()
+//                .map(memberService::toMemberDTO)
+//                .collect(Collectors.toList());
+//
+//        return memberDTOS;
+//    }
 
 }

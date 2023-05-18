@@ -2,7 +2,7 @@ const PAGE_AMOUNT = 10;
 const $itemWrap = $(".show-item-wrap");
 const SEARCH_URL = "/parentsYard/list/show";
 const $pageWrap = $(".paging-list");
-const $contentWrap = $(".parents-yard-board-item-link");
+const $contentWrap = $(".parentsList");
 const parentsBoardSearch = {
     searchTitle: null,
     categoryType: null,
@@ -169,7 +169,7 @@ function showList(boardDTOS) {
     boardDTOS.forEach(board => {
         const formattedDate = formatDate(new Date(board.parentsBoardRegisterDate));
         content += ` 
-                         <a class="parents-yard-board-item-link">
+                         <a href="/parentsYard/detail/${board.id}" class="parents-yard-board-item-link">
             <div class="parents-yard-board-item-wrapper">
                 <span class="category"><span>[${board.eventCategory}]</span> ${board.eventTitle}</span>
                 <div class="parents-yard-board-item-container">
@@ -210,41 +210,17 @@ function showList(boardDTOS) {
 getParentsBoardList();
 
 
-// $(document).ready(function() {
-//     let selectedValue;
-//     let searchKeyword;
-//     $('.filter-for-serach').change(function() {
-//         selectedValue = $(this).val();
-//         console.log(selectedValue);
-//     });
-
-    // $('.search-input').on('input', function() {
-    //     searchKeyword = $(this).val();
-    //     console.log(searchKeyword);
-    // }).on('keydown', function(event) {
-    //     if (event.key === 'Enter') {
-    //         event.preventDefault();
-    //     }
-    // });
-
-    /* 함수 사용부 */
-    /* 어쩌고.click.function
-    * searchAjax(selectedValue, searchKeyword) */
-//     const $searchButton = $('.go-search-btn');
-//     $searchButton.on('click', function () {
-//         searchAjax(selectedValue, searchKeyword);
-//     })
-// });
-
-/* ajax */
-// function searchAjax(selectedValue, searchKeyword) {
+// 상세보기로 가기 위한 ajax
+// function goParentsBoardDetail() {
 //     $.ajax({
-//         url: `list/show/${globalThis.page}`,
-//         type: "get",
-//         data: {selectedValue : selectedValue, searchKeyword : searchKeyword},
+//         url: `/parentsYard/detail/{id}`,
+//         data: parentsBoardSearch,
 //         success: function (data) {
-//             console.log(data.content);
-//
+//             console.log(data)
+//             $pageWrap.empty();
+//             showPage(data);
+//             $contentWrap.empty();
+//             showList(data.content);
 //         }
-//     })
+//     });
 // }

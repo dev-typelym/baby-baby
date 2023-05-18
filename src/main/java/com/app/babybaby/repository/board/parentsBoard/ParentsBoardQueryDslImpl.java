@@ -2,8 +2,10 @@ package com.app.babybaby.repository.board.parentsBoard;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.event.QEvent;
+import com.app.babybaby.entity.board.nowKids.QNowKids;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.admin.AdminParentsBoardSearch;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.CategoryType;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.babybaby.entity.board.event.QEvent.event;
+import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
 
 @RequiredArgsConstructor
@@ -182,30 +185,21 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
         return booleanExpression;
     }
 
-//    private BooleanExpression createTextSearchOption(ParentsBoardSearch parentsBoardSearch) {
-////        SearchTextOption option = parentsBoardSearch.getSearchTextOption();
-//        BooleanExpression booleanExpression = null;
-////        String searchText = parentsBoardSearch.getSearchText();
-//
-//        if (searchText == null || searchText == "") {
-//            return null;
-//        }
-//
-//        switch (option) {
-//            case TITLE:
-//                booleanExpression = event.boardTitle.like(searchText);
-//                break;
-//            case CONTENT:
-//                booleanExpression = event.boardContent.like(searchText);
-//                break;
-//            case BOTH:
-//                booleanExpression = event.boardTitle.like(searchText).or(event.boardContent.like(searchText));
-//                break;
-//        }
-//
-//        return booleanExpression;
-//    }
-
+    // 상세보기 카테고리 최신글 2개 가져오기 where절 손 봐야하나?
+    @Override
+    public List<Event> find2RecentDesc() {
+        QEvent event = QEvent.event;
+        List<Event> events = query.select(event)
+                .from(event)
+                .where(event.category.eq(parentsBoard.event.category))
+                .orderBy(event.id.desc())
+                .limit(2)
+                .fetch();
+        return query.selectDistinct(event)
+                .from(event)
+                .where(event.in(events))
+                .fetch();
+    }
 
     //[관리자] 보호자마당 전체 목록 조회
     @Override

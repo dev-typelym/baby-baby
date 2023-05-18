@@ -1,5 +1,6 @@
 package com.app.babybaby.repository.reply.parentsBoardReply;
 
+import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDTO;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import com.app.babybaby.entity.reply.parentsBoardReply.QParentsBoardReply;
@@ -10,8 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
 import static com.app.babybaby.entity.reply.parentsBoardReply.QParentsBoardReply.parentsBoardReply;
@@ -53,6 +56,7 @@ public class ParentsBoardReplyQueryDslImpl implements ParentsBoardReplyQueryDsl 
 
         return new PageImpl<>(foundParentsBoardReply, pageable, count);
     }
+
 
     //    [관리자] 부모님마당 댓글 목록 조회
     @Override

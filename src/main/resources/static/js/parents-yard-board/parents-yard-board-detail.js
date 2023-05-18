@@ -107,3 +107,125 @@ Kakao.Share.sendDefault({
     ],
 });
 } */
+
+/* DateTime을 Date로 바꾸기 */
+
+
+var originalDateElement = document.querySelector('.parents-yard-board-detail-date');
+var originalDate = originalDateElement.getAttribute('data-original-date');
+var formattedDate = formatDate(originalDate);
+
+// 기존 내용을 지우고 포맷팅된 날짜 값을 삽입
+originalDateElement.innerHTML = '';
+originalDateElement.innerHTML = formattedDate;
+
+function formatDate(originalDate) {
+    let date = new Date(originalDate);
+    let formattedDate = date.toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    });
+
+    // 마지막 점 제거
+    formattedDate = formattedDate.replace(/\.$/, "");
+
+    return formattedDate;
+}
+
+// 댓글 무한 스크롤
+let page = 0;
+const replyService = (() => {
+    function getList(callback){
+        console.log(boardId + "보오드");
+        $.ajax({
+            url: `/parentsYard/reply/list/show/${page}/${boardId}`,
+            type: 'get',
+            data: {page: page, boardId: boardId},
+            contentType: "application/json;charset=utf-8",
+            success: function(parentsBoardReplyDTOS){
+                console.log("드렁")
+                    callback(parentsBoardReplyDTOS);
+            }
+        });
+    }
+    return {getList: getList};
+})();
+
+/*${formattedDate}*/
+function appendList(parentsBoardReplyDTOS) {
+    let replyText = '';
+    console.log(parentsBoardReplyDTOS.content);
+    parentsBoardReplyDTOS.content.forEach(replyDTOS => {
+        console.log(replyDTOS);
+        replyText +=  ` 
+                        <ul id="comment-list-detail">
+                            <li class="top" style="display: list-item;">
+                                <div class="comment-wrap">
+                                    <div class="comment-info">
+                                        <img src="/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">
+                                        <span class="name">${replyDTOS.memberNickName}</span>
+                                        <button class="comment-util" onclick="showList()"></button>
+                                        <ul class="comment-util-list">
+                                            <li>
+                                                <button type="button" class="modify-button">수정</button>
+                                            </li>
+                                            <li>
+                                                <button>삭제</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p class="comment-content">${replyDTOS.parentsBoardReplyContent}</p>
+                                    <textarea id="" class="modify-textarea" style="display: none;">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</textarea>
+                                    <div class="comment-date">
+                                        ${formatDate(replyDTOS.updateDate)}
+                                    </div>
+                                    <div class="comment-bottom" style="display:none;">
+                                        <button type="button" class="modify-cancel">취소</button>
+                                        <button type="button" class="modify-confirm">수정완료</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul> `
+        ;
+    });
+    $('.comment-list').append(replyText);
+}
+
+// 페이지 로딩 시 초기 리스트를 불러옴
+replyService.getList(function(parentsBoardReplyDTOS) {
+    replyPage = 0;
+    console.log(parentsBoardReplyDTOS.content);
+    appendList(parentsBoardReplyDTOS);
+    console.log(replyPage + "페이지 로딩 시 초기화면")
+});
+
+$('.btn-comment').click(function() {
+        page++;
+        replyService.getList(appendList);
+        console.log(page)
+});
+
+
+// $(window).scroll(function() {
+//     if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
+//         page++;
+//         replyService.getList(appendList);
+//         console.log(page)
+//     }
+// });
+
+/* localDateTime을 Date로 깔끔하게 만드는 코드 */
+function formatDate(originalDate) {
+    let date = new Date(originalDate);
+    let formattedDate = date.toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    });
+
+    // 마지막 점 제거
+    formattedDate = formattedDate.replace(/\.$/, "");
+
+    return formattedDate;
+}
