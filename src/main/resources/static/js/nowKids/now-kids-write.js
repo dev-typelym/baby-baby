@@ -28,7 +28,7 @@ function convertCategory(category) {
     if(category == "AGRICULTURE"){
         categoryResult = "농촌";
     } else if(category == "ART"){
-        categoryResult = "예술";
+        categoryResult = "미술관/박람회";
     } else if(category == "TRADITION"){
         categoryResult = "전통";
     } else if(category == "CRAFT"){
