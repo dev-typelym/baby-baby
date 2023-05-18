@@ -2,6 +2,7 @@ package com.app.babybaby.repository.member.member;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.member.RandomKey;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.search.admin.AdminMemberSearch;
 import com.app.babybaby.type.AcceptanceType;
@@ -27,15 +28,19 @@ public interface MemberQueryDsl {
     /* 비밀 번호, 이메일 찾기 */
     public Member findByMemberEmail_QueryDSL(String memberEmail);
 
-    /* 비밀 번호 변경 계정 찾기 */
+    /* 랜덤키로 계정 찾기 */
     public Member findMemberByRandomKey(String randomKey);
+
+    /* 랜덤키로 계정 찾기 */
+    public Member findMemberByMemberEmailAndRandomKey(String memberEmail, String randomKey);
 
     /* 회원정보 수정 */
     public void setMemberInfoMyId(Member member);
 
 
 
-//    ---------------------------------------------회원 상세 -----------------------------------------
+
+    //    ---------------------------------------------회원 상세 -----------------------------------------
     public Member getCompanyInfoByMemberId_QueryDSL(Long memberId);
 
 //    ------------------------------------------- 관리자페이지 -------------------------------------------

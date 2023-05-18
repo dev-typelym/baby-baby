@@ -3,8 +3,10 @@ package com.app.babybaby.service.member.member;
 import com.app.babybaby.controller.provider.UserDetail;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
+import com.app.babybaby.domain.memberDTO.MailDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.member.RandomKey;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
 import com.app.babybaby.repository.board.review.ReviewRepository;
@@ -17,8 +19,11 @@ import com.app.babybaby.type.Role;
 import com.app.babybaby.type.SleepType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -48,6 +53,10 @@ public class MemberServiceImpl implements MemberService {
     private final ParentsBoardService parentsBoardService;
 
     private final ParentsBoardRepository parentsBoardRepository;
+
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public Optional<Member> getMemberById(Long memberId) {
@@ -139,6 +148,28 @@ public class MemberServiceImpl implements MemberService {
         memberDTO.setMemberPassword(passwordEncoder.encode(memberDTO.getMemberPassword()));
         memberRepository.setMemberInfoMyId(memberDTOToEntity(memberDTO));
 //        memberDTOToEntity --> 빌더 다 안 들어가 있을 수도 있으니까 확인하고 말해주기!!
+    }
+
+    @Override
+    public Member findMemberByRandomKey(String randomKey) {
+        return memberRepository.findMemberByRandomKey(randomKey);
+    }
+
+    @Override
+    public Member findMemberByMemberEmailAndRandomKey(String memberEmail, String randomKey) {
+        return findMemberByMemberEmailAndRandomKey(memberEmail, randomKey);
+    }
+
+    @Override
+    public void sendMail(MailDTO mail) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(mail.getAddress());
+        message.setFrom("heykiddoruready@gmail.com");
+//        from 값을 설정하지 않으면 application.yml의 username값이 설정됩니다.
+        message.setSubject(mail.getTitle());
+        message.setText(mail.getMessage());
+
+        mailSender.send(message);
     }
 
     @Override

@@ -5,12 +5,14 @@ import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.calendarDTO.CalendarDTO;
 import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
+import com.app.babybaby.domain.memberDTO.MailDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.member.RandomKey;
 import com.app.babybaby.service.board.event.EventService;
 import com.app.babybaby.service.board.event.EventServiceImpl;
 import com.app.babybaby.service.board.review.ReviewService;
@@ -141,6 +143,15 @@ public interface MemberService extends UserDetailsService {
 
     // 회원 정보 수정
     public void setMemberInfoById(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
+
+    /* 랜덤키로 계정 찾기 */
+    public Member findMemberByRandomKey(String randomKey);
+
+    /* 랜덤키로 계정 찾기 */
+    public Member findMemberByMemberEmailAndRandomKey(String memberEmail, String randomKey);
+
+    /* 메일보내기 */
+    public void sendMail(MailDTO mail);
 
     default Member memberDTOToEntity(MemberDTO memberDTO) {
         return Member.joinMemberBuilder()

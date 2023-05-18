@@ -99,6 +99,9 @@ public class Member {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
     private List<Review> reviews;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    private List<RandomKey> randomKeys;
+
     public void updatePassword(String memberPassword){
         this.memberPassword = memberPassword;
     }
