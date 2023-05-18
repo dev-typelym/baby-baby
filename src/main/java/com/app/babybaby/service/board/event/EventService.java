@@ -40,6 +40,7 @@ public interface EventService {
                 .eventLocation(event.getEventLocation())
                 .eventPrice(event.getEventPrice())
                 .eventRecruitCount(event.getEventRecruitCount())
+                .calendar(toCalendarDTO(event.getCalendar()))
                 .files(event.getEventFiles().stream().map(eventFile -> eventFileToDTO(eventFile)).collect(Collectors.toList()))
                 .build();
         }

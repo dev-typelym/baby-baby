@@ -1,5 +1,43 @@
+const $selectBox2 = $(".select-layout2");
+const $selectKidsCount = $(".select-kids-count");
+
+/* 나의 후기 값 꽂아주기 */
+events.forEach((e,i)=> {
+    let eventText =
+        ` 
+    <div class="select-option2" value="${e.id}">${e.boardTitle}    ${e.calendar.endDate.date.year}-${e.calendar.startDate.date.month}-${e.calendar.startDate.date.day}</div>
+    `;
+
+    $('.select-menu-layout').append(eventText)
+})
+
+let $selectOption2 = $(".select-option2");
+
+$selectOption2.each((i, e) => {
+
+    $(e).click(() => {
+        $selectOption2.css("color", "#0c0c0c");
+        $(".select-placeholder2").css("color","#0c0c0c");
+        $(".select-placeholder2").text($(e).text());
+        $(e).css("color", "#e1e1e1");
+        $selectKidsCount.hide();
+    });
+});
+
+$selectBox2.mouseup(() => {
+    $selectKidsCount.show();
+});
+
+$selectKidsCount.mouseleave(() => {
+    $selectKidsCount.hide();
+})
+
+
 const $selectBox = $(".select-layout");
 const $selectMenuBox = $(".select-menu-box");
+
+
+
 
 $selectBox.mouseup(() => {
     $selectMenuBox.show();
@@ -24,33 +62,6 @@ $selectOption.each((i, e) => {
 });
 /* 카테고리 끝 */
 
-const $selectBox2 = $(".select-layout2");
-const $selectKidsCount = $(".select-kids-count");
-
-$selectBox2.mouseup(() => {
-    $selectKidsCount.show();
-});
-
-$selectKidsCount.mouseleave(() => {
-    $selectKidsCount.hide();
-})
-
-
-let $selectOption2 = $(".select-option2");
-
-$selectOption2.each((i, e) => {
-
-    $(e).click(() => {
-        $selectOption2.css("color", "#0c0c0c");
-        $(".select-placeholder2").css("color","#0c0c0c");
-        $(".select-placeholder2").text($(e).text());
-        $(e).css("color", "#e1e1e1");
-        $selectKidsCount.hide();
-    });
-});
-
-
-
 const $inputTitle = $(".title");
 const $maxCount = $(".text-max-count");
     // 제목 입력 js
@@ -69,6 +80,7 @@ stars.forEach((star) => {
         for (let i = 1; i <= 5; i++) {
             const resetImg = document.querySelector(`.review-my-star[data-index="${i}"]`);
             resetImg.style.fill = 'rgba(0, 0, 0, 0.5)';
+            $('input[name=reviewScore]').val(0);
         }
     });
 });
@@ -105,3 +117,5 @@ $('.select-option2').on('click', function () {
     console.log(eventId)
     $('input[name=eventId]').val(eventId)
 })
+
+$('.profile-name').text(events.company.memberName)

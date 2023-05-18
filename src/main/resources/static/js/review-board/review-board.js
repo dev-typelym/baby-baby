@@ -30,7 +30,7 @@ function findPage(page) {
     getReviewBoardList();
 }
 
-$("#filter-select").on("change", function () {
+$(".filter-select-box").on("change", function () {
     let val;
     if ($(this).val() === "ALL") {
         val = null;
@@ -128,17 +128,17 @@ function showPage(data) {
     $pageWrap.html(text);
 }
 
-//    부모님 마당 목록
+//    리뷰 목록
 function showList(boardDTOS) {
     console.log(boardDTOS)
     let content = "";
     boardDTOS.forEach(board => {
         console.log(board)
-        const formattedDate = formatDate(new Date(board.parentsBoardRegisterDate));
+        const formattedDate = formatDate(new Date(board.updateDate));
         content += `
                          <a class="parents-yard-board-item-link">
             <div class="parents-yard-board-item-wrapper">
-                <span class="category"><span>[${board.eventCategory}]</span> ${board.eventTitle}</span>
+                <span class="category"><span> [ ${convertCategory(board.eventCategory)} ] </span> ${board.eventTitle}</span>
                 <div class="parents-yard-board-item-container">
                     <h3 class="parents-yard-board-item-title">
                         ${board.boardTitle}
@@ -148,7 +148,7 @@ function showList(boardDTOS) {
                     </p>
                     <div class="parents-yard-board-item-bottom-wrapper">
                         <p class="parents-yard-board-item-writer" style="margin: 0;">
-                            작성자: ${board.memberNickname}<span class="bottom-divide-line">ㅣ</span>
+                            작성자: ${board.memberNickName}<span class="bottom-divide-line">ㅣ</span>
                         </p>
                         <span class="parents-yard-board-item-date">
                             ${formattedDate}
@@ -191,7 +191,29 @@ function formatDate(originalDate) {
     return formattedDate;
 }
 
+function convertCategory(category) {
+//    AGRICULTURE, ART, TRADITION, CRAFT, SCIENCE, MUSEUM, SPORTS, ETC
+    let categoryResult;
 
+    if(category == "AGRICULTURE"){
+        categoryResult = "농촌";
+    } else if(category == "ART"){
+        categoryResult = "예술";
+    } else if(category == "TRADITION"){
+        categoryResult = "전통";
+    } else if(category == "CRAFT"){
+        categoryResult = "공방";
+    } else if(category == "SCIENCE"){
+        categoryResult = "과학";
+    } else if(category == "MUSEUM"){
+        categoryResult = "박물관";
+    } else if(category == "SPORTS"){
+        categoryResult = "스포츠";
+    } else{
+        categoryResult = "기타";
+    }
+    return categoryResult;
+}
 
 
 

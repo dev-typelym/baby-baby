@@ -1,17 +1,24 @@
 package com.app.babybaby.controller.boardController;
 
 
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.service.board.review.ReviewService;
+import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -21,14 +28,24 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @GetMapping("writeFirst")
-    public String goReviewBoardWrite(){
+    public String goReviewBoardWrite(Model model){
         Long sessionId = 1L;
+        List<EventDTO> events = reviewService.findAllEventsByMemberId(sessionId);
 
+        Gson gson = new Gson();
+        String eventsJson = gson.toJson(events);
+        log.info(eventsJson);
+        model.addAttribute("eventsJson", eventsJson);
         return "review-board/review-board-write";
     }
 
     @GetMapping("writeSecond")
-    public String goReviewBoardSecond(){
+    public String goReviewBoardSecond(Model model){
+        Long sessionId = 1L;
+        Member member = reviewService.getMemberInfo(sessionId);
+//        로그인 되어있지 않을때 로그인 페이지로 보내주기
+        model.addAttribute(member);
+
         return "review-board/review-board-thumbnail";
     }
 
