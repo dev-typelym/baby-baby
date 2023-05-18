@@ -2,19 +2,19 @@ package com.app.babybaby.repository.board.ask;
 
 import com.app.babybaby.entity.board.ask.Ask;
 import com.app.babybaby.entity.board.ask.QAsk;
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.search.admin.AdminAskSearch;
+import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.*;
 
 import java.util.List;
 import java.util.Optional;
 
 import static com.app.babybaby.entity.board.ask.QAsk.ask;
+import static com.app.babybaby.entity.board.event.QEvent.event;
 
 @RequiredArgsConstructor
 public class AskQueryDslImpl implements AskQueryDsl {
@@ -64,7 +64,33 @@ public class AskQueryDslImpl implements AskQueryDsl {
     
 //    내가쓴 문의 목록
     @Override
-    public Slice<Ask> findAllAskByMemberId(Long memberId, Pageable pageable, AdminAskSearch AdminAskSearch) {
-        return null;
+    public Slice<Ask> findAllAskByMemberId(Long memberId, Pageable pageable, AdminAskSearch adminAskSearch) {
+        BooleanExpression askTitleContains = adminAskSearch.getAskTitle() == null ? null : ask.boardTitle.contains(adminAskSearch.getAskTitle());
+
+        List<Ask> asks = query.select(ask)
+                .from(ask)
+                .leftJoin(ask.askAnswer).fetchJoin()
+                .where(ask.member.id.eq(memberId),askTitleContains)
+                .orderBy(ask.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        boolean hasNext = false;
+        // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true
+        if (asks.size() > pageable.getPageSize()) {
+            hasNext = true;
+            asks.remove(pageable.getPageSize());
+        }
+
+        return new SliceImpl<>(asks, pageable, hasNext);
     }
+
+
+
+
+
+
+
+
 }

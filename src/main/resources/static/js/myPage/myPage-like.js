@@ -8,7 +8,6 @@
 //         svgPath.css('fill', 'red')
 //     }
 // })
-
 $(document).on('click', '.wish-button', function(){
     let svgPath = $(this).children().children();
     if(svgPath.css('fill') == 'rgb(255, 0, 0)'){
@@ -60,7 +59,15 @@ function appendList(eventLikeDTOS) {
                 <a class="item" href="">
                     <div class="thumbnail-container">
                         <div class="thumbnail-list">
-                            <div class="photo-thumbnail"></div>
+                              `
+                        if(eventLike.eventFileDTOS.length != 0) {
+                            boardText3 += `
+                            <div class="photo-thumbnail">
+                                <img src="/eventFiles/display?fileName=Event/${eventLike.eventFileDTOS[0].filePath}/${eventLike.eventFileDTOS[0].fileUUID}_${eventLike.eventFileDTOS[0].fileOriginalName}">
+                             </div>
+                                `
+                        }
+                    boardText3 += `
                             <!-- 사진 div -->
                         </div>
                     </div>
@@ -73,7 +80,7 @@ function appendList(eventLikeDTOS) {
                                 <div class="list-writer" >${eventLike.memberName}</div>
                                 <div class="list-date-container">
                                     <span class="print-data"
-                                        >${eventLike.address.address} ${eventLike.address.addressDetail} ${eventLike.address.addressSubDetail}</span
+                                        ></span
                                     >
                                 </div>
                             </div>

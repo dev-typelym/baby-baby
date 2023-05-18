@@ -1,5 +1,6 @@
 package com.app.babybaby.domain.likeDTO.eventLikeDTO;
 
+import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.member.Member;
@@ -12,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Component
@@ -26,9 +28,10 @@ public class EventLikeDTO {
     private LocalDateTime updateDate;
     private Address address;
     private Long eventRecruitCount;
+    private List<EventFileDTO> eventFileDTOS;
 
     @Builder
-    public EventLikeDTO(Long id, String boardTitle, Long eventPrice, Long memberId, String memberName, LocalDateTime registerDate, LocalDateTime updateDate, Address address, Long eventRecruitCount) {
+    public EventLikeDTO(Long id, String boardTitle, Long eventPrice, Long memberId, String memberName, LocalDateTime registerDate, LocalDateTime updateDate, Long eventRecruitCount, List<EventFileDTO> eventFileDTOS) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.eventPrice = eventPrice;
@@ -36,7 +39,7 @@ public class EventLikeDTO {
         this.memberName = memberName;
         this.registerDate = registerDate;
         this.updateDate = updateDate;
-        this.address = address;
         this.eventRecruitCount = eventRecruitCount;
+        this.eventFileDTOS = eventFileDTOS;
     }
 }
