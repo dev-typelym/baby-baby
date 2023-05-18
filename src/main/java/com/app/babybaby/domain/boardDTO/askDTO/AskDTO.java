@@ -1,31 +1,37 @@
 package com.app.babybaby.domain.boardDTO.askDTO;
 
 import com.app.babybaby.entity.embeddable.Address;
-import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.ProcessType;
-import com.sun.istack.NotNull;
 import lombok.Builder;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Data
+@Component
+@NoArgsConstructor
 public class AskDTO {
     private Long id;
     private ProcessType askStatus;
-    private String boardTitle;
-    private String boardContent;
+    private String askBoardTitle;
+    private String askBoardContent;
     private Long memberId;
     private LocalDateTime registerDate;
+    private String answerTitle;
+    private String answerContent;
 
 
     @Builder
-    public AskDTO(Long id,ProcessType askStatus, String boardTitle, String boardContent, Long memberId, LocalDateTime registerDate) {
+    public AskDTO(Long id, ProcessType askStatus, String askBoardTitle, String askBoardContent, Long memberId, LocalDateTime registerDate, String answerTitle, String answerContent) {
         this.id = id;
         this.askStatus = askStatus;
-        this.boardTitle = boardTitle;
-        this.boardContent = boardContent;
+        this.askBoardTitle = askBoardTitle;
+        this.askBoardContent = askBoardContent;
         this.memberId = memberId;
         this.registerDate = registerDate;
+        this.answerTitle = answerTitle;
+        this.answerContent = answerContent;
     }
 }

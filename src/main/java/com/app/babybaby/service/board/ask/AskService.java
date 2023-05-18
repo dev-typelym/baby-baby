@@ -6,24 +6,35 @@ import com.app.babybaby.entity.board.ask.Ask;
 import com.app.babybaby.search.admin.AdminAskSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public interface AskService {
+public interface AskService{
     public Page<AskDTO> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch);
     public Optional<AskDTO> findAskById_queryDSL(Long askId);
+    public Slice<AskDTO> findAllAskByMemberId(Long memberId,Pageable pageable,AdminAskSearch AdminAskSearch);
 
 
     default AskDTO toAskDTO(Ask ask) {
-        return AskDTO.builder()
+        AskDTO.AskDTOBuilder builder = AskDTO.builder()
                 .id(ask.getId())
                 .askStatus(ask.getAskStatus())
-                .boardContent(ask.getBoardContent())
-                .boardTitle(ask.getBoardTitle())
-                .memberId(ask.getMember().getId())
-                .registerDate(ask.getRegisterDate())
-                .build();
+                .askBoardContent(ask.getBoardContent())
+                .askBoardTitle(ask.getBoardTitle())
+                .registerDate(ask.getRegisterDate());
+
+        if (ask.getMember() != null) {
+            builder.memberId(ask.getMember().getId());
+        }
+
+        if (ask.getAskAnswer() != null) {
+            builder.answerTitle(ask.getAskAnswer().getBoardTitle())
+                    .answerContent(ask.getAskAnswer().getBoardContent());
+        }
+
+        return builder.build();
     }
 
 }

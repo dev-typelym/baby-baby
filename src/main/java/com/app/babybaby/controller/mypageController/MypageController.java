@@ -6,6 +6,7 @@ import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
 import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
 import com.app.babybaby.entity.member.Kid;
+import com.app.babybaby.search.admin.AdminAskSearch;
 import com.app.babybaby.service.board.ask.AskService;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
@@ -82,14 +83,17 @@ public class MypageController {
         return "user-part/inquiry-list";
     }
 
-//    @ResponseBody
-//    @GetMapping("inquiry/{page}")
-//    public Page<AskDTO> getInquiry(@PathVariable(value = "page") Integer page,HttpSession httpSession){
-////        Page<AskDTO> AskDTOS = askService.findAllAsk_queryDSL(PageRequest.of(page, 10),)
-//        log.info(page + "1111111111111111111");
-//        log.info(AskDTOS + "컨트롤러 들어옴");
-//        return AskDTOS;
-//    }
+    @ResponseBody
+    @PostMapping("inquiry/{page}&&{boardTitle}")
+    public Slice<AskDTO> getInquiry(@PathVariable(value = "page") Integer page,HttpSession httpSession,@PathVariable(value = "boardTitle") String boardTitle){
+        log.info("@@@@@@@@@여기에요!!여기!!@@@@@@@@");
+        AdminAskSearch adminAskSearch = new AdminAskSearch();
+        adminAskSearch.setAskTitle(boardTitle);
+        Slice<AskDTO> AskDTOS = askService.findAllAskByMemberId(1L,PageRequest.of(page, 10),adminAskSearch);
+        log.info(page + "1111111111111111111");
+        log.info(AskDTOS + "컨트롤러 들어옴");
+        return AskDTOS;
+    }
 
 
 //    통솔자 지원
@@ -147,8 +151,7 @@ public class MypageController {
         return reviewDTOS;
     }
 
-
-    //  내가좋아요한 이벤트게시글 페이지
+//  내가좋아요한 이벤트게시글 페이지
     @GetMapping("play-like")
     public String getLike(){
         return "myPage/myPage-play-like";

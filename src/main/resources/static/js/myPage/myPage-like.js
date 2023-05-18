@@ -8,7 +8,6 @@
 //         svgPath.css('fill', 'red')
 //     }
 // })
-
 $(document).on('click', '.wish-button', function(){
     let svgPath = $(this).children().children();
     if(svgPath.css('fill') == 'rgb(255, 0, 0)'){
