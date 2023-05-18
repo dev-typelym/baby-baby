@@ -58,7 +58,7 @@ $emailInput.on("blur", function () {
                 $emailError.text("이메일 형식이 올바르지 않습니다.");
                 $emailError.css("display", "block");
                 $emailError.css('color', 'red');
-                $confirmBtn.prop('disabled', true);
+                $confirmBtn.prop('disabled', true);1
                 $confirmBtn.css('background-color', 'gray').css('cursor','default');
             } else {
                 $emailError.text("아기자기에 등록되어 있지 않은 계정입니다.");

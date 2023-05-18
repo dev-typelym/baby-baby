@@ -1,5 +1,6 @@
 package com.app.babybaby.config;
 
+import com.app.babybaby.service.member.member.MemberOAuthService;
 import com.app.babybaby.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +43,7 @@ public class SecurityConfig {
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
     private final AuthenticationFailureHandler authenticationFailureHandler;
     private final UserDetailsService userDetailsService;
+    private final MemberOAuthService memberOAuthService;
 
     //    비밀번호 암호화
     @Bean
@@ -87,7 +89,12 @@ public class SecurityConfig {
                 .key(REMEMBER_ME_TOKEN_KEY)
                 .tokenValiditySeconds(REMEMBER_ME_TOKEN_EXPIRED)
                 .userDetailsService(userDetailsService)
-                .authenticationSuccessHandler(authenticationSuccessHandler);
+                .authenticationSuccessHandler(authenticationSuccessHandler)
+                .and()
+                .oauth2Login()
+                .userInfoEndpoint()
+                .userService(memberOAuthService);
+
 
         return http.build();
 
