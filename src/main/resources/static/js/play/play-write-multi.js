@@ -13,7 +13,6 @@ let address = params.get('address');
 let eventPrice = params.get('eventPrice');
 let stringStartDate = params.get('stringStartDate');
 let stringEndDate = params.get('stringEndDate');
-let address = params.get('address');
 
 let mainFileOriginalName = params.get('mainFileOriginalName');
 let mainFileUUID = params.get('mainFileUUID');
@@ -110,58 +109,97 @@ $fileRegisterButton.click(() => {
 });
 
 let inputFiles = [];
-
+let j = 0;
+FileList.prototype.forEach = Array.prototype.forEach;
 // 이미지 추가 시
 $fileInput.change((e) => {
     $fileListBox.empty();
     let index = 0;
     let files = e.target.files;
+    console.log(files)
     let filesArr = Array.prototype.slice.call(files);
+    let formData = new FormData();
+    filesArr.forEach(file => formData.append("file", file))
+    console.log(files)
+    console.log(filesArr)
+    console.log(e.target.files);
+
+
+    $.ajax({
+        url: "/nowKidsFiles/upload",
+        type: "post",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (uuids) {
+            globalThis.uuids = uuids;
+            console.log(globalThis.uuids)
+
+            const dataTransfer = new DataTransfer();
+            filesArr = dataTransfer.files;
+
+            console.log(files)
+
+            let inputFiles1 = "";
+            files.forEach((file) => {
+                inputFiles1 +=
+                    `
+                    <input type="hidden" name="files[${j}].fileOriginalName" value="${file.name}">
+                    <input type="hidden" name="files[${j}].fileUUID" value="${globalThis.uuids[j]}">
+                    <input type="hidden" name="files[${j}].filePath" value="${toStringByFormatting(new Date())}">
+                    `
+                j++;
+            });
+            j=0;
+            $('#play-header-multi').append(inputFiles1);
+        }
+    });
 
     inputFiles = [];
 
-    filesArr.forEach((file, i) => {
+    filesArr.forEach((file,i) => {
+
         inputFiles.push(file);
 
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = (e) => {
             let text = `
-                    <div style="position:relative" id="file${i}">
-                        <div class="image-file-content-box">
-                            <div>
-                                <span class="image-file-info">원본 이미지</span>
-                                <div class="first-image-box">
-                                    <img src="${e.target.result}" />
+                        <div style="position:relative" id="file${i}">
+                            <div class="image-file-content-box">
+                                <div>
+                                    <span class="image-file-info">원본 이미지</span>
+                                    <div class="first-image-box">
+                                        <img src="${e.target.result}" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="image-file-info">정방향 이미지</span>
+                                    <div class="second-image-box">
+                                        <img src="${e.target.result}" />
+                                    </div>
                                 </div>
                             </div>
-                            <div>
-                                <span class="image-file-info">정방향 이미지</span>
-                                <div class="second-image-box">
-                                    <img src="${e.target.result}" />
-                                </div>
+                            <div class="cancel-box">
+                                <button class="image-cancel" id="${i}">
+                                    <svg viewBox="0 0 40 40" focusable="false" role="presentation"
+                                        class="image-cancel-icon" aria-hidden="true"
+                                            style="width: 24px; height: 24px;">
+                                        <path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z">
+                                        </path>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
-                        <div class="cancel-box">
-                            <button  type="button" class="image-cancel" id="${i}">
-                                <svg viewBox="0 0 40 40" focusable="false" role="presentation"
-                                    class="image-cancel-icon" aria-hidden="true"
-                                        style="width: 24px; height: 24px;">
-                                    <path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>    
-            `;
+                `;
             $fileListBox.append(text);
             $fileModal.hide();
-            $('.file-content-box').show();
+            $(".file-content-box").show();
             index++;
-        };
+        }
         reader.readAsDataURL(file);
         $('.preview-text').hide();
     });
-
+    console.log(inputFiles);
 });
 
 $fileListBox.on('click', '.image-cancel', (e) => {
@@ -180,3 +218,31 @@ $fileListBox.on('click', '.image-cancel', (e) => {
         $('.preview-text').show();
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+//     /*****************************************************/
+function leftPad(value) {
+    if (value >= 10) {
+        return value;
+    }
+    return `0${value}`;
+}
+
+function toStringByFormatting(source, delimiter = '/') {
+    const year = source.getFullYear();
+    const month = leftPad(source.getMonth() + 1);
+    const day = leftPad(source.getDate());
+
+    return [year, month, day].join(delimiter);
+}
