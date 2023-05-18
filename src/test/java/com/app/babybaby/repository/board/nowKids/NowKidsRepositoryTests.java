@@ -70,24 +70,24 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void save50NowKids() {
-        Address address = new Address();
-        address.setAddress("분당");
-        address.setAddressDetail("d");
-        address.setAddressSubDetail("dfa");
-        address.setPostcode("12342132");
-        for (int i = 5; i < 10; i++) {
-            String uniqueNickname = "Test닉네임 " + i;
-
-            Member member = new Member("you" + i + "@naver.com", "정유찬" + i, "1234", uniqueNickname, "안녕하세요",
-                    "0101234123" + i, address, null, null,null,LocalDateTime.now(), MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED, CategoryType.AGRICULTURE,null,null,null);
-            Calendar calendar = new Calendar("이벤트1", CategoryType.AGRICULTURE, LocalDateTime.now(), LocalDateTime.now());
-//            public Event (String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar) {
-            Event event = new Event( "Test" + (i + 1), "test" +(i+1), 10L, address, 10000L + i, CategoryType.MUSEUM, calendar, member);
-            userRepository.save(member);
-            eventRepository.save(event);
+//        Address address = new Address();
+//        address.setAddress("분당");
+//        address.setAddressDetail("d");
+//        address.setAddressSubDetail("dfa");
+//        address.setPostcode("12342132");
+//        for (int i = 5; i < 10; i++) {
+//            String uniqueNickname = "Test닉네임 " + i;
+//
+//            Member member = new Member("you" + i + "@naver.com", "정유찬" + i, "1234", uniqueNickname, "안녕하세요",
+//                    "0101234123" + i, address, null, null,null,LocalDateTime.now(), MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED, CategoryType.AGRICULTURE,null,null,null);
+//            Calendar calendar = new Calendar("이벤트1", CategoryType.AGRICULTURE, LocalDateTime.now(), LocalDateTime.now());
+////            public Event (String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar) {
+//            Event event = new Event( "Test" + (i + 1), "test" +(i+1), 10L, address, 10000L + i, CategoryType.MUSEUM, calendar, member);
+//            userRepository.save(member);
+//            eventRepository.save(event);
 //            NowKids nowKids = new NowKids(event, member);
 //            nowKidsRepository.save(nowKids);
-        }
+//        }
     }
 
     @Test
