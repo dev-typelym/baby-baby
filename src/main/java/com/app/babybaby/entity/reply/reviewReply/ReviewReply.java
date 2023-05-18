@@ -28,7 +28,9 @@ public class ReviewReply extends Period {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    public ReviewReply(String reviewReplyContent, Review review, Member member) {
+    @Builder
+    public ReviewReply(Long id, String reviewReplyContent, Review review, Member member) {
+        this.id = id;
         ReviewReplyContent = reviewReplyContent;
         this.review = review;
         this.member = member;

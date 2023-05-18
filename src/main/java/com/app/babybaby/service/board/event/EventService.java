@@ -5,6 +5,7 @@ import com.app.babybaby.domain.calendarDTO.CalendarDTO;
 import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
@@ -20,6 +21,8 @@ import java.util.stream.Collectors;
 
 public interface EventService {
     Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable);
+
+    public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar);
 
     Event createEvent(Event event);
 
@@ -41,8 +44,40 @@ public interface EventService {
                 .build();
         }
 
+        default Event toEventEntity(EventDTO eventDTO){
+            return Event.builder()
+                    .id(eventDTO.getId())
+                    .category(eventDTO.getCategory())
+                    .eventLocation(eventDTO.getEventLocation())
+                    .eventRecruitCount(eventDTO.getEventRecruitCount())
+                    .eventPrice(eventDTO.getEventPrice())
+                    .boardContent(eventDTO.getBoardContent())
+                    .boardTitle(eventDTO.getBoardTitle())
+                    .company(memberDTOToEntity(eventDTO.getCompany()))
+                    .build();
+        }
+
+    default CalendarDTO toCalendarDTO(Calendar calendar){
+        return CalendarDTO.builder()
+                .id(calendar.getId())
+                .calendarName(calendar.getCalendarName())
+                .endDate(calendar.getEndDate())
+                .startDate(calendar.getStartDate())
+                .id(calendar.getId())
+                .build();
+    }
+
+    default Calendar toCalendarEntity(CalendarDTO calendarDTO){
+        return Calendar.builder()
+                .calendarName(calendarDTO.getCalendarName())
+                .endDate(calendarDTO.getEndDate())
+                .startDate(calendarDTO.getStartDate())
+                .build();
+    }
+
     default EventFileDTO eventFileToDTO(EventFile eventFile){
         return EventFileDTO.builder()
+                .id(eventFile.getId())
                 .fileOriginalName(eventFile.getFileOriginalName())
                 .filePath(eventFile.getFilePath())
                 .fileStatus(eventFile.getFileStatus())
@@ -77,5 +112,24 @@ public interface EventService {
                 .id(Member.getId())
                 .build();
     }
+
+
+    default Member memberDTOToEntity(MemberDTO memberDTO) {
+        return Member.joinMemberBuilder()
+                .id(memberDTO.getId())
+                .memberName(memberDTO.getMemberName())
+                .memberEmail(memberDTO.getMemberEmail())
+                .memberPassword(memberDTO.getMemberPassword())
+                .memberNickname(memberDTO.getMemberNickname())
+                .memberPhone(memberDTO.getMemberPhone())
+                .memberAddress(memberDTO.getMemberAddress())
+                .memberProfileOriginalName(memberDTO.getMemberProfileOriginalName())
+                .memberProfilePath(memberDTO.getMemberFilePath())
+                .memberRegisterDate(memberDTO.getMemberRegisterDate())
+                .memberType(memberDTO.getMemberType())
+                .memberRole(memberDTO.getMemberRole())
+                .build();
+    }
+
 
 }

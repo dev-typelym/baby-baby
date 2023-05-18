@@ -4,10 +4,16 @@ import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.calendar.Calendar;
+import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
+import com.app.babybaby.repository.file.eventFile.EventFileRepository;
+import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
+import com.app.babybaby.service.member.member.MemberService;
+import com.app.babybaby.type.CategoryType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +31,10 @@ public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
 
+    private final MemberRepository memberRepository;
+
+    private final EventFileRepository eventFileRepository;
+
 
     @Override
     public Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable) {
@@ -34,6 +44,22 @@ public class EventServiceImpl implements EventService {
         List<EventDTO> collect = events.get().map(event -> eventToDTO(event)).collect(Collectors.toList());
 //        List<EventDTO> collect = events.get().collect(Collectors.toList());
         return new SliceImpl<>(collect,pageable,events.hasNext());
+    }
+
+    public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar){
+        Member member = memberRepository.findById(memberId).get();
+        eventDTO.setCompany(this.memberToDTO(member));
+        eventDTO.setCalendar(this.toCalendarDTO(calendar));
+        log.info("내가 가져온 맴버 : " + member);
+        log.info("내가 가져온 Calendar : " + calendar);
+        log.info(eventDTO.toString());
+        Event event = this.toEventEntity(eventDTO);
+        eventRepository.save(event);
+        log.info("엔티티로 바뀐 eventFile은 " + event.getEventFiles().toString());
+        log.info("엔티티로 바뀐 member는 : "+ event.getCompany());
+
+        event.getEventFiles().stream().map(eventFile -> eventFileRepository.save(eventFile));
+
     }
 
 
@@ -50,21 +76,6 @@ public class EventServiceImpl implements EventService {
     @Override
     public void deleteEvent(Long eventId) {
 
-    }
-
-    @Override
-    public EventDTO eventToDTO(Event event) {
-        return null;
-    }
-
-    @Override
-    public EventFileDTO eventFileToDTO(EventFile eventFile) {
-        return null;
-    }
-
-    @Override
-    public MemberDTO memberToDTO(Member Member) {
-        return null;
     }
 
 }

@@ -72,8 +72,9 @@ stars.forEach((star) => {
         }
     });
 });
-/* 별점 */
 
+// 별정
+let rating = 0;
 stars.forEach((star) => {
     star.addEventListener('click', () => {
         const index = star.getAttribute('data-index');
@@ -87,8 +88,20 @@ stars.forEach((star) => {
         // 클릭된 star 이미지 이후의 grey-star 이미지를 변경
         for (let i = parseInt(index) + 1; i <= 5; i++) {
             const img = document.querySelector(`.review-my-star[data-index="${i}"]`);
-            img.style.fill =  'rgba(0, 0, 0, 0.5)';
+            img.style.fill = 'rgba(0, 0, 0, 0.5)';
         }
+
+        // 선택된 별점 값 가져오기
+        rating = parseInt(index);
+        console.log('별점:', rating);
+        $('input[name=reviewScore]').val(rating)
     });
 });
 
+
+
+$('.select-option2').on('click', function () {
+    let eventId = $(this).attr('value')
+    console.log(eventId)
+    $('input[name=eventId]').val(eventId)
+})

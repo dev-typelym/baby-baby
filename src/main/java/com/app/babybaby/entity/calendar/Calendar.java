@@ -32,6 +32,7 @@ public class Calendar {
     @NotNull
     private LocalDateTime endDate;
 
+    @Builder
     public Calendar(String calendarName, CategoryType categoryType, LocalDateTime startDate, LocalDateTime endDate) {
         this.calendarName = calendarName;
         this.categoryType = categoryType;

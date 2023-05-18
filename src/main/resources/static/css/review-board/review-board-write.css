@@ -380,7 +380,7 @@ input[type='text'] {
     overflow-wrap: break-word;
 }
 
-.select-layout {
+.select-layout{
     align-items: center;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -602,7 +602,7 @@ input[type='text'] {
 div.select-placeholder {
     color: #adb5bd;
 }
-div.select-placeholder2 {
+div.select-placeholder2, div.select-placeholder3 {
     color: #adb5bd;
 }
 div.select-placeholder-kid {

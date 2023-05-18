@@ -78,6 +78,50 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
                 .fetch();
     }
 
+
+
+//    [리뷰] 리스트 페이지
+    public Page<Review> findAllReviewWithSearch_QueryDsl(Pageable pageable, ParentsBoardSearch parentsBoardSearch){
+        BooleanExpression categoryType = parentsBoardSearch.getCategoryType() == null ? null : review.event.category.isNull().or(review.event.category.eq(parentsBoardSearch.getCategoryType()));
+
+//        BooleanExpression categoryType = parentsBoardSearch.getCategoryType() == null ? null : parentsBoard.event.category.eq(parentsBoardSearch.getCategoryType());
+        BooleanExpression searchTitle = parentsBoardSearch.getSearchTitle() == null ? null : review.boardTitle.contains(parentsBoardSearch.getSearchTitle());
+        BooleanExpression searchContent = parentsBoardSearch.getSearchContent() == null ? null : review.boardContent.contains(parentsBoardSearch.getSearchContent());
+        BooleanExpression searchAll = parentsBoardSearch.getSearchContent() == null && parentsBoardSearch.getSearchTitle() == null
+                ? null
+                :(review.boardContent.contains(parentsBoardSearch.getSearchContent())
+                .or(review.boardTitle.contains(parentsBoardSearch.getSearchTitle())));
+//        if(parentsBoardSearch.getCategoryType() == null) {
+//            parentsBoardSearch.setCategoryType(CategoryType.TALK);
+//        }
+        log.info(categoryType + "카테고리임~~~~");
+        log.info(searchTitle + "검색제목임~~~~");
+        log.info(searchContent + "검색내용임~~~~");
+
+//       전체 목록 불러오기(페이징)
+        List<Review> foundReview = query.select(review)
+                .from(review)
+                .join(review.event)
+                .fetchJoin()
+                .leftJoin(review.reviewFiles)
+                .fetchJoin()
+                .orderBy(review.id.desc())
+//                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
+                .where(searchAll, categoryType)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(review.count())
+                .from(review)
+//                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
+                .where(searchAll, categoryType)
+                .fetchOne();
+        log.info("asdsadasdd" + foundReview);
+        return new PageImpl<>(foundReview, pageable, count);
+    }
+
+
     //  [관리자] 리뷰 전체 목록 조회
     @Override
     public Page<Review> findAllReviewBoardWithSearch_queryDSL(Pageable pageable , AdminReviewSearch adminReviewSearch, CategoryType eventCategory) {

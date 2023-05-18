@@ -46,11 +46,12 @@ public class Review extends BoardInfo {
         this.reviewReplies.add(reviewReply);
     }
 
-    public Review(int reviewScore, Event event, Member member, List<ReviewReply> reviewReplies, String boardTitle, String boardContent) {
+    @Builder
+    public Review(String boardTitle, String boardContent, int reviewScore, List<ReviewFile> reviewFiles, Event event, Member member) {
         super(boardTitle, boardContent);
         ReviewScore = reviewScore;
+        this.reviewFiles = reviewFiles;
         this.event = event;
         this.member = member;
-        this.reviewReplies = reviewReplies;
     }
 }
