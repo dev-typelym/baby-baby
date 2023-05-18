@@ -102,6 +102,11 @@ public class EventBoardRepositoryTests {
         log.info(eventRepository.findTop1ByCategoryOrderByRegisterDateDesc(CategoryType.SPORTS)+"");
     }
 
+    @Test
+    public void findAllPurchasedEventsTest(){
+        log.info(eventRepository.findAllPurchasedEvents(1L).toString());
+    }
+
 
 
 }

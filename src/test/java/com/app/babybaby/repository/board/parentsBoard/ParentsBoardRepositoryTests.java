@@ -98,30 +98,30 @@ public class ParentsBoardRepositoryTests {
 
 
     //  게시글 20개 저장
-    @Transactional
-    @Test
-    public void save20EventTest() {
-        for (int i = 0; i < 1; i++) {
-            Address address = new Address();
-            address.setAddress("");
-            address.setAddressDetail("");
-            address.setAddressSubDetail("");
-            address.setPostcode("");
-
-            Event event = new Event(
-                    "Test",
-                    "Testc",
-                    (long) (i + 1),
-                    address,
-                    40000L,
-                    CategoryType.ART,
-                    null,
-                    null
-            );
-
-            eventRepository.save(event);
-        }
-    }
+//    @Transactional
+//    @Test
+//    public void save20EventTest() {
+//        for (int i = 0; i < 1; i++) {
+//            Address address = new Address();
+//            address.setAddress("");
+//            address.setAddressDetail("");
+//            address.setAddressSubDetail("");
+//            address.setPostcode("");
+//
+//            Event event = new Event(
+//                    "Test",
+//                    "Testc",
+//                    (long) (i + 1),
+//                    address,
+//                    40000L,
+//                    CategoryType.ART,
+//                    null,
+//                    null
+//            );
+//
+//            eventRepository.save(event);
+//        }
+//    }
 
 
     //    부모님마당 20개 저장

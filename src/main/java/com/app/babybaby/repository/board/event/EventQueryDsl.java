@@ -25,6 +25,9 @@ public interface EventQueryDsl {
 
 //    내가 참여한 이벤트 게시판
     public Page<Purchase> findEventListByMemberId_QueryDSL(Pageable pageable, Long memberId);
+    
+//    [리뷰] 내가 결제한 이벤트 정보들
+    public List<Event> findAllPurchasedEvents(Long memberId);
 
     //   [관리자] 놀러가요 카테고리 및 상태별 게시글 목록 조회
     public List<Event> findNowKidsEvents_queryDSL(AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus);

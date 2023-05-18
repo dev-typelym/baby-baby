@@ -1,5 +1,6 @@
 package com.app.babybaby.service.board.review;
 
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.fileDTO.reviewFileDTO.ReviewFileDTO;
@@ -48,6 +49,13 @@ public class ReviewServiceImpl implements ReviewService {
         log.info(reviewDTOS.toString()+"서비스");
         log.info(reviews.toString()+"리뷰스");
         return new PageImpl<>(reviewDTOS,pageable,reviews.getTotalElements());
+    }
+//    [리뷰] 회원 아이디로 모든 결제한 이벤트 가져오기
+    @Override
+    public List<EventDTO> findAllEventsByMemberId(Long memberId) {
+        List<Event> events = eventRepository.findAllPurchasedEvents(memberId);
+        List<EventDTO> eventDTOS = events.stream().map(eventService::eventToDTO).collect(Collectors.toList());
+        return eventDTOS;
     }
 
     @Override
