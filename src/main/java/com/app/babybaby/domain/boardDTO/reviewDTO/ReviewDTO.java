@@ -4,6 +4,7 @@ import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.fileDTO.reviewFileDTO.ReviewFileDTO;
 import com.app.babybaby.domain.replyDTO.reviewReplyDTO.ReviewReplyDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.reviewFile.ReviewFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.reviewReply.ReviewReply;
@@ -38,10 +39,17 @@ public class ReviewDTO {
     private String memberProfileOriginalName;
     private String memberNickName;
 
-    private EventDTO eventDTO;
+
+    private Long eventId;
+        private String eventTitle;
+        private String eventContent;
+        private Long eventRecruitCount;
+        private Address eventLocation;
+        private Long eventPrice;
+        private CategoryType eventCategory;
 
     @Builder
-    public ReviewDTO(Long id, int reviewScore, String boardTitle, String boardContent, LocalDateTime uploadDate, LocalDateTime updateDate, List<ReviewFileDTO> files, List<ReviewReplyDTO> replies, Long memberId, String memberProfilePath, String memberProfileUUID, String memberProfileOriginalName, String memberNickName, EventDTO eventDTO) {
+    public ReviewDTO(Long id, int reviewScore, String boardTitle, String boardContent, LocalDateTime uploadDate, LocalDateTime updateDate, List<ReviewFileDTO> files, List<ReviewReplyDTO> replies, Long memberId, String memberProfilePath, String memberProfileUUID, String memberProfileOriginalName, String memberNickName, Long eventId, String eventTitle, String eventContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType eventCategory) {
         this.id = id;
         this.reviewScore = reviewScore;
         this.boardTitle = boardTitle;
@@ -55,6 +63,12 @@ public class ReviewDTO {
         this.memberProfileUUID = memberProfileUUID;
         this.memberProfileOriginalName = memberProfileOriginalName;
         this.memberNickName = memberNickName;
-        this.eventDTO = eventDTO;
+        this.eventId = eventId;
+        this.eventTitle = eventTitle;
+        this.eventContent = eventContent;
+        this.eventRecruitCount = eventRecruitCount;
+        this.eventLocation = eventLocation;
+        this.eventPrice = eventPrice;
+        this.eventCategory = eventCategory;
     }
 }

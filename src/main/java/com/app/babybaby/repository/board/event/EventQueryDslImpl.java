@@ -132,6 +132,7 @@ public List<Event> findAllPurchasedEvents(Long memberId) {
             .from(purchase)
             .innerJoin(purchase.event, event)
             .innerJoin(purchase.member)
+            .innerJoin(purchase.event.calendar)
             .where(purchase.member.id.eq(memberId))
             .fetch();
 }

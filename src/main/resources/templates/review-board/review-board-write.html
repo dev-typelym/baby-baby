@@ -16,7 +16,7 @@
 <div th:insert="~{/components/header:: header}"></div>
 <form action="/review/writeSecond">
     <div>
-        <input type="hidden" name="reviewScore">
+        <input type="hidden" name="reviewScore" value="0">
         <input type="hidden" name="eventId">
         <div class="wrap">
             <div class="now-kids.container">
@@ -112,8 +112,8 @@
                                                 </div>
                                                 <div class="select-kids-count">
                                                     <div class="select-menu-layout">
-                                                        <div class="select-option2" value="2">실내 액티비티 VR체험학습(2023.02.21)</div>
-                                                        <div class="select-option2" value="3">소방관 체험학습(2023.05.16)</div>
+<!--                                                        <div class="select-option2" value="2">실내 액티비티 VR체험학습(2023.02.21)</div>-->
+<!--                                                        <div class="select-option2" value="3">소방관 체험학습(2023.05.16)</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -267,6 +267,12 @@
 <script src="/js/components/header.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+<script th:inline="javascript">
+    let eventsJson = /*[[${eventsJson}]]*/ '{}';
+    let events = JSON.parse(eventsJson);
+    console.log(events)
+
+</script>
 <script src="/js/review-board/review-board-write.js"></script>
 <!--<script type="module">-->
 <!--    import ClassicEditor from '@ckeditor/ckeditor5-build-classic';-->

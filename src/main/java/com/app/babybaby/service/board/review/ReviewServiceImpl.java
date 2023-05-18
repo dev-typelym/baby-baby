@@ -74,6 +74,11 @@ public class ReviewServiceImpl implements ReviewService {
         });
     }
 
+    @Override
+    public Member getMemberInfo(Long sessionId) {
+        Member member = memberRepository.findById(sessionId).get();
+        return member;
+    }
 
 
     public Page<ReviewDTO> getFindAllWithSearchParentsBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {

@@ -184,7 +184,6 @@ $fileInput.change((e) => {
     });
     console.log(inputFiles);
 });
-$('.image-inputs')
 
 
 /*-------------------------------------------------------*/

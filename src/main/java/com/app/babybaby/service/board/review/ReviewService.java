@@ -4,8 +4,11 @@ import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.fileDTO.reviewFileDTO.ReviewFileDTO;
 import com.app.babybaby.entity.board.review.Review;
+import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.reviewFile.ReviewFile;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
+import com.app.babybaby.type.CategoryType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,6 +22,8 @@ public interface ReviewService {
     public List<EventDTO> findAllEventsByMemberId(Long memberId);
 
     public void saveReview(Long memberId, Long eventId, ReviewDTO reviewDTO);
+
+    public Member getMemberInfo(Long sessionId);
 
 //    리스트 ajax
     public Page<ReviewDTO> getFindAllWithSearchParentsBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
@@ -35,6 +40,13 @@ public interface ReviewService {
                 .memberProfilePath(review.getMember().getMemberProfilePath())
                 .updateDate(review.getUpdateDate())
                 .uploadDate(review.getRegisterDate())
+                .eventCategory(review.getEvent().getCategory())
+                .eventContent(review.getBoardContent())
+                .eventId(review.getEvent().getId())
+                .eventLocation(review.getEvent().getEventLocation())
+                .eventPrice(review.getEvent().getEventPrice())
+                .eventRecruitCount(review.getEvent().getEventRecruitCount())
+                .eventTitle(review.getEvent().getBoardTitle())
                 .files(review.getReviewFiles().stream().map(this::toReviewFileDTO).collect(Collectors.toList()))
                 .build();
     }
