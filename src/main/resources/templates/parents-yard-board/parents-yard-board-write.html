@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>부모님마당 글작성</title>
+    <title>부모님 마당 작성</title>
     <link rel="stylesheet" href="/css/components/header.css">
     <link rel="stylesheet" href="/css/components/footer.css">
     <link rel="stylesheet" href="/css/parents-yard-board/parents-yard-board-write.css">
@@ -19,12 +19,12 @@
             <div class="now-kids.container">
                 <div class="nav-header-box nav-header-background">
                     <div style="display: flex">
-                        <span class="nav-header-span">부모님마당</span>
+                        <span class="nav-header-span">부모님 마당</span>
                         <span class="nav-header-span">작성중</span>
                     </div>
                     <a href="javascript:void(0)" class="profile-box">
                         <span class="profile-name">임종욱</span><span>의</span>
-                        <p>부모님마당 글작성</p>
+                        <p>부모님 마당 글작성</p>
                     </a>
                     <button type="button" class="profile-btn">
                         <span class="profile-span">
@@ -38,14 +38,14 @@
                     <ul>
                         <li>
                             <div href="javascript:void(0)" class="nav-title-box">
-                                부모님마당 작성 순서
+                                부모님 마당 작성 순서
                             </div>
                             <ul class="nav-info-ul">
                                 <li>
-                                    <a href="" class="nav-detail-title">부모님마당 내용 작성</a>
+                                    <a href="" class="nav-detail-title">부모님 마당 내용 작성</a>
                                 </li>
                                 <li>
-                                    <a href="" class="nav-detail-title thumbnail-title">대표사진 등록</a>
+                                    <a href="" class="nav-detail-title thumbnail-title">부모님 마당 사진 등록</a>
                                 </li>
                             </ul>
                         </li>
@@ -57,12 +57,12 @@
                 <div class="content-wrap">
                     <section class="content-container">
                         <ol class="content-ol">
-                            <li class="content-ol-li">부모님마당</li>
-                            <li class="content-ol-li">부모님마당 내용 작성</li>
-                            <li class="content-ol-li">대표사진 등록</li>
+                            <li class="content-ol-li">부모님 마당</li>
+                            <li class="content-ol-li">부모님 마당 내용 작성</li>
+                            <li class="content-ol-li">부모님 마당 사진 등록</li>
                         </ol>
-                        <div class="content-title">부모님마당 내용 작성</div>
-                        <div class="content-sub-title">부모님마당에 등록할 기본정보를 입력해 주세요.</div>
+                        <div class="content-title">부모님 마당 내용 작성</div>
+                        <div class="content-sub-title">부모님 마당에 등록할 기본정보를 입력해 주세요.</div>
                         <div class="content-box">
                             <section class="content-section">
                                 <div class="input-title-box">
@@ -102,7 +102,7 @@
                                         <h2 class="class-for-after">카테고리</h2>
                                     </div>
                                     <div class="input-sub-title">
-                                        부모님마당의 카테고리를 선택해주세요.
+                                        부모님 마당의 카테고리를 선택해주세요.
                                     </div>
                                     <div class="input-box">
                                         <div class="select-box">
@@ -146,15 +146,15 @@
                             <section class="content-section">
                                 <div class="input-content-box">
                                     <div class="input-content-layout2">
-                                        <h2 class="class-for-after">부모님마당 제목</h2>
+                                        <h2 class="class-for-after">부모님 마당 제목</h2>
                                     </div>
                                     <div class="input-sub-content">
-                                        부모님마당에 등록할 제목을 입력해주세요. 
+                                        부모님 마당에 등록할 제목을 입력해주세요. 
                                     </div>
                                     <div class="input-content-box">
                                         <div class="input-box">
                                             <div class="input-layout">
-                                                <input class="parents-yard-title-input" type="text" placeholder="제목을 입력해주세요.">
+                                                <input class="parents-yard-title-input" name="boardTitle" type="text" placeholder="제목을 입력해주세요.">
                                             </div>
                                         </div>
                                     </div>
@@ -164,10 +164,10 @@
                             <section class="content-section">
                                 <div class="input-content-box">
                                     <div class="input-content-layout2">
-                                        <h2 class="class-for-after">부모님마당 내용</h2>
+                                        <h2 class="class-for-after">부모님 마당 내용</h2>
                                     </div>
                                     <div class="input-sub-content">
-                                        부모님마당에 등록할 내용을 입력해주세요.
+                                        부모님 마당에 등록할 내용을 입력해주세요.
                                     </div>
                                     <div class="input-content-box">
                                         <div class="input-box">
@@ -198,25 +198,39 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
 <script>
-    ClassicEditor.create( document.querySelector( '#editor' ), {
-        ckfinder: {
-			uploadUrl : '/css/images/ck-editor-upload'
-		},
-        language: "ko"
-    } );
+    // ClassicEditor.create( document.querySelector( '#editor' ), {
+    //     ckfinder: {
+	// 		uploadUrl : '/css/images/ck-editor-upload'
+	// 	},
+    //     language: "ko"
+    // } );
 </script>
 <style>
-    .ck.ck-editor {
-	width: 850px;
-    }
-    .ck-editor__editable {
-        height: 60vh; 
+    /*.ck.ck-editor {*/
+	/*width: 850px;*/
+    /*}*/
+    /*.ck-editor__editable {*/
+    /*    height: 60vh; */
+    /*}*/
+
+    /*.ck-content { */
+    /*    font-size: 15px;*/
+    /*    padding-right: 16px;*/
+    /*    padding-left: 16px;*/
+    /*}*/
+
+    #editor {
+        width: 850px;
+        height: 60vh;
+        font-size: 15px;
+        border: 1px solid #cccccc;
+        padding: 20px;
+        resize: none;
+
     }
 
-    .ck-content { 
-        font-size: 15px;
-        padding-right: 16px;
-        padding-left: 16px;
+    #editorTitle {
+
     }
 </style>
 </html>
