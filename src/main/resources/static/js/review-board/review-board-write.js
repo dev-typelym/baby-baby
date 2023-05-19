@@ -118,4 +118,4 @@ $('.select-option2').on('click', function () {
     $('input[name=eventId]').val(eventId)
 })
 
-$('.profile-name').text(events.company.memberName)
+$('.profile-name').text(events[0].company.memberNickname)
