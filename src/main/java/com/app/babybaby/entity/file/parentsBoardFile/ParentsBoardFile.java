@@ -21,9 +21,16 @@ public class ParentsBoardFile extends File {
     public ParentsBoardFile(ParentsBoard parentsBoard) {
         this.parentsBoard = parentsBoard;
     }
-//
+
+    @Builder
+    public ParentsBoardFile(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus, ParentsBoard parentsBoard) {
+        super(fileOriginalName, fileUUID, filePath, fileStatus);
+        this.parentsBoard = parentsBoard;
+    }
+
     public ParentsBoardFile(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus) {
         super(fileOriginalName, fileUUID, filePath, fileStatus);
         this.parentsBoard = parentsBoard;
     }
+
 }

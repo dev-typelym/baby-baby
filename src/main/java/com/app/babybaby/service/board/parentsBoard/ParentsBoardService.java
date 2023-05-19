@@ -1,6 +1,7 @@
 package com.app.babybaby.service.board.parentsBoard;
 
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
+import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.fileDTO.parentsBoardFileDTO.ParentsBoardFileDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
@@ -29,6 +30,8 @@ public interface ParentsBoardService {
     public Event getFindByEventId(Long id);
     //    내가쓴 게시글
     public Page<ParentsBoardDTO> getFindParentBoardListByMemberId(Pageable pageable,Long memberId);
+
+    public void saveAll(Long memberId, Long eventId, ParentsBoardDTO parentsBoardDTO);
 
 //    파일 업로드 저장
     public void save(ParentsBoardDTO parentsBoardDTO);

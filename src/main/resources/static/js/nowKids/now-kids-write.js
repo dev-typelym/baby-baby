@@ -140,7 +140,6 @@ $('input[type=date]').on('change', function () {
 
 
 
-
 // $selectOption.each((i, e) => {
 //
 //     $(e).click(() => {

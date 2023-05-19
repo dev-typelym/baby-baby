@@ -61,4 +61,11 @@ public class ParentsBoard extends BoardInfo {
         this.representFilePath = representFilePath;
     }
 
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
 }

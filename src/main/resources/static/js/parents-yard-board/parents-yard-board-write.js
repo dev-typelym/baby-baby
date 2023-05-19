@@ -27,7 +27,7 @@ $selectOption.each((i, e) => {
 const $selectBox2 = $(".select-layout2");
 const $selectKidsCount = $(".select-kids-count");
 
-$selectBox2.mouseup(() => {
+$selectBox2.click(() => {
     $selectKidsCount.show();
 });
 
@@ -57,12 +57,20 @@ $inputTitle.keyup(() => {
 });
 
 /* 리셋 버튼 */
-const $resetBtn = $(".reset-btn")[0];
-const $fieldStudyTitle = $(".normal-text-input")[0];
-const $fieldStudyDate = $(".field-study-date-input")[0];
+// const $resetBtn = $(".reset-btn")[0];
+// const $fieldStudyTitle = $(".normal-text-input")[0];
+// const $fieldStudyDate = $(".field-study-date-input")[0];
+//
+// $resetBtn.onclick = () => {
+//     $fieldStudyTitle.value = '';
+//     $fieldStudyDate.value = '';
+// };
 
-$resetBtn.onclick = () => {
-    $fieldStudyTitle.value = '';
-    $fieldStudyDate.value = '';
-};
 
+/* 추가 */
+/* 이벤트선택시 이벤트 아이디 히든에 추가 */
+$('.select-option2').on('click', function () {
+    let eventId = $(this).attr('value')
+    console.log(eventId)
+    $('input[name=eventId]').val(eventId)
+})
