@@ -14,8 +14,8 @@ let eventId = params.get('eventId');
 console.log("boardTitle: " + boardTitle);
 console.log("boardContent: " + boardContent);
 
-$('input[name=boardTitle]').val(boardTitle)
-$('input[name=boardContent]').val(boardContent)
+$('input[name=parentsBoardTitle]').val(boardTitle)
+$('input[name=parentsBoardContent]').val(boardContent)
 $('input[name=eventId]').val(eventId)
 
 
@@ -250,3 +250,19 @@ $imageCancelButton.click(() => {
     $(".file-input-box").show();
 });
 
+$('.file-wrap').on("click",".image-cancel", (e) => {
+    let idx = e.currentTarget.id;
+    inputFiles.splice(idx, 1);
+    let box = '#file' + idx;
+    $(box).remove();
+
+    $fileListBox.find('div[id^="file"]').each(function(index) {
+        $(this).attr('id', 'file' + index);
+        $(this).find('button').attr('id', index);
+    });
+
+
+    if(inputFiles.length < 1){
+        $('.preview-text').show();
+    }
+});
