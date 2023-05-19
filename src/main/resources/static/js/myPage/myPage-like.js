@@ -29,7 +29,7 @@ const boardService = (() => {
             contentType: "application/json;charset=utf-8",
             success: function(eventLikeDTOS){
                 console.log("들어왓다")
-                if (eventLikeDTOS.length === 0) { // 불러올 데이터가 없으면
+                if (eventLikeDTOS.content.length === 0) { // 불러올 데이터가 없으면
                     console.log("막힘")
                     $(window).off('scroll'); // 스크롤 이벤트를 막음
                     return;
@@ -59,14 +59,15 @@ function appendList(eventLikeDTOS) {
                 <a class="item" href="">
                     <div class="thumbnail-container">
                         <div class="thumbnail-list">
+                        ${eventLike.id}
                               `
                         if(eventLike.eventFileDTOS.length != 0) {
-                            boardText3 += `
+                                boardText3 += `
                             <div class="photo-thumbnail">
-                                <img src="/eventFiles/display?fileName=Event/${eventLike.eventFileDTOS[0].filePath}/${eventLike.eventFileDTOS[0].fileUUID[1]}_${eventLike.eventFileDTOS[0].fileOriginalName}">
+                                <img style="width: 100%; height: 100%;" src="/eventFiles/display?fileName=Event/${eventLike.eventFileDTOS[0].filePath}/${eventLike.eventFileDTOS[0].fileUUID}_${eventLike.eventFileDTOS[0].fileOriginalName}">
                              </div>
                                 `
-                        }
+                            }
                     boardText3 += `
                             <!-- 사진 div -->
                         </div>
@@ -131,7 +132,7 @@ function appendList(eventLikeDTOS) {
                           `
         ;
     });
-    if (eventLikeDTOS.length === 0) { // 불러올 데이터가 없으면
+    if (eventLikeDTOS.content.length === 0) { // 불러올 데이터가 없으면
         $(window).off('scroll'); // 스크롤이벤트 x
     }
     $('.collection-table').append(boardText3);

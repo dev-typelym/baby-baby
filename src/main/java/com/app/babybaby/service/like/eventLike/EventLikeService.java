@@ -16,19 +16,32 @@ public interface EventLikeService {
 
 
 
-    default EventLikeDTO EventToDTO(Event event){
+    default EventLikeDTO EventToDTO(EventLike eventLike){
         return EventLikeDTO.builder()
-                .updateDate(event.getUpdateDate())
-                .registerDate(event.getRegisterDate())
-                .memberName(event.getCompany().getMemberName())
-                .eventPrice(event.getEventPrice())
-                .memberId(event.getCompany().getId())
-                .boardTitle(event.getBoardTitle())
-                .id(event.getId())
-                .eventRecruitCount(event.getEventRecruitCount())
-                .eventFileDTOS(event.getEventFiles().stream().map(this::eventFileToDTO).collect(Collectors.toList()))
+                .updateDate(eventLike.getEvent().getUpdateDate())
+                .registerDate(eventLike.getEvent().getRegisterDate())
+                .memberName(eventLike.getMember().getMemberName())
+                .eventPrice(eventLike.getEvent().getEventPrice())
+                .memberId(eventLike.getMember().getId())
+                .boardTitle(eventLike.getEvent().getBoardTitle())
+                .id(eventLike.getId())
+                .eventRecruitCount(eventLike.getEvent().getEventRecruitCount())
+                .eventFileDTOS(eventLike.getEvent().getEventFiles().stream().map(this::eventFileToDTO).collect(Collectors.toList()))
                 .build();
     }
+//    default EventLikeDTO EventToDTO(Event event){
+//        return EventLikeDTO.builder()
+//                .updateDate(event.getUpdateDate())
+//                .registerDate(event.getRegisterDate())
+//                .memberName(event.getCompany().getMemberName())
+//                .eventPrice(event.getEventPrice())
+//                .memberId(event.getCompany().getId())
+//                .boardTitle(event.getBoardTitle())
+//                .id(event.getId())
+//                .eventRecruitCount(event.getEventRecruitCount())
+//                .eventFileDTOS(event.getEventFiles().stream().map(this::eventFileToDTO).collect(Collectors.toList()))
+//                .build();
+//    }
 
 
     default EventFileDTO eventFileToDTO(EventFile eventFile){

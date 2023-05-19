@@ -1,6 +1,9 @@
 package com.app.babybaby.repository.like.eventLike;
 
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.board.nowKids.QNowKids;
+import com.app.babybaby.entity.like.eventLike.EventLike;
+import com.app.babybaby.entity.like.eventLike.QEventLike;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +12,7 @@ import org.springframework.data.domain.SliceImpl;
 
 import java.util.List;
 
+import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 import static com.app.babybaby.entity.like.eventLike.QEventLike.eventLike;
 
 @RequiredArgsConstructor
@@ -17,15 +21,15 @@ public class EventLikeQueryDslImpl implements EventLikeQueryDsl {
 
     //    이벤트 게시판 좋아요 누른 게시물 리스트
     @Override
-    public Slice<Event> findAllByMemberLikesWithPaging_QueryDSL(Pageable pageable, Long memberId) {
-        List<Event> list = query.select(eventLike.event)
+    public Slice<EventLike> findAllByMemberLikesWithPaging_QueryDSL(Pageable pageable, Long memberId) {
+        List<EventLike> list = query.selectDistinct(eventLike)
                 .from(eventLike)
                 .where(eventLike.member.id.eq(memberId))
-                .leftJoin(eventLike.event.eventFiles)
                 .join(eventLike.event.company)
-                .fetchJoin()
+                .join(eventLike.event.eventFiles)
+                .orderBy(eventLike.id.desc())
                 .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
+                .limit(pageable.getPageSize() + 1) // hasNext를 위해 1개 더 불러옵니다
                 .fetch();
 
         boolean hasNext = false;
@@ -38,4 +42,33 @@ public class EventLikeQueryDslImpl implements EventLikeQueryDsl {
 
         return new SliceImpl<>(list, pageable, hasNext);
     }
+
+//    //    이벤트 게시판 좋아요 누른 게시물 리스트
+//    @Override
+//    public Slice<EventLike> findAllByMemberLikesWithPaging_QueryDSL(Pageable pageable, Long memberId) {
+//        List<EventLike> list = query.select(eventLike)
+//                .from(eventLike)
+//                .where(eventLike.member.id.eq(memberId))
+//                .join(eventLike.event.company)
+//                .join(eventLike.event.eventFiles)
+//                .orderBy(eventLike.id.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetch();
+//
+//        List<EventLike> lists = query.selectDistinct(eventLike)
+//                .from(eventLike)
+//                .where(eventLike.in(list))
+//                .fetch();
+//
+//        boolean hasNext = false;
+//
+//        // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true
+//        if (list.size() > pageable.getPageSize()) {
+//            hasNext = true;
+//            list.remove(pageable.getPageSize());
+//        }
+//
+//        return new SliceImpl<>(lists, pageable, hasNext);
+//    }
 }

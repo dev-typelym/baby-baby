@@ -126,7 +126,7 @@ $fileInput.change((e) => {
 
 
     $.ajax({
-        url: "/nowKidsFiles/upload",
+        url: "/eventFiles/upload",
         type: "post",
         data: formData,
         contentType: false,

@@ -64,14 +64,14 @@ function appendList(nowKidsLikeDTOS) {
                     </div>
                     <div class="list-content">
                         <div class="list-title">
-                            타이틀
+                            ${nowKid.boardTitle}
                         </div>
                         <div class="for-price-full-contain">
                             <div class="for-price-wrap">
                                 <div class="list-writer">삼성</div>
                                 <div class="list-date-container">
                                     <span class="print-data"
-                                        >역삼역 4번 출구</span
+                                        >${nowKid.address} ${nowKid.addressDetail}</span
                                     >
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ function appendList(nowKidsLikeDTOS) {
                                         <i class="second-confirm"></i>
                                         <span class="ing">
                                             <span class="event-start-day"
-                                                >2023-04-12</span
+                                                >${formattedDate}</span
                                             >
                                             <div class="like-count-container">
                                                 <div class="people-icon"></div>
