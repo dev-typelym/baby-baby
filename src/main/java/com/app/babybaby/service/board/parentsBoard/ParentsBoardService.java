@@ -86,6 +86,8 @@ public interface ParentsBoardService {
                 .representFileUUID(parentsBoardDTO.getRepresentFileUUID())
                 .representFileOrginName(parentsBoardDTO.getRepresentFileOriginName())
                 .representFilePath(parentsBoardDTO.getRepresentFilePath())
+                .boardContent(parentsBoardDTO.getParentsBoardContent())
+                .boardTitle(parentsBoardDTO.getParentsBoardTitle())
                 .build();
     }
 
