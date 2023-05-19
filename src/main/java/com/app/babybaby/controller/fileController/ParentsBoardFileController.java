@@ -74,7 +74,7 @@ public class ParentsBoardFileController {
     @ResponseBody
     public List<String> uploadP (@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
         List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/ParentBoard/" + getPath();
+        String path = "C:/upload/ParentsBoard/" + getPath();
         log.info("path는 " + path);
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
