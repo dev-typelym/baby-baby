@@ -22,8 +22,8 @@ public class EventLikeServiceImpl implements EventLikeService {
 
     @Override
     public Slice<EventLikeDTO> findEventLikeByMemberId(Pageable pageable, Long memberId) {
-        Slice<Event> eventLikes = eventLikeRepository.findAllByMemberLikesWithPaging_QueryDSL(pageable, memberId);
-        List<EventLikeDTO> collect = eventLikes.get().map(event -> EventToDTO(event)).collect(Collectors.toList());
+        Slice<EventLike> eventLikes = eventLikeRepository.findAllByMemberLikesWithPaging_QueryDSL(pageable, memberId);
+        List<EventLikeDTO> collect = eventLikes.get().map(eventLike -> EventToDTO(eventLike)).collect(Collectors.toList());
 
         return new SliceImpl<>(collect, pageable, eventLikes.hasNext());
     }

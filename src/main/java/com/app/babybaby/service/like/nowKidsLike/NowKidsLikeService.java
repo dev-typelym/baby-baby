@@ -24,6 +24,14 @@ public interface NowKidsLikeService {
         return NowKidsLikeDTO.builder()
                 .memberId(nowKids.getEvent().getCompany().getId())
                 .nowKidsId(nowKids.getId())
+                .address(nowKids.getEvent().getEventLocation().getAddress())
+                .addressDetail(nowKids.getEvent().getEventLocation().getAddressDetail())
+                .addressSubDetail(nowKids.getEvent().getEventLocation().getAddressSubDetail())
+                .boardContent(nowKids.getBoardTitle())
+                .boardTitle(nowKids.getBoardTitle())
+                .memberName(nowKids.getGuide().getMemberName())
+                .registerDate(nowKids.getRegisterDate())
+                .updateDate(nowKids.getUpdateDate())
                 .nowKidsFileDTOS(nowKids.getNowKidsFile().stream().map(nowKidsFile -> toNowKidsFileDTO(nowKidsFile)).collect(Collectors.toList()))
                 .build();
     }

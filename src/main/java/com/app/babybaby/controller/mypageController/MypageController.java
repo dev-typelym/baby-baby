@@ -168,7 +168,7 @@ public class MypageController {
     @ResponseBody
     @PostMapping("play-like/{page}")
     public Slice<EventLikeDTO> getLike(Pageable pageable, @PathVariable(value = "page")Integer page){
-        Slice<EventLikeDTO> eventLikeDTOS = eventLikeService.findEventLikeByMemberId(PageRequest.of(page, 12), 1L);
+        Slice<EventLikeDTO> eventLikeDTOS = eventLikeService.findEventLikeByMemberId(PageRequest.of(page, 3), 1L);
         log.info(eventLikeDTOS + "컨트롤러");
         return eventLikeDTOS;
     }

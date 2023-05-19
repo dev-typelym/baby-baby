@@ -73,13 +73,13 @@ public class EventServiceImpl implements EventService {
         Event savedEvent = eventRepository.save(event);
         log.info("엔티티로 바뀐 eventFile은 " + savedEvent.getEventFiles().toString());
         log.info("엔티티로 바뀐 member는: " + savedEvent.getCompany());
+        EventFile eventFile1 = new EventFile(eventDTO.getMainFileOriginalName(), eventDTO.getMainFileUUID(), eventDTO.getMainFilePath(), eventDTO.getFileType(), savedEvent);
+        eventFileRepository.save(eventFile1);
 
         for (EventFile eventFile : eventFiles) {
             eventFile.setEvent(savedEvent); // eventFile에 외래 키 설정
             eventFileRepository.save(eventFile);
         }
-        EventFile eventFile = new EventFile(eventDTO.getMainFileOriginalName(), eventDTO.getMainFileUUID(), eventDTO.getMainFilePath(), eventDTO.getFileType(), savedEvent);
-        eventFileRepository.save(eventFile);
     }
 
 
