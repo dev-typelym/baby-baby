@@ -68,7 +68,6 @@ $fileInput.change((event) => {
         $(".first-image-box img").attr("src", e.target.result);
         $(".second-image-box img").attr("src", e.target.result);
         $(".image-display").show();
-        $(".file-input-box").hide();
         $(".file-header").hide();
         $fileModal.hide();
     }
@@ -76,15 +75,21 @@ $fileInput.change((event) => {
     reader.readAsDataURL(file);
 });
 
-// 이미지 삭제 버튼
-const $imageCancelButton = $(".image-cancel");
+$('.file-wrap').on("click",".image-cancel", (e) => {
+    let idx = e.currentTarget.id;
+    inputFiles.splice(idx, 1);
+    let box = '#file' + idx;
+    $(box).remove();
 
-// 이미지 삭제 이벤트
-$imageCancelButton.click(() => {
-    file = "";
-    $(".image-display").hide();
-    $(".file-header").show();
-    $(".file-input-box").show();
+    $fileListBox.find('div[id^="file"]').each(function(index) {
+        $(this).attr('id', 'file' + index);
+        $(this).find('button').attr('id', index);
+    });
+
+
+    if(inputFiles.length < 1){
+        $('.preview-text').show();
+    }
 });
 
 
@@ -119,40 +124,39 @@ $fileInput.change((e) => {
             console.log(globalThis.uuids)
 
             const dataTransfer = new DataTransfer();
-            filesArr = dataTransfer.files;
 
             console.log(files)
 
-            let inputFiles1 = "";
-            files.forEach((file) => {
-                inputFiles1 +=
-                    `
-                    <input type="hidden" name="files[${j}].fileOriginalName" value="${file.name}">
-                    <input type="hidden" name="files[${j}].fileUUID" value="${globalThis.uuids[j]}">
-                    <input type="hidden" name="files[${j}].filePath" value="${toStringByFormatting(new Date())}">
-                    `
-                j++;
-            });
-            j=0;
-            $('.wrap').append(inputFiles1);
-        }
-    });
+            // let inputFiles1 = "";
+            // files.forEach((file) => {
+            //     inputFiles1 +=
+            //         `
+            //         <input type="hidden" name="files[${j}].fileOriginalName" value="${file.name}">
+            //         <input type="hidden" name="files[${j}].fileUUID" value="${globalThis.uuids[j]}">
+            //         <input type="hidden" name="files[${j}].filePath" value="${toStringByFormatting(new Date())}">
+            //         `
+            //     j++;
+            // });
+            // j=0;
+            // $('.wrap').append(inputFiles1);
+            inputFiles = [];
 
-    inputFiles = [];
+            filesArr.forEach((file,i) => {
 
-    filesArr.forEach((file,i) => {
+                inputFiles.push(file);
 
-        inputFiles.push(file);
-
-        let reader = new FileReader();
-        reader.onload = (e) => {
-            let text = `
-                        <div style="position:relative" id="file${i}">
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    let text = `
+                        <div class="review-files" style="position:relative" id="file${i}">
                             <div class="image-file-content-box">
                                 <div>
                                     <span class="image-file-info">원본 이미지</span>
                                     <div class="first-image-box">
                                         <img src="${e.target.result}" />
+                                            <input type="hidden" name="files[${i}].fileOriginalName" value="${file.name}">
+                                            <input type="hidden" name="files[${i}].fileUUID" value="${globalThis.uuids[i]}">
+                                            <input type="hidden" name="files[${i}].filePath" value="${toStringByFormatting(new Date())}">
                                     </div>
                                 </div>
                                 <div>
@@ -163,7 +167,7 @@ $fileInput.change((e) => {
                                 </div>
                             </div>
                             <div class="cancel-box">
-                                <button class="image-cancel" id="${i}">
+                                <button type="button" class="image-cancel" id="${i}">
                                     <svg viewBox="0 0 40 40" focusable="false" role="presentation"
                                         class="image-cancel-icon" aria-hidden="true"
                                             style="width: 24px; height: 24px;">
@@ -174,15 +178,22 @@ $fileInput.change((e) => {
                             </div>
                         </div>
                 `;
-            $fileListBox.append(text);
-            $fileModal.hide();
-            $(".file-content-box").show();
-            index++;
+                    $fileListBox.append(text);
+                    $fileModal.hide();
+                    $(".file-content-box").show();
+                    index++;
+                }
+                reader.readAsDataURL(file);
+                $('.preview-text').hide();
+            });
+
+
+
+
+
         }
-        reader.readAsDataURL(file);
-        $('.preview-text').hide();
     });
-    console.log(inputFiles);
+
 });
 
 

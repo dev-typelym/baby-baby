@@ -52,7 +52,7 @@ for(let i=0; i < eventTitles.length; i++){
     let convertedEndDate = convertDate(endEventDate)
     let eventCategory = convertCategory(eventTitles[i].eventCategory)
     let eventLists = `
-             <div id="select${i}" class="select-option" categoryType=${eventCategory} value=${eventTitles[i].eventId}> ${eventTitles[i].eventTitle} ${convertedStartDate} ~ ${convertedEndDate} </div>
+             <div id="select${i}" class="select-option" categoryType=${eventCategory} value=${eventTitles[i].eventId}> ${eventTitles[i].eventTitle}    ${convertedStartDate} ~ ${convertedEndDate} </div>
                     `;
     $('.select-menu-layout').append(eventLists);
 }
@@ -105,7 +105,8 @@ options.on('click', function () {
 
 
             for (let j=0; j< kidsList.length; j++) {
-                let eventDate = convertDate(kidsList[j].eventStartDate)
+                let startDate = convertDate(kidsList[j].eventStartDate)
+                let endDate = convertDate(kidsList[j].eventEndDate)
                 let kidsText =
                     `
                                             <!-- 여기에 요소 추가 -->                                 
@@ -114,7 +115,7 @@ options.on('click', function () {
                                                 <td>${kidsList[j].kidName}</td>
                                                 <td>${kidsList[j].kidAge}</td>
                                                 <td>${kidsList[j].eventTitle}</td>
-                                                <td>${eventDate}</td>
+                                                <td>${startDate} ~ ${endDate}</td>
                                             </tr>    
         
                     `;
@@ -130,12 +131,12 @@ $('confirm-button').on('click', function (e) {
     document.getElementById('write-submit-form').submit();
 })
 
+let checkDate;
+
 $('input[type=date]').on('change', function () {
     let dateValue = $(this).val();
     $('input[name=eventDate]').val(dateValue)
 })
-
-
 
 
 

@@ -67,7 +67,6 @@ $fileInput.change((e) => {
     console.log(filesArr)
     console.log(e.target.files);
 
-
     $.ajax({
         url: "/nowKidsFiles/upload",
         type: "post",
@@ -76,43 +75,27 @@ $fileInput.change((e) => {
         processData: false,
         success: function (uuids) {
             globalThis.uuids = uuids;
-            console.log(globalThis.uuids)
-
             const dataTransfer = new DataTransfer();
-            filesArr = dataTransfer.files;
+            console.log(filesArr)
 
-            console.log(files)
+            inputFiles = [];
 
-            let inputFiles1 = "";
-            files.forEach(file => {
-                inputFiles1 +=
-                    `
-                    <input type="hidden" name="files[${j}].fileOriginalName" value="${file.name}">
-                    <input type="hidden" name="files[${j}].fileUUID" value="${globalThis.uuids[j]}">
-                    <input type="hidden" name="files[${j}].filePath" value="${toStringByFormatting(new Date())}">
-                    `
-                j++;
-            });
-            j=0;
-            $('#header-nowKids').append(inputFiles1);
-        }
-    });
+            filesArr.forEach((file, i) => {
+                inputFiles.push(file);
 
-    inputFiles = [];
-
-    filesArr.forEach((file,i) => {
-
-        inputFiles.push(file);
-
-        let reader = new FileReader();
-        reader.onload = (e) => {
-            let text = `
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    console.log(e)
+                    let text = `
                         <div style="position:relative" id="file${i}">
                             <div class="image-file-content-box">
                                 <div>
                                     <span class="image-file-info">원본 이미지</span>
                                     <div class="first-image-box">
                                         <img src="${e.target.result}" />
+                                        <input type="hidden" name="files[${i}].fileOriginalName" value="${file.name}">
+                                        <input type="hidden" name="files[${i}].fileUUID" value="${globalThis.uuids[i]}">
+                                        <input type="hidden" name="files[${i}].filePath" value="${toStringByFormatting(new Date())}">
                                     </div>
                                 </div>
                                 <div>
@@ -126,23 +109,25 @@ $fileInput.change((e) => {
                                 <button class="image-cancel" id="${i}">
                                     <svg viewBox="0 0 40 40" focusable="false" role="presentation"
                                         class="image-cancel-icon" aria-hidden="true"
-                                            style="width: 24px; height: 24px;">
+                                        style="width: 24px; height: 24px;">
                                         <path d="M33.4 8L32 6.6l-12 12-12-12L6.6 8l12 12-12 12L8 33.4l12-12 12 12 1.4-1.4-12-12 12-12z">
                                         </path>
                                     </svg>
                                 </button>
                             </div>
                         </div>
-                `;
-            $fileListBox.append(text);
-            $fileModal.hide();
-            $(".file-content-box").show();
-            index++;
+                    `;
+                    $fileListBox.append(text);
+                    $fileModal.hide(); // Hide the modal
+                    $(".file-content-box").show();
+                    index++;
+                }
+                reader.readAsDataURL(file);
+                $('.preview-text').hide();
+            });
+            console.log(inputFiles);
         }
-        reader.readAsDataURL(file);
-        $('.preview-text').hide();
     });
-    console.log(inputFiles);
 });
 
 $fileListBox.on("click",".image-cancel", (e) => {
