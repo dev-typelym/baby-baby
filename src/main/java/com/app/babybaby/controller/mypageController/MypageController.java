@@ -4,15 +4,19 @@ import com.app.babybaby.domain.boardDTO.askDTO.AskDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
+import com.app.babybaby.domain.likeDTO.nowKidsLikeDTO.NowKidsLikeDTO;
 import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import com.app.babybaby.entity.member.Kid;
+import com.app.babybaby.repository.like.nowKidsLike.NowKidsLikeRepository;
 import com.app.babybaby.search.admin.AdminAskSearch;
 import com.app.babybaby.service.board.ask.AskService;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.service.like.eventLike.EventLikeService;
+import com.app.babybaby.service.like.nowKidsLike.NowKidsLikeService;
 import com.app.babybaby.service.member.kid.KidService;
 import com.app.babybaby.service.member.member.MemberService;
 import com.app.babybaby.service.purchase.coupon.CouponService;
@@ -59,6 +63,8 @@ public class MypageController {
 
     @Autowired
     private final AskService askService;
+    @Autowired
+    private final NowKidsLikeService nowKidsLikeService;
 
 
 
@@ -203,5 +209,20 @@ public class MypageController {
         return new RedirectView("parent"); // <<<< 경로 수정할것
     }
 
+
+
+    //    지금우리 아이들은 좋아요 목록
+    @GetMapping("nowkid")
+    public String getNowKid(){
+        return "myPage/myPage-ourKids-like";
+    }
+
+    @PostMapping("nowkid/{page}")
+    @ResponseBody
+    public Slice<NowKidsLikeDTO> getNowKid(@PathVariable Integer page){
+        Slice<NowKidsLikeDTO> nowKidsLikeDTOS = nowKidsLikeService.findEventLikeByMemberId(PageRequest.of(page, 12), 1L);
+        log.info(nowKidsLikeDTOS + "컨트롤러");
+        return nowKidsLikeDTOS;
+    }
 
 }

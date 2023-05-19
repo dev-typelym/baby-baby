@@ -26,12 +26,13 @@ public class EventLikeDTO {
     private String memberName;
     private LocalDateTime registerDate;
     private LocalDateTime updateDate;
-    private Address address;
+    private String eventAddress;
     private Long eventRecruitCount;
     private List<EventFileDTO> eventFileDTOS;
 
     @Builder
-    public EventLikeDTO(Long id, String boardTitle, Long eventPrice, Long memberId, String memberName, LocalDateTime registerDate, LocalDateTime updateDate, Long eventRecruitCount, List<EventFileDTO> eventFileDTOS) {
+
+    public EventLikeDTO(Long id, String boardTitle, Long eventPrice, Long memberId, String memberName, LocalDateTime registerDate, LocalDateTime updateDate, String eventAddress, Long eventRecruitCount, List<EventFileDTO> eventFileDTOS) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.eventPrice = eventPrice;
@@ -39,6 +40,7 @@ public class EventLikeDTO {
         this.memberName = memberName;
         this.registerDate = registerDate;
         this.updateDate = updateDate;
+        this.eventAddress = eventAddress;
         this.eventRecruitCount = eventRecruitCount;
         this.eventFileDTOS = eventFileDTOS;
     }

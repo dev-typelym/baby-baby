@@ -23,19 +23,19 @@ const boardService = (() => {
     function getList(callback){
         console.log(page)
         $.ajax({
-            url: `/mypage/play-like/${page}`,
+            url: `/mypage/nowkid/${page}`,
             type: 'post',
             data: JSON.stringify({page:page}),
             contentType: "application/json;charset=utf-8",
-            success: function(eventLikeDTOS){
+            success: function(nowKidsLikeDTOS){
                 console.log("들어왓다")
-                if (eventLikeDTOS.length === 0) { // 불러올 데이터가 없으면
+                if (nowKidsLikeDTOS.content.length === 0) { // 불러올 데이터가 없으면
                     console.log("막힘")
                     $(window).off('scroll'); // 스크롤 이벤트를 막음
                     return;
                 }
                 if(callback){
-                    callback(eventLikeDTOS);
+                    callback(nowKidsLikeDTOS);
                     console.log("들어왓다")
                 }
             }
@@ -45,49 +45,36 @@ const boardService = (() => {
 })();
 
 /*${formattedDate}*/
-function appendList(eventLikeDTOS) {
+function appendList(nowKidsLikeDTOS) {
     let boardText3 = '';
-    console.log(eventLikeDTOS.content);
-    eventLikeDTOS.content.forEach(eventLike => {
-        let date = new Date(eventLike.registerDate); // assuming eventLike.registerDate is a valid date string
+    console.log(nowKidsLikeDTOS.content);
+    nowKidsLikeDTOS.content.forEach(nowKid => {
+        let date = new Date(nowKid.registerDate); // assuming eventLike.registerDate is a valid date string
         let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
 
-        console.log(eventLikeDTOS);
+        console.log(nowKidsLikeDTOS);
         boardText3 +=  `
-        
-                                  <div role="presentation" class="instance">
+        <div role="presentation" class="instance">
                 <a class="item" href="">
                     <div class="thumbnail-container">
                         <div class="thumbnail-list">
-                              `
-                        if(eventLike.eventFileDTOS.length != 0) {
-                            boardText3 += `
-                            <div class="photo-thumbnail">
-                                <img src="/eventFiles/display?fileName=Event/${eventLike.eventFileDTOS[0].filePath}/${eventLike.eventFileDTOS[0].fileUUID[1]}_${eventLike.eventFileDTOS[0].fileOriginalName}">
-                             </div>
-                                `
-                        }
-                    boardText3 += `
-                            <!-- 사진 div -->
+                            <div class="photo-thumbnail"></div>
+                            &lt;!&ndash; 사진 div &ndash;&gt;
                         </div>
                     </div>
                     <div class="list-content">
-                        <div class="list-title" >
-                            ${eventLike.boardTitle}
+                        <div class="list-title">
+                            타이틀
                         </div>
                         <div class="for-price-full-contain">
                             <div class="for-price-wrap">
-                                <div class="list-writer" >${eventLike.memberName}</div>
+                                <div class="list-writer">삼성</div>
                                 <div class="list-date-container">
                                     <span class="print-data"
-                                        ></span
+                                        >역삼역 4번 출구</span
                                     >
                                 </div>
                             </div>
-                            <span class="event-price-wrap">
-                                <span class="event-price">${eventLike.eventPrice}</span
-                                ><span>원</span>
-                            </span>
                         </div>
                         <div clsas="list-footer">
                             <div class="list-footer-container">
@@ -96,14 +83,12 @@ function appendList(eventLikeDTOS) {
                                         <i class="second-confirm"></i>
                                         <span class="ing">
                                             <span class="event-start-day"
-                                                >${formattedDate}</span>
-                                            ~ <span class="event-end-day"
-                                                >${formattedDate}</span
+                                                >2023-04-12</span
                                             >
                                             <div class="like-count-container">
                                                 <div class="people-icon"></div>
                                                 <span class="like-count"
-                                                    >${eventLike.eventRecruitCount}</span
+                                                    >10</span
                                                 >
                                                 <span>명 모집</span>
                                             </div>
@@ -122,7 +107,7 @@ function appendList(eventLikeDTOS) {
                         class="wish-button-svg"
                         aria-hidden="true"
                     >
-                        <path style="fill:#ff0000"
+                        <path style="fill:red"
                             d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085z"
                         ></path>
                     </svg>
@@ -131,17 +116,17 @@ function appendList(eventLikeDTOS) {
                           `
         ;
     });
-    if (eventLikeDTOS.length === 0) { // 불러올 데이터가 없으면
+    if (nowKidsLikeDTOS.content.length === 0) { // 불러올 데이터가 없으면
         $(window).off('scroll'); // 스크롤이벤트 x
     }
     $('.collection-table').append(boardText3);
 }
 
 // 페이지 로딩 시 초기 리스트를 불러옴
-boardService.getList(function(eventLikeDTOS) {
+boardService.getList(function(nowKidsLikeDTOS) {
     page = 0;
-    console.log(eventLikeDTOS.content);
-    appendList(eventLikeDTOS);
+    console.log(nowKidsLikeDTOS.content);
+    appendList(nowKidsLikeDTOS);
     console.log(page + "페이지 로딩 시 초기화면")
 });
 
