@@ -107,17 +107,19 @@ public class Member {
     }
 
     @Builder(builderClassName = "OAuthBuilder", builderMethodName = "OAuthBuilder")
-    public Member(String memberName, String memberPhone, String memberEmail, Role memberRole) {
+    public Member(String memberName, String memberPhone, String memberEmail, Role memberRole, String memberNickname) {
         this.memberName = memberName;
         this.memberPhone = memberPhone;
         this.memberEmail = memberEmail;
         this.memberRole = memberRole;
+        this.memberNickname = memberNickname;
     }
 
-    public Member update(String memberName, String memberPhone, String memberEmail){
+    public Member update(String memberName, String memberPhone, String memberEmail, String memberNickname){
         this.memberName = memberName;
         this.memberPhone = memberPhone;
         this.memberEmail = memberEmail;
+        this.memberNickname = memberNickname;
 
         return this;
     }
