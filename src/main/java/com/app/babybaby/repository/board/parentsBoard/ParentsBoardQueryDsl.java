@@ -5,6 +5,7 @@ import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.search.admin.AdminParentsBoardSearch;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
+import com.app.babybaby.type.CategoryType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -26,7 +27,7 @@ public interface ParentsBoardQueryDsl {
     public Optional<Event> findByEventId_QueryDsl(Long id);
 
 //    상세보기 카테고리 최신글 2개 가져오기
-    public List<Event> find2RecentDesc();
+    public List<ParentsBoard> find2RecentDesc(CategoryType category);
 
 //    작성하기(2단계 대표사진)
 

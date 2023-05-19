@@ -6,7 +6,10 @@ import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.exception.BoardNotFoundException;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
+import com.app.babybaby.type.CategoryType;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Parent;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -17,10 +20,16 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 //@Qualifier("parentsBoard") @Primary
 public class ParentsBoardServiceImpl implements ParentsBoardService {
 
     private final ParentsBoardRepository parentsBoardRepository;
+
+    @Override
+    public ParentsBoard findById(Long id) {
+        return parentsBoardRepository.findById(id).get();
+    }
 
     //    게시글 상세보기
     @Override
@@ -64,11 +73,12 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
 
 //    상세보기 카테고리 최신글 2개 가져오기
     @Override
-    public List<Event> find2RecentDesc() {
-        List<Event> events = parentsBoardRepository.find2RecentDesc();
-        List<Event> eventList = events.stream()
+    public List<ParentsBoard> find2RecentDesc(CategoryType categoryType) {
+        List<ParentsBoard> parents = parentsBoardRepository.find2RecentDesc(categoryType);
+        log.info(parents.toString());
+        List<ParentsBoard> parentsList = parents.stream()
                 .collect(Collectors.toList());
-        return eventList;
+        return parentsList;
     }
 
 

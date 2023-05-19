@@ -7,11 +7,16 @@
     }
 }
  */
-function showList(){
-    if($(".comment-util-list").css('display') == 'none'){
-        $(".comment-util-list").show();
+function showList(e){
+    console.log("들어옴@@@@")
+    // if($(".comment-util-list").css('display') == 'none'){
+    console.log($(e).next())
+    if($(e).next().css('display') == 'none'){
+        $(e).next().show();
+        // $(".comment-util-list").show();
     } else {
-        $(".comment-util-list").hide();
+        $(e).next().hide();
+        // $(".comment-util-list").hide();
     }
 }
 
@@ -55,19 +60,23 @@ $(".modify-cancel").each((i, e) => {
 
 
 /* 클릭 했을 때 색 변경/취소 */
-$(".btn-like").click(() => {
-    if(!$(".btn-like").hasClass("active-heart-button")){
-        /* 여기에변경될 요소 */
-        $(".none-heart").hide();
-        $(".active-heart").show();
-        $(".btn-like").addClass("active-heart-button");
-    }else {
-        /* 원래 요소 */
-        $(".none-heart").show();
-        $(".active-heart").hide();
-        $(".btn-like").removeClass("active-heart-button");
-    }
-});
+// $(".btn-like").click(() => {
+//     if(!$(".btn-like").hasClass("active-heart-button")){
+//         /* 여기에변경될 요소 */
+//         $(".none-heart").hide();
+//         $(".active-heart").show();
+//         $(".btn-like").addClass("active-heart-button");
+//     }else {
+//         /* 원래 요소 */
+//         $(".none-heart").show();
+//         $(".active-heart").hide();
+//         $(".btn-like").removeClass("active-heart-button");
+//     }
+// });
+
+
+
+
 
 /* 카카오톡 공유하기 API */
 /* function shareMessage() {
@@ -144,13 +153,14 @@ const replyService = (() => {
             data: {page: page, boardId: boardId},
             contentType: "application/json;charset=utf-8",
             success: function(parentsBoardReplyDTOS){
-                console.log("드렁")
-                    callback(parentsBoardReplyDTOS);
+                console.log("드렁");
+                callback(parentsBoardReplyDTOS);
             }
         });
     }
     return {getList: getList};
 })();
+
 
 /*${formattedDate}*/
 function appendList(parentsBoardReplyDTOS) {
@@ -165,7 +175,7 @@ function appendList(parentsBoardReplyDTOS) {
                                     <div class="comment-info">
                                         <img src="/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">
                                         <span class="name">${replyDTOS.memberNickName}</span>
-                                        <button class="comment-util" onclick="showList()"></button>
+                                        <button class="comment-util" onclick="showList(this)"></button>
                                         <ul class="comment-util-list">
                                             <li>
                                                 <button type="button" class="modify-button">수정</button>
@@ -192,6 +202,8 @@ function appendList(parentsBoardReplyDTOS) {
     $('.comment-list').append(replyText);
 }
 
+
+
 // 페이지 로딩 시 초기 리스트를 불러옴
 replyService.getList(function(parentsBoardReplyDTOS) {
     replyPage = 0;
@@ -207,14 +219,6 @@ $('.btn-comment').click(function() {
 });
 
 
-// $(window).scroll(function() {
-//     if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
-//         page++;
-//         replyService.getList(appendList);
-//         console.log(page)
-//     }
-// });
-
 /* localDateTime을 Date로 깔끔하게 만드는 코드 */
 function formatDate(originalDate) {
     let date = new Date(originalDate);
@@ -229,3 +233,59 @@ function formatDate(originalDate) {
 
     return formattedDate;
 }
+
+
+$(document).ready(function() {
+    // 페이지 로드 시 초기화 작업을 수행합니다.
+    initPage();
+
+    function initPage() {
+        $.ajax({
+            url: `/detail/category/${id}`, // 데이터를 가져올 API 엔드포인트 주소를 입력해야 합니다.
+            type: 'get',
+            data: {id: id},
+            success: function(response) {
+                appendCategoryList(response);
+            }
+        });
+    }
+
+    // 카테고리 최신순 2개 들고오기
+    function appendCategoryList(parentsBoardCategoryDTOS) {
+        let replyText = '';
+        console.log(parentsBoardCategoryDTOS.content);
+        parentsBoardCategoryDTOS.content.forEach(category => {
+            console.log(category);
+            categoryText +=  ` 
+                        <h4>
+                    <em>${category.eventCategory}</em>
+                    카테고리의 최신글
+                </h4>
+                <div class="other-list">
+                    <ul>
+                        <li>
+                            <a>
+                                <div class="other-story">
+                                    <div class="story-info">
+                                        <em class="category">${category.eventCategory}</em>
+                                        <p class="other-title">${category.parentsBoardTitle}</p>
+                                        <p class="other-content">${category.parentsBoardContent}</p>
+                                        <p class="info">
+                                            <em class="date">${parentsBoard.parentsBoardRegisterDate}</em>
+                                        </p>
+                                    </div>
+                                    <div class="img-wrap">
+                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>`
+            ;
+        });
+        $('.free-board-other').append(categoryText);
+    }
+});
+
+

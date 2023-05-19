@@ -24,6 +24,7 @@
             </div>
             <span class="parents-yard-board-detail-user-name" th:text="${parentsBoard.memberNickname}"></span>
             <input class="boardId" type="hidden" th:value="${parentsBoard.id}" style="display: none;">
+            <input class="category" type="hidden" th:value="${parentsBoard.eventCategory}" style="display: none;">
             <h2 class="event-title"><span>[</span> <span th:text="${parentsBoard.eventCategory}"></span><span>]</span><span th:text="${parentsBoard.eventTitle}"></span></h2>
             <h2 class="parents-yard-board-detail-title" th:text="${parentsBoard.parentsBoardTitle}"></h2>
             <div>
@@ -147,9 +148,9 @@
                 </div>
             </div>
             <!--여기가 같은 카테고리 중 최신순-->
-<!--            <div class="free-board-other" th:each=" category: ${categoryList}">-->
+            <div class="free-board-other">
 <!--                <h4>-->
-<!--                    <em th:text="${category.eventCategory}"></em>-->
+<!--                    <em>박물관</em>-->
 <!--                    카테고리의 최신글-->
 <!--                </h4>-->
 <!--                <div class="other-list">-->
@@ -188,11 +189,8 @@
 <!--                                </div>-->
 <!--                            </a>-->
 <!--                        </li>-->
-                    </ul>
-                </div>
-                <!-- <div class="btn-place">
-                    <button class="btn-category">카테고리 더 보기</button>
-                </div> -->
+<!--                    </ul>-->
+<!--                </div>-->
             </div>
         </div>
         <!-- 댓글 끝 -->
