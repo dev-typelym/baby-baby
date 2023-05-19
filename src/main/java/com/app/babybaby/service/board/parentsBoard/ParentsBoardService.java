@@ -7,6 +7,8 @@ import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
+import com.app.babybaby.type.CategoryType;
+import org.apache.logging.log4j.message.ParameterizedNoReferenceMessageFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public interface ParentsBoardService {
+    public ParentsBoard findById(Long id);
+
 
     //    게시글 상세보기
     public ParentsBoardDTO getParentsBoardDetail(Long id);
@@ -30,7 +34,7 @@ public interface ParentsBoardService {
     public void save(ParentsBoardDTO parentsBoardDTO);
 
 //    상세보기 카테고리 최신글 2개 가져오기
-    public List<Event> find2RecentDesc();
+    public List<ParentsBoard> find2RecentDesc(CategoryType categoryType);
 
     default ParentsBoardDTO toParentsBoardDTO(com.app.babybaby.entity.board.parentsBoard.ParentsBoard parentsBoard) {
         return ParentsBoardDTO.builder()

@@ -187,19 +187,27 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
     // 상세보기 카테고리 최신글 2개 가져오기 where절 손 봐야하나?
     @Override
-    public List<Event> find2RecentDesc() {
-        QEvent event = QEvent.event;
-        List<Event> events = query.select(event)
-                .from(event)
-                .where(event.category.eq(parentsBoard.event.category))
+    public List<ParentsBoard> find2RecentDesc(CategoryType category) {
+//        QParentsBoard subParents = new QParents
+        List<ParentsBoard> parentsBoards = query.select(parentsBoard)
+                .from(parentsBoard)
+                .where(parentsBoard.event.category.eq(category))
                 .orderBy(event.id.desc())
                 .limit(2)
                 .fetch();
-        return query.selectDistinct(event)
-                .from(event)
-                .where(event.in(events))
-                .fetch();
+        return parentsBoards;
     }
+
+//    QNowKids subNowKids = new QNowKids("subNowKids");
+//    List<Member> subQueryResult = query.select(subNowKids.guide)
+//            .from(subNowKids)
+//            .orderBy(subNowKids.id.desc())
+//            .limit(8)
+//            .fetch();
+//        return query.selectDistinct(nowKids.guide)
+//            .from(nowKids)
+//                .where(nowKids.guide.in(subQueryResult))
+//            .fetch();
 
     //[관리자] 보호자마당 전체 목록 조회
     @Override

@@ -2,6 +2,7 @@ package com.app.babybaby.controller.boardController;
 
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDTO;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import com.app.babybaby.entity.reply.parentsBoardReply.QParentsBoardReply;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
@@ -19,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/parentsYard/*")
@@ -53,20 +56,18 @@ public class ParentsBoardController {
     @GetMapping("detail/{id}")
     public String goParentsBoardDetail(@PathVariable Long id, Model model) {
         model.addAttribute("parentsBoard", parentsBoardService.getParentsBoardDetail(id));
-//        model.addAttribute("categoryList", parentsBoardService.find2RecentDesc());
-        log.info(parentsBoardService.getParentsBoardDetail(id).toString() + "==========================================sdasd");
         return "/parents-yard-board/parents-yard-board-detail";
     }
 
-//    id 받아오기??? 나중에 지우기
-//    @GetMapping("detail/{id}")
-//    public RedirectView getParentsBoardId(@PathVariable Long id, Model model) {
-//        model.addAttribute("parentsBoard", parentsBoardService.getParentsBoardDetail(id));
-////        model.addAttribute("categoryList", parentsBoardService.find2RecentDesc());
-//        log.info(parentsBoardService.getParentsBoardDetail(id).toString() + "==========================================sdasd");
-//        return new RedirectView("/parentsYard/reply/list/show/{page}");
-//    }
-
+    @ResponseBody
+    @GetMapping("detail/category/{id}")
+    public List<ParentsBoard> getCategoryList(@PathVariable Long id) {
+        CategoryType category = parentsBoardService.findById(id).getEvent().getCategory();
+        log.info("category: " + category.toString());
+        List<ParentsBoard> categoryResults = parentsBoardService.find2RecentDesc(category);
+        log.info("categoryResults: " + categoryResults.toString());
+        return categoryResults;
+    }
 
     //    댓글 목록은 ajax로 만들어서 페이지 요청시에 바로 불러오자.
     @GetMapping("detail/reply/{id}")
