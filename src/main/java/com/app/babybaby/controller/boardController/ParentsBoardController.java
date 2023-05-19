@@ -38,6 +38,7 @@ public class ParentsBoardController {
         return "parents-yard-board/parents-yard-board";
     }
 
+
     //    ajax로 불러온다 부모님 마당 게시글 목록
     //    pageableDefault는 몇개 뿌릴지를 저기서 정해주는 것이다.
     @GetMapping("list/show/{page}")
@@ -59,24 +60,17 @@ public class ParentsBoardController {
         return "/parents-yard-board/parents-yard-board-detail";
     }
 
+//    상세보기 안에 카테고리 최신글 2개 가져오기
     @ResponseBody
-    @GetMapping("detail/category/{id}")
-    public List<ParentsBoard> getCategoryList(@PathVariable Long id) {
-        CategoryType category = parentsBoardService.findById(id).getEvent().getCategory();
+    @PostMapping("detail/category/{boardId}")
+    public List<ParentsBoard> getCategoryList(@PathVariable Long boardId) {
+        CategoryType category = parentsBoardService.findById(boardId).getEvent().getCategory();
         log.info("category: " + category.toString());
         List<ParentsBoard> categoryResults = parentsBoardService.find2RecentDesc(category);
         log.info("categoryResults: " + categoryResults.toString());
         return categoryResults;
     }
 
-    //    댓글 목록은 ajax로 만들어서 페이지 요청시에 바로 불러오자.
-    @GetMapping("detail/reply/{id}")
-    @ResponseBody
-    public Slice<ParentsBoardReplyDTO> getParentsBoardReplies(@PageableDefault(page = 1,size = 5) Pageable pageable, @PathVariable Long id) {
-        return parentsBoardReplyService.findAllReplyByBoardIdWithPaging(
-                PageRequest.of(pageable.getPageNumber()-1, pageable.getPageSize()), id
-        );
-    }
 
 //    댓글 저장
 //    @GetMapping("detail/replySave/{id}")
@@ -85,14 +79,20 @@ public class ParentsBoardController {
 //        return parentsBoardReplyService.save(parentsBoardReply);
 //    }
 
+    @GetMapping("writeFirst")
+    public String getParentsBoardFirst() {
+        return "parents-yard-board/parents-yard-board-write";
+    }
+
 //    대표사진 올리는 페이지 불러오기
-    @GetMapping("write")
+    @GetMapping("writeSecond")
     public String getParentsBoardWrite() {
         return "parents-yard-board/parents-yard-board-thumbnail";
     }
 
+
 //    대표사진 올리는 페이지 ajax를 위한 컨트롤러
-    @PostMapping("write")
+    @PostMapping("writeSecond")
     public String getParentsBoardWritePost(ParentsBoardDTO parentsBoardDTO) {
         log.info("============================================" + parentsBoardDTO);
         parentsBoardService.save(parentsBoardDTO);

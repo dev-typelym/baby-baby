@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>체험제공 신청</title>
+    <title>후기 작성</title>
     <link rel="stylesheet" href="/css/components/header.css">
     <link rel="stylesheet" href="/css/components/footer.css">
     <link rel="stylesheet" href="/css/parents-yard-board/parents-yard-board-thumbnail.css">
@@ -28,12 +28,12 @@
             <div class="container">
                 <div class="nav-header-box nav-header-background">
                     <div style="display: flex">
-                        <span class="nav-header-span">후기게시판</span>
+                        <span class="nav-header-span">후기</span>
                         <span class="nav-header-span">작성중</span>
                     </div>
                     <a href="javascript:void(0)" class="profile-box">
                         <span class="profile-name" th:text="${member.memberNickname}"></span><span>의</span>
-                        <p>후기게시판 글작성</p>
+                        <p>후기 글작성</p>
                     </a>
                     <button type="button" class="profile-btn">
                         <span class="profile-span">
@@ -46,11 +46,11 @@
                     <ul>
                         <li>
                             <a href="javascript:void(0)" class="nav-title-box">
-                                후기게시판 작성 순서
+                                후기 작성 순서
                             </a>
                             <ul class="nav-info-ul">
                                 <li>
-                                    <a href="" class="nav-detail-title info-title">후기게시판 내용 작성</a>
+                                    <a href="" class="nav-detail-title info-title">후기 내용 작성</a>
                                 </li>
                                 <li>
                                     <a href="" class="nav-detail-title thumbnail-title"> 후기 사진 등록</a>
@@ -64,19 +64,19 @@
             <div class="content-wrap">
                 <section class="content-container">
                     <ol class="content-ol">
-                        <li class="content-ol-li">후기게시판</li>
-                        <li class="content-ol-li">후기게시판 내용 작성</li>
+                        <li class="content-ol-li">후기</li>
+                        <li class="content-ol-li">후기 내용 작성</li>
                         <li class="content-ol-li">후기 사진 등록</li>
                     </ol>
                     <div class="content-title">후기사진 등록</div>
-                    <div class="content-sub-title">글작성을 대표하는 이미지를 등록 해주세요.</div>
+                    <div class="content-sub-title">글과 함께 올라갈 이미지를 등록 해주세요.</div>
                     <div class="content-side-box">
                         <button type="button" class="side-button">
                             <div class="side-button-icon">
                                 <i></i>
                             </div>
                             <div>
-                                <div class="side-button-sub-title">후기사진 등록 가이드</div>
+                                <div class="side-button-sub-title">사진 등록 가이드</div>
                             </div>
                         </button>
                     </div>
@@ -84,10 +84,11 @@
                         <section class="content-section">
                             <div class="content-max-width">
                                 <div class="input-title-layout">
-                                    <h2>대표 이미지</h2>
+                                    <h2>내용 이미지</h2>
                                 </div>
                                 <div class="file-info-box">
                                     <ul>
+                                        <li>첫 번째 올리는 사진이 대표 이미지가 됩니다.</li>
                                         <li>3MB 이하의 JPG, JPEG, PNG 파일</li>
                                         <li>해상도 1200x675 픽셀 이상</li>
                                         <li>텍스트나 로고는 넣을 수 없어요.</li>
@@ -145,9 +146,9 @@
                                         클릭할 수밖에 없는 매력적인 이미지 만들기
                                     </a>
                                 </h4>
-                                <p>체험학습 게시글의 첫인상인 대표 이미지는 체험학습 주제에 따라 리워드가 가장 매력적으로 보이는 사진을 선택해 주세요.</p>
+                                <p>후기 게시글의 첫인상인 대표 이미지는 체험학습 주제에 따라 리워드가 가장 매력적으로 보이는 사진을 선택해 주세요.</p>
                                 <p>SNS 노출 시 이미지가 1:1 비율로 보일 수 있으므로 이미지 내 좌우 여백이 충분하고 리워드가 중앙에 위치한 사진을 선택해 주세요.</p>
-                                <p>대표 이미지에는 텍스트나 로고를 넣을 수 없어요.</p>
+                                <p>이미지에는 텍스트나 로고를 넣을 수 없어요.</p>
                             </div>
                         </section>
                         <button type="submit" class="btn confirm-button">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>체험제공 신청</title>
+    <title>부모님 마당 작성</title>
     <link rel="stylesheet" href="/css/components/header.css">
     <link rel="stylesheet" href="/css/components/footer.css">
     <link rel="stylesheet" href="/css/parents-yard-board/parents-yard-board-thumbnail.css">
@@ -24,12 +24,12 @@
             <div class="container">
                 <div class="nav-header-box nav-header-background">
                     <div style="display: flex">
-                        <span class="nav-header-span">부모님마당</span>
+                        <span class="nav-header-span">부모님 마당</span>
                         <span class="nav-header-span">작성중</span>
                     </div>
                     <a href="javascript:void(0)" class="profile-box">
                         <span class="profile-name">임종욱</span><span>의</span>
-                        <p>부모님마당 글작성</p>
+                        <p>부모님 마당 글작성</p>
                     </a>
                     <button type="button" class="profile-btn">
                         <span class="profile-span">
@@ -43,14 +43,14 @@
                     <ul>
                         <li>
                             <a href="javascript:void(0)" class="nav-title-box">
-                                부모님마당 작성 순서
+                                부모님 마당 작성 순서
                             </a>
                             <ul class="nav-info-ul">
                                 <li>
-                                    <a href="" class="nav-detail-title info-title">부모님마당 내용 작성</a>
+                                    <a href="" class="nav-detail-title info-title">부모님 마당 내용 작성</a>
                                 </li>
                                 <li>
-                                    <a href="" class="nav-detail-title thumbnail-title">대표사진 등록</a>
+                                    <a href="" class="nav-detail-title thumbnail-title">부모님 마당 사진 등록</a>
                                 </li>
                             </ul>
                         </li>
@@ -61,19 +61,19 @@
             <div class="content-wrap">
                 <section class="content-container">
                     <ol class="content-ol">
-                        <li class="content-ol-li">부모님마당</li>
-                        <li class="content-ol-li">부모님마당 내용 작성</li>
-                        <li class="content-ol-li">대표사진 등록</li>
+                        <li class="content-ol-li">부모님 마당</li>
+                        <li class="content-ol-li">부모님 마당 내용 작성</li>
+                        <li class="content-ol-li">부모님 마당 사진 등록</li>
                     </ol>
-                    <div class="content-title">대표사진 등록</div>
-                    <div class="content-sub-title">글작성을 대표하는 이미지를 등록 해주세요.</div>
+                    <div class="content-title">부모님 마당 사진 등록</div>
+                    <div class="content-sub-title">글과 함께 올라갈 이미지를 등록 해주세요.</div>
                     <div class="content-side-box">
                         <button type="button" class="side-button">
                             <div class="side-button-icon">
                                 <i></i>
                             </div>
                             <div>
-                                <div class="side-button-sub-title">대표사진 등록 가이드</div>
+                                <div class="side-button-sub-title">사진 등록 가이드</div>
                             </div>
                         </button>
                     </div>
@@ -85,6 +85,7 @@
                                 </div>
                                 <div class="file-info-box">
                                     <ul>
+                                        <li>첫 번째 올리는 사진이 대표 이미지가 됩니다.</li>
                                         <li>3MB 이하의 JPG, JPEG, PNG 파일</li>
                                         <li>해상도 1200x675 픽셀 이상</li>
                                         <li>텍스트나 로고는 넣을 수 없어요.</li>
@@ -142,7 +143,7 @@
                                         클릭할 수밖에 없는 매력적인 이미지 만들기
                                     </a>
                                 </h4>
-                                <p>체험학습 게시글의 첫인상인 대표 이미지는 체험학습 주제에 따라 리워드가 가장 매력적으로 보이는 사진을 선택해 주세요.</p>
+                                <p>부모님 마당 게시글의 첫인상인 대표 이미지는 체험학습 주제에 따라 리워드가 가장 매력적으로 보이는 사진을 선택해 주세요.</p>
                                 <p>SNS 노출 시 이미지가 1:1 비율로 보일 수 있으므로 이미지 내 좌우 여백이 충분하고 리워드가 중앙에 위치한 사진을 선택해 주세요.</p>
                                 <p>대표 이미지에는 텍스트나 로고를 넣을 수 없어요.</p>
                             </div>
@@ -177,7 +178,7 @@
                     </div>
                 </div>
                 <div class="file-modal-content-box">
-                    <form class="input-dataset" name="write" th:action="@{/parentsYard/write}" method="post" th:object="${parentsBoardDTO}">
+                    <form class="input-dataset" name="write" th:action="@{/parentsYard/writeSecond}" method="post" th:object="${parentsBoardDTO}">
                         <input type="file" style="display: none;">
 
                     </form>

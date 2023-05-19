@@ -219,44 +219,30 @@ $('.btn-comment').click(function() {
 });
 
 
-/* localDateTime을 Date로 깔끔하게 만드는 코드 */
-function formatDate(originalDate) {
-    let date = new Date(originalDate);
-    let formattedDate = date.toLocaleDateString("ko-KR", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-    });
-
-    // 마지막 점 제거
-    formattedDate = formattedDate.replace(/\.$/, "");
-
-    return formattedDate;
-}
-
-
-$(document).ready(function() {
-    // 페이지 로드 시 초기화 작업을 수행합니다.
-    initPage();
-
-    function initPage() {
+// 카테고리 최신글 2개 가져오기 ajax
+const categoryService = (() => {
+    function getCategoryList(callback){
+        console.log(boardId + "보오드으으으으으으");
         $.ajax({
-            url: `/detail/category/${id}`, // 데이터를 가져올 API 엔드포인트 주소를 입력해야 합니다.
-            type: 'get',
-            data: {id: id},
-            success: function(response) {
-                appendCategoryList(response);
+            url: `/parentsYard/detail/category/${boardId}`,
+            type: 'post',
+            contentType: "application/json;charset=utf-8",
+            success: function(parentsBoardDetail){
+                console.log("드렁");
+                callback(parentsBoardDetail);
             }
         });
     }
+    return {getCategoryList: getCategoryList};
+})();
 
-    // 카테고리 최신순 2개 들고오기
-    function appendCategoryList(parentsBoardCategoryDTOS) {
-        let replyText = '';
-        console.log(parentsBoardCategoryDTOS.content);
-        parentsBoardCategoryDTOS.content.forEach(category => {
-            console.log(category);
-            categoryText +=  ` 
+
+/* 카테고리 최신순 2개 가져오기 */
+function appendCategoryList(parentsBoardDetail) {
+    let categoryText = '';
+    console.log(parentsBoardDetail.content);
+    parentsBoardDetail.content.forEach(category => {
+        categoryText +=  ` 
                         <h4>
                     <em>${category.eventCategory}</em>
                     카테고리의 최신글
@@ -271,7 +257,7 @@ $(document).ready(function() {
                                         <p class="other-title">${category.parentsBoardTitle}</p>
                                         <p class="other-content">${category.parentsBoardContent}</p>
                                         <p class="info">
-                                            <em class="date">${parentsBoard.parentsBoardRegisterDate}</em>
+                                            <em class="date">${category.parentsBoardRegisterDate}</em>
                                         </p>
                                     </div>
                                     <div class="img-wrap">
@@ -282,10 +268,15 @@ $(document).ready(function() {
                         </li>
                     </ul>
                 </div>`
-            ;
-        });
-        $('.free-board-other').append(categoryText);
-    }
+        ;
+    });
+    $('.free-board-other').append(categoryText);
+}
+
+
+
+// 페이지 로딩 시 초기 리스트를 불러옴
+categoryService.getCategoryList(function(parentsBoardDetail) {
+    console.log(parentsBoardDetail.content);
+    appendCategoryList(parentsBoardDetail);
 });
-
-
