@@ -1,8 +1,6 @@
 package com.app.babybaby.repository.member.member;
 
-import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.type.CategoryType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
