@@ -65,7 +65,6 @@ public MemberDTO(Member member) {
     this.memberEmail = member.getMemberEmail();
 }
     @Builder(builderClassName = "DTOBuilder", builderMethodName = "DTOBuilder")
-
     public MemberDTO(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName, List<Alert> alerts, List<Coupon> coupons, LocalDateTime uploadTime, List<ReviewDTO> reviews, List<ParentsBoardDTO> parentsBoards, Long followerCount, Long followingCount) {
         this.id = id;
         this.memberEmail = memberEmail;

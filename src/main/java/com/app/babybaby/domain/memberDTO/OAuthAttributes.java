@@ -19,6 +19,7 @@ public class OAuthAttributes {
     private final String name;
     private final String email;
     private final String mobile;
+    private final String nickname;
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
 //      userNameAttributeName은 .yml에서 설정해 놓은 user-name-attribute 값이다.
@@ -37,10 +38,11 @@ public class OAuthAttributes {
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
         Map<String, Object> response = (Map<String, Object>) attributes.get(userNameAttributeName);
 
-        return com.app.babybaby.domain.memberDTO.OAuthAttributes.builder()
+        return OAuthAttributes.builder()
                 .name((String) response.get("name"))
                 .email((String) response.get("email"))
                 .mobile((String) response.get("mobile"))
+                .nickname((String) response.get("nickname"))
                 .attributes(response)
                 .nameAttributeKey("id")
                 .build();
@@ -61,6 +63,7 @@ public class OAuthAttributes {
                 .memberName(name)
                 .memberEmail(email)
                 .memberPhone(mobile)
+                .memberNickname(nickname)
                 .memberRole(Role.GENERAL)
                 .build();
     }
