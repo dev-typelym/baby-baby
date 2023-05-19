@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @Component
 @Slf4j
-public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHandler {
+public class  AuthenticationFailureHandlerImpl implements AuthenticationFailureHandler {
     private static final String REDIRECT_URL = "/member/login?check=false";
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {

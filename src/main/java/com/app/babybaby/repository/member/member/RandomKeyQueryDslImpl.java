@@ -18,7 +18,7 @@ public class RandomKeyQueryDslImpl implements RandomKeyQueryDsl {
     public RandomKey getLatestRandomKey(Long id) {
         return query.select(randomKey1)
                 .from(member)
-//                .join(member.randomKeys, randomKey1)
+                .join(member.randomKeys, randomKey1)
                 .where(member.id.eq(id))
                 .orderBy(randomKey1.id.desc())
                 .fetchFirst();

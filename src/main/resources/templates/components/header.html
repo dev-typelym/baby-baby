@@ -32,7 +32,7 @@
                                     <span>부모님마당</span>
                             </a></li>
                             <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" href=""> <span>놀러가요!</span>
+                                class="header-menu-category-a" href=""><span>놀러가요!</span>
                             </a></li>
                             <li class="header-menu-category-li"><a
                                 class="header-menu-category-a" href=""> <span>지금 우리 아이들은?</span>
@@ -41,7 +41,7 @@
                                 class="header-menu-category-a" href=""> <span>부모님 마당</span>
                             </a></li>
                             <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" href=""> <span>후기 보기</span>
+                                class="header-menu-category-a" href=""> <span>후기</span>
                             </a></li>
                             <li class="header-menu-category-li"><a
                                 class="header-menu-category-a" href=""> <span>공지사항</span>
@@ -61,7 +61,8 @@
                                     <div class="profile-wrapper">
                                         <a href="" class="profile-link">
                                             <div class="profile-image-wrapper">
-                                                <img class="profile-image" src="/css/components/images/profile-image.png">
+                                                <img th:if="${member != null}" class="profile-image" th:src="'/members/display?fileName=Member/Profile/' + ${member.memberProfilePath} +'/'+${member.memberProfileUUID}+'_'+${member.memberProfileOriginalName}">
+                                                <img th:unless="${member}" class="profile-image" src="">
                                             </div>
                                         </a>
                                     </div>
