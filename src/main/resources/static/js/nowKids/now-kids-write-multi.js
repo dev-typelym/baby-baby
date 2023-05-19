@@ -87,7 +87,7 @@ $fileInput.change((e) => {
                 reader.onload = (e) => {
                     console.log(e)
                     let text = `
-                        <div style="position:relative" id="file${i}">
+                        <div class="photo-thumbnails-nowkids" style="position:relative" id="file${i}">
                             <div class="image-file-content-box">
                                 <div>
                                     <span class="image-file-info">원본 이미지</span>
@@ -212,5 +212,16 @@ function convertCategory(category) {
     }
     return categoryResult;
 }
-console.log(englishCategory)
 $($('.nav-header-span')[0]).html(convertCategory(englishCategory))
+
+$('.confirm-button').on('click', function (e) {
+    e.preventDefault();
+    console.log($('.photo-thumbnails-nowkids').length)
+
+    if ($('.photo-thumbnails-nowkids').length > 0) {
+        $(this).closest('form').submit();
+    }
+});
+
+
+

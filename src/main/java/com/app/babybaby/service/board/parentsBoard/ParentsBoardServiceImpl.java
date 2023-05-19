@@ -1,12 +1,19 @@
 package com.app.babybaby.service.board.parentsBoard;
 
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
+import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.exception.BoardNotFoundException;
+import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
+import com.app.babybaby.repository.file.parentsBoardFile.ParentsBoardFileRepository;
+import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.CategoryType;
+import com.app.babybaby.type.FileType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.Parent;
@@ -25,6 +32,12 @@ import java.util.stream.Collectors;
 public class ParentsBoardServiceImpl implements ParentsBoardService {
 
     private final ParentsBoardRepository parentsBoardRepository;
+
+    private final ParentsBoardFileRepository parentsBoardFileRepository;
+
+    private final MemberRepository memberRepository;
+
+    private final EventRepository eventRepository;
 
     @Override
     public ParentsBoard findById(Long id) {
@@ -65,7 +78,31 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
         return new PageImpl<>(parentsBoardDTOS, pageable, boards.getTotalElements());
     }
 
-//    대표사진 파일 업로드
+    @Override
+    public void saveAll(Long memberId, Long eventId, ParentsBoardDTO parentsBoardDTO) {
+        Member member = memberRepository.findById(memberId).get();
+        Event event = eventRepository.findById(eventId).get();
+        log.info("parentBoard는 " + parentsBoardDTO.toString());
+
+        ParentsBoard parentsBoard = this.toParentsBoardDTOEntity(parentsBoardDTO);
+        parentsBoard.setEvent(event);
+        parentsBoard.setMember(member);
+
+        ParentsBoard savedParentsBoard = parentsBoardRepository.save(parentsBoard);
+        parentsBoardDTO.getParentsBoardFileDTOS().forEach(parentsBoardFileDTO -> {
+            ParentsBoardFile parentsBoardFile = ParentsBoardFile.builder()
+                    .fileOriginalName(parentsBoardFileDTO.getFileOriginalName())
+                    .filePath(parentsBoardFileDTO.getFilePath())
+                    .fileStatus(parentsBoardFileDTO.getFileStatus())
+                    .fileUUID(parentsBoardFileDTO.getFileUUID())
+                    .parentsBoard(savedParentsBoard) // Set the association with ParentsBoard
+                    .build();
+
+            parentsBoardFileRepository.save(parentsBoardFile);
+        });
+    }
+
+    //    대표사진 파일 업로드
     @Override
     public void save(ParentsBoardDTO parentsBoardDTO) {
         parentsBoardRepository.save(toParentsBoardDTOEntity(parentsBoardDTO));

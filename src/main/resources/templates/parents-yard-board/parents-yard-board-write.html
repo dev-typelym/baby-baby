@@ -13,8 +13,10 @@
 
 <body>
 <div th:insert="~{/components/header:: header}"></div>
-
+<form action="/parentsYard/writeSecond">
     <div>
+        <!-- 아무것도 안들어갔을떄 이벤트 아이디는 0 -->
+        <input type="hidden" name="eventId" value="0">
         <div class="wrap">
             <div class="now-kids.container">
                 <div class="nav-header-box nav-header-background">
@@ -66,50 +68,18 @@
                         <div class="content-box">
                             <section class="content-section">
                                 <div class="input-title-box">
-                                    <div class="input-title-layout2 field-study-title">
-                                        <h2>참여예정 체험학습</h2>
-                                    </div>
-                                    <div class="input-title-box">
-                                        <div class="input-box">
-                                            <div class="input-layout">
-                                                <input type="text" class="normal-text-input input-size title" maxlength="40"
-                                                    placeholder="참여예정 체험학습이 없습니다." value="실내 액티비티 VR체험학습" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section class="content-section">
-                                <div class="input-content-box">
-                                    <div class="input-content-layout2">
-                                        <h2>체험학습 일정</h2>
-                                    </div>
-                                    <div class="input-content-box">
-                                        <div class="input-box">
-                                            <div class="input-layout">
-                                                <input class="field-study-date-input" type="text" placeholder="참여예정 체험학습이 없습니다." value="2023-04-28 ~ 2023-05-05" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="reset-btn" type="button">초기화</button>
-                                </div>
-                            </section>
-
-                            <section class="content-section">
-                                <div class="input-title-box">
                                     <div class="input-title-layout2">
-                                        <h2 class="class-for-after">카테고리</h2>
+                                        <h2 class="class-for-after">참여한 체험학습</h2>
                                     </div>
                                     <div class="input-sub-title">
-                                        부모님 마당의 카테고리를 선택해주세요.
+                                        참여한 체험학습을 선택해주세요.
                                     </div>
                                     <div class="input-box">
                                         <div class="select-box">
                                             <div style="position: relative">
-                                                <div class="select-layout">
+                                                <div class="select-layout2">
                                                     <div class="select-value-box">
-                                                        <div class="select-value select-placeholder">
+                                                        <div class="select-value select-placeholder2">
                                                             선택해주세요.
                                                         </div>
                                                         <input type="text" class="dummy-input" readonly />
@@ -117,24 +87,19 @@
                                                     <div class="select-icon-box">
                                                         <div class="select-icon-layout">
                                                             <svg viewBox="0 0 32 32" focusable="false" role="presentation"
-                                                                aria-hidden="true" style="color: rgb(134, 142, 150)">
+                                                                 aria-hidden="true" style="color: rgb(134, 142, 150)">
                                                                 <path
-                                                                    d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z">
+                                                                        d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z">
                                                                 </path>
                                                             </svg>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="select-menu-box">
+                                                <div class="select-kids-count">
                                                     <div class="select-menu-layout">
-                                                        <div class="select-option">농촌</div>
-                                                        <div class="select-option">예술</div>
-                                                        <div class="select-option">전통</div>
-                                                        <div class="select-option">공방</div>
-                                                        <div class="select-option">과학</div>
-                                                        <div class="select-option">박물관</div>
-                                                        <div class="select-option">스포츠</div>
-                                                        <div class="select-option">기타</div>
+                                                        <!-- value는 이벤트 아이디 -->
+                                                        <div class="select-option2" value="2">실내 액티비티 VR체험학습(2023.02.21)</div>
+                                                        <div class="select-option2" value="3">소방관 체험학습(2023.05.16)</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,6 +107,53 @@
                                     </div>
                                 </div>
                             </section>
+
+<!--                            <section class="content-section">-->
+<!--                                <div class="input-title-box">-->
+<!--                                    <div class="input-title-layout2">-->
+<!--                                        <h2 class="class-for-after">카테고리</h2>-->
+<!--                                    </div>-->
+<!--                                    <div class="input-sub-title">-->
+<!--                                        부모님 마당의 카테고리를 선택해주세요.-->
+<!--                                    </div>-->
+<!--                                    <div class="input-box">-->
+<!--                                        <div class="select-box">-->
+<!--                                            <div style="position: relative">-->
+<!--                                                <div class="select-layout">-->
+<!--                                                    <div class="select-value-box">-->
+<!--                                                        <div class="select-value select-placeholder">-->
+<!--                                                            선택해주세요.-->
+<!--                                                        </div>-->
+<!--                                                        <input type="text" class="dummy-input" readonly />-->
+<!--                                                    </div>-->
+<!--                                                    <div class="select-icon-box">-->
+<!--                                                        <div class="select-icon-layout">-->
+<!--                                                            <svg viewBox="0 0 32 32" focusable="false" role="presentation"-->
+<!--                                                                aria-hidden="true" style="color: rgb(134, 142, 150)">-->
+<!--                                                                <path-->
+<!--                                                                    d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z">-->
+<!--                                                                </path>-->
+<!--                                                            </svg>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="select-menu-box">-->
+<!--                                                    <div class="select-menu-layout">-->
+<!--                                                        <div class="select-option">농촌</div>-->
+<!--                                                        <div class="select-option">예술</div>-->
+<!--                                                        <div class="select-option">전통</div>-->
+<!--                                                        <div class="select-option">공방</div>-->
+<!--                                                        <div class="select-option">과학</div>-->
+<!--                                                        <div class="select-option">박물관</div>-->
+<!--                                                        <div class="select-option">스포츠</div>-->
+<!--                                                        <div class="select-option">기타</div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </section>-->
 
                             <section class="content-section">
                                 <div class="input-content-box">
@@ -154,7 +166,7 @@
                                     <div class="input-content-box">
                                         <div class="input-box">
                                             <div class="input-layout">
-                                                <input class="parents-yard-title-input" name="boardTitle" type="text" placeholder="제목을 입력해주세요.">
+                                                <input class="parents-yard-title-input" name="parentsBoardTitle" type="text" placeholder="제목을 입력해주세요.">
                                             </div>
                                         </div>
                                     </div>
@@ -172,14 +184,14 @@
                                     <div class="input-content-box">
                                         <div class="input-box">
                                             <div class="input-layout">
-                                                <textarea name="text" id="editor"></textarea>
+                                                <textarea name="parentsBoardContent" id="editor"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </section>
 
-                            <button type="button" class="btn confirm-button">
+                            <button type="submit" class="btn confirm-button">
                                 <span>다음으로</span>
                             </button>
                         </div>
@@ -188,6 +200,7 @@
             </form>
         </div>
     </div>
+</form>
 <div th:insert="~{/components/footer:: footer}"></div>
 
 </body>

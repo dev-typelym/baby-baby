@@ -18,8 +18,11 @@
 
 <body>
 <div th:insert="~{/components/header:: header}"></div>
-
+<form action="/parentsYard/save">
     <div>
+        <input type="hidden" name="eventId">
+        <input type="hidden" name="parentsBoardTitle">
+        <input type="hidden" name="parentsBoardContent">
         <div class="wrap">
             <div class="container">
                 <div class="nav-header-box nav-header-background">
@@ -96,7 +99,7 @@
                                         <div class="file-input-flex">
                                             첨부 파일을 업로드해 주세요.
                                             <div class="file-input-div">
-                                                <input type="file" class="image-file" style="display:none">
+                                                <input type="file" class="image-file" multiple style="display:none">
                                                 <button type="button" class="btn file-button">
                                                     <span>
                                                         <span class="file-button-span">업로드</span>
@@ -148,7 +151,7 @@
                                 <p>대표 이미지에는 텍스트나 로고를 넣을 수 없어요.</p>
                             </div>
                         </section>
-                        <button type="button" class="btn confirm-button">
+                        <button type="submit" class="btn confirm-button">
                             <span>작성하기</span>
                         </button>
                     </div>
@@ -219,7 +222,7 @@
                 </div>
                 <div class="image-register-button-box">
                     <div class="image-register-button-layout">
-                        <button class="btn image-register-button">
+                        <button type="button" class="btn image-register-button">
                             <span>
                                 <span>이미지 등록하기</span>
                             </span>
@@ -229,6 +232,7 @@
             </div>
         </div>
     </div>
+</form>
 <div th:insert="~{/components/footer:: footer}"></div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>

@@ -90,6 +90,14 @@ public class ParentsBoardController {
         return "parents-yard-board/parents-yard-board-thumbnail";
     }
 
+//    모든 정보 저장
+    @GetMapping
+    public RedirectView saveALl(ParentsBoardDTO parentsBoardDTO){
+        Long sessionId = 1L;
+        parentsBoardService.saveAll(sessionId, parentsBoardDTO.getEventId(), parentsBoardDTO);
+        log.info("parentBoard를 save하기 위한 곳 : " + parentsBoardDTO.toString());
+        return new RedirectView("/parentsYard/list");
+    }
 
 //    대표사진 올리는 페이지 ajax를 위한 컨트롤러
     @PostMapping("writeSecond")

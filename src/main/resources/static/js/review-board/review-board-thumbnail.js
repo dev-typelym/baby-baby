@@ -97,7 +97,6 @@ $('.file-wrap').on("click",".image-cancel", (e) => {
 
 
 
-let j = 0;
 FileList.prototype.forEach = Array.prototype.forEach;
 const $fileListBox = $(".file-wrap");
 /*  이미지 추가시 */
@@ -127,18 +126,6 @@ $fileInput.change((e) => {
 
             console.log(files)
 
-            // let inputFiles1 = "";
-            // files.forEach((file) => {
-            //     inputFiles1 +=
-            //         `
-            //         <input type="hidden" name="files[${j}].fileOriginalName" value="${file.name}">
-            //         <input type="hidden" name="files[${j}].fileUUID" value="${globalThis.uuids[j]}">
-            //         <input type="hidden" name="files[${j}].filePath" value="${toStringByFormatting(new Date())}">
-            //         `
-            //     j++;
-            // });
-            // j=0;
-            // $('.wrap').append(inputFiles1);
             inputFiles = [];
 
             filesArr.forEach((file,i) => {
