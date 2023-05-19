@@ -226,11 +226,14 @@ const categoryService = (() => {
         $.ajax({
             url: `/parentsYard/detail/category/${boardId}`,
             type: 'post',
-            contentType: "application/json;charset=utf-8",
-            success: function(parentsBoardDetail){
-                console.log("드렁");
-                callback(parentsBoardDetail);
+            data: {boardId: boardId},
+            success: function(categoryResults){
+                console.log("들옴");
+                callback(categoryResults);
             }
+            // error: function(error) {
+            //     console.log('Error fetching data:', error)
+            // }
         });
     }
     return {getCategoryList: getCategoryList};
@@ -238,10 +241,11 @@ const categoryService = (() => {
 
 
 /* 카테고리 최신순 2개 가져오기 */
-function appendCategoryList(parentsBoardDetail) {
+function appendCategoryList(categoryResults) {
+    console.log("드롱");
     let categoryText = '';
-    console.log(parentsBoardDetail.content);
-    parentsBoardDetail.content.forEach(category => {
+    console.log(">>>>>" + categoryResults.content);
+    categoryResults.content.forEach(category => {
         categoryText +=  ` 
                         <h4>
                     <em>${category.eventCategory}</em>
@@ -276,7 +280,7 @@ function appendCategoryList(parentsBoardDetail) {
 
 
 // 페이지 로딩 시 초기 리스트를 불러옴
-categoryService.getCategoryList(function(parentsBoardDetail) {
-    console.log(parentsBoardDetail.content);
-    appendCategoryList(parentsBoardDetail);
+categoryService.getCategoryList(function(categoryResults) {
+    console.log(categoryResults.content);
+    appendCategoryList(categoryResults);
 });
