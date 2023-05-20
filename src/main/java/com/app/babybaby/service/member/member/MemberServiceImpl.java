@@ -1,6 +1,7 @@
 package com.app.babybaby.service.member.member;
 
 import com.app.babybaby.controller.provider.UserDetail;
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MailDTO;
@@ -22,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Pageable;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -73,6 +75,14 @@ public class MemberServiceImpl implements MemberService {
                 .map(reviewService::ReviewToDTO)
                 .collect(Collectors.toList());
         companyDTO.setReviews(reviews);
+        List<EventDTO> finishedEvents = eventRepository.findAllFinishedEvents_QueryDSL(companyId, Pageable.ofSize(2)).stream().map(this::eventToDTO).collect(Collectors.toList());
+        List<EventDTO> upcommingEvents = eventRepository.findAllUpcommingEvents_QueryDSL(companyId, Pageable.ofSize(2)).stream().map(this::eventToDTO).collect(Collectors.toList());
+        List<EventDTO> nowEvents = eventRepository.findAllNowEvents_QueryDSL(companyId, Pageable.ofSize(2)).stream().map(this::eventToDTO).collect(Collectors.toList());
+        companyDTO.setFinishedEvents(finishedEvents);
+        companyDTO.setUpcommingEvents(upcommingEvents);
+        companyDTO.setNowEvents(nowEvents);
+        companyDTO.setTotalEventsCount(eventRepository.findAllFinishedEventsCount(companyId));
+
        return companyDTO;
     }
     
@@ -90,6 +100,20 @@ public class MemberServiceImpl implements MemberService {
                 followRepository.findALlReviewByMemberId_QueryDSL(memberId).stream().map(reviewService::ReviewToDTO).collect(Collectors.toList())
         );
         return memberDTO;
+    }
+    
+//    회원상세 ajax로 회원 이벤트 들고오기
+    public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable){
+        CompanyDTO companyDTO = new CompanyDTO();
+        List<EventDTO> finishedEvents = eventRepository.findAllFinishedEvents_QueryDSL(companyId, pageable).stream().map(this::eventToDTO).collect(Collectors.toList());
+        List<EventDTO> upcommingEvents = eventRepository.findAllUpcommingEvents_QueryDSL(companyId, pageable).stream().map(this::eventToDTO).collect(Collectors.toList());
+        List<EventDTO> nowEvents = eventRepository.findAllNowEvents_QueryDSL(companyId, pageable).stream().map(this::eventToDTO).collect(Collectors.toList());
+        companyDTO.setFinishedEvents(finishedEvents);
+        companyDTO.setUpcommingEvents(upcommingEvents);
+        companyDTO.setNowEvents(nowEvents);
+        companyDTO.setTotalEventsCount(eventRepository.findAllFinishedEventsCount(companyId));
+
+        return companyDTO;
     }
 
     @Override

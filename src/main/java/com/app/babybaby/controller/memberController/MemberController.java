@@ -1,5 +1,6 @@
 package com.app.babybaby.controller.memberController;
 
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MailDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
@@ -10,12 +11,17 @@ import com.app.babybaby.service.member.randomKey.RandomKeyService;
 import com.app.babybaby.type.MemberType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/member/*")
@@ -122,7 +128,23 @@ public class MemberController {
     @PostMapping("details/companies/{memberId}")
     @ResponseBody
     public CompanyDTO goCompanyRest(@PathVariable Long memberId){
-        return memberService.getAllCompanyInfo(memberId);
+        CompanyDTO companyDTO = memberService.getAllCompanyInfo(memberId);
+        return companyDTO;
+    }
+
+    @GetMapping("details/companies/getInfo/{memberId}")
+    @ResponseBody
+    public CompanyDTO getCompanyEventList(@PathVariable Long memberId, @RequestParam(value = "page", defaultValue = "0") int page,
+                                          @RequestParam(value = "size", defaultValue = "5") int size) {
+        PageRequest pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "calendar.endDate"));
+
+        CompanyDTO companyDTO = memberService.getEventsInfoByMemberId(memberId, pageable);
+
+        log.info(companyDTO.getNowEvents().toString());
+        log.info(String.valueOf(memberId));
+        log.info(pageable.toString());
+
+        return companyDTO;
     }
 
     @PostMapping("details/generals/{memberId}")
