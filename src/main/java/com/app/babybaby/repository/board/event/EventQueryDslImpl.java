@@ -15,6 +15,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -109,12 +110,15 @@ public class EventQueryDslImpl implements EventQueryDsl {
             return new PageImpl<>(events, pageable, count);
         }
 
+//        마이페이지 내가 참여한 이벤트 게시판
     @Override
-    public Page<Purchase> findEventListByMemberId_QueryDSL(Pageable pageable, Long memberId) {
-        List<Purchase> purchases = query.select(purchase)
+    public Page<Purchase> findEventListByMemberId_QueryDSL(Pageable pageable, Long memberId, LocalDateTime startDate) {
+        List<Purchase> purchases = query.selectDistinct(purchase)
                 .from(purchase)
                 .join(purchase.event).fetchJoin()
-                .where(purchase.member.id.eq(memberId))
+                .leftJoin(purchase.event.eventFiles)
+                .leftJoin(purchase.event.calendar).fetchJoin()
+                .where(purchase.member.id.eq(memberId).and(purchase.event.calendar.startDate.eq(startDate)))
                 .orderBy(purchase.event.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

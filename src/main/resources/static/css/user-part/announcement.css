@@ -150,15 +150,18 @@ a{
     padding: 10px;
     font-size: 14px;
     color: #666;
+      outline: none;
   }
   
   .search-btn {
-    border: none;
-    background-color: transparent;
-    font-size: 14px;
-    color: #666;
-    cursor: pointer;
-    padding: 5px;
+      border: none;
+      background-color: transparent;
+      font-size: 14px;
+      color: #666;
+      cursor: pointer;
+      padding: 10px;
+      background-image: url(https://www.wadiz.kr/resources/static/img/common/icon_gray_search.png);
+      background-size: 20px;
   }
   
 

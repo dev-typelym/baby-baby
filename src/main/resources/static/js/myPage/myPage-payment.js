@@ -100,6 +100,7 @@
 
       boardText3 +=  `
                                          <li class="one-list">
+                                         ${purchase.calendarDTOS.startDate}
                                 <div class="list-inner">
                                 <dl class="order-info">
                                 <dd> 주문 번호 : ${purchase.id}</dd>
@@ -112,7 +113,7 @@
                                      `
                         if(purchase.eventFileDTOS.length != 0) {
                                 boardText3 += `
-                            <div class="photo-thumbnail">
+                            <div class="photo-thumbnail" style="height: 100%;">
                                 <img style="width: 100%; height: 100%;" src="/eventFiles/display?fileName=Event/${purchase.eventFileDTOS[0].filePath}/${purchase.eventFileDTOS[0].fileUUID}_${purchase.eventFileDTOS[0].fileOriginalName}">
                              </div>
                                 `

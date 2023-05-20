@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
@@ -20,6 +21,7 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Autowired
     private final PurchaseRepository purchaseRepository;
 
+//    구매내역
     @Override
     public Page<PurchaseDTO> findAllByMemberPaymentWithPage(Pageable pageable, Long memberId) {
         Page<Purchase> purchases = purchaseRepository.findAllByMemberPaymentWithPage_QueryDSL(pageable, memberId);
@@ -28,7 +30,16 @@ public class PurchaseServiceImpl implements PurchaseService {
         return new PageImpl<>(purchaseDTOS,pageable,purchases.getTotalElements());
     }
 
-//    구매 상세
+//    내가 참여한 이벤트요 ....
+    @Override
+    public Page<PurchaseDTO> findAllByEventWithPage(Pageable pageable, Long memberId, LocalDateTime startDate) {
+        Page<Purchase> purchases = purchaseRepository.findAllByEventWithPage_QueryDSL(pageable, memberId,startDate);
+        List<PurchaseDTO> purchaseDTOS = purchases.stream().map(purchase -> PurchaseToDTO(purchase)).collect(Collectors.toList());
+
+        return new PageImpl<>(purchaseDTOS,pageable,purchases.getTotalElements());
+    }
+
+    //    구매 상세
     @Override
     public PurchaseDTO findMemberIdByPaymentDetail(Long purchaseId) {
         Purchase purchase = purchaseRepository.findMemberIdByPaymentDetail_QueryDSL(purchaseId);

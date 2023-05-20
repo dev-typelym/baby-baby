@@ -1,6 +1,7 @@
 package com.app.babybaby.domain.purchaseDTO.purchaseDTO;
 
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
+import com.app.babybaby.domain.calendarDTO.CalendarDTO;
 import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
 import lombok.Builder;
@@ -25,10 +26,11 @@ public class PurchaseDTO {
     private String memberName;
     private String memberPhone;
     private List<EventFileDTO> eventFileDTOS;
+    private CalendarDTO calendarDTOS;
 
 
     @Builder
-    public PurchaseDTO(Long id, LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, String eventTitle, Long memberId, String memberName, List<EventFileDTO> eventFileDTOS,String memberPhone) {
+    public PurchaseDTO(Long id, LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, String eventTitle, Long memberId, String memberName, List<EventFileDTO> eventFileDTOS,String memberPhone,CalendarDTO calendarDTOS) {
         this.id = id;
         this.purchaseRegisterDate = purchaseRegisterDate;
         this.purchaseCount = purchaseCount;
@@ -39,5 +41,6 @@ public class PurchaseDTO {
         this.memberName = memberName;
         this.eventFileDTOS = eventFileDTOS;
         this.memberPhone = memberPhone;
+        this.calendarDTOS = calendarDTOS;
     }
 }

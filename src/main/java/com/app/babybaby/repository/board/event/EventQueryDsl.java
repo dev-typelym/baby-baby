@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,7 @@ public interface EventQueryDsl {
     public Page<Event> findEventListByCompanyId_QueryDSL(Pageable pageable, Long companyId);
 
 //    내가 참여한 이벤트 게시판
-    public Page<Purchase> findEventListByMemberId_QueryDSL(Pageable pageable, Long memberId);
+    public Page<Purchase> findEventListByMemberId_QueryDSL(Pageable pageable, Long memberId , LocalDateTime startDate);
 
     /* ---------------------------------회원 상세--------------------------------------------------- */
     /* 회사의 진행 예정 이벤트 */
