@@ -26,9 +26,9 @@
                 <div class="order-name-area">
                   <div class="order-name-inner">
                     <a href="#" class="order-name"
-                       th:text="*{event.boardTitle}" >놀이동산 체험학습 놀러가요~</a
+                       th:text="*{eventTitle}" >놀이동산 체험학습 놀러가요~</a
                     >
-                    <div class="company-name" th:text="*{member.memberName}" >와디즈 주식회사</div>
+                    <div class="company-name" th:text="*{memberName}" >와디즈 주식회사</div>
                   </div>
                 </div>
               </div>
@@ -42,7 +42,7 @@
                   <div class="payment-info">
                     <dl class="price">
                       <dt>체험학습 금액</dt>
-                      <dd><span th:text="*{event.eventPrice}">45000원</span><span>원</span> </dd>
+                      <dd><span th:text="*{purchasePrice}">45000원</span><span>원</span> </dd>
                     </dl>
 
                     <dl class="price">
@@ -59,7 +59,7 @@
                   <div class="last-price-area">
                     <dl class="price">
                       <dt>최종 결제 금액</dt>
-                      <dd class="last-price"><span th:text="*{event.eventPrice * purchaseCount}">원</span><span>원</span></dd>
+                      <dd class="last-price"><span th:text="*{purchasePrice * purchaseCount}">원</span><span>원</span></dd>
                     </dl>
 
                     <dl class="card-info">
@@ -74,16 +74,13 @@
                       <div class="product-info">
                         <div class="">놀이동산 체험학습 놀러가요~</div>
                         <div class="product-quantity"><span th:text="*{purchaseCount}"></span><span>명</span></div>
-                        <div class="product-price" ><span th:text="*{event.eventPrice}"></span><span>원</span></div>
+                        <div class="product-price" ><span th:text="*{purchasePrice}"></span><span>원</span></div>
                       </div>
                       <!-- 이벤트 써ㅓㅁ네일 -->
                       <div class="product-thumbnail">
-                        <div
-                          class="product-thumbnail-image"
-                          style="
-                            background-image: url('https://cdn2.wadiz.kr/2023/04/25/f6a525c2-d0c8-469c-a820-f0a7289d9ab4.png/wadiz/resize/400/format/jpg/quality/85/');
-                          "
-                        ></div>
+                        <div class="product-thumbnail-image">
+                          <img style="width: 100%; height: 100%;" th:src="'/eventFiles/display?fileName=Event/' + *{eventFileDTOS[0].filePath} +'/' + *{eventFileDTOS[0].fileUUID}+'_'+*{eventFileDTOS[0].fileOriginalName}">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -94,12 +91,12 @@
                       <dl class="maker-item">
                         <dt class="maker-label"><span>기업 이름</span></dt>
                         <dd class="maker-value">
-                          <span title="와디즈 주식회사" th:text="*{member.memberName}">와디즈 주식회사</span>
+                          <span title="와디즈 주식회사" th:text="*{memberName}">와디즈 주식회사</span>
                         </dd>
                       </dl>
                       <dl class="maker-item">
                         <dt class="maker-label"><span>연락처</span></dt>
-                        <dd class="maker-value"><span th:text="*{member.memberPhone}">01012341234</span></dd>
+                        <dd class="maker-value"><span th:text="*{memberPhone}"></span></dd>
                       </dl>
                     </div>
                   </div>
