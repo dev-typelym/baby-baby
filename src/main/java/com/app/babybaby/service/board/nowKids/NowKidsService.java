@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 //이름 바꾸지 말기
 public interface NowKidsService {
 
-    public Page<NowKidsDTO> getAllInfoForListDesc(int pageNum, int pageSize);
+    public Page<NowKidsDTO> getAllInfoForListDesc(int pageNum, int pageSize, Long sessionId);
 
     public List<NowKidsDTO>  getBoardAndCalendarByGeneralGuideId(Long sessionId);
 

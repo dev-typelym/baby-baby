@@ -118,7 +118,7 @@ video {
 .full-content-inner {
     padding-bottom: 0;
     height: 100%;
-    max-width: 554px;
+    max-width: 600px;
     margin: 0 auto;
     background-color: #fff;
 }
@@ -135,7 +135,7 @@ video {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    max-width: 554px;
+    max-width: 600px;
     width: 100%;
     margin: 0 auto;
     background-color: #fff;
@@ -158,7 +158,7 @@ video {
 
 .top-content-inner-flex {
     display: flex;
-    max-width: 554px;
+    max-width: 600px;
     width: 100%;
     overflow: hidden;
 }
@@ -178,6 +178,7 @@ video {
     width: 56px;
     height: 74px;
     position: relative;
+    cursor: pointer;
 }
 
 .user-img-wrap {
@@ -645,7 +646,7 @@ button {
     color: #fff;
     height: 40px;
     display: flex;
-    width: 554px;
+    width: 600px;
     font-weight: 500;
     font-size: 20px;
     align-items: center;

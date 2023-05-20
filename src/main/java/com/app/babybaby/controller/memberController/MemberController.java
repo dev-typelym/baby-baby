@@ -102,7 +102,7 @@ public class MemberController {
 
     /* ****************************** 멤버 로그인 / 회원 가입 끝 *************************************************** */
 
-    @GetMapping("detail/{memberId}")
+    @GetMapping("details/{memberId}")
     public RedirectView goDetail(@PathVariable Long memberId){
         Member member = memberService.getMemberById(memberId).get();
         return member.getMemberType() == MemberType.COMPANY ?

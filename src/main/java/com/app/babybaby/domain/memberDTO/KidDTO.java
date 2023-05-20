@@ -24,17 +24,18 @@ public class KidDTO {
 
     private String eventTitle;
     private LocalDateTime eventStartDate;
+    private LocalDateTime eventEndDate;
 
 //    private Member parent;
 
     @Builder
-    public KidDTO(Long id, String kidName, Integer kidAge, GenderType kidGender, String eventTitle, LocalDateTime eventStartDate, Member parent) {
+    public KidDTO(Long id, String kidName, Integer kidAge, GenderType kidGender, String eventTitle, LocalDateTime eventStartDate, LocalDateTime eventEndDate) {
         this.id = id;
         this.kidName = kidName;
         this.kidAge = kidAge;
         this.kidGender = kidGender;
         this.eventTitle = eventTitle;
         this.eventStartDate = eventStartDate;
-//        this.parent = parent;
+        this.eventEndDate = eventEndDate;
     }
 }

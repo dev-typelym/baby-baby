@@ -40,21 +40,22 @@ public class NowKidsServiceImpl implements NowKidsService {
 
     @Override
     /* 1페이지부터 시작, 모든 정보는 최신순 */
-    public Page<NowKidsDTO> getAllInfoForListDesc(int pageNum, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNum - 1, pageSize, Sort.by("id").descending());
+    public Page<NowKidsDTO> getAllInfoForListDesc(int pageNum, int pageSize, Long sessionID) {
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize, Sort.by("updateDate").descending());
         Page<NowKids> nowKidsPage = nowKidsRepository.findAll(pageable);
 
-        if (!nowKidsPage.hasNext()) {
+        if (nowKidsPage.isEmpty()) {
             return Page.empty(); // 빈 페이지 반환
         }
 
         Page<NowKidsDTO> nowKidsDTOPage = nowKidsPage.map(this::toNowKidsDTO);
-
-        nowKidsDTOPage = nowKidsDTOPage.map(nowKidsDTO -> {
-            boolean isLiked = nowKidsLikeRepository.hasMemberLikedNowKids(nowKidsDTO.getMemberId(), nowKidsDTO.getNowKidsId());
-            nowKidsDTO.setIsLiked(isLiked);
-            return nowKidsDTO;
-        });
+        if(sessionID != null){
+            nowKidsDTOPage = nowKidsDTOPage.map(nowKidsDTO -> {
+                boolean isLiked = nowKidsLikeRepository.hasMemberLikedNowKids(sessionID, nowKidsDTO.getNowKidsId());
+                nowKidsDTO.setIsLiked(isLiked);
+                return nowKidsDTO;
+            });
+        }
 
         return nowKidsDTOPage;
     }
@@ -66,7 +67,7 @@ public class NowKidsServiceImpl implements NowKidsService {
 
         return nowKidsDTOS;
     }
-    
+
     /* 최근 올린 8명 가져오기 */
     public List<MemberDTO> find8AuthorDesc(){
         List<Member> members = nowKidsRepository.find8AuthorDesc();

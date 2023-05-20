@@ -107,6 +107,11 @@ public class EventBoardRepositoryTests {
         log.info(eventRepository.findAllPurchasedEvents(1L).toString());
     }
 
+    @Test
+    public void findAllTest(){
+        eventRepository.findAll().stream().map(Event::toString).forEach(log::info);
+    }
+
 
 
 }
