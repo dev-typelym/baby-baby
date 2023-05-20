@@ -30,8 +30,10 @@ public class PurchaseServiceImpl implements PurchaseService {
 
 //    구매 상세
     @Override
-    public Purchase findMemberIdByPaymentDetail(Long purchaseId) {
-        return purchaseRepository.findMemberIdByPaymentDetail_QueryDSL(purchaseId);
+    public PurchaseDTO findMemberIdByPaymentDetail(Long purchaseId) {
+        Purchase purchase = purchaseRepository.findMemberIdByPaymentDetail_QueryDSL(purchaseId);
+        PurchaseDTO purchaseDTO = PurchaseToDTO(purchase);
+        return purchaseDTO;
     }
 
 }

@@ -109,7 +109,15 @@
                             <div class="product-info">
                             
                                 <div class="product-thumb-area">
-                                <img src="https://cdn2.wadiz.kr/2023/04/25/f6a525c2-d0c8-469c-a820-f0a7289d9ab4.png/wadiz/resize/400/format/jpg/quality/85/" alt="">
+                                     `
+                        if(purchase.eventFileDTOS.length != 0) {
+                                boardText3 += `
+                            <div class="photo-thumbnail">
+                                <img style="width: 100%; height: 100%;" src="/eventFiles/display?fileName=Event/${purchase.eventFileDTOS[0].filePath}/${purchase.eventFileDTOS[0].fileUUID}_${purchase.eventFileDTOS[0].fileOriginalName}">
+                             </div>
+                                `
+                            }
+                    boardText3 += `
                                 </div>
                             
                                 <dl class="product-info">

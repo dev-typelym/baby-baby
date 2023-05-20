@@ -23,11 +23,12 @@ public class PurchaseDTO {
     private String eventTitle;
     private Long memberId;
     private String memberName;
+    private String memberPhone;
     private List<EventFileDTO> eventFileDTOS;
 
 
     @Builder
-    public PurchaseDTO(Long id, LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, String eventTitle, Long memberId, String memberName, List<EventFileDTO> eventFileDTOS) {
+    public PurchaseDTO(Long id, LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, String eventTitle, Long memberId, String memberName, List<EventFileDTO> eventFileDTOS,String memberPhone) {
         this.id = id;
         this.purchaseRegisterDate = purchaseRegisterDate;
         this.purchaseCount = purchaseCount;
@@ -37,5 +38,6 @@ public class PurchaseDTO {
         this.memberId = memberId;
         this.memberName = memberName;
         this.eventFileDTOS = eventFileDTOS;
+        this.memberPhone = memberPhone;
     }
 }

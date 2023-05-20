@@ -20,9 +20,10 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
     @Override
     @EntityGraph
     public Page<Purchase> findAllByMemberPaymentWithPage_QueryDSL(Pageable pageable, Long memberId) {
-        List<Purchase> purchases = query.select(purchase)
+        List<Purchase> purchases = query.selectDistinct(purchase)
                 .from(purchase)
                 .leftJoin(purchase.event).fetchJoin()
+                .leftJoin(purchase.event.eventFiles)
                 .where(purchase.member.id.eq(memberId))
                 .orderBy(purchase.id.desc())
                 .offset(pageable.getOffset())
@@ -35,7 +36,7 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
 
     @Override
     public Page<Purchase> findAllByMemberPaymentFileWithPage_QueryDSL(Pageable pageable, Long memberId) {
-        List<Purchase> purchases = query.select(purchase)
+        List<Purchase> purchases = query.selectDistinct(purchase)
                 .from(purchase)
                 .leftJoin(purchase.event.eventFiles).fetchJoin()
                 .where(purchase.member.id.eq(memberId))
@@ -52,8 +53,9 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
     public Purchase findMemberIdByPaymentDetail_QueryDSL(Long PurchaseId) {
         return query.select(purchase)
                 .from(purchase)
-                .leftJoin(purchase.member).fetchJoin()
-                .leftJoin(purchase.event).fetchJoin()
+                .join(purchase.member).fetchJoin()
+                .join(purchase.event).fetchJoin()
+                .leftJoin(purchase.event.eventFiles)
                 .where(purchase.id.eq(PurchaseId))
                 .fetchOne();
     }
