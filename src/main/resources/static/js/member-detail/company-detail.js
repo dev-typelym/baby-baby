@@ -41,26 +41,26 @@ let segments = path.split('/');
 let memberId = segments.pop();
 let index = 0;
 
-$.ajax({
-  url: '/member/details/companies/' + memberId,
-  type: 'POST',
-  success: function(companyInfo) {
-    console.log(companyInfo);
 
-    // getProfileImg(".image_section");
-    // getProfileImg(".image_section_span");
-    $(".company_title_strong").text(companyInfo.memberNickname)
-    $(".company_title_p").text(companyInfo.memberHiSentence)
-    $($(".satisfaction_amount")[0]).text(companyInfo.reviews.length)
-    $($(".satisfaction_amount")[1]).text(companyInfo.events.length)
+function loadEvents(memberId) {
+  $.ajax({
+    url: '/member/details/companies/' + memberId,
+    type: 'POST',
+    success: function (companyInfo) {
+      console.log(companyInfo);
 
-    let avgScore = getAvgScore(companyInfo.reviews);
-    if (isNaN(avgScore)) {
-      avgScore = "아직 후기가 없습니다";
-    }
+      $(".company_title_strong").text(companyInfo.memberNickname)
+      $(".company_title_p").text(companyInfo.memberHiSentence)
+      $($(".satisfaction_amount")[0]).text(companyInfo.reviews.length)
+      $($(".satisfaction_amount")[1]).text(companyInfo.events.length)
 
-    let markerContentText =
-        `
+      let avgScore = getAvgScore(companyInfo.reviews);
+      if (isNaN(avgScore)) {
+        avgScore = "아직 후기가 없습니다";
+      }
+
+      let markerContentText =
+          `
         <div class="maker_content">
                             <div style="padding: 0;">
                                 <table class="table">
@@ -87,10 +87,10 @@ $.ajax({
                         </div>
         `;
 
-    /* 기업 정보 끝 */
+      /* 기업 정보 끝 */
 
-    let satisfactionText =
-        `
+      let satisfactionText =
+          `
         <section class="satisfaction_rating">
                             <div style="margin-bottom: 48px;">
                                 <h2 class="new_h2">전체 행사 후기</h2>
@@ -99,32 +99,31 @@ $.ajax({
                             <div style="margin-bottom: 40px; text-align: center">
                                 <strong class="strong_score">${avgScore}</strong>
                                 <div class="bigStarContainer" style="display: inline-block; position: relative;">
-                                   ${addStarsToContainer(avgScore)}
+                                   ${addStarsToContainer(Math.floor(avgScore))}
                                 </div>
                             </div>
                             <ul>
                 `;
 
 
-    companyInfo.reviews.forEach((e,i) => {
-      console.log(e)
-      satisfactionText +=
-          `
+      companyInfo.reviews.forEach((e, i) => {
+        satisfactionText +=
+            `
           <li class="review_li">
                                     <div class="page_content_ul">
                                         <span class="real_name"></span>
                                         <div class="starContainers" style="display: inline-block; position: relative;">
-                                        ${addStarsToContainer(companyInfo.reviews.reviewScore)}
+                                        ${addStarsToContainer(e.reviewScore)}
                                         </div>
                                     </div>
                                     <p class="like_p">${e.boardTitle}</p>
-                                    <span class="review_span">${convertCategory(companyInfo.events[index].category)}</span>
+                                    <span class="review_span">${convertCategory(e.eventCategory)}</span>
                                 </li>
           `;
-    })
+      })
 
-    satisfactionText +=
-                  `
+      satisfactionText +=
+          `
                             </ul>
                             <div style="text-align: center;">
 <!--                                <button class="see_more">-->
@@ -136,95 +135,62 @@ $.ajax({
                             </div>
                         </section>
         `;
-    index++
-    $('.maker_wrap').html(markerContentText)
-    $('#wrap_satisfaction').html(satisfactionText)
+      index++
+      $('.maker_wrap').html(markerContentText)
+      $('#wrap_satisfaction').html(satisfactionText)
 
-
-    let nowEvents = [];
-    let endedEvents = [];
-    let upcomingEvents = [];
-    if(companyInfo.length > 0) {
-      companyInfo.events.forEach(event => {
-        const eventStatus = classifyEvent(event.startDate, event.endDate);
-        const eventObj = {
-          eventId: event.id,
-          eventTitle: event.boardTitle,
-          eventFileUUID: event.eventFileDTOS[0].fileUUID,
-          eventFileStatus: event.eventFileDTOS[0].fileStatus,
-          eventFilePath: event.eventFileDTOS[0].filePath,
-          eventFileOriginalName: event.eventFileDTOS[0].fileOriginalName,
-          eventStartDate: formatDate(event.calendar.startDate),
-          eventEndDate: formatDate(event.calendar.endDate),
-          location: event.eventLocation,
-          price: event.eventPrice,
-
-        };
-        if (eventStatus === "진행 중인 행사") {
-          nowEvents.push(eventObj);
-        } else if (eventStatus === "이미 지나간 행사") {
-          endedEvents.push(eventObj);
-        } else if (eventStatus === "예정된 행사") {
-          upcomingEvents.push(eventObj);
-        }
-      });
-    }
-    console.log(nowEvents)
-    console.log(endedEvents)
-    console.log(upcomingEvents)
-
-    let nowEventsText = '';
-    let endedEventText = '';
-    let upcommingText = '';
-    /* 수정필요 -- 링크 넣기 */
-    nowEvents.forEach((e,i) => {
-      nowEventsText +=
-          `
-        <div class="real_content_div">
+      let nowEventsText = '';
+      let endedEventText = '';
+      let upcommingText = '';
+      /* 수정필요 -- 링크 넣기 */
+      if (companyInfo.nowEvents.length > 0) {
+        companyInfo.nowEvents.forEach((e, i) => {
+          console.log(e)
+          nowEventsText +=
+              `
+                                <div class="real_content_div">
                                                 <div class="project_card">
                                                     <a class="project_card_a" href="">
                                                         <div class="project_card_img"
-                                                        data-event-file-Path="${e.eventFilePath}"
-                                                        data-event-file-OriginalName="${e.eventFileOriginalName}"
-                                                        data-event-file-UUID="${e.eventFileUUID}"
+                                                        style = "background-image: url('/eventFiles/display?fileName=Event/${e.files[0].filePath}/${e.files[0].fileUUID}_${e.files[0].fileOriginalName}')";
                                                         ></div>
                                                     </a>
                                                     <div class="project_card_div">
-                                                        <div class="air_ear">${e.eventTitle}</div>
+                                                        <div class="air_ear">${e.boardTitle}</div>
                                                         <div class="participation">
                                                             <div class="event-info-wrap">
                                                                 <div class="proceeding_span total_amount">
-                                                                    <span>${e.eventStartDate}</span> <span>~</span> <span>${e.eventEndDate}</span>
+                                                                    <span>${formatDate(e.calendar.startDate)}</span> <span>~</span> <span>${formatDate(e.calendar.endDate)}</span>
                                                                 </div>
                                                                 <div class="proceeding_span total_amount">
-                                                                    <span>${e.location.address} ${e.location.addressDetail} ${e.location.addressSubDetail}</span>
+                                                                    <span>${e.eventLocation.address}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="proceeding_h2">
                                                                 <span style="color: #00b2b2;">
-                                                                    ${e.price}
+                                                                    ${e.eventPrice}
                                                                 </span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
         `;
-    })
-
-    if(upcomingEvents.length > 0){
-      upcommingText =
-          `
+        })
+      }
+      if (companyInfo.upcommingEvents.length > 0) {
+        upcommingText =
+            `
                             <div class="one_open_img">
                                             <div class="project_card">
                                                 <a class="one_open_a">
-                                                    <div class="one_project_card_img" style="background-image: url('//api.cdn.visitjeju.net/photomng/imgpath/201908/19/4a7384f3-3ea5-4b56-a519-20cd569686b1.jpg');"></div>
+                                                    <div class="one_project_card_img" style="background-image: url('/eventFiles/display?fileName=Event/${companyInfo.upcommingEvents[0].files[0].filePath}/${companyInfo.upcommingEvents[0].files[0].fileUUID}_${companyInfo.upcommingEvents[0].files[0].fileOriginalName}');"></div>
                                                 </a>
                                                 <div class="project_card_div">
-                                                    <div class="holder">[4차 앵콜] 제주에서 가장 제주다운 곳, 사려니숲길 탐방</div>
+                                                    <div class="holder">${companyInfo.upcommingEvents[0].boardTitle}</div>
                                                     <div class="participation">
                                                         <div class="proceeding_h2">
                                                             <span style="color: #00b2b2;">
-                                                                ${formatDate(upcomingEvents[0].calendar.startDate)} 오픈 예정
+                                                                ${formatDate(companyInfo.upcommingEvents[0].calendar.startDate)} 오픈 예정
                                                             </span>
                                                         </div>
                                                     </div>
@@ -232,11 +198,12 @@ $.ajax({
                                             </div>
                                         </div>
         `;
-    }
-
-    endedEvents.forEach((e,i)=>{
-      endedEventText +=
-          `
+      }
+      if (companyInfo.finishedEvents.length > 0) {
+        companyInfo.finishedEvents.forEach((e, i) => {
+          console.log(e)
+          endedEventText +=
+              `
                         <!-- // 컨텐츠 1개 -->
                                             <div class="six_content">
                                                 <div class="project_card">
@@ -246,19 +213,19 @@ $.ajax({
                                                         ></div>
                                                     </a>
                                                     <div class="project_card_div">
-                                                        <div class="camping">${e.eventTitle}</div>
+                                                        <div class="camping">${e.boardTitle}</div>
                                                         <div class="participation">
                                                             <div class="event-info-wrap">
                                                                 <div class="proceeding_span total_amount">
-                                                                    <span>${e.eventStartDate}</span> <span>~</span> <span>${e.eventEndDate}</span>
+                                                                    <span>${formatDate(e.calendar.startDate)}</span> <span>~</span> <span>${formatDate(e.calendar.endDate)}</span>
                                                                 </div>
                                                                 <div class="proceeding_span total_amount">
-                                                                    <span>${e.location.address} ${e.location.addressDetail} ${e.location.addressSubDetail}</span>
+                                                                    <span>${e.eventLocation.address}</span>
                                                                 </div>
                                                             </div>
                                                             <div class="proceeding_h2">
                                                                 <span style="color: #00b2b2;">
-                                                                    ${e.price}
+                                                                    ${e.eventPrice}
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -267,10 +234,10 @@ $.ajax({
                                             </div>
                                             <!-- // 컨텐츠 1개 -->
         `;
-    })
-
-    let eventsText =
-        `
+        })
+      }
+      let eventsText =
+          `
                                     <section class="content_wrap_section">
                                     <div class="proceeding">
                                         <h2 class="proceeding_h2">
@@ -278,7 +245,6 @@ $.ajax({
                                             <span class="free_order">🌟</span>
                                         </h2>
                                         <span class="proceeding_span">
-                                            ${nowEvents.length}건
                                         </span>
                                     </div>
                                     <div>
@@ -298,45 +264,104 @@ $.ajax({
                                             <span class="free_order">⏰</span>
                                         </h2>
                                         <span class="proceeding_span">
-                                            ${upcomingEvents.length}건
                                         </span>
                                     </div>
                                     <div class="real_content">
                                         ${upcommingText}
                                     </div>
                                 </section>
-                                <section class="content_wrap_section">
+                                <section class="content_wrap_section end-section">
                                     <div class="proceeding">
                                         <h2 class="proceeding_h2">
                                             종료된 행사
                                             <span class="free_order">🕒</span>
                                         </h2>
                                         <span class="proceeding_span">
-                                            ${endedEvents.length}건
                                         </span>
                                     </div>
                                     <div>
-                                        <div class="real_content">
+                                        <div class="real_content ended-events">
                                         ${endedEventText}
                                         </div>
                                     </div>
+          `;
+          let seeMoreText = '';
+          console.log(companyInfo.totalEventsCount)
+      if (companyInfo.totalEventsCount > 2) {
+         seeMoreText =
+            `
                                     <div style="text-align: center;">
-<!--                                        <button class="see_more">-->
-<!--                                            더 보기-->
-<!--                                            <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">-->
-<!--                                                <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>-->
-<!--                                            </svg>-->
-<!--                                        </button>-->
+                                        <button class="see_more">
+                                            더 보기
+                                            <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">
+                                                <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+                                            </svg>
+                                        </button>
                                     </div>
                                 </section>
       `;
+      }
+      $(".content_wrap").html(eventsText)
+      $('.end-section').append(seeMoreText)
+      $('.see_more').on('click', seeMoreEventHandler);
 
-    $(".content_wrap").html(eventsText)
+    },
+  });
+}
+loadEvents(memberId)
 
+let page = 1;
+let size = 2;
 
-  },
-});
+function seeMoreEventHandler() {
+  $.ajax({
+    url: '/member/details/companies/getInfo/' + memberId + '?page=' + page + '&size=' + size,
+    type: 'GET',
+    success: function (eventInfo) {
+      console.log(eventInfo);
+      if(eventInfo.finishedEvents.length > 0) {
+        eventInfo.finishedEvents.forEach((e, i) => {
+          let fininshedEventsText =
+              `
+            <div class="six_content">
+                                                <div class="project_card">
+                                                    <a class="project_card_a">
+                                                        <div class="real_cafe"
+                                                        data-event=""
+                                                        ></div>
+                                                    </a>
+                                                    <div class="project_card_div">
+                                                        <div class="camping">${e.boardTitle}</div>
+                                                        <div class="participation">
+                                                            <div class="event-info-wrap">
+                                                                <div class="proceeding_span total_amount">
+                                                                    <span>${formatDate(e.calendar.startDate)}</span> <span>~</span> <span>${formatDate(e.calendar.endDate)}</span>
+                                                                </div>
+                                                                <div class="proceeding_span total_amount">
+                                                                    <span>${e.eventLocation.address}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="proceeding_h2">
+                                                                <span style="color: #00b2b2;">
+                                                                    ${e.eventPrice}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+            `;
+          $('.ended-events').append(fininshedEventsText)
+        })
+      } else{
+          $('.see_more').hide()
+      }
+    }
+  });
+  page++; // 페이지 번호 증가
+}
 
+$('.see_more').on('click', seeMoreEventHandler);
 
 /* localDateTime을 Date로 깔끔하게 만드는 코드 */
 function formatDate(originalDate) {

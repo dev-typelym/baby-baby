@@ -25,7 +25,21 @@ public interface EventQueryDsl {
 
 //    내가 참여한 이벤트 게시판
     public Page<Purchase> findEventListByMemberId_QueryDSL(Pageable pageable, Long memberId);
+
+    /* ---------------------------------회원 상세--------------------------------------------------- */
+    /* 회사의 진행 예정 이벤트 */
+    public List<Event> findAllUpcommingEvents_QueryDSL(Long memberId, Pageable pageable);
     
+    /* 회사의 진행 진행종료 이벤트 */
+    public List<Event> findAllFinishedEvents_QueryDSL(Long memberId, Pageable pageable);
+
+    /* 회사의 진행 중 이벤트 */
+    public List<Event> findAllNowEvents_QueryDSL(Long memberId, Pageable pageable);
+
+    /* 회사의 진행 끝 이벤트 총 갯수 */
+    public Long findAllFinishedEventsCount(Long memberId);
+
+    /* ---------------------------------회원 상세--------------------------------------------------- */
 //    [리뷰] 내가 결제한 이벤트 정보들
     public List<Event> findAllPurchasedEvents(Long memberId);
 

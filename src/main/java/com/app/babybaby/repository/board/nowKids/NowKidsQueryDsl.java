@@ -41,7 +41,8 @@ public interface NowKidsQueryDsl {
     /* NowKids 최근 올린 8명 가져오기 */
     public List<Member> find8AuthorDesc();
 
-    public LocalDateTime findUpdateTime_QueryDsl(Long nowKidsId);
+    public List<NowKids> findNowKidsGuideByMemberId(Long memberId);
+
 
     /*한방쿼리로 모든 정보 다 가져오기 */
 //    public List<NowKids> findAllInfo();

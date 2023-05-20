@@ -26,7 +26,7 @@ public class Crew{
     private Guide guide;
 
     @NotNull
-    private LocalDateTime eventRegisterDate;
+    private String eventRegisterDate;
 
     @Builder
     public Crew(Kid kid, Guide guide) {
@@ -35,7 +35,7 @@ public class Crew{
     }
 
     @Builder
-    public Crew(Long id, Kid kid, Guide guide, LocalDateTime eventRegisterDate) {
+    public Crew(Long id, Kid kid, Guide guide, String eventRegisterDate) {
         this.id = id;
         this.kid = kid;
         this.guide = guide;

@@ -81,9 +81,9 @@ public class NowKidsController {
         log.info("======================================================================");
         model.addAttribute("calendars", calendars.toString());
         model.addAttribute("eventTitle", events.toString());
-        model.addAttribute("member", member.getMemberNickname());
+        model.addAttribute("memberNickname", member.getMemberNickname());
 
-        return "/nowKids/now-kids-write";
+        return "nowKids/now-kids-write";
     }
 
 
@@ -154,12 +154,10 @@ public class NowKidsController {
 
     @GetMapping("list")
     public String goNowKidsList( Model model){
-        Long sessionId = 110L;
         /* 8명 위에 맴버 가져오기 */
         List<MemberDTO> memberDTOS = nowKidsService.find8AuthorDesc();
         log.info("내가 가져온 맴버들 : " + memberDTOS);
         model.addAttribute("memberDTOS", memberDTOS);
-//        model.addAttribute("nowKidsDTOS", jsonArray.toString());
         return "/nowKids/now-kids-list";
     }
 
@@ -167,7 +165,8 @@ public class NowKidsController {
     @PostMapping("getList")
     @ResponseBody
     public String getList(Integer pageNumber){
-        Page<NowKidsDTO> nowKidsDTOS = nowKidsService.getAllInfoForListDesc(pageNumber, 2);
+        Long sessionId = 110L;
+        Page<NowKidsDTO> nowKidsDTOS = nowKidsService.getAllInfoForListDesc(pageNumber, 2, sessionId);
 //        페이지에 아무것도 없다면 빈 배열을 리턴
         if(nowKidsDTOS.isEmpty()){
             return null;
@@ -185,9 +184,9 @@ public class NowKidsController {
             jsonObject.put("files", new JSONArray(nowKidsFileDTOS));
             jsonObject.put("kids", new JSONArray(kidDTOS));
 
-
             jsonArray.put(jsonObject);
         });
+        log.info(String.valueOf(jsonArray));
         return jsonArray.toString();
     }
 

@@ -125,17 +125,78 @@ public class EventQueryDslImpl implements EventQueryDsl {
 
         return new PageImpl<>(purchases, pageable, count);
     }
+    /* -------------------------회원 상세------------------------------------------------------ */
+    public List<Event> findAllUpcommingEvents_QueryDSL(Long memberId, Pageable pageable) {
+        LocalDateTime currentTime = LocalDateTime.now();
 
+        return query.selectFrom(event)
+                .where(event.company.id.eq(memberId)
+                        .and(event.calendar.startDate.after(currentTime))
+                        .and(event.calendar.endDate.after(currentTime)))
+                .orderBy(event.calendar.endDate.asc())
+                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset())
+                .fetch();
+    }
+    
+    /* 이 맴버가 쓴 지나간 이벤트 가져오기 */
+    public List<Event> findAllFinishedEvents_QueryDSL(Long memberId, Pageable pageable) {
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        return query.selectFrom(event)
+                .where(event.company.id.eq(memberId)
+                        .and(event.calendar.startDate.before(currentTime))
+                        .and(event.calendar.endDate.before(currentTime)))
+                .orderBy(event.calendar.endDate.asc())
+                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset())
+                .fetch();
+    }
+    
+    /* 이 맴버가 쓴 진행중인 이벤트 가져오기 */
+    public List<Event> findAllNowEvents_QueryDSL(Long memberId, Pageable pageable) {
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        return query.selectFrom(event)
+                .where(event.company.id.eq(memberId)
+                        .and(event.calendar.startDate.before(currentTime))
+                        .and(event.calendar.endDate.after(currentTime)))
+                .orderBy(event.calendar.endDate.asc())
+                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset())
+                .fetch();
+    }
+
+    @Override
+    public Long findAllFinishedEventsCount(Long memberId) {
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        return query.select(event.count())
+                .from(event)
+                .where(event.company.id.eq(memberId)
+                        .and(event.calendar.endDate.before(currentTime)))
+                .fetchOne();
+    }
+
+
+    /* -------------------------회원 상세------------------------------------------------------ */
+    
+
+
+
+    /*--------------------------------------리뷰 --------------------------------------------- */
 //    [리뷰] 내가 참석한 이벤트 목록가져오기
-public List<Event> findAllPurchasedEvents(Long memberId) {
-    return query.select(event)
+    public List<Event> findAllPurchasedEvents(Long memberId) {
+        return query.select(event)
             .from(purchase)
             .innerJoin(purchase.event, event)
             .innerJoin(purchase.member)
             .innerJoin(purchase.event.calendar)
             .where(purchase.member.id.eq(memberId))
             .fetch();
-}
+    }
+
+    /*--------------------------------------리뷰 --------------------------------------------- */
 
     //    [관리자] 놀러가요 카테고리 및 상태별 목록
     @Override

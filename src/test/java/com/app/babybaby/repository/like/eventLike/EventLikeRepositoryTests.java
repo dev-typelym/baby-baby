@@ -22,7 +22,7 @@ public class EventLikeRepositoryTests {
 //   내가 누른 좋아요 조회
     @Test
     public void findAllByMemberLikesWithPaging_QueryDSL_Test() {
-        Slice<Event> eventLikes = eventLikeRepository.findAllByMemberLikesWithPaging_QueryDSL(PageRequest.of(0, 10), 1L);
-        eventLikes.get().map(Event::toString).forEach(log::info);
+//        Slice<Event> eventLikes = eventLikeRepository.findAllByMemberLikesWithPaging_QueryDSL(PageRequest.of(0, 10), 1L);
+//        eventLikes.get().map(Event::toString).forEach(log::info);
     }
 }

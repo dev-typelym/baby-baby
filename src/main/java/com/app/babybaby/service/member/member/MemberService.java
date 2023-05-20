@@ -19,6 +19,7 @@ import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.service.calendar.CalendarService;
 import com.app.babybaby.type.SleepType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,8 @@ public interface MemberService extends UserDetailsService {
     
 //      [회원 상세] 회사 정보 가져오기
     public CompanyDTO getAllCompanyInfo(Long companyId);
+//    회원상세 ajax로 이벤트들 들고오기
+public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable);
 
     public MemberDTO getAllUserInfo(Long memberId);
 
