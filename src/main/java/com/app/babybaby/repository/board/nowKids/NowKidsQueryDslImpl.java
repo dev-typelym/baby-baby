@@ -150,6 +150,10 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .fetch();
     }
 
+    @Override
+    public List<NowKids> findNowKidsGuideByMemberId(Long memberId) {
+        return null;
+    }
 
     // [관리자페이지] 지금 우리 아이들은 카테고리별 전체 목록 조회
     @Override

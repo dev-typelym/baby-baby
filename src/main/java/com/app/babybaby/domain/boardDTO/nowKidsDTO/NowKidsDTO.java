@@ -35,6 +35,8 @@ public class NowKidsDTO {
     private String eventAddressDetail;
     private String eventAddressSubDetail;
     private String eventPostCode;
+    /* 해당 날짜 */
+    private String eventDate;
 
     private LocalDateTime eventUploadTIme;
     private LocalDateTime eventUpdateTime;

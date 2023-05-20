@@ -21,14 +21,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Qualifier("kid") @Primary
 public class KidServiceImpl implements KidService {
-    @Autowired
-    NowKidsRepository nowKidsRepository;
-    @Autowired
-    EventRepository eventRepository;
-    @Autowired
-    KidRepository kidRepository;
-    @Autowired
-    MemberRepository memberRepository;
+
+    private final NowKidsRepository nowKidsRepository;
+    private final EventRepository eventRepository;
+    private final KidRepository kidRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public List<KidDTO> findAllKidsByMemberIdAndEventId(Long sessionId, Long eventId) {
@@ -37,6 +34,7 @@ public class KidServiceImpl implements KidService {
         kidDTOS.stream().map(kidDTO -> {
             Event event = eventRepository.findById(eventId).get();
             kidDTO.setEventStartDate(event.getCalendar().getStartDate());
+            kidDTO.setEventEndDate(event.getCalendar().getEndDate());
             kidDTO.setEventTitle(event.getBoardTitle());
             return kidDTO;
         }).collect(Collectors.toList());

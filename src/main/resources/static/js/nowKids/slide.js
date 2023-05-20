@@ -75,6 +75,7 @@ members.forEach((e, i) => {
     // }
     console.log(e)
 
+
     let profilesText =
         `
                 <div class="user-info-wrap" onclick="location.href='/member/details/${e.id}'">
@@ -152,10 +153,16 @@ const boardService = (() => {
     return { getList: getList };
 })();
 
-function isRecentPost(eventTime) {
-    const timeDiff = new Date() - eventTime;
-    const hours = timeDiff / (1000 * 60 * 60);
-    return hours > 24;
+function isWithin8Hours(dateString) {
+    let targetDate = new Date(dateString);
+    let currentDate = new Date();
+
+    // 현재 시간과 주어진 날짜 사이의 시간 차이를 계산합니다.
+    let timeDifference = currentDate.getTime() - targetDate.getTime();
+    let hoursDifference = timeDifference / (1000 * 60 * 60);
+
+    // 시간 차이가 8시간 미만인 경우 true 반환
+    return hoursDifference < 8;
 }
 
 let recentTag = '';
@@ -163,8 +170,9 @@ function appendList(nowKidsDTOS) {
     console.log(nowKidsDTOS)
 
     nowKidsDTOS.forEach((e, i) => {
-        console.log(isRecentPost(e.eventUpdateTime));
-        if(!isRecentPost(e.eventUpdateTime)){
+        console.log(e)
+        console.log(isWithin8Hours(e.eventUpdateTime));
+        if(isWithin8Hours(e.eventUpdateTime)){
             recentTag = `<span class="feed-header-new-img"></span>>`;
         } else{
             recentTag = '';
@@ -236,7 +244,7 @@ function appendList(nowKidsDTOS) {
                             <td>${kid.kidName}</td>
                             <td>${kid.kidAge}</td>
                             <td>${e.memberNickname}</td>
-                            <td>${convertDate(e.eventStartDate)}</td>  
+                            <td>${convertDate(e.eventStartDate)} ~ ${convertDate(e.eventEndDate)}</td>  
                         </tr>   
                     `;
 

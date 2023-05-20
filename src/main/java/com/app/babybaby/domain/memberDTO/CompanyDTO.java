@@ -37,13 +37,17 @@ public class CompanyDTO {
     private SleepType memberSleep;
     private GuideType memberGuideType;
     private CategoryType eventCategory;
-
+    private Long totalEventsCount;
+    private Boolean hasNextPage;
     private List<EventDTO> events;
 
+    private List<EventDTO> finishedEvents;
+    private List<EventDTO> upcommingEvents;
+    private List<EventDTO> nowEvents;
     private List<ReviewDTO> reviews;
 
     @Builder
-    public CompanyDTO(Long memberId, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType eventCategory, List<EventDTO> events, List<ReviewDTO> reviews) {
+    public CompanyDTO(Long memberId, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType eventCategory, Long totalEventsCount, List<EventDTO> events, List<EventDTO> finishedEvents, List<EventDTO> upcommingEvents, List<EventDTO> nowEvents, List<ReviewDTO> reviews) {
         this.memberId = memberId;
         this.memberEmail = memberEmail;
         this.memberName = memberName;
@@ -61,7 +65,11 @@ public class CompanyDTO {
         this.memberSleep = memberSleep;
         this.memberGuideType = memberGuideType;
         this.eventCategory = eventCategory;
+        this.totalEventsCount = totalEventsCount;
         this.events = events;
+        this.finishedEvents = finishedEvents;
+        this.upcommingEvents = upcommingEvents;
+        this.nowEvents = nowEvents;
         this.reviews = reviews;
     }
 }

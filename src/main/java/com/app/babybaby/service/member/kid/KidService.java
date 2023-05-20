@@ -22,7 +22,6 @@ public interface KidService {
                 .kidGender(kid.getKidGender())
                 .kidName(kid.getKidName())
                 .kidAge(kid.getKidAge())
-                .parent(kid.getParent())
                 .build();
     }
 

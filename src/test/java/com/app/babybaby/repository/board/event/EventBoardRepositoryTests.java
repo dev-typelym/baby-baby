@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -107,6 +108,15 @@ public class EventBoardRepositoryTests {
         log.info(eventRepository.findAllPurchasedEvents(1L).toString());
     }
 
+    @Test
+    public void findAllTest(){
+        eventRepository.findAll().stream().map(Event::toString).forEach(log::info);
+    }
 
+    @Test
+    public void findAllUpcommingEvents_QueryDSLTest(){
+//        eventRepository.findAllNowEvents_QueryDSL(1L, Pageable.ofSize(1)).stream().map(Event::toString).forEach(log::info);
+        log.info(eventRepository.findAllUpcommingEvents_QueryDSL(1L, Pageable.ofSize(1)).toString());
+    }
 
 }

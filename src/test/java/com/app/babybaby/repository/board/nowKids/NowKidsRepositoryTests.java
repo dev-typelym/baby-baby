@@ -1,5 +1,6 @@
 package com.app.babybaby.repository.board.nowKids;
 
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.calendar.Calendar;
@@ -20,6 +21,7 @@ import com.app.babybaby.repository.member.guide.GuidRepository;
 import com.app.babybaby.repository.member.kid.KidRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.type.*;
+import com.querydsl.core.Tuple;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -199,29 +201,14 @@ public class NowKidsRepositoryTests {
     }
 
     @Test
-    public void findUpdateTime_QueryDslTest(){
-        log.info(nowKidsRepository.findUpdateTime_QueryDsl(4L).toString());
-    }
-
-    @Test
     public void findAllNowKidsLikeByMemberId_QueryDslTest(){
         log.info(nowKidsLikeRepository.findAllNowKidsLikeByMemberId_QueryDsl(1L).toString());
     }
 
     @Test
-    public void find8AuthorDescTEst(){
-        nowKidsRepository.find8AuthorDesc().stream().map(Member::toString).forEach(log::info);
+    public void findNowKidsGuideByMemberIdTest(){
+        log.info(nowKidsRepository.findNowKidsGuideByMemberId(110L).toString());
     }
-
-    /* N+1 문제 따라서 이건 DTO에서 작업한다, */
-//    @Test
-//    public void findAllInfoTest(){
-//        log.info(nowKidsRepository.findAllInfo().stream()
-//                .map(NowKids::toString)
-//                .collect(Collectors.toList())
-//                .toString()
-//        );
-//    }
 
 
 }

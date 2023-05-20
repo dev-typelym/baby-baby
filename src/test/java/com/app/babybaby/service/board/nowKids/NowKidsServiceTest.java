@@ -19,8 +19,8 @@ public class NowKidsServiceTest {
 
     @Test
     public void findAllTest(){
-//        nowKidsService.getAllInfoForListDesc(5, 1).stream().map(NowKidsDTO::toString).forEach(log::info);
-        log.info( nowKidsService.getAllInfoForListDesc(3, 2).toString());
+        nowKidsService.getAllInfoForListDesc(5, 1, 110L).stream().map(NowKidsDTO::toString).forEach(log::info);
+//        log.info( nowKidsService.getAllInfoForListDesc(3, 2,110L).toString());
     }
 
 
