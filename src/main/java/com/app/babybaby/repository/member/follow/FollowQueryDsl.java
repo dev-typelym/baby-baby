@@ -19,6 +19,10 @@ public interface FollowQueryDsl {
 
 //        [회원 상세]
         public Long findFollowerMemberCountByMemberId_QueryDSL(Long memberId);
+
+//        [회원 상세]
+        public Boolean getIsFollowedByMemberId(Long memberId, Long sessionId);
+
     //        [회원 상세] 유저아이디로 부모님 마당 다 가져오기
         public List<ParentsBoard> findAllParentsBoardByMemberId_QueryDSL(Long memberId);
 

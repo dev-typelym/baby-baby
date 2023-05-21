@@ -34,7 +34,9 @@ $(document).ready(function() {
 let path = window.location.pathname;
 let segments = path.split('/');
 let memberId = segments.pop();
-
+let size = 2;
+let parentBoardPage = 0;
+let reviewPage = 0;
 $.ajax({
     url: '/member/details/generals/' + memberId,
     type: 'POST',
@@ -43,7 +45,7 @@ $.ajax({
         $('.company_title_strong').html(generalMember.memberNickname)
         $('.company_title_p').html(generalMember.memberHiSentence)
         $('.proceeding_span').html(generalMember.parentsBoards.length + '건')
-        $(".plus_satisfaction").html(generalMember.reviews.length + "개 평가")
+        $('.follow_button').attr('follow', generalMember.isFollowed);
 
 
         let followCountText =
@@ -67,71 +69,257 @@ $.ajax({
                             </span>
                         </div>
                     </div>
-            `
-        $('.main_content_second').html(followCountText)
-
-        let parentsBoardsText = '';
-
-        if(generalMember.parentsBoards.length > 0){
-            generalMember.parentsBoards.forEach((e,i) => {
-                parentsBoardsText +=
-                    `
-                                        <div class="real_content_div">
-                                                <div class="project_card">
-                                                    <a class="project_card_a">
-                                                        <div class="project_card_img" 
-                                                           data-event-filePath="${e.filePath}"
-                                                           data-event-fileOriginalName="${e.fileOriginalName}"
-                                                           data-event-fileUUID="${e.fileUUID}"
-                                                        ></div>
-                                                    </a>
-                                                    <div class="project_card_div">
-                                                        <div class="air_ear">${e.parentsBoardTitle}</div>
-                                                        <div class="participation">
-                                                            <div class="event-info-wrap">
-                                                                <div class="proceeding_span total_amount">
-                                                                    <span>${e.parentsBoardContent}</span>
-                                                                </div>
-                                                                <div class="proceeding_span total_amount write-date" style="color: #000;">
-                                                                    <span>${formatDate(e.parentsBoardUpdateDate)}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- //행사 1개 -->
             `;
-            })
+
+        seeMoreParentsHandler();
+        seeMoreReviewHandler();
+
+        let seeMoreTextParentsBoard = '';
+        if(generalMember.parentsBoards.length > 2){
+
+             seeMoreTextParentsBoard =
+                `
+                        <div style="text-align: center;">
+                                        <button class="see_more see_more_parents_board">
+                                            더 보기
+                                            <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">
+                                                <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+            `;
+
+
         }
 
 
-        $('.real_content').append(parentsBoardsText)
+        let seeMoreReview = '';
+        if(generalMember.reviews.length > 2){
+
+            seeMoreReview =
+                `
+                        <div style="text-align: center;">
+                                        <button class="see_more see_more_reviews">
+                                            더 보기
+                                            <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">
+                                                <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+            `;
 
 
-        let reviewText = '';
-        if(generalMember.reviews.length > 0) {
+        }
 
-            generalMember.reviews.forEach((e, i) => {
-                reviewText =
-                    `
-            <li class="review_li">
+        $('.main_content_second').html(followCountText)
+
+        // 회원 상세 더보기
+        $('.parent-board-section-1').append(seeMoreTextParentsBoard)
+        $('.satisfaction_rating').append(seeMoreReview)
+
+        $('.see_more_parents_board').on('click', seeMoreParentsHandler);
+        $('.see_more_reviews').on('click', seeMoreReviewHandler)
+
+
+        changeFollowBtn()
+
+
+
+
+
+
+
+
+
+
+        //
+        // let parentsBoardsText = '';
+        //
+        // if(generalMember.parentsBoards.length > 0){
+        //     generalMember.parentsBoards.forEach((e,i) => {
+        //         parentsBoardsText +=
+        //             `
+        //                                 <div class="real_content_div">
+        //                                         <div class="project_card">
+        //                                             <a class="project_card_a">
+        //                                                 <div class="project_card_img"
+        //                                                    data-event-filePath="${e.filePath}"
+        //                                                    data-event-fileOriginalName="${e.fileOriginalName}"
+        //                                                    data-event-fileUUID="${e.fileUUID}"
+        //                                                 ></div>
+        //                                             </a>
+        //                                             <div class="project_card_div">
+        //                                                 <div class="air_ear">${e.parentsBoardTitle}</div>
+        //                                                 <div class="participation">
+        //                                                     <div class="event-info-wrap">
+        //                                                         <div class="proceeding_span total_amount">
+        //                                                             <span>${e.parentsBoardContent}</span>
+        //                                                         </div>
+        //                                                         <div class="proceeding_span total_amount write-date" style="color: #000;">
+        //                                                             <span>${formatDate(e.parentsBoardUpdateDate)}</span>
+        //                                                         </div>
+        //                                                     </div>
+        //                                                 </div>
+        //                                             </div>
+        //                                         </div>
+        //                                     </div>
+        //                                     <!-- //행사 1개 -->
+        //     `;
+        //     })
+        // }
+        //
+        //
+        // $('.real_content').append(parentsBoardsText)
+        //
+        //
+        // let reviewText = '';
+        // if(generalMember.reviews.length > 0) {
+        //
+        //     generalMember.reviews.forEach((e, i) => {
+        //         reviewText =
+        //             `
+        //     <li class="review_li">
+        //                             <div class="page_content_ul reviews-container">
+        //                                 <span class="real_name">${e.boardTitle}</span>
+        //                                 <div style="display: inline-block; position: relative;">
+        //                                     ${addStarsToContainer(e.reviewScore)}
+        //                                 </div>
+        //                             </div>
+        //                             <p class="like_p">${e.eventContent}</p>
+        //                         </li>
+        //             `;
+        //     })
+        //     $(".satisfaction_rating ul").append(reviewText)
+        }
+    // }
+})
+
+/*<span class="review_span">${e.eventType}</span>*/
+
+// style = "background-image: url('/parentBoardFiles/display?fileName=ParentsBoard/${e.parentsBoardFileDTOS[0].filePath}/${e.parentsBoardFileDTOS[0].fileUUID}_${e.parentsBoardFileDTOS[0].fileOriginalName}')"
+function seeMoreParentsHandler(){
+        $.ajax({
+            url: '/member/details/generals/getInfo/' + memberId + '?page=' + reviewPage + '&size=' + size,
+            type: 'GET',
+            success: function (memberDetails) {
+                console.log(memberDetails);
+                let parentBoardText = '';
+                if(memberDetails.parentsBoards.length > 0){
+                    memberDetails.parentsBoards.forEach((e,i)=>{
+                        parentBoardText +=
+                            `
+                                    <div class="real_content_div">
+                                         <div class="project_card parent-board-one-content">
+                                            <a class="project_card_a">
+                                                         <div class="project_card_img"
+                                                            data-event-filePath="${e.parentsBoardFileDTOS[0].filePath}"
+                                                            data-event-fileOriginalName="${e.parentsBoardFileDTOS[0].fileOriginalName}"
+                                                            data-event-fileUUID="${e.parentsBoardFileDTOS[0].fileUUID}"
+                                                         ></div>
+                                                     </a>
+                                                     <div class="project_card_div">
+                                                         <div class="air_ear">${e.parentsBoardTitle}</div>
+                                                         <div class="participation">
+                                                             <div class="event-info-wrap">
+                                                                 <div class="proceeding_span total_amount">
+                                                                     <span>${e.parentsBoardContent}</span>
+                                                                 </div>
+                                                                 <div class="proceeding_span total_amount write-date" style="color: #000;">
+                                                                     <span>${formatDate(e.parentsBoardUpdateDate)}</span>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                               </div>
+                        `;
+                    })
+
+                } else{
+                    parentBoardText = '아직 작성된 부모님마당 게시글이 없습니다'
+                }
+
+                $('.parents-board-section').append(parentBoardText)
+
+            if($('.parent-board-one-content').length < memberDetails.totalParentsBoardCount){
+                $('.see_more_parents_board').hide()
+            }
+
+
+            }
+
+
+        })
+    parentBoardPage++
+    }
+
+
+
+
+function seeMoreReviewHandler(){
+        $.ajax({
+            url: '/member/details/generals/getInfo/' + memberId + '?page=' + reviewPage + '&size=' + size,
+            type: 'GET',
+            success: function (memberDetails) {
+                console.log(memberDetails);
+                let reviewText = '';
+                if(memberDetails.reviews.length > 0){
+                    memberDetails.reviews.forEach((e,i)=>{
+                        reviewText +=
+                            `
+                            <li class="review_li">
                                     <div class="page_content_ul reviews-container">
                                         <span class="real_name">${e.boardTitle}</span>
                                         <div style="display: inline-block; position: relative;">
                                             ${addStarsToContainer(e.reviewScore)}
                                         </div>
                                     </div>
-                                    <p class="like_p">${e.eventContent}</p>
+                                    <p class="like_p">${e.boardContent}</p>
+                                    <span class="review_span">${e.eventLocation.address}</span>
                                 </li>
-                    `;
-            })
-            $(".satisfaction_rating ul").append(reviewText)
-        }
-    }
-})
+                            `;
+                    })
 
-/*<span class="review_span">${e.eventType}</span>*/
+                } else{
+                    reviewText = "아직 작성한 리뷰가 없습니다"
+                }
+
+                $('.review-ul').append(reviewText)
+
+                if($('.review_li').length == memberDetails.totalReviewCount){
+                    $('.see_more_reviews').hide()
+                }
+
+
+            }
+
+
+    })
+    reviewPage++
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* 별점 생성 코드 */
 function addStarsToContainer(starCount) {
@@ -214,7 +402,7 @@ function getProfileImg(selector) {
 // 팔로잉
 let $followBtn = $('.follow_button')
 
-$followBtn .click(function () {
+$followBtn.click(function () {
     let isFollowed = $(this).attr('follow')
     console.log(typeof(isFollowed))
     $.ajax({
@@ -239,3 +427,19 @@ $followBtn .click(function () {
         }
     })
 })
+
+
+function changeFollowBtn() {
+    let $followBtn = $('.follow_button')
+    let isFollowed = $('.follow_button').attr('follow')
+    console.log(isFollowed)
+    console.log(isFollowed == 'true')
+    console.log(isFollowed == true)
+    if(isFollowed == 'true'){
+        $('.follow_button_span svg').hide()
+        $followBtn.css('color', 'black')
+        $followBtn.css('backgroundColor', "white")
+        $('.follow_button_span span').text("팔로잉중")
+        $('.follow_button').attr('follow', 'true')
+    }
+}

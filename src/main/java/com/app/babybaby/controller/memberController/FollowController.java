@@ -20,14 +20,14 @@ public class FollowController {
 
     @PostMapping("save")
     public void saveFollows(Long memberId, Boolean isFollowed){
-        Long sessionId = 7L;
+        Long sessionId = 1L;
         log.info("isFollowed는 : " + isFollowed);
 
         if(!isFollowed){
-            followService.saveFollow(sessionId, memberId);
+            followService.saveFollow(memberId, sessionId);
         } else if(isFollowed){
             log.info("여기도 안들어옴?");
-            followService.deleteFollow(sessionId, memberId);
+            followService.deleteFollow(memberId, sessionId);
         }
     }
 }

@@ -6,6 +6,7 @@ import com.app.babybaby.entity.board.review.QReview;
 import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.member.QFollow;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -78,7 +79,18 @@ public class FollowQueryDslImpl implements FollowQueryDsl {
                 .fetchOne();
     }
 
-        
+    @Override
+    public Boolean getIsFollowedByMemberId(Long memberId, Long sessionId) {
+        BooleanExpression isFollowerExpression = follow.follower.id.eq(memberId);
+        BooleanExpression isFollowingExpression = follow.following.id.eq(sessionId);
+
+        return query.select(follow)
+                .from(follow)
+                .where(isFollowerExpression.and(isFollowingExpression))
+                .fetchOne() != null;
+    }
+
+
     /* **나중에 옮기기** 내가 쓴 부모님 마당 가져오기*/
     public List<ParentsBoard> findAllParentsBoardByMemberId_QueryDSL(Long memberId){
         return query.selectFrom(parentsBoard)

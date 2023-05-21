@@ -2,6 +2,7 @@ package com.app.babybaby.repository.board.review;
 
 import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
 import com.app.babybaby.entity.board.review.QReview;
 import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.search.admin.AdminReviewSearch;
@@ -81,9 +82,54 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
                 .fetch();
     }
 
+    //    [회원 상세] 해당 사람이 올린 모든 체험학습의 모든 리뷰 페이징 처리
+    @Override
+    public List<Review> findAllReviewByMemberId_QueryDSL(Long memberId, Pageable pageable) {
+        return query.select(review)
+                .from(review)
+                .join(review.event, event)
+                .fetchJoin()
+                .join(review.event.company)
+                .where(review.event.company.id.eq(memberId))
+                .orderBy(review.updateDate.desc()) // Order by updateDate in descending order
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+    }
+    @Override
+    public Long countAllReviewsByMemberId_QueryDSL(Long memberId) {
+        return query.select(review.count())
+                .from(review)
+                .join(review.event, event)
+                .join(event.company)
+                .where(event.company.id.eq(memberId))
+                .fetchOne();
+    }
+//    [회원 상세]해당 회원이 올린 게시글의 총 수 가져오기
+    @Override
+    public Long findAllReviewCountByMemberId_QueryDSL(Long memberId) {
+        return query.select(review)
+                .from(review)
+                .where(review.member.id.eq(memberId))
+                .fetch()
+                .stream()
+                .count()
+                ;
+    }
+    
+//  [회원 상세]  해당 회원이 올린 부모님마당 다 가져오기
+    @Override
+    public Long findAllParentsBoardCountByMemberId_QueryDSL(Long memberId) {
+        return query.select(parentsBoard)
+                .from(parentsBoard)
+                .where(parentsBoard.member.id.eq(memberId))
+                .fetch()
+                .stream()
+                .count()
+                ;
+}
 
-
-//    [리뷰] 리스트 페이지
+    //    [리뷰] 리스트 페이지
     public Page<Review> findAllReviewWithSearch_QueryDsl(Pageable pageable, ParentsBoardSearch parentsBoardSearch){
         BooleanExpression categoryType = parentsBoardSearch.getCategoryType() == null ? null : review.event.category.isNull().or(review.event.category.eq(parentsBoardSearch.getCategoryType()));
 

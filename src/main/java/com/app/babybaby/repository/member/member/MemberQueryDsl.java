@@ -7,6 +7,7 @@ import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.search.admin.AdminMemberSearch;
 import com.app.babybaby.type.AcceptanceType;
 import com.app.babybaby.type.GuideType;
+import com.querydsl.core.Tuple;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;

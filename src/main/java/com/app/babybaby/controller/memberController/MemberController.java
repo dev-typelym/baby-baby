@@ -4,6 +4,7 @@ import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MailDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.domain.memberDTO.MemberDetailDTO;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.member.RandomKey;
 import com.app.babybaby.service.member.member.MemberService;
@@ -147,11 +148,27 @@ public class MemberController {
         return companyDTO;
     }
 
-    @PostMapping("details/generals/{memberId}")
+    @GetMapping("details/companies/getReviewInfo/{memberId}")
     @ResponseBody
-    public MemberDTO goGeneralRest(@PathVariable Long memberId){
-        return memberService.getAllUserInfo(memberId);
+    public CompanyDTO getAllreviewInfo(@PathVariable Long memberId, Pageable pageable){
+        CompanyDTO companyDTO = memberService.getAllReviewInfoByMemberId(memberId, pageable);
+        log.info("여기는 리뷰입니다 : " +companyDTO.toString());
+        return companyDTO;
     }
 
 
+    @PostMapping("details/generals/{memberId}")
+    @ResponseBody
+    public MemberDTO goGeneralRest(@PathVariable Long memberId){
+        Long sessionId = 1L;
+        return memberService.getAllUserInfo(memberId, sessionId);
+    }
+
+    @GetMapping("details/generals/getInfo/{memberId}")
+    @ResponseBody
+    public MemberDetailDTO getAllParentsBoard(@PathVariable Long memberId, Pageable pageable){
+        MemberDetailDTO memberDetailDTO = memberService.getAllGeneralMemberInfo(memberId, pageable);
+        log.info("member의 ajax 요청입니다 " + memberDetailDTO);
+        return memberDetailDTO;
+    }
 }

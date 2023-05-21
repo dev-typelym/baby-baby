@@ -613,11 +613,13 @@ body li, body ol, body ul {
     color: #212529;
     font-size: 15px;
 }
-.satisfaction_rating{
-    padding: 40px 40px 0;
-    margin-top: 12px;
+.satisfaction_rating {
+    padding: 40px 40px 40px;
+    /* margin-top: 12px; */
     background-color: #fff;
     display: block;
+    max-width: 770px;
+    margin: 0 auto;
 }
 .all_see{
     margin-top: 16px;

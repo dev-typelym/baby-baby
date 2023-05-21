@@ -182,6 +182,15 @@ public class EventQueryDslImpl implements EventQueryDsl {
                 .fetchOne();
     }
 
+    public Boolean hasMoreEvents(Long companyId) {
+        Long count = query.selectFrom(event)
+                .where(event.company.id.eq(companyId))
+                .fetch()
+                .stream()
+                .count();
+
+        return count > 0L;
+    }
 
     /* -------------------------회원 상세------------------------------------------------------ */
     

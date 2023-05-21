@@ -18,10 +18,22 @@ public interface ReviewQueryDsl {
     public Page<Review> findReviewById_QueryDSL(Pageable pageable,Long memberId);
 
     public Slice<Review> findAllByMemberId_QueryDSL(Pageable pageable, Long memberId);
-    
+    /* ---------------------------회원 상세 ----------------------- */
 //  [회원상세] 해당 이벤트의 아이디로 모든 리뷰 가져오기
     public List<Review> findAllReivewByEventId(Long eventId);
+    
+//    [회원 상세] 해당 사람이 올린 모든 체험학습의 모든 리뷰 페이징 처리
+    public List<Review> findAllReviewByMemberId_QueryDSL(Long memberId, Pageable pageable);
+    
+//    [회원 상세] 해당 사람이 올린 모든 체험학습의 모든 리뷰 갯수 구하기
+    public Long countAllReviewsByMemberId_QueryDSL(Long memberId);
 
+    public Long findAllReviewCountByMemberId_QueryDSL(Long memberId);
+
+    public Long findAllParentsBoardCountByMemberId_QueryDSL(Long memberId);
+
+
+    /* ---------------------------회원 상세 ----------------------- */
 //  [후기게시판] 리스트 페이징처리
     public Page<Review> findAllReviewWithSearch_QueryDsl(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
 

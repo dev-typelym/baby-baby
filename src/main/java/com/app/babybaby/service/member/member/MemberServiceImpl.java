@@ -2,10 +2,14 @@ package com.app.babybaby.service.member.member;
 
 import com.app.babybaby.controller.provider.UserDetail;
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
+import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MailDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.domain.memberDTO.MemberDetailDTO;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.member.RandomKey;
 import com.app.babybaby.repository.board.event.EventRepository;
@@ -23,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -68,29 +73,39 @@ public class MemberServiceImpl implements MemberService {
 //    [회원 상세] 회사의 정보 가져오기
     @Override
     public CompanyDTO getAllCompanyInfo(Long companyId) {
-       Member member = memberRepository.findById(companyId).get();
-       CompanyDTO companyDTO = toCompanyDTO(member);
+        Member member = memberRepository.findById(companyId).get();
+        CompanyDTO companyDTO = toCompanyDTO(member);
+
         List<ReviewDTO> reviews = companyDTO.getEvents().stream()
                 .flatMap(eventDTO -> reviewRepository.findAllReivewByEventId(eventDTO.getId()).stream())
                 .map(reviewService::ReviewToDTO)
                 .collect(Collectors.toList());
         companyDTO.setReviews(reviews);
-        List<EventDTO> finishedEvents = eventRepository.findAllFinishedEvents_QueryDSL(companyId, Pageable.ofSize(2)).stream().map(this::eventToDTO).collect(Collectors.toList());
-        List<EventDTO> upcommingEvents = eventRepository.findAllUpcommingEvents_QueryDSL(companyId, Pageable.ofSize(2)).stream().map(this::eventToDTO).collect(Collectors.toList());
-        List<EventDTO> nowEvents = eventRepository.findAllNowEvents_QueryDSL(companyId, Pageable.ofSize(2)).stream().map(this::eventToDTO).collect(Collectors.toList());
+
+        List<EventDTO> finishedEvents = eventRepository.findAllFinishedEvents_QueryDSL(companyId, Pageable.ofSize(2)).stream()
+                .map(this::eventToDTO)
+                .collect(Collectors.toList());
+        List<EventDTO> upcommingEvents = eventRepository.findAllUpcommingEvents_QueryDSL(companyId, Pageable.ofSize(2)).stream()
+                .map(this::eventToDTO)
+                .collect(Collectors.toList());
+        List<EventDTO> nowEvents = eventRepository.findAllNowEvents_QueryDSL(companyId, Pageable.ofSize(2)).stream()
+                .map(this::eventToDTO)
+                .collect(Collectors.toList());
+
         companyDTO.setFinishedEvents(finishedEvents);
         companyDTO.setUpcommingEvents(upcommingEvents);
         companyDTO.setNowEvents(nowEvents);
+        companyDTO.setTotalReviewCount(reviewRepository.countAllReviewsByMemberId_QueryDSL(companyId));
         companyDTO.setTotalEventsCount(eventRepository.findAllFinishedEventsCount(companyId));
 
-       return companyDTO;
+        return companyDTO;
     }
     
 //    [회원 상세] 유저의 회사타입이 아닌 일반 유저 상세페이지
-    public MemberDTO getAllUserInfo(Long memberId){
+    public MemberDTO getAllUserInfo(Long memberId, Long sessionId){
         Member member = memberRepository.findById(memberId).get();
         MemberDTO memberDTO = toMemberDTO(member);
-        memberDTO.setFollowerCount(followRepository.findFollowerMemberCountByMemberId_QueryDSL(memberId));
+        memberDTO.setFollowerCount(followRepository.findFollowingMemberCountByMemberId_QueryDSL(memberId));
         memberDTO.setFollowingCount(followRepository.findFollowerMemberCountByMemberId_QueryDSL(memberId));
 
         memberDTO.setParentsBoards(
@@ -99,6 +114,8 @@ public class MemberServiceImpl implements MemberService {
         memberDTO.setReviews(
                 followRepository.findALlReviewByMemberId_QueryDSL(memberId).stream().map(reviewService::ReviewToDTO).collect(Collectors.toList())
         );
+
+        memberDTO.setIsFollowed(followRepository.getIsFollowedByMemberId(sessionId, memberId));
         return memberDTO;
     }
     
@@ -112,8 +129,35 @@ public class MemberServiceImpl implements MemberService {
         companyDTO.setUpcommingEvents(upcommingEvents);
         companyDTO.setNowEvents(nowEvents);
         companyDTO.setTotalEventsCount(eventRepository.findAllFinishedEventsCount(companyId));
+        companyDTO.setTotalReviewCount(reviewRepository.countAllReviewsByMemberId_QueryDSL(companyId));
 
         return companyDTO;
+    }
+
+    @Override
+    public CompanyDTO getAllReviewInfoByMemberId(Long companyId, Pageable pageable) {
+        CompanyDTO companyDTO = new CompanyDTO();
+        List<Review> reviews = reviewRepository.findAllReviewByMemberId_QueryDSL(companyId, pageable);
+        Long reviewCount = reviewRepository.countAllReviewsByMemberId_QueryDSL(companyId);
+        companyDTO.setTotalReviewCount(reviewCount);
+        List<ReviewDTO> reviewDTO = reviews.stream().map(reviewService::ReviewToDTO).collect(Collectors.toList());
+        companyDTO.setReviews(reviewDTO);
+        return companyDTO;
+    }
+
+    public MemberDetailDTO getAllGeneralMemberInfo(Long memberId, Pageable pageable){
+        MemberDetailDTO memberDetailDTO = new MemberDetailDTO();
+        Page<ParentsBoard> parentsBoards= parentsBoardRepository.findAllByMemberId(memberId, pageable);
+        Page<Review> reviews = reviewRepository.findAllByMemberId(memberId, pageable);
+
+        List<ParentsBoardDTO> parentsBoardDTOS = parentsBoards.stream().map(parentsBoardService::toParentsBoardDTO).collect(Collectors.toList());
+        List<ReviewDTO> reviewDTOS = reviews.stream().map(reviewService::ReviewToDTO).collect(Collectors.toList());
+        memberDetailDTO.setParentsBoards(parentsBoardDTOS);
+        memberDetailDTO.setReviews(reviewDTOS);
+        memberDetailDTO.setTotalParentsBoardCount(reviewRepository.findAllParentsBoardCountByMemberId_QueryDSL(memberId));
+        memberDetailDTO.setTotalReviewCount(reviewRepository.findAllReviewCountByMemberId_QueryDSL(memberId));
+
+        return memberDetailDTO;
     }
 
     @Override
