@@ -59,6 +59,8 @@ public class MemberDTO implements Serializable {
     private Long followerCount;
     private Long followingCount;
 
+    private Boolean isFollowed;
+
 public MemberDTO(Member member) {
     this.memberName = member.getMemberName();
     this.memberPhone = member.getMemberPhone();

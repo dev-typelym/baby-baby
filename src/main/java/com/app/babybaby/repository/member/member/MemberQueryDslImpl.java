@@ -2,6 +2,8 @@ package com.app.babybaby.repository.member.member;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.event.QEvent;
+import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
+import com.app.babybaby.entity.board.review.QReview;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.member.QGuide;
 import com.app.babybaby.entity.member.QMember;
@@ -13,6 +15,7 @@ import com.app.babybaby.type.AcceptanceType;
 import com.app.babybaby.type.GuideType;
 import com.app.babybaby.type.MemberType;
 import com.app.babybaby.type.SleepType;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.babybaby.entity.board.event.QEvent.event;
+import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
+import static com.app.babybaby.entity.board.review.QReview.review;
 import static com.app.babybaby.entity.member.QFollow.follow;
 import static com.app.babybaby.entity.member.QMember.member;
 import static com.app.babybaby.entity.member.QRandomKey.randomKey1;
@@ -98,7 +103,6 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
             .where(member.id.eq(memberId).and(member.memberType.eq(MemberType.COMPANY)))
             .fetchOne();
 }
-
 //----------------------------------------------관리자 페이지 ------------------------------------------------------------
 
     //  [관리자페이지]관리자 회원 전체 조회

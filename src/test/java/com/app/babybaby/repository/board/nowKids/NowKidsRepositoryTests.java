@@ -111,10 +111,15 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void kidsKidsSaveTest(){
-        Optional<Member> parent = userRepository.findById(1L);
+        Optional<Member> parent = userRepository.findById(2L);
         for (int i = 0; i < 10; i++){
-//            Kid kid = new Kid("김동한" + i, 4 + i, GenderType.MAN, parent.get());
-//            kidRepository.save(kid);
+            Kid kid = Kid.builder().kidAge(4+i)
+                    .kidName("김동한 " + i)
+                    .kidGender(GenderType.MAN)
+                    .parent(parent.get())
+                    .build();
+
+            kidRepository.save(kid);
         }
     }
 

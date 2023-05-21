@@ -73,4 +73,24 @@ public class ReviewRepositoryTests {
         log.info(reviewRepository.findAllReivewByEventId(2L).toString());
     }
 
+    @Test
+    public void findAllReviewByMemberIdTest(){
+        log.info(reviewRepository.findAllReviewByMemberId_QueryDSL(1L, Pageable.ofSize(3)).toString());
+    }
+
+    @Test
+    public void countAllReviewsByMemberId_QueryDSLTest(){
+        log.info(reviewRepository.countAllReviewsByMemberId_QueryDSL(1L).toString());
+    }
+
+    @Test
+    public void findAllByMemberIdTest(){
+        reviewRepository.findAllByMemberId(2L, Pageable.ofSize(1)).map(Review::toString).forEach(log::info);
+    }
+
+    @Test
+    public void countReviewTest(){
+        log.info(String.valueOf(reviewRepository.findAllReviewCountByMemberId_QueryDSL(2L)));
+    }
+
 }

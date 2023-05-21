@@ -47,8 +47,7 @@ function loadEvents(memberId) {
     url: '/member/details/companies/' + memberId,
     type: 'POST',
     success: function (companyInfo) {
-      console.log(companyInfo);
-
+      console.log(companyInfo)
       $(".company_title_strong").text(companyInfo.memberNickname)
       $(".company_title_p").text(companyInfo.memberHiSentence)
       $($(".satisfaction_amount")[0]).text(companyInfo.reviews.length)
@@ -102,42 +101,45 @@ function loadEvents(memberId) {
                                    ${addStarsToContainer(Math.floor(avgScore))}
                                 </div>
                             </div>
-                            <ul>
+                            <ul class="review-list">
+                            </ul>
+           </section>
                 `;
 
-
-      companyInfo.reviews.forEach((e, i) => {
-        satisfactionText +=
-            `
-          <li class="review_li">
-                                    <div class="page_content_ul">
-                                        <span class="real_name"></span>
-                                        <div class="starContainers" style="display: inline-block; position: relative;">
-                                        ${addStarsToContainer(e.reviewScore)}
-                                        </div>
-                                    </div>
-                                    <p class="like_p">${e.boardTitle}</p>
-                                    <span class="review_span">${convertCategory(e.eventCategory)}</span>
-                                </li>
-          `;
-      })
-
-      satisfactionText +=
-          `
-                            </ul>
-                            <div style="text-align: center;">
-<!--                                <button class="see_more">-->
-<!--                                    더 보기-->
-<!--                                    <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">-->
-<!--                                        <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>-->
-<!--                                    </svg>-->
-<!--                                </button>-->
-                            </div>
-                        </section>
-        `;
-      index++
-      $('.maker_wrap').html(markerContentText)
+      //
+      // companyInfo.reviews.forEach((e, i) => {
+      //   satisfactionText +=
+      //       `
+      //     <li class="review_li">
+      //                               <div class="page_content_ul">
+      //                                   <span class="real_name"></span>
+      //                                   <div class="starContainers" style="display: inline-block; position: relative;">
+      //                                   ${addStarsToContainer(e.reviewScore)}
+      //                                   </div>
+      //                               </div>
+      //                               <p class="like_p">${e.boardTitle}</p>
+      //                               <span class="review_span">${convertCategory(e.eventCategory)}</span>
+      //                           </li>
+      //     `;
+      // })
+      //
+      // satisfactionText +=
+      //     `
+      //                       </ul>
+      //                       <div style="text-align: center;">
+      //                           <button class="see_more_reviews">
+      //                               더 보기
+      //                               <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">
+      //                                   <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+      //                               </svg>
+      //                           </button>
+      //                       </div>
+      //                   </section>
+      //   `;
       $('#wrap_satisfaction').html(satisfactionText)
+
+
+      $('.maker_wrap').html(markerContentText)
 
       let nowEventsText = '';
       let endedEventText = '';
@@ -145,7 +147,6 @@ function loadEvents(memberId) {
       /* 수정필요 -- 링크 넣기 */
       if (companyInfo.nowEvents.length > 0) {
         companyInfo.nowEvents.forEach((e, i) => {
-          console.log(e)
           nowEventsText +=
               `
                                 <div class="real_content_div">
@@ -201,7 +202,6 @@ function loadEvents(memberId) {
       }
       if (companyInfo.finishedEvents.length > 0) {
         companyInfo.finishedEvents.forEach((e, i) => {
-          console.log(e)
           endedEventText +=
               `
                         <!-- // 컨텐츠 1개 -->
@@ -286,12 +286,12 @@ function loadEvents(memberId) {
                                     </div>
           `;
           let seeMoreText = '';
-          console.log(companyInfo.totalEventsCount)
+
       if (companyInfo.totalEventsCount > 2) {
          seeMoreText =
             `
                                     <div style="text-align: center;">
-                                        <button class="see_more">
+                                        <button class="see_more see_more_events">
                                             더 보기
                                             <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">
                                                 <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
@@ -301,9 +301,29 @@ function loadEvents(memberId) {
                                 </section>
       `;
       }
-      $(".content_wrap").html(eventsText)
+      let seeMoreReviewText = '';
+      if(companyInfo.totalReviewCount > 2){
+        seeMoreReviewText =
+            `
+                            <div style="text-align: center;">
+                                <button class="see_more see_more_reviews">
+                                    더 보기
+                                    <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">
+                                        <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+        `;
+      }
+
+
+      $(".content_wrap").append(eventsText)
       $('.end-section').append(seeMoreText)
-      $('.see_more').on('click', seeMoreEventHandler);
+      $(".satisfaction_rating").append(seeMoreReviewText)
+      $('.see_more_events').on('click', seeMoreEventHandler);
+
+      seeMoreReviewHandler(); //먼저 한번 실행
+      $('.see_more_reviews').on('click', seeMoreReviewHandler);
 
     },
   });
@@ -318,7 +338,7 @@ function seeMoreEventHandler() {
     url: '/member/details/companies/getInfo/' + memberId + '?page=' + page + '&size=' + size,
     type: 'GET',
     success: function (eventInfo) {
-      console.log(eventInfo);
+      console.log(eventInfo)
       if(eventInfo.finishedEvents.length > 0) {
         eventInfo.finishedEvents.forEach((e, i) => {
           let fininshedEventsText =
@@ -353,15 +373,86 @@ function seeMoreEventHandler() {
             `;
           $('.ended-events').append(fininshedEventsText)
         })
-      } else{
-          $('.see_more').hide()
+      }
+      console.log($('.six_content').length)
+      console.log(eventInfo.totalEventsCount)
+      if(eventInfo.totalEventsCount == $('.six_content').length){
+        $('.see_more_events').hide()
       }
     }
   });
   page++; // 페이지 번호 증가
 }
+let reviewPage = 0;
+function seeMoreReviewHandler() {
+  $.ajax({
+    url: '/member/details/companies/getReviewInfo/' + memberId + '?page=' + reviewPage + '&size=' + size,
+    type: 'GET',
+    success: function (companyInfo) {
+      console.log(companyInfo);
+      if (companyInfo.reviews.length > 0) {
+        let satisfactionText = '';
+        companyInfo.reviews.forEach((e, i) => {
+          satisfactionText +=
+              `
+                                <li class="review_li">
+                                    <div class="page_content_ul">
+                                        <span class="real_name"></span>
+                                        <div class="starContainers" style="display: inline-block; position: relative;">
+                                        ${addStarsToContainer(e.reviewScore)}
+                                        </div>
+                                    </div>
+                                    <p class="like_p">${e.boardTitle}</p>
+                                    <span class="review_span">${convertCategory(e.eventCategory)}</span>
+                                </li>
+          `;
+        })
 
-$('.see_more').on('click', seeMoreEventHandler);
+        // let seeMoreText =
+        //     `
+        //                     <div style="text-align: center;">
+        //                         <button class="see_more see_more_reviews">
+        //                             더 보기
+        //                             <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="button_svg" aria-hidden="true">
+        //                                 <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
+        //                             </svg>
+        //                         </button>
+        //                     </div>
+        // `;
+        $('.review-list').append(satisfactionText)
+      }
+      if(companyInfo.totalReviewCount == $('.review_li').length){
+        $('.see_more_reviews').hide()
+      }
+    }
+
+  })
+  reviewPage++
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* localDateTime을 Date로 깔끔하게 만드는 코드 */
 function formatDate(originalDate) {

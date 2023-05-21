@@ -40,6 +40,9 @@ public interface EventQueryDsl {
     /* 회사의 진행 끝 이벤트 총 갯수 */
     public Long findAllFinishedEventsCount(Long memberId);
 
+    /* 회사가 쓴 진행 끝 이벤트가 더 있는지 */
+    public Boolean hasMoreEvents(Long companyId);
+
     /* ---------------------------------회원 상세--------------------------------------------------- */
 //    [리뷰] 내가 결제한 이벤트 정보들
     public List<Event> findAllPurchasedEvents(Long memberId);

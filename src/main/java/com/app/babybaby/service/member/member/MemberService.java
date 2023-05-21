@@ -7,6 +7,7 @@ import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MailDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.domain.memberDTO.MemberDetailDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.calendar.Calendar;
@@ -37,7 +38,13 @@ public interface MemberService extends UserDetailsService {
 //    회원상세 ajax로 이벤트들 들고오기
 public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable);
 
-    public MemberDTO getAllUserInfo(Long memberId);
+//      [회원상세] ajax로 리뷰 페이징 처리
+    public CompanyDTO getAllReviewInfoByMemberId(Long companyId, Pageable pageable);
+
+//    회원 상세 ajax로 페이징 처리
+    public MemberDetailDTO getAllGeneralMemberInfo(Long memberId, Pageable pageable);
+
+    public MemberDTO getAllUserInfo(Long memberId, Long sessionId);
 
     default MemberDTO toMemberDTO(Member member){
         return MemberDTO.DTOBuilder()
