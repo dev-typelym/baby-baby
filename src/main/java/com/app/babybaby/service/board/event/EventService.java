@@ -20,7 +20,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public interface EventService {
+//    이벤트 게시판 리스트
     Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable);
+//    내가 쓴 이벤트 게시판
+    Slice<EventDTO> findMemberIdByEventListWithPaging(Long memberId, Pageable pageable);
 
     public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar);
 
@@ -44,6 +47,19 @@ public interface EventService {
                 .files(event.getEventFiles().stream().map(eventFile -> eventFileToDTO(eventFile)).collect(Collectors.toList()))
                 .build();
         }
+    default EventDTO eventToDTOS(Event event){
+        return EventDTO.builder()
+                .id(event.getId())
+                .boardContent(event.getBoardContent())
+                .boardTitle(event.getBoardTitle())
+                .category(event.getCategory())
+                .eventLocation(event.getEventLocation())
+                .eventPrice(event.getEventPrice())
+                .eventRecruitCount(event.getEventRecruitCount())
+                .calendar(toCalendarDTO(event.getCalendar()))
+                .files(event.getEventFiles().stream().map(eventFile -> eventFileToDTO(eventFile)).collect(Collectors.toList()))
+                .build();
+    }
 
         default Event toEventEntity(EventDTO eventDTO){
             return Event.builder()

@@ -9,6 +9,7 @@ import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.CategoryType;
 import com.sun.istack.NotNull;
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@ToString(callSuper = true, exclude = {"company", "calendar", "evenFiles"})
+@ToString(callSuper = true, exclude = {"company", "calendar", "evenFiles","reviews"})
 @Table(name = "TBL_EVENT")
 @PrimaryKeyJoinColumn(name = "ID")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -43,6 +44,7 @@ public class Event extends BoardInfo {
     @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Calendar calendar;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COMPANY_ID")
     private Member company;

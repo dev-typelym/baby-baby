@@ -61,6 +61,28 @@ public class EventQueryDslImpl implements EventQueryDsl {
         return new SliceImpl<>(events, pageable, hasNext);
     }
 
+//    내가쓴 이벤트 게시글
+    @Override
+    public Slice<Event> findMemberIdByEventListWithPaging_QueryDSL(Long memberId,Pageable pageable) {
+        List<Event> events = query.selectDistinct(event)
+                .from(event)
+                .where(event.company.id.eq(memberId))
+                .join(event.company)
+                .join(event.eventFiles)
+                .orderBy(event.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        boolean hasNext = false;
+        // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true
+        if (events.size() > pageable.getPageSize()) {
+            hasNext = true;
+            events.remove(pageable.getPageSize());
+        }
+
+        return new SliceImpl<>(events, pageable, hasNext);
+    }
 
 
     //    일단 이벤트 게시판 상세

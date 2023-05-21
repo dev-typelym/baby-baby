@@ -49,8 +49,10 @@ function appendList(eventLikeDTOS) {
     let boardText3 = '';
     console.log(eventLikeDTOS.content);
     eventLikeDTOS.content.forEach(eventLike => {
-        let date = new Date(eventLike.registerDate); // assuming eventLike.registerDate is a valid date string
-        let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
+        let startDate = new Date(eventLike.calendar.startDate); // assuming eventLike.registerDate is a valid date string
+        let formattedDate = startDate.getFullYear() + '-' + (startDate.getMonth() + 1).toString().padStart(2, '0') + '-' + startDate.getDate().toString().padStart(2, '0');
+        let endDate = new Date(eventLike.calendar.endDate); // assuming eventLike.registerDate is a valid date string
+        let formattedEndDate = endDate.getFullYear() + '-' + (endDate.getMonth() + 1).toString().padStart(2, '0') + '-' + endDate.getDate().toString().padStart(2, '0');
 
         console.log(eventLikeDTOS);
         boardText3 +=  `
@@ -59,7 +61,6 @@ function appendList(eventLikeDTOS) {
                 <a class="item" href="">
                     <div class="thumbnail-container">
                         <div class="thumbnail-list">
-                        ${eventLike.id}
                               `
                         if(eventLike.eventFileDTOS.length != 0) {
                                 boardText3 += `
@@ -99,7 +100,7 @@ function appendList(eventLikeDTOS) {
                                             <span class="event-start-day"
                                                 >${formattedDate}</span>
                                             ~ <span class="event-end-day"
-                                                >${formattedDate}</span
+                                                >${formattedEndDate}</span
                                             >
                                             <div class="like-count-container">
                                                 <div class="people-icon"></div>

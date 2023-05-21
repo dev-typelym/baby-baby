@@ -41,6 +41,7 @@ public class EventServiceImpl implements EventService {
     private final CalendarRepository calendarRepository;
 
 
+//    이벤트 게시판 리스트
     @Override
     public Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable) {
         Slice<Event> events = eventRepository.findEventListWithPaging_QueryDSL(eventBoardSearch, pageable);
@@ -50,6 +51,16 @@ public class EventServiceImpl implements EventService {
 //        List<EventDTO> collect = events.get().collect(Collectors.toList());
         return new SliceImpl<>(collect,pageable,events.hasNext());
     }
+
+//    내가 작성한 이벤트 게시판 목록
+    @Override
+    public Slice<EventDTO> findMemberIdByEventListWithPaging(Long memberId, Pageable pageable) {
+        Slice<Event> events = eventRepository.findMemberIdByEventListWithPaging_QueryDSL(memberId, pageable);
+
+        List<EventDTO> collect = events.get().map(event -> eventToDTOS(event)).collect(Collectors.toList());
+        return new SliceImpl<>(collect,pageable,events.hasNext());
+    }
+
 
     public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar) {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("Invalid memberId: " + memberId));
