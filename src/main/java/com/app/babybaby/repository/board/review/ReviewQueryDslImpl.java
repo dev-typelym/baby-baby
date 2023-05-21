@@ -33,16 +33,19 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
 //    나의리뷰 조회
     @Override
     public Page<Review> findReviewById_QueryDSL(Pageable pageable,Long memberId) {
-        log.info(memberId.toString());
-        List<Review> reviews = query.select(review)
+        log.info(memberId.toString() + "@@왜 ??");
+        List<Review> reviews = query.selectDistinct(review)
                 .from(review)
                 .join(review.member).fetchJoin()
                 .leftJoin(review.event).fetchJoin()
-                .leftJoin(review.reviewFiles).fetchJoin()
+                .leftJoin(review.reviewFiles)
                 .where(review.member.id.eq(memberId))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .orderBy(review.id.desc())
                 .fetch();
 
-        Long count = query.select(review.member.id.count())
+        Long count = query.selectDistinct(review.id.count())
                 .from(review)
                 .where(review.member.id.eq(memberId))
                 .fetchOne();

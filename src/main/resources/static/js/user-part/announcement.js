@@ -41,18 +41,18 @@
 // });
 
 function toggle(e) {
-    console.log("as")
+    console.log("as");
     let $content = $('.admin-writed');
     let index = $(e).parent().index();
     let $currentContent = $content.eq(index);
     if ($currentContent.is(':visible')) {
-        $currentContent.hide();
-        console.log("여기까지는오지 ?")
+        $currentContent.slideUp(); // 수정부분
+        console.log("여기까지는오지 ?");
     } else {
         $content.hide();
-        console.log("여기까지는오지1 ?")
-        $currentContent.show();
-        console.log("여기까지는오지2 ?")
+        console.log("여기까지는오지1 ?");
+        $currentContent.slideDown(); // 수정부분
+        console.log("여기까지는오지2 ?");
     }
 };
 
@@ -60,13 +60,32 @@ function toggle(e) {
 
 
 /* ajax */
-
-
-
 let page = 0;
-let boardTitle = $('input[name="boardTitle"]').val();
+// let boardTitle = $('input[name="boardTitle"]').val();
+
+function search(){
+    let boardTitle = $('input[name="boardTitle"]').val();
+    $('.contents').empty();
+    page = 0;
+    boardService.getList(function(AskDTOS) {
+        console.log(page)
+        console.log(AskDTOS.content);
+        appendList(AskDTOS);
+        console.log(page + "페이지 로딩 시 초기화면")
+    });
+    $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() > $(document).height() * 0.8) {
+            page++;
+            boardService.getList(appendList);
+            console.log(page)
+        }
+    });
+}
+
+
 const boardService = (() => {
     function getList(callback){
+        let boardTitle = $('input[name="boardTitle"]').val();
         console.log(page)
         $.ajax({
             url: `/mypage/inquiry/${page}&&${boardTitle}`,
@@ -98,34 +117,49 @@ function appendList(AskDTOS) {
         // let date = new Date(eventLike.registerDate); // assuming eventLike.registerDate is a valid date string
         // let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
 
-        boardText3 +=  `
-        
-                         <li class="one-content">
-                    <div class="article" onclick="toggle(this)">
-                        <div class="info">
-                            <div class="text-wrapper">
-                                <!-- 답변대기는 그냥 wiaiting 클래스 넣어주기 -->
-                                <div class="notice waiting">
-                                    <span>답변 대기</span>
-                                </div>
-                                <div class="content-title">
-                                    ${ask.askBoardTitle}
-                                </div>
-                                <span class="author">
-                                    아기자기
-                                </span>
-                                <span class="update-date">2023.01.30</span>
-                            </div>
-                        </div>
+        boardText3 += `
+    <li class="one-content">
+        <div class="article" onclick="toggle(this)">
+            <div class="info">
+                <div class="text-wrapper">
+                    ${
+                    ask.askStatus == "END"
+                ? `<div class="notice waiting">
+                                <span>답변 대기</span>
+                           </div>`
+                : `<div class="notice waiting">
+                                <span style="color: blue">답변 완료</span>
+                           </div>`
+                    }
+                    <div class="content-title">
+                        ${ask.askBoardTitle}
                     </div>
-                    <div class="admin-writed">
-                        <div class="announcement-content">
-                            ${ask.answerContent}
-                        </div>
+                    <span class="author">
+                        아기자기
+                    </span>
+                    <span class="update-date">2023.01.30</span>
+                </div>
+            </div>
+        </div>
+        ${
+            ask.answerContent != null
+                ? `<div class="admin-writed">
+                    <div class="announcement-content">
+                        ${ask.answerContent}
                     </div>
-                </li>
-                          `
-        ;
+               </div>
+               </li>`
+                : `<div class="admin-writed">
+                    <div class="announcement-content" style="font-size: 13px;">
+                        안녕하세요 아기자기 입니다.<br>
+                        고객님의 소중한의견을 검토중입니다. <br>
+                        최대한 신속하게 답변드리겠습니다 감사합니다.
+                    </div>
+               </div>
+               </li>`
+        }
+`;
+
     });
     if (AskDTOS.content.length === 0) { // 불러올 데이터가 없으면
         $(window).off('scroll'); // 스크롤이벤트 x
@@ -152,7 +186,7 @@ console.log("sadasdasd");
 // });
 
 $(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
+    if($(window).scrollTop() + $(window).height() > $(document).height() * 0.8) {
         page++;
         boardService.getList(appendList);
         console.log(page)

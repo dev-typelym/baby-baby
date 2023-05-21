@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.EntityGraph;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.app.babybaby.entity.purchase.purchase.QPurchase.purchase;
@@ -33,6 +34,26 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
         Long count = query.select(purchase.count()).from(purchase).where(purchase.member.id.eq(memberId)).fetchOne();
         return new PageImpl<>(purchases, pageable, count);
     }
+
+//    내가 참여한 이벤트 목록
+    @Override
+    public Page<Purchase> findAllByEventWithPage_QueryDSL(Pageable pageable, Long memberId, LocalDateTime startDate) {
+        List<Purchase> purchases = query.select(purchase)
+                .from(purchase)
+                .leftJoin(purchase.event).fetchJoin()
+                .leftJoin(purchase.event.eventFiles)
+                .leftJoin(purchase.event.calendar)
+                .where(purchase.member.id.eq(memberId).and(purchase.event.calendar.startDate.eq(startDate)))
+                .orderBy(purchase.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(purchase.count()).from(purchase).where(purchase.member.id.eq(memberId)).fetchOne();
+        return new PageImpl<>(purchases, pageable, count);
+    }
+
+
 
     @Override
     public Page<Purchase> findAllByMemberPaymentFileWithPage_QueryDSL(Pageable pageable, Long memberId) {

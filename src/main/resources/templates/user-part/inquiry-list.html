@@ -21,15 +21,15 @@
 <div th:insert="~{/components/header:: header}"></div>
     <div class="all-wrapper">
         <div class="title-wrapper">
-            <h1>문의</h1>
+            <h1>1:1 문의</h1>
         </div>
         <div class="main-content">
             <div class="search-wrapper">
                 <div class="search">
               
                   <div class="search-text">
-                    <input type="text" class="search-input" name="boardTitle" placeholder="검색어를 입력하세요">
-                    <button class="search-btn"><i class="fa fa-search"></i></button>
+                    <input type="text" class="search-input" id="searchField" name="boardTitle" placeholder="검색어를 입력하세요">
+                    <button class="search-btn" onclick="search()"><i class="fa fa-search"></i></button>
                   </div>
                 </div>
               </div>

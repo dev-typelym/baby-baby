@@ -69,6 +69,12 @@ public class MypageController {
 
 
 
+    //    마이페이지 메인
+    @GetMapping("main")
+    public String getMain(){
+        return "myPage/myPage-main-kdh";
+    }
+
 
 
 //    캘린더 페이지
@@ -153,9 +159,10 @@ public class MypageController {
 
     @ResponseBody
     @PostMapping("review/{page}")
-    public Page<ReviewDTO> getReview(@PathVariable("page") Integer page){
-        Page<ReviewDTO> reviewDTOS = reviewService.findReviewById(1L, PageRequest.of(page, 8));
-        log.info(reviewDTOS.getContent().toString());
+    public Page<ReviewDTO> getReview(@PathVariable("page") Integer page, Pageable Pageable){
+        Page<ReviewDTO> reviewDTOS = reviewService.findReviewById(1L,PageRequest.of(page, 5));
+        log.info(page + "페이지들어몸");
+        log.info(reviewDTOS.getContent().toString() + "컨트롤러");
         return reviewDTOS;
     }
 
@@ -168,7 +175,7 @@ public class MypageController {
     @ResponseBody
     @PostMapping("play-like/{page}")
     public Slice<EventLikeDTO> getLike(Pageable pageable, @PathVariable(value = "page")Integer page){
-        Slice<EventLikeDTO> eventLikeDTOS = eventLikeService.findEventLikeByMemberId(PageRequest.of(page, 3), 1L);
+        Slice<EventLikeDTO> eventLikeDTOS = eventLikeService.findEventLikeByMemberId(PageRequest.of(page, 6), 1L);
         log.info(eventLikeDTOS + "컨트롤러");
         return eventLikeDTOS;
     }
@@ -184,7 +191,7 @@ public class MypageController {
     @PostMapping("parent/{page}")
     @ResponseBody
     public Page<ParentsBoardDTO> getParent(@PathVariable(value = "page") Integer page){
-        Page<ParentsBoardDTO> parentsBoardDTOS = parentsBoardService.getFindParentBoardListByMemberId(PageRequest.of(page, 10), 1L);
+        Page<ParentsBoardDTO> parentsBoardDTOS = parentsBoardService.getFindParentBoardListByMemberId(PageRequest.of(page, 5), 1L);
         return parentsBoardDTOS;
     }
 

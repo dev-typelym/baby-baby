@@ -47,13 +47,13 @@ function appendList(parentsBoardDTOS) {
                   <p class="parents-yard-board-item-content">
                   ${parent.parentsBoardContent}
                   </p>
-                  <span class="parents-yard-board-item-date"> 2021.06.22 </span>
+                  <span class="parents-yard-board-item-date"> ${formattedDate}</span>
                   `
-                if(parent.parentsBoardFileDTOS.length != 0) {
+                if(parent.representFilePath != 0) {
                     boardText3 += `
                         <div class="parents-yard-board-item-thumbnail-wrapper">
                     <span class="thumbnail">
-                    <img src="/parentsBoardFiles/display?fileName=ParentsBoard/${parent.parentsBoardFileDTOS[0].filePath}/${parent.parentsBoardFileDTOS[0].fileUUID}_${parent.parentsBoardFileDTOS[0].fileOriginalName}">
+                    <img style="width: 100%; height: 100%;" src="/parentsBoardFiles/display?fileName=ParentsBoard/${parent.representFilePath}/${parent.representFileUUID}_${parent.representFileOriginName}">
                     </span>
                 </div>
                         `

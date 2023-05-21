@@ -36,11 +36,13 @@ public class ReviewRepositoryTests {
     ParentsBoardRepository parentsBoardRepository;
 
 
-//    @Test
-//    public void saveTest(){
-//        Review review = new Review(2, eventRepository.findEventById_QueryDSL(2L).get(), memberRepository.findById(1L).get(), null, "asd", "asd");
-//        reviewRepository.save(review);
-//    }
+    @Test
+    public void saveTest(){
+        for (int i= 0; i < 10; i++){
+            Review review = new Review("뭘까요", "리뷰~", 4, null, eventRepository.findById(2L).get(), memberRepository.findById(1L).get());
+            reviewRepository.save(review);
+        }
+    }
 
 //    부모님마당 넣기
     @Test
