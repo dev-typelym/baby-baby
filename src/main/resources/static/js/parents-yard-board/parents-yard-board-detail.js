@@ -12,15 +12,14 @@ function showList(e) {
 }
 
 /* 수정버튼 눌렀을 때 */
-$(".modify-button").each((i, e) => {
-    $(e).click(() => {
-        $($(".modify-textarea")[i]).show();//수정영역
-        $('.comment-util-list').hide();//수정,삭제 모달 숨기기
-        $($('.comment-util')[i]).attr("disabled", true);//수정,삭제 버튼 비활성화
-        $($(".comment-content")[i]).css("display", "none");//기존영역 숨기기
-        $($(".comment-date")[i]).css("display", "none");//날짜 숨기기
-        $($(".comment-bottom")[i]).css("display", "block");//취소,수정완료 버튼
-    });
+$('.comment-list').on('click', '.modify-button', function() {
+    var index = $(this).index('.modify-button'); // 클릭한 버튼의 인덱스 확인
+    $($(".modify-textarea")[index]).show(); // 수정영역
+    $('.comment-util-list').hide(); // 수정, 삭제 모달 숨기기
+    $($('.comment-util')[index]).attr("disabled", true); // 수정, 삭제 버튼 비활성화
+    $($(".comment-content")[index]).css("display", "none"); // 기존영역 숨기기
+    $($(".comment-date")[index]).css("display", "none"); // 날짜 숨기기
+    $($(".comment-bottom")[index]).css("display", "block"); // 취소, 수정완료 버튼
 });
 
 /* 삭제버튼 눌렀을 때 - 모달 */
@@ -141,8 +140,8 @@ const replyService = (() => {
             contentType: "application/json;charset=utf-8",
             success: function (parentsBoardReplyDTOS) {
                 console.log("드렁");
-                callback(parentsBoardReplyDTOS);
-                if (parentsBoardReplyDTOS.content.length === 0) {
+                appendList(parentsBoardReplyDTOS);
+                if (parentsBoardReplyDTOS.length === 0) {
                     // 받아온 데이터의 길이가 0인 경우, 더 이상 댓글이 없으므로 "댓글 더 보기" 버튼을 숨깁니다.
                     $(".btn-comment").hide();
                 }
@@ -177,13 +176,13 @@ function appendList(reply) {
                                         </ul>
                                     </div>
                                     <p class="comment-content">${reply.parentsBoardReplyContent}</p>
-                                    <textarea id="" class="modify-textarea" style="display: none;">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</textarea>
+                                    <textarea id="" class="modify-textarea" style="display: none;">${reply.parentsBoardReplyContent}</textarea>
                                     <div class="comment-date">
                                         ${formatDate(reply.updateDate)}
                                     </div>
                                     <div class="comment-bottom" style="display:none;">
                                         <button type="button" class="modify-cancel">취소</button>
-                                        <button type="button" class="modify-confirm">수정완료</button>
+                                        <button type="button" class="modify-confirm" data-reply-id="${reply.id}">수정완료</button>
                                     </div>
                                 </div>
                             </li>
@@ -194,10 +193,9 @@ function appendList(reply) {
 
 // 페이지 로딩 시 초기 리스트를 불러옴
 replyService.getList(function (parentsBoardReplyDTOS) {
-    replyPage = 0;
-    console.log(parentsBoardReplyDTOS.content);
+    page = 0;
     appendList(parentsBoardReplyDTOS);
-    console.log(replyPage + "페이지 로딩 시 초기화면")
+    console.log(page + "페이지 로딩 시 초기화면")
 });
 
 
@@ -235,12 +233,10 @@ const categoryService = (() => {
 
 /* 카테고리 최신순 2개 가져오기 */
 function appendCategoryList(categoryResults) {
-    console.log("드롱");
     let categoryText = '';
     categoryResults.forEach(category => {
         const convertedCategory = convertCategory(category.eventCategory); // 영어 카테고리를 한글로 변환
         const convertedTime = formatDate(category.parentsBoardUpdateDate);
-        console.log(category.filePath + "드로롱");
         categoryText += ` 
                     <ul>
                         <li>
@@ -332,4 +328,26 @@ $(".write-reply").click(function () {
     })
 
 
+});
+
+// 댓글 수정
+$('.comment-list').on('click', '.modify-confirm', function() {
+    console.log("댓글수저어어엉~~~~");
+
+    var replyId = $(this).data('reply-id');
+    console.log(replyId + "리플라이아이디")
+    let replyContent = $(this).closest('.comment-wrap').find('.modify-textarea').val();
+
+    if (replyContent == "") {
+        return;
+    }
+
+    $.ajax({
+        url: `/parentsYard/reply/update/${replyId}/${replyContent}`,
+        type: 'post',
+        data: {replyContent: replyContent},
+        success: function (result) {
+            appendList(result);
+        }
+    });
 });
