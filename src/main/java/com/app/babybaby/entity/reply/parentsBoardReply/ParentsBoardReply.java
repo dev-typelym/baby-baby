@@ -35,6 +35,11 @@ public class ParentsBoardReply extends Period {
         this.member = member;
     }
 
+//    public ParentsBoardReply(Long id, ParentsBoard parentsBoard) {
+//        this.id = id;
+//        this.parentsBoard = parentsBoard;
+//    }
+
     public void setParentsBoardReplyContent(String parentsBoardReplyContent) {
         ParentsBoardReplyContent = parentsBoardReplyContent;
     }

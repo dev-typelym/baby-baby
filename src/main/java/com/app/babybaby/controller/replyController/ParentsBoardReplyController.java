@@ -29,7 +29,7 @@ public class ParentsBoardReplyController {
 
     private final ParentsBoardReplyService parentsBoardReplyService;
 
-
+// 댓글작성
     @GetMapping("write/{parentsBoardId}")
     @ResponseBody
     public ParentsBoardReplyDTO saveParentsBoardReply(ParentsBoardReplyDTO parentsBoardReplyDTO, @PathVariable("parentsBoardId") Long parentsBoardId, HttpSession httpSession) {
@@ -55,4 +55,10 @@ public class ParentsBoardReplyController {
         return parentsBoardReplyDTOS;
     }
 
+//    댓글 수정
+    @PostMapping("update/{replyId}/{replyContent}")
+    @ResponseBody
+    public void updateByParentsBoardReply(@PathVariable("replyId") Long replyId, @PathVariable("replyContent") String replyContent) {
+        parentsBoardReplyService.updateByParentsBoardReply(replyId, replyContent);
+    }
 }

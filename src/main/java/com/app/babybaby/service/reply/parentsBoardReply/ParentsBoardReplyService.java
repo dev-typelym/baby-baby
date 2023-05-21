@@ -17,11 +17,11 @@ public interface ParentsBoardReplyService {
     public void removeByParentsBoardReply(Long parentsBoardReplyId);
 
 //    아이디로 해당 멤버 찾기
-    public void findById(Long id);
+//    public void findById(Long id);
 
 
-//    부모님 마당 댓글 수정 ???
-    public void updateByParentsBoardReply(Long replyId);
+//    부모님 마당 댓글 수정
+    public void updateByParentsBoardReply(Long replyId, String replyContent);
 
     default ParentsBoardReplyDTO parentsBoardReplyToDTO(ParentsBoardReply parentsBoardReply) {
         return ParentsBoardReplyDTO.builder()
