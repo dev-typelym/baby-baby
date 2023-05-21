@@ -27,6 +27,7 @@ public class EventLikeQueryDslImpl implements EventLikeQueryDsl {
                 .where(eventLike.member.id.eq(memberId))
                 .join(eventLike.event.company)
                 .join(eventLike.event.eventFiles)
+                .join(eventLike.event.calendar)
                 .orderBy(eventLike.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize() + 1) // hasNext를 위해 1개 더 불러옵니다

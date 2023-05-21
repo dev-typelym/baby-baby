@@ -1,9 +1,11 @@
 package com.app.babybaby.service.like.eventLike;
 
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
+import com.app.babybaby.domain.calendarDTO.CalendarDTO;
 import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.like.eventLike.EventLike;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +29,8 @@ public interface EventLikeService {
                 .id(eventLike.getId())
                 .eventRecruitCount(eventLike.getEvent().getEventRecruitCount())
                 .eventFileDTOS(eventLike.getEvent().getEventFiles().stream().map(this::eventFileToDTO).collect(Collectors.toList()))
+//                .eventAddress(eventLike.getEvent().getEventLocation().getAddress())
+                .calendar(toCalendarDTO(eventLike.getEvent().getCalendar()))
                 .build();
     }
 //    default EventLikeDTO EventToDTO(Event event){
@@ -42,7 +46,15 @@ public interface EventLikeService {
 //                .eventFileDTOS(event.getEventFiles().stream().map(this::eventFileToDTO).collect(Collectors.toList()))
 //                .build();
 //    }
-
+        default CalendarDTO toCalendarDTO(Calendar calendar){
+            return CalendarDTO.builder()
+                    .id(calendar.getId())
+                    .calendarName(calendar.getCalendarName())
+                    .endDate(calendar.getEndDate())
+                    .startDate(calendar.getStartDate())
+                    .id(calendar.getId())
+                    .build();
+        }
 
     default EventFileDTO eventFileToDTO(EventFile eventFile){
         return EventFileDTO.builder()

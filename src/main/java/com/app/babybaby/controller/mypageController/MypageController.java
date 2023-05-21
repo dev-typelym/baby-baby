@@ -1,6 +1,7 @@
 package com.app.babybaby.controller.mypageController;
 
 import com.app.babybaby.domain.boardDTO.askDTO.AskDTO;
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
@@ -13,6 +14,7 @@ import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.repository.like.nowKidsLike.NowKidsLikeRepository;
 import com.app.babybaby.search.admin.AdminAskSearch;
 import com.app.babybaby.service.board.ask.AskService;
+import com.app.babybaby.service.board.event.EventService;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.service.like.eventLike.EventLikeService;
@@ -65,6 +67,8 @@ public class MypageController {
     private final AskService askService;
     @Autowired
     private final NowKidsLikeService nowKidsLikeService;
+    @Autowired
+    private final EventService eventService;
 
 
 
@@ -73,6 +77,21 @@ public class MypageController {
     @GetMapping("main")
     public String getMain(){
         return "myPage/myPage-main-kdh";
+    }
+
+
+//    내가 올린 이벤트 게시글
+    @GetMapping("my-event")
+    public String getMyEvent(){
+        return "myPage/myPage-my-event";
+    }
+
+    @PostMapping("my-event/{page}")
+    @ResponseBody
+    public Slice<EventDTO> getMyEvent(@PathVariable(value = "page") Integer page,HttpSession httpSession){
+        Long memberId = 1L;
+        Slice<EventDTO> eventDTOS = eventService.findMemberIdByEventListWithPaging(memberId,PageRequest.of(page, 5));
+        return eventDTOS;
     }
 
 

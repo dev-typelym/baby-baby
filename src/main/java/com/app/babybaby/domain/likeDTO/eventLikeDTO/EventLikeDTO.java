@@ -1,7 +1,9 @@
 package com.app.babybaby.domain.likeDTO.eventLikeDTO;
 
+import com.app.babybaby.domain.calendarDTO.CalendarDTO;
 import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.member.Member;
 import lombok.Builder;
@@ -29,10 +31,11 @@ public class EventLikeDTO {
     private String eventAddress;
     private Long eventRecruitCount;
     private List<EventFileDTO> eventFileDTOS;
+    private CalendarDTO calendar;
 
     @Builder
 
-    public EventLikeDTO(Long id, String boardTitle, Long eventPrice, Long memberId, String memberName, LocalDateTime registerDate, LocalDateTime updateDate, String eventAddress, Long eventRecruitCount, List<EventFileDTO> eventFileDTOS) {
+    public EventLikeDTO(Long id, String boardTitle, Long eventPrice, Long memberId, String memberName, LocalDateTime registerDate, LocalDateTime updateDate, String eventAddress, Long eventRecruitCount, List<EventFileDTO> eventFileDTOS,CalendarDTO calendar) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.eventPrice = eventPrice;
@@ -43,5 +46,6 @@ public class EventLikeDTO {
         this.eventAddress = eventAddress;
         this.eventRecruitCount = eventRecruitCount;
         this.eventFileDTOS = eventFileDTOS;
+        this.calendar = calendar;
     }
 }
