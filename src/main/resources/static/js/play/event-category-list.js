@@ -6,18 +6,37 @@ $('.event-price').each(function() {
 });
 
 
+const eventBoardSearch = {
+    searchTitle: null,
+    categoryType: null,
+    searchContent: null
+};
+
+$(".categoryType").on("click", function () {
+    let val = $(this).attr('value');
+    let result;
+        result = val;
+    console.log("선택한 value : " + result);
+    eventBoardSearch.categoryType = result;
+    console.log(eventBoardSearch.categoryType)
+    boardService.getList(appendList);
+});
+
+
 
 let page = 0;
 const boardService = (() => {
-    page = 0;
+    page =0;
     function getList(callback){
         $.ajax({
-            url: `/event/list`,
+            url: `/event/list?page=${page}`,
             type: 'post',
-            data: JSON.stringify({page:page}),
+            data: JSON.stringify(eventBoardSearch),
             contentType: "application/json;charset=utf-8",
-            success: function(eventListDTO){
-                console.log("들어왓다")
+            success: function(eventListDTOJSON){
+                console.log(eventListDTOJSON)
+                let eventListDTO = JSON.parse(eventListDTOJSON)
+                console.log(eventListDTO)
                 if (eventListDTO.length === 0) { // 불러올 데이터가 없으면
                     console.log("막힘")
                     $(window).off('scroll'); // 스크롤 이벤트를 막음
@@ -25,18 +44,16 @@ const boardService = (() => {
                 }
                 if(callback){
                     callback(eventListDTO);
-                    console.log("들어왓다")
                 }
             }
         });
-        page++;
     }
     return {getList: getList};
 })();
 
 function appendList(eventListDTO) {
     let boardText3 = '';
-    console.log(eventListDTO.content[0]);
+    console.log(eventListDTO);
     eventListDTO.content.forEach(eventList => {
         console.log(eventList);
         boardText3 +=  `
@@ -119,10 +136,10 @@ function appendList(eventListDTO) {
 
 // 페이지 로딩 시 초기 리스트를 불러옴
 boardService.getList(function(eventListDTO) {
-    appendList(eventListDTO);
+    console.log(eventListDTO)
+    boardService.getList(appendList);
 });
 
-console.log("sadasdasd");
 
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {

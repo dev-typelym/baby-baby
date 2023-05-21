@@ -24,7 +24,7 @@ public class NowKidsLikeController {
     @ResponseBody
     public Boolean clickLike(Long nowKidsId, Boolean isLike){
         Boolean result = null;
-        Long sessionId = null;
+        Long sessionId = 2L;
         log.info("내가 가져온 nowKidsId는  : " + String.valueOf(nowKidsId));
         log.info("내가 가져온 isLike는  : " + String.valueOf(isLike));
 //        isLike가 false라는 뜻은 아직 좋아요가 눌리지 않은 상태

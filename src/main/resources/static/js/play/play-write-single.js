@@ -16,10 +16,7 @@ let stringEndDate = params.get('stringEndDate');
 
 
 // 가져온 값 출력하기
-console.log("boardTitle: " + boardTitle);
-console.log("boardContent: " + boardContent);
-console.log(stringEndDate);
-console.log(stringStartDate)
+console.log(address);
 
 $('input[name=boardTitle]').val(boardTitle)
 $('input[name=boardContent]').val(boardContent)

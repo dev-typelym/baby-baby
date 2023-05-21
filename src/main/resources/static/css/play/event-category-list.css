@@ -12,7 +12,7 @@ html {
     zoom: 90%;
 }
 
-a {
+a,button {
     color: #000;
     text-decoration: none;
 }
@@ -730,4 +730,15 @@ div.search input:focus {
 
 .apply-form:hover {
     background-color: #00b2b2;
+}
+
+.categoryType button{
+    background-color: #fff;
+    display: block;
+    line-height: 48px;
+    letter-spacing: -0.3px;
+    font-size: 13px;
+    box-sizing: border-box;
+    border: none;
+    font-weight: 800;
 }

@@ -54,7 +54,7 @@ public class NowKidsController {
 
     @GetMapping("writeFirst")
     public String goWriteNowKids(Model model, RedirectAttributes redirectAttributes) {
-        Long sessionId = 110L;
+        Long sessionId = 2L;
         Member member = memberRepository.findById(sessionId).get();
         List<Tuple> nowKidsEvents = nowKidsRepository.findEventAndCalendarInfoByGuideId_QueryDsl(sessionId);
         JSONArray calendars = new JSONArray();
@@ -93,7 +93,7 @@ public class NowKidsController {
     @PostMapping("getKids")
     @ResponseBody
     public String getAllKids(Long eventId) {
-        Long sessionId = 110L;
+        Long sessionId = 2L;
         log.info("eventID는 : " + eventId.toString());
         log.info("Kids들은" + nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(sessionId, eventId).toString());
         JSONArray jsonArray = new JSONArray();
@@ -112,7 +112,7 @@ public class NowKidsController {
 
     @GetMapping("writeSecond")
     public String writeNowKidFiles(Long eventId, String eventDate, Model model){
-        Long sessionId = 110L;
+        Long sessionId = 2L;
         log.info(eventDate.toString());
         log.info(eventId.toString());
 
@@ -134,7 +134,7 @@ public class NowKidsController {
 
     @PostMapping("save")
     public RedirectView saveAllNowKids(Long eventId, String eventDate, NowKidsFileDTOForParameter nowKidsFileDTOForParameter){
-        Long sessionId = 110L;
+        Long sessionId = 2L;
         log.info("eventDate는 : " + eventDate);
         log.info("EventId는 : " + eventId.toString());
         log.info("save에서의 nowKidsFileDTO는 : " + nowKidsFileDTOForParameter.toString());
@@ -165,7 +165,7 @@ public class NowKidsController {
     @PostMapping("getList")
     @ResponseBody
     public String getList(Integer pageNumber){
-        Long sessionId = 110L;
+        Long sessionId = 2L;
         Page<NowKidsDTO> nowKidsDTOS = nowKidsService.getAllInfoForListDesc(pageNumber, 2, sessionId);
 //        페이지에 아무것도 없다면 빈 배열을 리턴
         if(nowKidsDTOS.isEmpty()){
