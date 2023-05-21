@@ -1,17 +1,8 @@
-/* 클릭 시 수정/삭제 버튼 창 */
-/* function showList(e){
-    if($(e).next().css('display') == 'none'){
-        $(e).next().show();
-    } else {
-        $(e).next().hide();
-    }
-}
- */
-function showList(e){
+function showList(e) {
     console.log("들어옴@@@@")
     // if($(".comment-util-list").css('display') == 'none'){
     console.log($(e).next())
-    if($(e).next().css('display') == 'none'){
+    if ($(e).next().css('display') == 'none') {
         $(e).next().show();
         // $(".comment-util-list").show();
     } else {
@@ -25,21 +16,21 @@ $(".modify-button").each((i, e) => {
     $(e).click(() => {
         $($(".modify-textarea")[i]).show();//수정영역
         $('.comment-util-list').hide();//수정,삭제 모달 숨기기
-        $($('.comment-util')[i]).attr("disabled",true);//수정,삭제 버튼 비활성화
-        $($(".comment-content")[i]).css("display","none");//기존영역 숨기기
-        $($(".comment-date")[i]).css("display","none");//날짜 숨기기
-        $($(".comment-bottom")[i]).css("display","block");//취소,수정완료 버튼
+        $($('.comment-util')[i]).attr("disabled", true);//수정,삭제 버튼 비활성화
+        $($(".comment-content")[i]).css("display", "none");//기존영역 숨기기
+        $($(".comment-date")[i]).css("display", "none");//날짜 숨기기
+        $($(".comment-bottom")[i]).css("display", "block");//취소,수정완료 버튼
     });
 });
 
 /* 삭제버튼 눌렀을 때 - 모달 */
-function showModal(){
+function showModal() {
     $('.modal-copy').css('display', 'block');
     $('.modal-bg').css('display', 'block');
     $('body').css('overflow', 'hidden');
 }
 
-function closeModal(){
+function closeModal() {
     $('.modal-copy').css('display', 'none');
     $('.modal-bg').css('display', 'none');
     $('body').css('overflow', 'visible');
@@ -50,13 +41,12 @@ $(".modify-cancel").each((i, e) => {
     $(e).click(() => {
         $($(".modify-textarea")[i]).hide();//수정영역
         $('.comment-util-list').hide();//수정,삭제 모달 숨기기
-        $('.comment-util').attr("disabled",false);
-        $($(".comment-content")[i]).css("display","block");//기존영역 숨기기
-        $($(".comment-date")[i]).css("display","block");//날짜 숨기기
-        $($(".comment-bottom")[i]).css("display","none");//취소,수정완료 버튼
+        $('.comment-util').attr("disabled", false);
+        $($(".comment-content")[i]).css("display", "block");//기존영역 숨기기
+        $($(".comment-date")[i]).css("display", "block");//날짜 숨기기
+        $($(".comment-bottom")[i]).css("display", "none");//취소,수정완료 버튼
     });
 });
-
 
 
 /* 클릭 했을 때 색 변경/취소 */
@@ -73,9 +63,6 @@ $(".modify-cancel").each((i, e) => {
 //         $(".btn-like").removeClass("active-heart-button");
 //     }
 // });
-
-
-
 
 
 /* 카카오톡 공유하기 API */
@@ -145,50 +132,54 @@ function formatDate(originalDate) {
 // 댓글 무한 스크롤
 let page = 0;
 const replyService = (() => {
-    function getList(callback){
+    function getList(callback) {
         console.log(boardId + "보오드");
         $.ajax({
             url: `/parentsYard/reply/list/show/${page}/${boardId}`,
             type: 'get',
             data: {page: page, boardId: boardId},
             contentType: "application/json;charset=utf-8",
-            success: function(parentsBoardReplyDTOS){
+            success: function (parentsBoardReplyDTOS) {
                 console.log("드렁");
                 callback(parentsBoardReplyDTOS);
+                if (parentsBoardReplyDTOS.content.length === 0) {
+                    // 받아온 데이터의 길이가 0인 경우, 더 이상 댓글이 없으므로 "댓글 더 보기" 버튼을 숨깁니다.
+                    $(".btn-comment").hide();
+                }
             }
         });
     }
+
     return {getList: getList};
 })();
 
 
 /*${formattedDate}*/
-function appendList(parentsBoardReplyDTOS) {
+function appendList(reply) {
     let replyText = '';
-    console.log(parentsBoardReplyDTOS.content);
-    parentsBoardReplyDTOS.content.forEach(replyDTOS => {
-        console.log(replyDTOS);
-        replyText +=  ` 
+    replyText += ` 
                         <ul id="comment-list-detail">
                             <li class="top" style="display: list-item;">
+                             <input class="replyId" type="hidden" value="${reply.id}" style="display: none;">
+                             <input class="parentsBoardId" type="hidden" value="${reply.parentsBoardId} style="display: none;">
                                 <div class="comment-wrap">
                                     <div class="comment-info">
                                         <img src="/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">
-                                        <span class="name">${replyDTOS.memberNickName}</span>
+                                        <span class="name">${reply.memberNickName}</span>
                                         <button class="comment-util" onclick="showList(this)"></button>
                                         <ul class="comment-util-list">
                                             <li>
                                                 <button type="button" class="modify-button">수정</button>
                                             </li>
                                             <li>
-                                                <button>삭제</button>
+                                                <button  type="button" class="delete-reply" data-reply-id="${reply.id}">삭제</button>
                                             </li>
                                         </ul>
                                     </div>
-                                    <p class="comment-content">${replyDTOS.parentsBoardReplyContent}</p>
+                                    <p class="comment-content">${reply.parentsBoardReplyContent}</p>
                                     <textarea id="" class="modify-textarea" style="display: none;">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</textarea>
                                     <div class="comment-date">
-                                        ${formatDate(replyDTOS.updateDate)}
+                                        ${formatDate(reply.updateDate)}
                                     </div>
                                     <div class="comment-bottom" style="display:none;">
                                         <button type="button" class="modify-cancel">취소</button>
@@ -197,37 +188,38 @@ function appendList(parentsBoardReplyDTOS) {
                                 </div>
                             </li>
                         </ul> `
-        ;
-    });
+    ;
     $('.comment-list').append(replyText);
 }
 
-
-
 // 페이지 로딩 시 초기 리스트를 불러옴
-replyService.getList(function(parentsBoardReplyDTOS) {
+replyService.getList(function (parentsBoardReplyDTOS) {
     replyPage = 0;
     console.log(parentsBoardReplyDTOS.content);
     appendList(parentsBoardReplyDTOS);
     console.log(replyPage + "페이지 로딩 시 초기화면")
 });
 
-$('.btn-comment').click(function() {
-        page++;
-        replyService.getList(appendList);
-        console.log(page)
+
+// 댓글 더보기
+$('.comment-open').click(function () {
+    page++;
+    replyService.getList(appendList);
+    console.log(page)
 });
 
 
+// ====================================================================================카테고리
+
 // 카테고리 최신글 2개 가져오기 ajax
 const categoryService = (() => {
-    function getCategoryList(callback){
+    function getCategoryList(callback) {
         console.log(boardId + "보오드으으으으으으");
         $.ajax({
             url: `/parentsYard/detail/category/${boardId}`,
             type: 'post',
             data: {boardId: boardId},
-            success: function(categoryResults){
+            success: function (categoryResults) {
                 console.log("들옴");
                 callback(categoryResults);
             }
@@ -236,6 +228,7 @@ const categoryService = (() => {
             // }
         });
     }
+
     return {getCategoryList: getCategoryList};
 })();
 
@@ -244,43 +237,99 @@ const categoryService = (() => {
 function appendCategoryList(categoryResults) {
     console.log("드롱");
     let categoryText = '';
-    console.log(">>>>>" + categoryResults.content);
-    categoryResults.content.forEach(category => {
-        categoryText +=  ` 
-                        <h4>
-                    <em>${category.eventCategory}</em>
-                    카테고리의 최신글
-                </h4>
-                <div class="other-list">
+    categoryResults.forEach(category => {
+        const convertedCategory = convertCategory(category.eventCategory); // 영어 카테고리를 한글로 변환
+        const convertedTime = formatDate(category.parentsBoardUpdateDate);
+        console.log(category.filePath + "드로롱");
+        categoryText += ` 
                     <ul>
                         <li>
                             <a>
                                 <div class="other-story">
                                     <div class="story-info">
-                                        <em class="category">${category.eventCategory}</em>
+                                        <em class="category">${convertedCategory}</em>
                                         <p class="other-title">${category.parentsBoardTitle}</p>
                                         <p class="other-content">${category.parentsBoardContent}</p>
                                         <p class="info">
-                                            <em class="date">${category.parentsBoardRegisterDate}</em>
+                                            <em class="date">${convertedTime}</em>
                                         </p>
                                     </div>
                                     <div class="img-wrap">
-                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">
+                                        <img src="/parentsBoardFiles/display?fileName=ParentsBoard/${category.parentsBoardFileDTOS[0].filePath}/${category.parentsBoardFileDTOS[0].fileUUID}_${category.parentsBoardFileDTOS[0].fileOriginalName}">
                                     </div>
                                 </div>
                             </a>
                         </li>
-                    </ul>
-                </div>`
+                    </ul>`
         ;
     });
-    $('.free-board-other').append(categoryText);
+    $('.other-list').append(categoryText);
 }
 
 
-
 // 페이지 로딩 시 초기 리스트를 불러옴
-categoryService.getCategoryList(function(categoryResults) {
-    console.log(categoryResults.content);
+categoryService.getCategoryList(function (categoryResults) {
     appendCategoryList(categoryResults);
+});
+
+// 카테고리 한국어로 바꾸는 코드
+function convertCategory(category) {
+//    AGRICULTURE, ART, TRADITION, CRAFT, SCIENCE, MUSEUM, SPORTS, ETC
+    let categoryResult;
+
+    if (category == "AGRICULTURE") {
+        categoryResult = "농촌";
+    } else if (category == "ART") {
+        categoryResult = "예술";
+    } else if (category == "TRADITION") {
+        categoryResult = "전통";
+    } else if (category == "CRAFT") {
+        categoryResult = "공방";
+    } else if (category == "SCIENCE") {
+        categoryResult = "과학";
+    } else if (category == "MUSEUM") {
+        categoryResult = "박물관";
+    } else if (category == "SPORTS") {
+        categoryResult = "스포츠";
+    } else {
+        categoryResult = "기타";
+    }
+    return categoryResult;
+}
+
+// 댓글 삭제
+$(document).on('click', '.delete-reply', function () {
+    console.log("드로로로롱");
+    var replyId = $(this).data('reply-id'); // data-reply-id 속성을 통해 댓글의 ID 값을 가져옴
+    console.log("replyId2: " + replyId);
+    $.ajax({
+        url: `/parentsYard/reply/delete/${replyId}`,
+        type: 'post',
+        success: function (result) {
+            $('.comment-list').html("");
+            appendList(result);
+        }
+    });
+});
+
+// 댓글 작성
+$(".write-reply").click(function () {
+
+    console.log("댓글다리~~~~")
+
+    if ($('.replyContent').val() == "") {
+        return;
+    }
+
+    $.ajax({
+        url: `/parentsYard/reply/write/${boardId}`,
+        type: 'get',
+        data: {parentsBoardReplyContent: $('.replyContent').val()},
+        success: function (result) {
+            appendList(result);
+            $('.replyContent').val("");
+        }
+    })
+
+
 });

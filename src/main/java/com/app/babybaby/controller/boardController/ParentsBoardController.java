@@ -63,10 +63,10 @@ public class ParentsBoardController {
 //    상세보기 안에 카테고리 최신글 2개 가져오기
     @ResponseBody
     @PostMapping("detail/category/{boardId}")
-    public List<ParentsBoard> getCategoryList(@PathVariable Long boardId) {
+    public List<ParentsBoardDTO> getCategoryList(@PathVariable Long boardId) {
         CategoryType category = parentsBoardService.findById(boardId).getEvent().getCategory();
         log.info("category: " + category.toString());
-        List<ParentsBoard> categoryResults = parentsBoardService.find2RecentDesc(category);
+        List<ParentsBoardDTO> categoryResults = parentsBoardService.find2RecentDesc(category);
         log.info("categoryResults: " + categoryResults.toString());
         return categoryResults;
     }

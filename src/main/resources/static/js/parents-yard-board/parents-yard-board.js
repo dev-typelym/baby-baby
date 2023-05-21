@@ -167,11 +167,12 @@ function showList(boardDTOS) {
     console.log(boardDTOS)
     var content = "";
     boardDTOS.forEach(board => {
+        const convertedCategory = convertCategory(board.eventCategory); // 영어 카테고리를 한글로 변환
         const formattedDate = formatDate(new Date(board.parentsBoardRegisterDate));
         content += ` 
                          <a href="/parentsYard/detail/${board.id}" class="parents-yard-board-item-link">
             <div class="parents-yard-board-item-wrapper">
-                <span class="category"><span>[${board.eventCategory}]</span> ${board.eventTitle}</span>
+                <span class="category"><span>[${convertedCategory}]</span> ${board.eventTitle}</span>
                 <div class="parents-yard-board-item-container">
                     <h3 class="parents-yard-board-item-title">
                         ${board.parentsBoardTitle}
@@ -210,17 +211,27 @@ function showList(boardDTOS) {
 getParentsBoardList();
 
 
-// 상세보기로 가기 위한 ajax
-// function goParentsBoardDetail() {
-//     $.ajax({
-//         url: `/parentsYard/detail/{id}`,
-//         data: parentsBoardSearch,
-//         success: function (data) {
-//             console.log(data)
-//             $pageWrap.empty();
-//             showPage(data);
-//             $contentWrap.empty();
-//             showList(data.content);
-//         }
-//     });
-// }
+// 카테고리 한국어로 바꾸는 코드
+function convertCategory(category) {
+//    AGRICULTURE, ART, TRADITION, CRAFT, SCIENCE, MUSEUM, SPORTS, ETC
+    let categoryResult;
+
+    if(category == "AGRICULTURE"){
+        categoryResult = "농촌";
+    } else if(category == "ART"){
+        categoryResult = "예술";
+    } else if(category == "TRADITION"){
+        categoryResult = "전통";
+    } else if(category == "CRAFT"){
+        categoryResult = "공방";
+    } else if(category == "SCIENCE"){
+        categoryResult = "과학";
+    } else if(category == "MUSEUM"){
+        categoryResult = "박물관";
+    } else if(category == "SPORTS"){
+        categoryResult = "스포츠";
+    } else{
+        categoryResult = "기타";
+    }
+    return categoryResult;
+}
