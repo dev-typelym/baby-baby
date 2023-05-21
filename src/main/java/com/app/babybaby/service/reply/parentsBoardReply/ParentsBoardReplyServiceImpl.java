@@ -31,23 +31,50 @@ public class ParentsBoardReplyServiceImpl implements ParentsBoardReplyService {
         Page<com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply> parentsBoardReply = parentsBoardReplyRepository.findAllReplyByBoardIdWithPaging(pageable, id);
         List<ParentsBoardReplyDTO> parentsBoardReplyDTOList = parentsBoardReply
                 .get()
-                .map(this::ParentsBoardReplyToDTO)
+                .map(this::parentsBoardReplyToDTO)
                 .collect(Collectors.toList());
         return new PageImpl<>(parentsBoardReplyDTOList, pageable, parentsBoardReply.getTotalElements());
     }
 
+//    @Override
+//    public void parentsBoardReplySave(Long SessionId, ParentsBoardReplyDTO parentsBoardReplyDTO, Long parentsBoardId) {
+//        Member member = memberRepository.findById(SessionId).get(); // 아이디로 찾은 멤버
+//
+//        ParentsBoard parentsBoard = parentsBoardRepository.findById(parentsBoardId).get();
+//
+//        ParentsBoardReply parentsBoardReply = parentsBoardReplyToEntity(parentsBoardReplyDTO);
+//
+//        ParentsBoardReply parentsBoardReply2 = new ParentsBoardReply(parentsBoardReplyDTO.getParentsBoardReplyContent(), parentsBoard, member);
+//
+//        parentsBoardReplyRepository.save(parentsBoardReply2);
+//    }
+
+//    댓글 삭제
     @Override
-    public void parentsBoardReplySave(Long SessionId, ParentsBoardReplyDTO parentsBoardReplyDTO, Long parentsBoardId) {
-        Member member = memberRepository.findById(SessionId).get(); // 아이디로 찾은 멤버
-
-        ParentsBoard parentsBoard = parentsBoardRepository.findById(parentsBoardId).get();
-
-        ParentsBoardReply parentsBoardReply = parentsBoardReplyToEntity(parentsBoardReplyDTO);
-
-        ParentsBoardReply parentsBoardReply2 = new ParentsBoardReply(parentsBoardReplyDTO.getParentsBoardReplyContent(), parentsBoard, member);
-
-        parentsBoardReplyRepository.save(parentsBoardReply2);
+    public void removeByParentsBoardReply(Long parentsBoardReplyId) {
+        parentsBoardReplyRepository.deleteById(parentsBoardReplyId);
     }
 
+//    댓글 수정
+    public void updateByParentsBoardReply(Long replyId) {
+        parentsBo
+    }
+
+//    댓글 작성
+    @Override
+    public ParentsBoardReplyDTO parentsBoardReplySave(ParentsBoardReplyDTO parentsBoardReplyDTO, Long memberId, Long parentsBoardId) {
+        Member member = memberRepository.findById(memberId).orElseThrow(IllegalArgumentException::new);
+        ParentsBoard parentsBoard = parentsBoardRepository.findById(parentsBoardId).orElseThrow(IllegalArgumentException::new);
+
+        ParentsBoardReply parentsBoardReply = ParentsBoardReply.builder()
+                .parentsBoardReplyContent(parentsBoardReplyDTO.getParentsBoardReplyContent())
+                .parentsBoard(parentsBoard)
+                .member(member)
+                .build();
+
+        ParentsBoardReply savedReply = parentsBoardReplyRepository.save(parentsBoardReply);
+
+        return parentsBoardReplyToDTO(savedReply);
+    }
 
 }

@@ -33,7 +33,7 @@ public class ParentsBoardFileRepositoryTests {
     public void parentsBoardFileSaveTest() {
 //
 //        // 부모 게시물 가져오기 (예: ID가 541인 게시물)
-        ParentsBoard parentsBoard = parentsBoardRepository.findById(3L).get();
+        ParentsBoard parentsBoard = parentsBoardRepository.findById(2L).get();
 //
 //        // 파일 정보 설정
         FileType fileStatus = FileType.MAIN;

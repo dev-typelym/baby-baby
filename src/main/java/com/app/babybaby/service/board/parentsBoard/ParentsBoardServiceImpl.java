@@ -110,23 +110,11 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
 
 //    상세보기 카테고리 최신글 2개 가져오기
     @Override
-    public List<ParentsBoard> find2RecentDesc(CategoryType categoryType) {
+    public List<ParentsBoardDTO> find2RecentDesc(CategoryType categoryType) {
         List<ParentsBoard> parents = parentsBoardRepository.find2RecentDesc(categoryType);
         log.info(parents.toString());
-        List<ParentsBoard> parentsList = parents.stream()
-                .collect(Collectors.toList());
+        List<ParentsBoardDTO> parentsList = parents.stream().map(parentsBoard -> toParentsBoardDTO(parentsBoard)).collect(Collectors.toList());
         return parentsList;
     }
-
-
-//        /* 최근 올린 8명 가져오기 */
-//    public List<MemberDTO> find8AuthorDesc(){
-//        List<Member> members = nowKidsRepository.find8AuthorDesc();
-//        List<MemberDTO> memberDTOS = members.stream()
-//                .map(memberService::toMemberDTO)
-//                .collect(Collectors.toList());
-//
-//        return memberDTOS;
-//    }
 
 }

@@ -37,9 +37,9 @@ public interface ParentsBoardService {
     public void save(ParentsBoardDTO parentsBoardDTO);
 
 //    상세보기 카테고리 최신글 2개 가져오기
-    public List<ParentsBoard> find2RecentDesc(CategoryType categoryType);
+    public List<ParentsBoardDTO> find2RecentDesc(CategoryType categoryType);
 
-    default ParentsBoardDTO toParentsBoardDTO(com.app.babybaby.entity.board.parentsBoard.ParentsBoard parentsBoard) {
+    default ParentsBoardDTO toParentsBoardDTO(ParentsBoard parentsBoard) {
         return ParentsBoardDTO.builder()
                 .id(parentsBoard.getId())
                 .eventTitle(parentsBoard.getEvent().getBoardTitle())
