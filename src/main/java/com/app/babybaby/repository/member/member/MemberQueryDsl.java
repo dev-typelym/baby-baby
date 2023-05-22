@@ -38,6 +38,9 @@ public interface MemberQueryDsl {
     /* 회원정보 수정 */
     public void setMemberInfoMyId(Member member);
 
+    /*정표 수정*/
+    public Member findByMemberId(Long memberId);
+
     //    ---------------------------------------------회원 상세 -----------------------------------------
     public Member getCompanyInfoByMemberId_QueryDSL(Long memberId);
 

@@ -187,4 +187,56 @@ public class Member {
         this.memberType = memberType;
         this.memberRole = memberRole;
     }
+
+    public void setMemberEmail(String memberEmail) {
+        this.memberEmail = memberEmail;
+    }
+
+    public void setMemberPassword(String memberPassword) {
+        this.memberPassword = memberPassword;
+    }
+
+    public void setMemberNickname(String memberNickname) {
+        this.memberNickname = memberNickname;
+    }
+
+    public void setMemberPhone(String memberPhone) {
+        this.memberPhone = memberPhone;
+    }
+
+    public void setMemberAddress(Address memberAddress) {
+        this.memberAddress = memberAddress;
+    }
+
+    public void setMemberType(MemberType memberType) {
+        this.memberType = memberType;
+    }
+
+    public void setMemberGuideStatus(AcceptanceType memberGuideStatus) {
+        this.memberGuideStatus = memberGuideStatus;
+    }
+
+    public void setMemberSleep(SleepType memberSleep) {
+        this.memberSleep = memberSleep;
+    }
+
+    public void setMemberGuideType(GuideType memberGuideType) {
+        this.memberGuideType = memberGuideType;
+    }
+
+    public void setMemberGuideInterest(CategoryType memberGuideInterest) {
+        this.memberGuideInterest = memberGuideInterest;
+    }
+
+    public void setMemberFilePath(String memberFilePath) {
+        this.memberFilePath = memberFilePath;
+    }
+
+    public void setMemberFileUUID(String memberFileUUID) {
+        this.memberFileUUID = memberFileUUID;
+    }
+
+    public void setMemberFileOriginalName(String memberFileOriginalName) {
+        this.memberFileOriginalName = memberFileOriginalName;
+    }
 }

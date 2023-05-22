@@ -222,7 +222,7 @@ body>#root, #wadizTopBanner, #page-container {
 /* ----------------------------------------- */
 
 .input-text{
-    width: 100%;
+    width: 144%;
     height: 40px;
     font-size: 13px;
     padding: 10px;
@@ -247,8 +247,8 @@ body>#root, #wadizTopBanner, #page-container {
 }
 
 .input-btn-wrap .btn {
-    width: 28%;
-    margin-left: 4px;
+    width: 101%;
+    margin-left: 16px;
     display: block;
     background-color: #00c4c4;
     color: #fff;
@@ -259,7 +259,20 @@ body>#root, #wadizTopBanner, #page-container {
     overflow: hidden;
     cursor: pointer;
 }
-
+div#emailChangeBtn {
+    width: 90%;
+    /* margin-left: 16px; */
+    display: block;
+    background-color: #00c4c4;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+    margin-top: 14px;
+}
 
 /* info-프로필 변경 시작 */
 

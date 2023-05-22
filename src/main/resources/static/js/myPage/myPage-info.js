@@ -166,3 +166,336 @@ function sample6_execDaumPostcode() {
 		}
 	}).open();
 }
+
+
+/* ajax*/
+/*${formattedDate}*/
+
+// let page = 0;
+// const boardService = (() => {
+//     function getList(callback){
+//         console.log(page)
+//         $.ajax({
+//             url: `/mypage/info`,
+//             type: 'post',
+//             contentType: "application/json;charset=utf-8",
+//             success: function(memberDTO){
+//                 console.log("들어왓다")
+//                 if (memberDTO.content.length === 0) { // 불러올 데이터가 없으면
+//                     console.log("막힘")
+//                     return;
+//                 }
+//                 if(callback){
+//                     callback(memberDTO);
+//                     console.log("들어왓다")
+//                 }
+//             }
+//         });
+//     }
+//     return {getList: getList};
+// })();
+//
+// function appendList(memberDTO) {
+//     let boardText3 = '';
+//     console.log(memberDTO.content);
+//     memberDTO.content.forEach(memberDTO => {
+//         // let startDate = new Date(eventLike.calendar.startDate); // assuming eventLike.registerDate is a valid date string
+//         // let formattedDate = startDate.getFullYear() + '-' + (startDate.getMonth() + 1).toString().padStart(2, '0') + '-' + startDate.getDate().toString().padStart(2, '0');
+//         // let endDate = new Date(eventLike.calendar.endDate); // assuming eventLike.registerDate is a valid date string
+//         // let formattedEndDate = endDate.getFullYear() + '-' + (endDate.getMonth() + 1).toString().padStart(2, '0') + '-' + endDate.getDate().toString().padStart(2, '0');
+//
+//         console.log(memberDTO);
+//         boardText3 +=  `
+//                                                 <!-- 사진 div -->
+//                                            <main id="main-app">
+//                         <!-- main -->
+//                         <div id="accountWrap">
+//                         <!-- S : #newContainer -->
+//                     <div id="newContainer">
+//                         <!-- account-wrap with-footer -->
+//                     <div class="account-wrap with-footer">
+//                         <h2 class="big">MY 정보설정</h2>
+//                     <div class="wrapper-button">
+//                         <button class="my-info" href="#">
+//                         <div class="my-info-text">
+//                         <h3>기본 정보 설정</h3>
+//                     <p>이름, 이메일, 휴대폰, SNS연동 등</p>
+//                     </div>
+//                     <div class="my-info-btn">
+//                         <i class="wadizicon wa-chevron-right"></i>
+//                         </div>
+//                         </button>
+//                         <form action="/mypage/info" method="post">
+//                         <input type="hidden">
+//                         <div class="content-wrapper" style="display: none">
+//                         <span>회원정보 수정</span>
+//                     <div class="input-btn-wrap">
+//                         <div class="input">
+//                         <input
+//                     type="text"
+//                     id="memberNickname"
+//                     name="memberNickname"
+//                     class="input-text"
+//                     placeholder="닉네임"
+//                     value="린먕"
+//                         />
+//                         ${memberDTO.memberNickname}
+//                         <div class="err-nickname"></div>
+//                         </div>
+//                         </div>
+//
+//                         <div class="input-btn-wrap">
+//                         <div class="input">
+//                         <input
+//                     type="email"
+//                     id="userEmail"
+//                     name="userName"
+//                     class="disable input-text"
+//                     placeholder="이메일 계정"
+//                     value="rladnrtjdsla@gmail.com"
+//                         />
+//                         ${memberDTO.memberEmail}
+//                         <div class="err-email"></div>
+//                         </div>
+//                         </div>
+//                         <div class="input-btn-wrap">
+//                         <div class="input">
+//                         <input
+//                     id="mobileNumber"
+//                     name="mobileNumber"
+//                     type="tel"
+//                     class="disable input-text"
+//                     placeholder="휴대폰 번호"
+//                     value="01012341234"
+//                         />
+//                         ${member.memberPhone}
+//                         </div>
+//                         <div
+//                     id="mobileCheckBtn"
+//                     class="mobileAuthBtn btn"
+//                     style="display: none"
+//                     data-status="check"
+//                         >
+//                         <span>등록하기</span>
+//                         </div>
+//                         </div>
+//                         <div id="emailChangeBtn" class="changeBtnTop btn changeModel" name="modalTrigger" data-status="change">
+//                         <button type="submit">
+//                         <span>변경</span>
+//                         </button>
+//                         </div>
+//                         </div>
+//                         </form>
+//                         </div>
+//                         <div class="wrapper-button">
+//                         <button class="my-info" href="#">
+//                         <div class="my-info-text">
+//                         <h3>비밀번호 변경</h3>
+//                     <p>현재 비밀번호 변경</p>
+//                     </div>
+//                     <div class="my-info-btn">
+//                         <i class="wadizicon wa-chevron-right"></i>
+//                         </div>
+//                         </button>
+//
+//                         <div class="content-wrapper" style="display: none; padding-left: 0; margin-top: 0">
+//                         <div class="account-wrap" style="padding: 0 25px 0px 0px; padding-left: 13px; padding-right: 35px;">
+//                         <h2 class="small">비밀번호 변경</h2>
+//                     <div class="email-input-wrap">
+//                         <form id="saveForm" action="info-password" method="post">
+//                         <input
+//                     type="password"
+//                     id="newPassword"
+//                     name="newPassword"
+//                     class="input-text passwordval"
+//                     placeholder="비밀번호"
+//                     maxlength="17"
+//                         />
+//                         <p id="passwordError" class="pwd-text">
+//                         영문,숫자,특수문자를 조합한 8자 이상
+//                     </p>
+//                     <input
+//                     type="password"
+//                     id="newPasswordConfirm"
+//                     name="memberPassword"
+//                     class="input-text passwordvalconfirm"
+//                     placeholder="비밀번호 확인"
+//                     maxlength="17"
+//                         />
+//                         <p class="error-text" style="display: none">비밀번호가 같지 않습니다.</p>
+//                     <div class="email-input-wrap small">
+//                         <div class="btn-wrap smaller">
+//                         <button id="saveBtn" type="submit" class="wz button primary block changeModel">
+//                         확인
+//                         </button>
+//                         </div>
+//                         </div>
+//                         </form>
+//                         </div>
+//                         </div>
+//                         </div>
+//                         </div>
+//
+//                         <div class="wrapper-button">
+//                         <button class="my-info" href="#">
+//                         <div class="my-info-text">
+//                         <h3>회원 정보 설정</h3>
+//                     <p>이력서, 프로필 정보 변경</p>
+//                     </div>
+//                     <div class="my-info-btn">
+//                         <i class="wadizicon wa-chevron-right"></i>
+//                         </div>
+//                         </button>
+//                         <div class="content-wrapper" style="display: none">
+//                         <div id="waccountContainer">
+//                         <div id="tabContent1" class="tab-content">
+//                         <div class="file-area">
+//                         <div class="profile-wrapper-mypage">
+//                         <h5 style="text-align: center">프로필 사진</h5>
+//
+//                     <div class="profile-area">
+//                         <label for="profile">
+//                         <img src="/images/myPage/children.png" alt="" />
+//                         </label>
+//                         </div>
+//                         </div>
+//                         <input type="file" style="display: none" id="profile" />
+//                         </div>
+//                         <div class="form-group">
+//                         <label for="address-btu" class="address-label inputs" onclick="sample6_execDaumPostcode()">주소 변경</label>
+//                     <div class="address-div" id="" >
+//                         <input type="text" id="sample6_postcode"  class="inputs" onclick="sample6_execDaumPostcode()" placeholder="우편번호" th:value="${member.memberAddress.postcode}">
+//                         <input type="button" name="address-btu" class="inputs" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+//                         </div>
+//                         <input type="text" id="sample6_address" class="inputs"  onclick="sample6_execDaumPostcode()" placeholder="주소" th:value="${member.memberAddress.address}"><br>
+//                         <input type="text" id="sample6_detailAddress" class="inputs" placeholder="상세주소1"th:value="${member.memberAddress.addressDetail}">
+//                         <input type="text" id="sample6_extraAddress" class="inputs" placeholder="상세주소2"th:value="${member.memberAddress.addressSubDetail}">
+//                         </div>
+//                         <h5>한줄 소개 변경</h5>
+//                     <div class="textarea-wrap">
+//                         <textarea id="introduceme" maxlength="80"></textarea>
+//                         </div>
+//                         <div class="btn-bottom">
+//                         <ul class="btn-div2">
+//                         <li>
+//                         <button
+//                     type="button"
+//                     class="save-btn button primary btn-mint changeModel"
+//                     id="gray"
+//                         >
+//                         확인
+//                         </button>
+//                         </li>
+//                         </ul>
+//                         </div>
+//                         </div>
+//                         </div>
+//                         </div>
+//                         </div>
+//
+//                         <div class="wrapper-button">
+//                         <button class="my-info" href="#">
+//                         <div class="my-info-text">
+//                         <h3>알림 설정</h3>
+//                     <p>체험학습 알림</p>
+//                     </div>
+//                     <div class="my-info-btn">
+//                         <i class="wadizicon wa-chevron-right"></i>
+//                         </div>
+//                         </button>
+//                         <div class="content-wrapper" style="display: none">
+//                         <div class="main-alarm">
+//                         <div class="header-alarm">
+//                         <h1 style="margin-bottom: 15px">알림설정</h1>
+//                         </div>
+//                         <div class="alarm-content">
+//                         <div class="member-alarm-all">
+//                         <label for="member-follow">회원・서비스 이벤트 혜택 알림 동의</label>
+//                     <div class="member-toggle">
+//                         <!--not-allow-btn은 동의 안되어있는 상태 -->
+//                     <label for="allow" class="not-allow-btn"></label>
+//                         </div>
+//                         </div>
+//                         <ul>
+//                         <li>
+//                         <div class="first-alarm">
+//                         <label for="alarm-member">팔로잉</label>
+//                         <div class="member-toggle">
+//                         <!--allow-btn은 동의되어있는 상태 -->
+//                     <label for="allow" class="allow-btn"></label>
+//                         </div>
+//                         </div>
+//                         </li>
+//                         <li>
+//                         <div class="second-alarm">
+//                         <label for="alarm-member">통솔자 알람</label>
+//                     <div class="member-toggle">
+//                         <label for="allow" class="allow-btn"></label>
+//                         </div>
+//                         </div>
+//                         </li>
+//                         </ul>
+//                         </div>
+//                         </div>
+//                         </div>
+//                         </div>
+//                         </div>
+//                         <!-- //account-wrap with-footer -->
+//                         </div>
+//                         <!-- E : #newContainer -->
+//                         </div>
+//                         </main>
+//                           `
+//         ;
+//     });
+//     $('.page-container').append(boardText3);
+// }
+//
+// // 페이지 로딩 시 초기 리스트를 불러옴
+// // boardService.getList(function(memberDTO) {
+// //     page = 0;
+// //     console.log(memberDTO.content);
+// //     appendList(memberDTO);
+// //     console.log(page + "페이지 로딩 시 초기화면")
+// // });
+//
+// console.log("sadasdasd");
+
+
+
+
+
+
+// ajax로 댓글 작성
+const sendData = () => {
+    console.log("sendData 들어옴@@@@");
+    $.ajax({
+        type: 'POST',
+        url: `/mypage/info`,
+        data: $('.formInfo').serialize(),
+        success: function (result) {
+            console.log(result);
+            $('#replyContent').val('');
+            $('#memberNickname').text(result);
+            $(".comment-list-wrapper").empty();
+        },
+        error: function (error) {
+            console.log('Error fetching data:', error);
+        }
+    });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*asd*/
