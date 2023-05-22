@@ -60,18 +60,18 @@ window.onclick = function (event) {
 // });
 
 
-// Get the modal
-var agrModal = document.querySelector('.agrModal');
+/// Get the modal
+let agrModal = document.getElementById('agrModal');
 
 // Get the buttons
-var agreeBtn = document.querySelector('.agreement-btn');
-var closeBtn = document.querySelector('#close-btn');
+let agreeBtn = document.getElementById('agree-btn');
+let closeBtn = document.getElementById('close-btn');
 
 // When the user clicks the agree button, close the modal
 agreeBtn.onclick = function() {
     agrModal.style.display = "block";
-}
+};
 closeBtn.onclick = function() {
     agrModal.style.display = "none";
-}
+};
 

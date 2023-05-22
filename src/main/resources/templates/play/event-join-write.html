@@ -24,13 +24,13 @@
                         <span class="nav-header-span">보호자 또는 일반 둘 중 선택</span>
                     </div>
                     <a href="javascript:void(0)" class="profile-box">
-                        <span class="profile-name">임종욱</span><span>의</span>
+                        <span class="profile-name" th:text="${eventDTO.memberNickname}">임종욱</span><span>의</span>
                         <p>체험제공 신청</p>
                     </a>
                     <button type="button" class="profile-btn">
                         <span class="profile-span">
-                            <span>체험학습 게시글 번호</span>
-                            <span class="profile-span">1</span>
+<!--                            <span>체험학습 게시글 번호</span>-->
+<!--                            <span class="profile-span">1</span>-->
 <!--                             <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="arrow-icon"
                                 aria-hidden="true" style="width: 20px; height: 20px">
                                 <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
@@ -74,8 +74,7 @@
                                 <div class="input-title-layout2">
                                     <h2>체험학습 제목</h2>
                                 </div>
-                                <div class="input-sub-title">
-                                    참여할 체험학습의 제목입니다.
+                                <div class="input-sub-title" th:text="${eventDTO.boardTitle}">
                                 </div>
                                 <div class="input-title-box">
                                     <div class="input-box">
@@ -204,7 +203,11 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/js/play/play-write-field.js"></script>
+<script th:inline="javascript">
+    let eventDTO = [[${eventDTO}]];
+    console.log(eventDTO)
+</script>
+<script src="/js/play/event-join-write.js"></script>
 <script>
 
     const $selectBox = $(".select-layout");

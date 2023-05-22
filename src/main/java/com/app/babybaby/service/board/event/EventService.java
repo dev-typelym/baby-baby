@@ -26,6 +26,9 @@ public interface EventService {
     Slice<EventDTO> findMemberIdByEventListWithPaging(Long memberId, Pageable pageable);
 
     public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar);
+    
+    /* 이벤트 상세보기 */
+    public EventDTO getAllEventInfo(Long sessionId, Long eventId);
 
     Event createEvent(Event event);
 
@@ -42,6 +45,16 @@ public interface EventService {
                 .eventLocation(event.getEventLocation())
                 .eventPrice(event.getEventPrice())
                 .eventRecruitCount(event.getEventRecruitCount())
+                .memberId(event.getCompany().getId())
+                .memberEmail(event.getCompany().getMemberEmail())
+                .memberPhone(event.getCompany().getMemberPhone())
+                .memberHiSentence(event.getCompany().getMemberHiSentence())
+                .memberName(event.getCompany().getMemberName())
+                .memberNickname(event.getCompany().getMemberNickname())
+                .memberLocation(event.getCompany().getMemberAddress())
+                .memberProfileOriginalName(event.getCompany().getMemberProfileOriginalName())
+                .memberProfilePath(event.getCompany().getMemberProfilePath())
+                .memberProfileUUID(event.getCompany().getMemberProfileUUID())
                 .calendar(toCalendarDTO(event.getCalendar()))
                 .files(event.getEventFiles().stream().map(eventFile -> eventFileToDTO(eventFile)).collect(Collectors.toList()))
                 .build();

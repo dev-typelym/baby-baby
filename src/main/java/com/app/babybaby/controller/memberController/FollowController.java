@@ -24,10 +24,10 @@ public class FollowController {
         log.info("isFollowed는 : " + isFollowed);
 
         if(!isFollowed){
-            followService.saveFollow(memberId, sessionId);
+            followService.saveFollow(sessionId, memberId);
         } else if(isFollowed){
             log.info("여기도 안들어옴?");
-            followService.deleteFollow(memberId, sessionId);
+            followService.deleteFollow(sessionId, memberId);
         }
     }
 }

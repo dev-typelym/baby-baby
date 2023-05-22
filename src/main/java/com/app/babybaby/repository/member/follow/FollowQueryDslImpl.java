@@ -81,8 +81,8 @@ public class FollowQueryDslImpl implements FollowQueryDsl {
 
     @Override
     public Boolean getIsFollowedByMemberId(Long memberId, Long sessionId) {
-        BooleanExpression isFollowerExpression = follow.follower.id.eq(memberId);
-        BooleanExpression isFollowingExpression = follow.following.id.eq(sessionId);
+        BooleanExpression isFollowerExpression = follow.follower.id.eq(sessionId);
+        BooleanExpression isFollowingExpression = follow.following.id.eq(memberId);
 
         return query.select(follow)
                 .from(follow)
