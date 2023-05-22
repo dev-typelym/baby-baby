@@ -41,6 +41,10 @@ public class EventQueryDslImpl implements EventQueryDsl {
     @Override
     public Slice<Event> findEventListWithPaging_QueryDSL(EventBoardSearch eventBoardSearch,Pageable pageable) {
 
+        if(eventBoardSearch.getCategoryType() == CategoryType.ALL){
+            eventBoardSearch.setCategoryType(null);
+        }
+
         BooleanExpression eventTitleContains = eventBoardSearch.getBoardTitle() == null ? null : event.boardTitle.contains(eventBoardSearch.getBoardTitle());
         BooleanExpression eventContentContains = eventBoardSearch.getBoardContent() == null ? null : event.boardContent.contains(eventBoardSearch.getBoardContent());
         BooleanExpression eventCategoryContains = eventBoardSearch.getCategoryType() == null ? null : event.category.eq(eventBoardSearch.getCategoryType());

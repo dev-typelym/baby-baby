@@ -4,6 +4,7 @@ import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.QNowKids;
 import com.app.babybaby.entity.like.eventLike.EventLike;
 import com.app.babybaby.entity.like.eventLike.QEventLike;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 import static com.app.babybaby.entity.like.eventLike.QEventLike.eventLike;
+import static com.app.babybaby.entity.like.nowKidsLike.QNowKidsLike.nowKidsLike;
 
 @RequiredArgsConstructor
 public class EventLikeQueryDslImpl implements EventLikeQueryDsl {
@@ -43,6 +45,17 @@ public class EventLikeQueryDslImpl implements EventLikeQueryDsl {
 
         return new SliceImpl<>(list, pageable, hasNext);
     }
+
+    @Override
+    public boolean hasMemberLikedEvent(Long memberId, Long eventId) {
+        BooleanExpression hasMemberLiked = eventLike.member.id.eq(memberId);
+        BooleanExpression hasEventLike = eventLike.event.id.eq(eventId);
+        return query.selectFrom(eventLike)
+                .where(hasMemberLiked)
+                .where(hasEventLike)
+                .fetchFirst() != null;
+    }
+
 
 //    //    이벤트 게시판 좋아요 누른 게시물 리스트
 //    @Override

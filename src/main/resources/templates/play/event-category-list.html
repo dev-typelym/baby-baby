@@ -53,7 +53,7 @@
                             </div> -->
                             <div class="category-tabs">
                                 <ul>
-                                    <li class="active categoryType" value="all">
+                                    <li class="active categoryType" value="ALL">
                                         <button>전체</button>
                                     </li>
 
@@ -88,12 +88,14 @@
                                     <li class="categoryType" value="ETC">
                                         <button>기타</button>
                                     </li>
+                                    <form name="search-form">
                                     <div class="search">
-                                        <input type="text" placeholder="검색어 입력" />
+                                        <input class="event-search-input" type="text" placeholder="검색어 입력" />
                                         <img
                                             src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
                                         />
                                     </div>
+                                    </form>
                                 </ul>
                             </div>
                             <div class="collection-table">
@@ -642,7 +644,7 @@
                                     </button>
                                 </div>
                                 <!-- write 버튼 -->
-                                <div class="write-btn-container">
+                                <div class="write-btn-container" onclick="location.href='/event/writeFirst'">
                                     <button type="button" class="write-btn">
                                         <div class="bottom-write"> 글쓰기
                                             <path fill="none" d="M0 0h24v24H0z"></path>

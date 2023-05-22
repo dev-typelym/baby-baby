@@ -405,7 +405,7 @@ function handleLikeButtonClick(element) {
                 $(element).attr('aria-pressed', 'true'); // 하트 색 채우기
                 $('.like-cancel-text').hide(); // 해제 문구
                 $('#like-modal').css({ right: '-30%' }); // 오->왼 슬라이드 등장
-                $('#like-modal').animate({ right: '30px' }, { duration: 500 }); // 오->왼 슬라이드 등장
+                $('#like-modal').animate({ right: '30px' }, { duration: 1000 }); // 오->왼 슬라이드 등장
                 $('#like-modal').show(); // 슬라이드 보이기
                 $('#like-modal').css({ display: 'flex' });
                 $('#like-modal').css({ 'align-items': 'center' });
@@ -415,7 +415,7 @@ function handleLikeButtonClick(element) {
                 $(element).attr('aria-pressed', 'false'); // 색 비우기
                 $('.like-text').hide(); // 찜 추가 문구
                 $('#like-modal').css({ right: '-30%' }); // 오->왼 슬라이드 등장
-                $('#like-modal').animate({ right: '30px' }, { duration: 500 }); // 오->왼 슬라이드 등장
+                $('#like-modal').animate({ right: '30px' }, { duration: 1000 }); // 오->왼 슬라이드 등장
                 $('#like-modal').show(); // 슬라이드 보이기
                 $('.like-cancel-text').show(); // 찜 해제 문구
                 $('#like-modal').stop().fadeOut(); // 사라지기 (애니메이션 중지 후 사라짐)

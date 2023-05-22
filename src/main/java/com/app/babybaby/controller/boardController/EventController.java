@@ -109,8 +109,9 @@ public class EventController {
     @ResponseBody
     @PostMapping("list")
     public String getEvents(@RequestBody EventBoardSearch eventBoardSearch, PageRequestDTO pageRequestDTO){
+        Long sessionId = 2L;
         Pageable pageable = PageRequest.of(pageRequestDTO.getPage(), 8);
-        Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(eventBoardSearch,pageable);
+        Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(sessionId, eventBoardSearch,pageable);
         List<EventDTO> eventDTOList = eventListDTO.stream().collect(Collectors.toList());
 
         JSONArray jsonArray = new JSONArray();

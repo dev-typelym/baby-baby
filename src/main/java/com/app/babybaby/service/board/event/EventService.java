@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 public interface EventService {
 //    이벤트 게시판 리스트
-    Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable);
+    Slice<EventDTO> findEventListWithPaging(Long sessionId, EventBoardSearch eventBoardSearch, Pageable pageable);
 //    내가 쓴 이벤트 게시판
     Slice<EventDTO> findMemberIdByEventListWithPaging(Long memberId, Pageable pageable);
 
