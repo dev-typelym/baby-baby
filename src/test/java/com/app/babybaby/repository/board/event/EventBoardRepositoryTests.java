@@ -124,4 +124,8 @@ public class EventBoardRepositoryTests {
         log.info(eventRepository.findMemberInfoByEventId_QueryDSL(1L).toString());
     }
 
+    @Test
+    public void findAllByIdTest(){
+        log.info(eventRepository.findAllById(1L).toString());
+    }
 }

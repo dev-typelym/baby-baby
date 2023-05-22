@@ -1135,7 +1135,7 @@ button[class*='Button_button'] {
 
 /* 쿠폰 모달 */
 /* 모달 */
-.modal {
+.payment-modal {
     display: none; /* 모달창 숨김 */
     position: fixed; /* 모달창 위치 고정 */
     z-index: 10; /* 모달창이 다른 요소 위에 보이도록 */

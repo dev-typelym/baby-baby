@@ -48,9 +48,14 @@ public class EventController {
 //    }
 
     /*test 용 */
+
+
     /* 학부모회원의 이벤트 신청하기 */
-    @GetMapping("applyEvent")
-    public String applyEvent(){
+    @GetMapping("applyEvent/{eventId}")
+    public String applyEvent(@PathVariable Long eventId ,Model model){
+        Long sessionId = 2L;
+        EventDTO eventDTO = eventService.getAllEventInfo(sessionId, eventId);
+        model.addAttribute("eventDTO", eventDTO);
         return "play/event-join-write";
     }
 
@@ -126,6 +131,17 @@ public class EventController {
 
         return jsonArray.toString();
     }
+
+
+    @GetMapping("detail/{eventId}")
+    public String goEventDetail(@PathVariable Long eventId, Model model){
+        Long sessionId = 2L;
+        EventDTO eventDTO = eventService.getAllEventInfo(sessionId, eventId);
+        model.addAttribute("eventDTO", eventDTO);
+        return "play/event-board-detail";
+    }
+
+
 
 //
 //    /*test 용 */

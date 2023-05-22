@@ -12,9 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Component
-@Getter
-@Setter
-@ToString(exclude = {"company", "calendar"})
+@Data
 @RequiredArgsConstructor
 public class EventDTO {
     private Long id;
@@ -31,16 +29,24 @@ public class EventDTO {
     private Long memberId;
     private String memberName;
     private String memberNickname;
+    private String memberEmail;
+    private String memberHiSentence;
+    private String memberPhone;
+    private Address memberLocation;
     private String mainFileOriginalName;
     private String mainFileUUID;
     private String mainFilePath;
     private FileType fileType;
     private List<EventFileDTO> files;
 
+    private String memberProfilePath;
+    private String memberProfileUUID;
+    private String memberProfileOriginalName;
+
 
 
     @Builder
-    public EventDTO(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, EventBoardSearch eventBoardSearch, CalendarDTO calendar, Long memberId, String memberName, String memberNickname, String mainFileOriginalName, String mainFileUUID, String mainFilePath, FileType fileType, List<EventFileDTO> files) {
+    public EventDTO(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, EventBoardSearch eventBoardSearch, CalendarDTO calendar, Boolean isEventLiked, Long memberId, String memberName, String memberNickname, String memberEmail, String memberHiSentence, String memberPhone, Address memberLocation, String mainFileOriginalName, String mainFileUUID, String mainFilePath, FileType fileType, List<EventFileDTO> files, String memberProfilePath, String memberProfileUUID, String memberProfileOriginalName) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
@@ -50,14 +56,22 @@ public class EventDTO {
         this.category = category;
         this.eventBoardSearch = eventBoardSearch;
         this.calendar = calendar;
+        this.isEventLiked = isEventLiked;
         this.memberId = memberId;
         this.memberName = memberName;
         this.memberNickname = memberNickname;
+        this.memberEmail = memberEmail;
+        this.memberHiSentence = memberHiSentence;
+        this.memberPhone = memberPhone;
+        this.memberLocation = memberLocation;
         this.mainFileOriginalName = mainFileOriginalName;
         this.mainFileUUID = mainFileUUID;
         this.mainFilePath = mainFilePath;
         this.fileType = fileType;
         this.files = files;
+        this.memberProfilePath = memberProfilePath;
+        this.memberProfileUUID = memberProfileUUID;
+        this.memberProfileOriginalName = memberProfileOriginalName;
     }
     //    private List<EventFileDTO> eventFileDTOS;
 

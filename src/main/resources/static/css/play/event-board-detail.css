@@ -198,10 +198,17 @@ ul {
     background-position: center 0;
     background-size: cover;
     width: 100%;
-    height: 0;
     vertical-align: top;
     padding-bottom: 75%;
-    background-image: url(https://cdn2.wadiz.kr/2023/02/15/c5daa009-636e-4962-b511-818e85dfde60.jpg/wadiz/quality/80/);
+}
+
+.url_image img{
+    display: inline-block;
+    background-position: center 0;
+    background-size: cover;
+    width: 100%;
+    vertical-align: top;
+    padding-bottom: 75%;
 }
 .company_info2 {
     margin-top: 24px;
@@ -653,7 +660,18 @@ ul {
     background: no-repeat 50% / cover;
     width: 100%;
     height: 100%;
+    top: 5px;
 }
+
+.wadiz_icon_span img{
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #212529;
+    border-radius: 100%;
+}
+
 .wadiz_name_span {
     width: 100%;
     line-height: 28px;

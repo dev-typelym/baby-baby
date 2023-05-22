@@ -104,6 +104,18 @@ public class EventServiceImpl implements EventService {
         }
     }
 
+    @Override
+    public EventDTO getAllEventInfo(Long sessionId, Long eventId) {
+
+        Event event = eventRepository.findById(eventId).orElseThrow(() -> new IllegalArgumentException("Invalid EventId: " + eventId));
+        EventDTO eventDTO = this.eventToDTO(event);
+        if(sessionId != null){
+            //         해당 로그인한 사람이 이 이벤트에 좋아요를 눌렀는지 안눌렀는지 알수있게
+            eventDTO.setIsEventLiked(eventLikeRepository.hasMemberLikedEvent(sessionId, eventDTO.getId()));
+        }
+        return eventDTO;
+    }
+
 
     @Override
     public Event createEvent(Event event) {
