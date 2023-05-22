@@ -269,4 +269,21 @@ public class MypageController {
         return nowKidsLikeDTOS;
     }
 
+
+
+
+    @GetMapping("following")
+    public String goFollowing(){
+        return "myPage/myPage-following";
+    }
+
+
+    @GetMapping("follower")
+    public String goFollower(){
+        return "myPage/myPage-follow";
+    }
+
+
+
+
 }
