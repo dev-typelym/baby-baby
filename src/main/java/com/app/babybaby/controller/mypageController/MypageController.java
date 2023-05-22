@@ -7,10 +7,12 @@ import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
 import com.app.babybaby.domain.likeDTO.nowKidsLikeDTO.NowKidsLikeDTO;
 import com.app.babybaby.domain.memberDTO.KidDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import com.app.babybaby.entity.member.Kid;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.like.nowKidsLike.NowKidsLikeRepository;
 import com.app.babybaby.search.admin.AdminAskSearch;
 import com.app.babybaby.service.board.ask.AskService;
@@ -32,6 +34,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.parameters.P;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -47,28 +51,17 @@ import java.util.List;
 @Slf4j
 public class MypageController {
 
-    @Autowired
     private final ReviewService reviewService;
-    @Autowired
     private final ParentsBoardService parentsBoardService;
-    @Autowired
     private final KidService kidService;
-    @Autowired
     private final MemberService memberService;
-    @Autowired
     private final CouponService couponService;
-    @Autowired
     private final PurchaseService purchaseService;
-
-    @Autowired
     private final EventLikeService eventLikeService;
-
-    @Autowired
     private final AskService askService;
-    @Autowired
     private final NowKidsLikeService nowKidsLikeService;
-    @Autowired
     private final EventService eventService;
+    private final PasswordEncoder passwordEncoder;
 
 
 
@@ -105,8 +98,33 @@ public class MypageController {
 
 //    회원정보수정페이지
     @GetMapping("info")
-    public String getInfo(){
+    public String getInfo(Model model,HttpSession httpSession){
+        httpSession.setAttribute("memberId", 1L);
+        Long memberId = (Long)httpSession.getAttribute("memberId");
+        log.info(memberId + "@@@@@@@@@@@@@@2");
+//       memberService.getMemberById(memberId).ifPresent(member -> model.addAttribute("memberDTO", memberService.findByMemberId(memberId)));
+        model.addAttribute("memberDTO", memberService.findByMemberId(memberId));
+        log.info(memberService.findByMemberId(memberId) + "@@@@이겅미");
         return "myPage/myPage-info";
+    }
+
+    @PostMapping("info")
+    @ResponseBody
+    public MemberDTO getInfo(MemberDTO memberDTO, HttpSession session){
+        session.setAttribute("memberId", 1L);
+        log.info(memberDTO.toString() + "<- 화면에서 받아온 값");
+        Long memberId = (Long)session.getAttribute("memberId");
+        memberService.setInfoMemberById(memberDTO,passwordEncoder);
+        log.info(memberDTO.toString() + "이건 밑에11111");
+        return memberService.findByMemberId(memberId);
+    }
+
+    @PostMapping("info-password")
+    public RedirectView getPassword(HttpSession session, @RequestParam("memberPassword") String memberPassword, PasswordEncoder passwordEncoder){
+        session.setAttribute("memberId", 110L);
+        Long memberId = (Long)session.getAttribute("memberId");
+        memberService.updatePassword(memberId,memberPassword,passwordEncoder);
+        return new RedirectView("info");
     }
 
 

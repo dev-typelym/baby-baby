@@ -26,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -217,6 +218,29 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.setMemberInfoMyId(memberDTOToEntity(memberDTO));
 //        memberDTOToEntity --> 빌더 다 안 들어가 있을 수도 있으니까 확인하고 말해주기!!
     }
+
+
+//   회원정보 수정 (정표 var.) 변경감지로 그냥 될거같은데 함 해볼게 현수
+    @Override
+    public void setInfoMemberById(MemberDTO memberDTO,PasswordEncoder passwordEncoder) {
+        Member member = memberRepository.findMemberById(memberDTO.getId());
+        if (member.getMemberPassword() != member.getMemberPassword()){
+            member.setMemberPassword(passwordEncoder.encode(memberDTO.getMemberPassword()));
+        }
+        member.setMemberEmail(memberDTO.getMemberEmail());
+        member.setMemberAddress(memberDTO.getMemberAddress());
+        member.setMemberPhone(memberDTO.getMemberPhone());
+        member.setMemberNickname(memberDTO.getMemberNickname());
+        memberRepository.save(memberRepository.findMemberById(memberDTO.getId()));
+        }
+
+    @Override
+    public MemberDTO findByMemberId(Long memberId) {
+        MemberDTO memberDTO = entityToMemberDTO(memberRepository.findMemberById(memberId));
+        return memberDTO;
+    }
+
+
 
     @Override
     public Member findMemberByRandomKey(String randomKey) {

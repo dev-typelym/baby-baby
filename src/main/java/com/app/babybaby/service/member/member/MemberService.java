@@ -154,6 +154,12 @@ public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable);
     // 회원 정보 수정
     public void setMemberInfoById(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
 
+//    회원정보 수정 (정표 var.)
+    public void setInfoMemberById(MemberDTO memberDTO,PasswordEncoder passwordEncoder);
+
+//    정표
+    public MemberDTO findByMemberId(Long memberId);
+
     /* 랜덤키로 계정 찾기 */
     public Member findMemberByRandomKey(String randomKey);
 

@@ -94,6 +94,13 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .execute();
     }
 
+    @Override
+    public Member findByMemberId(Long memberId) {
+        return query.select(member)
+                .from(member)
+                .where(member.id.eq(memberId))
+                .fetchOne();
+    }
 
 
     //    --------------------------------------------회원 상세 페이지---------------------------------------------------
@@ -261,6 +268,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                     .execute();
         }
     }
+
 
 
 }
