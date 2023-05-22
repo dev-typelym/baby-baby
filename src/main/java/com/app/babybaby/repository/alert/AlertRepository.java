@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface AlertRepository extends JpaRepository<Alert, Long>, AlertQueryDsl {
     @Query("select a from Alert a where a.member.id = :memberId")
     public Slice<Alert> findAllByMemberId(Long memberId);
+
+
 }

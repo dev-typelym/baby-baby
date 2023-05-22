@@ -29,7 +29,7 @@ public class ParentsBoardReplyController {
 
     private final ParentsBoardReplyService parentsBoardReplyService;
 
-// 댓글작성
+    // 댓글작성
     @GetMapping("write/{parentsBoardId}")
     @ResponseBody
     public ParentsBoardReplyDTO saveParentsBoardReply(ParentsBoardReplyDTO parentsBoardReplyDTO, @PathVariable("parentsBoardId") Long parentsBoardId, HttpSession httpSession) {
@@ -53,16 +53,15 @@ public class ParentsBoardReplyController {
     public Map<String, Object> getParentsBoardReplyList(@PathVariable("page") Integer page,@PathVariable Long boardId) {
         Page<ParentsBoardReplyDTO> parentsBoardReplyDTOS = parentsBoardReplyService.findAllReplyByBoardIdWithPaging(PageRequest.of(page, 3), boardId);
         int count = parentsBoardReplyDTOS.getTotalPages();
-
         Map<String, Object> response = new HashMap<>();
         response.put("data", parentsBoardReplyDTOS);
         response.put("count", count);
-
+        response.put("totalReplies", parentsBoardReplyDTOS.getTotalElements());
         return response;
     }
 
 
-//    댓글 수정
+    //    댓글 수정
     @PostMapping("update/{replyId}/{replyContent}")
     @ResponseBody
     public void updateByParentsBoardReply(@PathVariable("replyId") Long replyId, @PathVariable("replyContent") String replyContent) {
