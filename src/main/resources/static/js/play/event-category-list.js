@@ -34,9 +34,7 @@ const boardService = (() => {
             data: JSON.stringify(eventBoardSearch),
             contentType: "application/json;charset=utf-8",
             success: function(eventListDTOJSON){
-                console.log(eventListDTOJSON)
                 let eventListDTO = JSON.parse(eventListDTOJSON)
-                console.log(eventListDTO)
                 if (eventListDTO.length === 0) { // 불러올 데이터가 없으면
                     console.log("막힘")
                     $(window).off('scroll'); // 스크롤 이벤트를 막음
@@ -54,34 +52,33 @@ const boardService = (() => {
 function appendList(eventListDTO) {
     let boardText3 = '';
     console.log(eventListDTO);
-    eventListDTO.content.forEach(eventList => {
-        console.log(eventList);
+    eventListDTO.forEach((e,i) => {
+        console.log(e);
         boardText3 +=  `
              <div role="presentation" class="instance">
                             <a class="item" href="">
                                 <div class="thumbnail-container">
                                     <div class="thumbnail-list">
                                         <div class="photo-thumbnail"
-                                             style="background-image:url('/images/main/images/event-001.jpg')"></div>
+                                             style="background-image:url('/eventFiles/display?fileName=Event/${e.files[0].filePath}/${e.files[0].fileUUID}_${e.files[0].fileOriginalName}')"></div>
                                         <!-- 사진 div -->
                                     </div>
                                 </div>
                                 <div class="list-content">
                                     <div class="list-title">
-                                        장항준 감독 영화 리바운드 재밌다던데 같이 보러 가실
-                                        분
+                                        ${e.boardTitle}
                                     </div>
                                     <div class="for-price-full-contain">
                                         <div class="for-price-wrap">
-                                            <div class="list-writer">ss</div>
+                                            <div class="list-writer">${e.memberNickname}</div>
                                             <div class="list-date-container">
                                                         <span class="print-data"
-                                                        >역삼역 4번 출구</span
+                                                        >${e.eventLocation.address}</span
                                                         >
                                             </div>
                                         </div>
                                         <span class="event-price-wrap">
-                                                    <span class="event-price">45000</span
+                                                    <span class="event-price">${e.eventPrice}</span
                                                     ><span>원</span>
                                                 </span>
                                     </div>
@@ -92,15 +89,15 @@ function appendList(eventListDTO) {
                                                     <i class="second-confirm"></i>
                                                     <span class="ing">
                                                                 <span class="event-start-day"
-                                                                >2023-04-12</span
+                                                                >${convertDateFormat(e.calendar.startDate)}</span
                                                                 >
                                                                 ~<span class="event-end-day"
-                                                    >2023-06-24</span
+                                                    >${convertDateFormat(e.calendar.endDate)}</span
                                                     >
                                                                 <div class="like-count-container">
                                                                     <div class="people-icon"></div>
                                                                     <span class="like-count"
-                                                                    >10</span
+                                                                    >${e.eventRecruitCount}</span
                                                                     >
                                                                     <span>명 모집</span>
                                                                 </div>
@@ -136,7 +133,6 @@ function appendList(eventListDTO) {
 
 // 페이지 로딩 시 초기 리스트를 불러옴
 boardService.getList(function(eventListDTO) {
-    console.log(eventListDTO)
     boardService.getList(appendList);
 });
 
@@ -194,4 +190,12 @@ $('.top-btn').click(function () {
     return false;
 });
 
+function convertDateFormat(dateString) {
+    let dateParts = dateString.split('T')[0].split('-');
+    let year = dateParts[0];
+    let month = dateParts[1];
+    let day = dateParts[2];
 
+    let formattedDate = year + '.' + month + '.' + day;
+    return formattedDate;
+}

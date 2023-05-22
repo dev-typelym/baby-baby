@@ -28,7 +28,8 @@ public class EventDTO {
     private CalendarDTO calendar;
 //    private MemberDTO company;
     private Long memberId;
-    private Long memberName;
+    private String memberName;
+    private String memberNickname;
     private String mainFileOriginalName;
     private String mainFileUUID;
     private String mainFilePath;
@@ -38,7 +39,7 @@ public class EventDTO {
 
 
     @Builder
-    public EventDTO(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, EventBoardSearch eventBoardSearch, CalendarDTO calendar, MemberDTO company, String mainFileOriginalName, String mainFileUUID, String mainFilePath, FileType fileType, List<EventFileDTO> files,Long memberId) {
+    public EventDTO(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, EventBoardSearch eventBoardSearch, CalendarDTO calendar, Long memberId, String memberName, String memberNickname, String mainFileOriginalName, String mainFileUUID, String mainFilePath, FileType fileType, List<EventFileDTO> files) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
@@ -48,7 +49,9 @@ public class EventDTO {
         this.category = category;
         this.eventBoardSearch = eventBoardSearch;
         this.calendar = calendar;
-//        this.company = company;
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.memberNickname = memberNickname;
         this.mainFileOriginalName = mainFileOriginalName;
         this.mainFileUUID = mainFileUUID;
         this.mainFilePath = mainFilePath;

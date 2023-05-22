@@ -119,4 +119,9 @@ public class EventBoardRepositoryTests {
         log.info(eventRepository.findAllUpcommingEvents_QueryDSL(1L, Pageable.ofSize(1)).toString());
     }
 
+    @Test
+    public void findMemberInfoByEventId_QueryDSLTest(){
+        log.info(eventRepository.findMemberInfoByEventId_QueryDSL(1L).toString());
+    }
+
 }
