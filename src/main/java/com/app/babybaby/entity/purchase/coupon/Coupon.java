@@ -37,6 +37,7 @@ public class Coupon extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
+    @Builder
     public Coupon(CouponType couponType, CouponStatus couponStatus, Long couponPrice, Member member) {
         this.couponType = couponType;
         this.couponStatus = couponStatus;

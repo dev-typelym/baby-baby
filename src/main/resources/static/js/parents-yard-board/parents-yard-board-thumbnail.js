@@ -205,9 +205,18 @@ function toStringByFormatting(source, delimiter = '/') {
 }
 
 
+function getCouponParentsBoard() {
+    $.ajax({
+        url: "/coupon/parentsBoard",
+        type: "get",
+        success: function () {
+        }
+    });
+}
 
-
-
+$(".confirm-button").click(function() {
+    getCouponParentsBoard();
+});
 
 
 

@@ -12,7 +12,7 @@ function showList(e) {
 }
 
 /* 수정버튼 눌렀을 때 */
-$('.comment-list').on('click', '.modify-button', function() {
+$('.comment-list').on('click', '.modify-button', function () {
     var index = $(this).index('.modify-button'); // 클릭한 버튼의 인덱스 확인
     $($(".modify-textarea")[index]).show(); // 수정영역
     $('.comment-util-list').hide(); // 수정, 삭제 모달 숨기기
@@ -130,33 +130,33 @@ function formatDate(originalDate) {
 
 // 댓글 무한 스크롤
 let page = 0;
-const replyService = (() => {
-    function getList(callback) {
-        console.log(boardId + "보오드");
-        $.ajax({
-            url: `/parentsYard/reply/list/show/${page}/${boardId}`,
-            type: 'get',
-            data: {page: page, boardId: boardId},
-            contentType: "application/json;charset=utf-8",
-            success: function (parentsBoardReplyDTOS) {
-                console.log("드렁");
-                appendList(parentsBoardReplyDTOS);
-                if (parentsBoardReplyDTOS.length === 0) {
-                    // 받아온 데이터의 길이가 0인 경우, 더 이상 댓글이 없으므로 "댓글 더 보기" 버튼을 숨깁니다.
-                    $(".btn-comment").hide();
-                }
-            }
-        });
-    }
-
-    return {getList: getList};
-})();
-
-
-/*${formattedDate}*/
+// const replyService = (() => {
+//     function getList(callback) {
+//         console.log(boardId + "보오드");
+//         $.ajax({
+//             url: `/parentsYard/reply/list/show/${page}/${boardId}`,
+//             type: 'get',
+//             data: {page: page, boardId: boardId},
+//             contentType: "application/json;charset=utf-8",
+//             success: function (parentsBoardReplyDTOS) {
+//                 console.log("드렁");
+//                 appendList(parentsBoardReplyDTOS);
+//                 if (parentsBoardReplyDTOS.length === 0) {
+//                     // 받아온 데이터의 길이가 0인 경우, 더 이상 댓글이 없으므로 "댓글 더 보기" 버튼을 숨깁니다.
+//                     $(".btn-comment").hide();
+//                 }
+//             }
+//         });
+//     }
+//
+//     return {getList: getList};
+// })();
+//
+//
+// /*${formattedDate}*/
 function appendList(reply) {
     let replyText = '';
-    replyText += ` 
+    replyText += `
                         <ul id="comment-list-detail">
                             <li class="top" style="display: list-item;">
                              <input class="replyId" type="hidden" value="${reply.id}" style="display: none;">
@@ -190,19 +190,20 @@ function appendList(reply) {
     ;
     $('.comment-list').append(replyText);
 }
-
-// 페이지 로딩 시 초기 리스트를 불러옴
-replyService.getList(function (parentsBoardReplyDTOS) {
-    page = 0;
-    appendList(parentsBoardReplyDTOS);
-    console.log(page + "페이지 로딩 시 초기화면")
-});
-
+//
+// // 페이지 로딩 시 초기 리스트를 불러옴
+// replyService.getList(function (parentsBoardReplyDTOS) {
+//     page = 0;
+//     appendList(parentsBoardReplyDTOS);
+//     console.log(page + "페이지 로딩 시 초기화면")
+// });
+//
 
 // 댓글 더보기
 $('.comment-open').click(function () {
     page++;
-    replyService.getList(appendList);
+    // replyService.getList(appendList);
+    getReplyList();
     console.log(page)
 });
 
@@ -303,7 +304,8 @@ $(document).on('click', '.delete-reply', function () {
         type: 'post',
         success: function (result) {
             $('.comment-list').html("");
-            appendList(result);
+            // appendList(result);
+            getReplyList();
         }
     });
 });
@@ -322,7 +324,8 @@ $(".write-reply").click(function () {
         type: 'get',
         data: {parentsBoardReplyContent: $('.replyContent').val()},
         success: function (result) {
-            appendList(result);
+            // appendList(result);
+            getReplyList();
             $('.replyContent').val("");
         }
     })
@@ -331,7 +334,7 @@ $(".write-reply").click(function () {
 });
 
 // 댓글 수정
-$('.comment-list').on('click', '.modify-confirm', function() {
+$('.comment-list').on('click', '.modify-confirm', function () {
     console.log("댓글수저어어엉~~~~");
 
     var replyId = $(this).data('reply-id');
@@ -347,7 +350,71 @@ $('.comment-list').on('click', '.modify-confirm', function() {
         type: 'post',
         data: {replyContent: replyContent},
         success: function (result) {
-            appendList(result);
+            // appendList(result);
+            getReplyList();
         }
     });
 });
+
+// 댓글목록 불러오기==========================================
+function getReplyList() {
+    console.log("ajax 들어옴");
+    $.ajax({
+        url: `/parentsYard/reply/list/show/${page}/${boardId}`,
+        data: {page: page, boardId: boardId},
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            console.log(data);
+            showReplyList(data.data);
+            var count = data.count;
+            console.log(count + "카운트")
+            if (page == count-1) {
+                // 받아온 데이터의 길이가 0인 경우, 더 이상 댓글이 없으므로 "댓글 더 보기" 버튼을 숨깁니다.
+                $(".btn-comment").hide();
+            }
+        }
+    });
+
+}
+
+getReplyList();
+
+function showReplyList(data) {
+    let parentsBoardDTOS = data.content;
+    parentsBoardDTOS.forEach(reply => {
+        let text = '';
+        text += ` 
+                        <ul id="comment-list-detail">
+                            <li class="top" style="display: list-item;">
+                             <input class="replyId" type="hidden" value="${reply.id}" style="display: none;">
+                             <input class="parentsBoardId" type="hidden" value="${reply.parentsBoardId} style="display: none;">
+                                <div class="comment-wrap">
+                                    <div class="comment-info">
+                                        <img src="/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">
+                                        <span class="name">${reply.memberNickName}</span>
+                                        <button class="comment-util" onclick="showList(this)"></button>
+                                        <ul class="comment-util-list">
+                                            <li>
+                                                <button type="button" class="modify-button">수정</button>
+                                            </li>
+                                            <li>
+                                                <button  type="button" class="delete-reply" data-reply-id="${reply.id}">삭제</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p class="comment-content">${reply.parentsBoardReplyContent}</p>
+                                    <textarea id="" class="modify-textarea" style="display: none;">${reply.parentsBoardReplyContent}</textarea>
+                                    <div class="comment-date">
+                                        ${formatDate(reply.updateDate)}
+                                    </div>
+                                    <div class="comment-bottom" style="display:none;">
+                                        <button type="button" class="modify-cancel">취소</button>
+                                        <button type="button" class="modify-confirm" data-reply-id="${reply.id}">수정완료</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul> `
+        ;
+        $('.comment-list').append(text);
+    })
+}

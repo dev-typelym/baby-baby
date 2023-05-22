@@ -50,10 +50,17 @@ public class ParentsBoardReplyController {
 
     @GetMapping("list/show/{page}/{boardId}")
     @ResponseBody
-    public Page<ParentsBoardReplyDTO> getParentsBoardReplyList(@PathVariable("page") Integer page,@PathVariable Long boardId) {
+    public Map<String, Object> getParentsBoardReplyList(@PathVariable("page") Integer page,@PathVariable Long boardId) {
         Page<ParentsBoardReplyDTO> parentsBoardReplyDTOS = parentsBoardReplyService.findAllReplyByBoardIdWithPaging(PageRequest.of(page, 3), boardId);
-        return parentsBoardReplyDTOS;
+        int count = parentsBoardReplyDTOS.getTotalPages();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", parentsBoardReplyDTOS);
+        response.put("count", count);
+
+        return response;
     }
+
 
 //    댓글 수정
     @PostMapping("update/{replyId}/{replyContent}")

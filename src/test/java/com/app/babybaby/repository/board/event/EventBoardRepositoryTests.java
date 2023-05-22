@@ -49,7 +49,7 @@ public class EventBoardRepositoryTests {
         Calendar calendar = new Calendar("요기용", CategoryType.ART, LocalDateTime.now(), LocalDateTime.now());
 
 //        Event event = new Event(10L, address, 100000L, CategoryType.MUSEUM, calendar, member);
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 2; i++) {
             Event event1 = Event.builder().boardTitle("검색조건")
                     .boardContent("사랑해요~")
                     .calendar(calendar)
