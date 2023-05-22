@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,6 +17,8 @@ public interface CouponService {
     //    나의 쿠폰 조회
     public Slice<CouponDTO> findCouponByMemberId(Pageable pageable, Long memberId);
 
+//    부모님마당 작성시 쿠폰 발급
+    public void saveCouponByParentsBoard(Long id);
 
 
     default CouponDTO CouponToDTO(Coupon coupon){
@@ -29,6 +32,7 @@ public interface CouponService {
                 .updateDate(coupon.getUpdateDate())
                 .build();
     }
+
 
 
 
