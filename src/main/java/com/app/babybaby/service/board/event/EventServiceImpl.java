@@ -12,6 +12,7 @@ import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.calendar.CalendarRepository;
 import com.app.babybaby.repository.file.eventFile.EventFileRepository;
+import com.app.babybaby.repository.like.eventLike.EventLikeRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.service.member.member.MemberService;
@@ -38,12 +39,14 @@ public class EventServiceImpl implements EventService {
 
     private final EventFileRepository eventFileRepository;
 
+    private final EventLikeRepository eventLikeRepository;
+
     private final CalendarRepository calendarRepository;
 
 
 //    이벤트 게시판 리스트
     @Override
-    public Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable) {
+    public Slice<EventDTO> findEventListWithPaging(Long sessionId, EventBoardSearch eventBoardSearch, Pageable pageable) {
         Slice<Event> events = eventRepository.findEventListWithPaging_QueryDSL(eventBoardSearch, pageable);
         List<EventDTO> collect = events.get().map(event -> eventToDTO(event)).collect(Collectors.toList());
 
@@ -53,6 +56,8 @@ public class EventServiceImpl implements EventService {
             eventDTO.setMemberNickname(member.getMemberNickname());
             eventDTO.setMemberName(member.getMemberName());
         }).collect(Collectors.toList());
+//         해당 로그인한 사람이 이 이벤트에 좋아요를 눌렀는지 안눌렀는지 알수있게
+        eventDTOS.stream().forEach(eventDTO -> eventDTO.setIsEventLiked(eventLikeRepository.hasMemberLikedEvent(sessionId, eventDTO.getId())));
 
 //        List<EventDTO> collect = events.get().collect(Collectors.toList());
         return new SliceImpl<>(eventDTOS,pageable,events.hasNext());

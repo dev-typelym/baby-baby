@@ -27,6 +27,7 @@ public class EventDTO {
     private EventBoardSearch eventBoardSearch;
     private CalendarDTO calendar;
 //    private MemberDTO company;
+    private Boolean isEventLiked;
     private Long memberId;
     private String memberName;
     private String memberNickname;

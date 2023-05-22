@@ -9,15 +9,19 @@ import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.file.reviewFile.ReviewFile;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.entity.reply.reviewReply.ReviewReply;
 import com.app.babybaby.exception.BoardNotFoundException;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.review.ReviewRepository;
 import com.app.babybaby.repository.file.reviewFile.ReviewFileRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
+import com.app.babybaby.repository.purchase.coupon.CouponRepository;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.service.board.event.EventService;
 import com.app.babybaby.type.CategoryType;
+import com.app.babybaby.type.CouponStatus;
+import com.app.babybaby.type.CouponType;
 import com.app.babybaby.type.FileType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,6 +48,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     private final ReviewFileRepository reviewFileRepository;
 
+    private final CouponRepository couponRepository;
+
     @Override
     public Page<ReviewDTO> findReviewById(Long memberId, Pageable pageable) {
 
@@ -66,9 +72,11 @@ public class ReviewServiceImpl implements ReviewService {
         Member member = memberRepository.findById(memberId).get();
         Event event = eventRepository.findById(eventId).get();
         List<ReviewFile> reviewFiles = reviewDTO.getFiles().stream().map(this::toReivewFileEntity).collect(Collectors.toList());
-
+        Coupon coupon = new Coupon(CouponType.REVIEW, CouponStatus.UNUSED, 5000L, member);
         Review review = new Review(reviewDTO.getBoardTitle(), reviewDTO.getBoardContent(), reviewDTO.getReviewScore(), reviewFiles, event, member);
         Review savedReview = reviewRepository.save(review);
+        couponRepository.save(coupon);
+        
         log.info("방금 세이브한 리뷰 : " + savedReview.toString());
         reviewFiles.forEach(reviewFile -> {
 //            String fileOriginalName, String fileUUID, String filePath, Review review, FileType fileStatus

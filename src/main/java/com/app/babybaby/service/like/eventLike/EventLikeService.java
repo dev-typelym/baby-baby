@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 public interface EventLikeService {
     public Slice<EventLikeDTO> findEventLikeByMemberId(Pageable pageable, Long memberId);
 
+    public void likeSave(Long nowKidsId, Long memberId);
+
+    public void deleteLike(Long nowKidsId, Long memberId);
 
 
     default EventLikeDTO EventToDTO(EventLike eventLike){

@@ -26,4 +26,14 @@ public class EventLikeRepositoryTests {
 //        eventLikes.get().map(Event::toString).forEach(log::info);
 //    }
 
+    @Test
+    public void hasMemberLikedEventTest(){
+        log.info(eventLikeRepository.hasMemberLikedEvent(2L, 82L)+"");
+    }
+
+    @Test
+    public void deleteByEventIdAndMemberIdTest(){
+        eventLikeRepository.deleteByEventIdAndMemberId(82L, 2L);
+    }
+
 }
