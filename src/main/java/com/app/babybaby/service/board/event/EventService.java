@@ -36,7 +36,6 @@ public interface EventService {
     default EventDTO eventToDTO(Event event){
         return EventDTO.builder()
                 .id(event.getId())
-                .company(memberToDTO(event.getCompany()))
                 .boardContent(event.getBoardContent())
                 .boardTitle(event.getBoardTitle())
                 .category(event.getCategory())

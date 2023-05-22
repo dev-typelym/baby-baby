@@ -111,10 +111,10 @@ public class EventController {
     public String getEvents(@RequestBody EventBoardSearch eventBoardSearch, PageRequestDTO pageRequestDTO){
         Pageable pageable = PageRequest.of(pageRequestDTO.getPage(), 8);
         Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(eventBoardSearch,pageable);
-        List<EventDTO> eventDTOList = eventListDTO.getContent().stream().collect(Collectors.toList());
+        List<EventDTO> eventDTOList = eventListDTO.stream().collect(Collectors.toList());
 
         JSONArray jsonArray = new JSONArray();
-        for (EventDTO eventDTO : eventDTOList) {
+        for (EventDTO eventDTO : eventListDTO) {
             JSONObject jsonObject = new JSONObject(eventDTO);
             jsonArray.put(jsonObject);
         }

@@ -4,6 +4,8 @@ import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.like.eventLike.QEventLike;
+import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.member.QMember;
 import com.app.babybaby.entity.purchase.coupon.QCoupon;
 import com.app.babybaby.entity.purchase.purchase.Purchase;
 import com.app.babybaby.entity.purchase.purchase.QPurchase;
@@ -25,6 +27,7 @@ import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
 import static com.app.babybaby.entity.like.eventLike.QEventLike.eventLike;
+import static com.app.babybaby.entity.member.QMember.member;
 import static com.app.babybaby.entity.purchase.coupon.QCoupon.coupon;
 import static com.app.babybaby.entity.purchase.purchase.QPurchase.purchase;
 
@@ -124,7 +127,15 @@ public class EventQueryDslImpl implements EventQueryDsl {
                         .fetchOne()
         );
     }
-
+// 이벤트 게시판 eventId로 맴버 정보조회
+    public Member findMemberInfoByEventId_QueryDSL(Long eventId){
+        return query.select(event.company)
+                .from(event)
+                .where(event.id.eq(eventId))
+                .fetchOne();
+    }
+    
+    
 //    내가 쓴 이벤트 게시판 (기업!)
     @Override
     public Page<Event> findEventListByCompanyId_QueryDSL(Pageable pageable, Long companyId) {
@@ -176,7 +187,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
                 .offset(pageable.getOffset())
                 .fetch();
     }
-
+//  [부모님 마당]진행 예정인 이벤트 들고오기
     public List<Event> findAllUpcommingEvents_QueryDSL(Long memberId) {
         LocalDateTime currentTime = LocalDateTime.now();
 
@@ -187,6 +198,8 @@ public class EventQueryDslImpl implements EventQueryDsl {
                 .orderBy(event.calendar.endDate.asc())
                 .fetch();
     }
+    
+    
     
     /* 이 맴버가 쓴 지나간 이벤트 가져오기 */
     public List<Event> findAllFinishedEvents_QueryDSL(Long memberId, Pageable pageable) {

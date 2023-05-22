@@ -45,11 +45,17 @@ public class EventServiceImpl implements EventService {
     @Override
     public Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable) {
         Slice<Event> events = eventRepository.findEventListWithPaging_QueryDSL(eventBoardSearch, pageable);
-        events.get().map(event -> event.toString()).forEach(log::info);
-
         List<EventDTO> collect = events.get().map(event -> eventToDTO(event)).collect(Collectors.toList());
+
+        List<EventDTO> eventDTOS = collect.stream().peek(eventDTO -> {
+            Member member = eventRepository.findMemberInfoByEventId_QueryDSL(eventDTO.getId());
+            eventDTO.setMemberId(member.getId());
+            eventDTO.setMemberNickname(member.getMemberNickname());
+            eventDTO.setMemberName(member.getMemberName());
+        }).collect(Collectors.toList());
+
 //        List<EventDTO> collect = events.get().collect(Collectors.toList());
-        return new SliceImpl<>(collect,pageable,events.hasNext());
+        return new SliceImpl<>(eventDTOS,pageable,events.hasNext());
     }
 
 //    내가 작성한 이벤트 게시판 목록
