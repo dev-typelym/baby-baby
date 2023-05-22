@@ -56,8 +56,10 @@ public class ParentsBoardReplyServiceImpl implements ParentsBoardReplyService {
     }
 
 //    댓글 수정
-    public void updateByParentsBoardReply(Long replyId) {
-        parentsBo
+    public void updateByParentsBoardReply(Long replyId, String replyContent) {
+        ParentsBoardReply parentsBoardReply = parentsBoardReplyRepository.findById(replyId).get();
+        parentsBoardReply.setParentsBoardReplyContent(replyContent);
+        parentsBoardReplyRepository.save(parentsBoardReply);
     }
 
 //    댓글 작성
