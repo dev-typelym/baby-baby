@@ -11,6 +11,7 @@ import com.app.babybaby.search.admin.AdminEventSearch;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.type.CategoryType;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -41,24 +42,35 @@ public class EventQueryDslImpl implements EventQueryDsl {
         BooleanExpression eventContentContains = eventBoardSearch.getBoardContent() == null ? null : event.boardContent.contains(eventBoardSearch.getBoardContent());
         BooleanExpression eventCategoryContains = eventBoardSearch.getCategoryType() == null ? null : event.category.eq(eventBoardSearch.getCategoryType());
 
-        List<Event> events = query.select(event)
+        JPAQuery<Event> events = query.select(event)
                 .from(event)
                 .join(event.company).fetchJoin()
-                .leftJoin(event.eventFiles).fetchJoin()
-                .where(eventTitleContains.eq(eventTitleContains), eventContentContains.eq(eventContentContains), eventCategoryContains.eq(eventCategoryContains))
-                .orderBy(event.id.desc())
+                .leftJoin(event.eventFiles).fetchJoin();
+
+        if (eventTitleContains != null) {
+            events.where(eventTitleContains);
+        }
+
+        if (eventContentContains != null) {
+            events.where(eventContentContains);
+        }
+
+        if (eventCategoryContains != null) {
+            events.where(eventCategoryContains);
+        }
+
+        List<Event> result = events.orderBy(event.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         boolean hasNext = false;
-        // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true
-        if (events.size() > pageable.getPageSize()) {
+        if (result.size() > pageable.getPageSize()) {
             hasNext = true;
-            events.remove(pageable.getPageSize());
+            result.remove(pageable.getPageSize());
         }
 
-        return new SliceImpl<>(events, pageable, hasNext);
+        return new SliceImpl<>(result, pageable, hasNext);
     }
 
 //    내가쓴 이벤트 게시글

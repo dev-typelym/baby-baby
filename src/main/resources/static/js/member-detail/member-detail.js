@@ -1,4 +1,13 @@
-
+function getProfileImg(memberInfo) {
+    let imgText = `
+        <div class="image_section" style="background-image: url('members/display?fileName=Member/Profile/${memberInfo.memberProfilePath}/${memberInfo.memberProfileUUID}_${memberInfo.memberProfileOriginalName}');">
+            <div class="image_section_div">
+                <span class="image_section_span" style="background-image: url('members/display?fileName=Member/Profile/${memberInfo.memberProfilePath}/${memberInfo.memberProfileUUID}_${memberInfo.memberProfileOriginalName}'); border: 1px solid rgb(221, 226, 230);"></span>
+            </div>
+        </div>
+    `;
+    return imgText
+}
 
 /* 프로젝트, 메이커 정보, 만족도 클릭시 css 변경  */
 $(document).ready(function() {
@@ -9,8 +18,8 @@ $(document).ready(function() {
       }
     });
   });
-  
-  
+
+
   /* 프로젝트, 메이커 정보, 만족도 클릭시 display 변경  */
   $(document).ready(function() {
     $('.page_content_div').hide();
@@ -44,9 +53,10 @@ $.ajax({
         console.log(generalMember)
         $('.company_title_strong').html(generalMember.memberNickname)
         $('.company_title_p').html(generalMember.memberHiSentence)
-        $('.proceeding_span').html(generalMember.parentsBoards.length + '건')
         $('.follow_button').attr('follow', generalMember.isFollowed);
-
+        console.log($('.image_section'))
+        $('.image_section').css('background-image', `url('/members/display?fileName=Member/Profile/${generalMember.memberProfilePath}/${generalMember.memberProfileUUID}_${generalMember.memberProfileOriginalName}' `)
+        $('.image_section_span').css('background-image', `url('/members/display?fileName=Member/Profile/${generalMember.memberProfilePath}/${generalMember.memberProfileUUID}_${generalMember.memberProfileOriginalName}' `)
 
         let followCountText =
             `
@@ -196,7 +206,6 @@ $.ajax({
 
 /*<span class="review_span">${e.eventType}</span>*/
 
-// style = "background-image: url('/parentBoardFiles/display?fileName=ParentsBoard/${e.parentsBoardFileDTOS[0].filePath}/${e.parentsBoardFileDTOS[0].fileUUID}_${e.parentsBoardFileDTOS[0].fileOriginalName}')"
 function seeMoreParentsHandler(){
         $.ajax({
             url: '/member/details/generals/getInfo/' + memberId + '?page=' + reviewPage + '&size=' + size,
@@ -208,13 +217,11 @@ function seeMoreParentsHandler(){
                     memberDetails.parentsBoards.forEach((e,i)=>{
                         parentBoardText +=
                             `
-                                    <div class="real_content_div">
-                                         <div class="project_card parent-board-one-content">
-                                            <a class="project_card_a">
+                                    <div class="real_content_div parent-board-one-content">
+                                         <div class="project_card">
+                                            <a class="project_card_a" href="/parentsYard/detail/${e.id}">
                                                          <div class="project_card_img"
-                                                            data-event-filePath="${e.parentsBoardFileDTOS[0].filePath}"
-                                                            data-event-fileOriginalName="${e.parentsBoardFileDTOS[0].fileOriginalName}"
-                                                            data-event-fileUUID="${e.parentsBoardFileDTOS[0].fileUUID}"
+                                                         style = "background-image: url('/parentsBoardFiles/display?fileName=ParentsBoard/${e.parentsBoardFileDTOS[0].filePath}/${e.parentsBoardFileDTOS[0].fileUUID}_${e.parentsBoardFileDTOS[0].fileOriginalName}')"
                                                          ></div>
                                                      </a>
                                                      <div class="project_card_div">
@@ -241,7 +248,7 @@ function seeMoreParentsHandler(){
 
                 $('.parents-board-section').append(parentBoardText)
 
-            if($('.parent-board-one-content').length < memberDetails.totalParentsBoardCount){
+            if($('.parent-board-one-content').length == memberDetails.totalParentsBoardCount){
                 $('.see_more_parents_board').hide()
             }
 
@@ -297,8 +304,6 @@ function seeMoreReviewHandler(){
     })
     reviewPage++
 }
-
-
 
 
 

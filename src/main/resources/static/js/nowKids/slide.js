@@ -1,20 +1,6 @@
 // JSON 가져온 값
 
 
-/* 프로필 불러오기 */
-function getProfileImg(selector) {
-    $(selector).each(function () {
-        let profilePath = $(this).data('member-profile-path');
-        let profileUUID = $(this).data('member-profile-uuid');
-        let profileFileOriginalName = $(this).data('member-profile-original-name');
-        let profileURL = '/nowKidFiles/display?fileName=NowKids/' + profilePath + '/' + profileUUID + '_' + profileFileOriginalName;
-
-        // 데이터를 변수에 저장
-        $(this).css('background-image', 'url(' + profileURL + ')');
-    });
-}
-
-/* 프로필 이미지 불러오기 끝 */
 
 // 내가 받은 calendar를 한국어로 바꾸는 코드
 function convertDate(eventDate) {
@@ -63,7 +49,7 @@ $(window).scroll(function () {
 
 /* 글쓰러가기 나타나게 하기 끝 */
 
-
+// style = "background-image: url('/members/display?fileName=Member/Profile/${e.memberProfilePath}/${e.memberProfileUUID}_${e.memberProfileOriginalName}')"
 
 /* 위에 프로필 최신순 */
 let topRecentTag = '';
@@ -74,19 +60,13 @@ members.forEach((e, i) => {
     //     topRecentTag = '';
     // }
     console.log(e)
-
-
     let profilesText =
         `
                 <div class="user-info-wrap" onclick="location.href='/member/details/${e.id}'">
-<!--                                <span class="top-content-new-img" ></span>-->
-                                ${topRecentTag}
                                 <div class="user-img-wrap">
                                     <span class="top-content-user-img"
-                                    data-member-profile-path="${e.memberProfilePath}" 
-                                    data-member-profile-uuid="${e.memberProfileUUID}"
-                                    data-member-profile-original-name="${e.memberProfileOriginalName}">
-                                    </span>
+                                    style = "background-image: url('/members/display?fileName=Member/Profile/${e.memberProfilePath}/${e.memberProfileUUID}_${e.memberProfileOriginalName}')"
+                                    ></span>
                                 </div>
                                 <div class="top-content-user-name">
                                     ${e.memberNickname}
@@ -96,12 +76,6 @@ members.forEach((e, i) => {
     `;
     $(".top-content-inner-flex").append(profilesText)
 })
-
-getProfileImg(".top-content-user-img")
-
-
-
-
 
 
 const $banner = $('.banner');
@@ -193,9 +167,7 @@ function appendList(nowKidsDTOS) {
 <!--                                <span class="feed-header-new-img"></span>-->
                                        ${recentTag}
                                     <span class="feed-header-user-img"
-                                    data-member-profile-path="${e.memberProfilePath}" 
-                                    data-member-profile-uuid="${e.memberProfileUUID}"
-                                    data-member-profile-original-name="${e.memberProfileOriginalName}">
+                                    style = "background-image: url('/members/display?fileName=Member/Profile/${e.memberProfilePath}/${e.memberProfileUUID}_${e.memberProfileOriginalName}')"
                                     </span>
                                 </a>
                                 <div class="feed-header-new-board">

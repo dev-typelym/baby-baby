@@ -88,4 +88,8 @@ public class Event extends BoardInfo {
     public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
     }
+
+    public void setCompany(Member company) {
+        this.company = company;
+    }
 }

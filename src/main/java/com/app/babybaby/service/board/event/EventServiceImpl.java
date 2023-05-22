@@ -64,14 +64,14 @@ public class EventServiceImpl implements EventService {
 
     public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar) {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("Invalid memberId: " + memberId));
-        eventDTO.setCompany(this.memberToDTO(member));
+//        eventDTO.setCompany(this.memberToDTO(member));
         eventDTO.setCalendar(this.toCalendarDTO(calendar));
-//            public EventFile(String fileOriginalName, String fileUUID, String filePath, FileType fileStatus, Event event) {
         log.info("내가 가져온 맴버: " + member);
         log.info("내가 가져온 Calendar: " + calendar);
         log.info(eventDTO.toString());
 
         Event event = this.toEventEntity(eventDTO);
+        event.setCompany(member);
         event.setCalendar(calendar); // calendar를 event와 연결
 
         List<EventFile> eventFiles = event.getEventFiles();

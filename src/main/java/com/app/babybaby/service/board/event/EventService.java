@@ -70,7 +70,7 @@ public interface EventService {
                     .eventPrice(eventDTO.getEventPrice())
                     .boardContent(eventDTO.getBoardContent())
                     .boardTitle(eventDTO.getBoardTitle())
-                    .company(memberDTOToEntity(eventDTO.getCompany()))
+//                    .company(memberDTOToEntity(eventDTO.getCompany()))
                     .eventFiles(eventDTO.getFiles().stream().map(this::toEventFileEntity).collect(Collectors.toList()))
                     .build();
         }

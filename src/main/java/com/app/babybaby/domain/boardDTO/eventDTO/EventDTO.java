@@ -7,15 +7,14 @@ import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.type.CategoryType;
 import com.app.babybaby.type.FileType;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Component
-@Data
+@Getter
+@Setter
+@ToString(exclude = {"company", "calendar"})
 @RequiredArgsConstructor
 public class EventDTO {
     private Long id;
@@ -27,7 +26,7 @@ public class EventDTO {
     private CategoryType category;
     private EventBoardSearch eventBoardSearch;
     private CalendarDTO calendar;
-    private MemberDTO company;
+//    private MemberDTO company;
     private Long memberId;
     private Long memberName;
     private String mainFileOriginalName;
@@ -35,6 +34,8 @@ public class EventDTO {
     private String mainFilePath;
     private FileType fileType;
     private List<EventFileDTO> files;
+
+
 
     @Builder
     public EventDTO(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, EventBoardSearch eventBoardSearch, CalendarDTO calendar, MemberDTO company, String mainFileOriginalName, String mainFileUUID, String mainFilePath, FileType fileType, List<EventFileDTO> files,Long memberId) {
@@ -47,7 +48,7 @@ public class EventDTO {
         this.category = category;
         this.eventBoardSearch = eventBoardSearch;
         this.calendar = calendar;
-        this.company = company;
+//        this.company = company;
         this.mainFileOriginalName = mainFileOriginalName;
         this.mainFileUUID = mainFileUUID;
         this.mainFilePath = mainFilePath;
