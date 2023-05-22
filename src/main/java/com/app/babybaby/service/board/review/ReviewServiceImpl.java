@@ -5,16 +5,19 @@ import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.fileDTO.reviewFileDTO.ReviewFileDTO;
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.file.reviewFile.ReviewFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.reviewReply.ReviewReply;
+import com.app.babybaby.exception.BoardNotFoundException;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.review.ReviewRepository;
 import com.app.babybaby.repository.file.reviewFile.ReviewFileRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.service.board.event.EventService;
+import com.app.babybaby.type.CategoryType;
 import com.app.babybaby.type.FileType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -81,12 +84,32 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
 
-    public Page<ReviewDTO> getFindAllWithSearchParentsBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
+    public Page<ReviewDTO> getFindAllWithSearchReviewBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
         Page<Review> reviews = reviewRepository.findAllReviewWithSearch_QueryDsl(pageable, parentsBoardSearch);
         List<ReviewDTO> reviewDTOS = reviews.stream().map(this::ReviewToDTO).collect(Collectors.toList());
         reviewDTOS.forEach(reviewDTO -> {
         });
         return new PageImpl<>(reviewDTOS, pageable, reviews.getTotalElements());
+    }
+
+    @Override
+    public List<ReviewDTO> find2RecentDesc(CategoryType categoryType) {
+        List<Review> reviews = reviewRepository.find2RecentDesc(categoryType);
+        List<ReviewDTO> reviewDTOList = reviews.stream().map(this::ReviewToDTO).collect(Collectors.toList());
+        return reviewDTOList;
+    }
+
+    @Override
+    public ReviewDTO getReviewBoardDetail(Long id) {
+        com.app.babybaby.entity.board.review.Review review = reviewRepository.findDetailById_QueryDsl(id).orElseThrow(() -> {
+            throw new BoardNotFoundException();
+        });
+        return ReviewToDTO(review);
+    }
+
+    @Override
+    public Review findById(Long id) {
+        return reviewRepository.findById(id).get();
     }
 
 

@@ -7,6 +7,7 @@ import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.service.board.review.ReviewService;
+import com.app.babybaby.type.CategoryType;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -68,7 +69,7 @@ public class ReviewController {
     @ResponseBody
     public Page<ReviewDTO> getParentsBoards(@PathVariable("page") Integer page, ParentsBoardSearch parentsBoardSearch) {
         log.info("================================" + parentsBoardSearch);
-        Page<ReviewDTO> result = reviewService.getFindAllWithSearchParentsBoardList(
+        Page<ReviewDTO> result = reviewService.getFindAllWithSearchReviewBoardList(
                 PageRequest.of(page - 1, 10),
                 parentsBoardSearch
         );
@@ -76,6 +77,23 @@ public class ReviewController {
     }
 
 
+    //    부모님 마당 게시글 상세보기 (부모님 마당의 id를 가져와서 그 id를 통해 eventCategory를 가져온다.)
+    @GetMapping("detail/{id}")
+    public String goParentsBoardDetail(@PathVariable Long id, Model model) {
+        model.addAttribute("parentsBoard", reviewService.getReviewBoardDetail(id));
+        return "/parents-yard-board/parents-yard-board-detail";
+    }
+
+    //    상세보기 안에 카테고리 최신글 2개 가져오기
+    @ResponseBody
+    @PostMapping("detail/category/{boardId}")
+    public List<ReviewDTO> getCategoryList(@PathVariable Long boardId) {
+        CategoryType category = reviewService.findById(boardId).getEvent().getCategory();
+        log.info("category: " + category.toString());
+        List<ReviewDTO> categoryResults = reviewService.find2RecentDesc(category);
+        log.info("categoryResults: " + categoryResults.toString());
+        return categoryResults;
+    }
 
     @GetMapping("detail")
     public String goReviewDetail(){

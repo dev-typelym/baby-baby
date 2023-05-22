@@ -37,6 +37,13 @@ public interface ReviewQueryDsl {
 //  [후기게시판] 리스트 페이징처리
     public Page<Review> findAllReviewWithSearch_QueryDsl(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
 
+    /* 후기게시판  */
+//    상세보기 카테고리 최신글 2개 가져오기
+    public List<Review> find2RecentDesc(CategoryType category);
+
+    //    상세보기
+    public Optional<Review> findDetailById_QueryDsl(Long id);
+
     //[관리자] 리뷰 게시판 목록 조회
     public Page<Review> findAllReviewBoardWithSearch_queryDSL(Pageable pageable, AdminReviewSearch adminReviewSearch, CategoryType eventCategory);
 

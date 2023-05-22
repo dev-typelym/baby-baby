@@ -1,11 +1,15 @@
 package com.app.babybaby.controller.boardController;
 
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDTO;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import com.app.babybaby.entity.reply.parentsBoardReply.QParentsBoardReply;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
+import com.app.babybaby.service.board.event.EventService;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.reply.parentsBoardReply.ParentsBoardReplyService;
 import com.app.babybaby.type.CategoryType;
@@ -20,8 +24,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import org.thymeleaf.model.IModel;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/parentsYard/*")
@@ -30,6 +36,7 @@ import java.util.List;
 public class ParentsBoardController {
     private final ParentsBoardService parentsBoardService;
     private final ParentsBoardReplyService parentsBoardReplyService;
+    private final EventService eventService;
 
 
     //    첫 게시글 목록 화면으로 가기
@@ -80,13 +87,21 @@ public class ParentsBoardController {
 //    }
 
     @GetMapping("writeFirst")
-    public String getParentsBoardFirst() {
+    public String getParentsBoardFirst(Model model) {
+        Long sessionId = 2L;
+        List<EventDTO> eventDTOS = parentsBoardService.getFindByEventId(sessionId).stream().map(eventService::eventToDTO).collect(Collectors.toList());
+        Member member = parentsBoardService.getUserInfo(sessionId);
+        model.addAttribute("eventDTOS", eventDTOS);
+        model.addAttribute("memberInfo", member);
         return "parents-yard-board/parents-yard-board-write";
     }
 
 //    대표사진 올리는 페이지 불러오기
     @GetMapping("writeSecond")
-    public String getParentsBoardWrite() {
+    public String getParentsBoardWrite(Model model) {
+        Long sessionId = 2L;
+        Member member = parentsBoardService.getUserInfo(sessionId);
+        model.addAttribute("memberInfo", member);
         return "parents-yard-board/parents-yard-board-thumbnail";
     }
 

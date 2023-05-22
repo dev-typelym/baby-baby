@@ -7,6 +7,7 @@ import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.CategoryType;
 import org.apache.logging.log4j.message.ParameterizedNoReferenceMessageFactory;
@@ -27,7 +28,11 @@ public interface ParentsBoardService {
     public Page<ParentsBoardDTO> getFindAllWithSearchParentsBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
 
     //    참여예정인 게시판 불러오기(작성쪽)
-    public Event getFindByEventId(Long id);
+    public List<Event> getFindByEventId(Long id);
+    
+    // 사람 정보 가져오기
+    public Member getUserInfo(Long memberId);
+    
     //    내가쓴 게시글
     public Page<ParentsBoardDTO> getFindParentBoardListByMemberId(Pageable pageable,Long memberId);
 

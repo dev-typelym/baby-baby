@@ -24,7 +24,7 @@ public interface ParentsBoardQueryDsl {
     public Optional<ParentsBoard> findDetailById_QueryDsl(Long id);
 
     //    작성하기(1단계)
-    public Optional<Event> findByEventId_QueryDsl(Long id);
+    public List<Event> findAllUpcomingEventsByMemberId(Long id);
 
 //    상세보기 카테고리 최신글 2개 가져오기
     public List<ParentsBoard> find2RecentDesc(CategoryType category);

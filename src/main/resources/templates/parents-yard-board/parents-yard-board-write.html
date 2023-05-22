@@ -25,7 +25,7 @@
                         <span class="nav-header-span">작성중</span>
                     </div>
                     <a href="javascript:void(0)" class="profile-box">
-                        <span class="profile-name">임종욱</span><span>의</span>
+                        <span class="profile-name" th:text="${memberInfo.memberNickname}"></span><span>의</span>
                         <p>부모님 마당 글작성</p>
                     </a>
                     <button type="button" class="profile-btn">
@@ -98,8 +98,8 @@
                                                 <div class="select-kids-count">
                                                     <div class="select-menu-layout">
                                                         <!-- value는 이벤트 아이디 -->
-                                                        <div class="select-option2" value="2">실내 액티비티 VR체험학습(2023.02.21)</div>
-                                                        <div class="select-option2" value="3">소방관 체험학습(2023.05.16)</div>
+<!--                                                        <div class="select-option2" value="2">실내 액티비티 VR체험학습(2023.02.21)</div>-->
+<!--                                                        <div class="select-option2" value="3">소방관 체험학습(2023.05.16)</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -205,19 +205,14 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/parents-yard-board/parents-yard-board-write.js"></script>
 <script src="/js/components/header.js"></script>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/37.0.1/classic/ckeditor.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
-<script>
-    // ClassicEditor.create( document.querySelector( '#editor' ), {
-    //     ckfinder: {
-	// 		uploadUrl : '/css/images/ck-editor-upload'
-	// 	},
-    //     language: "ko"
-    // } );
+<script th:inline="javascript">
+    let eventDTOS = [[${eventDTOS}]];
 </script>
+<script src="/js/parents-yard-board/parents-yard-board-write.js"></script>
 <style>
     /*.ck.ck-editor {*/
 	/*width: 850px;*/

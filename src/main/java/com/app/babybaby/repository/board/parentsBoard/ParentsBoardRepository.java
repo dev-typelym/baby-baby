@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface ParentsBoardRepository extends JpaRepository<ParentsBoard, Long>, ParentsBoardQueryDsl {
     public Page<ParentsBoard> findAllByMemberId(Long memberId, Pageable pageable);
+
+    public Long countBy();
 }

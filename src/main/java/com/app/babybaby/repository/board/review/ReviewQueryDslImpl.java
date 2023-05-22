@@ -1,10 +1,12 @@
 package com.app.babybaby.repository.board.review;
 
+import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
 import com.app.babybaby.entity.board.review.QReview;
 import com.app.babybaby.entity.board.review.Review;
+import com.app.babybaby.exception.BoardNotFoundException;
 import com.app.babybaby.search.admin.AdminReviewSearch;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.CategoryType;
@@ -166,8 +168,35 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
 //                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
                 .where(searchAll, categoryType)
                 .fetchOne();
-        log.info("asdsadasdd" + foundReview);
         return new PageImpl<>(foundReview, pageable, count);
+    }
+
+    @Override
+    public List<Review> find2RecentDesc(CategoryType category) {
+        List<Review> reviews = query.select(review)
+                .from(review)
+                .where(review.event.category.eq(category))
+                .orderBy(review.id.desc())
+                .limit(2)
+                .fetch();
+        return reviews;
+    }
+
+    @Override
+    public Optional<Review> findDetailById_QueryDsl(Long id) {
+
+        return Optional.ofNullable(
+                query.select(review)
+                        .from(review)
+                        .join(review.event)
+                        .fetchJoin()
+                        .leftJoin(review.reviewFiles)
+                        .fetchJoin()
+                        .join(review.member)
+                        .fetchJoin()
+                        .where(review.id.eq(id))
+                        .fetchOne()
+        );
     }
 
 
