@@ -202,7 +202,7 @@ public class ParentsBoardRepositoryTests {
     @Test
     @Transactional
     public void findByEventIdTest() {
-        log.info(parentsBoardRepository.findByEventId_QueryDsl(1L).toString());
+        log.info(parentsBoardRepository.findAllUpcomingEventsByMemberId(2L).toString());
     }
 
     @Test

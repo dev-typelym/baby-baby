@@ -176,6 +176,17 @@ public class EventQueryDslImpl implements EventQueryDsl {
                 .offset(pageable.getOffset())
                 .fetch();
     }
+
+    public List<Event> findAllUpcommingEvents_QueryDSL(Long memberId) {
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        return query.selectFrom(event)
+                .where(event.company.id.eq(memberId)
+                        .and(event.calendar.startDate.after(currentTime))
+                        .and(event.calendar.endDate.after(currentTime)))
+                .orderBy(event.calendar.endDate.asc())
+                .fetch();
+    }
     
     /* 이 맴버가 쓴 지나간 이벤트 가져오기 */
     public List<Event> findAllFinishedEvents_QueryDSL(Long memberId, Pageable pageable) {

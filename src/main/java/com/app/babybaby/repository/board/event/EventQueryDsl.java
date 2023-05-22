@@ -32,6 +32,8 @@ public interface EventQueryDsl {
     /* ---------------------------------회원 상세--------------------------------------------------- */
     /* 회사의 진행 예정 이벤트 */
     public List<Event> findAllUpcommingEvents_QueryDSL(Long memberId, Pageable pageable);
+
+    public List<Event> findAllUpcommingEvents_QueryDSL(Long memberId);
     
     /* 회사의 진행 진행종료 이벤트 */
     public List<Event> findAllFinishedEvents_QueryDSL(Long memberId, Pageable pageable);

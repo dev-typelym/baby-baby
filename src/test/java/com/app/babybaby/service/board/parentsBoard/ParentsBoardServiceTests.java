@@ -23,6 +23,10 @@ public class ParentsBoardServiceTests {
         log.info("parents: " + parentsBoardService.find2RecentDesc(CategoryType.AGRICULTURE));
     }
 
+    @Test
+    public void getFindByEventIdTest(){
+        log.info(parentsBoardService.getFindByEventId(2L).toString());
+    }
 
 
 }

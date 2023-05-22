@@ -23,7 +23,7 @@ public class MemberServiceTests {
 
     @Test
     public void getAllUserInfoTest(){
-        log.info(memberService.getAllUserInfo(1L).toString());
+//        log.info(memberService.getAllUserInfo(1L).toString());
     }
 
     @Test

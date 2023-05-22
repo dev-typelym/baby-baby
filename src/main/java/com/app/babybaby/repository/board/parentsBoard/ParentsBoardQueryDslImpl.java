@@ -6,6 +6,7 @@ import com.app.babybaby.entity.board.nowKids.QNowKids;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.purchase.purchase.QPurchase;
 import com.app.babybaby.search.admin.AdminParentsBoardSearch;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.CategoryType;
@@ -17,12 +18,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
+import static com.app.babybaby.entity.purchase.purchase.QPurchase.purchase;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -115,12 +118,18 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
     //    작성하기 참여예정 체험학습 select 해오기
     @Override
-    public Optional<Event> findByEventId_QueryDsl(Long id) {
-        return Optional.ofNullable(
-                query.select(event)
-                        .from(event)
-                        .where(event.id.eq(id))
-                        .fetchOne());
+    public List<Event> findAllUpcomingEventsByMemberId(Long id) {
+        LocalDateTime now = LocalDateTime.now();
+        return
+                query.select(purchase.event)
+                        .from(purchase)
+                        .join(purchase.event)
+                        .join(purchase.member)
+                        .where(purchase.member.id.eq(id))
+                        .where(purchase.event.calendar.startDate.after(now))
+                        .where(purchase.event.calendar.endDate.after(now))
+                        .orderBy(purchase.event.calendar.startDate.asc())
+                        .fetch();
     }
 
     @Override

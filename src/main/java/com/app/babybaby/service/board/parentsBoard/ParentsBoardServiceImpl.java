@@ -2,6 +2,7 @@ package com.app.babybaby.service.board.parentsBoard;
 
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.file.parentsBoardFile.ParentsBoardFile;
@@ -64,9 +65,13 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
 
     //    작성 쪽 참여예정인 행상 불러오기
     @Override
-    public Event getFindByEventId(Long id) {
-        Event event = parentsBoardRepository.findByEventId_QueryDsl(id).get();
-        return event;
+    public List<Event> getFindByEventId(Long id) {
+        List<Event> events = parentsBoardRepository.findAllUpcomingEventsByMemberId(id);
+        return events;
+    }
+    /* 작성쪽 맴버 가져오기 */
+    public Member getUserInfo(Long memberId){
+        return memberRepository.findById(memberId).get();
     }
 
     //    내가쓴 게시글

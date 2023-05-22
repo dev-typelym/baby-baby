@@ -1,6 +1,7 @@
 package com.app.babybaby.service.board.review;
 
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
+import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.fileDTO.reviewFileDTO.ReviewFileDTO;
 import com.app.babybaby.entity.board.review.Review;
@@ -26,7 +27,16 @@ public interface ReviewService {
     public Member getMemberInfo(Long sessionId);
 
 //    리스트 ajax
-    public Page<ReviewDTO> getFindAllWithSearchParentsBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
+    public Page<ReviewDTO> getFindAllWithSearchReviewBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
+
+    public List<ReviewDTO> find2RecentDesc(CategoryType categoryType);
+
+    //    게시글 상세보기
+    public ReviewDTO getReviewBoardDetail(Long id);
+
+    public Review findById(Long id);
+
+//    게시글
 
     default ReviewDTO ReviewToDTO(Review review){
         return ReviewDTO.builder()
