@@ -2,8 +2,11 @@ package com.app.babybaby.controller.replyController;
 
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDTO;
+import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
+import com.app.babybaby.service.member.member.MemberService;
 import com.app.babybaby.service.reply.parentsBoardReply.ParentsBoardReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,26 +17,40 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/parentsYard/reply/*")
 @RequiredArgsConstructor
 @Slf4j
 public class ParentsBoardReplyController {
 
-    @Autowired
     private final ParentsBoardReplyService parentsBoardReplyService;
 
-//    @GetMapping("save/{parentsBoardId}")
-//    @ResponseBody
-//    public ParentsBoardReplyDTO saveParentsBoardReply(@PathVariable("parentsBoardId") Long parentsBoardId) {
-//
-//
-//    }
+
+    @GetMapping("write/{parentsBoardId}")
+    @ResponseBody
+    public ParentsBoardReplyDTO saveParentsBoardReply(ParentsBoardReplyDTO parentsBoardReplyDTO, @PathVariable("parentsBoardId") Long parentsBoardId, HttpSession httpSession) {
+//        세션에서 받아오기 ID
+//        Long memberId = (Long) httpSession.getAttribute("member");
+        parentsBoardReplyDTO.setParentsBoardId(parentsBoardId);
+        ParentsBoardReplyDTO savedReply = parentsBoardReplyService.parentsBoardReplySave(parentsBoardReplyDTO, 1L, parentsBoardId);
+
+        return savedReply;
+    }
+
+    @PostMapping("delete/{replyId}")
+    @ResponseBody
+    public void removeParentsBoardReply(@PathVariable("replyId") Long replyId) {
+        log.info("replyId : " + replyId);
+        parentsBoardReplyService.removeByParentsBoardReply(replyId);
+    }
 
     @GetMapping("list/show/{page}/{boardId}")
     @ResponseBody
     public Page<ParentsBoardReplyDTO> getParentsBoardReplyList(@PathVariable("page") Integer page,@PathVariable Long boardId) {
-        log.info("asdsadsadsasadsadasdsd" + boardId);
         Page<ParentsBoardReplyDTO> parentsBoardReplyDTOS = parentsBoardReplyService.findAllReplyByBoardIdWithPaging(PageRequest.of(page, 3), boardId);
         return parentsBoardReplyDTOS;
     }

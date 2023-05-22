@@ -25,7 +25,42 @@
             <span class="parents-yard-board-detail-user-name" th:text="${parentsBoard.memberNickname}"></span>
             <input class="boardId" type="hidden" th:value="${parentsBoard.id}" style="display: none;">
             <input class="category" type="hidden" th:value="${parentsBoard.eventCategory}" style="display: none;">
-            <h2 class="event-title"><span>[</span> <span th:text="${parentsBoard.eventCategory}"></span><span>]</span><span th:text="${parentsBoard.eventTitle}"></span></h2>
+            <h2 class="event-title"><span>[</span> <span th:attr="data-category=${parentsBoard.eventCategory}">
+                <script th:inline="javascript">
+                    var category = /*[[${parentsBoard.eventCategory}]]*/ '';
+                    var convertedCategory = convertCategory(category);
+
+                    // 한글로 변환된 카테고리 값 적용
+                    document.write(convertedCategory);
+
+                    function convertCategory(category) {
+                        //    AGRICULTURE, ART, TRADITION, CRAFT, SCIENCE, MUSEUM, SPORTS, ETC
+                        let categoryResult;
+
+                        if (category == "AGRICULTURE") {
+                            categoryResult = "농촌";
+                        } else if (category == "ART") {
+                            categoryResult = "예술";
+                        } else if (category == "TRADITION") {
+                            categoryResult = "전통";
+                        } else if (category == "CRAFT") {
+                            categoryResult = "공방";
+                        } else if (category == "SCIENCE") {
+                            categoryResult = "과학";
+                        } else if (category == "MUSEUM") {
+                            categoryResult = "박물관";
+                        } else if (category == "SPORTS") {
+                            categoryResult = "스포츠";
+                        } else {
+                            categoryResult = "기타";
+                        }
+                        return categoryResult;
+                    }
+                </script>
+
+            </span>
+
+                <span>]</span><span th:text="${parentsBoard.eventTitle}"></span></h2>
             <h2 class="parents-yard-board-detail-title" th:text="${parentsBoard.parentsBoardTitle}"></h2>
             <div>
                 <span class="parents-yard-board-detail-date" th:attr="data-original-date=${parentsBoard.parentsBoardUpdateDate}">
@@ -57,39 +92,12 @@
         <div class="divide-line"></div>
         <div class="parents-yard-board-detail-content-wrapper">
             <div class="parents-yard-board-detail-content-container">
-                <p>
-                    <img src="https://www.wadiz.kr/ft/images/green001/2021/0504/20210504113014691_null.jpg" class="fr-fic fr-dib">
-                </p>
-                <hr>
-                <blockquote class="type-line">
-                    <h3>주식시장에서도 부는 ‘메타버스’ 바람</h3>
-                </blockquote>
-                <p>
-                    <img src="https://www.wadiz.kr/ft/images/green001/2021/0504/20210504102507378_null.png" width="599" height="310" class="fr-fic fr-dib">
-                </p>
-                <h5>이미지 출처: 로블록스 / 매일경제</h5>
-                <p>
-                    ‘메타버스(metaverse)’의 대표 주자인, 미국 게임 플랫폼 ‘로블록스(ROBLOX)’가 지난달 10일(현지시간) 뉴욕 증시에 화려하게 입성했습니다. <strong>직상장 첫날 약 54%가 급등</strong>하며 기업 가치(시가 총액)는 371억 달러(약 42조 원)로 뛰었는데요. 이는 <strong>메타버스의 성장성이 반영</strong>된 것으로 볼 수 있습니다.&nbsp;
-                </p>
-                <table style="width: 100%;">
-                    <tbody>
-                        <tr>
-                            <td style="width: 100.0000%;">*메타버스(metaverse)란 가공·추상을 의미하는 ‘메타’(meta)와 현실 세계를 가리키는 ‘유니버스’(universe)의 합성어로 3차원 가상세계를 의미합니다.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>
-                    엔터테인먼트 및 게임 분야를 중심으로 화두가 되고 있는 메타버스는, <strong>최근 Z세대 및 알파세대 내에서 새로운 트렌드</strong>로 떠오르고 있습니다.</p><p><strong>로블록스는 9~12세 미국 어린이의 약 75%가 이용</strong>하는 것으로 알려지면서 차세대 플랫폼으로 주목받고 있습니다. 또한 <strong>국내 네이버제트의 3D 아바타 기반 SNS ‘제페토’는 최근 가입자가 2억 명</strong>을 넘어섰습니다. 전체 이용자 중 80% 이상은 10대 청소년으로, 이중 90% 이상이 외국인 이용자입니다.</p><p><strong>그렇다면 이들은 왜 메타버스 서비스에 열광하는 것일까요?</strong>
-                </p>
-                <blockquote class="type-line">
-                    <h3>가상세계에서의 세컨드잡</h3>
-                </blockquote>
-                <p>
-                    메타버스 서비스가 주목받은 이유는 구현된 가상세계가 현실 세계와 매우 닮아있기 때문입니다. 즉, 현<strong>실 세계와 같이 사회/문화활동 및 경제활동을 할 수 있다는 이야기</strong>입니다.</p><p>제페토는 이용자와 꼭 닮은 3D 아바타를 만든 뒤 증강현실(AR) 기술로 실제 사진이나 가상 배경에 자연스럽게 합성해 주는 서비스입니다. SNS 기능도 접목해 이용자끼리 여러 가상 공간에서 문자, 음성, 이모티콘 등으로 친목도 다질 수 있는데, <strong>이용자가 직접 콘텐츠를 만들 수 있는 기능도 추가</strong>했습니다.<br>그뿐만 아니라, <strong>BTS·블랙핑크·트와이스의 콘텐츠를 제공하며 ‘구찌’, ‘나이키’와 같은 글로벌 브랜드와의 협업도 진행</strong>함에 따라, 제페토의 영역은 더욱 확장되고 있습니다.
-                </p>
-                <p>
-                    <img src="https://www.wadiz.kr/ft/images/green001/2021/0504/20210504102243882_null.png" width="602" height="440" class="fr-fic fr-dib">
-                </p>
+                <div class="parents-yard-detail-img" th:each="file : ${parentsBoard.parentsBoardFileDTOS}">
+                    <img class="detail-img" th:src="'/parentsBoardFiles/display?fileName=ParentsBoard/' + ${file.filePath} + '/' + ${file.fileUUID} + '_' + ${file.fileOriginalName}">
+                </div>
+                <div class="parents-yard-detail-text">
+                    <div class="detail-text" th:text="${parentsBoard.parentsBoardContent}"></div>
+                </div>
             </div>
 
             <!-- 댓글 시작 -->
@@ -106,9 +114,9 @@
                         <em>1</em>개의 댓글이 달려있습니다.
                     </p>
                     <div class="main-comment">
-                        <textarea name="" id="" placeholder="댓글을 입력하세요."></textarea>
+                        <textarea class="replyContent" id="" placeholder="댓글을 입력하세요."></textarea>
                         <div class="btn-complete">
-                            <button class="btn-color">댓글달기</button>
+                            <button class="btn-color write-reply">댓글달기</button>
                         </div>
                     </div>
                     <div class="comment-list">
@@ -143,17 +151,50 @@
                     </div>
                 </div>
                 <div class="btn-place">
-                    <button class="btn-comment">댓글 더 보기</button>
-                    <button class="btn-comment" style="display: none;">댓글 닫기</button>
+                    <button class="btn-comment comment-open">댓글 더 보기</button>
                 </div>
             </div>
             <!--여기가 같은 카테고리 중 최신순-->
             <div class="free-board-other">
-<!--                <h4>-->
-<!--                    <em>박물관</em>-->
-<!--                    카테고리의 최신글-->
-<!--                </h4>-->
-<!--                <div class="other-list">-->
+                <h4>
+                    <em id="categoryElement" th:attr="data-category=${parentsBoard.eventCategory}"></em>
+                    <script th:inline="javascript">
+                        var category = /*[[${parentsBoard.eventCategory}]]*/ '';
+                        var convertedCategory = convertCategory(category);
+
+                        // 한글로 변환된 카테고리 값 적용
+                        // document.write(convertedCategory);
+
+                        var categoryElement = document.getElementById('categoryElement');
+                        categoryElement.innerText = convertedCategory;
+                        categoryElement.style.color = '#00c4c4';
+                        function convertCategory(category) {
+                            //    AGRICULTURE, ART, TRADITION, CRAFT, SCIENCE, MUSEUM, SPORTS, ETC
+                            let categoryResult;
+
+                            if (category == "AGRICULTURE") {
+                                categoryResult = "농촌";
+                            } else if (category == "ART") {
+                                categoryResult = "예술";
+                            } else if (category == "TRADITION") {
+                                categoryResult = "전통";
+                            } else if (category == "CRAFT") {
+                                categoryResult = "공방";
+                            } else if (category == "SCIENCE") {
+                                categoryResult = "과학";
+                            } else if (category == "MUSEUM") {
+                                categoryResult = "박물관";
+                            } else if (category == "SPORTS") {
+                                categoryResult = "스포츠";
+                            } else {
+                                categoryResult = "기타";
+                            }
+                            return categoryResult;
+                        }
+                    </script>
+                    카테고리의 최신글
+                </h4>
+                <div class="other-list">
 <!--                    <ul>-->
 <!--                        <li>-->
 <!--                            <a>-->
@@ -190,7 +231,7 @@
 <!--                            </a>-->
 <!--                        </li>-->
 <!--                    </ul>-->
-<!--                </div>-->
+                </div>
             </div>
         </div>
         <!-- 댓글 끝 -->

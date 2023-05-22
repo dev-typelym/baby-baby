@@ -18,8 +18,6 @@ public interface ParentsBoardReplyQueryDsl {
 //    댓글 전체 조회
     public Page<ParentsBoardReply> findAllReplyByBoardIdWithPaging(Pageable pageable, Long id);
 
-//    댓글 저장
-//    public Optional<ParentsBoardReplyDTO> save();
 
     //    [관리자] 부모님마당 댓글 목록
     public Page<ParentsBoardReply> findAlLParentsBoardReplyWithSearch_queryDSL(Pageable pageable, AdminParentsBoardReplySearch adminParentsBoardReplySearch);

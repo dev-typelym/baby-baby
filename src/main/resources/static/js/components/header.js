@@ -154,6 +154,7 @@
             }
         }
     }
+
     function stepParticle(particle, particleIndex) {
         particle.tiltAngle += particle.tiltAngleIncremental;
         particle.y += (Math.cos(angle + particle.d) + 3 + particle.r / 2) / 3;
@@ -207,55 +208,55 @@
     }
 
     window.requestAnimFrame = (function () {
-        return window.requestAnimationFrame || 
-        window.webkitRequestAnimationFrame || 
-        window.mozRequestAnimationFrame || 
-        window.oRequestAnimationFrame || 
-        window.msRequestAnimationFrame || 
-        function (callback) {
-            return window.setTimeout(callback, 1000 / 60);
-        };
+        return window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (callback) {
+                return window.setTimeout(callback, 1000 / 60);
+            };
     })();
 })();
 
 
-$(document).ready(function(){  
-    function reAction(){
+$(document).ready(function () {
+    function reAction() {
         $("#startButton").trigger("click");
-        setTimeout(function(){
+        setTimeout(function () {
             $("#stopButton").trigger("click");
         }, 6000);
     }
-    
-    $(".header-make-button").on('click', function(){
+
+    $(".header-make-button").on('click', function () {
         reAction();
-    }); 
-  });
+    });
+});
 
-  /* 알람 모달 */
-  let alarmModalCheck = false;
+/* 알람 모달 */
+let alarmModalCheck = false;
 
-  function showAlarmModal(modalMessage) {
+function showAlarmModal(modalMessage) {
     $("div#content-wrap").html(modalMessage);
     $("div.alarm-modal").css("animation", "popUp 0.5s");
     $("div.alarm-modal").css("display", "block").hide().fadeIn(500);
-      alarmModalCheck = true;
-  }
-  
-  function hideAlarmModal() {
+    alarmModalCheck = true;
+}
+
+function hideAlarmModal() {
     $("div.modal").fadeOut(500);
     $("div.alarm-modal").fadeOut(500);
-      alarmModalCheck = false;
-  }
-  
-  $(".alarm-modal-btn").on("click", function() {
+    alarmModalCheck = false;
+}
+
+$(".alarm-modal-btn").on("click", function () {
     if (!alarmModalCheck) {
-      let modalMessage = '';
-      showAlarmModal(modalMessage);
+        let modalMessage = '';
+        showAlarmModal(modalMessage);
     } else {
-      hideAlarmModal();
+        hideAlarmModal();
     }
-  });
+});
 
 // .alarm-modal-body 클래스와 .alarm-modal-btn 클래스를 가진 요소를 모두 선택합니다.
 var alarmModalBodies = document.querySelectorAll('.alarm-modal-body');
@@ -270,17 +271,17 @@ var children = body.children;
 // children 배열에서 .alarm-modal-body 클래스와 .alarm-modal-btn 클래스를 가진 요소를 제외한 모든 요소를 선택합니다.
 var elements = [];
 for (var i = 0; i < children.length; i++) {
-  var child = children[i];
-  if (!child.classList.contains('alarm-modal-body') && !child.classList.contains('alarm-modal-btn')) {
-    elements.push(child);
-  }
+    var child = children[i];
+    if (!child.classList.contains('alarm-modal-body') && !child.classList.contains('alarm-modal-btn')) {
+        elements.push(child);
+    }
 }
 
 // 선택된 요소에 이벤트 리스너를 추가합니다.
-elements.forEach(function(element) {
-    element.addEventListener('click', function(event) {
-      if (!event.target.closest('.alarm-modal-body') && !event.target.closest('.alarm-modal-btn')) {
-        hideAlarmModal();
-      }
+elements.forEach(function (element) {
+    element.addEventListener('click', function (event) {
+        if (!event.target.closest('.alarm-modal-body') && !event.target.closest('.alarm-modal-btn')) {
+            hideAlarmModal();
+        }
     });
-  });
+});

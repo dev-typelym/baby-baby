@@ -4,15 +4,26 @@ import com.app.babybaby.domain.replyDTO.parentsBoardReplyDTO.ParentsBoardReplyDT
 import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 
 public interface ParentsBoardReplyService {
 
+//    부모님 마당 댓글 목록
     public Page<ParentsBoardReplyDTO> findAllReplyByBoardIdWithPaging(Pageable pageable, Long id);
 
-    public void parentsBoardReplySave(Long SessionId, ParentsBoardReplyDTO parentsBoardReplyDTO, Long parentsBoardId);
+//    부모님 마당 댓글 추가
+//    public void parentsBoardReplySave(HttpSession httpSession,String replyContent, Long parentsBoardId);
 
-    default ParentsBoardReplyDTO ParentsBoardReplyToDTO(com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply parentsBoardReply) {
+//    부모님 마당 댓글 삭제
+    public void removeByParentsBoardReply(Long parentsBoardReplyId);
+
+//    아이디로 해당 멤버 찾기
+    public void findById(Long id);
+
+
+//    부모님 마당 댓글 수정 ???
+    public void updateByParentsBoardReply(Long replyId);
+
+    default ParentsBoardReplyDTO parentsBoardReplyToDTO(ParentsBoardReply parentsBoardReply) {
         return ParentsBoardReplyDTO.builder()
                 .id(parentsBoardReply.getId())
                 .registerDate(parentsBoardReply.getRegisterDate())
@@ -33,4 +44,6 @@ public interface ParentsBoardReplyService {
                 .build();
     }
 
+//    댓글 추가
+    public ParentsBoardReplyDTO parentsBoardReplySave(ParentsBoardReplyDTO parentsBoardReplyDTO, Long memberId, Long parentsBoardId);
 }

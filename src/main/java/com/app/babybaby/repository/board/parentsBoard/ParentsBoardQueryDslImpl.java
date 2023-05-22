@@ -192,7 +192,7 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
         List<ParentsBoard> parentsBoards = query.select(parentsBoard)
                 .from(parentsBoard)
                 .where(parentsBoard.event.category.eq(category))
-                .orderBy(event.id.desc())
+                .orderBy(parentsBoard.id.desc())
                 .limit(2)
                 .fetch();
         return parentsBoards;

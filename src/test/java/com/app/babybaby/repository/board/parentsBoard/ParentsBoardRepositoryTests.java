@@ -156,7 +156,7 @@ public class ParentsBoardRepositoryTests {
         List<ParentsBoard> parentsBoards = parentsBoardRepository.findAll();
         List<Member> members = memberRepository.findAll();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 20; i++) {
             ParentsBoard parentsBoard = parentsBoards.get(i % parentsBoards.size());
             Member member = members.get(i % members.size());
 

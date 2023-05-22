@@ -7,11 +7,11 @@
     , initial-scale=1.0">
     <title>알림</title>
     <link rel="shortcut icon" href="/images/myPage/favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+            rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/components/header.css">
     <link rel="stylesheet" href="/css/components/footer.css">
@@ -20,8 +20,98 @@
 </head>
 <body>
 <div th:insert="~{/components/header:: header}"></div>
-    <main>
-        <div class="main-content">
+<main>
+    <div class="main-content">
+        <!--            <div class="header">-->
+        <!--                <div class="header-title">알림</div>-->
+        <!--                <div class="header-sub"><span>00</span>님의 활동과 관련된 소식을 알려드려요</div>-->
+        <!--            </div>-->
+
+        <!--            &lt;!&ndash; 알림 한개 &ndash;&gt;-->
+        <!--            <div class="content-title-area">-->
+        <!--                <div class="content-title">오늘</div>-->
+        <!--            <div class="hover">-->
+        <!--                <div class="content-sub">-->
+        <!--                    <div class="alarm-wrapper-mypage">-->
+        <!--                        <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" alt="">-->
+        <!--                        <div class="alarm-text">아기자기 알림</div>-->
+        <!--                    </div>-->
+        <!--                    <div class="time">12시간 전</div>-->
+        <!--                </div>-->
+        <!--                <div class="alarm-content">친구가 <span>00</span> 체험학습을 신청하였습니다</div>-->
+        <!--            </div>-->
+        <!--            </div>-->
+        <!--            &lt;!&ndash; 알림 한개 끝 &ndash;&gt;-->
+
+        <!--           &lt;!&ndash; 알림 한개 &ndash;&gt;-->
+        <!--           <div class="content-title-area">-->
+        <!--            <div class="content-title">어제</div>-->
+        <!--        <div class="hover">-->
+        <!--            <div class="content-sub">-->
+        <!--                <div class="alarm-wrapper">-->
+        <!--                    <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" alt="">-->
+        <!--                    <div class="alarm-text">아기자기 알림</div>-->
+        <!--                </div>-->
+        <!--                <div class="time">12시간 전</div>-->
+        <!--            </div>-->
+        <!--            <div class="alarm-content">친구가 <span>00</span> 체험학습을 신청하였습니다</div>-->
+        <!--        </div>-->
+        <!--        </div>-->
+        <!--        &lt;!&ndash; 알림 한개 끝 &ndash;&gt;-->
+
+        <!--        &lt;!&ndash; 알림 한개 &ndash;&gt;-->
+        <!--        <div class="content-title-area">-->
+        <!--            <div class="content-title">최근 한달</div>-->
+        <!--        <div class="hover">-->
+        <!--            <div class="content-sub">-->
+        <!--                <div class="alarm-wrapper">-->
+        <!--                    <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" alt="">-->
+        <!--                    <div class="alarm-text">아기자기 알림</div>-->
+        <!--                </div>-->
+        <!--                <div class="time">12시간 전</div>-->
+        <!--            </div>-->
+        <!--            <div class="alarm-content">친구가 <span>00</span> 체험학습을 신청하였습니다</div>-->
+        <!--        </div>-->
+        <!--        </div>-->
+        <!--        &lt;!&ndash; 알림 한개 끝 &ndash;&gt;-->
+    </div>
+</main>
+<div th:insert="~{/components/footer:: footer}"></div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="/js/components/header.js"></script>
+<script>
+    /*1을 memberId로 바꿔주기*/
+    function getList() {
+        $.ajax({
+            url: "/alert/list/mypage",
+            type: "GET",
+            success: function(response) {
+                console.log(response); // 예시: 서버로부터 받은 응답 출력
+                console.log("리스폰스으");
+                showList(response);
+                // 여기서 서버로부터 받은 데이터를 원하는 대로 처리할 수 있습니다.
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr);
+                console.error(status);
+                console.error(error); // 에러 메시지 출력
+            }
+        });
+    }
+
+    // 페이지 로딩 후 getList() 함수 호출
+
+
+    getList();
+    function showList(alerts) {
+        var text = "";
+        var content = "";
+        console.log("들어오냐고??????");
+        alerts.forEach(alert => {
+            // alertTitle, alertContent, alertType, member, alertRegisterDate
+            content += `
+                        <div class="main-content">
             <div class="header">
                 <div class="header-title">알림</div>
                 <div class="header-sub"><span>00</span>님의 활동과 관련된 소식을 알려드려요</div>
@@ -29,55 +119,24 @@
 
             <!-- 알림 한개 -->
             <div class="content-title-area">
-                <div class="content-title">오늘</div>
+            <div class="content-title">오늘</div>
             <div class="hover">
-                <div class="content-sub">
-                    <div class="alarm-wrapper-mypage">
-                        <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" alt="">
-                        <div class="alarm-text">아기자기 알림</div>
-                    </div>
-                    <div class="time">12시간 전</div>
-                </div>
-                <div class="alarm-content">친구가 <span>00</span> 체험학습을 신청하였습니다</div>
-            </div>
-            </div>
-            <!-- 알림 한개 끝 -->
-
-           <!-- 알림 한개 -->
-           <div class="content-title-area">
-            <div class="content-title">어제</div>
-        <div class="hover">
             <div class="content-sub">
-                <div class="alarm-wrapper">
-                    <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" alt="">
-                    <div class="alarm-text">아기자기 알림</div>
-                </div>
-                <div class="time">12시간 전</div>
+            <div class="alarm-wrapper-mypage">
+            <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" alt="">
+            <div class="alarm-text">아기자기 알림</div>
             </div>
-            <div class="alarm-content">친구가 <span>00</span> 체험학습을 신청하였습니다</div>
-        </div>
-        </div>
-        <!-- 알림 한개 끝 -->
+            <div class="time">12시간 전</div>
+            </div>
+            <div class="alarm-content">친구가 <span>00</span> <span>${alert}</span></div>
+            </div>
+            </div>
+                <!-- 알림 한개 끝 -->
+            </div>`
+            });
+        $('.main-content').append(content);
+    } // showlist 끝
 
-        <!-- 알림 한개 -->
-        <div class="content-title-area">
-            <div class="content-title">최근 한달</div>
-        <div class="hover">
-            <div class="content-sub">
-                <div class="alarm-wrapper">
-                    <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" alt="">
-                    <div class="alarm-text">아기자기 알림</div>
-                </div>
-                <div class="time">12시간 전</div>
-            </div>
-            <div class="alarm-content">친구가 <span>00</span> 체험학습을 신청하였습니다</div>
-        </div>
-        </div>
-        <!-- 알림 한개 끝 -->
-        </div>
-    </main>
-<div th:insert="~{/components/footer:: footer}"></div>
-</body>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="/js/components/header.js"></script>
+
+</script>
 </html>
