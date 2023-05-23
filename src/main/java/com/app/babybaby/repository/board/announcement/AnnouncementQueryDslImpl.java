@@ -20,6 +20,18 @@ public class AnnouncementQueryDslImpl implements AnnouncementQueryDsl {
 
     private final JPAQueryFactory query;
 
+
+    @Override
+    public List<Announcement> find5RecentDesc() {
+        List<Announcement> announcements =
+                query.select(announcement)
+                        .from(announcement)
+                        .orderBy(announcement.id.desc())
+                        .limit(3)
+                        .fetch();
+        return announcements;
+    }
+
     //      [관리자] 공지사항 목록 조회
     @Override
     public Page<Announcement> findAllAnnouncement_queryDSL(Pageable pageable, AdminAnnouncementSearch adminAnnouncementSearch) {
@@ -62,4 +74,5 @@ public class AnnouncementQueryDslImpl implements AnnouncementQueryDsl {
                 .where(announcement.id.in(announcementId))
                 .execute();
     }
+
 }

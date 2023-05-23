@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AskQueryDsl {
+
+    //    내가쓴 문의
+    public Slice<Ask> findAllAskByMemberId(Long memberId,Pageable pageable,AdminAskSearch AdminAskSearch);
+
     //    [관리자] 문의 목록 조회
     public Page<Ask> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch);
 

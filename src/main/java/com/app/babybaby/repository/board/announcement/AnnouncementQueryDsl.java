@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AnnouncementQueryDsl {
+
+    //    공지사항 최신글 3개 가져오기
+    public List<Announcement> find5RecentDesc();
+
+
     //    [관리자] 공지사항 목록 조회
     public Page<Announcement> findAllAnnouncement_queryDSL(Pageable pageable, AdminAnnouncementSearch adminAnnouncementSearch);
 
