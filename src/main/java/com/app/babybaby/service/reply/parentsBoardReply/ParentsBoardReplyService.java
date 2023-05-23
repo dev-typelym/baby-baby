@@ -19,6 +19,8 @@ public interface ParentsBoardReplyService {
 //    아이디로 해당 멤버 찾기
 //    public void findById(Long id);
 
+//    댓글 총 수
+    public Long parentsBoardReplyCount(Long boardId);
 
 //    부모님 마당 댓글 수정
     public void updateByParentsBoardReply(Long replyId, String replyContent);

@@ -26,4 +26,6 @@ public class Follow {
         this.follower = follower;
         this.following = following;
     }
+
+
 }

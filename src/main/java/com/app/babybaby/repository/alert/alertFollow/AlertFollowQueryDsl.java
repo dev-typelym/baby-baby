@@ -12,6 +12,7 @@ public interface AlertFollowQueryDsl {
 //    읽지 않은 알림 수
     public Long getNoReadAlert();
 
+//    알림 버튼을 눌렀을 떄 뿌려줄 팔로우 알림 리스트 8개
     public List<AlertFollow> find8DescByMemberId(Long memberId);
 
 }

@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface ParentsBoardReplyQueryDsl {
 //  전체 댓글 수 가져오기
-    public Long parentsBoardReplyCount();
+    public Long parentsBoardReplyCount(Long boardId);
 
 //    댓글 전체 조회
     public Page<ParentsBoardReply> findAllReplyByBoardIdWithPaging(Pageable pageable, Long id);

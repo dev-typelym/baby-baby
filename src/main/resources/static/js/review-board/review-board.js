@@ -1,17 +1,19 @@
 const PAGE_AMOUNT = 10;
 const $itemWrap = $(".show-item-wrap");
-const SEARCH_URL = "/review/list/show";
+const SEARCH_URL = "/parentsYard/list/show";
 const $pageWrap = $(".paging-list");
-const $contentWrap = $(".parents-yard-board-item-link");
+const $contentWrap = $(".parentsList");
 const parentsBoardSearch = {
     searchTitle: null,
     categoryType: null,
     searchContent: null
 };
 
-function getReviewBoardList() {
+// 카테고리 별 정렬
+
+function getParentsBoardList() {
     $.ajax({
-        url: `/review/list/show/${globalThis.page}`,
+        url: `/parentsYard/list/show/${globalThis.page}`,
         data: parentsBoardSearch,
         success: function (data) {
             console.log(data)
@@ -27,20 +29,52 @@ globalThis.page = 1;
 
 function findPage(page) {
     globalThis.page = page;
-    getReviewBoardList();
+    getParentsBoardList();
 }
 
-$(".filter-select-box").on("change", function () {
+/* 카테고리 바꿨을 때 */ /*민구버전*/
+// $("#filter-select").on("change", function () {
+//     let val;
+//     if ($(this).val() === "RECENT") val = null;
+//     val = $(this).val();
+//
+//     parentsBoardSearch.categoryType = val;
+//
+//     getParentsBoardList();
+// });
+
+console.log(parentsBoardSearch.categoryType+"카아테에고오리이");
+/* 카테고리 바꿨을 때 */ /*동한 버전*/
+$("#filter-select").on("change", function () {
     let val;
     if ($(this).val() === "ALL") {
         val = null;
     } else {
         val = $(this).val();
     }
+    console.log(val + "123456789");
     parentsBoardSearch.categoryType = val;
-    getReviewBoardList();
+    getParentsBoardList();
 });
 
+// 검색 조건 별 수행 민구버젼
+// $("form[name='search-form']").on("submit", function (e) {
+//     e.preventDefault();
+//     let val;
+//
+//     // 빈 문자열이면 검색 수행 안됨
+//     let $search = $(".search-input");
+//     if($search.val() === "") return;
+//
+//     val = $search.val();
+//
+//     parentsBoardSearch.searchTitle = val;
+//
+//     getParensBoardList();
+// });
+
+
+// 동한 버전
 $("form[name='search-form']").on("submit", function (e) {
     e.preventDefault();
     let val;
@@ -57,9 +91,9 @@ $("form[name='search-form']").on("submit", function (e) {
         parentsBoardSearch.searchContent = val;
         parentsBoardSearch.searchTitle = val;
     }
-    console.log(parentsBoardSearch.searchContent + "parentsBoardSearch의 content");
-    console.log(parentsBoardSearch.searchTitle + "parentsBoardSearch의 title");
-    getReviewBoardList();
+    console.log(parentsBoardSearch.searchContent + "777");
+    console.log(parentsBoardSearch.searchTitle + "888");
+    getParentsBoardList();
     // parentsBoardSearch.searchContent = "null";
     // parentsBoardSearch.searchTitle = "null";
 });
@@ -128,39 +162,38 @@ function showPage(data) {
     $pageWrap.html(text);
 }
 
-//    리뷰 목록
+//    부모님 마당 목록
 function showList(boardDTOS) {
     console.log(boardDTOS)
-    let content = "";
+    var content = "";
     boardDTOS.forEach(board => {
-        console.log(board)
-        const formattedDate = formatDate(new Date(board.updateDate));
-        content += `
-                         <a class="parents-yard-board-item-link">
+        const convertedCategory = convertCategory(board.eventCategory); // 영어 카테고리를 한글로 변환
+        const formattedDate = formatDate(new Date(board.parentsBoardRegisterDate));
+        content += ` 
+                         <a href="/parentsYard/detail/${board.id}" class="parents-yard-board-item-link">
             <div class="parents-yard-board-item-wrapper">
-                <span class="category"><span> [ ${convertCategory(board.eventCategory)} ] </span> ${board.eventTitle}</span>
+                <span class="category"><span>[${convertedCategory}]</span> ${board.eventTitle}</span>
                 <div class="parents-yard-board-item-container">
                     <h3 class="parents-yard-board-item-title">
-                        ${board.boardTitle}
+                        ${board.parentsBoardTitle}
                     </h3>
                     <p class="parents-yard-board-item-content">
-                        ${board.boardContent}
+                        ${board.parentsBoardContent}
                     </p>
                     <div class="parents-yard-board-item-bottom-wrapper">
                         <p class="parents-yard-board-item-writer" style="margin: 0;">
-                            작성자: ${board.memberNickName}<span class="bottom-divide-line">ㅣ</span>
+                            작성자: ${board.memberNickname}<span class="bottom-divide-line">ㅣ</span>
                         </p>
                         <span class="parents-yard-board-item-date">
                             ${formattedDate}
                         </span>
                     </div>
                     <div class="parents-yard-board-item-thumbnail-wrapper">
-            `;
-
-        if(board.files != undefined && board.files.length > 0) {
+            `
+        if(board.parentsBoardFileDTOS.length != 0) {
             content += `
                         <span>
-                            <img class="thumbnail"  src="/reviewFiles/display?fileName=Review/${board.files[0].filePath}/${board.files[0].fileUUID}_${board.files[0].fileOriginalName}">
+                            <img class="thumbnail"  src="/parentsBoardFiles/display?fileName=ParentsBoard/${board.parentsBoardFileDTOS[0].filePath}/${board.parentsBoardFileDTOS[0].fileUUID}_${board.parentsBoardFileDTOS[0].fileOriginalName}">
                         </span>
                         `
         }
@@ -175,22 +208,10 @@ function showList(boardDTOS) {
 }
 
 
-getReviewBoardList();
-/* localDateTime을 Date로 깔끔하게 만드는 코드 */
-function formatDate(originalDate) {
-    let date = new Date(originalDate);
-    let formattedDate = date.toLocaleDateString("ko-KR", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit"
-    });
+getParentsBoardList();
 
-    // 마지막 점 제거
-    formattedDate = formattedDate.replace(/\.$/, "");
 
-    return formattedDate;
-}
-
+// 카테고리 한국어로 바꾸는 코드
 function convertCategory(category) {
 //    AGRICULTURE, ART, TRADITION, CRAFT, SCIENCE, MUSEUM, SPORTS, ETC
     let categoryResult;
@@ -214,9 +235,5 @@ function convertCategory(category) {
     }
     return categoryResult;
 }
-
-
-
-
 
 
