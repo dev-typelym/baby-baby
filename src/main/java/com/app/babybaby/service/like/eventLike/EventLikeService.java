@@ -32,8 +32,9 @@ public interface EventLikeService {
                 .id(eventLike.getId())
                 .eventRecruitCount(eventLike.getEvent().getEventRecruitCount())
                 .eventFileDTOS(eventLike.getEvent().getEventFiles().stream().map(this::eventFileToDTO).collect(Collectors.toList()))
-//                .eventAddress(eventLike.getEvent().getEventLocation().getAddress())
+                .eventAddress(eventLike.getEvent().getEventLocation().getAddress())
                 .calendar(toCalendarDTO(eventLike.getEvent().getCalendar()))
+                .eventId(eventLike.getEvent().getId())
                 .build();
     }
 //    default EventLikeDTO EventToDTO(Event event){

@@ -227,6 +227,14 @@ public class MypageController {
         return eventLikeDTOS;
     }
 
+    @PostMapping("delete/{eventId}")
+    @ResponseBody
+    public void likeDelete(@PathVariable Long eventId, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        eventLikeService.deleteLike(eventId, memberDTO.getId());
+    }
+
+
 
 //    내가쓴 부모님 마당
     @GetMapping("parent")
@@ -250,10 +258,12 @@ public class MypageController {
         return "myPage/myPage-crew";
     }
 
-    @PostMapping
-    public RedirectView getCrew(MemberDTO memberDTO){
+    @PostMapping("crew")
+    public RedirectView getCrew(MemberDTO memberDTO,HttpSession session){
+        MemberDTO memberDTO1 = (MemberDTO)session.getAttribute("member");
+        memberService.save(memberDTO,memberDTO1.getId());
         log.info(memberDTO.toString());
-        return new RedirectView("mypage/profile");
+        return new RedirectView("profile");
     }
 
 //    아이등록 페이지

@@ -254,17 +254,19 @@ public class MemberServiceImpl implements MemberService {
 
 //   회원정보 수정 (정표 var.) 변경감지로 그냥 될거같은데 함 해볼게 현수
     @Override
-    public void setInfoMemberById(MemberDTO memberDTO,PasswordEncoder passwordEncoder) {
+    public void setInfoMemberById(MemberDTO memberDTO, PasswordEncoder passwordEncoder) {
         Member member = memberRepository.findMemberById(memberDTO.getId());
-        if (member.getMemberPassword() != member.getMemberPassword()){
+
+        if (!member.getMemberPassword().equals(memberDTO.getMemberPassword())) {
             member.setMemberPassword(passwordEncoder.encode(memberDTO.getMemberPassword()));
         }
+
         member.setMemberEmail(memberDTO.getMemberEmail());
         member.setMemberAddress(memberDTO.getMemberAddress());
         member.setMemberPhone(memberDTO.getMemberPhone());
         member.setMemberNickname(memberDTO.getMemberNickname());
-        memberRepository.save(memberRepository.findMemberById(memberDTO.getId()));
-        }
+        memberRepository.save(member);
+    }
 
     @Override
     public MemberDTO findByMemberId(Long memberId) {
