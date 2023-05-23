@@ -2,6 +2,7 @@ package com.app.babybaby.controller.boardController;
 
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.eventDTO.PageRequestDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
@@ -23,8 +24,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,8 +55,9 @@ public class EventController {
 
     /* 학부모회원의 이벤트 신청하기 */
     @GetMapping("applyEvent/{eventId}")
-    public String applyEvent(@PathVariable Long eventId ,Model model){
-        Long sessionId = 2L;
+    public String applyEvent(@PathVariable Long eventId , Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         EventDTO eventDTO = eventService.getAllEventInfo(sessionId, eventId);
         model.addAttribute("eventDTO", eventDTO);
         return "play/event-join-write";
@@ -63,8 +67,9 @@ public class EventController {
 
     /* 기업회원 글쓰기 게시글 내용 작성 */
     @GetMapping("writeFirst")
-    public String goFirstWrite(){
-        Long sessionId = 1L;
+    public String goFirstWrite(Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        model.addAttribute("memberNickname", memberDTO.getMemberNickname());
         return "play/play-write-field";
     }
 
@@ -72,25 +77,29 @@ public class EventController {
 
     /* 기업회원 글쓰기 - 대표사진 등록 */
     @GetMapping("writeSecond")
-    public String goSecondWrite(){
-        Long sessionId = 1L;
+    public String goSecondWrite(Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        model.addAttribute("memberNickname", memberDTO.getMemberNickname());
         return "play/play-write-single";
     }
 
     /* 기업회원 글쓰기 게시글 내용사진 등록*/
     @GetMapping("writeThird")
-    public String goThirdWrite(){
+    public String goThirdWrite(Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        model.addAttribute("memberNickname", memberDTO.getMemberNickname());
         return "play/play-write-multi";
     }
 
     @GetMapping("save")
-    public RedirectView goSaveWithData(EventDTO eventDTO, @RequestParam String stringStartDate, @RequestParam String stringEndDate, @RequestParam String address){
-        Long sessionId = 1L;
+    public RedirectView goSaveWithData(EventDTO eventDTO, @RequestParam String stringStartDate, @RequestParam String stringEndDate, @RequestParam String address, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         LocalDate localStartDate = LocalDate.parse(stringStartDate, DateTimeFormatter.ISO_DATE);
         LocalDate localEndDate = LocalDate.parse(stringEndDate, DateTimeFormatter.ISO_DATE);
 
         LocalDateTime startDate = localStartDate.atStartOfDay();
-        LocalDateTime endDate = localEndDate.atStartOfDay();
+        LocalDateTime endDate = localEndDate.atTime(LocalTime.MAX);
         eventDTO.setEventLocation(new Address(address));
         Calendar calendar = new Calendar("123", eventDTO.getCategory(), startDate, endDate);
         eventService.saveAll(sessionId, eventDTO, calendar);
@@ -113,8 +122,9 @@ public class EventController {
 
     @ResponseBody
     @PostMapping("list")
-    public String getEvents(@RequestBody EventBoardSearch eventBoardSearch, PageRequestDTO pageRequestDTO){
-        Long sessionId = 2L;
+    public String getEvents(@RequestBody EventBoardSearch eventBoardSearch, PageRequestDTO pageRequestDTO, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         Pageable pageable = PageRequest.of(pageRequestDTO.getPage(), 8);
         Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(sessionId, eventBoardSearch,pageable);
         List<EventDTO> eventDTOList = eventListDTO.stream().collect(Collectors.toList());
@@ -134,8 +144,9 @@ public class EventController {
 
 
     @GetMapping("detail/{eventId}")
-    public String goEventDetail(@PathVariable Long eventId, Model model){
-        Long sessionId = 2L;
+    public String goEventDetail(@PathVariable Long eventId, Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         EventDTO eventDTO = eventService.getAllEventInfo(sessionId, eventId);
         model.addAttribute("eventDTO", eventDTO);
         return "play/event-board-detail";

@@ -22,13 +22,13 @@
                         <span class="nav-header-span">기업</span>
                     </div>
                     <a href="javascript:void(0)" class="profile-box">
-                        <span class="profile-name">임종욱</span><span>의</span>
+                        <span class="profile-name" th:text="${memberNickname}"></span><span>의</span>
                         <p>체험제공 신청</p>
                     </a>
                     <div>
                         <span class="profile-span">
-                            <span>게시글 번호</span>
-                            <span class="profile-span">1</span>
+<!--                            <span>게시글 번호</span>-->
+<!--                            <span class="profile-span">1</span>-->
 <!--                             <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="arrow-icon"
                                 aria-hidden="true" style="width: 20px; height: 20px">
                                 <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
@@ -268,6 +268,8 @@
 <script src="jquery.js"></script>
 <script src="jquery-ui.js"></script>
 <script src="datepicker-ko.js"></script> -->
+<script th:inline = "javascript">
+</script>
 <script>
 
     const $selectBox = $(".select-layout");

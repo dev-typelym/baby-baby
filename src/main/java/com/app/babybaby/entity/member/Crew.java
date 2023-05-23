@@ -41,4 +41,10 @@ public class Crew{
         this.guide = guide;
         this.eventRegisterDate = eventRegisterDate;
     }
+
+    public Crew(Kid kid, Guide guide, String eventRegisterDate) {
+        this.kid = kid;
+        this.guide = guide;
+        this.eventRegisterDate = eventRegisterDate;
+    }
 }

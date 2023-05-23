@@ -79,6 +79,11 @@ public class NowKidsServiceImpl implements NowKidsService {
     }
 
     @Override
+    public void saveCrewSave(Event event, Member member) {
+        
+    }
+
+    @Override
     public List<NowKids> find5RecentDesc() {
         List<NowKids> nowKidz = nowKidsRepository.find5RecentDesc();
         log.info(nowKidz.toString());

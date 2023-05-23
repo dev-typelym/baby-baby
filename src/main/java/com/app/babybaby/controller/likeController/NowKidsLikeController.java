@@ -1,6 +1,7 @@
 package com.app.babybaby.controller.likeController;
 
 import com.app.babybaby.domain.boardDTO.nowKidsDTO.NowKidsDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @RestController
@@ -22,9 +24,11 @@ public class NowKidsLikeController {
 
     @PostMapping("save")
     @ResponseBody
-    public Boolean clickLike(Long nowKidsId, Boolean isLike){
+    public Boolean clickLike(Long nowKidsId, Boolean isLike, HttpSession session){
         Boolean result = null;
-        Long sessionId = 2L;
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
+
         log.info("내가 가져온 nowKidsId는  : " + String.valueOf(nowKidsId));
         log.info("내가 가져온 isLike는  : " + String.valueOf(isLike));
 //        isLike가 false라는 뜻은 아직 좋아요가 눌리지 않은 상태

@@ -12,6 +12,7 @@ const eventBoardSearch = {
 };
 
 $(".categoryType").on("click", function () {
+    page = 0;
     let val = $(this).attr('value');
     let result;
         result = val;
@@ -22,6 +23,16 @@ $(".categoryType").on("click", function () {
     $(this).addClass('active')
     $('.instance').remove()
     boardService.getList(appendList);
+    $(window).scroll(function() {
+        console.log($(window).scrollTop() + $(window).height())
+        console.log(Math.floor($(document).height() * 0.9))
+        if($(window).scrollTop() + $(window).height() == Math.floor($(document).height() * 0.9)) {
+            page++;
+            boardService.getList(appendList);
+            bindLikeButtonClickEvent()
+            console.log(page)
+        }
+    });
 });
 
 
@@ -54,7 +65,6 @@ $("form[name='search-form']").on("submit", function (e) {
 
 let page = 0;
 const boardService = (() => {
-    page =0;
     function getList(callback){
         $.ajax({
             url: `/event/list?page=${page}`,
@@ -87,7 +97,7 @@ function appendList(eventListDTO) {
     eventListDTO.forEach((e,i) => {
         boardText3 +=  `
              <div role="presentation" class="instance">
-                            <a class="item" href="">
+                            <a class="item" href="/event/detail/${e.id}">
                                 <div class="thumbnail-container">
                                     <div class="thumbnail-list">
                                         <div class="photo-thumbnail"
@@ -169,6 +179,8 @@ boardService.getList(function(eventListDTO) {
 
 
 $(window).scroll(function() {
+    console.log($(window).scrollTop() + $(window).height())
+    console.log(Math.floor($(document).height() * 0.9))
     if($(window).scrollTop() + $(window).height() == Math.floor($(document).height() * 0.9)) {
         page++;
         boardService.getList(appendList);
@@ -176,6 +188,7 @@ $(window).scroll(function() {
         console.log(page)
     }
 });
+
 bindLikeButtonClickEvent()
 
 /*좋아요 버튼*/

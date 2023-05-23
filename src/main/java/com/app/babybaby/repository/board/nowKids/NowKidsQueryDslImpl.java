@@ -57,7 +57,7 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .from(guide)
                 .join(guide.event, event)
                 .join(event.calendar, calendar)
-                .where(guide.generalGuide.id.eq(generalGuideId))
+                .where((guide.generalGuide.id.eq(generalGuideId)).or(guide.adminGuide.id.eq(generalGuideId)))
                 .where()
                 .fetch();
     }
@@ -127,7 +127,7 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .from(crew)
                 .join(crew.guide)
                 .join(crew.kid)
-                .where(crew.guide.generalGuide.id.eq(guideId)
+                .where(crew.guide.generalGuide.id.eq(guideId).or(crew.guide.adminGuide.id.eq(guideId))
                         .and(crew.guide.event.id.eq(eventId)))
                 .fetch();
     }

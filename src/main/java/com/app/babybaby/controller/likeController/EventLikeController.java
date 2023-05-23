@@ -1,6 +1,7 @@
 package com.app.babybaby.controller.likeController;
 
 
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.like.eventLike.EventLike;
 import com.app.babybaby.service.like.eventLike.EventLikeService;
 import com.app.babybaby.service.like.nowKidsLike.NowKidsLikeService;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
 
 
 @RestController
@@ -22,9 +25,11 @@ public class EventLikeController {
 
     @PostMapping("save")
     @ResponseBody
-    public Boolean clickLike(Long eventId, Boolean isLike){
+    public Boolean clickLike(Long eventId, Boolean isLike, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
+
         Boolean result = null;
-        Long sessionId = 2L;
         log.info("내가 가져온 nowKidsId는  : " + String.valueOf(eventId));
         log.info("내가 가져온 isLike는  : " + String.valueOf(isLike));
 //        isLike가 false라는 뜻은 아직 좋아요가 눌리지 않은 상태
