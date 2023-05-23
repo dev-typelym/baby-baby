@@ -100,7 +100,6 @@
 
       boardText3 +=  `
                                          <li class="one-list">
-                                         ${purchase.calendarDTOS.startDate}
                                 <div class="list-inner">
                                 <dl class="order-info">
                                 <dd> 주문 번호 : ${purchase.id}</dd>

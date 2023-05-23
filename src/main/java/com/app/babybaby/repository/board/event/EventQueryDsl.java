@@ -23,7 +23,8 @@ public interface EventQueryDsl {
     public Optional<Event> findEventById_QueryDSL(Long id);
     //     결제 상세 페이지
     public Optional<Event> findEventPayById_QueryDSL(Long memberId, Long eventId);
-
+    //     내 스케쥴 ㅋ
+    public Slice<Event> findEventScheduleByMemberId_QueryDSL(Pageable pageable, Long memberId, LocalDateTime startDate);
     // 이벤트 게시판 eventId로 맴버 정보조회
     public Member findMemberInfoByEventId_QueryDSL(Long eventId);
 //    기업 이벤트 게시글 조회

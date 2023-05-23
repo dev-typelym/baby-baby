@@ -1,5 +1,6 @@
 package com.app.babybaby.repository.guideSchedule;
 
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.guideSchedule.GuideSchedule;
 import com.app.babybaby.entity.guideSchedule.QGuideSchedule;
@@ -11,4 +12,6 @@ public interface GuideScheduleQueryDsl {
     public List<Calendar> findCalendarByUserId(Long userId);
 
     public List<GuideSchedule> findGuideScheduleById_QueryDsl(Long userId);
+
+    public List<Event> findAllEventsByMemberId_QueryDsl(Long memberId);
 }

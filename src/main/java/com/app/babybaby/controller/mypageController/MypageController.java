@@ -9,6 +9,7 @@ import com.app.babybaby.domain.likeDTO.nowKidsLikeDTO.NowKidsLikeDTO;
 import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.like.nowKidsLike.NowKidsLike;
 import com.app.babybaby.entity.member.Kid;
@@ -43,6 +44,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -83,7 +85,10 @@ public class MypageController {
     @ResponseBody
     public Slice<EventDTO> getMyEvent(@PathVariable(value = "page") Integer page,HttpSession httpSession){
         Long memberId = 1L;
+        log.info("dksdsadasdasd");
         Slice<EventDTO> eventDTOS = eventService.findMemberIdByEventListWithPaging(memberId,PageRequest.of(page, 5));
+        log.info(eventDTOS.toString());
+
         return eventDTOS;
     }
 
@@ -93,6 +98,16 @@ public class MypageController {
     @GetMapping("profile")
     public String getPofile(){
         return "myPage/myPage-profile";
+    }
+
+    @ResponseBody
+    @PostMapping("profile/{page}/{startDate}")
+    public Slice<EventDTO> getPofile(@PathVariable("page") Integer page,@PathVariable LocalDateTime startDate){
+        log.info("드러옴용");
+        Long memberId = 1L;
+        Slice<EventDTO> eventDTOS = eventService.findEventScheduleByMemberId(PageRequest.of(page, 5),memberId,startDate);
+        log.info("제발 " + eventDTOS);
+        return eventDTOS;
     }
 
 
@@ -126,7 +141,6 @@ public class MypageController {
         memberService.updatePassword(memberId,memberPassword,passwordEncoder);
         return new RedirectView("info");
     }
-
 
 //    1:1 문의 목록
     @GetMapping("inquiry")

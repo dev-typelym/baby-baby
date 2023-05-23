@@ -4,8 +4,6 @@ const Calendar = tui.Calendar;
 const container = document.getElementById('calendar');
 const options = {
   defaultView: 'month',
-  useFormPopup: true,
-  useDetailPopup: true,
   isReadOnly: true,
 
   gridSelection: {
@@ -22,14 +20,9 @@ const options = {
       {
         timezoneName: 'Asia/Seoul',
         displayLabel: 'Seoul',
-      },
-      {
-        timezoneName: 'Europe/London',
-        displayLabel: 'London',
-      },
+      }
     ],
   },
-
 
   calendars: [
     {
@@ -42,77 +35,72 @@ const options = {
       name: '스포츠',
       backgroundColor: '#9f8673',
     },
-
     {
-        id: '3',
-        name: '전통',
-        backgroundColor: '#705f53',
-      },
-
-      {
-        id: '4',
-        name: '박물관',
-        backgroundColor: '#74aaf0',
-      },
-      {
-        id: '5',
-        name: '농촌',
-        backgroundColor: '#90949c',
-      },
-      {
-        id: '6',
-        name: '미술관',
-        backgroundColor: '#9b72e7',
-      },
-      {
-        id: '7',
-        name: '공방',
-        backgroundColor: '#f0bb9d',
-      },
-      {
-        id: '8',
-        name: '기타',
-        backgroundColor: '#7a87f5',
-      }
+      id: '3',
+      name: '전통',
+      backgroundColor: '#705f53',
+    },
+    {
+      id: '4',
+      name: '박물관',
+      backgroundColor: '#74aaf0',
+    },
+    {
+      id: '5',
+      name: '농촌',
+      backgroundColor: '#90949c',
+    },
+    {
+      id: '6',
+      name: '미술관',
+      backgroundColor: '#9b72e7',
+    },
+    {
+      id: '7',
+      name: '공방',
+      backgroundColor: '#f0bb9d',
+    },
+    {
+      id: '8',
+      name: '기타',
+      backgroundColor: '#7a87f5',
+    }
   ],
 };
 
 
 const calendar = new Calendar(container, options);
 
-calendar.on('clickEvent', ({ event }) => {
-  console.log(event)
-});
-
-var currentDate = calendar.getDate();
-
+let currentDate = calendar.getDate();
 
 $(".year").text(currentDate.getFullYear()+ "년");
 $(".month").text(currentDate.getMonth() + 1 + "월");
 
+//이전 월 클릭
 $("#calender-prev").click(() => {
   currentDate = calendar.getDate();
 
-  var prevDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
-  var prevYear = prevDate.getFullYear();
-  var prevMonthIndex = prevDate.getMonth();
+  let prevDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+  let prevYear = prevDate.getFullYear();
+  let prevMonthIndex = prevDate.getMonth();
 
   $(".year").text(prevYear+ "년");
   $(".month").text(prevMonthIndex + 1 + "월");
-
+  
   calendar.prev();
 });
 
+//다음 월 클릭
 $("#calender-next").click(() => {
   currentDate = calendar.getDate();
-
-  var nextDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
-  var nextMonthIndex = nextDate.getMonth();
-  var nextYear = nextDate.getFullYear();
+  
+  let nextDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+  let nextMonthIndex = nextDate.getMonth();
+  let nextYear = nextDate.getFullYear();
 
   $(".year").text(nextYear+ "년");
   $(".month").text(nextMonthIndex + 1 + "월");
-
+  
   calendar.next();
 })
 
@@ -162,11 +150,10 @@ calendar.createEvents([
 
 
   /* 상세 일정을 띄워주는 코드 */
-  $(document).ready(function(eventDTOS) {
+  $(document).ready(function() {
     let monthText = $('.month').text().trim();
       let monthMatch = monthText.match(/(\d+)월/);
       let month = monthMatch ? parseInt(monthMatch[1]) : null;
-
 
     /* document.ready를 무조건 해야 이 클래스를 로드할 수 있음 */
     $('.toastui-calendar-daygrid-cell').on('click', function() {
@@ -178,7 +165,7 @@ calendar.createEvents([
       let eventEnd = '';
 
       // 클릭한 날짜의 시작 시간과 끝 시간 구하기
-      // start: 시작시간 00:00:00
+      // start: 시작시간 00:00:00 
       // end : 끝 시간 23:59:59
       let start = new Date(Date.UTC(2023, month - 1, parseInt(day), 0, 0, 0)); // 0시 0분 0초
       let end = new Date(Date.UTC(2023, month - 1, parseInt(day), 23, 59, 59)); // 23시 59분 59초
@@ -192,37 +179,10 @@ calendar.createEvents([
       eventStart = new Date('2023-05-04T16:00:00+09:00');
       eventEnd = new Date('2023-05-04T17:00:00+09:00')
 
-
-      let page = 0;
-      // ajax로 그날 참여한 모집 가져오기
-      const sendData = () => {
-        console.log("sendData 들어옴@@@@");
-        let startDate = eventStart;
-        $.ajax({
-          type: 'post',
-          url: `/mypage/profile/${page}/${startDate}`,
-          // data: $('#reply-form').serialize(),
-          success: function (eventDTOS) {
-            console.log(eventDTOS);
-            // uploadBoard(eventDTOS);
-
-            // $('#reply-count').text(result);
-            // $(".comment-list-wrapper").empty();
-            // nextPage = 0;
-            // fetchData();
-          },
-          error: function (error) {
-            console.log('Error fetching data:', error);
-          }
-        });
-      };
-      sendData();
-
-
       let kstOffset = -540; // UTC+9
       start.setMinutes(start.getMinutes() + kstOffset); // 시작 시간을 한국 시간대로 변경
       end.setMinutes(end.getMinutes() + kstOffset); // 끝 시간을 한국 시간대로 변경
-
+      
 
       // start와 end를 db에 넘기고 이 사이 정보를 받아온 다음
       // 그걸 반복문 돌려서 아래의 코드를 실행
@@ -243,7 +203,6 @@ calendar.createEvents([
         hour: 'numeric',
         minute: 'numeric'
       });
-      /* 한국어로 변경 코드 끝 */
 
 
 
@@ -268,22 +227,7 @@ calendar.createEvents([
       } else if(category == '박물관'){
         iconBackground = '#90949c'
       }
-
-
-      /* 클릭시마다 파란색으로 바뀌기 */
-      for(let i =0; i< 37;i++){
-        clickedDay = $($('.toastui-calendar-daygrid-cell').children().children().children()[i])
-        if(clickedDay.hasClass('toastui-calendar-weekday-grid-date-decorator')){
-          console.log("zzz")
-          clickedDay.removeClass('toastui-calendar-weekday-grid-date-decorator')
-          clickedDay.css('color', 'black')
-          $(this).children().children().children().addClass('toastui-calendar-weekday-grid-date-decorator')
-          $(this).children().children().children().css('color', 'white')
-        }
-      }
-      console.log(eventDTOS.content)
-      let eventAll = "";
-      eventAll +=
+      let eventAll =
       `
       <!-- 왼쪽 컨텐츠 한개 -->
       <div class="lecture">
@@ -298,7 +242,7 @@ calendar.createEvents([
               <span><i class="reward" style='background:${iconBackground}'></i>입문</span>
             </p>
             <p class="lecture-title">
-              ${eventDTOS.boardTitle}
+              ${eventTitle}
             </p>
             <p class="lecture-subtitle">
               ${eventBody}
@@ -349,64 +293,69 @@ calendar.createEvents([
 <!-- 한개 끝 -->
       `
       $(".lecture-list").html(eventAll)
-      $('.lecture').on('click', handleLectureClick);
-      /* 상세 페이지 누르면 table 나오게 */
+      
     });
-
-
   });
-/* 눌렀을때 또르륵 이벤트 핸들러 */
-function handleLectureClick() {
-  let i = $(this).index();
-  let tableWrapper = $('.table-wrapper').eq(i);
 
-  if (tableWrapper.is(':hidden')) {
-    // 해당 테이블이 숨겨져 있는 경우
-    $('.table-wrapper').slideUp(); // 다른 테이블 숨김 처리
-    tableWrapper.slideDown(); // 해당 테이블 슬라이드 다운
-  } else {
-    tableWrapper.slideUp(); // 해당 테이블 슬라이드 업
-  }
-}
+//  날짜 마우스 오버, 마우스 아웃 이벤트
+let $temp;
+let check = false;
+DOMTokenList.prototype.filter = Array.prototype.filter;
+$(container).on({
+  "mouseover": function(){
+    check = this.classList.contains('clicked');
+    $(this).css("border-radius", "50%");
+    $(this).css("background-color", "#135de6");
+    $(this).css("display", "inline-block");
+    $(this).css("width", "35px");
+    $(this).css("height", "35px");
+    $(this).css("line-height", "35px");
+    $(this).css("color", "white");
+  }, "mouseout":function(){
+    if(check) {return;}
+    $(this).css("border-radius", "100%");
+    $(this).css("background-color", "#fff");
+    $(this).css("color", "rgb(51, 51, 51)");
+  }}, ".toastui-calendar-weekday-grid-date");
 
-
-      /* 달력 끝 */
-
-
-      /* 해당 월을  */
-
-      /* 처음 월 넣기 */
-      $('.lecture-list-month').html($('.month').text());
+//  날짜 클릭 시 이벤트
+  $(container).on("click", ".toastui-calendar-weekday-grid-date", function(){
+    $(this).addClass("clicked");
+    check = true;
+    if($temp){
+      $temp.removeClass("clicked");
+      $temp.css("border-radius", "100%");
+      $temp.css("background-color", "#fff");
+      $temp.css("color", "rgb(51, 51, 51)");
+    }
+    $temp = $(this);
+    $(this).css("border-radius", "50%");
+    $(this).css("background-color", "#135de6");
+    $(this).css("display", "inline-block");
+    $(this).css("width", "35px");
+    $(this).css("height", "35px");
+    $(this).css("line-height", "35px");
+    $(this).css("color", "white");
+  });
 
 /* 클릭시마다 월 바뀌기 */
       $('#calender-next').on('click', function(){
+        check = true;
+        if($temp){
+          $temp.css("border-radius", "100%");
+          $temp.css("background-color", "#fff");
+          $temp.css("color", "rgb(51, 51, 51)");
+        }
         $('.lecture-list-month').html($('.month').text());
       })
 
       $('#calender-prev').on('click', function(){
+        check = true;
+        if($temp){
+          $temp.css("border-radius", "100%");
+          $temp.css("background-color", "#fff");
+          $temp.css("color", "rgb(51, 51, 51)");
+        }
         $('.lecture-list-month').html($('.month').text());
       })
-
-/* 추가 코드*/
-// '1~12월' 텍스트에서 월 지우기
-function removeHangleMonth() {
-  var monthElement = $('.month');
-  var monthText = monthElement.text();
-  var monthNumber = monthText.replace(/[^0-9]/g, ''); // 숫자만 남기기
-
-  if (monthNumber.length == 1) {
-    return "0" + monthNumber;
-  } else {
-    return monthNumber;
-  }
-}
-
-// '2023년' 텍스트에서 년 지우기
-function removeHangleYear() {
-  var yearElement = $('.year');
-  var yearText = yearElement.text();
-  var yearNumber = yearText.replace(/[^0-9]/g, ''); // 숫자만 남기기
-
-  return yearNumber;
-}
 

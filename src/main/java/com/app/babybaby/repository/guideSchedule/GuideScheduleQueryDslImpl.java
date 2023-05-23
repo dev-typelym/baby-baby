@@ -1,5 +1,6 @@
 package com.app.babybaby.repository.guideSchedule;
 
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.guideSchedule.GuideSchedule;
 import com.app.babybaby.entity.guideSchedule.QGuideSchedule;
@@ -30,6 +31,14 @@ public class GuideScheduleQueryDslImpl implements GuideScheduleQueryDsl {
                 .where(guideSchedule.member.id.eq(userId))
                 .fetch()
                 ;
+    }
+
+    @Override
+    public List<Event> findAllEventsByMemberId_QueryDsl(Long memberId) {
+        return query.select(guideSchedule.event)
+                .from(guideSchedule)
+                .where(guideSchedule.member.id.eq(memberId))
+                .fetch();
     }
 
 }
