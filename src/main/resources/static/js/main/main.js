@@ -861,7 +861,7 @@ function appendEventList(categoryResults) {
                                         [<span>${convertedCategory}</span>] ${category.boardTitle}
                                     </div>
                                     <div class="recruit-box-writer">
-                                        ${category.company.memberName}
+                                        ${category.memberName}
                                     </div>
                                      <div >
                                          <div class="event-box-date-container">
