@@ -42,8 +42,8 @@
                     </a>
                     <button type="button" class="profile-btn">
                         <span class="profile-span">
-                            <span>게시글 번호</span>
-                            <span class="profile-span">1</span>
+<!--                            <span>게시글 번호</span>-->
+<!--                            <span class="profile-span">1</span>-->
 <!--                             <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="arrow-icon"
                                 aria-hidden="true" style="width: 20px; height: 20px">
                                 <path d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"></path>
@@ -273,11 +273,5 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/components/header.js"></script>
-<script th:inline = "javascript">
-    let memberDTOSJSON = [[${memberDTOS}]];
-    let memberDTOS = JSON.parse(memberDTOSJSON)
-    console.log(memberDTOS)
-    $('.profile-name').text(memberDTOS.memberNickname)
-</script>
 <script src="/js/play/play-write-single.js"></script>
 </html>

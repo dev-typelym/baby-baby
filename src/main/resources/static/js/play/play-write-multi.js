@@ -218,7 +218,13 @@ $fileListBox.on('click', '.image-cancel', (e) => {
 
 
 
+$('.confirm-button').on('click', function (e) {
+    e.preventDefault();
 
+    if ($('.cancel-box').length > 0) {
+        $(this).closest('form').submit();
+    }
+});
 
 
 

@@ -180,9 +180,16 @@ $fileInput.change((e) => {
     });
     console.log(inputFiles);
 });
-$('.image-inputs')
 
 
+$('.confirm-button').on('click', function (e) {
+    e.preventDefault();
+    console.log($('.cancel-box').length)
+
+    if ($('.cancel-box').length > 0) {
+        $(this).closest('form').submit();
+    }
+});
 /*-------------------------------------------------------*/
 function leftPad(value) {
     if (value >= 10) {
