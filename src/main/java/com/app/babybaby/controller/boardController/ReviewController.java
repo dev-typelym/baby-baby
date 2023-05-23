@@ -30,7 +30,7 @@ public class ReviewController {
 
     @GetMapping("writeFirst")
     public String goReviewBoardWrite(Model model){
-        Long sessionId = 2L;
+        Long sessionId = 1L;
         List<EventDTO> events = reviewService.findAllEventsByMemberId(sessionId);
 
         Gson gson = new Gson();
@@ -42,7 +42,7 @@ public class ReviewController {
 
     @GetMapping("writeSecond")
     public String goReviewBoardSecond(Model model){
-        Long sessionId = 2L;
+        Long sessionId = 1L;
         Member member = reviewService.getMemberInfo(sessionId);
 //        로그인 되어있지 않을때 로그인 페이지로 보내주기
         model.addAttribute(member);
@@ -52,7 +52,7 @@ public class ReviewController {
 
     @PostMapping("save")
     public RedirectView saveReviewBoard(ReviewDTO reviewDTO, Long eventId){
-        Long sessionId = 2L;
+        Long sessionId = 1L;
         log.info(reviewDTO.toString());
         reviewService.saveReview(sessionId, eventId, reviewDTO);
         return new RedirectView("/review/list");

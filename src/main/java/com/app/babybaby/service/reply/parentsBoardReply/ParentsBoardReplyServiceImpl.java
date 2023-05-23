@@ -43,7 +43,14 @@ public class ParentsBoardReplyServiceImpl implements ParentsBoardReplyService {
         parentsBoardReplyRepository.deleteById(parentsBoardReplyId);
     }
 
-//    댓글 수정
+//    게시글의 댓글 총 수
+    @Override
+    public Long parentsBoardReplyCount(Long boardId) {
+        Long count = parentsBoardReplyRepository.parentsBoardReplyCount(boardId);
+        return count;
+    }
+
+    //    댓글 수정
     public void updateByParentsBoardReply(Long replyId, String replyContent) {
         ParentsBoardReply parentsBoardReply = parentsBoardReplyRepository.findById(replyId).get();
         parentsBoardReply.setParentsBoardReplyContent(replyContent);

@@ -31,25 +31,17 @@ public class AlertFollowQueryDslImpl implements AlertFollowQueryDsl {
     }
 
     @Override
-    public List<AlertFollow> find8DescByMemberId(Long memberId) {
+    public List<AlertFollow> find8DescByMemberId(Long sessionMemberId) {
+//        List<AlertFollow> alertFollowDTOS = query.select(alertFollow)
+//                .from(alertFollow)
+//                .where(alertFollow.member.id.eq(sessionMemberId))
+//                .orderBy(alertFollow.id.desc())
+//                .limit(8)
+//                .fetch();
+//        return alertFollowDTOS;
         return null;
     }
 
-//    @Override
-//    public Page<AlertFollow> findAllByUserId(Pageable pageable, Long memberId) {
-//        List<AlertFollow> alarms = query.select(alertFollow)
-//                .from(alertFollow)
-//                .leftJoin(alertFollow.member)
-//                .fetchJoin()
-//                .orderBy(alertFollow.alertRegisterDate.desc())
-//                .offset(pageable.getOffset())
-//                .limit(pageable.getPageSize()).fetch();
-//
-//        long total = query.select(alertFollow.count())
-//                .from(alertFollow)
-//                .where(alertFollow.member.id.eq(memberId))
-//                .fetchOne();
-//
-//        return new PageImpl<>(alarms, pageable, total);
-//    }
+
+
 }

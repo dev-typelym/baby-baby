@@ -46,9 +46,9 @@ public abstract class Alert {
     }
 
     //  ReadStatus는 유저가 알람을 보는 순간 READ로 업데이트가 되어야 한다.
-//    public void updateStatus(){
-//        this.readStatus = AlertReadStatus.READ;
-//    }
+    public void updateStatus(){
+        this.readStatus = AlertReadStatus.READ;
+    }
 //    public void setAlarm(AlarmDTO alarmDTO){
 //        this.alertContent = alarmDTO.getAlertContent();
 //        this.alertType = AlarmCategory.change(alarmDTO.getAlarmCategory());

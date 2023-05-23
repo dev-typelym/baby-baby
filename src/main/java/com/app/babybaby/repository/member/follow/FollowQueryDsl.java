@@ -27,4 +27,7 @@ public interface FollowQueryDsl {
         public List<ParentsBoard> findAllParentsBoardByMemberId_QueryDSL(Long memberId);
 
         public List<Review> findALlReviewByMemberId_QueryDSL(Long memberId);
+
+//        김동한
+//        public List<Member> findFollowers
 }

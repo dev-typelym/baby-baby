@@ -56,8 +56,15 @@ public class ParentsBoardReplyController {
         Map<String, Object> response = new HashMap<>();
         response.put("data", parentsBoardReplyDTOS);
         response.put("count", count);
-        response.put("totalReplies", parentsBoardReplyDTOS.getTotalElements());
         return response;
+    }
+
+    @GetMapping("show/{boardId}")
+    @ResponseBody
+    public Long getParentsBoardReplyCount(@PathVariable Long boardId) {
+        Long count = parentsBoardReplyService.parentsBoardReplyCount(boardId);
+        log.info("CounT : " + count);
+        return count;
     }
 
 

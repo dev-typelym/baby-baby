@@ -592,7 +592,7 @@ div.modal-background {
     position: absolute;
     border-radius: 16px;
     width: 528px;
-    height: 410px;
+    height: 365px;
     top: -7px;
     left: 50%;
     transform: translate(-50%);
@@ -787,4 +787,10 @@ div.modal-background {
 	.header-search-index-div { /* 헤더 검색창 div 내의 div */
 	    border: 1px solid #00c4c4;
 	}
+}
+
+.modal-alarm-btn:hover {
+    /* hover 시 적용할 스타일을 여기에 작성합니다 */
+    background-color: #f0f0f0;
+    /* 예시로 배경색을 변경했습니다 */
 }

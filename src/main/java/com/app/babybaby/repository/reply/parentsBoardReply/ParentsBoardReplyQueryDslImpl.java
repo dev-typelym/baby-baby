@@ -26,10 +26,11 @@ public class ParentsBoardReplyQueryDslImpl implements ParentsBoardReplyQueryDsl 
 
 //    전체 댓글 수 가져오기
     @Override
-    public Long parentsBoardReplyCount() {
+    public Long parentsBoardReplyCount(Long boardId) {
         Long parentsBoardReplyCount =
                 query.select(parentsBoardReply.count())
                         .from(parentsBoardReply)
+                        .where(parentsBoardReply.parentsBoard.id.eq(boardId))
                         .fetchOne();
 
         return parentsBoardReplyCount;

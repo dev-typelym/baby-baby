@@ -154,6 +154,7 @@
             }
         }
     }
+
     function stepParticle(particle, particleIndex) {
         particle.tiltAngle += particle.tiltAngleIncremental;
         particle.y += (Math.cos(angle + particle.d) + 3 + particle.r / 2) / 3;
@@ -207,55 +208,55 @@
     }
 
     window.requestAnimFrame = (function () {
-        return window.requestAnimationFrame || 
-        window.webkitRequestAnimationFrame || 
-        window.mozRequestAnimationFrame || 
-        window.oRequestAnimationFrame || 
-        window.msRequestAnimationFrame || 
-        function (callback) {
-            return window.setTimeout(callback, 1000 / 60);
-        };
+        return window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.oRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            function (callback) {
+                return window.setTimeout(callback, 1000 / 60);
+            };
     })();
 })();
 
 
-$(document).ready(function(){  
-    function reAction(){
+$(document).ready(function () {
+    function reAction() {
         $("#startButton").trigger("click");
-        setTimeout(function(){
+        setTimeout(function () {
             $("#stopButton").trigger("click");
         }, 6000);
     }
-    
-    $(".header-make-button").on('click', function(){
+
+    $(".header-make-button").on('click', function () {
         reAction();
-    }); 
-  });
+    });
+});
 
-  /* 알람 모달 */
-  let alarmModalCheck = false;
+/* 알람 모달 */
+let alarmModalCheck = false;
 
-  function showAlarmModal(modalMessage) {
+function showAlarmModal(modalMessage) {
     $("div#content-wrap").html(modalMessage);
     $("div.alarm-modal").css("animation", "popUp 0.5s");
     $("div.alarm-modal").css("display", "block").hide().fadeIn(500);
-      alarmModalCheck = true;
-  }
-  
-  function hideAlarmModal() {
+    alarmModalCheck = true;
+}
+
+function hideAlarmModal() {
     $("div.modal").fadeOut(500);
     $("div.alarm-modal").fadeOut(500);
-      alarmModalCheck = false;
-  }
-  
-  $(".alarm-modal-btn").on("click", function() {
+    alarmModalCheck = false;
+}
+
+$(".alarm-modal-btn").on("click", function () {
     if (!alarmModalCheck) {
-      let modalMessage = '';
-      showAlarmModal(modalMessage);
+        let modalMessage = '';
+        showAlarmModal(modalMessage);
     } else {
-      hideAlarmModal();
+        hideAlarmModal();
     }
-  });
+});
 
 // .alarm-modal-body 클래스와 .alarm-modal-btn 클래스를 가진 요소를 모두 선택합니다.
 var alarmModalBodies = document.querySelectorAll('.alarm-modal-body');
@@ -270,20 +271,20 @@ var children = body.children;
 // children 배열에서 .alarm-modal-body 클래스와 .alarm-modal-btn 클래스를 가진 요소를 제외한 모든 요소를 선택합니다.
 var elements = [];
 for (var i = 0; i < children.length; i++) {
-  var child = children[i];
-  if (!child.classList.contains('alarm-modal-body') && !child.classList.contains('alarm-modal-btn')) {
-    elements.push(child);
-  }
+    var child = children[i];
+    if (!child.classList.contains('alarm-modal-body') && !child.classList.contains('alarm-modal-btn')) {
+        elements.push(child);
+    }
 }
 
 // 선택된 요소에 이벤트 리스너를 추가합니다.
-elements.forEach(function(element) {
-    element.addEventListener('click', function(event) {
-      if (!event.target.closest('.alarm-modal-body') && !event.target.closest('.alarm-modal-btn')) {
-        hideAlarmModal();
-      }
+elements.forEach(function (element) {
+    element.addEventListener('click', function (event) {
+        if (!event.target.closest('.alarm-modal-body') && !event.target.closest('.alarm-modal-btn')) {
+            hideAlarmModal();
+        }
     });
-  });
+});
 
 function formatDate(originalDate) {
     let date = new Date(originalDate);
@@ -300,7 +301,7 @@ function formatDate(originalDate) {
 }
 
 
-if(memberDTO != null){
+if (memberDTO != null) {
 
     let date = new Date(memberDTO.memberRegisterDate);
     let formattedDate = date.toLocaleDateString("ko-KR", {
@@ -318,10 +319,11 @@ if(memberDTO != null){
 
     Date.prototype.YYYYMMDD = function () {
         var yyyy = this.getFullYear().toString();
-        var MM = pad(this.getMonth() + 1,2);
+        var MM = pad(this.getMonth() + 1, 2);
         var dd = pad(this.getDate(), 2);
-        return yyyy +  MM + dd; //날짜 형식
+        return yyyy + MM + dd; //날짜 형식
     };
+
     function pad(number, length) {
         var str = '' + number;
         while (str.length < length) {
@@ -338,7 +340,7 @@ if(memberDTO != null){
     var diffDate = now - formattedDate; //현재 날짜 -
     console.log(diffDate);
 
-    document.getElementById("membership-days").textContent = diffDate+1;
+    document.getElementById("membership-days").textContent = diffDate + 1;
 
 }
 
@@ -347,7 +349,7 @@ function getCount() {
     $.ajax({
         url: '/alert/follow/controller/unread', // 서버의 요청 경로
         type: 'GET',
-        success: function(response) {
+        success: function (response) {
             var count = response;
             console.log("response : " + response);
             console.log("count : " + count);
@@ -357,7 +359,7 @@ function getCount() {
                 $('.new-alarm').css('display', 'block');
             }
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             console.log('Error:', error);
             console.log("에러메세지");
         }
@@ -366,3 +368,42 @@ function getCount() {
 
 // getCount 함수 호출
 getCount();
+
+
+function getFollowAlertList() {
+    $.ajax({
+        url: '/alert/follow/controller/list', // 서버의 요청 경로
+        type: 'GET',
+        success: function (response) {
+            appendFollowAlertList(response);
+        },
+        error: function (xhr, status, error) {
+            console.log('Error:', error);
+            console.log("에러메세지");
+        }
+    });
+}
+
+function appendFollowAlertList(alertResult) {
+    let followText = '';
+    alertResult.forEach(alert => {
+        // const convertedCategory = convertCategory(category.eventCategory); // 영어 카테고리를 한글로 변환
+        // const convertedTime = formatDate(category.parentsBoardUpdateDate);
+        followText += ` 
+                                    <button type="button" class="modal-alarm-btn">
+                    <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" class="message-image">
+                    <div class="modal-alarm-content-wrapper">
+                        <div class="modal-alarm-content-container">
+                            <div class="modal-alarm-content-title">
+                                <p>아기자기알림</p>
+                            </div>
+                            <div class="modal-alarm-content-time">${alert}</div>
+<!--                        </div>-->
+<!--                        <p class="modal-alarm-content-text"><span>00</span>님이 나를 팔로우합니다!</p>-->
+<!--                    </div>-->
+                </button>`
+        ;
+    });
+    $('.modal-alarm-btn-wrapper').append(followText);
+    // globalThis.page++;
+}

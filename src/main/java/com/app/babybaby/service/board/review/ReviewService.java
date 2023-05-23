@@ -26,12 +26,13 @@ public interface ReviewService {
 
     public Member getMemberInfo(Long sessionId);
 
-//    리스트 ajax
+//    리뷰 목록
     public Page<ReviewDTO> getFindAllWithSearchReviewBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch);
-
+    
+    //    리뷰 상세보기 카테고리 최신글 2개 가져오기
     public List<ReviewDTO> find2RecentDesc(CategoryType categoryType);
 
-    //    게시글 상세보기
+    //    리뷰 상세보기
     public ReviewDTO getReviewBoardDetail(Long id);
 
     public Review findById(Long id);

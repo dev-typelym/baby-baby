@@ -340,7 +340,6 @@ $('.comment-list').on('click', '.modify-confirm', function () {
 });
 
 // 댓글 총 수를 구하기 위한 globalThis.totalReplies
-globalThis.totalReplies = 1;
 
 
 // 댓글목록 불러오기==========================================
@@ -351,9 +350,8 @@ function getReplyList(page) {
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             globalThis.count = data.count;
-            globalThis.totalReplies = data.totalReplies;
             showReplyList(data.data);
-            showReplyCount();
+            getReplyCount();
             console.log("======count List success: ")
             console.log(count)
             console.log("======page List success: ")
@@ -368,14 +366,38 @@ function getReplyList(page) {
 
 }
 
-showReplyCount();
 getReplyList(globalThis.page);
-function showReplyCount() {
-    var countReply = globalThis.totalReplies;
+
+
+
+
+function showReplyCount(replyAllcount) {
+    console.log("러러러럴드ㅡ드드등" + replyAllcount);
     let countText = '';
-    countText += `<em>${countReply}</em>개의 댓글이 달려있습니다.`
+    countText += `<em>${replyAllcount}</em>개의 댓글이 달려있습니다.`
     $('.comment-count').html(countText);
 }
+
+function getReplyCount() {
+    $.ajax({
+        url: `/parentsYard/reply/show/${boardId}`,
+        data: {boardId: boardId},
+        async:false,
+        type: 'get',
+        success: function (count) {
+            let replyAllcount = count;
+            console.log("드러러러러렁" + replyAllcount);
+            // showReplyList(data.data);
+            showReplyCount(replyAllcount);
+        }
+    });
+}
+
+
+getReplyCount();
+
+
+
 
 function showReplyList(data) {
     let parentsBoardDTOS = data.content;
