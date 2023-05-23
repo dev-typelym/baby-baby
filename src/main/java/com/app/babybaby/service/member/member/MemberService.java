@@ -46,6 +46,8 @@ public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable);
 
     public MemberDTO getAllUserInfo(Long memberId, Long sessionId);
 
+    public MemberDTO getUserInfoForPurchase(Long memberId, Long eventId);
+
     default MemberDTO toMemberDTO(Member member){
         return MemberDTO.dtoBuilder()
                 .id(member.getId())
