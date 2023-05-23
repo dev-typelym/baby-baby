@@ -260,7 +260,7 @@ body>#root, #wadizTopBanner, #page-container {
     cursor: pointer;
 }
 div#emailChangeBtn {
-    width: 90%;
+    width: 101%;
     /* margin-left: 16px; */
     display: block;
     background-color: #00c4c4;

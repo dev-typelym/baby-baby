@@ -58,8 +58,15 @@ function appendList(nowKidsLikeDTOS) {
                 <a class="item" href="">
                     <div class="thumbnail-container">
                         <div class="thumbnail-list">
-                            <div class="photo-thumbnail"></div>
-                            &lt;!&ndash; 사진 div &ndash;&gt;
+                               `
+                        if(nowKid.eventFileDTOS.length != 0) {
+                                boardText3 += `
+                            <div class="photo-thumbnail">
+                                <img style="width: 100%; height: 100%;" src="/eventFiles/display?fileName=Event/${eventLike.eventFileDTOS[0].filePath}/${eventLike.eventFileDTOS[0].fileUUID}_${eventLike.eventFileDTOS[0].fileOriginalName}">
+                             </div>
+                                `
+                            }
+                    boardText3 += `
                         </div>
                     </div>
                     <div class="list-content">

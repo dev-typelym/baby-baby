@@ -32,7 +32,7 @@ public interface KidService {
                 .kidGender(kidDTO.getKidGender())
                 .kidName(kidDTO.getKidName())
                 .kidAge(kidDTO.getKidAge())
-//                .parent(kidDTO.getParent())
+                .parent(kidDTO.getParent())
                 .build();
     }
 

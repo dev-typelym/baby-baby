@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -68,6 +69,14 @@ public class EventServiceImpl implements EventService {
     public Slice<EventDTO> findMemberIdByEventListWithPaging(Long memberId, Pageable pageable) {
         Slice<Event> events = eventRepository.findMemberIdByEventListWithPaging_QueryDSL(memberId, pageable);
 
+        List<EventDTO> collect = events.get().map(event -> eventToDTOS(event)).collect(Collectors.toList());
+        return new SliceImpl<>(collect,pageable,events.hasNext());
+    }
+
+    // 내 스케쥴
+    @Override
+    public Slice<EventDTO> findEventScheduleByMemberId(Pageable pageable, Long memberId, LocalDateTime startDate) {
+        Slice<Event> events = eventRepository.findEventScheduleByMemberId_QueryDSL(pageable, memberId,startDate);
         List<EventDTO> collect = events.get().map(event -> eventToDTOS(event)).collect(Collectors.toList());
         return new SliceImpl<>(collect,pageable,events.hasNext());
     }

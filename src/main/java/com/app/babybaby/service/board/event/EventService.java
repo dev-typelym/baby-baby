@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +25,8 @@ public interface EventService {
     Slice<EventDTO> findEventListWithPaging(Long sessionId, EventBoardSearch eventBoardSearch, Pageable pageable);
 //    내가 쓴 이벤트 게시판
     Slice<EventDTO> findMemberIdByEventListWithPaging(Long memberId, Pageable pageable);
+    //    내 스케쥴
+    public Slice<EventDTO> findEventScheduleByMemberId(Pageable pageable, Long memberId, LocalDateTime startDate);
 
     public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar);
     

@@ -3,6 +3,7 @@ package com.app.babybaby.repository.board.event;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.entity.guideSchedule.QGuideSchedule;
 import com.app.babybaby.entity.like.eventLike.QEventLike;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.member.QMember;
@@ -26,6 +27,7 @@ import java.util.Optional;
 import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
+import static com.app.babybaby.entity.guideSchedule.QGuideSchedule.guideSchedule;
 import static com.app.babybaby.entity.like.eventLike.QEventLike.eventLike;
 import static com.app.babybaby.entity.member.QMember.member;
 import static com.app.babybaby.entity.purchase.coupon.QCoupon.coupon;
@@ -131,7 +133,34 @@ public class EventQueryDslImpl implements EventQueryDsl {
                         .fetchOne()
         );
     }
-// 이벤트 게시판 eventId로 맴버 정보조회
+
+    //    내 스케쥴 ㅋ
+    @Override
+    public Slice<Event> findEventScheduleByMemberId_QueryDSL(Pageable pageable, Long memberId,LocalDateTime startDate) {
+        List<Event> events = query.selectDistinct(guideSchedule.event)
+                .from(guideSchedule)
+                .join(guideSchedule.event, event)
+                .leftJoin(event.eventFiles)
+                .join(event.calendar)
+                .where(
+                        guideSchedule.member.id.eq(memberId).and(event.calendar.startDate.eq(startDate))
+                )
+                .orderBy(event.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        boolean hasNext = false;
+        // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true
+        if (events.size() > pageable.getPageSize()) {
+            hasNext = true;
+            events.remove(pageable.getPageSize());
+        }
+
+        return new SliceImpl<>(events, pageable, hasNext);
+    }
+
+    // 이벤트 게시판 eventId로 맴버 정보조회
     public Member findMemberInfoByEventId_QueryDSL(Long eventId){
         return query.select(event.company)
                 .from(event)
