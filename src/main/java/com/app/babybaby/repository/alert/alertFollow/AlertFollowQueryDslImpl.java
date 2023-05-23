@@ -25,13 +25,9 @@ import static com.app.babybaby.entity.member.QMember.member;
 public class AlertFollowQueryDslImpl implements AlertFollowQueryDsl {
     private final JPAQueryFactory query;
     @Override
-    public List<AlertFollow> getNoReadAlertList() {
-        List<AlertFollow> alertList = query.select(alertFollow)
-                .from(alertFollow)
-                .orderBy(alertFollow.id.desc())
-                .where(alertFollow.readStatus.eq(AlertReadStatus.UNREAD))
-                .fetch();
-        return alertList;
+    public Long getNoReadAlert() {
+        Long count = query.select(alertFollow.count()).from(alertFollow).where(alertFollow.readStatus.eq(AlertReadStatus.UNREAD)).fetchOne();
+        return count;
     }
 
     @Override

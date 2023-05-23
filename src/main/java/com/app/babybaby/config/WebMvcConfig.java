@@ -21,6 +21,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(alarmInterceptor)
                 .addPathPatterns("/main/**") // 작성한 경로에 Interceptor 동작
                 .addPathPatterns("/mypage/**") // 작성한 경로에 Interceptor 동작
+                .addPathPatterns("/alert/**") // 작성한 경로에 Interceptor 동작
                 .excludePathPatterns("/admin/**");
 
     }

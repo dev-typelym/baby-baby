@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface AlertFollowQueryDsl {
-    public List<AlertFollow> getNoReadAlertList();
+//    읽지 않은 알림 수
+    public Long getNoReadAlert();
+
     public Page<AlertFollow> findAllByUserId(Pageable pageable, Long userId);
 
 }
