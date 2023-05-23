@@ -8,10 +8,12 @@ import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.alert.alertFollow.AlertFollowRepository;
 import com.app.babybaby.repository.member.follow.FollowRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
+import com.app.babybaby.service.member.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +21,7 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 import javax.swing.text.html.parser.Entity;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +32,7 @@ public class FollowServiceImpl implements FollowService {
     private final FollowRepository followRepository;
     private final AlertFollowRepository alertFollowRepository;
     private final MemberRepository memberRepository;
+    private final MemberService memberService;
     private final HttpSession session;
 
 
@@ -56,4 +60,30 @@ public class FollowServiceImpl implements FollowService {
         Member following = memberRepository.findById(followingId).get();
         followRepository.deleteFollowByFollowerAndFollowing(follower, following);
     }
+
+    @Override
+    public Page<MemberDTO> findFollowersByMemberId(Pageable pageable, Long memberId) {
+        Page<Member> followers = followRepository.findFollowersByMemberId(pageable, memberId);
+        List<MemberDTO> lists = followers.get().map(this::entityToMemberDTO).collect(Collectors.toList());
+        return new PageImpl<>(lists, pageable, followers.getTotalElements());
+    }
+
+    @Override
+    public Page<MemberDTO> findFollowingsByMemberId(Pageable pageable, Long memberId) {
+        Page<Member> followings = followRepository.findFollowingsByMemberId(pageable, memberId);
+        List<MemberDTO> lists = followings.get().map(this::entityToMemberDTO).collect(Collectors.toList());
+        return new PageImpl<>(lists, pageable, followings.getTotalElements());
+    }
+
+    @Override
+    public Boolean getIsFollowedByMemberId(Long memberId, Long sessionId) {
+        return followRepository.getIsFollowedByMemberId(memberId, sessionId);
+    }
+
+    @Override
+    public Long findFollowingMemberCountByMemberId_QueryDSL(Long memberId) {
+        return followRepository.findFollowingMemberCountByMemberId_QueryDSL(memberId);
+    }
+
+
 }

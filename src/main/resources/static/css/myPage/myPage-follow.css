@@ -291,3 +291,24 @@ li{
     fill: red;
     margin-bottom: -1px;
 }
+
+.btn-place {
+    text-align: center;
+}
+
+.free-board-other .btn-place {
+    padding-top: 30px;
+    text-align: center;
+}
+
+button.btn-comment {
+    display: inline-block;
+    padding: 0 15px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #4a4a4a;
+    background: transparent;
+    border: 1px solid #e4e4e4;
+    cursor: pointer;
+}

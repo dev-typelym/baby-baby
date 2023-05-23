@@ -64,7 +64,7 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
-                .antMatchers(MYPAGE_PATH).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name())
+//                .antMatchers(MYPAGE_PATH).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name())
                 .anyRequest().permitAll()
                 .and()
                 .csrf().disable()

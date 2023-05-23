@@ -56,8 +56,8 @@
                       </div>
 
                       <div class="profile-name-area">
-                        <p class="name">(주)마미인터네셔널</p>
-                        <p class="follower-count">팔로우 하는 사람 <span>194</span></p>
+                        <p class="name" th:text="${session.member.memberNickname}"></p>
+<!--                        <p class="follower-count">팔로우 하는 사람 <span>194</span></p>-->
                       </div>
                     </a>
                     <div class="following-btn-area">
@@ -78,28 +78,6 @@
                           <span class="btn-text">팔로잉</span>
                         </span>
                       </button>
-
-                      <!--  팔로잉 버튼 취소하면 나오는 버튼 -->
-                      <!-- 종도 -->
-                      <!-- <button
-                        class="following-btn-not btn"
-                        type="button"
-                      >
-                        <span
-                          ><svg
-                            viewBox="0 0 32 32"
-                            focusable="false"
-                            role="presentation"
-                            class="withIcon_icon__2KxnX Button_icon__16grv FollowingButton_icon__25M12"
-                            aria-hidden="true"
-                            style="width: 14px; height: 14px;padding-top: 2px;padding-right: 4px;"
-                          >
-                            <path
-                              d="M30.4 15.2H16.8V1.6h-1.6v13.6H1.6v1.6h13.6v13.6h1.6V16.8h13.6v-1.6z"
-                            ></path></svg
-                          ><span class="Button_children__raEW4">팔로우</span></span
-                        >
-                      </button> -->
                     </div>
                   </div>
                   <div class="line"></div>
@@ -169,6 +147,9 @@
                   <div class="line"></div>
                 </div>
                 <!-- 리스트 한개 끝 -->
+              </div>
+              <div class="btn-place">
+                <button class="btn-comment comment-open">더 보기</button>
               </div>
             </div>
           </div>
