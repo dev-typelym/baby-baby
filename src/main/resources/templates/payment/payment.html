@@ -46,15 +46,15 @@
 								<section class="Section_container" style="margin-top: 33px;">
 									<!-- 참여자 info container (단체) -->
 									<div class="Section_titleContainer">
-										<h3 class="Section_title">참여자 정보 (단체)(장애인)(비장애인)</h3>
+										<h3 class="Section_title">참여자 정보</h3>
 									</div>
 									<div class="payment-contributors-info-container">
 										<div class="payment-final-price-container">
 											<p class="summary total-price">참여인원
 												<span>3<span>명</span></span>
 											</p>
-											<p class="summary discount-price">통솔자 신청 (그룹인원 최대 25명) (그룹 인당 가격)
-												<span>50,000<span>원</span></span>
+											<p class="summary discount-price">통솔자 신청 (그룹인원 최대 10명) (그룹 인당 가격)
+												<span th:text="${eventDTO.eventPrice}"><span>원</span></span>
 											</p>
 											<hr class="hr-lighter">
 											<p class="final-price">추가금액 합계
@@ -72,8 +72,8 @@
 											<p>할인 쿠폰</p>
 											<div class="coupon-info">
 												<div class="coupon-count">
-													<span>전체 </span><span class="counpon-entire">2</span><span>장, </span>
-													<span>사용가능 1장</span>
+													<span>전체 </span><span class="counpon-entire" th:text="${eventDTO.totalCouponCount}">2</span><span>장, </span>
+													<span>사용가능 <span th:text="${eventDTO.totalUnusedCouponCount}">1</span>장</span>
 												</div>
 												<button class="check-coupon-btn" id="open-modal" type="button">선택</button>
 											</div>
@@ -100,76 +100,28 @@
 											<h2>사용 가능 쿠폰</h2>
 											<!-- 쿠폰 여기다가 작성하기 -->
 											<!-- 쿠폰하나 시작 -->
-											<div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
-												<div class="coupon-full-wrap">
-													<div class="coupon-left-full-wrap">
-														<dl>
-															<dd class="coupon-left-title">후기</dd>
-															<dd class="coupon-left-title-explain">성실한 후기 작성 쿠폰</dd>
-															<dd class="coupon-left-price-wrap">
-																<span class="coupon-left-price">5000</span><span>원</span>
-															</dd>
-															<dd class="coupon-left-deadline-wrap">
-																<span class="coupon-left-deadline">2023.05.03</span><span>까지 사용 가능</span>
-															</dd>
-														</dl>
-													</div>
-													<button type="button" class="coupon-right-full-wrap">
-														<i class="coupon-right-icon">
-															<img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
-														</i>
-														<span class="coupon-right-can-use">사용 가능</span>
-													</button>
-												</div>
-										  	</div>
-											<!-- 쿠폰하나 끝 -->
-											<!-- 쿠폰하나 시작 -->
-											<div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
-												<div class="coupon-full-wrap">
-													<div class="coupon-left-full-wrap">
-														<dl>
-															<dd class="coupon-left-title">후기</dd>
-															<dd class="coupon-left-title-explain">성실한 후기 작성 쿠폰</dd>
-															<dd class="coupon-left-price-wrap">
-																<span class="coupon-left-price">5000</span><span>원</span>
-															</dd>
-															<dd class="coupon-left-deadline-wrap">
-																<span class="coupon-left-deadline">2023.05.03</span><span>까지 사용 가능</span>
-															</dd>
-														</dl>
-													</div>
-													<button type="button" class="coupon-right-full-wrap">
-														<i class="coupon-right-icon">
-															<img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
-														</i>
-														<span class="coupon-right-can-use">사용 가능</span>
-													</button>
-												</div>
-										  	</div>
-											<!-- 쿠폰하나 끝 -->
-											<!-- 쿠폰하나 시작 -->
-											<div class="coupon-full-wrap-margin"> <!-- = CouponDownloadItem_container__1hk2 -->
-												<div class="coupon-full-wrap">
-													<div class="coupon-left-full-wrap">
-														<dl>
-															<dd class="coupon-left-title">후기</dd>
-															<dd class="coupon-left-title-explain">성실한 후기 작성 쿠폰</dd>
-															<dd class="coupon-left-price-wrap">
-																<span class="coupon-left-price">5000</span><span>원</span>
-															</dd>
-															<dd class="coupon-left-deadline-wrap">
-																<span class="coupon-left-deadline">2023.05.03</span><span>까지 사용 가능</span>
-															</dd>
-														</dl>
-													</div>
-													<button type="button" class="coupon-right-full-wrap">
-														<i class="coupon-right-icon">
-															<img width="40px" height="40px" src="/images/payment/coupon-use-S.png">
-														</i>
-														<span class="coupon-right-can-use">사용 가능</span>
-													</button>
-												</div>
-										  	</div>
+<!--											<div class="coupon-full-wrap-margin"> &lt;!&ndash; = CouponDownloadItem_container__1hk2 &ndash;&gt;-->
+<!--												<div class="coupon-full-wrap">-->
+<!--													<div class="coupon-left-full-wrap">-->
+<!--														<dl>-->
+<!--															<dd class="coupon-left-title">후기</dd>-->
+<!--															<dd class="coupon-left-title-explain">성실한 후기 작성 쿠폰</dd>-->
+<!--															<dd class="coupon-left-price-wrap">-->
+<!--																<span class="coupon-left-price">5000</span><span>원</span>-->
+<!--															</dd>-->
+<!--															<dd class="coupon-left-deadline-wrap">-->
+<!--																<span class="coupon-left-deadline">2023.05.03</span><span>까지 사용 가능</span>-->
+<!--															</dd>-->
+<!--														</dl>-->
+<!--													</div>-->
+<!--													<button type="button" class="coupon-right-full-wrap">-->
+<!--														<i class="coupon-right-icon">-->
+<!--															<img width="40px" height="40px" src="/images/payment/coupon-use-S.png">-->
+<!--														</i>-->
+<!--														<span class="coupon-right-can-use">사용 가능</span>-->
+<!--													</button>-->
+<!--												</div>-->
+<!--										  	</div>-->
 											<!-- 쿠폰하나 끝 -->
 										</div>
 									</div>
@@ -356,5 +308,9 @@
 </body>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="/js/components/header.js"></script>
+<script th:inline="javascript">
+	let eventDTO = [[${eventDTO}]];
+	console.log(eventDTO)
+</script>
 <script type="text/javascript" src="/js/payment/payment.js"></script>
 </html>

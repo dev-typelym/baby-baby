@@ -37,5 +37,10 @@ public class CouponRepositoryTests {
         couponRepository.findCouponByMemberId_QueryDSL(pageable,1L).stream().map(Coupon::toString).forEach(log::info);
     }
 
+    @Test
+    public void findAllByMemberIdAndCouponStatus_UnusedTest(){
+        log.info(couponRepository.findAllUnusedCoupon(1L).toString());
+    }
+
 
 }

@@ -3,7 +3,9 @@ package com.app.babybaby.domain.boardDTO.eventDTO;
 import com.app.babybaby.domain.calendarDTO.CalendarDTO;
 import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.domain.purchaseDTO.couponDTO.CouponDTO;
 import com.app.babybaby.entity.embeddable.Address;
+import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.type.CategoryType;
 import com.app.babybaby.type.FileType;
@@ -38,6 +40,10 @@ public class EventDTO {
     private String mainFilePath;
     private FileType fileType;
     private List<EventFileDTO> files;
+    private List<CouponDTO> coupons;
+
+    private Long totalCouponCount;
+    private Long totalUnusedCouponCount;
 
     private String memberProfilePath;
     private String memberProfileUUID;

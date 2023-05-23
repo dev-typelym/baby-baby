@@ -1,6 +1,8 @@
 package com.app.babybaby.repository.purchase.coupon;
 
 import com.app.babybaby.entity.purchase.coupon.Coupon;
+import com.app.babybaby.type.CouponStatus;
+import com.app.babybaby.type.CouponType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -34,5 +36,39 @@ public class CouponQueryDslImpl implements CouponQueryDsl {
             memberCoupons.remove(pageable.getPageSize());
         }
         return new SliceImpl<>(memberCoupons, pageable, hasNext);
+    }
+
+
+    @Override
+    public List<Coupon> findAllUnusedCoupon(Long memberId){
+        return query.select(coupon)
+                .from(coupon)
+                .join(coupon.member)
+                .where(coupon.couponStatus.eq(CouponStatus.UNUSED))
+                .where(coupon.member.id.eq(memberId))
+                .fetch();
+    }
+
+    @Override
+    public Long totalCouponCount(Long memberId){
+        return query.select(coupon)
+                .from(coupon)
+                .join(coupon.member)
+                .where(coupon.member.id.eq(memberId))
+                .fetch()
+                .stream()
+                .count();
+    }
+
+    @Override
+    public Long totalUnusedCouponCount(Long memberId){
+        return query.select(coupon)
+                .from(coupon)
+                .join(coupon.member)
+                .where(coupon.member.id.eq(memberId))
+                .where(coupon.couponStatus.eq(CouponStatus.UNUSED))
+                .fetch()
+                .stream()
+                .count();
     }
 }

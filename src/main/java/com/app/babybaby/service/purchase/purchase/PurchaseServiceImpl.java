@@ -1,10 +1,19 @@
 package com.app.babybaby.service.purchase.purchase;
 
+import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
+import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.entity.purchase.purchase.Purchase;
+import com.app.babybaby.repository.board.event.EventRepository;
+import com.app.babybaby.repository.member.member.MemberRepository;
+import com.app.babybaby.repository.purchase.coupon.CouponRepository;
 import com.app.babybaby.repository.purchase.purchase.PurchaseRepository;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
+import com.app.babybaby.service.member.member.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,8 +27,15 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PurchaseServiceImpl implements PurchaseService {
-    @Autowired
     private final PurchaseRepository purchaseRepository;
+
+    private final CouponRepository couponRepository;
+
+    private final EventRepository eventRepository;
+
+    private final MemberRepository memberRepository;
+
+    private final MemberService memberService;
 
 //    구매내역
     @Override
@@ -45,6 +61,19 @@ public class PurchaseServiceImpl implements PurchaseService {
         Purchase purchase = purchaseRepository.findMemberIdByPaymentDetail_QueryDSL(purchaseId);
         PurchaseDTO purchaseDTO = PurchaseToDTO(purchase);
         return purchaseDTO;
+    }
+
+    @Override
+    public EventDTO findAllInfoForPayment(Long memberId, Long eventId){
+        Member member = memberRepository.findById(memberId).get();
+        Event event = eventRepository.findById(eventId).get();
+        EventDTO eventDTO = this.eventToDTO(event);
+        List<Coupon> coupons = couponRepository.findAllUnusedCoupon(memberId);
+        eventDTO.setCoupons(coupons.stream().map(this::CouponToDTO).collect(Collectors.toList()));
+        eventDTO.setTotalUnusedCouponCount(couponRepository.totalUnusedCouponCount(memberId));
+        eventDTO.setTotalCouponCount(couponRepository.totalCouponCount(memberId));
+
+        return eventDTO;
     }
 
 }

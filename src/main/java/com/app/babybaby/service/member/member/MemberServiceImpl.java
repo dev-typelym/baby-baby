@@ -8,14 +8,17 @@ import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MailDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.domain.memberDTO.MemberDetailDTO;
+import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
 import com.app.babybaby.repository.board.review.ReviewRepository;
 import com.app.babybaby.repository.member.follow.FollowRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
+import com.app.babybaby.repository.purchase.coupon.CouponRepository;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.type.MemberType;
@@ -55,6 +58,8 @@ public class MemberServiceImpl implements MemberService {
     private final EventRepository eventRepository;
 
     private final FollowRepository followRepository;
+
+//    private final CouponRepository couponRepository;
 
     private final ParentsBoardService parentsBoardService;
 
@@ -117,8 +122,20 @@ public class MemberServiceImpl implements MemberService {
         memberDTO.setIsFollowed(followRepository.getIsFollowedByMemberId(sessionId, memberId));
         return memberDTO;
     }
-    
-//    회원상세 ajax로 회원 이벤트 들고오기
+
+    @Override
+    public MemberDTO getUserInfoForPurchase(Long memberId, Long eventId) {
+        Member member = memberRepository.findById(memberId).get();
+        MemberDTO memberDTO = this.toMemberDTO(member);
+//        List<Coupon> coupons = couponRepository.findAllUnusedCoupon(memberId);
+//        memberDTO.setCoupons(coupons);
+//        memberDTO.setTotalUnusedCouponCount(couponRepository.totalUnusedCouponCount(memberId));
+//        memberDTO.setTotalCouponCount(couponRepository.totalCouponCount(memberId));
+//
+        return memberDTO;
+    }
+
+    //    회원상세 ajax로 회원 이벤트 들고오기
     public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable){
         CompanyDTO companyDTO = new CompanyDTO();
         List<EventDTO> finishedEvents = eventRepository.findAllFinishedEvents_QueryDSL(companyId, pageable).stream().map(this::eventToDTO).collect(Collectors.toList());

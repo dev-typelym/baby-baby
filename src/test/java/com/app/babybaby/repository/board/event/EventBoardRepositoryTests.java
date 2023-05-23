@@ -126,6 +126,6 @@ public class EventBoardRepositoryTests {
 
     @Test
     public void findAllByIdTest(){
-        log.info(eventRepository.findAllById(1L).toString());
+//        log.info(eventRepository.findAllById(1L).toString());
     }
 }
