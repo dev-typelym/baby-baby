@@ -32,7 +32,7 @@ function appendList(eventDTOS) {
         // let formattedDate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0');
 
         boardText3 +=  `
-                              <a class="parents-yard-board-item-link">
+                              <a class="parents-yard-board-item-link" href="/event/detail/${event.id}">
               <div class="parents-yard-board-item-wrapper">
                 <!-- 카테고리 -->
                 <span class="category"><span>${'['+event.category+']' + ' ' + event.boardTitle}</span></span>

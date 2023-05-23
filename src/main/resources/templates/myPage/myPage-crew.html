@@ -21,7 +21,7 @@
 
 <body>
 <div th:insert="~{/components/header:: header}"></div>
-	<form action="#">
+	<form action="/mypage/crew" method="post">
     <div class="body1" data-react-modal-body-trap="" tabindex="0" style="position: absolute; opacity: 0;"></div>
     <div id="root">
         <div id="AppLayout_Container" class="Layout">
@@ -37,7 +37,7 @@
 	                        <div class="HeaderLayout">
 	                            <div class="HeaderLayout_contents">
 	                                <h2 class="Container_title">통솔자 지원
-	                                    <button id="bottom-button" type="button">
+	                                    <button id="bottom-button" type="submit">
 	                                        <span id="button-inner-text">
 	                                            <span id="button-icon">
 	                                                <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__1VB4W" aria-hidden="true"><path d="M30.4 15.2H16.8V1.6h-1.6v13.6H1.6v1.6h13.6v13.6h1.6V16.8h13.6v-1.6z"></path></svg>
@@ -143,7 +143,7 @@
 																	<i class="icon-camera-o" aria-hidden="true"></i>등록하기
 																</button>
 																<div class="Input_right">
-																	<input type="file" id="resume" accept=".pdf,.doc,.docx" onchange="setResume(event);" />
+																	<input type="file" id="resume" accept=".pdf,.doc,.docx" onchange="setResume(event);" multiple />
 																</div>
 															</label>
 															<em class="helper error"></em>

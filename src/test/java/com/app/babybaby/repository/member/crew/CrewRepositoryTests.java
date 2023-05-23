@@ -15,6 +15,7 @@ import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 @SpringBootTest
 @Slf4j
@@ -85,6 +86,12 @@ public class CrewRepositoryTests {
 //    이거는 memberID 로 아이 전체 조회
     public void findKidByUserIdTest(){
         crewRepository.findKidByUserId(1L).stream().map(Kid::toString).forEach(log::info);
+    }
+
+    @Test
+    public void TestFind(){
+        LocalDateTime date = LocalDateTime.of(2023, Month.MAY, 24, 15, 45, 30);
+        crewRepository.findCrewByMemberId(1L, "2023");
     }
 
 }

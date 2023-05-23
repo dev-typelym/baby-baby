@@ -8,6 +8,7 @@
 //         svgPath.css('fill', 'red')
 //     }
 // })
+
 $(document).on('click', '.wish-button', function(){
     let svgPath = $(this).children().children();
     if(svgPath.css('fill') == 'rgb(255, 0, 0)'){
@@ -44,6 +45,33 @@ const boardService = (() => {
     return {getList: getList};
 })();
 
+$('.collection-table').on('click', '.wish-button', function() {
+    var eventId = $(this).find('.like-id').val();
+    console.log('Clicked ID: ' + eventId);
+    deleteLike(eventId);
+});
+
+//삭제 좋아요
+function deleteLike(eventId) {
+    deleteLikeYou(eventId);
+}
+
+function deleteLikeYou(eventId){
+    $.ajax({
+        url: `/mypage/delete/${eventId}`,
+        type: 'post',
+        data: JSON.stringify({eventId:eventId}),
+        contentType: "application/json;charset=utf-8",
+        success: function(){
+            $('.collection-table').empty();
+            boardService.getList(appendList);
+        }
+    });
+}
+
+// })();
+
+
 /*${formattedDate}*/
 function appendList(eventLikeDTOS) {
     let boardText3 = '';
@@ -56,9 +84,9 @@ function appendList(eventLikeDTOS) {
 
         console.log(eventLikeDTOS);
         boardText3 +=  `
-        
+                                  
                                   <div role="presentation" class="instance">
-                <a class="item" href="">
+                <a class="item" href="/event/detail/${eventLike.eventId}">
                     <div class="thumbnail-container">
                         <div class="thumbnail-list">
                               `
@@ -82,7 +110,7 @@ function appendList(eventLikeDTOS) {
                                 <div class="list-writer" >${eventLike.memberName}</div>
                                 <div class="list-date-container">
                                     <span class="print-data"
-                                        ></span
+                                        >${eventLike.eventAddress}</span
                                     >
                                 </div>
                             </div>
@@ -117,6 +145,7 @@ function appendList(eventLikeDTOS) {
                     </div>
                 </a>
                 <button type="button" class="wish-button" aria-pressed="false">
+                <input type="hidden" value="${eventLike.eventId}" name="eventId" class="like-id">
                     <svg
                         viewBox="0 0 32 32"
                         focusable="false"
@@ -129,6 +158,7 @@ function appendList(eventLikeDTOS) {
                         ></path>
                     </svg>
                 </button>
+                
             </div>
                           `
         ;
@@ -164,6 +194,10 @@ $(window).scroll(function() {
         console.log(page)
     }
 });
+
+
+/*이벤트 좋아요 유찬 var*/
+
 
 
 

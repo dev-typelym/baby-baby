@@ -59,10 +59,10 @@ function appendList(nowKidsLikeDTOS) {
                     <div class="thumbnail-container">
                         <div class="thumbnail-list">
                                `
-                        if(nowKid.eventFileDTOS.length != 0) {
+                        if(nowKid.nowKidsFileDTOS.length != 0) {
                                 boardText3 += `
                             <div class="photo-thumbnail">
-                                <img style="width: 100%; height: 100%;" src="/eventFiles/display?fileName=Event/${eventLike.eventFileDTOS[0].filePath}/${eventLike.eventFileDTOS[0].fileUUID}_${eventLike.eventFileDTOS[0].fileOriginalName}">
+                                <img style="width: 100%; height: 100%;" src="/nowKidsFiles/display?fileName=NowKids/${nowKid.nowKidsFileDTOS[0].filePath}/${nowKid.nowKidsFileDTOS[0].fileUUID}_${nowKid.nowKidsFileDTOS[0].fileOriginalName}">
                              </div>
                                 `
                             }
@@ -75,7 +75,7 @@ function appendList(nowKidsLikeDTOS) {
                         </div>
                         <div class="for-price-full-contain">
                             <div class="for-price-wrap">
-                                <div class="list-writer">삼성</div>
+                                <div class="list-writer">${nowKid.memberName}</div>
                                 <div class="list-date-container">
                                     <span class="print-data"
                                         >${nowKid.address} ${nowKid.addressDetail}</span
@@ -95,9 +95,9 @@ function appendList(nowKidsLikeDTOS) {
                                             <div class="like-count-container">
                                                 <div class="people-icon"></div>
                                                 <span class="like-count"
-                                                    >10</span
+                                                    ></span
                                                 >
-                                                <span>명 모집</span>
+                                                <span></span>
                                             </div>
                                         </span>
                                     </div>
