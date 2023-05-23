@@ -4,10 +4,7 @@ import com.app.babybaby.entity.board.BoardInfo;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.type.ProcessType;
 import com.sun.istack.NotNull;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -22,6 +19,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
 @DynamicInsert
+@SequenceGenerator(name="ask_seq", initialValue=1, allocationSize=1)
 public class Ask extends BoardInfo {
 
     @NotNull
@@ -44,5 +42,13 @@ public class Ask extends BoardInfo {
         super(boardTitle, boardContent);
         this.askStatus = askStatus;
         this.member = member;
+    }
+
+    @Builder
+    public Ask(Long id, String boardTitle, String boardContent, ProcessType askStatus, Member member, AskAnswer askAnswer) {
+        super(id, boardTitle, boardContent);
+        this.askStatus = askStatus;
+        this.member = member;
+        this.askAnswer = askAnswer;
     }
 }

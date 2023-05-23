@@ -47,7 +47,7 @@ public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable);
     public MemberDTO getAllUserInfo(Long memberId, Long sessionId);
 
     default MemberDTO toMemberDTO(Member member){
-        return MemberDTO.DTOBuilder()
+        return MemberDTO.dtoBuilder()
                 .id(member.getId())
                 .memberSleep(member.getMemberSleep())
                 .memberHiSentence(member.getMemberHiSentence())
@@ -188,7 +188,7 @@ public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable);
     }
 
     default MemberDTO entityToMemberDTO(Member member){
-        return MemberDTO.DTOBuilder()
+        return MemberDTO.dtoBuilder()
                 .id(member.getId())
                 .memberName(member.getMemberName())
                 .memberEmail(member.getMemberEmail())
@@ -199,7 +199,7 @@ public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable);
                 .memberAddress(member.getMemberAddress())
                 .memberProfileOriginalName(member.getMemberProfileOriginalName())
                 .memberProfileUUID(member.getMemberProfileUUID())
-                .memberProfilePath(member.getMemberFilePath())
+                .memberProfilePath(member.getMemberProfilePath())
                 .memberRegisterDate(member.getMemberRegisterDate())
                 .memberType(member.getMemberType())
                 .memberRole(member.getMemberRole())

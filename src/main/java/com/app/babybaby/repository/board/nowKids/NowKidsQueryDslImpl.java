@@ -173,7 +173,7 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .join(nowKids.guide)
                 .join(nowKids.event.calendar)
                 .fetchJoin()
-                .leftJoin(nowKids.nowKidsFile)
+                .leftJoin(nowKids.nowKidsFiles)
                 .fetchJoin()
                 .where(
                         eventCategory != null
@@ -212,7 +212,7 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 query.select(nowKids)
                         .from(nowKids)
                         .join(nowKids.event)
-                        .join(nowKids.nowKidsFile)
+                        .join(nowKids.nowKidsFiles)
                         .join(nowKids.guide)
                         .join(parentsBoard.parentsBoardReplies)
                         .where(nowKids.id.eq(nowKidsId))
@@ -229,4 +229,20 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
                 .where(nowKids.id.in(nowkidsIds))
                 .execute();
     }
+
+    @Override
+    public List<NowKids> find5RecentDesc() {
+        List<NowKids> nowKidz =
+                query.select(nowKids)
+                        .from(nowKids)
+                        .join(nowKids.event)
+                        .join(nowKids.nowKidsFiles)
+                        .fetchJoin()
+                        .orderBy(nowKids.id.desc())
+                        .limit(5)
+                        .fetch();
+
+        return nowKidz;
+    }
+
 }

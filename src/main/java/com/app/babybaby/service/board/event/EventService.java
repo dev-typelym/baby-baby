@@ -9,6 +9,7 @@ import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
+import com.app.babybaby.type.CategoryType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -128,7 +129,7 @@ public interface EventService {
     }
 
     default MemberDTO memberToDTO(Member Member){
-        return MemberDTO.DTOBuilder()
+        return MemberDTO.dtoBuilder()
                 .memberAddress(Member.getMemberAddress())
                 .memberEmail(Member.getMemberEmail())
                 .memberFileOriginalName(Member.getMemberFileOriginalName())
@@ -173,5 +174,7 @@ public interface EventService {
                 .build();
     }
 
+    //    상세보기 카테고리 최신글 5개 가져오기
+    public List<Event> find5RecentDesc(CategoryType categoryType);
 
 }

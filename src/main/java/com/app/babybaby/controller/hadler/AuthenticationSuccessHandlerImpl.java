@@ -10,14 +10,13 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Component
 @Slf4j
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
-    private static final String REDIRECT_URL_FOR_GENERAL = "/main/main";
-    private static final String REDIRECT_URL_FOR_COMPANY = "/main/main";
+    private static final String REDIRECT_URL_FOR_GENERAL = "/main";
+    private static final String REDIRECT_URL_FOR_COMPANY = "/main";
     private static final String REDIRECT_URL_FOR_ADMIN = "/admin/admin-memberList";
 
     @Override

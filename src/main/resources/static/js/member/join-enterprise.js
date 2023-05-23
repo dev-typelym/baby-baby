@@ -1,41 +1,5 @@
 /* join */
 
-// let identificationFlag = false;
-// // 아이디 정규식 이벤트 사용 및 함수
-// $identificationInput.on("blur", function() {
-// 	$.ajax({
-// 		url: contextPath + "/user/checkIdOk.user",
-// 		data: {userIdentification: $identificationInput.val()},
-// 		success: function(result) {
-// 			result = JSON.parse(result);
-// 			/*console.log(result);*/
-// 			if (result.check) {
-// 				/*	alert("성공");*/
-// 				$identificationWarning.text("중복된 아이디입니다.");
-// 				$identificationWarning.css("display", "block");
-// 				$identificationInput.css("border-color", "#f66");
-// 				identificationFlag = false;
-// 			} else if ($identificationInput.val() < 1) {
-// 				//$identificationWarning.text("아이디를 입력해주세요.");
-// 				$identificationWarning.css("display", "block");
-// 				$identificationInput.css("border-color", "#f66");
-// 				identificationFlag = false;
-// 				// !isPhoneNum.test(mobile.value)
-// 			} else if (!regExp.test($identificationInput.val())) {
-// 				$identificationWarning.text("6~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.");
-// 				$identificationWarning.css("display", "block");
-// 				$identificationInput.css("border-color", "#f66");
-// 				identificationFlag = false;
-// 			} else {
-// 				$identificationWarning.css("display", "none");
-// 				$identificationInput.css("border-color", "#dde2e6");
-// 				identificationFlag = true;
-// 				// #dde2e6;
-// 			}
-// 		}
-// 	})
-// });
-
 /* 아이디 이메일 */
 const $identificationInput = $("#identification-input");
 const $identificationWarning = $(".identification-error");
@@ -158,9 +122,7 @@ $passwordCheckInput.on("blur", function() {
 		$passwordCheckInput.css("border-color", "#f66");
 		passwordCheckFlag = false;
 		if(identificationFlag && passwordFlag && passwordCheckFlag && nameFlag && phoneFlag && address1Flag){
-			console.log("asdasd")
 			$(".signup-submit-button").css("opacity","3");
-			console.log("zz11")
 		}
 	}
 });
@@ -414,48 +376,107 @@ $(".Button_TextField_icon1").on("click",function(){
 
 /* 기업 뱃지 */
 
-
 var maxFiles = 1;
 var currentFiles = 0;
 // // 이미지 선택 후 프리뷰
-function setThumbnail(e) {
-    var imageContainer = document.getElementById("image_container");
-    if (currentFiles < maxFiles) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            var img = new Image();
-            img.src = e.target.result;
-            img.style.width = "100%";
-            img.style.height = "auto";
-            var imgContainer = document.createElement("div");
-            imgContainer.style.display = "inline-block";
-            imgContainer.style.marginRight = "10px";
-            imgContainer.style.position = "relative";
-            var deleteButton = document.createElement("button");
-            deleteButton.innerHTML = "X";
-            deleteButton.style.position = "absolute";
-            deleteButton.style.top = "0";
-            deleteButton.style.right = "0";
-            deleteButton.style.backgroundColor = "white";
-            deleteButton.style.color = "red";
-            deleteButton.style.border = "none";
-            deleteButton.style.cursor = "pointer";
-            deleteButton.addEventListener("click", function() {
-                imageContainer.removeChild(imgContainer);
-                currentFiles--;
-            });
-            imgContainer.appendChild(img);
-            imgContainer.appendChild(deleteButton);
-            imageContainer.appendChild(imgContainer);
-            currentFiles++;
-        };
-        reader.readAsDataURL(e.target.files[0]);
-    } else {
-        alert("최대 1개의 이미지만 선택 가능합니다.");
-    }
-}
+// function setThumbnail(e) {
+//
+// }
 
 // "등록하기" 버튼 클릭 시 파일 선택
-document.getElementById("photosubmit").addEventListener("click", function() {
-    document.getElementById("image").click();
+$("#photosubmit").click(function() {
+	$("#image").click();
 });
+
+$("#image").change(function(e) {
+	var currentFiles = 0; // 추가: 현재 선택된 파일 개수
+	var maxFiles = 1; // 추가: 최대 선택 가능한 파일 개수
+
+	var imageContainer = $("#image_container");
+	if (currentFiles < maxFiles) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			var img = $("<img>");
+			img.attr("src", e.target.result);
+			img.css("width", "100%");
+			img.css("height", "auto");
+			var imgContainer = $("<div>");
+			imgContainer.css("display", "inline-block");
+			imgContainer.css("marginRight", "10px");
+			imgContainer.css("position", "relative");
+			var deleteButton = $("<button>");
+			deleteButton.html("X");
+			deleteButton.css("position", "absolute");
+			deleteButton.css("top", "0");
+			deleteButton.css("right", "0");
+			deleteButton.css("backgroundColor", "white");
+			deleteButton.css("color", "red");
+			deleteButton.css("border", "none");
+			deleteButton.css("cursor", "pointer");
+			deleteButton.click(function() {
+				imgContainer.remove();
+				currentFiles--;
+			});
+			imgContainer.append(img);
+			imgContainer.append(deleteButton);
+			imageContainer.append(imgContainer);
+			currentFiles++;
+		};
+		reader.readAsDataURL(e.target.files[0]);
+	} else {
+		alert("최대 1개의 이미지만 선택 가능합니다.");
+	}
+
+	$("#image_container").empty();
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+	var formData = new FormData();
+	filesArr.forEach(function(file) {
+		formData.append("file", file);
+	});
+
+	console.log(files)
+	console.log(filesArr)
+	console.log(e.target.files);
+	$.ajax({
+		url: "/members/upload",
+		type: "post",
+		data: formData,
+		contentType: false,
+		processData: false,
+		success: function (uuids) {
+			globalThis.uuids = uuids;
+			console.log(globalThis.uuids)
+
+			const dataTransfer = new DataTransfer();
+			filesArr = dataTransfer.files;
+
+			console.log(files)
+
+			let inputFiles1 = "";
+			inputFiles1 +=
+				`
+                    <input type="hidden" name="memberProfileOriginalName" value="${files[0].name}">
+                    <input type="hidden" name="memberProfileUUID" value="${globalThis.uuids[0]}">
+                    <input type="hidden" name="memberProfilePath" value="${toStringByFormatting(new Date())}">
+                    `
+			$('.inputFiles-hidden-area').html(inputFiles1);
+		}
+	});
+})
+
+/*--------------------------날짜 폴더 생성 함수-----------------------------*/
+function leftPad(value) {
+	if (value >= 10) {
+		return value;
+	}
+	return `0${value}`;
+}
+
+function toStringByFormatting(source, delimiter = '/') {
+	const year = source.getFullYear();
+	const month = leftPad(source.getMonth() + 1);
+	const day = leftPad(source.getDate());
+
+	return [year, month, day].join(delimiter);
+}

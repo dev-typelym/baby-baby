@@ -55,4 +55,8 @@ public interface NowKidsQueryDsl {
 
     //    [관리자페이지] 지금 우리아이들은 게시글 삭제
     public void deleteNowKidsByIds_queryDSL(List<Long> nowKidsIds);
+
+
+    //    상세보기 카테고리 최신글 5개 가져오기
+    public List<NowKids> find5RecentDesc();
 }

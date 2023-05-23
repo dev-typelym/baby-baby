@@ -58,7 +58,7 @@
                         <!-- password 1  -->
                         <div class="recheck-password"><label></label>
                             <div class="TextField_field__1B2AH">
-                                <input name="memberPassword" placeholder="비밀번호 확인" type="password"
+                                <input placeholder="비밀번호 확인" type="password"
                                     class="re-input-password-container" aria-invalid="false">
                                 <button aria-label="비밀번호 보기" class="Button_TextField_icon1" id="eye-wrapper" type="button">
                                     <span class="eye">
@@ -78,7 +78,7 @@
                             <label for="address-btu" class="address-label" onclick="sample6_execDaumPostcode()">주소</label>
                             <div class="address-div" id="" >
                                 <input name="memberAddress.postcode" type="text" id="sample6_postcode"  onclick="sample6_execDaumPostcode()" placeholder="우편번호">
-                                <input type="button" name="address-btu" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                                <input type="button" name="address-btu" id="address-btu" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                             </div>
                             <input name="memberAddress.address" type="text" id="sample6_address"  onclick="sample6_execDaumPostcode()" placeholder="주소"><br>
                             <input name="memberAddress.addressDetail" type="text" id="sample6_detailAddress" placeholder="상세주소1">
@@ -115,12 +115,14 @@
                                                         <i class="icon-camera-o" aria-hidden="true"></i>등록하기
                                                     </button>
                                                     <div class="Input_right">
-                                                        <input type="file" id="image" accept="image/*" onchange="setThumbnail(event);"/>
+                                                        <input type="file" id="image" accept="image/*" />
                                                     </div>
                                                 </label>
                                                 <em class="helper error"></em>
                                                 <em class="helper_ImageFormField">2MB 이하의 JPG, JPEG, GIF, PNG 파일</em>
-                                                <div id="image_container"></div>
+                                                <div id="image_container">
+                                                </div>
+                                                <div class="inputFiles-hidden-area" style="display:none;"></div>
                                             </div>
                                         </div>
                                     </div>

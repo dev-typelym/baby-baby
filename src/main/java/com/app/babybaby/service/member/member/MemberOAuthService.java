@@ -24,8 +24,8 @@ import java.util.Optional;
 @Slf4j
 public class MemberOAuthService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-        private final MemberRepository memberRepository;
-        private final HttpSession session;
+    private final MemberRepository memberRepository;
+    private final HttpSession session;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -66,7 +66,7 @@ public class MemberOAuthService implements OAuth2UserService<OAuth2UserRequest, 
 //            이미 가입된 회원이 있는 경우, 회원 정보 업데이트
             foundMember = foundMemberOptional.get();
             session.setAttribute("member",
-                    MemberDTO.DTOBuilder().id(foundMember.getId())
+                    MemberDTO.dtoBuilder().id(foundMember.getId())
                             .memberPassword(foundMember.getMemberPassword())
                             .memberEmail(foundMember.getMemberEmail())
                             .memberName(foundMember.getMemberName())
@@ -74,6 +74,19 @@ public class MemberOAuthService implements OAuth2UserService<OAuth2UserRequest, 
                             .memberType(foundMember.getMemberType())
                             .memberRole(foundMember.getMemberRole())
                             .memberNickname(foundMember.getMemberNickname())
+                            .memberRegisterDate(foundMember.getMemberRegisterDate())
+                            .memberHiSentence(foundMember.getMemberHiSentence())
+                            .memberAddress(foundMember.getMemberAddress())
+                            .memberProfileOriginalName(foundMember.getMemberProfileOriginalName())
+                            .memberProfileUUID(foundMember.getMemberProfileUUID())
+                            .memberProfilePath(foundMember.getMemberProfilePath())
+                            .memberGuideStatus(foundMember.getMemberGuideStatus())
+                            .memberSleep(foundMember.getMemberSleep())
+                            .memberGuideType(foundMember.getMemberGuideType())
+                            .memberGuideInterest(foundMember.getMemberGuideInterest())
+                            .memberFilePath(foundMember.getMemberFilePath())
+                            .memberFileUUID(foundMember.getMemberFileUUID())
+                            .memberFileOriginalName(foundMember.getMemberFileOriginalName())
                             .build()
             );
             memberRepository.save(foundMember);

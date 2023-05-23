@@ -54,6 +54,7 @@ public class MemberController {
     /* 회원가입후 login 페이지로 이동*/
     @PostMapping("join/company")
     public RedirectView joinCompany(MemberDTO memberDTO) {
+        log.info("==============joinCompany PW: {}", memberDTO.getMemberPassword());
         memberService.joinCompany(memberDTO, passwordEncoder);
         return new RedirectView("/member/login");
     }

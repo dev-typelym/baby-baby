@@ -1,6 +1,5 @@
 package com.app.babybaby.controller.mainController;
 
-import com.app.babybaby.controller.provider.UserDetail;
 import com.app.babybaby.domain.boardDTO.announcementDTO.AnnouncementDTO;
 import com.app.babybaby.domain.boardDTO.askDTO.AskDTO;
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
@@ -11,7 +10,6 @@ import com.app.babybaby.entity.board.announcement.Announcement;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
-import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.service.board.announcement.AnnouncementService;
 import com.app.babybaby.service.board.ask.AskService;
 import com.app.babybaby.service.board.event.EventService;
@@ -19,16 +17,11 @@ import com.app.babybaby.service.board.nowKids.NowKidsService;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.member.member.MemberService;
 import com.app.babybaby.type.CategoryType;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

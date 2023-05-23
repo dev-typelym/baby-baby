@@ -19,4 +19,5 @@ public class GlobalExceptionHandler {
         log.info("들어옴");
         return new RedirectView("/parentsYard/list");
     }
+
 }

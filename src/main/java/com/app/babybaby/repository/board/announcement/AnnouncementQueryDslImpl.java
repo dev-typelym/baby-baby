@@ -62,4 +62,15 @@ public class AnnouncementQueryDslImpl implements AnnouncementQueryDsl {
                 .where(announcement.id.in(announcementIds))
                 .execute();
     }
+
+    @Override
+    public List<Announcement> find5RecentDesc() {
+        List<Announcement> announcements =
+                query.select(announcement)
+                        .from(announcement)
+                        .orderBy(announcement.id.desc())
+                        .limit(3)
+                        .fetch();
+        return announcements;
+    }
 }

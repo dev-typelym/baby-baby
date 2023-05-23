@@ -32,12 +32,12 @@ public interface NowKidsLikeService {
                 .memberName(nowKids.getGuide().getMemberName())
                 .registerDate(nowKids.getRegisterDate())
                 .updateDate(nowKids.getUpdateDate())
-                .nowKidsFileDTOS(nowKids.getNowKidsFile().stream().map(nowKidsFile -> toNowKidsFileDTO(nowKidsFile)).collect(Collectors.toList()))
+                .nowKidsFileDTOS(nowKids.getNowKidsFiles().stream().map(nowKidsFile -> toNowKidsFileDTO(nowKidsFile)).collect(Collectors.toList()))
                 .build();
     }
 
     default NowKidsFileDTO toNowKidsFileDTO(NowKidsFile nowKidsFile){
-        return NowKidsFileDTO.builder()
+        return NowKidsFileDTO.orgFileBuilder()
                 .fileOriginalName(nowKidsFile.getFileOriginalName())
                 .fileUUID(nowKidsFile.getFileUUID())
                 .filePath(nowKidsFile.getFilePath())

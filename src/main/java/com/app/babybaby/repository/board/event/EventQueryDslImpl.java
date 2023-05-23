@@ -369,6 +369,23 @@ public class EventQueryDslImpl implements EventQueryDsl {
                 .where(event.id.in(eventIds))
                 .execute();
     }
+
+
+    // 상세보기 카테고리 최신글 5개 가져오기
+    @Override
+    public List<Event> find5RecentDesc(CategoryType category) {
+
+        BooleanExpression getCategory = category == CategoryType.ALL ? null : event.category.eq(category);
+
+        List<Event> events = query.selectDistinct(event)
+                .from(event)
+                .where(getCategory)
+                .orderBy(event.id.desc())
+                .limit(5)
+                .fetch();
+
+        return events;
+    }
 }
 
 

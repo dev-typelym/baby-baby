@@ -51,7 +51,7 @@
                             <div class="header-user-div">
                                 <div class="header-user-container">
                                     <div class="alarm-wrapper">
-                                        <button type="button" class="alarm-modal-btn">
+                                        <button th:if="${session.member != null}" type="button" class="alarm-modal-btn">
                                             <div class="new-alarm"></div>
                                             <div class="alarm-image-wrapper">
                                                 <img class="alarm-image" src="/css/components/images/alarm.png">
@@ -61,23 +61,40 @@
                                     <div class="profile-wrapper">
                                         <a href="" class="profile-link">
                                             <div class="profile-image-wrapper">
-                                                <img th:if="${member != null}" class="profile-image" th:src="'/members/display?fileName=Member/Profile/' + ${member.memberProfilePath} +'/'+${member.memberProfileUUID}+'_'+${member.memberProfileOriginalName}">
-                                                <img th:unless="${member}" class="profile-image" src="">
+                                                <img th:if="${session.member != null}" class="profile-image" th:src="'/members/display?fileName=Member/Profile/' + ${session.member.memberProfilePath} +'/'+${session.member.memberProfileUUID}+'_'+${session.member.memberProfileOriginalName}">
+                                                <img th:unless="${session.member != null}" class="profile-image" style="display: none;">
                                             </div>
                                         </a>
                                     </div>
 
-                                    <a href="" class="header-user-button">로그인</a>
-                                    <a href="" data-event="iam.signup" class="header-user-button">회원가입</a>
+                                    <a th:if="${session.member == null}" th:href="@{/member/login}" class="header-user-button" style="display: inline-block;">로그인</a>
+                                    <a th:if="${session.member == null}" th:href="@{/member/join/general}" data-event="iam.signup" class="header-user-button" style="display: inline-block;">회원가입</a>
                                 </div>
                             </div>
-                            <div class="web-header-funding-open funding-open">
+                            <div class="web-header-funding-open funding-open" th:if="${session.member != null}">
                                 <div>
                                     <div>
                                         <button aria-label="기부 참여하기" class="header-make-button header-make-button2 header-make-button3 funding-open-button" type="button">
+<!--                                            <span>-->
+<!--                                                <span class="header-make-project-span">-->
+<!--                                                    <span style="color: black;">아기자기랑&nbsp;+</span><span style="font-size:1em; font-weight: 900;" >300</span><span style="color: black;">&nbsp;일째❤️</span>-->
+<!--                                                </span>-->
+<!--                                            </span>-->
+<!--                                            <span>-->
+<!--                                                <span class="header-make-project-span">-->
+<!--                                                    <span style="color: black;">아기자기랑&nbsp;+</span>-->
+<!--                                                    <span style="font-size:1em; font-weight: 900;" th:text="${#temporals.temporalUnitBetween(T(java.time.LocalDateTime).now(), memberRegisterDate, T(java.time.temporal.ChronoUnit).DAYS)}"></span>-->
+<!--                                                    <span style="color: black;">&nbsp;일째❤️</span>-->
+<!--                                                </span>-->
+<!--                                            </span>-->
+                                            <script th:inline="javascript">
+                                                let memberDTO=[[${session.member}]];
+                                            </script>
                                             <span>
                                                 <span class="header-make-project-span">
-                                                    <span style="color: black;">아기자기랑&nbsp;</span><span style="font-size:1em; font-weight: 900;">+300</span><span style="color: black;">&nbsp;일째❤️</span>
+                                                    <span style="color: black;">아기자기랑&nbsp;+</span>
+                                                    <span id="membership-days" style="font-size:1em; font-weight: 900;"></span>
+                                                    <span style="color: black;">&nbsp;일째❤️</span>
                                                 </span>
                                             </span>
                                         </button>
@@ -198,5 +215,6 @@
     </div>
 </header>
 </body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="/js/components/header.js"></script>
 </html>

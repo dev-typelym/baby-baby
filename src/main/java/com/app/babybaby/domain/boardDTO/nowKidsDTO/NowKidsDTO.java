@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
-@Getter @Setter @ToString
+@Data
 @JsonIgnoreProperties({"files"})
 @NoArgsConstructor
 public class NowKidsDTO {
@@ -57,6 +57,8 @@ public class NowKidsDTO {
     private LocalDateTime uploadTime;
     private Boolean isLiked;
 
+    private List<NowKidsFileDTO> nowKidsFileDTOList;
+
 //    @JsonIgnore
 //    private List<NowKidsFileDTO> files;
 //    //    좋아요 가져오기
@@ -71,7 +73,7 @@ public class NowKidsDTO {
 //    @JsonIgnore
 //    private List<Kid> kids;
 
-    @Builder
+    @Builder(builderClassName = "MainDTOBuilder", builderMethodName = "MainDTOBuilder")
     public NowKidsDTO(Long nowKidsId, Long eventId, String boardTitle, String boardContent, Long eventRecruitCount, CategoryType category, LocalDateTime eventStartDate, LocalDateTime eventEndDate, String eventAddress, String eventAddressDetail, String eventAddressSubDetail, String eventPostCode, LocalDateTime eventUploadTIme, LocalDateTime eventUpdateTime, Long memberId, String memberNickname, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, Boolean isRecent, LocalDateTime uploadTime, List<NowKidsFileDTO> files) {
         this.nowKidsId = nowKidsId;
         this.eventId = eventId;
@@ -102,4 +104,36 @@ public class NowKidsDTO {
 //        this.files = files;
     }
 
+    @Builder(builderMethodName = "dtoBuilderForMain", builderClassName = "dtoBuilderForMain")
+    public NowKidsDTO(Long nowKidsId, Long eventId, String boardTitle, String boardContent, Long eventRecruitCount, CategoryType category, LocalDateTime eventStartDate, LocalDateTime eventEndDate, String eventAddress, String eventAddressDetail, String eventAddressSubDetail, String eventPostCode, String eventDate, LocalDateTime eventUploadTIme, LocalDateTime eventUpdateTime, Long memberId, String memberNickname, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, Boolean isRecent, LocalDateTime uploadTime, Boolean isLiked, List<NowKidsFileDTO> nowKidsFileDTOList) {
+        this.nowKidsId = nowKidsId;
+        this.eventId = eventId;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.eventRecruitCount = eventRecruitCount;
+        this.category = category;
+        this.eventStartDate = eventStartDate;
+        this.eventEndDate = eventEndDate;
+        this.eventAddress = eventAddress;
+        this.eventAddressDetail = eventAddressDetail;
+        this.eventAddressSubDetail = eventAddressSubDetail;
+        this.eventPostCode = eventPostCode;
+        this.eventDate = eventDate;
+        this.eventUploadTIme = eventUploadTIme;
+        this.eventUpdateTime = eventUpdateTime;
+        this.memberId = memberId;
+        this.memberNickname = memberNickname;
+        this.memberProfileOriginalName = memberProfileOriginalName;
+        this.memberProfileUUID = memberProfileUUID;
+        this.memberProfilePath = memberProfilePath;
+        this.memberRegisterDate = memberRegisterDate;
+        this.memberType = memberType;
+        this.memberGuideStatus = memberGuideStatus;
+        this.memberSleep = memberSleep;
+        this.memberGuideType = memberGuideType;
+        this.isRecent = isRecent;
+        this.uploadTime = uploadTime;
+        this.isLiked = isLiked;
+        this.nowKidsFileDTOList = nowKidsFileDTOList;
+    }
 }

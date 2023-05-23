@@ -8,6 +8,7 @@ import com.app.babybaby.entity.member.Member;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,8 +30,8 @@ public class NowKids extends BoardInfo {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "nowKids")
     private List<NowKidsLike> nowKidsLikes;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nowKids")
-    private List<NowKidsFile> nowKidsFile;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "nowKids", cascade = CascadeType.REMOVE)
+    private List<NowKidsFile> nowKidsFiles  = new ArrayList<>();
 
     public NowKids(Event event, Member guide) {
         this.event = event;

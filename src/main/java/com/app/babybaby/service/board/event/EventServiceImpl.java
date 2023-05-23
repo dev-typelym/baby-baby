@@ -141,4 +141,14 @@ public class EventServiceImpl implements EventService {
 
     }
 
+    @Override
+    public List<Event> find5RecentDesc(CategoryType categoryType) {
+        List<Event> events = eventRepository.find5RecentDesc(categoryType);
+        log.info(events.toString());
+        List<Event> eventList = events.stream()
+                .collect(Collectors.toList());
+        return eventList;
+    }
+
+
 }

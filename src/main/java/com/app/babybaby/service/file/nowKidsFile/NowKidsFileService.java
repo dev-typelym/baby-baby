@@ -23,7 +23,7 @@ public interface NowKidsFileService {
     }
 
     default NowKidsFileDTO toNowKidsFileDTO(NowKidsFile nowKidsFile){
-        return NowKidsFileDTO.builder()
+        return NowKidsFileDTO.orgFileBuilder()
                 .filePath(nowKidsFile.getFilePath())
                 .fileUUID(nowKidsFile.getFileUUID())
                 .fileOriginalName(nowKidsFile.getFileOriginalName())

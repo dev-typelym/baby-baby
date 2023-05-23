@@ -96,4 +96,9 @@ public interface ParentsBoardService {
                 .build();
     }
 
+    //    상세보기 카테고리 최신글 5개 가져오기
+    public List<ParentsBoard> find5RecentDesc();
+
+
+
 }

@@ -23,7 +23,7 @@ public class AskServiceImpl implements AskService {
     @Autowired
     private final AskRepository askRepository;
 
-    
+
     @Override
     public Page<AskDTO> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch) {
         Page<Ask> asks = askRepository.findAllAsk_queryDSL(pageable, adminAskSearch);
@@ -38,14 +38,20 @@ public class AskServiceImpl implements AskService {
     public Optional<AskDTO> findAskById_queryDSL(Long askId) {
         return Optional.empty();
     }
-    
-//  내가작성한 문의
+
+    //  내가작성한 문의
     @Override
     public Slice<AskDTO> findAllAskByMemberId(Long memberId, Pageable pageable, AdminAskSearch adminAskSearch) {
         Slice<Ask> asks = askRepository.findAllAskByMemberId(memberId,pageable, adminAskSearch);
         List<AskDTO> collect = asks.get().map(ask -> toAskDTO(ask)).collect(Collectors.toList());
 
         return new SliceImpl<>(collect, pageable, asks.hasNext());
+    }
+
+    @Override
+    public Ask saveAskDTO(AskDTO askDTO) {
+        Ask ask = askRepository.save(toAskEnity(askDTO));
+        return ask;
     }
 
 

@@ -6,12 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
 @Getter @Setter
 @ToString
 @RequiredArgsConstructor
-public class Address {
+public class Address implements Serializable {
     private String address;
     private String addressDetail;
     private String addressSubDetail;

@@ -11,7 +11,6 @@ import com.app.babybaby.domain.memberDTO.MemberDetailDTO;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.entity.member.RandomKey;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
 import com.app.babybaby.repository.board.review.ReviewRepository;
@@ -26,7 +25,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -172,6 +170,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void joinCompany(MemberDTO memberDTO, PasswordEncoder passwordEncoder) {
+        log.info("=======PW: {}", memberDTO.getMemberPassword());
+        log.info("=======PW-ENCODED: {}", passwordEncoder.encode(memberDTO.getMemberPassword()));
         memberDTO.setMemberPassword(passwordEncoder.encode(memberDTO.getMemberPassword()));
         memberDTO.setMemberRole(Role.COMPANY);
         memberDTO.setMemberType(MemberType.COMPANY);

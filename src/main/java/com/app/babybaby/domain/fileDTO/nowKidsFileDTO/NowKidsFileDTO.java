@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @Component
 @NoArgsConstructor
 public class NowKidsFileDTO {
+    private Long id;
     private Long nowKidsId;
     private String fileOriginalName;
     private String fileUUID;
@@ -23,7 +25,7 @@ public class NowKidsFileDTO {
     private String fineSize;
 
 
-    @Builder
+    @Builder(builderClassName = "OrgFileBuilder", builderMethodName = "orgFileBuilder")
     public NowKidsFileDTO(Long nowKidsId, String fileOriginalName, String fileUUID, String filePath, FileType fileType, String fineSize) {
         this.nowKidsId = nowKidsId;
         this.fileOriginalName = fileOriginalName;
@@ -32,4 +34,16 @@ public class NowKidsFileDTO {
         this.fileType = fileType;
         this.fineSize = fineSize;
     }
+
+    @Builder(builderClassName = "FileBuilderForMain", builderMethodName = "fileBuilderForMain")
+    public NowKidsFileDTO(Long id, Long nowKidsId, String fileOriginalName, String fileUUID, String filePath, FileType fileType, String fineSize) {
+        this.id = id;
+        this.nowKidsId = nowKidsId;
+        this.fileOriginalName = fileOriginalName;
+        this.fileUUID = fileUUID;
+        this.filePath = filePath;
+        this.fileType = fileType;
+        this.fineSize = fineSize;
+    }
+
 }

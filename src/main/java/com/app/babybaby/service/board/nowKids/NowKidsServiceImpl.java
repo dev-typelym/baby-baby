@@ -78,4 +78,14 @@ public class NowKidsServiceImpl implements NowKidsService {
         return memberDTOS;
     }
 
+    @Override
+    public List<NowKids> find5RecentDesc() {
+        List<NowKids> nowKidz = nowKidsRepository.find5RecentDesc();
+        log.info(nowKidz.toString());
+        List<NowKids> nowKidsList = nowKidz.stream()
+                .collect(Collectors.toList());
+        return nowKidsList;
+    }
+
+
 }

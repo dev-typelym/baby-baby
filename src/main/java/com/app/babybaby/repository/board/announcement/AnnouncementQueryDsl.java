@@ -18,4 +18,8 @@ public interface AnnouncementQueryDsl {
     //    [관리자] 공지사항 삭제하기
     public void deleteAnnouncementByIds_queryDSL(List<Long> announcementIds);
 
+    //    공지사항 최신글 3개 가져오기
+    public List<Announcement> find5RecentDesc();
+
+
 }

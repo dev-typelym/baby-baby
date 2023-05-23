@@ -28,7 +28,7 @@ public class OAuthController {
         }
         log.info("==================================================");
         log.info(memberDTO.toString());
-        return new RedirectView("/main/main");
+        return new RedirectView("/main");
 
     }
 }

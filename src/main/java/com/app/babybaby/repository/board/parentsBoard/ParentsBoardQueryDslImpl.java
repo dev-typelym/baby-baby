@@ -269,4 +269,18 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
                 .where(parentsBoard.id.in(parentsBoardIds))
                 .execute();
     }
+
+    @Override
+    public List<ParentsBoard> find5RecentDesc() {
+        List<ParentsBoard> parentsBoards =
+                query.select(parentsBoard)
+                        .from(parentsBoard)
+                        .orderBy(parentsBoard.id.desc())
+                        .limit(5)
+                        .fetch();
+        return parentsBoards;
+    }
+
+
+
 }

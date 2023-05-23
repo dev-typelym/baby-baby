@@ -41,5 +41,10 @@ public interface ParentsBoardQueryDsl {
 
     //    [관리자] 부모님마당 삭제
     public void deleteAdminParentsBoardByIds_queryDSL(List<Long> parentsBoardIds);
+
+    //    상세보기 카테고리 최신글 5개 가져오기
+    public List<ParentsBoard> find5RecentDesc();
+
+
 }
 

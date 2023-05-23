@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @Entity
-@Getter @ToString(exclude = {"alerts"})
+@Getter @ToString(exclude = {"alerts", "coupons", "reviews", "randomKeys"})
 @Table(name = "TBL_MEMBER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicUpdate
@@ -106,7 +106,7 @@ public class Member {
         this.memberPassword = memberPassword;
     }
 
-    @Builder(builderClassName = "OAuthBuilder", builderMethodName = "OAuthBuilder")
+    @Builder(builderClassName = "OAuthBuilder", builderMethodName = "oAuthBuilder")
     public Member(String memberName, String memberPhone, String memberEmail, Role memberRole, String memberNickname) {
         this.memberName = memberName;
         this.memberPhone = memberPhone;
@@ -120,10 +120,12 @@ public class Member {
         this.memberPhone = memberPhone;
         this.memberEmail = memberEmail;
         this.memberNickname = memberNickname;
+        this.memberRole = Role.GENERAL;
 
         return this;
     }
-    @Builder(builderClassName = "ShortBuilder", builderMethodName = "ShortBuilder")
+
+    @Builder(builderClassName = "ShortBuilder", builderMethodName = "shortBuilder")
     public Member(String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName) {
         this.memberEmail = memberEmail;
         this.memberName = memberName;
@@ -145,7 +147,7 @@ public class Member {
         this.memberFileUUID = memberFileUUID;
         this.memberFileOriginalName = memberFileOriginalName;
     }
-    @Builder(builderClassName = "LongerBuilder", builderMethodName = "LongerBuilder")
+    @Builder(builderClassName = "LongerBuilder", builderMethodName = "longerBuilder")
     public Member(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, List<Alert> alerts, String memberFilePath, String memberFileUUID, String memberFileOriginalName) {
         this.id = id;
         this.memberEmail = memberEmail;
@@ -170,7 +172,7 @@ public class Member {
         this.memberFileOriginalName = memberFileOriginalName;
     }
 
-    @Builder(builderClassName = "joinMemberBuilder", builderMethodName = "joinMemberBuilder") /* 회원 가입 용 */
+    @Builder(builderClassName = "JoinMemberBuilder", builderMethodName = "joinMemberBuilder") /* 회원 가입 용 */
     public Member(Long id, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, LocalDateTime memberRegisterDate, MemberType memberType, Role memberRole) {
         this.id = id;
         this.memberEmail = memberEmail;

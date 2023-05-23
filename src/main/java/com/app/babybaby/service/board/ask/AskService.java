@@ -4,6 +4,7 @@ import com.app.babybaby.domain.boardDTO.askDTO.AskDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.entity.board.ask.Ask;
 import com.app.babybaby.search.admin.AdminAskSearch;
+import com.app.babybaby.type.ProcessType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -26,7 +27,7 @@ public interface AskService{
                 .registerDate(ask.getRegisterDate());
 
         if (ask.getMember() != null) {
-            builder.memberId(ask.getMember().getId());
+            builder.member(ask.getMember());
         }
 
         if (ask.getAskAnswer() != null) {
@@ -36,5 +37,16 @@ public interface AskService{
 
         return builder.build();
     }
+
+    default Ask toAskEnity(AskDTO askDTO){
+        return Ask.builder()
+                .askStatus(ProcessType.HOLD)
+                .member(askDTO.getMember())
+                .boardTitle(askDTO.getAskBoardTitle())
+                .boardContent(askDTO.getAskBoardContent())
+                .build();
+    }
+
+    public Ask saveAskDTO(AskDTO askDTO);
 
 }

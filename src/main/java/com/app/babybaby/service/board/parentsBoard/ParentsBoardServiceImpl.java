@@ -122,4 +122,14 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
         return parentsList;
     }
 
+    @Override
+    public List<ParentsBoard> find5RecentDesc() {
+        List<ParentsBoard> parents = parentsBoardRepository.find5RecentDesc();
+        log.info(parents.toString());
+        List<ParentsBoard> parentsList = parents.stream()
+                .collect(Collectors.toList());
+        return parentsList;
+    }
+
+
 }

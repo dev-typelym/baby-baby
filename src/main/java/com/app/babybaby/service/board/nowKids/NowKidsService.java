@@ -78,7 +78,7 @@ public interface NowKidsService {
 //    }
 
     default NowKidsDTO toNowKidsDTO(com.app.babybaby.entity.board.nowKids.NowKids nowKids) {
-        return NowKidsDTO.builder()
+        return NowKidsDTO.MainDTOBuilder()
                 .eventAddress(nowKids.getEvent().getEventLocation().getAddress())
                 .eventAddressDetail(nowKids.getEvent().getEventLocation().getAddressDetail())
                 .eventAddressSubDetail(nowKids.getEvent().getEventLocation().getAddressSubDetail())
@@ -102,14 +102,58 @@ public interface NowKidsService {
                 .memberGuideType(nowKids.getGuide().getMemberGuideType())
                 .eventRecruitCount(nowKids.getEvent().getEventRecruitCount())
                 .category(nowKids.getEvent().getCategory())
-                .files(nowKids.getNowKidsFile()
-                                .stream().map(nowKidsFile -> NowKidsFileDTO.builder()
+                .files(nowKids.getNowKidsFiles()
+                                .stream().map(nowKidsFile -> NowKidsFileDTO.orgFileBuilder()
                                         .fileOriginalName(nowKidsFile.getFileOriginalName())
                                         .fileUUID(nowKidsFile.getFileUUID())
                                         .filePath(nowKidsFile.getFilePath())
                                         .build())
                                 .collect(Collectors.toList())
                          )
+                .build();
+    }
+
+    //    상세보기 카테고리 최신글 8개 가져오기
+    public List<NowKids> find5RecentDesc();
+
+
+    default NowKidsDTO toNowKidsDTOForMain(NowKids nowKids) {
+        return NowKidsDTO.dtoBuilderForMain()
+                .eventAddress(nowKids.getEvent().getEventLocation().getAddress())
+                .eventAddressDetail(nowKids.getEvent().getEventLocation().getAddressDetail())
+                .eventAddressSubDetail(nowKids.getEvent().getEventLocation().getAddressSubDetail())
+                .eventPostCode(nowKids.getEvent().getEventLocation().getPostcode())
+                .eventStartDate(nowKids.getEvent().getCalendar().getStartDate())
+                .eventEndDate(nowKids.getEvent().getCalendar().getEndDate())
+                .uploadTime(nowKids.getUpdateDate())
+                .eventUpdateTime(nowKids.getUpdateDate())
+                .eventUploadTIme(nowKids.getRegisterDate())
+                .nowKidsId(nowKids.getId())
+                .eventId(nowKids.getEvent().getId())
+                .memberId(nowKids.getGuide().getId())
+                .boardTitle(nowKids.getEvent().getBoardTitle())
+                .memberProfileOriginalName(nowKids.getGuide().getMemberProfileOriginalName())
+                .memberProfilePath(nowKids.getGuide().getMemberProfilePath())
+                .memberProfileUUID(nowKids.getGuide().getMemberProfileUUID())
+                .memberNickname(nowKids.getGuide().getMemberNickname())
+                .memberType(nowKids.getGuide().getMemberType())
+                .memberGuideStatus(nowKids.getGuide().getMemberGuideStatus())
+                .memberSleep(nowKids.getGuide().getMemberSleep())
+                .memberGuideType(nowKids.getGuide().getMemberGuideType())
+                .eventRecruitCount(nowKids.getEvent().getEventRecruitCount())
+                .category(nowKids.getEvent().getCategory())
+                .nowKidsFileDTOList(nowKids.getNowKidsFiles().stream()
+                        .map(this::NowKidsFileToDTO).collect(Collectors.toList()))
+                .build();
+    }
+
+    default NowKidsFileDTO NowKidsFileToDTO(NowKidsFile file) {
+        return NowKidsFileDTO.fileBuilderForMain()
+                .fileOriginalName(file.getFileOriginalName())
+                .filePath(file.getFilePath())
+                .fileType(file.getFileStatus())
+                .fileUUID(file.getFileUUID())
+                .id(file.getId())
                 .build();
     }
 

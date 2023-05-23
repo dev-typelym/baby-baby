@@ -61,4 +61,9 @@ public interface EventQueryDsl {
     public Optional<Event> findForAdminEventById_queryDSL(Long eventId);
     //   [관리자] 놀러가요 삭제하기
     public void deleteEventByIds_queryDSL(List<Long> eventIds);
+
+    /* ---------------------------------메인-------------------------------------------------- */
+
+    //    상세보기 카테고리 최신글 5개 가져오기
+    public List<Event> find5RecentDesc(CategoryType category);
 }

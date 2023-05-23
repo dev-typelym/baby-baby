@@ -48,7 +48,7 @@ public class NowKidsLikeQueryDslImpl implements NowKidsLikeQueryDsl {
         List<NowKids> list = query.select(nowKidsLike.nowKids)
                 .from(nowKidsLike)
                 .leftJoin(nowKidsLike).fetchJoin()
-                .leftJoin(nowKidsLike.nowKids.nowKidsFile).fetchJoin()
+                .leftJoin(nowKidsLike.nowKids.nowKidsFiles).fetchJoin()
                 .where(nowKidsLike.member.id.eq(memberId))
                 .fetchJoin()
                 .offset(pageable.getOffset())

@@ -14,12 +14,14 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class OAuthAttributes {
+
     private final Map<String, Object> attributes;
     private final String nameAttributeKey;
     private final String name;
     private final String email;
     private final String mobile;
     private final String nickname;
+
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
 //      userNameAttributeName은 .yml에서 설정해 놓은 user-name-attribute 값이다.
@@ -59,7 +61,7 @@ public class OAuthAttributes {
     }
 
     public Member toEntity() {
-        return Member.OAuthBuilder()
+        return Member.oAuthBuilder()
                 .memberName(name)
                 .memberEmail(email)
                 .memberPhone(mobile)
