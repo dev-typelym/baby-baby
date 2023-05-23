@@ -65,7 +65,7 @@
                                         <button>미술관/박람회</button>
                                     </li>
 
-                                    <li class="categoryType" value="TRADITIONAL">
+                                    <li class="categoryType" value="TRADITION">
                                         <button>전통</button>
                                     </li>
 
@@ -120,7 +120,7 @@
                                             </div>
                                         </a>
                                     </div> -->
-                                    <div class="static-banner">
+                                    <div class="static-banner" th:if="${session}">
                                         <div class="static-banner-context">
                                             <div class="static-banner-date">
                                                 부모님에겐 휴식을, 아이들에겐 추억을!
@@ -131,7 +131,7 @@
                                                 체험학습을 제공해보세요.
                                             </div>
                                         </div>
-                                        <a href="" class="apply-form">
+                                        <a href="/event/writeFirst" class="apply-form">
                                             <svg width="22" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 9.41545L0.5 6.10352e-05H22.5L11.5 9.41545ZM0.5 1.60012V16.0001H22.5V1.60012L11.5 11.0155L0.5 1.60012Z" fill="white"></path>
                                             </svg>
@@ -710,4 +710,5 @@
             return false;
         });
     </script>
+
 </html>

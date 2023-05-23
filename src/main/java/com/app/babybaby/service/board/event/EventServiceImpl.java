@@ -125,6 +125,12 @@ public class EventServiceImpl implements EventService {
         return eventDTO;
     }
 
+    @Override
+    public MemberDTO getMemberInfo(Long memberId) {
+       MemberDTO memberDTO = memberToDTO(memberRepository.findById(memberId).get());
+       return memberDTO;
+    }
+
 
     @Override
     public Event createEvent(Event event) {

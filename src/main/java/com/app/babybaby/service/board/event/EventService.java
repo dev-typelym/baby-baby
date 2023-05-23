@@ -34,6 +34,8 @@ public interface EventService {
     /* 이벤트 상세보기 */
     public EventDTO getAllEventInfo(Long sessionId, Long eventId);
 
+    public MemberDTO getMemberInfo(Long memberId);
+
     Event createEvent(Event event);
 
     Event updateEvent(Long eventId, Event updatedEvent);

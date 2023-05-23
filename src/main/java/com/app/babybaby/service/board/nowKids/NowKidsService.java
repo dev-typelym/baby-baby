@@ -24,6 +24,8 @@ public interface NowKidsService {
 
     public List<MemberDTO> find8AuthorDesc();
 
+    public void saveCrewSave(Event event, Member member);
+
     default com.app.babybaby.entity.board.nowKids.NowKids toNowKidsEntity(NowKidsDTO nowKidsDTO){
         return com.app.babybaby.entity.board.nowKids.NowKids.builder()
                 .id(nowKidsDTO.getNowKidsId())

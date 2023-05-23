@@ -9,11 +9,13 @@ import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
+import com.app.babybaby.entity.member.Crew;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
 import com.app.babybaby.repository.file.nowKidsFile.NowKidsFileRepository;
+import com.app.babybaby.repository.member.crew.CrewRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.service.board.nowKids.NowKidsService;
 import com.app.babybaby.service.file.nowKidsFile.NowKidsFileService;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,8 +56,9 @@ public class NowKidsController {
     private final EventRepository eventRepository;
 
     @GetMapping("writeFirst")
-    public String goWriteNowKids(Model model, RedirectAttributes redirectAttributes) {
-        Long sessionId = 2L;
+    public String goWriteNowKids(Model model, HttpSession session) {
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         Member member = memberRepository.findById(sessionId).get();
         List<Tuple> nowKidsEvents = nowKidsRepository.findEventAndCalendarInfoByGuideId_QueryDsl(sessionId);
         JSONArray calendars = new JSONArray();
@@ -92,8 +96,9 @@ public class NowKidsController {
 
     @PostMapping("getKids")
     @ResponseBody
-    public String getAllKids(Long eventId) {
-        Long sessionId = 2L;
+    public String getAllKids(Long eventId, HttpSession session) {
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         log.info("eventID는 : " + eventId.toString());
         log.info("Kids들은" + nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(sessionId, eventId).toString());
         JSONArray jsonArray = new JSONArray();
@@ -111,8 +116,9 @@ public class NowKidsController {
 
 
     @GetMapping("writeSecond")
-    public String writeNowKidFiles(Long eventId, String eventDate, Model model){
-        Long sessionId = 2L;
+    public String writeNowKidFiles(Long eventId, String eventDate, Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         log.info(eventDate.toString());
         log.info(eventId.toString());
 
@@ -133,8 +139,11 @@ public class NowKidsController {
 
 
     @PostMapping("save")
-    public RedirectView saveAllNowKids(Long eventId, String eventDate, NowKidsFileDTOForParameter nowKidsFileDTOForParameter){
-        Long sessionId = 2L;
+    public RedirectView saveAllNowKids(Long eventId, String eventDate, NowKidsFileDTOForParameter nowKidsFileDTOForParameter, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
+
+        log.info(session.getAttribute("memberDTO").toString());
         log.info("eventDate는 : " + eventDate);
         log.info("EventId는 : " + eventId.toString());
         log.info("save에서의 nowKidsFileDTO는 : " + nowKidsFileDTOForParameter.toString());
@@ -164,8 +173,9 @@ public class NowKidsController {
     /* 최신순 프로필 가져오기*/
     @PostMapping("getList")
     @ResponseBody
-    public String getList(Integer pageNumber){
-        Long sessionId = 2L;
+    public String getList(Integer pageNumber, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         Page<NowKidsDTO> nowKidsDTOS = nowKidsService.getAllInfoForListDesc(pageNumber, 2, sessionId);
 //        페이지에 아무것도 없다면 빈 배열을 리턴
         if(nowKidsDTOS.isEmpty()){

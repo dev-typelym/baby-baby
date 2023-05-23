@@ -242,8 +242,6 @@ function seeMoreParentsHandler(){
                         `;
                     })
 
-                } else{
-                    parentBoardText = '아직 작성된 부모님마당 게시글이 없습니다'
                 }
 
                 $('.parents-board-section').append(parentBoardText)
@@ -274,7 +272,7 @@ function seeMoreReviewHandler(){
                     memberDetails.reviews.forEach((e,i)=>{
                         reviewText +=
                             `
-                            <li class="review_li">
+                            <li class="review_li" onclick="location.href='/review/detail/${e.id}'">
                                     <div class="page_content_ul reviews-container">
                                         <span class="real_name">${e.boardTitle}</span>
                                         <div style="display: inline-block; position: relative;">
@@ -388,18 +386,6 @@ function getEventImg(selector) {
 
         // 데이터를 변수에 저장
         $(this).css('background-image', 'url(' + eventURL + ')');
-    });
-}
-
-function getProfileImg(selector) {
-    $(selector).each(function () {
-        let profilePath = $(this).data('member-profile-path');
-        let profileUUID = $(this).data('member-profile-uuid');
-        let profileFileOriginalName = $(this).data('member-profile-original-name');
-        let profileURL = '/nowKidFiles/display?fileName=NowKids/' + profilePath + '/' + profileUUID + '_' + profileFileOriginalName;
-
-        // 데이터를 변수에 저장
-        $(this).css('background-image', 'url(' + profileURL + ')');
     });
 }
 

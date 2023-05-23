@@ -37,7 +37,7 @@
                         <span class="nav-header-span">기업</span>
                     </div>
                     <a href="javascript:void(0)" class="profile-box">
-                        <span class="profile-name">임종욱</span><span>의</span>
+                        <span class="profile-name" th:text="${memberNickname}">임종욱</span><span>의</span>
                         <p>체험제공 신청</p>
                     </a>
                     <button type="button" class="profile-btn">
@@ -273,5 +273,11 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/components/header.js"></script>
+<script th:inline = "javascript">
+    let memberDTOSJSON = [[${memberDTOS}]];
+    let memberDTOS = JSON.parse(memberDTOSJSON)
+    console.log(memberDTOS)
+    $('.profile-name').text(memberDTOS.memberNickname)
+</script>
 <script src="/js/play/play-write-single.js"></script>
 </html>

@@ -1,3 +1,14 @@
+function getProfileImg(memberInfo) {
+  let imgText = `
+        <div class="image_section" style="background-image: url('members/display?fileName=Member/Profile/${memberInfo.memberProfilePath}/${memberInfo.memberProfileUUID}_${memberInfo.memberProfileOriginalName}');">
+            <div class="image_section_div">
+                <span class="image_section_span" style="background-image: url('members/display?fileName=Member/Profile/${memberInfo.memberProfilePath}/${memberInfo.memberProfileUUID}_${memberInfo.memberProfileOriginalName}'); border: 1px solid rgb(221, 226, 230);"></span>
+            </div>
+        </div>
+    `;
+  return imgText
+}
+
 
 /* 프로젝트, 메이커 정보, 만족도 클릭시 css 변경  */
 $(document).ready(function() {
@@ -52,6 +63,8 @@ function loadEvents(memberId) {
       $(".company_title_p").text(companyInfo.memberHiSentence)
       $($(".satisfaction_amount")[0]).text(companyInfo.reviews.length)
       $($(".satisfaction_amount")[1]).text(companyInfo.events.length)
+      $('.image_section').css('background-image', `url('/members/display?fileName=Member/Profile/${companyInfo.memberProfilePath}/${companyInfo.memberProfileUUID}_${companyInfo.memberProfileOriginalName}' `)
+      $('.image_section_span').css('background-image', `url('/members/display?fileName=Member/Profile/${companyInfo.memberProfilePath}/${companyInfo.memberProfileUUID}_${companyInfo.memberProfileOriginalName}' `)
 
       let avgScore = getAvgScore(companyInfo.reviews);
       if (isNaN(avgScore)) {
@@ -151,7 +164,7 @@ function loadEvents(memberId) {
               `
                                 <div class="real_content_div">
                                                 <div class="project_card">
-                                                    <a class="project_card_a" href="">
+                                                    <a class="project_card_a" href="/event/detail/${e.id}">
                                                         <div class="project_card_img"
                                                         style = "background-image: url('/eventFiles/display?fileName=Event/${e.files[0].filePath}/${e.files[0].fileUUID}_${e.files[0].fileOriginalName}')";
                                                         ></div>
@@ -175,6 +188,7 @@ function loadEvents(memberId) {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </div>
         `;
         })
       }
@@ -183,7 +197,7 @@ function loadEvents(memberId) {
             `
                             <div class="one_open_img">
                                             <div class="project_card">
-                                                <a class="one_open_a">
+                                                <a class="one_open_a" href="/event/detail/${companyInfo.upcommingEvents[0].id}">
                                                     <div class="one_project_card_img" style="background-image: url('/eventFiles/display?fileName=Event/${companyInfo.upcommingEvents[0].files[0].filePath}/${companyInfo.upcommingEvents[0].files[0].fileUUID}_${companyInfo.upcommingEvents[0].files[0].fileOriginalName}');"></div>
                                                 </a>
                                                 <div class="project_card_div">
@@ -207,7 +221,7 @@ function loadEvents(memberId) {
                         <!-- // 컨텐츠 1개 -->
                                             <div class="six_content">
                                                 <div class="project_card">
-                                                    <a class="project_card_a">
+                                                    <a class="project_card_a" href="/event/detail/${e.id}">
                                                         <div class="real_cafe"
                                                         data-event=""
                                                         ></div>
@@ -345,7 +359,7 @@ function seeMoreEventHandler() {
               `
             <div class="six_content">
                                                 <div class="project_card">
-                                                    <a class="project_card_a">
+                                                    <a class="project_card_a" href="/event/detail/${e.id}">
                                                         <div class="real_cafe"
                                                         data-event=""
                                                         ></div>
@@ -395,7 +409,7 @@ function seeMoreReviewHandler() {
         companyInfo.reviews.forEach((e, i) => {
           satisfactionText +=
               `
-                                <li class="review_li">
+                                <li class="review_li" onclick="location.href='/review/detail/${e.id}'">
                                     <div class="page_content_ul">
                                         <span class="real_name"></span>
                                         <div class="starContainers" style="display: inline-block; position: relative;">
