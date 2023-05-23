@@ -18,23 +18,18 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class AlarmInterceptor implements HandlerInterceptor {
 
-    private AlertRepository alertRepository;
-    private AlertFollowRepository alertFollowRepository;
+    private final AlertRepository alertRepository;
+    private final AlertFollowRepository alertFollowRepository;
 //    private MyAlarmRestController alarmRestController;
 //    private GroupRepository groupRepository;
 //    private QuestAchievementRepositoryImpl questAchievementRepository;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//        request.getSession().setAttribute("noReadAlarm",/*alertFollowRepository.getNoReadAlert()*/3L);
-        request.setAttribute("noReadAlarm", 3L);
-        log.info("hkhkgkkgkggk");
-//        Long NoReadCount = (Long)request.getSession().getAttribute("noReadAlarm");
+        request.setAttribute("noReadAlarm", alertFollowRepository.getNoReadAlert());
+        Long NoReadCount = (Long)request.getAttribute("noReadAlarm");
 //        alertRepository.findAllByMemberId(세션에 알람 갯수 담아놓기);
 //        헤더로 가서 세션에서 방금 저장한 알림 갯수를 가져와서 뿌리되 내가 원하는 상태를 헤더에서 검사한다. 안 읽은 알림이 없다면 빨간 점을 없애고 그냥 종 모양이 보이게 한다.
-//        if(NoReadCount != 0){
-//            return true;
-//        }
         return true;
     }
 
