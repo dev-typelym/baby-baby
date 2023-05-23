@@ -44,6 +44,8 @@ public interface ReviewQueryDsl {
     //    상세보기
     public Optional<Review> findDetailById_QueryDsl(Long id);
 
+//    ----------------------------- 관리자 -------------------------------------------
+
     //[관리자] 리뷰 게시판 목록 조회
     public Page<Review> findAllReviewBoardWithSearch_queryDSL(Pageable pageable, AdminReviewSearch adminReviewSearch, CategoryType eventCategory);
 
@@ -51,5 +53,5 @@ public interface ReviewQueryDsl {
     public Optional<Review> findReviewBoardById_queryDSL(Long reviewBoardId);
 
     //[관리자] 리뷰 게시판 삭제
-    public void deleteReviewBoardByIds_queryDSL(List<Long> reviewBoardIds);
+    public void deleteReviewBoardByIds_queryDSL(Long reviewBoardId);
 }

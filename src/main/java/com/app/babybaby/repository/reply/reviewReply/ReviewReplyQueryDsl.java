@@ -13,5 +13,5 @@ public interface ReviewReplyQueryDsl {
     public Page<ReviewReply> findAlLReviewReplyWithSearch_queryDSL(Pageable pageable, AdminReviewReplySearch adminReviewReplySearch);
 
     //    [관리자] 리뷰 댓글 삭제
-    public void deleteReviewBoardReplyByIds_queryDSL(List<Long> reviewReplyIds);
+    public void deleteReviewBoardReplyByIds_queryDSL(Long reviewReplyId);
 }

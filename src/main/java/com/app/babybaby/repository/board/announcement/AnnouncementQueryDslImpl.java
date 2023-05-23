@@ -23,14 +23,14 @@ public class AnnouncementQueryDslImpl implements AnnouncementQueryDsl {
     //      [관리자] 공지사항 목록 조회
     @Override
     public Page<Announcement> findAllAnnouncement_queryDSL(Pageable pageable, AdminAnnouncementSearch adminAnnouncementSearch) {
-        BooleanExpression announcementTitleEq = adminAnnouncementSearch.getAnnouncementTitle() == null ? null : announcement.boardTitle.eq(adminAnnouncementSearch.getAnnouncementTitle());
+        BooleanExpression announcementTitleEq = adminAnnouncementSearch.getAnnouncementTitle() == null ? null : announcement.boardTitle.like("%" + adminAnnouncementSearch.getAnnouncementTitle()    + "%");
 
         QAnnouncement announcement = QAnnouncement.announcement;
         List<Announcement> foundAnnouncement = query.select(announcement)
                 .from(announcement)
                 .where(announcementTitleEq)
                 .orderBy(announcement.id.asc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
@@ -44,33 +44,22 @@ public class AnnouncementQueryDslImpl implements AnnouncementQueryDsl {
 
     //    [관리자] 공지사항 상세보기
     @Override
-    public Optional<Announcement> findAnnouncementById_queryDSL(Long announcementId) {
-        return Optional.ofNullable(
+    public List<Announcement> findAllAnnouncementDetail_queryDSL() {
+        List<Announcement> foundAnnouncementDetail =
                 query.select(announcement)
                         .from(announcement)
                         .leftJoin(announcement.announcementFiles)
                         .fetchJoin()
-                        .where(announcement.id.eq(announcementId))
-                        .fetchOne());
+                        .fetch();
+        return foundAnnouncementDetail;
     }
 
 
     //    [관리자] 공지사항 삭제
     @Override
-    public void deleteAnnouncementByIds_queryDSL(List<Long> announcementIds) {
+    public void deleteAnnouncementByIds_queryDSL(Long announcementId) {
         query.delete(announcement)
-                .where(announcement.id.in(announcementIds))
+                .where(announcement.id.in(announcementId))
                 .execute();
-    }
-
-    @Override
-    public List<Announcement> find5RecentDesc() {
-        List<Announcement> announcements =
-                query.select(announcement)
-                        .from(announcement)
-                        .orderBy(announcement.id.desc())
-                        .limit(3)
-                        .fetch();
-        return announcements;
     }
 }

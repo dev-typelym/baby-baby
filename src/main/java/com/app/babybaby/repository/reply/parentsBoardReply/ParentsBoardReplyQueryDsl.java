@@ -23,6 +23,6 @@ public interface ParentsBoardReplyQueryDsl {
     public Page<ParentsBoardReply> findAlLParentsBoardReplyWithSearch_queryDSL(Pageable pageable, AdminParentsBoardReplySearch adminParentsBoardReplySearch);
 
     //    [관리자] 부모님마당 댓글 삭제
-    public void deleteParentsBoardReplyByIds_queryDSL(List<Long> parentsBoardReplyIds);
+    public void deleteParentsBoardReplyByIds_queryDSL(Long parentsBoardReplyId);
 
 }

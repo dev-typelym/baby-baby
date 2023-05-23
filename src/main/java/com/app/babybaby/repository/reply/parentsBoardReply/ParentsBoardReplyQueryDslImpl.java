@@ -61,7 +61,7 @@ public class ParentsBoardReplyQueryDslImpl implements ParentsBoardReplyQueryDsl 
     //    [관리자] 부모님마당 댓글 목록 조회
     @Override
     public Page<ParentsBoardReply> findAlLParentsBoardReplyWithSearch_queryDSL(Pageable pageable , AdminParentsBoardReplySearch adminParentsBoardReplySearch) {
-        BooleanExpression parentsBoardContentEq = adminParentsBoardReplySearch.getParentsBoardReplyContent() == null ? null : parentsBoardReply.ParentsBoardReplyContent.eq(adminParentsBoardReplySearch.getParentsBoardReplyContent());
+        BooleanExpression parentsBoardContentEq = adminParentsBoardReplySearch.getParentsBoardReplyContent() == null ? null : parentsBoardReply.ParentsBoardReplyContent.like("%" + adminParentsBoardReplySearch.getParentsBoardReplyContent() + "%");
 
         QParentsBoardReply parentsBoardReply = QParentsBoardReply.parentsBoardReply;
 
@@ -69,7 +69,7 @@ public class ParentsBoardReplyQueryDslImpl implements ParentsBoardReplyQueryDsl 
                 .from(parentsBoardReply)
                 .where(parentsBoardContentEq)
                 .orderBy(parentsBoardReply.id.asc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
@@ -83,9 +83,9 @@ public class ParentsBoardReplyQueryDslImpl implements ParentsBoardReplyQueryDsl 
 
     //  [관리자] 부모님마당 댓글 목록 삭제
     @Override
-    public void deleteParentsBoardReplyByIds_queryDSL(List<Long> parentsBoardReplyIds) {
+    public void deleteParentsBoardReplyByIds_queryDSL(Long parentsBoardReplyId) {
         query.delete(parentsBoardReply)
-                .where(parentsBoardReply.id.in(parentsBoardReplyIds))
+                .where(parentsBoardReply.id.in(parentsBoardReplyId))
                 .execute();
     }
 

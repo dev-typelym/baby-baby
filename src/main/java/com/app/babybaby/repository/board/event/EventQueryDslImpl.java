@@ -302,14 +302,32 @@ public class EventQueryDslImpl implements EventQueryDsl {
 
     /*--------------------------------------리뷰 --------------------------------------------- */
 
-    //    [관리자] 놀러가요 카테고리 및 상태별 목록
+
+    // 상세보기 카테고리 최신글 5개 가져오기
     @Override
-    public List<Event> findNowKidsEvents_queryDSL(AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus) {
-        BooleanExpression eventNameEq = adminEventSearch.getEventTitle() == null ? null : event.boardTitle.eq(adminEventSearch.getEventTitle());
+    public List<Event> find5RecentDesc(CategoryType category) {
+
+        BooleanExpression getCategory = category == CategoryType.ALL ? null : event.category.eq(category);
+
+        List<Event> events = query.selectDistinct(event)
+                .from(event)
+                .where(getCategory)
+                .orderBy(event.id.desc())
+                .limit(5)
+                .fetch();
+
+        return events;
+    }
+
+//    ---------------------------------------- 관리자 -------------------------------------------
+//    [관리자] 놀러가요 카테고리 및 상태별 목록
+    @Override
+    public Page<Event> findNowKidsEvents_queryDSL(Pageable pageable, AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus) {
+        BooleanExpression eventNameEq = adminEventSearch.getEventTitle() == null ? null : event.boardTitle.like("%" + adminEventSearch.getEventTitle() + "%");
         LocalDateTime now = LocalDateTime.now();
         QEvent event = QEvent.event;
 
-        return query.select(event)
+        List<Event> foundEvent =  query.select(event)
                 .from(event)
                 .join(event.calendar)
                 .fetchJoin()
@@ -335,14 +353,48 @@ public class EventQueryDslImpl implements EventQueryDsl {
                                         ? event.calendar.startDate.after(now)
                                         : eventStatus.equals("진행중")
                                         ? event.calendar.startDate.after(now)
-                                        .and(nowKids.event.calendar.endDate.before(now))
+                                        .and(event.calendar.endDate.before(now))
                                         : eventStatus.equals("종료")
                                         ? event.calendar.endDate.before(now)
                                         : event.category.isNotNull())
                                 .and(eventNameEq)
                 )
                 .orderBy(event.id.asc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
+
+        Long count = query.select(event.count())
+                .from(event)
+                .where(
+                        eventCategory != null
+                                ? event.category.eq(eventCategory)
+                                .and(eventStatus.equals("전체")
+                                        ? event.calendar.startDate.isNotNull()
+                                        : eventStatus.equals("대기")
+                                        ? event.calendar.startDate.after(now)
+                                        : eventStatus.equals("진행중")
+                                        ? event.calendar.startDate.after(now)
+                                        .and(event.calendar.endDate.before(now))
+                                        : eventStatus.equals("종료")
+                                        ? event.calendar.endDate.before(now)
+                                        : event.category.isNotNull())
+                                : event.category.isNotNull()
+                                .and(eventStatus.equals("전체")
+                                        ? event.calendar.startDate.isNotNull()
+                                        : eventStatus.equals("대기")
+                                        ? event.calendar.startDate.after(now)
+                                        : eventStatus.equals("진행중")
+                                        ? event.calendar.startDate.after(now)
+                                        .and(event.calendar.endDate.before(now))
+                                        : eventStatus.equals("종료")
+                                        ? event.calendar.endDate.before(now)
+                                        : event.category.isNotNull())
+                                .and(eventNameEq)
+                )
+                .fetchOne();
+
+        return new PageImpl<>(foundEvent, pageable, count);
 
 
     }
@@ -364,27 +416,10 @@ public class EventQueryDslImpl implements EventQueryDsl {
 //    [관리자] 놀러가요 삭제
 
     @Override
-    public void deleteEventByIds_queryDSL(List<Long> eventIds) {
+    public void deleteEventByIds_queryDSL(Long eventId) {
         query.delete(event)
-                .where(event.id.in(eventIds))
+                .where(event.id.in(eventId))
                 .execute();
-    }
-
-
-    // 상세보기 카테고리 최신글 5개 가져오기
-    @Override
-    public List<Event> find5RecentDesc(CategoryType category) {
-
-        BooleanExpression getCategory = category == CategoryType.ALL ? null : event.category.eq(category);
-
-        List<Event> events = query.selectDistinct(event)
-                .from(event)
-                .where(getCategory)
-                .orderBy(event.id.desc())
-                .limit(5)
-                .fetch();
-
-        return events;
     }
 }
 

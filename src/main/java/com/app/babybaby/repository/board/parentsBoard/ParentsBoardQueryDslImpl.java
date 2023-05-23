@@ -218,10 +218,24 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 //                .where(nowKids.guide.in(subQueryResult))
 //            .fetch();
 
+
+    @Override
+    public List<ParentsBoard> find5RecentDesc() {
+        List<ParentsBoard> parentsBoards =
+                query.select(parentsBoard)
+                        .from(parentsBoard)
+                        .orderBy(parentsBoard.id.desc())
+                        .limit(5)
+                        .fetch();
+        return parentsBoards;
+    }
+
+//---------------------------------------- 관리자 ------------------------------------------------------
+
     //[관리자] 보호자마당 전체 목록 조회
     @Override
     public Page<ParentsBoard> findAllParentsBoardWithSearch_queryDSL(Pageable pageable, AdminParentsBoardSearch adminParentsBoardSearch) {
-        BooleanExpression parentsBoardNameEq = adminParentsBoardSearch.getParentsBoardTitle() == null ? null : parentsBoard.boardTitle.eq(adminParentsBoardSearch.getParentsBoardTitle());
+        BooleanExpression parentsBoardNameEq = adminParentsBoardSearch.getParentsBoardTitle() == null ? null : parentsBoard.boardTitle.like("%" + adminParentsBoardSearch.getParentsBoardTitle() + "%");
 
         QParentsBoard parentsBoard = QParentsBoard.parentsBoard;
         QEvent event = QEvent.event;
@@ -233,7 +247,7 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
                 .fetchJoin()
                 .where(parentsBoardNameEq)
                 .orderBy(parentsBoard.id.asc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
@@ -264,23 +278,11 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
     //  [관리자] 보호자마당 삭제
     @Override
-    public void deleteAdminParentsBoardByIds_queryDSL(List<Long> parentsBoardIds) {
+    public void deleteAdminParentsBoardByIds_queryDSL(Long parentsBoardId) {
         query.delete(parentsBoard)
-                .where(parentsBoard.id.in(parentsBoardIds))
+                .where(parentsBoard.id.in(parentsBoardId))
                 .execute();
     }
-
-    @Override
-    public List<ParentsBoard> find5RecentDesc() {
-        List<ParentsBoard> parentsBoards =
-                query.select(parentsBoard)
-                        .from(parentsBoard)
-                        .orderBy(parentsBoard.id.desc())
-                        .limit(5)
-                        .fetch();
-        return parentsBoards;
-    }
-
 
 
 }

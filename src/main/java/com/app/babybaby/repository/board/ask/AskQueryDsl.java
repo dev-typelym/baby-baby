@@ -14,12 +14,12 @@ public interface AskQueryDsl {
     public Page<Ask> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch);
 
     //    [관리자] 문의 상세보기
-    public Optional<Ask> findAskById_queryDSL(Long askId);
+    public List<Ask> findAllAskDetail_queryDSL();
 
     //    [관리자] 문의 삭제하기
-    public void deleteAskByIds_queryDSL(List<Long> askIds);
+    public void deleteAskByIds_queryDSL(Long askId);
 
-    //    내가쓴 문의
-    public Slice<Ask> findAllAskByMemberId(Long memberId,Pageable pageable,AdminAskSearch AdminAskSearch);
+    //    [관리자] 문의 아이디로 찾기
+    public Ask findAskById_queryDSL(Long askId);
 
 }

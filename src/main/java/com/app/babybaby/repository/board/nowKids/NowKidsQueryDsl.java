@@ -8,6 +8,8 @@ import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.admin.AdminEventSearch;
 import com.app.babybaby.type.CategoryType;
 import com.querydsl.core.Tuple;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -47,16 +49,18 @@ public interface NowKidsQueryDsl {
     /*한방쿼리로 모든 정보 다 가져오기 */
 //    public List<NowKids> findAllInfo();
 
-    //    [관리자페이지] 지금 우리아이들은 카테고리별 게시글 목록 조회
-    public List<NowKids> findNowKidsEvents_queryDSL(AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus);
+
+    //    상세보기 카테고리 최신글 5개 가져오기
+    public List<NowKids> find5RecentDesc();
+
+
+//    -----------------------------------------------관리자 ---------------------------------------
+//    [관리자페이지] 지금 우리아이들은 카테고리별 게시글 목록 조회
+    public Page<NowKids> findNowKidsEvents_queryDSL(Pageable pageable, AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus);
 
     //    [관리자페이지] 지금 우리아이들은 카테고리별 게시글 상세보기
     public Optional<NowKids> findNowKidsById_queryDSL(Long nowKidsId);
 
     //    [관리자페이지] 지금 우리아이들은 게시글 삭제
     public void deleteNowKidsByIds_queryDSL(List<Long> nowKidsIds);
-
-
-    //    상세보기 카테고리 최신글 5개 가져오기
-    public List<NowKids> find5RecentDesc();
 }

@@ -110,18 +110,20 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
             .where(member.id.eq(memberId).and(member.memberType.eq(MemberType.COMPANY)))
             .fetchOne();
 }
+
+
 //----------------------------------------------관리자 페이지 ------------------------------------------------------------
 
     //  [관리자페이지]관리자 회원 전체 조회
     @Override
     public Page<Member> findAllMemberWithSearch_queryDSL(Pageable pageable, AdminMemberSearch memberSearch) {
-        BooleanExpression memberNameEq = memberSearch.getMemberName() == null ? null : member.memberName.eq(memberSearch.getMemberName());
+        BooleanExpression memberNameEq = memberSearch.getMemberName() == null ? null : member.memberName.like("%" + memberSearch.getMemberName() + "%");
 
         List<Member> foundUsers = query.select(member)
                 .from(member)
                 .where((member.memberType.eq(MemberType.GENERAL).or(member.memberType.eq(MemberType.GENERAL_GUIDE)).or(member.memberType.eq(MemberType.ADMIN_GUIDE))).and(member.memberSleep.eq(SleepType.AWAKE)).and(memberNameEq))
                 .orderBy(member.id.asc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
@@ -143,23 +145,22 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
     //    [관리자페이지]관리자 회원 삭제
     @Override
-    public void disableMembersByIds_queryDSL(List<Long> memberIds) {
+    public void disableMembersByIds_queryDSL(Long memberId) {
         query.update(member)
                 .set(member.memberSleep, SleepType.SLEEP)
-                .where(member.id.in(memberIds))
+                .where(member.id.in(memberId))
                 .execute();
     }
 
     //   [관리자페이지]기업 전체 조회
     @Override
     public Page<Member> findAllCompanyWithSearch_queryDSL(Pageable pageable, AdminMemberSearch memberSearch) {
-        BooleanExpression memberNameEq = memberSearch.getMemberName() == null ? null : member.memberName.eq(memberSearch.getMemberName());
-
+        BooleanExpression memberNameEq = memberSearch.getMemberName() == null ? null : member.memberName.like("%" + memberSearch.getMemberName() + "%");
         List<Member> foundUsers = query.select(member)
                 .from(member)
                 .where(member.memberType.eq(MemberType.COMPANY).and(memberNameEq))
                 .orderBy(member.id.asc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
@@ -197,26 +198,26 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
     // 관리자페이지 가이드 신청 일반인 또는 가이드 목록 조회
     @Override
     public Page<Member> findAllGuideWithSearch_queryDSL(Pageable pageable, AdminMemberSearch memberSearch, GuideType guideType, AcceptanceType acceptanceType) {
-        BooleanExpression memberNameEq = memberSearch.getMemberName() == null ? null : member.memberName.eq(memberSearch.getMemberName());
+        BooleanExpression memberNameEq = memberSearch.getMemberName() == null ? null : member.memberName.like("%" + memberSearch.getMemberName() + "%");
 
         List<Member> foundGuides = query.select(member)
                 .from(member)
                 .where((guideType != null ? member.memberGuideType.eq(guideType) : member.memberGuideType.isNotNull())
-                                .and(member.memberGuideStatus.eq(acceptanceType))
-                                .and(member.memberFileUUID.isNotNull())
-                                .and(member.memberSleep.eq(SleepType.AWAKE))
+                        .and((acceptanceType != null ? member.memberGuideStatus.eq(acceptanceType) : member.memberGuideStatus.isNotNull()))
+                        .and(member.memberFileUUID.isNotNull())
+                        .and(member.memberSleep.eq(SleepType.AWAKE))
                         .and(memberNameEq))
                 .orderBy(member.id.asc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         Long count = query.select(member.count())
                 .from(member)
                 .where((guideType != null ? member.memberGuideType.eq(guideType) : member.memberGuideType.isNotNull())
-                                .and(member.memberGuideStatus.eq(acceptanceType))
-                                .and(member.memberFileUUID.isNotNull())
-                                .and(member.memberSleep.eq(SleepType.AWAKE))
+                        .and((acceptanceType != null ? member.memberGuideStatus.eq(acceptanceType) : member.memberGuideStatus.isNotNull()))
+                        .and(member.memberFileUUID.isNotNull())
+                        .and(member.memberSleep.eq(SleepType.AWAKE))
                         .and(memberNameEq))
                 .fetchOne();
 

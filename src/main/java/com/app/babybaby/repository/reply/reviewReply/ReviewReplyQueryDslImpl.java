@@ -22,7 +22,7 @@ public class ReviewReplyQueryDslImpl implements ReviewReplyQueryDsl {
     //    [관리자] 리뷰 댓글 목록 조회
     @Override
     public Page<ReviewReply> findAlLReviewReplyWithSearch_queryDSL(Pageable pageable, AdminReviewReplySearch adminReviewReplySearch) {
-             BooleanExpression reviewReplyContentEq = adminReviewReplySearch.getReviewReplyContent() == null ? null : reviewReply.ReviewReplyContent.eq(adminReviewReplySearch.getReviewReplyContent());
+        BooleanExpression reviewReplyContentEq = adminReviewReplySearch.getReviewReplyContent() == null ? null : reviewReply.ReviewReplyContent .like("%" + adminReviewReplySearch.getReviewReplyContent() + "%");
 
         QReviewReply reviewReply = QReviewReply.reviewReply;
 
@@ -30,7 +30,7 @@ public class ReviewReplyQueryDslImpl implements ReviewReplyQueryDsl {
                 .from(reviewReply)
                 .where(reviewReplyContentEq)
                 .orderBy(reviewReply.id.asc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
@@ -44,9 +44,9 @@ public class ReviewReplyQueryDslImpl implements ReviewReplyQueryDsl {
 
     //  [관리자] 리뷰 댓글 삭제
     @Override
-    public void deleteReviewBoardReplyByIds_queryDSL(List<Long> reviewReplyIds) {
+    public void deleteReviewBoardReplyByIds_queryDSL(Long reviewReplyId) {
         query.delete(reviewReply)
-                .where(reviewReply.id.in(reviewReplyIds))
+                .where(reviewReply.id.in(reviewReplyId))
                 .execute();
     }
 }
