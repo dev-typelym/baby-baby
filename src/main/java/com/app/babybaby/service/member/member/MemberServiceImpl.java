@@ -135,6 +135,21 @@ public class MemberServiceImpl implements MemberService {
         return memberDTO;
     }
 
+    //    통솔자로 변경쓰~
+    @Override
+    public void save(MemberDTO memberDTO,Long memberId) {
+        memberRepository.findById(memberId).ifPresent(member ->
+                {
+                    member.setMemberFileOriginalName(memberDTO.getMemberFileOriginalName());
+                    member.setMemberFilePath(memberDTO.getMemberFilePath());
+                    member.setMemberFileUUID(memberDTO.getMemberFileUUID());
+                    member.setMemberHiSentence(memberDTO.getMemberHiSentence());
+                    member.setMemberGuideType(memberDTO.getMemberGuideType());
+                }
+        );
+    }
+
+
     //    회원상세 ajax로 회원 이벤트 들고오기
     public CompanyDTO getEventsInfoByMemberId(Long companyId, Pageable pageable){
         CompanyDTO companyDTO = new CompanyDTO();
