@@ -36,18 +36,6 @@ public class ParentsBoardReplyServiceImpl implements ParentsBoardReplyService {
         return new PageImpl<>(parentsBoardReplyDTOList, pageable, parentsBoardReply.getTotalElements());
     }
 
-//    @Override
-//    public void parentsBoardReplySave(Long SessionId, ParentsBoardReplyDTO parentsBoardReplyDTO, Long parentsBoardId) {
-//        Member member = memberRepository.findById(SessionId).get(); // 아이디로 찾은 멤버
-//
-//        ParentsBoard parentsBoard = parentsBoardRepository.findById(parentsBoardId).get();
-//
-//        ParentsBoardReply parentsBoardReply = parentsBoardReplyToEntity(parentsBoardReplyDTO);
-//
-//        ParentsBoardReply parentsBoardReply2 = new ParentsBoardReply(parentsBoardReplyDTO.getParentsBoardReplyContent(), parentsBoard, member);
-//
-//        parentsBoardReplyRepository.save(parentsBoardReply2);
-//    }
 
 //    댓글 삭제
     @Override

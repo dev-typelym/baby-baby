@@ -5,7 +5,7 @@ import com.app.babybaby.entity.alert.Alert;
 import java.util.List;
 
 public interface AlertQueryDsl {
-    public List<Alert> getNoReadAlertList();
+//    public List<Alert> getNoReadAlertList();
 
 
 }

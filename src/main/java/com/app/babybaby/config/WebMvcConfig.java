@@ -19,6 +19,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(alarmInterceptor)
-                .addPathPatterns("/main/**"); // 작성한 경로에 Interceptor 동작
+                .addPathPatterns("/main/**") // 작성한 경로에 Interceptor 동작
+                .addPathPatterns("/mypage/**") // 작성한 경로에 Interceptor 동작
+                .excludePathPatterns("/admin/**");
+
     }
 }
