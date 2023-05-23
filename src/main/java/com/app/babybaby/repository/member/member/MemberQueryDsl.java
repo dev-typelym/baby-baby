@@ -44,7 +44,7 @@ public interface MemberQueryDsl {
     //    ---------------------------------------------회원 상세 -----------------------------------------
     public Member getCompanyInfoByMemberId_QueryDSL(Long memberId);
 
-//    ------------------------------------------- 관리자페이지 -------------------------------------------
+    //    ------------------------------------------- 관리자페이지 -------------------------------------------
     //    관리자 회원 전체 목록 조회
     public Page<Member> findAllMemberWithSearch_queryDSL(Pageable pageable , AdminMemberSearch memberSearch);
 
@@ -52,7 +52,7 @@ public interface MemberQueryDsl {
     public Optional<Member> findMemberInfoById_QueryDsl(Long memberId);
 
     //    관리자 회원 삭제
-    public void disableMembersByIds_queryDSL(List<Long> memberIds);
+    public void disableMembersByIds_queryDSL(Long memberId);
 
     //    관리자 기업 전체 목록 조회
     public Page<Member> findAllCompanyWithSearch_queryDSL(Pageable pageable , AdminMemberSearch memberSearch);

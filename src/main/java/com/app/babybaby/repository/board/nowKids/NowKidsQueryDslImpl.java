@@ -17,6 +17,9 @@ import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -155,55 +158,106 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
         return null;
     }
 
-    // [관리자페이지] 지금 우리 아이들은 카테고리별 전체 목록 조회
+
+
     @Override
-    public List<NowKids> findNowKidsEvents_queryDSL(AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus) {
-        BooleanExpression eventNameEq = adminEventSearch.getEventTitle() == null ? null : event.boardTitle.eq(adminEventSearch.getEventTitle());
+    public List<NowKids> find5RecentDesc() {
+        List<NowKids> nowKidz =
+                query.select(nowKids)
+                        .from(nowKids)
+                        .join(nowKids.event)
+                        .join(nowKids.nowKidsFiles)
+                        .fetchJoin()
+                        .orderBy(nowKids.id.desc())
+                        .limit(5)
+                        .fetch();
 
-        LocalDateTime now = LocalDateTime.now();
-        QNowKids qNowKids = nowKids;
-        QEvent qEvent = event;
-        QGuide qGuide = guide;
-        QCalendar qCalendar = calendar;
-        QKid qkid = kid;
-
-        return query.select(nowKids)
-                .from(nowKids)
-                .join(nowKids.event)
-                .join(nowKids.guide)
-                .join(nowKids.event.calendar)
-                .fetchJoin()
-                .leftJoin(nowKids.nowKidsFiles)
-                .fetchJoin()
-                .where(
-                        eventCategory != null
-                                ? nowKids.event.category.eq(eventCategory)
-                                .and(eventStatus.equals("전체")
-                                        ? nowKids.event.calendar.startDate.isNotNull()
-                                        : eventStatus.equals("대기")
-                                        ? nowKids.event.calendar.startDate.after(now)
-                                        : eventStatus.equals("진행중")
-                                        ? nowKids.event.calendar.startDate.after(now)
-                                        .and(nowKids.event.calendar.endDate.before(now))
-                                        : eventStatus.equals("종료")
-                                        ? nowKids.event.calendar.endDate.before(now)
-                                        : nowKids.event.category.isNotNull())
-                                : nowKids.event.category.isNotNull()
-                                .and(eventStatus.equals("전체")
-                                        ? nowKids.event.calendar.startDate.isNotNull()
-                                        : eventStatus.equals("대기")
-                                        ? nowKids.event.calendar.startDate.after(now)
-                                        : eventStatus.equals("진행중")
-                                        ? nowKids.event.calendar.startDate.after(now)
-                                        .and(nowKids.event.calendar.endDate.before(now))
-                                        : eventStatus.equals("종료")
-                                        ? nowKids.event.calendar.endDate.before(now)
-                                        : nowKids.event.category.isNotNull())
-                                .and(eventNameEq)
-                )
-                .orderBy(nowKids.id.asc())
-                .fetch();
+        return nowKidz;
     }
+
+//    --------------------------------관리자 ---------------------------------------
+// [관리자페이지] 지금 우리 아이들은 카테고리별 전체 목록 조회
+@Override
+public Page<NowKids> findNowKidsEvents_queryDSL(Pageable pageable, AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus) {
+    BooleanExpression eventNameEq = adminEventSearch.getEventTitle() == null ? null : nowKids.event.boardTitle.like("%" + adminEventSearch.getEventTitle() + "%");
+
+    LocalDateTime now = LocalDateTime.now();
+    QNowKids qNowKids = nowKids;
+    QEvent qEvent = event;
+    QGuide qGuide = guide;
+    QCalendar qCalendar = calendar;
+    QKid qkid = kid;
+
+    List<NowKids> foundNowKIds = query.select(nowKids)
+            .from(nowKids)
+            .join(nowKids.event)
+            .join(nowKids.guide)
+            .join(nowKids.event.calendar)
+            .leftJoin(nowKids.nowKidsFiles)
+            .fetchJoin()
+            .where(
+                    eventCategory != null
+                            ? nowKids.event.category.eq(eventCategory)
+                            .and(eventStatus.equals("전체")
+                                    ? nowKids.event.calendar.startDate.isNotNull()
+                                    : eventStatus.equals("대기")
+                                    ? nowKids.event.calendar.startDate.after(now)
+                                    : eventStatus.equals("진행중")
+                                    ? nowKids.event.calendar.startDate.after(now)
+                                    .and(nowKids.event.calendar.endDate.before(now))
+                                    : eventStatus.equals("종료")
+                                    ? nowKids.event.calendar.endDate.before(now)
+                                    : nowKids.event.category.isNotNull())
+                            : nowKids.event.category.isNotNull()
+                            .and(eventStatus.equals("전체")
+                                    ? nowKids.event.calendar.startDate.isNotNull()
+                                    : eventStatus.equals("대기")
+                                    ? nowKids.event.calendar.startDate.after(now)
+                                    : eventStatus.equals("진행중")
+                                    ? nowKids.event.calendar.startDate.after(now)
+                                    .and(nowKids.event.calendar.endDate.before(now))
+                                    : eventStatus.equals("종료")
+                                    ? nowKids.event.calendar.endDate.before(now)
+                                    : nowKids.event.category.isNotNull())
+                            .and(eventNameEq)
+            )
+            .orderBy(nowKids.id.asc())
+            .offset(pageable.getOffset())
+            .limit(pageable.getPageSize())
+            .fetch();
+
+    Long count = query.select(nowKids.count())
+            .from(nowKids)
+            .where(
+                    eventCategory != null
+                            ? nowKids.event.category.eq(eventCategory)
+                            .and(eventStatus.equals("전체")
+                                    ? nowKids.event.calendar.startDate.isNotNull()
+                                    : eventStatus.equals("대기")
+                                    ? nowKids.event.calendar.startDate.after(now)
+                                    : eventStatus.equals("진행중")
+                                    ? nowKids.event.calendar.startDate.after(now)
+                                    .and(nowKids.event.calendar.endDate.before(now))
+                                    : eventStatus.equals("종료")
+                                    ? nowKids.event.calendar.endDate.before(now)
+                                    : nowKids.event.category.isNotNull())
+                            : nowKids.event.category.isNotNull()
+                            .and(eventStatus.equals("전체")
+                                    ? nowKids.event.calendar.startDate.isNotNull()
+                                    : eventStatus.equals("대기")
+                                    ? nowKids.event.calendar.startDate.after(now)
+                                    : eventStatus.equals("진행중")
+                                    ? nowKids.event.calendar.startDate.after(now)
+                                    .and(nowKids.event.calendar.endDate.before(now))
+                                    : eventStatus.equals("종료")
+                                    ? nowKids.event.calendar.endDate.before(now)
+                                    : nowKids.event.category.isNotNull())
+                            .and(eventNameEq)
+            )
+            .fetchOne();
+
+    return new PageImpl<>(foundNowKIds, pageable, count);
+}
 
     //  지금 우리 아이들은 상세
     @Override
@@ -228,21 +282,6 @@ public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
         query.delete(nowKids)
                 .where(nowKids.id.in(nowkidsIds))
                 .execute();
-    }
-
-    @Override
-    public List<NowKids> find5RecentDesc() {
-        List<NowKids> nowKidz =
-                query.select(nowKids)
-                        .from(nowKids)
-                        .join(nowKids.event)
-                        .join(nowKids.nowKidsFiles)
-                        .fetchJoin()
-                        .orderBy(nowKids.id.desc())
-                        .limit(5)
-                        .fetch();
-
-        return nowKidz;
     }
 
 }

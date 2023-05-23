@@ -33,18 +33,20 @@ public interface ParentsBoardQueryDsl {
 
     public Page<ParentsBoard> findListByMemberIdWithPaging_QueryDSL(Pageable pageable,Long memberId);
 
-    //    [관리자] 부모님마당 목록 조회
+
+    //    상세보기 카테고리 최신글 5개 가져오기
+    public List<ParentsBoard> find5RecentDesc();
+
+
+//    ---------------------------관리자-----------------------------
+//    [관리자] 부모님마당 목록 조회
     public Page<ParentsBoard> findAllParentsBoardWithSearch_queryDSL(Pageable pageable, AdminParentsBoardSearch adminParentsBoardSearch);
 
     //    [관리자] 부모님마당 상세
     public Optional<ParentsBoard> findParentsBoardById_queryDSL(Long parentsId);
 
     //    [관리자] 부모님마당 삭제
-    public void deleteAdminParentsBoardByIds_queryDSL(List<Long> parentsBoardIds);
-
-    //    상세보기 카테고리 최신글 5개 가져오기
-    public List<ParentsBoard> find5RecentDesc();
-
+    public void deleteAdminParentsBoardByIds_queryDSL(Long parentsBoardId);
 
 }
 

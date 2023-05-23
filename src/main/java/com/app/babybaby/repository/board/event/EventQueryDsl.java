@@ -55,15 +55,16 @@ public interface EventQueryDsl {
 //    [리뷰] 내가 결제한 이벤트 정보들
     public List<Event> findAllPurchasedEvents(Long memberId);
 
-    //   [관리자] 놀러가요 카테고리 및 상태별 게시글 목록 조회
-    public List<Event> findNowKidsEvents_queryDSL(AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus);
-    //   [관리자] 놀러가요 상세보기
-    public Optional<Event> findForAdminEventById_queryDSL(Long eventId);
-    //   [관리자] 놀러가요 삭제하기
-    public void deleteEventByIds_queryDSL(List<Long> eventIds);
-
     /* ---------------------------------메인-------------------------------------------------- */
 
     //    상세보기 카테고리 최신글 5개 가져오기
     public List<Event> find5RecentDesc(CategoryType category);
+
+//    --------------------------------- 관리자 ----------------------------------------------------
+//   [관리자] 놀러가요 카테고리 및 상태별 게시글 목록 조회
+    public Page<Event> findNowKidsEvents_queryDSL(Pageable pageable, AdminEventSearch adminEventSearch, CategoryType eventCategory, String eventStatus);
+    //   [관리자] 놀러가요 상세보기
+    public Optional<Event> findForAdminEventById_queryDSL(Long eventId);
+    //   [관리자] 놀러가요 삭제하기
+    public void deleteEventByIds_queryDSL(Long eventId);
 }

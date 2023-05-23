@@ -19,6 +19,7 @@ import static com.app.babybaby.entity.board.event.QEvent.event;
 @RequiredArgsConstructor
 public class AskQueryDslImpl implements AskQueryDsl {
 
+
     private final JPAQueryFactory query;
 
     //  [관리자] 문의 목록 조회
@@ -31,7 +32,7 @@ public class AskQueryDslImpl implements AskQueryDsl {
                 .from(ask)
                 .where(askTitleEq)
                 .orderBy(ask.id.asc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
@@ -43,47 +44,33 @@ public class AskQueryDslImpl implements AskQueryDsl {
         return new PageImpl<>(foundAsk, pageable, count);
     }
 
-    //  [관리자] 문의 상세보기
     @Override
-    public Optional<Ask> findAskById_queryDSL(Long askId) {
-        return Optional.ofNullable(
-                query.select(ask)
-                        .from(ask)
-                        .where(ask.id.eq(askId))
-                        .fetchOne());
+    //  [관리자] 문의 상세보기
+    public List<Ask> findAllAskDetail_queryDSL() {
+        List<Ask> foundAsktDetail = query.select(ask)
+                .from(ask)
+                .fetch();
+        return foundAsktDetail;
     }
+
+
 
     //  [관리자] 문의 삭제하기
     @Override
-    public void deleteAskByIds_queryDSL(List<Long> askIds) {
+    public void deleteAskByIds_queryDSL(Long askId) {
         query.delete(ask)
-                .where(ask.id.in(askIds))
+                .where(ask.id.in(askId))
                 .execute();
     }
 
-    
-//    내가쓴 문의 목록
+    //  [관리자] 문의 아이디로 찾기
     @Override
-    public Slice<Ask> findAllAskByMemberId(Long memberId, Pageable pageable, AdminAskSearch adminAskSearch) {
-        BooleanExpression askTitleContains = adminAskSearch.getAskTitle() == null ? null : ask.boardTitle.contains(adminAskSearch.getAskTitle());
-
-        List<Ask> asks = query.select(ask)
+    public Ask findAskById_queryDSL(Long askId) {
+        return query.select(ask)
                 .from(ask)
-                .leftJoin(ask.askAnswer).fetchJoin()
-                .where(ask.member.id.eq(memberId),askTitleContains)
-                .orderBy(ask.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
+                .where(ask.id.eq(askId))
+                .fetchOne();
 
-        boolean hasNext = false;
-        // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true
-        if (asks.size() > pageable.getPageSize()) {
-            hasNext = true;
-            asks.remove(pageable.getPageSize());
-        }
-
-        return new SliceImpl<>(asks, pageable, hasNext);
     }
 
 

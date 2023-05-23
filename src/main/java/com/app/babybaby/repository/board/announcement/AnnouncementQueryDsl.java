@@ -13,13 +13,10 @@ public interface AnnouncementQueryDsl {
     public Page<Announcement> findAllAnnouncement_queryDSL(Pageable pageable, AdminAnnouncementSearch adminAnnouncementSearch);
 
     //    [관리자] 공지사항 상세보기
-    public Optional<Announcement> findAnnouncementById_queryDSL(Long announcementId);
+    public List<Announcement> findAllAnnouncementDetail_queryDSL();
 
     //    [관리자] 공지사항 삭제하기
-    public void deleteAnnouncementByIds_queryDSL(List<Long> announcementIds);
-
-    //    공지사항 최신글 3개 가져오기
-    public List<Announcement> find5RecentDesc();
+    public void deleteAnnouncementByIds_queryDSL(Long announcementId);
 
 
 }

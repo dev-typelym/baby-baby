@@ -244,10 +244,11 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
     }
 
 
+//    ---------------------------------- 관리자 -------------------------------------
     //  [관리자] 리뷰 전체 목록 조회
     @Override
     public Page<Review> findAllReviewBoardWithSearch_queryDSL(Pageable pageable , AdminReviewSearch adminReviewSearch, CategoryType eventCategory) {
-        BooleanExpression reviewContentEq = adminReviewSearch.getReviewContent() == null ? null : review.boardContent.eq(adminReviewSearch.getReviewContent());
+        BooleanExpression reviewContentEq = adminReviewSearch.getReviewContent() == null ? null : review.boardContent.like("%" + adminReviewSearch.getReviewContent() + "%");
 
         QReview review = QReview.review;
         QEvent event = QEvent.event;
@@ -260,7 +261,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
                 .fetchJoin()
                 .where((eventCategory != null ? review.event.category.eq(eventCategory) : review.event.category.isNotNull()).and(reviewContentEq))
                 .orderBy(review.id.asc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
@@ -291,9 +292,9 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
 
     // [관리자] 리뷰 삭제하기
     @Override
-    public void deleteReviewBoardByIds_queryDSL(List<Long> reviewBoardIds) {
+    public void deleteReviewBoardByIds_queryDSL(Long reviewBoardId) {
         query.delete(review)
-                .where(review.id.in(reviewBoardIds))
+                .where(review.id.in(reviewBoardId))
                 .execute();
     }
 }
