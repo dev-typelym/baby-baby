@@ -14,6 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.Month;
+
 @Slf4j
 @SpringBootTest
 @Transactional
@@ -31,6 +34,13 @@ public class EventServiceTests {
         eventBoardSearch.setBoardTitle("검색조건");
 //        eventService.findEventListWithPaging(eventBoardSearch,pageable).stream().map(EventDTO::getBoardTitle).forEach(log::info);
 //        eventService.findEventListWithPaging(eventBoardSearch, pageable);
+    }
+
+    @Test
+    public void findTests(){
+        Pageable pageable = PageRequest.of(0, 10);
+        LocalDateTime date = LocalDateTime.of(2023, Month.MAY, 11, 10, 11, 41, 957000000);
+        eventService.findEventScheduleByMemberId(pageable,110L, date);
     }
 
 

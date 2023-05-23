@@ -410,3 +410,30 @@ function removeHangleYear() {
   return yearNumber;
 }
 
+// ajax로 그날 참여한 모집 가져오기
+const getDate = () => {
+  console.log("getDate 들어옴@@@@");
+  $.ajax({
+    type: 'GET',
+    url: `/mypage/get-recruitment-dates`,
+    success: function (result) {
+      console.log(result);
+      /* caledar에 일정 있는 날 점 찍기*/
+      for (var i = 0; i < result.length; i++){
+        calendar.createEvents([
+          {
+            start: result[i],
+            end: result[i]
+          }
+        ]);
+      }
+    },
+    error: function (error) {
+      console.log('Error fetching data:', error);
+    }
+  });
+};
+$(document).ready(function () {
+  console.log("여기로 들어왔어!!!!!!!!!!");
+  getDate();
+});
