@@ -3,6 +3,7 @@ package com.app.babybaby.repository.board.event;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.entity.guideSchedule.GuideSchedule;
 import com.app.babybaby.entity.guideSchedule.QGuideSchedule;
 import com.app.babybaby.entity.like.eventLike.QEventLike;
 import com.app.babybaby.entity.member.Member;
@@ -23,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.app.babybaby.entity.board.event.QEvent.event;
 import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
@@ -136,19 +138,34 @@ public class EventQueryDslImpl implements EventQueryDsl {
 
     //    내 스케쥴 ㅋ
     @Override
-    public Slice<Event> findEventScheduleByMemberId_QueryDSL(Pageable pageable, Long memberId,LocalDateTime startDate) {
-        List<Event> events = query.selectDistinct(guideSchedule.event)
+    public Slice<Event> findEventScheduleByMemberId_QueryDSL(Pageable pageable, Long memberId,LocalDateTime pickUpDate /*startDate*/) {
+//        List<Event> events = query.selectDistinct(guideSchedule.event)
+//                .from(guideSchedule)
+//                .join(guideSchedule.event)
+//                .join(guideSchedule.calendar)
+////                .leftJoin(event.eventFiles)
+//                .where(
+//                        guideSchedule.member.id.eq(memberId).and(guideSchedule.calendar.startDate.gt(pickUpDate).and(guideSchedule.calendar.endDate.lt(pickUpDate)))
+//                )
+//                .orderBy(guideSchedule.id.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetch();
+        List<GuideSchedule> guideSchedules = query.selectDistinct(guideSchedule)
                 .from(guideSchedule)
-                .join(guideSchedule.event, event)
-                .leftJoin(event.eventFiles)
-                .join(event.calendar)
+                .join(guideSchedule.event).fetchJoin()
+                .join(guideSchedule.calendar).fetchJoin()
                 .where(
-                        guideSchedule.member.id.eq(memberId).and(event.calendar.startDate.eq(startDate))
+                        guideSchedule.member.id.eq(memberId)
                 )
-                .orderBy(event.id.desc())
+                .orderBy(guideSchedule.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
+
+        List<Event> events = guideSchedules.stream()
+                .map(GuideSchedule::getEvent)
+                .collect(Collectors.toList());
 
         boolean hasNext = false;
         // 조회한 결과 개수가 요청한 페이지 사이즈보다 크면 뒤에 더 있음, next = true

@@ -241,4 +241,8 @@ public class Member {
     public void setMemberFileOriginalName(String memberFileOriginalName) {
         this.memberFileOriginalName = memberFileOriginalName;
     }
+
+    public void setMemberHiSentence(String memberHiSentence) {
+        this.memberHiSentence = memberHiSentence;
+    }
 }

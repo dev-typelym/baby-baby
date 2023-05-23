@@ -61,10 +61,10 @@
 								<option value="스포츠">스포츠</option>
 								<option value="예술">예술</option>
 							</select>
-							<select name="" id=""  class="as">
+							<select name="memberGuideType" id=""  class="as">
 								<option value="">* 통솔자 선택</option>
-								<option value="비장애인">비 장애인</option>
-								<option value="장애인">장애인</option>
+								<option value="DISABLED">비 장애인</option>
+								<option value="ABLED">장애인</option>
 							</select>
 
                        		 <!-- 글 내용 -->
@@ -115,7 +115,7 @@
 							                         <div class="wide_column1"></div>
 							                         <div class="wide_column2">
 							                             <div class="wz input">
-							                                 <textarea placeholder="내용" helper="[object Object]" name="storyInfo.coreMessage" rows="3" class="contentData"></textarea>
+							                                 <textarea placeholder="내용" helper="[object Object]"  name="memberHiSentence" rows="3" class="contentData"></textarea>
 							                             </div>
 							                             <div class="content-warning">
 							                             	<p>필수 정보 입니다.</p>
@@ -178,4 +178,40 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/js/myPage/myPage-banner.js"></script>
 <script src="/js/components/header.js"></script>
+<script>
+	/* 프로필 설정 */
+	$("#profile__label").on("change", function() {
+		// 파일 찾아오기
+		const $files = $(this)[0].files[0];
+		let formData = new FormData();
+		let uuid = [];
+		let path = [];
+		let orgName = [];
+
+		formData.append("file", $files);
+
+		/* fileController 보내기 */
+		$.ajax({
+			url: "/resume/upload",
+			type: "post",
+			data: formData,
+			contentType: false,
+			processData: false,
+			success: function (data) {
+				let userFile = {
+					"fileUuid": data.uuids[0],
+					"filePath": data.paths[0],
+					"fileOrgName": data.orgNames[0]
+				}
+				$.ajax({
+					url: "/mypage/user/profile-update",
+					data: userFile,
+					success: function() {
+						location.reload();
+					}
+				})
+			}
+		})
+	});
+</script>
 </html>

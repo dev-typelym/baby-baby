@@ -83,10 +83,10 @@ public class MypageController {
 
     @PostMapping("my-event/{page}")
     @ResponseBody
-    public Slice<EventDTO> getMyEvent(@PathVariable(value = "page") Integer page,HttpSession httpSession){
-        Long memberId = 1L;
+    public Slice<EventDTO> getMyEvent(@PathVariable(value = "page") Integer page,HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
         log.info("dksdsadasdasd");
-        Slice<EventDTO> eventDTOS = eventService.findMemberIdByEventListWithPaging(memberId,PageRequest.of(page, 5));
+        Slice<EventDTO> eventDTOS = eventService.findMemberIdByEventListWithPaging(memberDTO.getId(),PageRequest.of(page, 5));
         log.info(eventDTOS.toString());
 
         return eventDTOS;
@@ -113,32 +113,28 @@ public class MypageController {
 
 //    회원정보수정페이지
     @GetMapping("info")
-    public String getInfo(Model model,HttpSession httpSession){
-        httpSession.setAttribute("memberId", 1L);
-        Long memberId = (Long)httpSession.getAttribute("memberId");
-        log.info(memberId + "@@@@@@@@@@@@@@2");
+    public String getInfo(Model model,HttpSession session){
+        MemberDTO member = (MemberDTO)session.getAttribute("member");
+        log.info(member.toString());
 //       memberService.getMemberById(memberId).ifPresent(member -> model.addAttribute("memberDTO", memberService.findByMemberId(memberId)));
-        model.addAttribute("memberDTO", memberService.findByMemberId(memberId));
-        log.info(memberService.findByMemberId(memberId) + "@@@@이겅미");
+        model.addAttribute("memberDTO", memberService.findByMemberId(member.getId()));
+//        log.info(memberService.findByMemberId(member.getId()) + "@@@@이겅미");
         return "myPage/myPage-info";
     }
 
     @PostMapping("info")
     @ResponseBody
     public MemberDTO getInfo(MemberDTO memberDTO, HttpSession session){
-        session.setAttribute("memberId", 1L);
         log.info(memberDTO.toString() + "<- 화면에서 받아온 값");
-        Long memberId = (Long)session.getAttribute("memberId");
         memberService.setInfoMemberById(memberDTO,passwordEncoder);
         log.info(memberDTO.toString() + "이건 밑에11111");
-        return memberService.findByMemberId(memberId);
+        return memberService.findByMemberId(memberDTO.getId());
     }
 
     @PostMapping("info-password")
     public RedirectView getPassword(HttpSession session, @RequestParam("memberPassword") String memberPassword, PasswordEncoder passwordEncoder){
-        session.setAttribute("memberId", 110L);
-        Long memberId = (Long)session.getAttribute("memberId");
-        memberService.updatePassword(memberId,memberPassword,passwordEncoder);
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        memberService.updatePassword(memberDTO.getId(),memberPassword,passwordEncoder);
         return new RedirectView("info");
     }
 
@@ -150,30 +146,27 @@ public class MypageController {
 
     @ResponseBody
     @PostMapping("inquiry/{page}&&{boardTitle}")
-    public Slice<AskDTO> getInquiry(@PathVariable(value = "page") Integer page,HttpSession httpSession,@PathVariable(value = "boardTitle") String boardTitle){
+    public Slice<AskDTO> getInquiry(@PathVariable(value = "page") Integer page,HttpSession session,@PathVariable(value = "boardTitle") String boardTitle){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+
         log.info("@@@@@@@@@여기에요!!여기!!@@@@@@@@");
         AdminAskSearch adminAskSearch = new AdminAskSearch();
         adminAskSearch.setAskTitle(boardTitle);
-        Slice<AskDTO> AskDTOS = askService.findAllAskByMemberId(1L,PageRequest.of(page, 10),adminAskSearch);
+        Slice<AskDTO> AskDTOS = askService.findAllAskByMemberId(memberDTO.getId(),PageRequest.of(page, 10),adminAskSearch);
         log.info(page + "1111111111111111111");
         log.info(AskDTOS + "컨트롤러 들어옴");
         return AskDTOS;
     }
 
 
-//    통솔자 지원
-    @GetMapping("crew")
-    public String getCrew(){
-        return "myPage/myPage-crew";
-    }
-
 
 
 
 //  쿠폰 페이지
     @GetMapping("coupon")
-    public String getCoupon(Model model,@PageableDefault(size = 5)Pageable pageable,HttpSession httpSession){
-        model.addAttribute("coupon",couponService.findCouponByMemberId(pageable,1L));
+    public String getCoupon(Model model,@PageableDefault(size = 5)Pageable pageable,HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        model.addAttribute("coupon",couponService.findCouponByMemberId(pageable,memberDTO.getId()));
         return "myPage/myPage-coupon";
     }
 
@@ -194,8 +187,9 @@ public class MypageController {
 
     @ResponseBody
     @PostMapping("payment/{page}")
-    public Page<PurchaseDTO> getPayment(@PathVariable(value = "page") Integer page){
-       Page<PurchaseDTO> purchaseDTOS = purchaseService.findAllByMemberPaymentWithPage(PageRequest.of(page, 10), 1L);
+    public Page<PurchaseDTO> getPayment(@PathVariable(value = "page") Integer page,HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+       Page<PurchaseDTO> purchaseDTOS = purchaseService.findAllByMemberPaymentWithPage(PageRequest.of(page, 10), memberDTO.getId());
         log.info(page + "1111111111111111111");
         log.info(purchaseDTOS + "컨트롤러 들어옴");
         return purchaseDTOS;
@@ -210,8 +204,9 @@ public class MypageController {
 
     @ResponseBody
     @PostMapping("review/{page}")
-    public Page<ReviewDTO> getReview(@PathVariable("page") Integer page, Pageable Pageable){
-        Page<ReviewDTO> reviewDTOS = reviewService.findReviewById(1L,PageRequest.of(page, 5));
+    public Page<ReviewDTO> getReview(@PathVariable("page") Integer page, Pageable Pageable,HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Page<ReviewDTO> reviewDTOS = reviewService.findReviewById(memberDTO.getId(),PageRequest.of(page, 5));
         log.info(page + "페이지들어몸");
         log.info(reviewDTOS.getContent().toString() + "컨트롤러");
         return reviewDTOS;
@@ -225,8 +220,9 @@ public class MypageController {
 
     @ResponseBody
     @PostMapping("play-like/{page}")
-    public Slice<EventLikeDTO> getLike(Pageable pageable, @PathVariable(value = "page")Integer page){
-        Slice<EventLikeDTO> eventLikeDTOS = eventLikeService.findEventLikeByMemberId(PageRequest.of(page, 6), 1L);
+    public Slice<EventLikeDTO> getLike(Pageable pageable, @PathVariable(value = "page")Integer page,HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Slice<EventLikeDTO> eventLikeDTOS = eventLikeService.findEventLikeByMemberId(PageRequest.of(page, 6), memberDTO.getId());
         log.info(eventLikeDTOS + "컨트롤러");
         return eventLikeDTOS;
     }
@@ -241,27 +237,38 @@ public class MypageController {
 
     @PostMapping("parent/{page}")
     @ResponseBody
-    public Page<ParentsBoardDTO> getParent(@PathVariable(value = "page") Integer page){
-        Page<ParentsBoardDTO> parentsBoardDTOS = parentsBoardService.getFindParentBoardListByMemberId(PageRequest.of(page, 5), 1L);
+    public Page<ParentsBoardDTO> getParent(@PathVariable(value = "page") Integer page,HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Page<ParentsBoardDTO> parentsBoardDTOS = parentsBoardService.getFindParentBoardListByMemberId(PageRequest.of(page, 5), memberDTO.getId());
         return parentsBoardDTOS;
     }
 
 
+    //    통솔자 지원
+    @GetMapping("crew")
+    public String getCrew(){
+        return "myPage/myPage-crew";
+    }
 
+    @PostMapping
+    public RedirectView getCrew(MemberDTO memberDTO){
+        log.info(memberDTO.toString());
+        return new RedirectView("mypage/profile");
+    }
 
 //    아이등록 페이지
-    @GetMapping("children-register")
-    public String getChildren(Model model, HttpSession httpSession){
-        httpSession.setAttribute("memberId", 1L);
+    @GetMapping("kid/register")
+    public String getChildren(Model model, HttpSession session ){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
         model.addAttribute(new Kid());
         return "myPage/children-register-clone";
     }
 
 
-    @PostMapping("children-register")
-    public RedirectView getChildren(HttpSession httpSession, KidDTO kidDTO,Kid kid, RedirectAttributes redirectAttributes){
-        Long memberId = (Long) httpSession.getAttribute("memberId");
-//        memberService.getMemberById(memberId).ifPresent(member -> kidDTO.setParent(member));
+    @PostMapping("kid/register")
+    public RedirectView getChildren(HttpSession session, KidDTO kidDTO,Kid kid, RedirectAttributes redirectAttributes){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        memberService.getMemberById(memberDTO.getId()).ifPresent(member -> kidDTO.setParent(member));
         log.info(kidDTO.toString());
         kidService.save(kidDTO);
         return new RedirectView("parent"); // <<<< 경로 수정할것
@@ -277,8 +284,9 @@ public class MypageController {
 
     @PostMapping("nowkid/{page}")
     @ResponseBody
-    public Slice<NowKidsLikeDTO> getNowKid(@PathVariable Integer page){
-        Slice<NowKidsLikeDTO> nowKidsLikeDTOS = nowKidsLikeService.findEventLikeByMemberId(PageRequest.of(page, 12), 1L);
+    public Slice<NowKidsLikeDTO> getNowKid(@PathVariable Integer page,HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Slice<NowKidsLikeDTO> nowKidsLikeDTOS = nowKidsLikeService.findEventLikeByMemberId(PageRequest.of(page, 12), memberDTO.getId());
         log.info(nowKidsLikeDTOS + "컨트롤러");
         return nowKidsLikeDTOS;
     }
