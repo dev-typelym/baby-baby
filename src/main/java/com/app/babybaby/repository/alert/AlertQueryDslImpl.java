@@ -16,17 +16,17 @@ import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBo
 @RequiredArgsConstructor
 @Slf4j
 public class AlertQueryDslImpl implements AlertQueryDsl {
-    private final JPAQueryFactory query;
-
-    @Override
-    public List<Alert> getNoReadAlertList() {
-        List<Alert> alertList = query.select(alert)
-                .from(alert)
-                .orderBy(alert.id.desc())
-                .where(alert.readStatus.eq(AlertReadStatus.UNREAD))
-                .fetch();
-        return alertList;
-    }
+//    private final JPAQueryFactory query;
+//
+//    @Override
+//    public List<Alert> getNoReadAlertList() {
+//        List<Alert> alertList = query.select(alert)
+//                .from(alert)
+//                .orderBy(alert.id.desc())
+//                .where(alert.readStatus.eq(AlertReadStatus.UNREAD))
+//                .fetch();
+//        return alertList;
+//    }
 
 
 }
