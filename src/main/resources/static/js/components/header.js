@@ -341,3 +341,28 @@ if(memberDTO != null){
     document.getElementById("membership-days").textContent = diffDate+1;
 
 }
+
+// 읽지 않은 알림이 있을 때 그림 바꾸기
+function getCount() {
+    $.ajax({
+        url: '/alert/follow/controller/unread', // 서버의 요청 경로
+        type: 'GET',
+        success: function(response) {
+            var count = response;
+            console.log("response : " + response);
+            console.log("count : " + count);
+            if (count === 0) {
+                $('.new-alarm').css('display', 'none');
+            } else {
+                $('.new-alarm').css('display', 'block');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.log('Error:', error);
+            console.log("에러메세지");
+        }
+    });
+}
+
+// getCount 함수 호출
+getCount();

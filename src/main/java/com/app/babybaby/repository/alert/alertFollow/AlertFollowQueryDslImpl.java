@@ -31,20 +31,25 @@ public class AlertFollowQueryDslImpl implements AlertFollowQueryDsl {
     }
 
     @Override
-    public Page<AlertFollow> findAllByUserId(Pageable pageable, Long memberId) {
-        List<AlertFollow> alarms = query.select(alertFollow)
-                .from(alertFollow)
-                .leftJoin(alertFollow.member)
-                .fetchJoin()
-                .orderBy(alertFollow.alertRegisterDate.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize()).fetch();
-
-        long total = query.select(alertFollow.count())
-                .from(alertFollow)
-                .where(alertFollow.member.id.eq(memberId))
-                .fetchOne();
-
-        return new PageImpl<>(alarms, pageable, total);
+    public List<AlertFollow> find8DescByMemberId(Long memberId) {
+        return null;
     }
+
+//    @Override
+//    public Page<AlertFollow> findAllByUserId(Pageable pageable, Long memberId) {
+//        List<AlertFollow> alarms = query.select(alertFollow)
+//                .from(alertFollow)
+//                .leftJoin(alertFollow.member)
+//                .fetchJoin()
+//                .orderBy(alertFollow.alertRegisterDate.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize()).fetch();
+//
+//        long total = query.select(alertFollow.count())
+//                .from(alertFollow)
+//                .where(alertFollow.member.id.eq(memberId))
+//                .fetchOne();
+//
+//        return new PageImpl<>(alarms, pageable, total);
+//    }
 }

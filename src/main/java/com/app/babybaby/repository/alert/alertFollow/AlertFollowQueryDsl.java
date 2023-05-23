@@ -12,6 +12,6 @@ public interface AlertFollowQueryDsl {
 //    읽지 않은 알림 수
     public Long getNoReadAlert();
 
-    public Page<AlertFollow> findAllByUserId(Pageable pageable, Long userId);
+    public List<AlertFollow> find8DescByMemberId(Long memberId);
 
 }
