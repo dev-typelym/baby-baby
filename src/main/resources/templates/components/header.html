@@ -24,7 +24,7 @@
                     <div class="header-container">
                         <ul class="header-menu-category-ul">
                             <li class="header-menu-category-li logo-li"><a
-                                class="header-menu-category-logo" href="">
+                                class="header-menu-category-logo" th:href="@{/main}">
                                 <img class="logo-image" src="/images/main/images/small-logo.png">
                             </a></li>
                             <li class="header-menu-category-li"><a
@@ -55,7 +55,7 @@
                                         </button>
                                     </div>
                                     <div class="profile-wrapper">
-                                        <a href="" class="profile-link">
+                                        <a th:href="@{/mypage/home}" class="profile-link">
                                             <div class="profile-image-wrapper">
                                                 <img th:if="${session.member != null}" class="profile-image" th:src="'/members/display?fileName=Member/Profile/' + ${session.member.memberProfilePath} +'/'+${session.member.memberProfileUUID}+'_'+${session.member.memberProfileOriginalName}">
                                                 <img th:unless="${session.member != null}" class="profile-image" style="display: none;">

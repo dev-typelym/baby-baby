@@ -70,3 +70,15 @@ function showHelp($input, fileName){
         $input.css("background", "rgb(255, 246, 246)");
     }
 }
+
+$(".enterprise-login").on("click", function(){
+    $(".iam-account-app").css("display", "none");
+    $(".company").css("display", "block");
+    $(".general").css("display", "none");
+})
+
+$(".member-login").on("click", function(){
+    $(".iam-account-app").css("display", "block");
+    $(".company").css("display", "none");
+    $(".general").css("display", "block");
+})
