@@ -27,6 +27,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import org.thymeleaf.model.IModel;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,7 @@ public class ParentsBoardController {
     private final ParentsBoardService parentsBoardService;
     private final ParentsBoardReplyService parentsBoardReplyService;
     private final EventService eventService;
+    private final HttpSession session;
 
 
     //    첫 게시글 목록 화면으로 가기
@@ -89,7 +91,9 @@ public class ParentsBoardController {
 
     @GetMapping("writeFirst")
     public String getParentsBoardFirst(Model model) {
-        Long sessionId = 2L;
+
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         List<EventDTO> eventDTOS = parentsBoardService.getFindByEventId(sessionId).stream().map(eventService::eventToDTO).collect(Collectors.toList());
         Member member = parentsBoardService.getUserInfo(sessionId);
         model.addAttribute("eventDTOS", eventDTOS);

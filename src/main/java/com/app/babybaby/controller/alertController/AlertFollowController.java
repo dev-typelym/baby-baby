@@ -34,7 +34,6 @@ public class AlertFollowController {
         return memberService.findByMemberEmail(memberEmail).getId();
     }
 
-99999999999999999999999999999999999999999999999999999999999999999999999
 
 
 

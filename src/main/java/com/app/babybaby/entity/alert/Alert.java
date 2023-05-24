@@ -35,7 +35,7 @@ public abstract class Alert {
 
     private LocalDateTime alertRegisterDate;
 
-    @ColumnDefault("'UNREAD")
+    @ColumnDefault("'UNREAD'")
     @Enumerated(EnumType.STRING)
     private AlertReadStatus alertReadStatus;
 
