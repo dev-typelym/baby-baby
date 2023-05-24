@@ -89,7 +89,7 @@ public class EventServiceImpl implements EventService {
 
 
     public void saveAll(Long memberId, EventDTO eventDTO, Calendar calendar) {
-        Member member = memberRepository.findById(memberId).orElseThrow(() -> new IllegalArgumentException("Invalid memberId: " + memberId));
+        Member member = memberRepository.findById(memberId).get();
 //        eventDTO.setCompany(this.memberToDTO(member));
         eventDTO.setCalendar(this.toCalendarDTO(calendar));
         log.info("내가 가져온 맴버: " + member);
