@@ -10,4 +10,6 @@ import java.util.Optional;
 
 public interface GuidRepository extends JpaRepository<Guide, Long>, GuideQueryDsl {
         public Guide findFirstByEventIdAndAvailableTypeOrderById(Long eventId, GuideAvailableType availableType);
+
+        Guide findFirstByGeneralGuideIsNullAndEvent_Id(Long eventId);
 }

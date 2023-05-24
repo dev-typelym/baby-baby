@@ -3,7 +3,12 @@ package com.app.babybaby.domain.purchaseDTO.purchaseDTO;
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.calendarDTO.CalendarDTO;
 import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
+import com.app.babybaby.domain.memberDTO.KidDTO;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
+import com.app.babybaby.type.CouponStatus;
+import com.app.babybaby.type.CouponType;
+import com.app.babybaby.type.GuideType;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +31,14 @@ public class PurchaseDTO {
     private Long memberId;
     private String memberName;
     private String memberPhone;
+    private GuideType guideType;
     private List<EventFileDTO> eventFileDTOS;
     private CalendarDTO calendarDTOS;
+    private List<KidDTO> kids;
 
+    private CouponStatus couponStatus;
+    private Long couponPrice;
+    private CouponType couponType;
 
     @Builder
     public PurchaseDTO(Long id, LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, String eventTitle, Long memberId, String memberName, List<EventFileDTO> eventFileDTOS,String memberPhone,CalendarDTO calendarDTOS) {
