@@ -28,23 +28,16 @@ public class AlarmInterceptor implements HandlerInterceptor {
     private final AlertRepository alertRepository;
     private final AlertFollowRepository alertFollowRepository;
     private final AlertFollowService alertFollowService;
-    private final HttpSession session;
     //    private MyAlarmRestController alarmRestController;
 //    private GroupRepository groupRepository;
 //    private QuestAchievementRepositoryImpl questAchievementRepository;
-    private Long getSessionMemberId() {
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-        return memberDTO.getId();
-    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //        status가 unread인 알림의 수를 세션에 담는다.
-        Long memberId = (getSessionMemberId());
-        log.info("====================={}", memberId);
-        List<MemberDTO> followers = alertFollowService.getFollowers(memberId);
-//        log.info("================={}", followers);
-        request.getSession().setAttribute("followers", followers);
+//        List<MemberDTO> followers = alertFollowService.getFollowers(1L);
+////        log.info("================={}", followers);
+//        request.getSession().setAttribute("followers", followers);
 //        Long NoReadCount = (Long)request.getAttribute("noReadAlarm");
         return true;
     }
