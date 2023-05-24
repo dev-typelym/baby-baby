@@ -52,12 +52,20 @@
 									<span>문의 관리</span>
 								</div>
 								<div class="search">
-									<input type="text" placeholder="검색어 입력">
-									<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+									<input class="search-input" type="text" placeholder="제목 입력">
+									<img class="search-btn-icon" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
 								</div>
 							</div>
-							<div class="delete-box">
-								<button class="delete-button">문의 삭제</button>
+							<div class="ask-btn-wrapper">
+								<div class="delete-box">
+									<button class="ask-btns ask-all">전체</button>
+								</div>
+								<div class="delete-box">
+									<button class="ask-btns ask-wait">대기답변</button>
+								</div>
+								<div class="delete-box">
+									<button class="ask-btns ask-delete">문의 삭제</button>
+								</div>
 							</div>
 						</div>
 						<div class="info-table">
@@ -75,9 +83,8 @@
 									<th>답변하기</th>
 								</tr>
 								</thead>
-								<caption class="ask-list">
 									<!-- row 하나 -->
-									<!--										<tbody>-->
+																			<tbody class="ask-list">
 									<!--											<tr class="row">-->
 									<!--												<td class="no-modal">-->
 									<!--													<input type="checkbox" name="check">-->
@@ -94,9 +101,8 @@
 									<!--													<button type="button" class="answer">답변하기</button>-->
 									<!--												</td>-->
 									<!--											</tr>-->
-									<!--										</tbody>-->
+																			</tbody>
 									<!-- //row 하나 -->
-								</caption>
 							</table>
 							<!-- 페이지 버튼 -->
 							<div class="page-button-box-layout">

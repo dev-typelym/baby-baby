@@ -4,8 +4,10 @@ import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+import static com.app.babybaby.entity.file.eventFile.QEventFile.eventFile;
 import static com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile.nowKidsFile;
 
 @RequiredArgsConstructor
@@ -17,6 +19,14 @@ public class NowKidsFileQueryDslImpl implements NowKidsFileQueryDsl {
         return query.selectFrom(nowKidsFile)
                 .where(nowKidsFile.nowKids.id.eq(nowKidsId))
                 .fetch();
+    }
+
+    @Override
+    @Transactional
+    public void deleteByNowKidsId(Long nowKidsId) {
+        query.delete(nowKidsFile)
+                .where(nowKidsFile.nowKids.id.eq(nowKidsId))
+                .execute();
     }
 
 

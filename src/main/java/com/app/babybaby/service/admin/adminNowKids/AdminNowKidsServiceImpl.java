@@ -6,6 +6,7 @@ import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.nowKids.NowKidsRepository;
+import com.app.babybaby.repository.file.nowKidsFile.NowKidsFileRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.admin.AdminEventSearch;
 import com.app.babybaby.type.CategoryType;
@@ -35,6 +36,9 @@ public class AdminNowKidsServiceImpl implements AdminNowKidsService {
 
     @Autowired
     private NowKidsRepository nowKidsRepository;
+
+    @Autowired
+    private NowKidsFileRepository nowKidsFileRepository;
 
 
     @Override
@@ -73,10 +77,9 @@ public class AdminNowKidsServiceImpl implements AdminNowKidsService {
 //    }
 
     @Override
-    public void deleteAdminNowKids(List<Long> nowKidsIds) {
-        for (Long nowKidId : nowKidsIds) {
-            eventRepository.deleteEventByIds_queryDSL(nowKidId);
-        }
+    public void deleteAdminNowKids(List<String> nowKidsIds) {
+        nowKidsIds.stream().map(nowKidsId -> Long.parseLong(nowKidsId)).forEach(nowKidsFileRepository::deleteByNowKidsId);
+        nowKidsIds.stream().map(nowKidsId -> Long.parseLong(nowKidsId)).forEach(nowKidsRepository::deleteNowKidsByIds_queryDSL);
 //        boardIds.stream().map(boardId -> Long.parseLong(boardId)).forEach(parentsBoardRepository::deleteAdminParentsBoardByIds_queryDSL);
     }
 

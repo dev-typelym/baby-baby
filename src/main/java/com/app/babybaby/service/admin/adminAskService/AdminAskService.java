@@ -12,7 +12,7 @@ import java.util.List;
 public interface AdminAskService {
 
     //    관리자 문의 목록
-    public Page<AdminAskDTO> getAdminAskListWithPaging(int page, AdminAskSearch adminAskSearch);
+    public Page<AdminAskDTO> getAdminAskListWithPaging(int page, AdminAskSearch adminAskSearch, String askStatus);
 
     //    관리자 문의 상세 보기
     public List<AdminAskDTO> getAdminAskDetail();
@@ -20,6 +20,8 @@ public interface AdminAskService {
     //    관리자 문의 삭제하기
     public void deleteAdminAsk(List<String> askIds);
 
+    //    관리자 문의 상태 변경
+    public void changeAskStataus(Long askId);
 
     default AdminAskDTO toAskDTO(Ask ask){
 
@@ -30,6 +32,7 @@ public interface AdminAskService {
                 .askTitle(ask.getBoardTitle())
                 .writeDate(ask.getRegisterDate())
                 .writerName(ask.getMember().getMemberName())
+                .askStatus(ask.getAskStatus())
                 .build();
     }
 

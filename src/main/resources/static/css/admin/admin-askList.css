@@ -74,7 +74,6 @@ textarea:focus {
 }
 
 .answer{
-    position: absolute;
 }
 
 button.answer :hover{
@@ -95,3 +94,23 @@ button.answer :hover{
     border-radius: 0;
 }
 
+.ask-btn-wrapper{
+    display: flex;
+    justify-content: end;
+    gap: 14px;
+}
+
+.ask-btns{
+    font-family: 'GmarketSansMedium';
+    border: none;
+    width: fit-content;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 3px;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+.ask-btns:hover{
+    color: #c97793;;
+}

@@ -4,7 +4,7 @@ const $showDetail = $(".row");
 
 function openModal(num, e) {
   var selectedModal = '#ask-detail' + num;
-  if (!$(e.target).is('input[type="checkbox"]') && !$(e.target).hasClass('no-modal')) {
+  if (!$(e.target).is('input[type="checkbox"]') && !$(e.target).is('.answer') && !$(e.target).hasClass('no-modal')) {
     $(selectedModal).show();
   }
   console.log(num+"번 모달 클릭")
@@ -43,7 +43,7 @@ $('#allSelect').click(function() {
 });
 
 // 삭제 버튼 클릭 이벤트
-$(".delete-button").click(function() {
+$(".ask-delete").click(function() {
   if ($("input[type=checkbox]:checked").length === 0) {
     // 선택된 체크박스가 없으면 모달 띄우기
     $(".delete-no-check-modal").show();
@@ -61,6 +61,7 @@ $(".confirm-delete, .no-check-confirm-delete").click(function() {
 // 모달 취소 버튼 클릭 시 모달 닫기
 $(".cancel-delete").click(function() {
   $(".delete-modal").hide();
+  $('input[name="check"]').prop('checked', false);
 });
 /* 작성 모달 ======================== */
 const $showWrite = $(".answer");
@@ -74,6 +75,12 @@ $cancelWrite.on("click", function(e) {
   $("#answer-write").hide();
 });
 
+function writeModalClean() {
+  $(".answer-title").val("");
+  $(".answer-content").val("");
+  $("#answer-write").hide();
+}
+
 //-----------------------------------------ajax--------------------------------------------------
 
 const PAGE_AMOUNT = 10;
@@ -81,18 +88,38 @@ const $itemWrap = $(".show-item-wrap");
 const SEARCH_URL = "/parentsYard/list/show";
 const $pageWrap = $(".page-button-box");
 const $contentWrap = $(".ask-list");
+const adminAskSearch = {
+  askTitle: null,
+  askStatus: '전체'
+};
 
+// 답변 상태별 조회
+$('.ask-all').click(function() {
+  adminAskSearch.askStatus = "전체";
+  adminAskSearch.askTitle = null;
+  getAdminAskList();
 
+  $('.ask-all').css('color', '#c97793');
+  $('.ask-wait').css('color', 'black');
+});
+
+$('.ask-wait').click(function() {
+  adminAskSearch.askStatus = '답변대기';
+  getAdminAskList();
+
+  $('.ask-all').css('color', 'black');
+  $('.ask-wait').css('color', '#c97793');
+});
 
 function getAdminAskList() {
   $.ajax({
     url: `askList/${globalThis.page}`,
+    data: adminAskSearch,
     success: function(data) {
       $pageWrap.empty();
       showPage(data);
       $contentWrap.empty();
       showList(data.content);
-      askButtonEvents();
       writeModalOpen();
       getTr();
     }
@@ -109,6 +136,24 @@ function findPage(page) {
   getAdminAskList();
 }
 
+//검색
+$(".search-btn-icon").on("click", function (e) {
+  e.preventDefault();
+  let val;
+  let $search = $(".search-input");
+
+  val = $search.val();
+
+  if ($search.val() === ""){
+    val = null
+  };
+
+  adminAskSearch.askTitle = val;
+
+  console.log( adminAskSearch.askTitle + "777");
+  getAdminAskList();
+  $(".search-input").val("");
+});
 
 
 function showPage(data) {
@@ -176,26 +221,37 @@ function showList(askDTOS) {
   var content = "";
   askDTOS.forEach(ask => {
     const formattedDate = formatDate(new Date(ask.writeDate));
-    content +=
-        `    <tbody class="first-body">
-               <tr class="row" onclick="openModal(${ask.id}, event)">
-                    <td class="no-modal">
-                        <input type="checkbox" name="check">
-                    </td>
-                    <td class="ask-id">${ask.id}</td>
-                    <td>${ask.askTitle}</td>
-                    <td>${ask.writerName}</td>
-                    <td>${formattedDate}</td>
-                    <td>${ask.askContent}</td>
-                    <td></td>
-                </tr>
-                <tr class="btn-row">
-                    <td class="answer-btn-wrapper">
-                      <button type="button" class="answer" id="${ask.id}">답변하기</button>
-                    </td>
-                </tr>
-              </tbody>
-            `
+    if (ask.askStatus == 'END') {
+      content +=
+          `
+           <tr class="row" onclick="openModal(${ask.id}, event)">
+                <td class="no-modal">
+                    <input type="checkbox" name="check">
+                </td>
+                <td class="ask-id">${ask.id}</td>
+                <td>${ask.askTitle}</td>
+                <td>${ask.writerName}</td>
+                <td>${formattedDate}</td>
+                <td>${ask.askContent}</td>
+                <td style="color: green">답변완료</td>
+            </tr>
+        `;
+    } else {
+      content +=
+          `
+           <tr class="row" onclick="openModal(${ask.id}, event)">
+                <td class="no-modal">
+                    <input type="checkbox" name="check">
+                </td>
+                <td class="ask-id">${ask.id}</td>
+                <td>${ask.askTitle}</td>
+                <td>${ask.writerName}</td>
+                <td>${formattedDate}</td>
+                <td>${ask.askContent}</td>
+                <td><button type="button" class="answer" id="${ask.id}">답변하기</button></td>
+            </tr>
+        `;
+    }
   });
   $contentWrap.append(content);
 
@@ -366,42 +422,42 @@ $('.confirm-delete').on('click', function () {
 
 
 /* 문의답변 버튼 js */
-function askButtonEvents() {
-  const detailBtnBodyList = document.querySelectorAll('.row');
-  const detailBtnList = document.querySelectorAll('.answer');
-
-  detailBtnBodyList.forEach(function (detailBtnBody, index) {
-    detailBtnBody.addEventListener('mouseover', function () {
-      detailBtnList[index].style.background = "#828282";
-      detailBtnList[index].style.color = "#fff";
-      detailBtnBodyList[index].style.background = "#828282";
-      detailBtnBodyList[index].style.color = "#fff";
-    });
-
-    detailBtnBody.addEventListener('mouseout', function () {
-      detailBtnList[index].style.background = "#fff";
-      detailBtnList[index].style.color = "#000000";
-      detailBtnBodyList[index].style.background = "#fff";
-      detailBtnBodyList[index].style.color = "#000000";
-    });
-  });
-
-  detailBtnList.forEach(function (detailBtn, index) {
-    detailBtn.addEventListener('mouseover', function () {
-      detailBtnList[index].style.background = "#828282";
-      detailBtnList[index].style.color = "#fff";
-      detailBtnBodyList[index].style.background = "#828282";
-      detailBtnBodyList[index].style.color = "#fff";
-    });
-
-    detailBtn.addEventListener('mouseout', function () {
-      detailBtnList[index].style.background = "#fff";
-      detailBtnList[index].style.color = "#000000";
-      detailBtnBodyList[index].style.background = "#fff";
-      detailBtnBodyList[index].style.color = "#000000";
-    });
-  });
-}
+// function askButtonEvents() {
+//   const detailBtnBodyList = document.querySelectorAll('.row');
+//   const detailBtnList = document.querySelectorAll('.answer');
+//
+//   detailBtnBodyList.forEach(function (detailBtnBody, index) {
+//     detailBtnBody.addEventListener('mouseover', function () {
+//       detailBtnList[index].style.background = "#828282";
+//       detailBtnList[index].style.color = "#fff";
+//       detailBtnBodyList[index].style.background = "#828282";
+//       detailBtnBodyList[index].style.color = "#fff";
+//     });
+//
+//     detailBtnBody.addEventListener('mouseout', function () {
+//       detailBtnList[index].style.background = "#fff";
+//       detailBtnList[index].style.color = "#000000";
+//       detailBtnBodyList[index].style.background = "#fff";
+//       detailBtnBodyList[index].style.color = "#000000";
+//     });
+//   });
+//
+//   detailBtnList.forEach(function (detailBtn, index) {
+//     detailBtn.addEventListener('mouseover', function () {
+//       detailBtnList[index].style.background = "#828282";
+//       detailBtnList[index].style.color = "#fff";
+//       detailBtnBodyList[index].style.background = "#828282";
+//       detailBtnBodyList[index].style.color = "#fff";
+//     });
+//
+//     detailBtn.addEventListener('mouseout', function () {
+//       detailBtnList[index].style.background = "#fff";
+//       detailBtnList[index].style.color = "#000000";
+//       detailBtnBodyList[index].style.background = "#fff";
+//       detailBtnBodyList[index].style.color = "#000000";
+//     });
+//   });
+// }
 
 // 답변하기 버튼 누르면
 function getTr() {
@@ -432,16 +488,9 @@ $('.answer-button').click(function() {
     method: 'POST',
     contentType: 'application/json',
     data: JSON.stringify(answerData),
-    success: function(response) {
-      var tdElements = document.querySelectorAll('.ask-id');
-      var askIdElements = $(tdElements).filter(function() {
-        return $(this).text() == response;
-      });
-      console.log(askIdElements.text())
-      console.log(response)
-      console.log(typeof response)
-      askIdElements.parents().find('.btn-row > .answer-btn-wrapper > .answer#'+response).text('답변완료');
-      askIdElements.parents().find('.btn-row > .answer-btn-wrapper > .answer#'+response).css('color', 'green');
+    success: function() {
+      writeModalClean();
+      getAdminAskList();
       console.log('저장되었습니다.');
     },
     error: function(xhr, status, error) {

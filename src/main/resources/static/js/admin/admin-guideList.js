@@ -50,6 +50,7 @@ $(".confirm-delete, .no-check-confirm-delete").click(function() {
 // 모달 취소 버튼 클릭 시 모달 닫기
 $(".cancel-delete").click(function() {
     $(".delete-modal").hide();
+    $('input[name="check"]').prop('checked', false);
 });
 
 
@@ -353,10 +354,10 @@ function showList(guideDTOS) {
 								<span>흥미카테고리</span>
 								<p class="guide-interest-category">${guideInterestCategory}</p>
 							</li>
-							<li class="content-list">
-								<span>증명서류</span>
-								<a class="guide-file">apply-certificate.pdf</a>
-							</li>
+<!--							<li class="content-list">-->
+<!--								<span>증명서류</span>-->
+<!--								<a class="guide-file">apply-certificate.pdf</a>-->
+<!--							</li>-->
 						</ul>
 						<div class="update-box">
 							<button type="button" class="update-button deny">승인취소</button>

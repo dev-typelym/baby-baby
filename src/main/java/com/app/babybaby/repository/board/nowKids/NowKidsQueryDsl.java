@@ -62,5 +62,5 @@ public interface NowKidsQueryDsl {
     public Optional<NowKids> findNowKidsById_queryDSL(Long nowKidsId);
 
     //    [관리자페이지] 지금 우리아이들은 게시글 삭제
-    public void deleteNowKidsByIds_queryDSL(List<Long> nowKidsIds);
+    public void deleteNowKidsByIds_queryDSL(Long nowKidsIds);
 }

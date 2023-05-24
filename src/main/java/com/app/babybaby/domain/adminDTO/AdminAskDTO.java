@@ -1,5 +1,6 @@
 package com.app.babybaby.domain.adminDTO;
 
+import com.app.babybaby.type.ProcessType;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,4 +14,5 @@ public class AdminAskDTO {
     private String writerName;
     private LocalDateTime writeDate;
     private String askContent;
+    private ProcessType askStatus;
 }

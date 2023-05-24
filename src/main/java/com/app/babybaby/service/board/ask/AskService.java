@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public interface AskService{
-    public Page<AskDTO> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch);
+    public Page<AskDTO> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch, String askStatus);
     public Optional<AskDTO> findAskById_queryDSL(Long askId);
     public Slice<AskDTO> findAllAskByMemberId(Long memberId,Pageable pageable,AdminAskSearch AdminAskSearch);
 

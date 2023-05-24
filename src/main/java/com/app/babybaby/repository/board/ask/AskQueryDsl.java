@@ -15,7 +15,7 @@ public interface AskQueryDsl {
     public Slice<Ask> findAllAskByMemberId(Long memberId,Pageable pageable,AdminAskSearch AdminAskSearch);
 
     //    [관리자] 문의 목록 조회
-    public Page<Ask> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch);
+    public Page<Ask> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch, String askStatus);
 
     //    [관리자] 문의 상세보기
     public List<Ask> findAllAskDetail_queryDSL();
@@ -25,5 +25,8 @@ public interface AskQueryDsl {
 
     //    [관리자] 문의 아이디로 찾기
     public Ask findAskById_queryDSL(Long askId);
+
+    //    [관리자] 문의 답변시 상태 바꾸기
+    public void changeAskStatusById_queryDSL(Long askId);
 
 }

@@ -52,6 +52,7 @@ $(".confirm-delete, .no-check-confirm-delete").click(function() {
 // 모달 취소 버튼 클릭 시 모달 닫기
 $(".cancel-delete").click(function() {
     $(".delete-modal").hide();
+    $('input[name="check"]').prop('checked', false);
 });
 
 
@@ -265,7 +266,7 @@ function showList(announcementDTOS) {
                                     <div class="content-img">
                                                                                                                                    
                                         <img
-                                            class="img-updated"  src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUuid}_${announcement.announcementFileDTOS[0].fileOrgName}"
+                                            class="img-updated"  src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUUID}_${announcement.announcementFileDTOS[0].fileOriginalName}"
                                         />
                                     </div>                                                                                  
 <!--                                    <label class="label-for-update-img">-->
@@ -679,9 +680,9 @@ function announcementWrite() {
     let announcementFiles = [];
 
     let announcementFileDTO = {
-        fileOrgName: fileList[0].name,
+        fileOriginalName: fileList[0].name,
         filePath: path[0],
-        fileUuid: Uuid[0]
+        fileUUID: Uuid[0]
     };
     announcementFiles.push(announcementFileDTO);
 

@@ -25,8 +25,8 @@ public class AskServiceImpl implements AskService {
 
 
     @Override
-    public Page<AskDTO> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch) {
-        Page<Ask> asks = askRepository.findAllAsk_queryDSL(pageable, adminAskSearch);
+    public Page<AskDTO> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch, String askStatus) {
+        Page<Ask> asks = askRepository.findAllAsk_queryDSL(pageable, adminAskSearch, askStatus);
         List<AskDTO> askDTOS = asks.stream().map(ask -> toAskDTO(ask)).collect(Collectors.toList());
         return new PageImpl<>(askDTOS,pageable,asks.getTotalElements());
     }
