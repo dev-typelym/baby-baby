@@ -146,7 +146,11 @@ public class EventController {
     @GetMapping("detail/{eventId}")
     public String goEventDetail(@PathVariable Long eventId, Model model, HttpSession session){
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-        Long sessionId = memberDTO.getId();
+        Long sessionId = null;
+
+        if(memberDTO != null){
+             sessionId = memberDTO.getId();
+        }
         EventDTO eventDTO = eventService.getAllEventInfo(sessionId, eventId);
         model.addAttribute("eventDTO", eventDTO);
         return "play/event-board-detail";

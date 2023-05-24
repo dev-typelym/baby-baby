@@ -131,28 +131,27 @@ $('.confirm-button').on('click', function (e) {
     let $inputDate = $('input[name=eventDate]').val();
 
     if($inputEventId == '' || $inputDate == ''){
-        e.preventDefault()
     } else{
         document.getElementById('write-submit-form').submit();
     }
 })
 
-let checkDate;
+// let checkDate;
 
-$('input[type=date]').on('change', function () {
-    let dateValue = $(this).val();
-    $('input[name=eventDate]').val(dateValue)
-})
+// $('input[type=date]').on('change', function () {
+//     let dateValue = $(this).val();
+//     $('input[name=eventDate]').val(dateValue)
+// })
 
 
 
-function isDateBetween(start_date, end_date, target_date) {
-    let startDate = new Date(start_date);
-    let endDate = new Date(end_date);
-    let targetDate = new Date(target_date);
-
-    return startDate <= targetDate && targetDate <= endDate;
-}
+// function isDateBetween(start_date, end_date, target_date) {
+//     let startDate = new Date(start_date);
+//     let endDate = new Date(end_date);
+//     let targetDate = new Date(target_date);
+//
+//     return startDate <= targetDate && targetDate <= endDate;
+// }
 
 // $selectOption.each((i, e) => {
 //
