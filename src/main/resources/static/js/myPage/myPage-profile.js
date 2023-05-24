@@ -142,27 +142,23 @@ $("#today").click(() => {
     id는 무조거 달라야함
     *무조건 있어야함
 */
-calendar.createEvents([
-  {
-    id: 'event3',
-    calendarId: 'cal1',
-    title: 'Lunch appointment',
-    start: '2023-05-06T12:00:00',
-    end: '2023-05-06T13:00:00',
-  },
-  {
-    id: 'event2',
-    calendarId: 'cal1',
-    title: 'Lunch appointment',
-    start: '2023-05-05T12:00:00',
-    end: '2023-05-05T13:00:00',
-  }
-]);
+// eventKidDTOS.content.forEach((e,i)=>{
+//   calendar.createEvents([
+//     {
+//       id: `${e.id}`,
+//       calendarId: `${e.category}`,
+//       title: `${e.boardTitle}`,
+//       start: `${e.calendarDTO.startDate}`,
+//       end: `${e.calendarDTO.endDate}`,
+//     }
+//   ])
+// })
+
 
 
 
   /* 상세 일정을 띄워주는 코드 */
-  $(document).ready(function(eventDTOS) {
+  $(document).ready(function() {
     let monthText = $('.month').text().trim();
       let monthMatch = monthText.match(/(\d+)월/);
       let month = monthMatch ? parseInt(monthMatch[1]) : null;
@@ -189,35 +185,8 @@ calendar.createEvents([
       let location = '서울시 강동구'
       let category = '박물관';
 
-      eventStart = new Date('2023-05-04T16:00:00+09:00');
+      eventStart = '2023-05-24 15:45:30.000';
       eventEnd = new Date('2023-05-04T17:00:00+09:00')
-
-
-      let page = 0;
-      // ajax로 그날 참여한 모집 가져오기
-      const sendData = () => {
-        console.log("sendData 들어옴@@@@");
-        let startDate = eventStart;
-        $.ajax({
-          type: 'post',
-          url: `/mypage/profile/${page}/${startDate}`,
-          // data: $('#reply-form').serialize(),
-          success: function (eventDTOS) {
-            console.log(eventDTOS);
-            // uploadBoard(eventDTOS);
-
-            // $('#reply-count').text(result);
-            // $(".comment-list-wrapper").empty();
-            // nextPage = 0;
-            // fetchData();
-          },
-          error: function (error) {
-            console.log('Error fetching data:', error);
-          }
-        });
-      };
-      sendData();
-
 
       let kstOffset = -540; // UTC+9
       start.setMinutes(start.getMinutes() + kstOffset); // 시작 시간을 한국 시간대로 변경
@@ -269,6 +238,25 @@ calendar.createEvents([
         iconBackground = '#90949c'
       }
 
+      let page = 0;
+      // ajax로 그날 참여한 모집 가져오기
+      const sendData = () => {
+        console.log("sendData 들어옴@@@@");
+        let date = eventStart;
+        $.ajax({
+          type: 'post',
+          url: `/mypage/profile/${date}`,
+          // data: $('#reply-form').serialize(),
+          success: function (eventKidDTOS) {
+            console.log(eventKidDTOS);
+            getResult(eventKidDTOS);
+          },
+          error: function (error) {
+            console.log('Error fetching data:', error);
+          }
+        });
+      };
+      sendData();
 
       /* 클릭시마다 파란색으로 바뀌기 */
       for(let i =0; i< 37;i++){
@@ -281,80 +269,78 @@ calendar.createEvents([
           $(this).children().children().children().css('color', 'white')
         }
       }
-      console.log(eventDTOS.content)
-      let eventAll = "";
-      eventAll +=
-      `
-      <!-- 왼쪽 컨텐츠 한개 -->
-      <div class="lecture">
-        <div class="lecture-wrap">
-        <span class="lecture-image visible">
-            <img src="https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/253/format/jpg/quality/95/) 1x, url(https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/506/format/jpg/quality/95/" alt="">
-        </span>
-        
-        <div class="lecture-wrapper">
-          <div class="lecture-content">
-            <p class="lecture-type">
-              <span><i class="reward" style='background:${iconBackground}'></i>입문</span>
-            </p>
-            <p class="lecture-title">
-              ${eventDTOS.boardTitle}
-            </p>
-            <p class="lecture-subtitle">
-              ${eventBody}
-            </p>
-            <p class="lecture-info">
-              시작 : ${startFormat}
-              <br> 
-              종료 : ${endFormat}
-              <br />장소 : ${location}
-              라이브
-            </p>
-            <p class="lecture-number">
-              <em><strong>${passText}</strong></em>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="table-wrapper">
-        <table class="children-table">
-          <thead>
-            <tr>
-              <th class="num">No.</th>
-              <th class="nickname">닉네임</th>
-              <th class="name">이름</th>
-              <th class="place">체험 이름</th>
-              <th class="participant">체험 날짜</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="num">1</td>
-              <td class="nickname">lovelyU</td>
-              <td class="name">한동석</td>
-              <td class="place">진흙놀이</td>
-              <td class="participant">2023-04-22 18:26:00</td>
-            </tr>
-            <tr>
-              <td class="num">1</td>
-              <td class="nickname">lovelyU</td>
-              <td class="name">한동석</td>
-              <td class="place">진흙놀이</td>
-              <td class="participant">2023-04-22 18:26:00</td>
-            </tr>
-          </tbody>
-        </table>
-        </div>
-      </div>
-<!-- 한개 끝 -->
-      `
-      $(".lecture-list").html(eventAll)
-      $('.lecture').on('click', handleLectureClick);
-      /* 상세 페이지 누르면 table 나오게 */
-    });
 
-
+      // 결과 화면에 뿌려주기
+  function getResult(eventKidDTOS) {
+          eventKidDTOS.forEach((eventKid, i) => {
+          let eventAll = "";
+          eventAll +=
+              `
+              <!-- 왼쪽 컨텐츠 한개 -->
+              <div class="lecture">
+                <div class="lecture-wrap">
+                <span class="lecture-image visible">
+                    <img src="https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/253/format/jpg/quality/95/) 1x, url(https://cdn.wadiz.kr/ft/images/green001/2023/0313/20230313133752303_null.jpg/wadiz/thumbnail/506/format/jpg/quality/95/" alt="">
+                </span>
+                
+                <div class="lecture-wrapper">
+                  <div class="lecture-content">
+                    <p class="lecture-type">
+                      <span><i class="reward" style='background:${iconBackground}'></i>입문</span>
+                    </p>
+                    <p class="lecture-title">
+                      ${eventKid.boardTitle}
+                    </p>
+                    <p class="lecture-subtitle">
+                      ${eventKid.boardContent}
+                    </p>
+                    <p class="lecture-info">
+                      시작 : ${startFormat}
+                      <br> 
+                      종료 : ${endFormat}
+                      <br />장소 : ${eventKid.eventLocation.address}
+                      라이브
+                    </p>
+                    <p class="lecture-number">
+                      <em><strong>${passText}</strong></em>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="table-wrapper">
+                <table class="children-table">
+                  <thead>
+                    <tr>
+                      <th class="num">No.</th>
+                      <th class="nickname">나이</th>
+                      <th class="name">이름</th>
+                      <th class="place">체험 이름</th>
+                      <th class="participant">체험 날짜</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="num">1</td>
+                      <td class="nickname">lovelyU</td>
+                      <td class="name">${eventKid.kidName}</td>
+                      <td class="place">진흙놀이</td>
+                      <td class="participant">2023-04-22 18:26:00</td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+        <!-- 한개 끝 -->
+              `
+          $(".lecture-list").html(eventAll)
+          $('.lecture').on('click', handleLectureClick);
+          /* 상세 페이지 누르면 table 나오게 */
+        })
+    };
   });
+})
+
+
 /* 눌렀을때 또르륵 이벤트 핸들러 */
 function handleLectureClick() {
   let i = $(this).index();
@@ -433,6 +419,8 @@ const getDate = () => {
     }
   });
 };
+
+
 $(document).ready(function () {
   console.log("여기로 들어왔어!!!!!!!!!!");
   getDate();
