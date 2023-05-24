@@ -2,7 +2,12 @@ package com.app.babybaby.entity.member;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.guideSchedule.GuideSchedule;
+import com.app.babybaby.type.GuideAvailableType;
+import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +16,8 @@ import java.util.List;
 @Getter
 @ToString(exclude = {"event", "generalGuide", "adminGuide", "guideSchedule, crew"})
 @Table(name = "TBL_GUIDE")
+@DynamicUpdate
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Guide {
 
@@ -31,6 +38,11 @@ public class Guide {
     @JoinColumn(name = "ADMIN_GUIDE_ID")
     private Member adminGuide;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @ColumnDefault("'AVAILABLE'")
+    private GuideAvailableType availableType;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "guide")
     private List<Crew> crews;
 
@@ -45,5 +57,14 @@ public class Guide {
         this.event = event;
         this.adminGuide = adminGuide;
         this.crews = crews;
+    }
+
+    public Guide(Event event, Member adminGuide) {
+        this.event = event;
+        this.adminGuide = adminGuide;
+    }
+
+    public void setAvailableType(GuideAvailableType availableType) {
+        this.availableType = availableType;
     }
 }

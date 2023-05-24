@@ -12,6 +12,8 @@ const eventBoardSearch = {
 };
 
 $(".categoryType").on("click", function () {
+    eventBoardSearch.categoryType ='ALL';
+    eventBoardSearch.boardTitle = null;
     page = 0;
     let val = $(this).attr('value');
     let result;
@@ -24,12 +26,10 @@ $(".categoryType").on("click", function () {
     $('.instance').remove()
     boardService.getList(appendList);
     $(window).scroll(function() {
-        console.log($(window).scrollTop() + $(window).height())
-        console.log(Math.floor($(document).height() * 0.9))
         if($(window).scrollTop() + $(window).height() == Math.floor($(document).height() * 0.9)) {
-            page++;
             boardService.getList(appendList);
             bindLikeButtonClickEvent()
+            page++
             console.log(page)
         }
     });
@@ -93,15 +93,22 @@ const boardService = (() => {
 
 function appendList(eventListDTO) {
     let boardText3 = '';
+    let mainFile = '';
     console.log(eventListDTO);
     eventListDTO.forEach((e,i) => {
+        e.files.forEach((e1,j) => {
+            if(typeof(e1.fileStatus) !== 'undefined'){
+                mainFile =  `style="background-image:url('/eventFiles/display?fileName=Event/${e1.filePath}/${e1.fileUUID}_${e1.fileOriginalName}')"></div>`
+            }
+        })
         boardText3 +=  `
              <div role="presentation" class="instance">
                             <a class="item" href="/event/detail/${e.id}">
                                 <div class="thumbnail-container">
                                     <div class="thumbnail-list">
                                         <div class="photo-thumbnail"
-                                             style="background-image:url('/eventFiles/display?fileName=Event/${e.files[0].filePath}/${e.files[0].fileUUID}_${e.files[0].fileOriginalName}')"></div>
+                                        ${mainFile}
+<!--                                             style="background-image:url('/eventFiles/display?fileName=Event/${e.files[0].filePath}/${e.files[0].fileUUID}_${e.files[0].fileOriginalName}')"></div>-->
                                         <!-- 사진 div -->
                                     </div>
                                 </div>
@@ -179,8 +186,6 @@ boardService.getList(function(eventListDTO) {
 
 
 $(window).scroll(function() {
-    console.log($(window).scrollTop() + $(window).height())
-    console.log(Math.floor($(document).height() * 0.9))
     if($(window).scrollTop() + $(window).height() == Math.floor($(document).height() * 0.9)) {
         page++;
         boardService.getList(appendList);

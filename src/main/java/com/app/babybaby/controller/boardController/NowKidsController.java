@@ -143,7 +143,6 @@ public class NowKidsController {
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
         Long sessionId = memberDTO.getId();
 
-        log.info(session.getAttribute("memberDTO").toString());
         log.info("eventDate는 : " + eventDate);
         log.info("EventId는 : " + eventId.toString());
         log.info("save에서의 nowKidsFileDTO는 : " + nowKidsFileDTOForParameter.toString());
