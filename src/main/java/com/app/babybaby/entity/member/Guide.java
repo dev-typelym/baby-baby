@@ -67,4 +67,8 @@ public class Guide {
     public void setAvailableType(GuideAvailableType availableType) {
         this.availableType = availableType;
     }
+
+    public void setGeneralGuide(Member generalGuide) {
+        this.generalGuide = generalGuide;
+    }
 }

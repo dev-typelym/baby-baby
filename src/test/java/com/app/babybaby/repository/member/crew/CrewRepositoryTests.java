@@ -96,7 +96,7 @@ public class CrewRepositoryTests {
     @Test
     public void TestFind(){
         LocalDateTime date = LocalDateTime.of(2023, Month.MAY, 24, 15, 45, 30);
-        log.info(crewRepository.findCrewByMemberId(1L, date).toString());
+//        log.info(crewRepository.findCrewByMemberId(1L, date).toString());
     }
 
 }

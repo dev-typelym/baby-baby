@@ -58,5 +58,9 @@ public class GuideRepositoryTests {
     public void findTopByEventIdAndAvailableTypeEndsWithTest(){
         log.info(guideRepository.findFirstByEventIdAndAvailableTypeOrderById(1L, GuideAvailableType.AVAILABLE).toString());
     }
+    @Test
+    public void findFirstByGeneralGuideNotTest(){
+        log.info(guideRepository.findFirstByGeneralGuideIsNullAndEvent_Id(2L).toString());
+    }
 
 }

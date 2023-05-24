@@ -69,4 +69,14 @@ public class GuideServiceImpl implements GuideService {
 
     }
 
+    @Override
+    public Boolean applyGuide(Long memberId, Long eventId) {
+        Guide noGeneralGuide = guidRepository.findFirstByGeneralGuideIsNullAndEvent_Id(eventId);
+        Member member = memberRepository.findById(memberId).get();
+        Event event = eventRepository.findById(eventId).get();
+        noGeneralGuide.setGeneralGuide(member);
+        return null;
+    }
+
+
 }

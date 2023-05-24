@@ -3,12 +3,14 @@ package com.app.babybaby.service.purchase.purchase;
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.calendarDTO.CalendarDTO;
 import com.app.babybaby.domain.fileDTO.eventFileDTO.EventFileDTO;
+import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.domain.purchaseDTO.couponDTO.CouponDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.file.eventFile.EventFile;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.entity.purchase.purchase.Purchase;
 import org.springframework.data.domain.Page;
@@ -29,6 +31,10 @@ public interface PurchaseService {
 
     public EventDTO findAllInfoForPayment(Long memberId, Long eventId);
 
+    public void processPayment(Long memberId, Long eventId, List<Kid> kids);
+
+    public void saveAll(Long memberId, Long eventId, PurchaseDTO purchaseDTO);
+
     default PurchaseDTO PurchaseToDTO(Purchase purchase){
         return PurchaseDTO.builder()
                 .coupon(purchase.getCoupon())
@@ -42,6 +48,16 @@ public interface PurchaseService {
                 .eventFileDTOS(purchase.getEvent().getEventFiles().stream().map(eventFile -> eventFileToDTO(eventFile)).collect(Collectors.toList()))
                 .memberPhone(purchase.getMember().getMemberPhone())
                 .calendarDTOS(toCalendarDTO(purchase.getEvent().getCalendar()))
+                .build();
+    }
+
+    default Purchase  dtoToPurchaseEntity(PurchaseDTO purchaseDTO){
+        return Purchase.builder()
+                .id(purchaseDTO.getId())
+                .coupon(purchaseDTO.getCoupon())
+                .purchaseCount(purchaseDTO.getPurchaseCount())
+                .purchasePrice(purchaseDTO.getPurchasePrice())
+                .purchaseRegisterDate(purchaseDTO.getPurchaseRegisterDate())
                 .build();
     }
 
@@ -76,6 +92,28 @@ public interface PurchaseService {
                 .updateDate(coupon.getUpdateDate())
                 .build();
     }
+
+    default Kid toKid(KidDTO kidDTO){
+        return Kid.builder()
+                .id(kidDTO.getId())
+                .kidAge(kidDTO.getKidAge())
+                .kidGender(kidDTO.getKidGender())
+                .kidName(kidDTO.getKidName())
+                .kidAge(kidDTO.getKidAge())
+                .parent(kidDTO.getParent())
+                .build();
+    }
+
+    default KidDTO toKidDTO(Kid kid){
+        return KidDTO.builder()
+                .id(kid.getId())
+                .kidAge(kid.getKidAge())
+                .kidGender(kid.getKidGender())
+                .kidName(kid.getKidName())
+                .kidAge(kid.getKidAge())
+                .build();
+    }
+
     default EventDTO eventToDTO(Event event){
         return EventDTO.builder()
                 .id(event.getId())
