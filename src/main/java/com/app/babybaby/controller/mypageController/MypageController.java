@@ -6,6 +6,7 @@ import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
 import com.app.babybaby.domain.likeDTO.eventLikeDTO.EventLikeDTO;
 import com.app.babybaby.domain.likeDTO.nowKidsLikeDTO.NowKidsLikeDTO;
+import com.app.babybaby.domain.memberDTO.EventKidDTO;
 import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
@@ -22,6 +23,7 @@ import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
 import com.app.babybaby.service.like.eventLike.EventLikeService;
 import com.app.babybaby.service.like.nowKidsLike.NowKidsLikeService;
+import com.app.babybaby.service.member.crew.CrewService;
 import com.app.babybaby.service.member.kid.KidService;
 import com.app.babybaby.service.member.member.MemberService;
 import com.app.babybaby.service.purchase.coupon.CouponService;
@@ -64,6 +66,7 @@ public class MypageController {
     private final NowKidsLikeService nowKidsLikeService;
     private final EventService eventService;
     private final PasswordEncoder passwordEncoder;
+    private final CrewService crewService;
 
 
 
@@ -101,13 +104,13 @@ public class MypageController {
     }
 
     @ResponseBody
-    @PostMapping("profile/{page}/{startDate}")
-    public Slice<EventDTO> getPofile(@PathVariable("page") Integer page,@PathVariable LocalDateTime startDate){
-        log.info("드러옴용");
-        Long memberId = 1L;
-        Slice<EventDTO> eventDTOS = eventService.findEventScheduleByMemberId(PageRequest.of(page, 5),memberId,startDate);
-        log.info("제발 " + eventDTOS);
-        return eventDTOS;
+    @PostMapping("profile/{date}")
+    public List<EventKidDTO> getPofile(Model model,@PathVariable("date") String date,HttpSession session){
+        log.info("------------------- 받아온 date : "+ date);
+        List<EventKidDTO> eventKidDTOS = crewService.findCrewByMemberId(110L, date);
+        model.addAttribute("eventKidDTOS",eventKidDTOS);
+        log.info(eventKidDTOS.toString());
+        return eventKidDTOS;
     }
 
 

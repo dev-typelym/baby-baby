@@ -578,4 +578,12 @@
   <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
   <script src=" /js/myPage/myPage-profile.js"></script>
   <script src="/js/components/header.js"></script>
+  <script th:inline="javascript">
+    // let nowKidsDTOJSON = [[${nowKidsDTOS}]];
+    // let nowKidsDTOS = JSON.parse(nowKidsDTOJSON)
+
+    let eventKidDTOS = [[${eventKidDTOS}]]
+    console.log(eventKidDTOS)
+    // console.log(nowKidsDTOS)
+  </script>
 </html>

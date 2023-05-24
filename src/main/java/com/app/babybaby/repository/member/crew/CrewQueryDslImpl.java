@@ -31,35 +31,35 @@ public class CrewQueryDslImpl implements CrewQueryDsl {
 
     @Override
     public List<Tuple> findCrewByMemberId(Long sessionId, String date) {
-        return query.select(QEvent.event,
-                JPAExpressions.select(kid)
-                        .from(crew)
-                        .join(kid)
-                        .on(crew.kid.id.eq(kid.id).and(crew.eventRegisterDate.eq(date)))
-                        .join(guide)
-                        .on(crew.guide.id.eq(guide.id).and(guide.generalGuide.id.eq(sessionId).or(guide.adminGuide.id.eq(sessionId)))
-                        )
-                        .from(crew)
-                        .join(guide)
-                        .on(crew.guide.id.eq(guide.id).and(crew.eventRegisterDate.eq(date)).and(guide.generalGuide.id.eq(sessionId).or(guide.adminGuide.id.eq(sessionId))))
-                        .join(QEvent.event)
-                        .on(guide.event.id.eq(QEvent.event.id)))
-                .fetch();
-
 //        return query.select(QEvent.event,
 //                JPAExpressions.select(kid)
 //                        .from(crew)
 //                        .join(kid)
 //                        .on(crew.kid.id.eq(kid.id).and(crew.eventRegisterDate.eq(date)))
 //                        .join(guide)
-//                        .on(crew.guide.id.eq(guide.id).and(guide.generalGuide.id.eq(sessionId).or(guide.adminGuide.id.eq(sessionId))))
-//                     )
+//                        .on(crew.guide.id.eq(guide.id).and(guide.generalGuide.id.eq(sessionId).or(guide.adminGuide.id.eq(sessionId)))
+//                        )
 //                        .from(crew)
 //                        .join(guide)
 //                        .on(crew.guide.id.eq(guide.id).and(crew.eventRegisterDate.eq(date)).and(guide.generalGuide.id.eq(sessionId).or(guide.adminGuide.id.eq(sessionId))))
 //                        .join(QEvent.event)
-//                        .on(guide.event.id.eq(QEvent.event.id))
-//                        .fetch();
+//                        .on(guide.event.id.eq(QEvent.event.id)))
+//                .fetch();
+
+        return query.select(QEvent.event,
+                JPAExpressions.select(kid)
+                        .from(crew)
+                        .join(kid)
+                        .on(crew.kid.id.eq(kid.id).and(crew.eventRegisterDate.eq(date)))
+                        .join(guide)
+                        .on(crew.guide.id.eq(guide.id).and(guide.generalGuide.id.eq(sessionId).or(guide.adminGuide.id.eq(sessionId))))
+                     )
+                        .from(crew)
+                        .join(guide)
+                        .on(crew.guide.id.eq(guide.id).and(crew.eventRegisterDate.eq(date)).and(guide.generalGuide.id.eq(sessionId).or(guide.adminGuide.id.eq(sessionId))))
+                        .join(QEvent.event)
+                        .on(guide.event.id.eq(QEvent.event.id))
+                        .fetch();
 //        return query.select(new EventKidDTO(Event, Kid))
 //                        .from(crew)
 //                        .join(guide)
@@ -69,4 +69,8 @@ public class CrewQueryDslImpl implements CrewQueryDsl {
 //                        .fetch();
 
     }
-    }
+
+
+
+
+    }//end
