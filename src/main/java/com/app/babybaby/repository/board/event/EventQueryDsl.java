@@ -1,6 +1,7 @@
 package com.app.babybaby.repository.board.event;
 
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.purchase.purchase.Purchase;
 import com.app.babybaby.search.admin.AdminEventSearch;
@@ -70,4 +71,5 @@ public interface EventQueryDsl {
 
     //   [관리자] 기업상세 이벤트 페이징 목록
     public Page<Event> findNowKidsEventsList_queryDSL(Pageable pageable, Long companyId);
+
 }

@@ -7,6 +7,7 @@ import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.file.eventFile.EventFile;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.type.CategoryType;
@@ -41,6 +42,8 @@ public interface EventService {
     Event updateEvent(Long eventId, Event updatedEvent);
 
     void deleteEvent(Long eventId);
+
+    public List<Kid> findKidsBySessionId(Long sessionId);
 
     default EventDTO eventToDTO(Event event){
         return EventDTO.builder()

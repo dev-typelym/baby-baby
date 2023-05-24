@@ -6,9 +6,11 @@ import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.service.board.event.EventService;
 import com.app.babybaby.service.calendar.CalendarService;
+import com.app.babybaby.service.member.member.MemberService;
 import com.google.gson.JsonArray;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,6 +40,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class EventController {
     private final EventService eventService;
+    private final MemberService memberService;
 
     private final CalendarService calendarService;
 
@@ -59,7 +62,9 @@ public class EventController {
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
         Long sessionId = memberDTO.getId();
         EventDTO eventDTO = eventService.getAllEventInfo(sessionId, eventId);
+        List<Kid> kidsList = eventService.findKidsBySessionId(sessionId);
         model.addAttribute("eventDTO", eventDTO);
+        model.addAttribute("kidsList", kidsList);
         return "play/event-join-write";
     }
 

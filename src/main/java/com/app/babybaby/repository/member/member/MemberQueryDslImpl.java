@@ -4,10 +4,7 @@ import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
 import com.app.babybaby.entity.board.review.QReview;
-import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.entity.member.QGuide;
-import com.app.babybaby.entity.member.QMember;
-import com.app.babybaby.entity.member.QRandomKey;
+import com.app.babybaby.entity.member.*;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.entity.purchase.coupon.QCoupon;
 import com.app.babybaby.search.admin.AdminMemberSearch;
@@ -243,6 +240,18 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .setNull(member.memberGuideInterest)
                 .where(member.id.eq(memberId))
                 .execute();
+    }
+
+//    로그인된 회원으로 아이정보 가져오기
+    @Override
+    public List<Kid> findKidsByMemberId(Long sessionId) {
+        QKid kid = QKid.kid;
+        List<Kid> kidsFromMember = query.select(kid)
+                .from(kid)
+                .where(kid.parent.id.eq(sessionId))
+                .fetch();
+
+        return kidsFromMember;
     }
 
     //  [관리자] 통솔자 승인하기 취소시 일반회원으로 돌리기
