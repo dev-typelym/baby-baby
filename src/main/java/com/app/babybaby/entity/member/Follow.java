@@ -27,7 +27,8 @@ public class Follow extends Period {
 
     private LocalDate followDate;
 
-    @ColumnDefault("UNREAD")
+    @ColumnDefault("'UNREAD'")
+    @Enumerated(EnumType.STRING)
     private AlertReadStatus alertReadStatus;
 
     @Builder
