@@ -66,7 +66,7 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
     //    작성 쪽 참여예정인 행상 불러오기
     @Override
     public List<Event> getFindByEventId(Long id) {
-        List<Event> events = parentsBoardRepository.findAllUpcomingEventsByMemberId(id);
+        List<Event> events = eventRepository.findAllPurchasedEvents(id);
         return events;
     }
     /* 작성쪽 맴버 가져오기 */

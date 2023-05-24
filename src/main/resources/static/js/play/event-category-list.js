@@ -258,10 +258,6 @@ function handleLikeButtonClick(element) {
         type: 'POST',
         data: { "eventId": eventId, "isLike": isLike },
         success: function(response) {
-            console.log(response)
-            if(response == ''){
-                return;
-            }
             if ($(element).attr('aria-pressed') == 'false') {
                 $(element).attr('aria-pressed', 'true'); // 하트 색 채우기
                 $('.like-cancel-text').hide(); // 해제 문구

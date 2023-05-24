@@ -1,11 +1,11 @@
 eventDTOS.forEach((e,i) => {
     let textEvent =
         `
-        <div class="select-option2" value="${e.id}">실내 액티비티 VR체험학습 ${convertDateFormat(e.calendar.startDate)}   ~    ${convertDateFormat(e.calendar.endDate)}</div>
+        <div class="select-option2" value="${e.id}">${e.boardTitle} ${convertDateFormat(e.calendar.startDate)}   ~    ${convertDateFormat(e.calendar.endDate)}</div>
         `;
     $('.select-menu-layout').append(textEvent)
 })
-
+console.log(eventDTOS)
 const $selectBox = $(".select-layout");
 const $selectMenuBox = $(".select-menu-box");
 
