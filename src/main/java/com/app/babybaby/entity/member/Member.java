@@ -245,4 +245,6 @@ public class Member {
     public void setMemberHiSentence(String memberHiSentence) {
         this.memberHiSentence = memberHiSentence;
     }
+
+
 }

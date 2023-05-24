@@ -83,6 +83,11 @@ public class CrewRepositoryTests {
 
 
     @Test
+    public void findById(){
+        log.info(crewRepository.findById(1L).toString());
+    }
+
+    @Test
 //    이거는 memberID 로 아이 전체 조회
     public void findKidByUserIdTest(){
         crewRepository.findKidByUserId(1L).stream().map(Kid::toString).forEach(log::info);
@@ -91,7 +96,7 @@ public class CrewRepositoryTests {
     @Test
     public void TestFind(){
         LocalDateTime date = LocalDateTime.of(2023, Month.MAY, 24, 15, 45, 30);
-        crewRepository.findCrewByMemberId(1L, "2023");
+        log.info(crewRepository.findCrewByMemberId(1L, date).toString());
     }
 
 }

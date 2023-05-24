@@ -81,5 +81,10 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
                 .fetchOne();
     }
 
+    @Override
+    public Long findMemberByIdWithCount(Long memberId) {
+        return null;
+    }
+
 
 }

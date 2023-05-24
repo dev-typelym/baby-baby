@@ -28,7 +28,7 @@ public interface NowKidsLikeService {
                 .addressDetail(nowKids.getEvent().getEventLocation().getAddressDetail())
                 .addressSubDetail(nowKids.getEvent().getEventLocation().getAddressSubDetail())
                 .boardContent(nowKids.getBoardTitle())
-                .boardTitle(nowKids.getBoardTitle())
+                .boardTitle(nowKids.getEvent().getBoardTitle())
                 .memberName(nowKids.getGuide().getMemberName())
                 .registerDate(nowKids.getRegisterDate())
                 .updateDate(nowKids.getUpdateDate())

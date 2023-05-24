@@ -7,6 +7,7 @@ import com.app.babybaby.entity.purchase.coupon.Coupon;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

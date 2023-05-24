@@ -21,4 +21,6 @@ public interface PurchaseQueryDsl {
     public Page<Purchase> findAllByMemberPaymentFileWithPage_QueryDSL(Pageable pageable, Long memberId);
 
     public Purchase findMemberIdByPaymentDetail_QueryDSL(Long PurchaseId);
+
+    public Long findMemberByIdWithCount(Long memberId);
 }

@@ -91,10 +91,9 @@ let formData = new FormData(); // input 태그 담는 폼
 
 /* 버튼을 감싸고있는 label객체 들고오기 */
 const fileInput = document.getElementById("resume");
-
+FileList.prototype.forEach = Array.prototype.forEach;
 /* 버튼을 감싸고있는 label객체 클릭하면 위에 function handleFiles 실행 */
-fileInput.addEventListener("change", function(event) {
-    $fileListBox.empty();
+fileInput.addEventListener("change", function(e) {
     let index = 0;
     let files = e.target.files;
     console.log(files)
@@ -125,14 +124,12 @@ fileInput.addEventListener("change", function(event) {
             files.forEach((file) => {
                 inputFiles1 +=
                     `
-                    <input type="hidden" name="files[${j}].fileOriginalName" value="${file.name}">
-                    <input type="hidden" name="files[${j}].fileUUID" value="${globalThis.uuids[j]}">
-                    <input type="hidden" name="files[${j}].filePath" value="${toStringByFormatting(new Date())}">
+                    <input type="hidden" name="memberFileOriginalName" value="${file.name}">
+                    <input type="hidden" name="memberFileUUID" value="${globalThis.uuids[0]}">
+                    <input type="hidden" name="memberFilePath" value="${toStringByFormatting(new Date())}">
                     `
-                j++;
             });
-            j=0;
-            $('#play-header-multi').append(inputFiles1);
+            $('.Input_right').append(inputFiles1);
         }
     });
 });
@@ -202,4 +199,19 @@ function handleFiles(files) {
 
     }
 
+}
+//     /*****************************************************/
+function leftPad(value) {
+    if (value >= 10) {
+        return value;
+    }
+    return `0${value}`;
+}
+
+function toStringByFormatting(source, delimiter = '/') {
+    const year = source.getFullYear();
+    const month = leftPad(source.getMonth() + 1);
+    const day = leftPad(source.getDate());
+
+    return [year, month, day].join(delimiter);
 }

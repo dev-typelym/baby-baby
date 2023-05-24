@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString(exclude = {"parent"})
+@ToString(exclude = {"guide", "crew","parent"})
 @Table(name = "TBL_KID")
 //@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
