@@ -438,6 +438,28 @@ public class EventQueryDslImpl implements EventQueryDsl {
                 .where(event.id.in(eventId))
                 .execute();
     }
+
+    @Override
+    public Page<Event> findNowKidsEventsList_queryDSL(Pageable pageable, Long companyId) {
+        QEvent event = QEvent.event;
+
+        List<Event> foundEventForCompany =  query.select(event)
+                .from(event)
+                .join(event.company)
+                .fetchJoin()
+                .where(event.company.id.eq(companyId))
+                .orderBy(event.id.asc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(event.count())
+                .from(event)
+                .where(event.company.id.eq(companyId))
+                .fetchOne();
+
+        return new PageImpl<>(foundEventForCompany, pageable, count);
+    }
 }
 
 

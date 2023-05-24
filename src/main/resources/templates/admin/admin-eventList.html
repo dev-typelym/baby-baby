@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>행사(놀러가요) 관리</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>행사(놀러가요) 관리</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
@@ -16,279 +16,252 @@
 	<link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
 </head>
 <body>
-	<section class="header-section">
-		<div class="info-title-box info-title-box-flex">
-			<div class="logo-box-layout">
-				<div class="logo-title-layout">
-					<div class="logo-title">
-						<div class="logo-name">
-							아기자기
-						</div>
+<section class="header-section">
+	<div class="info-title-box info-title-box-flex">
+		<div class="logo-box-layout">
+			<div class="logo-title-layout">
+				<div class="logo-title">
+					<div class="logo-name">
+						아기자기
 					</div>
 				</div>
 			</div>
-			<div>
-				<div class="select-name">
-					<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="depth1-icon">
-					<span>행사(놀러가요) 관리</span>	
-				</div>
+		</div>
+		<div>
+			<div class="select-name">
+				<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="depth1-icon">
+				<span>행사(놀러가요) 관리</span>
 			</div>
 		</div>
-	</section>
-	<main class="main-section">
-		<!-- 임시 사이드바 -->
-		<div th:insert="~{/admin/side-menu:: side-menu}"></div>
-		<!-- 임시 사이드바 끝 -->
-		<section class="content-section">
-			<div class="container">
-				<div class="container-margin">
-					<!-- 내용 섹션 -->
-					<section class="board-info-box-layout">
-						<div class="board-info-box">
-							<div class="board-info-title-box">
-								<div class="board-info-title">
-									<span>행사(놀러가요) 관리</span> 
-									<div class="search">
-										<input type="text" placeholder="검색어 입력">
-										<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-									</div>
-								</div>
-								<div>
-									<div class="category-container">
-										<button class="category-entire active">전체</button>
-										<button class="category-country-side">농촌</button>
-										<button class="category-gallery-art">미술관/박람회</button>
-										<button class="category-tradition">전통</button>
-										<button class="category-craft">공방</button>
-										<button class="category-science">과학</button>
-										<button class="category-museum">박물관</button>
-										<button class="category-sports">스포츠</button>
-										<button class="category-etc">기타</button>
-									</div>
-									<div class="delete-box">
-										<div>
-											<button class="event-status status-btn end">전체</button>
-											<button class="event-status status-btn hold">대기</button>
-											<button class="event-status status-btn process selected">진행 중</button>
-											<button class="event-status status-btn end ">종료</button>
-										</div>
-										<button class="delete-button">행사 삭제</button>
-									</div>
+	</div>
+</section>
+<main class="main-section">
+	<!-- 임시 사이드바 -->
+	<div th:insert="~{/admin/side-menu:: side-menu}"></div>
+	<!-- 임시 사이드바 끝 -->
+	<section class="content-section">
+		<div class="container">
+			<div class="container-margin">
+				<!-- 내용 섹션 -->
+				<section class="board-info-box-layout">
+					<div class="board-info-box">
+						<div class="board-info-title-box">
+							<div class="board-info-title">
+								<span>행사(놀러가요) 관리</span>
+								<div class="search">
+									<input class="search-input" type="text" placeholder="행사명 입력">
+									<img class="search-btn-icon" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
 								</div>
 							</div>
-							<div class="info-table">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>
-												<input type="checkbox" id="allSelect">
-											</th>
-											<th>No</th>
-											<th>기업</th>
-											<th>분야</th>
-											<th>행사 명</th>
-											<th>위치</th>
-											<th>기간</th>
-											<th>모집 인원</th>
-											<th>진행 여부</th>
-										</tr>
-									</thead>
-									<tr class="row">
-										<td class="no-modal">
-											<input type="checkbox" name="check">
-										</td>
-										<td class="event-num">1</td>
-										<td class="event-company">우리은행</td>
-										<td class="event-category">과학</td>
-										<td class="event-location">아이들과 함께하는 로봇 만들기</td>
-										<td class="event-location">경기도 파주시 장안동 125-13</td>
-										<td class="event-period"><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>
-										<td class="event-crewCount">1200<span>명</span></td>
-										<td class="event-status hold selected">대기</td>
-										<!-- <td class="event-status process">진행 중</td>
-										<td class="event-status end">종료</td> -->
-									</tr>
-									<tr class="row">
-										<td class="no-modal">
-											<input type="checkbox" name="check">
-										</td>
-										<td class="event-num">1</td>
-										<td class="event-company">우리은행</td>
-										<td class="event-category">과학</td>
-										<td class="event-location">아이들과 함께하는 로봇 만들기</td>
-										<td class="event-location">경기도 파주시 장안동 125-13</td>
-										<td class="event-period"><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>
-										<td class="event-crewCount">1200<span>명</span></td>
-										<!-- <td class="event-status hold">대기</td> -->
-										<td class="event-status process selected">진행 중</td>
-										<!-- <td class="event-status end">종료</td> -->
-									</tr>
-									<tr class="row">
-										<td class="no-modal">
-											<input type="checkbox" name="check">
-										</td>
-										<td class="event-num">1</td>
-										<td class="event-company">우리은행</td>
-										<td class="event-category">과학</td>
-										<td class="event-location">아이들과 함께하는 로봇 만들기</td>
-										<td class="event-location">경기도 파주시 장안동 125-13</td>
-										<td class="event-period"><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>
-										<td class="event-crewCount">1200<span>명</span></td>
-										<!-- <td class="event-status hold">대기</td>
-										<td class="event-status process">진행 중</td> -->
-										<td class="event-status end selected">종료</td>
-									</tr>
-									
-								</table>
-								<!-- 페이지 버튼 -->
-								<div class="page-button-box-layout">
-									<div class="page-button-box">
-										<!-- 페이지 번호 -->
-										<div class="">
-											<div class="page-button-margin">
-												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
-												</div>
-											</div>
-										</div>
-										<div class="page-button-active page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>1</span>
-												</div>
-											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>2</span>
-												</div>
-											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>3</span>
-												</div>
-											</div>
-										</div>
-										<div class="">
-											<div class="page-button-margin">
-												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
-												</div>
-											</div>
-										</div>
-									</div>
+							<div>
+								<div class="category-container">
+									<button class="category-entire active">전체</button>
+									<button class="category-country-side">농촌</button>
+									<button class="category-gallery-art">미술관/박람회</button>
+									<button class="category-tradition">전통</button>
+									<button class="category-craft">공방</button>
+									<button class="category-science">과학</button>
+									<button class="category-museum">박물관</button>
+									<button class="category-sports">스포츠</button>
+									<button class="category-etc">기타</button>
 								</div>
-								<!-- 페이지 버튼 끝 -->
+								<div class="delete-box">
+									<div>
+										<!--											<button class="event-status status-btn end all">전체</button>-->
+										<button class="event-status status-btn hold">대기</button>
+										<button class="event-status status-btn process">진행 중</button>
+										<button class="event-status status-btn end ">종료</button>
+									</div>
+									<button class="delete-button">행사 삭제</button>
+								</div>
 							</div>
 						</div>
-					</section>
-				</div>
-			</div>
-		</section>
-	</main>
-	<section class="delete-modal">
-		<div class="delete-modal-shape">
-			<div class="modal-header">
-				<h4>삭제 확인</h4>
-			</div>
-			<div class="modal-body">
-				<p>정말로 삭제하겠습니까?</p>
-			</div>
-			<div class="modal-footer">
-				<span class="confirm-delete">확인</span>
-				<span class="cancel-delete">취소</span>
-			</div>
-		</div>
-	</section>
-	<section class="delete-no-check-modal">
-		<div class="delete-no-check-modal-shape">
-			<div class="modal-header">
-				<h4>삭제 불가</h4>
-			</div>
-			<div class="modal-body">
-				<p>선택된 항목이 없습니다.</p>
-			</div>
-			<div class="modal-footer">
-				<span class="no-check-confirm-delete">확인</span>
-			</div>
-		</div>
-	</section>
-	<section class="user-modal">
-		<div class="user-modal-shape">
-			<div class="modal-header">
-				<h4>게시글 상세보기</h4>
-				<a class="modal-close">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						data-name="Capa 1"
-						id="Capa_1"
-						viewBox="0 0 20 19.84"
-					>
-						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
-					</svg>
-				</a>
-			</div>
-			<form class="user-info" action>
-				<main class="user-detail">
-					<h5 class="detail-title">게시글 상세정보</h5>
-					<div class="profile-img-wrapper">
-						<label>
-							<div class="content-img">
-								<img
-									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-								/>
+						<div class="info-table">
+							<table class="table">
+								<thead>
+								<tr>
+									<th>
+										<input type="checkbox" id="allSelect">
+									</th>
+									<th>No</th>
+									<th>기업</th>
+									<th>분야</th>
+									<th>행사 명</th>
+									<th>위치</th>
+									<th>기간</th>
+									<th>모집 인원</th>
+									<th>진행 여부</th>
+								</tr>
+								</thead>
+								<tbody class="event-board-list">
+								<!--										<tr class="row">-->
+								<!--											<td class="no-modal">-->
+								<!--												<input type="checkbox" name="check">-->
+								<!--											</td>-->
+								<!--											<td class="event-num">1</td>-->
+								<!--											<td class="event-company">우리은행</td>-->
+								<!--											<td class="event-category">과학</td>-->
+								<!--											<td class="event-location">아이들과 함께하는 로봇 만들기</td>-->
+								<!--											<td class="event-location">경기도 파주시 장안동 125-13</td>-->
+								<!--											<td class="event-period"><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></td>-->
+								<!--											<td class="event-crewCount">1200<span>명</span></td>-->
+								<!--											<td class="event-status hold selected">대기</td>-->
+								<!--										</tr>-->
+								</tbody>
+							</table>
+							<!-- 페이지 버튼 -->
+							<div class="page-button-box-layout">
+								<div class="page-button-box">
+									<!-- 페이지 번호 -->
+									<!--										<div class="">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+									<!--										<div class="page-button-active page-button">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<span>1</span>-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+									<!--										<div class="page-button">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<span>2</span>-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+									<!--										<div class="page-button">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<span>3</span>-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+									<!--										<div class="">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+								</div>
 							</div>
-						</label>
+							<!-- 페이지 버튼 끝 -->
+						</div>
 					</div>
-					<ul class="content-list-wrap">
-						<li class="content-list">
-							<span>기업</span>
-							<div class="content-input">
-								<p>농협</p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>분야</span>
-							<div class="content-input">
-								<p>과학</p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>행사명</span>
-							<div class="content-input">
-								<p>아이들과 함께하는 로봇 만들기</p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>위치</span>
-							<div class="content-input">
-								<p>경기도 파주시 장안동 123-25</p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>기간</span>
-							<div class="content-input content-div">
-								<p><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></p>
-							</div>
-						</li>
-						<li class="content-list">
-							<span>모집인원</span>
-							<div class="content-input content-div">
-								<p>1200</textarea>
-							</div>
-						</li>
-					</ul>
-				</main>
-			</form>
+				</section>
+			</div>
 		</div>
 	</section>
+</main>
+<section class="delete-modal">
+	<div class="delete-modal-shape">
+		<div class="modal-header">
+			<h4>삭제 확인</h4>
+		</div>
+		<div class="modal-body">
+			<p>정말로 삭제하겠습니까?</p>
+		</div>
+		<div class="modal-footer">
+			<span class="confirm-delete">확인</span>
+			<span class="cancel-delete">취소</span>
+		</div>
+	</div>
+</section>
+<section class="delete-no-check-modal">
+	<div class="delete-no-check-modal-shape">
+		<div class="modal-header">
+			<h4>삭제 불가</h4>
+		</div>
+		<div class="modal-body">
+			<p>선택된 항목이 없습니다.</p>
+		</div>
+		<div class="modal-footer">
+			<span class="no-check-confirm-delete">확인</span>
+		</div>
+	</div>
+</section>
+
+<div class="event-modal-list">
+	<!--		<section class="user-modal">-->
+	<!--			<div class="user-modal-shape">-->
+	<!--				<div class="modal-header">-->
+	<!--					<h4>게시글 상세보기</h4>-->
+	<!--					<a class="modal-close">-->
+	<!--						<svg-->
+	<!--							xmlns="http://www.w3.org/2000/svg"-->
+	<!--							data-name="Capa 1"-->
+	<!--							id="Capa_1"-->
+	<!--							viewBox="0 0 20 19.84"-->
+	<!--						>-->
+	<!--							<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>-->
+	<!--						</svg>-->
+	<!--					</a>-->
+	<!--				</div>-->
+	<!--				<form class="user-info" action>-->
+	<!--					<main class="user-detail">-->
+	<!--						<h5 class="detail-title">게시글 상세정보</h5>-->
+	<!--						<div class="profile-img-wrapper">-->
+	<!--							<label>-->
+	<!--								<div class="content-img">-->
+	<!--									<img-->
+	<!--										src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"-->
+	<!--									/>-->
+	<!--								</div>-->
+	<!--							</label>-->
+	<!--						</div>-->
+	<!--						<ul class="content-list-wrap">-->
+	<!--							<li class="content-list">-->
+	<!--								<span>기업</span>-->
+	<!--								<div class="content-input">-->
+	<!--									<p>농협</p>-->
+	<!--								</div>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>분야</span>-->
+	<!--								<div class="content-input">-->
+	<!--									<p>과학</p>-->
+	<!--								</div>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>행사명</span>-->
+	<!--								<div class="content-input">-->
+	<!--									<p>아이들과 함께하는 로봇 만들기</p>-->
+	<!--								</div>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>위치</span>-->
+	<!--								<div class="content-input">-->
+	<!--									<p>경기도 파주시 장안동 123-25</p>-->
+	<!--								</div>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>기간</span>-->
+	<!--								<div class="content-input content-div">-->
+	<!--									<p><span>2022.10.23</span><span> ~ </span><span>2022.11.15</span></p>-->
+	<!--								</div>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>모집인원</span>-->
+	<!--								<div class="content-input content-div">-->
+	<!--									<p>1200</textarea>-->
+	<!--								</div>-->
+	<!--							</li>-->
+	<!--						</ul>-->
+	<!--					</main>-->
+	<!--				</form>-->
+	<!--			</div>-->
+	<!--		</section>-->
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/page.js"></script>
+<script src="/js/common/formatDate.js"></script>
 <script src="/js/admin/admin-eventList.js"></script>
 </html>

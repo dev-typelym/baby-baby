@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>통솔자 관리</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>통솔자 관리</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
@@ -16,276 +16,251 @@
 	<link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
 </head>
 <body>
-	<section class="header-section">
-		<div class="info-title-box info-title-box-flex">
-			<div class="logo-box-layout">
-				<div class="logo-title-layout">
-					<div class="logo-title">
-						<div class="logo-name">
-							아기자기
-						</div>
+<section class="header-section">
+	<div class="info-title-box info-title-box-flex">
+		<div class="logo-box-layout">
+			<div class="logo-title-layout">
+				<div class="logo-title">
+					<div class="logo-name">
+						아기자기
 					</div>
 				</div>
 			</div>
-			<div>
-				<div class="select-name">
-					<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="depth1-icon">
-					<span>통솔자 관리</span>	
-				</div>
+		</div>
+		<div>
+			<div class="select-name">
+				<img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-arrow-down-b-128.png" class="depth1-icon">
+				<span>통솔자 관리</span>
 			</div>
 		</div>
-	</section>
-	<main class="main-section">
-		<!-- 임시 사이드바 -->
-		<div th:insert="~{/admin/side-menu:: side-menu}"></div>
-		<!-- 임시 사이드바 끝 -->
-		<section class="content-section">
-			<div class="container">
-				<div class="container-margin">
-					<!-- 내용 섹션 -->
-					<section class="board-info-box-layout">
-						<div class="board-info-box">
-							<div class="board-info-title-box">
-								<div class="board-info-title">
-									<div>
-										<span>통솔자 관리</span>
-									</div>
-									<div class="search">
-										<input type="text" placeholder="검색어 입력">
-										<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-									</div>
-								</div>
+	</div>
+</section>
+<main class="main-section">
+	<!-- 임시 사이드바 -->
+	<div th:insert="~{/admin/side-menu:: side-menu}"></div>
+	<!-- 임시 사이드바 끝 -->
+	<section class="content-section">
+		<div class="container">
+			<div class="container-margin">
+				<!-- 내용 섹션 -->
+				<section class="board-info-box-layout">
+					<div class="board-info-box">
+						<div class="board-info-title-box">
+							<div class="board-info-title">
 								<div>
-									<div class="category-container">
-										<button class="category-entire active">전체</button>
-										<button class="category-abled">비장애인</button>
-										<button class="category-disabled">장애인</button>
-									</div>
-									<div class="delete-box">
-										<div class="margin-box">
-											<button class="event-status status-btn accepted active">승인완료</button>
-											<button class="event-status status-btn hold">승인대기</button>
-										</div>
+									<span>통솔자 관리</span>
+								</div>
+								<div class="search">
+									<input class="search-input" type="text" placeholder="통솔자 이름 입력">
+									<img class="search-btn-icon" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+								</div>
+							</div>
+							<div>
+								<div class="category-container">
+									<button class="category-entire active">전체</button>
+									<button class="category-abled">비장애인</button>
+									<button class="category-disabled">장애인</button>
+								</div>
+								<div class="delete-box">
+									<div class="margin-box">
+										<button class="event-status status-btn accepted">승인완료</button>
+										<button class="event-status status-btn hold">승인대기</button>
 									</div>
 								</div>
-								<!-- <div>
-									<div class="category-container">
-										<button class="category-entire">전체</button>
-										<button class="category-abled">비장애인</button>
-										<button class="category-disabled">장애인</button>
-										<button class="category-accepted">승인완료</button>
-										<button class="category-hold">승인대기</button>
-									</div>
-									<div class="delete-box">
-										<button class="delete-button">회원 삭제</button>
-									</div>
-								</div> -->
 							</div>
-							<div class="info-table">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>No</th>
-											<th>이름</th>
-											<th>닉네임</th>
-											<th>전화번호</th>
-											<th>이메일</th>
-											<th>생년월일</th>
-											<th>지원분야</th>
-											<th>상태</th>
-										</tr>
-									</thead>
-									<tr class="row">
-										<td>1</td>
-										<td>한동석</td>
-										<td>멋쟁이</td>
-										<td>010-1234-1234</td>
-										<td>hds123@gmail.com</td>
-										<td>2000.12.04</td>
-										<td class="field abled">비장애인</td>
-										<td class="status waiting">승인 대기</td>
-									</tr>
-									
-									<tr class="row">
-										<td>2</td>
-										<td>이순신</td>
-										<td>장군님</td>
-										<td>010-0000-0000</td>
-										<td>lss123@naver.com</td>
-										<td>1995.02.12</td>
-										<td class="field disabled">장애인</td>
-										<td class="status waiting">승인 대기</td>
-									</tr>
-									<tr class="row">
-										<td>3</td>
-										<td>홍길동</td>
-										<td>서자</td>
-										<td>010-0123-0123</td>
-										<td>hgd123@naver.com</td>
-										<td>1999.04.27</td>
-										<td class="field abled">비장애인</td>
-										<td class="status accepted">승인 완료</td>
-									</tr>
-									<tr class="row">
-										<td>4</td>
-										<td>을지문덕</td>
-										<td>지휘관</td>
-										<td>010-1111-2222</td>
-										<td>uzmd123@naver.com</td>
-										<td>1991.08.16</td>
-										<td class="field abled">비장애인</td>
-										<td class="status accepted">승인 완료</td>
-									</tr>
-								</table>
-								<!-- 페이지 버튼 -->
-								<div class="page-button-box-layout">
-									<div class="page-button-box">
-										<!-- 페이지 번호 -->
-										<div class="">
-											<div class="page-button-margin">
-												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">
-												</div>
-											</div>
-										</div>
-										<div class="page-button-active page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>1</span>
-												</div>
-											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>2</span>
-												</div>
-											</div>
-										</div>
-										<div class="page-button">
-											<div class="page-button-margin">
-												<div>
-													<span>3</span>
-												</div>
-											</div>
-										</div>
-										<div class="">
-											<div class="page-button-margin">
-												<div>
-													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- 페이지 버튼 끝 -->
-							</div>
+							<!-- <div>
+                                <div class="category-container">
+                                    <button class="category-entire">전체</button>
+                                    <button class="category-abled">비장애인</button>
+                                    <button class="category-disabled">장애인</button>
+                                    <button class="category-accepted">승인완료</button>
+                                    <button class="category-hold">승인대기</button>
+                                </div>
+                                <div class="delete-box">
+                                    <button class="delete-button">회원 삭제</button>
+                                </div>
+                            </div> -->
 						</div>
-					</section>
-				</div>
-			</div>
-		</section>
-	</main>
-	<section class="delete-modal">
-		<div class="delete-modal-shape">
-			<div class="modal-header">
-				<h4>삭제 확인</h4>
-			</div>
-			<div class="modal-body">
-				<p>정말로 삭제하겠습니까?</p>
-			</div>
-			<div class="modal-footer">
-				<span class="confirm-delete">확인</span>
-				<span class="cancel-delete">취소</span>
-			</div>
-		</div>
-	</section>
-	<section class="delete-no-check-modal">
-		<div class="delete-no-check-modal-shape">
-			<div class="modal-header">
-				<h4>삭제 불가</h4>
-			</div>
-			<div class="modal-body">
-				<p>선택된 항목이 없습니다.</p>
-			</div>
-			<div class="modal-footer">
-				<span class="no-check-confirm-delete">확인</span>
-			</div>
-		</div>
-	</section>
-	<section class="user-modal">
-		<div class="user-modal-shape">
-			<div class="modal-header">
-				<h4>회원 상세보기</h4>
-				<a class="modal-close">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						data-name="Capa 1"
-						id="Capa_1"
-						viewBox="0 0 20 19.84"
-					>
-						<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>
-					</svg>
-				</a>
-			</div>
-			<form class="user-info" action>
-				<main class="user-detail">
-					<h5 class="detail-title">회원 상세정보</h5>
-					<div class="profile-img-wrapper">
-						<label>
-							<div class="content-img">
-								<img
-									src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"
-								/>
+						<div class="info-table">
+							<table class="table">
+								<thead>
+								<tr>
+									<th>No</th>
+									<th>이름</th>
+									<th>닉네임</th>
+									<th>전화번호</th>
+									<th>이메일</th>
+									<th>가입일</th>
+									<th>지원분야</th>
+									<th>상태</th>
+								</tr>
+								</thead>
+								<tbody class="guide-list">
+								<!--										<tr class="row">-->
+								<!--											<td>1</td>-->
+								<!--											<td>한동석</td>-->
+								<!--											<td>멋쟁이</td>-->
+								<!--											<td>010-1234-1234</td>-->
+								<!--											<td>hds123@gmail.com</td>-->
+								<!--											<td>2000.12.04</td>-->
+								<!--											<td class="field abled">비장애인</td>-->
+								<!--											<td class="status waiting">승인 대기</td>-->
+								<!--										</tr>-->
+								</tbody>
+							</table>
+							<!-- 페이지 버튼 -->
+							<div class="page-button-box-layout">
+								<div class="page-button-box">
+									<!-- 페이지 번호 -->
+									<!--										<div class="">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button">-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+									<!--										<div class="page-button-active page-button">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<span>1</span>-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+									<!--										<div class="page-button">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<span>2</span>-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+									<!--										<div class="page-button">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<span>3</span>-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+									<!--										<div class="">-->
+									<!--											<div class="page-button-margin">-->
+									<!--												<div>-->
+									<!--													<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button">-->
+									<!--												</div>-->
+									<!--											</div>-->
+									<!--										</div>-->
+								</div>
 							</div>
-						</label>
+							<!-- 페이지 버튼 끝 -->
+						</div>
 					</div>
-					<ul class="content-list-wrap">
-						<li class="content-list">
-							<span>아이디</span>
-							<p class="guide-name">hhdMJY</p>
-						</li>
-						<li class="content-list">
-							<span>이름</span>
-							<p class="guide-name">한동석</p>
-						</li>
-						<li class="content-list">
-							<span>닉네임</span>
-							<p class="guide-nickname">멋쟁이</p>
-						</li>
-						<li class="content-list">
-							<span>휴대전화</span>
-							<p class="guide-phone">010-1234-234</p>
-						</li>
-						<li class="content-list">
-							<span>이메일</span>
-							<p class="guide-email">hds1234@gmail.com</p>
-						</li>
-						<li class="content-list">
-							<span>생년월일</span>
-							<p class="guide-birth">1999.06.15</p>
-						</li>
-						<li class="content-list">
-							<span>성별</span>
-							<p class="guide-gender">남</p>
-						</li>
-						<li class="content-list">
-							<span>증명서류</span>
-							<a class="guide-file">apply-certificate.pdf</a>
-						</li>
-					</ul>
-					<div class="update-box">
-						<button type="button" class="update-button">승인취소</button>
-						<button type="button" class="update-button">승인하기</button>
-					</div>
-				</main>
-			</form>
+				</section>
+			</div>
 		</div>
 	</section>
+</main>
+<section class="delete-modal">
+	<div class="delete-modal-shape">
+		<div class="modal-header">
+			<h4>삭제 확인</h4>
+		</div>
+		<div class="modal-body">
+			<p>정말로 삭제하겠습니까?</p>
+		</div>
+		<div class="modal-footer">
+			<span class="confirm-delete">확인</span>
+			<span class="cancel-delete">취소</span>
+		</div>
+	</div>
+</section>
+<section class="delete-no-check-modal">
+	<div class="delete-no-check-modal-shape">
+		<div class="modal-header">
+			<h4>삭제 불가</h4>
+		</div>
+		<div class="modal-body">
+			<p>선택된 항목이 없습니다.</p>
+		</div>
+		<div class="modal-footer">
+			<span class="no-check-confirm-delete">확인</span>
+		</div>
+	</div>
+</section>
+
+<div class="guide-modal-list">
+	<!--		<section class="user-modal">-->
+	<!--			<div class="user-modal-shape">-->
+	<!--				<div class="modal-header">-->
+	<!--					<h4>회원 상세보기</h4>-->
+	<!--					<a class="modal-close">-->
+	<!--						<svg-->
+	<!--							xmlns="http://www.w3.org/2000/svg"-->
+	<!--							data-name="Capa 1"-->
+	<!--							id="Capa_1"-->
+	<!--							viewBox="0 0 20 19.84"-->
+	<!--						>-->
+	<!--							<path d="M10.17,10l3.89-3.89a.37.37,0,1,0-.53-.53L9.64,9.43,5.75,5.54a.37.37,0,1,0-.53.53L9.11,10,5.22,13.85a.37.37,0,0,0,0,.53.34.34,0,0,0,.26.11.36.36,0,0,0,.27-.11l3.89-3.89,3.89,3.89a.34.34,0,0,0,.26.11.35.35,0,0,0,.27-.11.37.37,0,0,0,0-.53Z"/>-->
+	<!--						</svg>-->
+	<!--					</a>-->
+	<!--				</div>-->
+	<!--				<form class="user-info" action>-->
+	<!--					<main class="user-detail">-->
+	<!--						<h5 class="detail-title">회원 상세정보</h5>-->
+	<!--						<div class="profile-img-wrapper">-->
+	<!--							<label>-->
+	<!--								<div class="content-img">-->
+	<!--									<img-->
+	<!--										src="https://us.123rf.com/450wm/mathier/mathier1905/mathier190500002/134557216-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%86%EC%9D%8C-%ED%8F%AC%EB%9F%BC-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%B0%8F-%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9A%A9-%EC%9E%90%EB%A6%AC-%ED%91%9C%EC%8B%9C%EC%9E%90.jpg?ver=6"-->
+	<!--									/>-->
+	<!--								</div>-->
+	<!--							</label>-->
+	<!--						</div>-->
+	<!--						<ul class="content-list-wrap">-->
+	<!--							<li class="content-list">-->
+	<!--								<span>아이디</span>-->
+	<!--								<p class="guide-name">hhdMJY</p>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>이름</span>-->
+	<!--								<p class="guide-name">한동석</p>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>닉네임</span>-->
+	<!--								<p class="guide-nickname">멋쟁이</p>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>휴대전화</span>-->
+	<!--								<p class="guide-phone">010-1234-234</p>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>이메일</span>-->
+	<!--								<p class="guide-email">hds1234@gmail.com</p>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>생년월일</span>-->
+	<!--								<p class="guide-birth">1999.06.15</p>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>성별</span>-->
+	<!--								<p class="guide-gender">남</p>-->
+	<!--							</li>-->
+	<!--							<li class="content-list">-->
+	<!--								<span>증명서류</span>-->
+	<!--								<a class="guide-file">apply-certificate.pdf</a>-->
+	<!--							</li>-->
+	<!--						</ul>-->
+	<!--						<div class="update-box">-->
+	<!--							<button type="button" class="update-button">승인취소</button>-->
+	<!--							<button type="button" class="update-button">승인하기</button>-->
+	<!--						</div>-->
+	<!--					</main>-->
+	<!--				</form>-->
+	<!--			</div>-->
+	<!--		</section>-->
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/page.js"></script>
+<script src="/js/common/formatDate.js"></script>
 <script src="/js/admin/admin-guideList.js"></script>
 </html>

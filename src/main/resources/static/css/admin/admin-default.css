@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 * {
@@ -33,18 +33,18 @@ button {
 
 /* 섹션 구분하기 */
 .header-section {
-    width: 100%;
-    height: 56px;
+	width: 100%;
+	height: 56px;
 }
 
 .main-section {
-    display: flex;
-    width: 100%;
+	display: flex;
+	width: 100%;
 }
 
 .content-section {
-    display: flex;
-    width: 100%;
+	display: flex;
+	width: 100%;
 }
 
 
@@ -58,14 +58,14 @@ button {
 }
 
 .info-title-box-flex {
-    display: flex;
-    position: fixed;
-    justify-content: flex-start;
+	display: flex;
+	position: fixed;
+	justify-content: flex-start;
 }
 
 .logo-box-layout {
 	display: flex;
-	width: 250px;	
+	width: 250px;
 }
 
 /*  메뉴 타이틀 */
@@ -75,12 +75,12 @@ button {
 }
 
 .logo-title {
-    display: flex;
-    justify-content: flex-start;
-    position: relative;
-    font-size: 21px;
-    color: #fff;
-    height: 32px;
+	display: flex;
+	justify-content: flex-start;
+	position: relative;
+	font-size: 21px;
+	color: #fff;
+	height: 32px;
 }
 
 .logo-name {
@@ -94,8 +94,8 @@ button {
 	padding-top : 17px;
 	padding-left: 10px;
 	align-items: center;
-    display: flex;
-    gap: 8px;
+	display: flex;
+	gap: 8px;
 }
 
 .depth1-icon {
@@ -109,7 +109,7 @@ button {
 	position: relative;
 	width: 300px;
 }
-  
+
 
 .board-info-title{
 	display: flex;
@@ -119,29 +119,30 @@ button {
 
 .search input{
 	width: 85%;
-    border: 1px solid #c60a164d;
-    border-radius: 8px;
-    padding: 10px 36px 10px 12px;
-    font-size: 14px;
+	border: 1px solid #c60a164d;
+	border-radius: 8px;
+	padding: 10px 36px 10px 12px;
+	font-size: 14px;
 }
 
 .search img {
-    position: absolute;
-    width: 17px;
-    top: 10px;
-    right: 7px;
-    margin: 0;
-    filter: opacity(0.2) drop-shadow(0 0 0 red);
-  }
+	position: absolute;
+	width: 17px;
+	top: 10px;
+	right: 7px;
+	margin: 0;
+	filter: opacity(0.2) drop-shadow(0 0 0 red);
+	cursor: pointer;
+}
 
-  .board-info-title div span {
+.board-info-title div span {
 	line-height: 35px;
 	font-size: larger;
-  }
+}
 
 div.search {
 	margin: 0;
-}  
+}
 
 div.search input:focus{
 	outline: none;
@@ -155,12 +156,12 @@ div.search input:focus{
 
 .content-list p{
 	height: 85%;
-    width: 100%;
-    padding: 0px 20px;
-    border: none;
-    resize: none;
-    color: #777777;
-    font-family: inherit;
+	width: 100%;
+	padding: 0px 20px;
+	border: none;
+	resize: none;
+	color: #777777;
+	font-family: inherit;
 }
 
 

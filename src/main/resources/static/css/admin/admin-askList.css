@@ -17,7 +17,7 @@
     right: 0;
     border: none;
     top: 17px;
-    right: 96px;
+    right: 117px;
 }
 
 tbody{
@@ -30,11 +30,11 @@ tbody{
     width: 100px;
     height: 20px;
     background-color: #fff;
-	border-radius: 3px;
+    border-radius: 3px;
 }
 
 .add-button:hover {
-	color: #c97793;
+    color: #c97793;
 }
 
 .anouncement-content{
@@ -74,11 +74,11 @@ textarea:focus {
 }
 
 .answer{
-	position: absolute;
+    position: absolute;
 }
 
 button.answer :hover{
-	color: #c97793;
+    color: #c97793;
 }
 
 .ask-detail .content-input{
