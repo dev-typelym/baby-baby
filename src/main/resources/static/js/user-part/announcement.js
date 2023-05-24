@@ -193,4 +193,173 @@ $(window).scroll(function() {
     }
 });
 
+//--------------------------- 관리자 ----------------------------------
+function dropDown() {
+    /* announcement.js */
+    let $title = $('.article');
+    let $content = $('.admin-writed');
 
+    $title.on('click', function () {
+        let index = $(this).parent().index();
+        let $currentContent = $content.eq(index);
+
+        if ($currentContent.is(':visible')) {
+            $currentContent.hide();
+        } else {
+            $content.hide();
+            $currentContent.show();
+        }
+    });
+}
+
+
+const PAGE_AMOUNT = 10;
+const $pageWrap = $(".paging-list");
+const $contentWrap = $(".contents");
+
+// const adminAnnouncementSearch = {
+//     announcementTitle: null
+// };
+
+
+function getAdminAnnouncementList() {
+    $.ajax({
+        url: `announcement-list/${globalThis.page}`,
+        // data: adminAnnouncementSearch,
+        success: function(data) {
+            console.log(data)
+            $pageWrap.empty();
+            showPage(data);
+            $contentWrap.empty();
+            showList(data.content);
+            dropDown();
+        }
+
+    })
+}
+
+globalThis.page = 1;
+
+
+
+function findPage(page) {
+    globalThis.page = page;
+    getAdminAnnouncementList();
+}
+
+
+//검색
+// $(".search-btn-icon").on("click", function (e) {
+//     e.preventDefault();
+//     let val;
+//     let $search = $(".search-input");
+//     if ($search.val() === "") return;
+//
+//     val = $search.val();
+//
+//     adminAnnouncementSearch.announcementTitle = val;
+//
+//     console.log( adminAnnouncementSearch.announcementTitle + "777");
+//     getAdminAnnouncementList();
+// });
+
+function showPage(data) {
+    let pageable = data.pageable;
+    let pageNumber = pageable.pageNumber;
+    let totalPages = data.totalPages;
+    let count = Math.floor(pageNumber/PAGE_AMOUNT);
+
+    let startPage = count * PAGE_AMOUNT;
+    let endPage = startPage + PAGE_AMOUNT;
+
+    endPage = endPage > data.totalPages ? data.totalPages : endPage;
+
+    let hasPrev = startPage > 1;
+    // 170 page / 5 = 24 -> 171 /
+    let hasNext = endPage < data.totalPages;
+
+    let text = "";
+
+
+    // Previous button
+    if (hasPrev) {
+        text += '<li class="paging-list-item">';
+        text += `<button class="paging-btn-prev" onclick="findPage(${startPage})" data-page = "${pageNumber}" aria-label="이전 목록">`;
+        text += '<div class="paging-btn-prev-image-wrapper">';
+        text += '<img class="paging-btn-prev-image" src="/images/parents-yard-board/parents-yard-board/paging-left.png">';
+        text += '</div>';
+        text += '</button>';
+        text += '</li>';
+    }
+
+    // Page buttons
+    for (let i = startPage + 1; i < endPage + 1; i++) {
+        let page = i;
+        text += '<li class="paging-list-item">';
+        if (pageNumber + 1 == page) {
+            text += `<button type="button" onclick="findPage(${i})" class="paging-list-item-btn active">${i}</button>`;
+        } else {
+            text += `<button type="button" onclick="findPage(${i})" class="paging-list-item-btn">${i}</button>`;
+        }
+        text += '</li>';
+    }
+
+    // Next button
+    if (hasNext) {
+        text += '<li class="paging-list-item">';
+        text += `<button class="paging-btn-next" onclick="findPage(${endPage + 1})" data-page="' + (pageNumber + 1) + '" aria-label="다음 목록">`;
+        text += '<div class="paging-btn-next-image-wrapper">';
+        text += '<img class="paging-btn-next-image" src="/images/parents-yard-board/parents-yard-board/paging-right.png">';
+        text += '</div>';
+        text += '</button>';
+        text += '</li>';
+    }
+
+    text += '</ul>';
+
+    $pageWrap.html(text);
+}
+
+
+//    공지사항 목록
+function showList(announcementDTOS) {
+    var content = "";
+    var detailContent = "";
+    // console.log(announcementDTOS)
+    announcementDTOS.forEach(announcement => {
+        console.log(announcement.announcementFileDTOS[0])
+        const formattedDate = formatDate(new Date(announcement.writeDate));
+        content +=
+            `
+                 <li class="one-content">
+                    <div class="article">
+                        <div class="info">
+                            <div class="thumb">
+                                <img src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUuid}_${announcement.announcementFileDTOS[0].fileOrgName}" alt="">
+                            </div>
+                            <div class="text-wrapper">
+                                <div class="notice">중요</div>
+                                <div class="content-title">
+                                   ${announcement.announcementTitle}
+                                </div>
+                                <span class="author">
+                                    ${announcement.writerName}
+                                </span>
+                                <span class="update-date">${formattedDate}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="admin-writed">
+                        <div class="announcement-content">
+                            <img src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUuid}_${announcement.announcementFileDTOS[0].fileOrgName}" alt="">
+                            ${announcement.announcementContent}
+                        </div>
+                    </div>
+                </li>
+            `
+    });
+    $contentWrap.append(content);
+
+}
+
+getAdminAnnouncementList();

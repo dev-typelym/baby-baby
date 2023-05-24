@@ -39,4 +39,10 @@ public class Announcement extends BoardInfo {
         this.announcementFiles = announcementFiles;
         this.admin = admin;
     }
+
+    @Builder
+    public Announcement(Long id, String announcementTitle, String announcementContent, List<AnnouncementFile> announcementFiles) {
+        super(id, announcementTitle, announcementContent);
+        this.announcementFiles = announcementFiles;
+    }
 }

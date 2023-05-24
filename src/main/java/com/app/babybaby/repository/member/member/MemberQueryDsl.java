@@ -67,7 +67,7 @@ public interface MemberQueryDsl {
     public Page<Member> findAllGuideWithSearch_queryDSL(Pageable pageable, AdminMemberSearch memberSearch, GuideType guideType, AcceptanceType acceptanceType);
 
     //    관리자 통솔자 승인
-    public void updateGuideStatusById_queryDSL(Long memberId, Long confirm);
+    public void updateGuideStatusById_queryDSL(Long memberId, String confirm);
 
     //    관리자 통솔자 취소시 memberfile 삭제하기
     public void deleteMemberFileById_queryDSL(Long memberId);

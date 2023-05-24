@@ -158,7 +158,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         BooleanExpression memberNameEq = memberSearch.getMemberName() == null ? null : member.memberName.like("%" + memberSearch.getMemberName() + "%");
         List<Member> foundUsers = query.select(member)
                 .from(member)
-                .where(member.memberType.eq(MemberType.COMPANY).and(memberNameEq))
+                .where(member.memberType.eq(MemberType.COMPANY).and(memberNameEq).and(member.memberSleep.eq(SleepType.AWAKE)))
                 .orderBy(member.id.asc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -166,7 +166,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
         Long count = query.select(member.count())
                 .from(member)
-                .where(member.memberType.eq(MemberType.COMPANY).and(memberNameEq))
+                .where(member.memberType.eq(MemberType.COMPANY).and(memberNameEq).and(member.memberSleep.eq(SleepType.AWAKE)))
                 .fetchOne();
 
         return new PageImpl<>(foundUsers, pageable, count);
@@ -247,7 +247,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
     //  [관리자] 통솔자 승인하기 취소시 일반회원으로 돌리기
     @Override
-    public void updateGuideStatusById_queryDSL(Long memberId, Long confirm) {
+    public void updateGuideStatusById_queryDSL(Long memberId, String confirm) {
 
         AcceptanceType acceptStatus = null;
         MemberType guideStatus = null;

@@ -67,6 +67,7 @@ a{
 .thumb{
     margin-bottom: 20px;
     width: 140px;
+    height: 120px;
     float: right;
 }
 
@@ -120,50 +121,150 @@ a{
     max-width: 800px;
     border-bottom: 1px solid #d1d1d1;
     padding-bottom: 10px;
-  }
-  
-  .search {
+}
+
+.search {
     display: flex;
     align-items: center;
     justify-content: right;
-  }
-  
-  select {
+}
+
+select {
     border: none;
     background-color: #fff;
     padding: 10px 20px;
     font-size: 14px;
     color: #666;
-  }
-  
-  .search-text {
+}
+
+.search-text {
     display: flex;
     align-items: center;
     background-color: #fff;
     padding: 5px;
-  }
-  
-  .search-input {
+}
+
+.search-input {
     border: none;
     background-color: transparent;
     flex: 1;
     padding: 10px;
     font-size: 14px;
     color: #666;
-      outline: none;
-  }
-  
-  .search-btn {
-      border: none;
-      background-color: transparent;
-      font-size: 14px;
-      color: #666;
-      cursor: pointer;
-      padding: 10px;
-      background-image: url(https://www.wadiz.kr/resources/static/img/common/icon_gray_search.png);
-      background-size: 20px;
-  }
-  
+}
+
+.search-btn {
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* 페이징 */
+.paging-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 40px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
+
+.paging-btn-wrapper{
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: -.02em;
+    color: rgba(0,0,0,.84);
+}
+
+.paging-btn-prev{
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    color: #0000008a;
+    font-size: 20px;
+    background-color: #fff;
+    border: none;
+}
+
+.paging-btn-next{
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    color: #0000008a;
+    font-size: 20px;
+    background-color: #fff;
+    border: none;
+}
+
+.paging-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.paging-list-item{
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    list-style: none;
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    padding: 0;
+
+}
+
+
+.paging-list-item-btn{
+    width: 34px;
+    height: 34px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    color: #0000008a;
+    font-size: 15px;
+}
+
+.paging-btn-prev-image-wrapper{
+    width: 20px;
+    height: 20px;
+}
+
+.paging-btn-prev-image{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 9px;
+}
+
+.paging-btn-next-image-wrapper{
+    width: 20px;
+    height: 20px;
+}
+
+.paging-btn-next-image{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 9px;
+}
+
+.active{
+    color: #00b2b2;
+}
 
 
 
@@ -173,3 +274,7 @@ a{
     color: red;
 }
 
+
+.main-content{
+    margin-bottom: 100px;
+}

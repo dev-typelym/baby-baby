@@ -8,26 +8,24 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-@Component
 @Data
+@Component
 @RequiredArgsConstructor
 public class AnnouncementFileDTO {
-    private LocalDateTime registerDate;
-    private LocalDateTime updateDate;
+    private Long id;
+    private Long announcementId;
     private String fileOriginalName;
+    private String fileUUID;
     private String filePath;
     private FileType fileType;
-    private String fileUUID;
-    private Long id;
 
     @Builder
-    public AnnouncementFileDTO(LocalDateTime registerDate, LocalDateTime updateDate, String fileOriginalName, String filePath, FileType fileType, String fileUUID, Long id) {
-        this.registerDate = registerDate;
-        this.updateDate = updateDate;
+    public AnnouncementFileDTO(Long id, Long announcementId, String fileOriginalName, String fileUUID, String filePath, FileType fileType) {
+        this.id = id;
+        this.announcementId = announcementId;
         this.fileOriginalName = fileOriginalName;
+        this.fileUUID = fileUUID;
         this.filePath = filePath;
         this.fileType = fileType;
-        this.fileUUID = fileUUID;
-        this.id = id;
     }
 }

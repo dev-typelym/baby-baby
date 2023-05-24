@@ -44,6 +44,11 @@ public class Ask extends BoardInfo {
         this.member = member;
     }
 
+    public Ask(String boardTitle, String boardContent, ProcessType askStatus) {
+        super(boardTitle, boardContent);
+        this.askStatus = askStatus;
+    }
+
     @Builder
     public Ask(Long id, String boardTitle, String boardContent, ProcessType askStatus, Member member, AskAnswer askAnswer) {
         super(id, boardTitle, boardContent);

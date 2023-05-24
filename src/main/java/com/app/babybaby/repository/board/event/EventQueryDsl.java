@@ -67,4 +67,7 @@ public interface EventQueryDsl {
     public Optional<Event> findForAdminEventById_queryDSL(Long eventId);
     //   [관리자] 놀러가요 삭제하기
     public void deleteEventByIds_queryDSL(Long eventId);
+
+    //   [관리자] 기업상세 이벤트 페이징 목록
+    public Page<Event> findNowKidsEventsList_queryDSL(Pageable pageable, Long companyId);
 }
