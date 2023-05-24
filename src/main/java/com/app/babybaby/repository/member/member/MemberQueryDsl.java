@@ -1,6 +1,7 @@
 package com.app.babybaby.repository.member.member;
 
 import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.member.RandomKey;
 import com.app.babybaby.entity.purchase.coupon.Coupon;
@@ -75,4 +76,6 @@ public interface MemberQueryDsl {
     //    관리자 통솔자 취소시 memberfile 삭제하기
     public void deleteGuideInterestById_queryDSL(Long memberId);
 
+//----------------------------- 멤버로 아이 목록 불러오기 -------------------------------------------
+    public List<Kid> findKidsByMemberId(Long sessionId);
 }

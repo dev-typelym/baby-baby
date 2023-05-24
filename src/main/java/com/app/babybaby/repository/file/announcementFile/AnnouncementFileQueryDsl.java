@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface AnnouncementFileQueryDsl {
 
-    public List<AnnouncementFile> findByAnnouncementId(Long id);
+
+    public void deleteByAnnouncementId(Long announcementId);
 }

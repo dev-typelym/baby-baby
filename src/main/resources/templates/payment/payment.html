@@ -310,7 +310,11 @@
 <script src="/js/components/header.js"></script>
 <script th:inline="javascript">
 	let eventDTO = [[${eventDTO}]];
+	let eventId = [[${eventId}]];
+	let kidIds = [[${kidIds}]];
 	console.log(eventDTO)
+	console.log(kidIds)
+	console.log(eventId)
 </script>
 <script type="text/javascript" src="/js/payment/payment.js"></script>
 </html>

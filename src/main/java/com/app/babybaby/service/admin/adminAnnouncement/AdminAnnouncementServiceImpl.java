@@ -56,6 +56,7 @@ public class AdminAnnouncementServiceImpl implements AdminAnnouncementService {
 //    관리자 공지사항 삭제
     @Override
     public void deleteAdminAnnouncemnet(List<String> announcementIds) {
+        announcementIds.stream().map(announcementId -> Long.parseLong(announcementId)).forEach(announcementFileRepository::deleteByAnnouncementId);
         announcementIds.stream().map(announcementId -> Long.parseLong(announcementId)).forEach(announcementRepository::deleteAnnouncementByIds_queryDSL);
     }
 

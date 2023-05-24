@@ -6,6 +6,7 @@ import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.guideSchedule.GuideSchedule;
 import com.app.babybaby.entity.guideSchedule.QGuideSchedule;
 import com.app.babybaby.entity.like.eventLike.QEventLike;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.member.QMember;
 import com.app.babybaby.entity.purchase.coupon.QCoupon;
@@ -460,6 +461,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
 
         return new PageImpl<>(foundEventForCompany, pageable, count);
     }
+
 }
 
 

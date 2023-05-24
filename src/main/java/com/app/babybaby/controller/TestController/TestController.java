@@ -170,4 +170,7 @@ public class TestController {
     @GetMapping("/myPage/children-register-clone")
     public void pageClone(){}
 
+    @GetMapping("/error/service-preparing")
+    public void servocePreparing(){}
+
 }

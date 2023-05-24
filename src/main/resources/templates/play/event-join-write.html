@@ -143,26 +143,24 @@
                                     </div>
                                     <div class="select-menu-box-kid">
                                         <div class="select-menu-layout">
-                                            <div class="select-option-kid">
-                                                <span class="select-name">김동한&nbsp;</span>(만&nbsp;<span
-                                                    class="select-age">3</span>세)&nbsp;(<span
-                                                    class="select-gender">♂</span>)
-
-                                            </div>
-                                            <div class="select-option-kid">
-                                                <span class="select-name">김정표&nbsp;</span>(만&nbsp;<span
-                                                    class="select-age">30</span>세)&nbsp;(<span
-                                                    class="select-gender">👦</span>)
-                                            </div>
-                                            <div class="select-option-kid">
-                                                <span class="select-name">황현수&nbsp;</span>(만&nbsp;<span
-                                                    class="select-age">5</span>세)&nbsp;(<span
-                                                    class="select-gender">👧</span>)
-                                            </div>
+                                            <th:block th:each="kid: ${kidsList}">
+                                                <div class="select-option-kid">
+                                                    <span class="select-name" th:text="${kid.kidName}">김동한&nbsp;</span>
+                                                    (만&nbsp;
+                                                    <span class="select-age" th:text="${kid.kidAge}">3</span>
+                                                    세)&nbsp;(
+                                                    <span class="select-gender" th:if="${kid.kidGender.toString() == 'MAN'}">👦)</span>
+                                                    <span class="select-gender" th:if="${kid.kidGender.toString() == 'WOMAN'}">👧)</span>
+                                                </div>
+                                                <input class="kidIdforPurchase" style="display: none" th:value="${kid.id}" >
+                                                <input class="eventIdforPurchase" style="display: none" value="${eventDTO.id}" >
+                                            </th:block>
                                         </div>
                                     </div>
-
-                                    <div class="kids-table"></div>
+                                    <form id="go-payment" th:action="@{/payment/pay/{eventId}(eventId=${eventDTO.id})}" method="post">
+                                        <div class="kids-table">
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +206,7 @@
                         </div>
                     </section>
 
-                    <button type="button" class="btn confirm-button">
+                    <button type="submit" form="go-payment" class="btn confirm-button">
                         <span>결제하기</span>
                     </button>
                 </div>
@@ -275,14 +273,22 @@
             $(".select-placeholder-kid").text($(e).text());
             $(e).css("color", "#e1e1e1");
             $(e).css("color", "#e1e1e1");
+            $(e).css("display", "none");
             kids = $(".select-placeholder-kid").text();
 
+            let kidId = $(e).nextAll(".kidIdforPurchase").val();
+            let eventId = $(e).nextAll(".eventIdforPurchase").val();
             let $selectedOption = $("<p class='selected-option'></p>").text(kids);
+            $selectedOption.append("<input class='sendKidId'  name='kidIds' value='" + kidId + "'/>");
+            $selectedOption.append("<input class='sendEventId' style='display:none;' name='eventId' value='" + eventId + "'/>");
+            console.log(kidId)
+            console.log(e)
             let $removeButton = $("<button>X</button>");
 
             $removeButton.click(() => {
                 $selectedOption.remove();
                 $removeButton.remove();
+                $(e).css("display", "block");
             });
 
             $selectedOption.append($removeButton);

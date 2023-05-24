@@ -8,6 +8,7 @@ import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.file.reviewFile.ReviewFile;
+import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.calendar.CalendarRepository;
@@ -145,6 +146,11 @@ public class EventServiceImpl implements EventService {
     @Override
     public void deleteEvent(Long eventId) {
 
+    }
+
+    @Override
+    public List<Kid> findKidsBySessionId(Long sessionId) {
+       return memberRepository.findKidsByMemberId(sessionId);
     }
 
     @Override
