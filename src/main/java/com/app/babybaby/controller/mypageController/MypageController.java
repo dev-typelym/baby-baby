@@ -281,7 +281,7 @@ public class MypageController {
         memberService.getMemberById(memberDTO.getId()).ifPresent(member -> kidDTO.setParent(member));
         log.info(kidDTO.toString());
         kidService.save(kidDTO);
-        return new RedirectView("parent"); // <<<< 경로 수정할것
+        return new RedirectView("/mypage/main"); // <<<< 경로 수정할것
     }
 
 

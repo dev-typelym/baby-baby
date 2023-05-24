@@ -138,15 +138,15 @@ public class MemberServiceImpl implements MemberService {
     //    통솔자로 변경쓰~
     @Override
     public void save(MemberDTO memberDTO,Long memberId) {
-        memberRepository.findById(memberId).ifPresent(member ->
-                {
+        Member member = memberRepository.findMemberById(memberId);
                     member.setMemberFileOriginalName(memberDTO.getMemberFileOriginalName());
                     member.setMemberFilePath(memberDTO.getMemberFilePath());
                     member.setMemberFileUUID(memberDTO.getMemberFileUUID());
                     member.setMemberHiSentence(memberDTO.getMemberHiSentence());
                     member.setMemberGuideType(memberDTO.getMemberGuideType());
-                }
-        );
+                    member.setMemberType(memberDTO.getMemberType());
+                    member.setMemberGuideInterest(memberDTO.getMemberGuideInterest());
+                    memberRepository.save(member);
     }
 
 

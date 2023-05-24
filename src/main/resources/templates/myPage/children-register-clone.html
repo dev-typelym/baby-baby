@@ -11,7 +11,7 @@
 </head>
 <body>
 <div th:insert="~{/components/header:: header}"></div>
-<form th:action="@{children-register}" method="post" th:object="${kid}">
+<form th:action="@{/mypage/kid/register}" method="post" th:object="${kid}">
   <input type="hidden" name="parent" th:field="*{parent}">
   <div
           class="body1"

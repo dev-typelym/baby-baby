@@ -57,6 +57,7 @@ function deleteLike(eventId) {
 }
 
 function deleteLikeYou(eventId){
+    page = 0;
     $.ajax({
         url: `/mypage/delete/${eventId}`,
         type: 'post',
@@ -65,6 +66,13 @@ function deleteLikeYou(eventId){
         success: function(){
             $('.collection-table').empty();
             boardService.getList(appendList);
+            $(window).scroll(function() {
+                if($(window).scrollTop() + $(window).height() > $(document).height() * 0.9) {
+                    page++;
+                    boardService.getList(appendList);
+                    console.log(page)
+                }
+            });
         }
     });
 }
