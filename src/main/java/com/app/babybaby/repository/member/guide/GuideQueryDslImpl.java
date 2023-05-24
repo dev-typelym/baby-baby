@@ -24,4 +24,5 @@ public class GuideQueryDslImpl implements GuideQueryDsl {
                 .fetchJoin()
                 .where(guide.id.eq(guideId),guide.event.id.eq(eventId)).fetch();
     }
+
 }

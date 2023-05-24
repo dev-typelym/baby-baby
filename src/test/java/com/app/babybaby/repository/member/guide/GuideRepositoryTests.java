@@ -54,4 +54,9 @@ public class GuideRepositoryTests {
         guideRepository.findEventById(6L, 2L).stream().map(Guide::toString).forEach(log::info);
     }
 
+    @Test
+    public void findTopByEventIdAndAvailableTypeEndsWithTest(){
+        log.info(guideRepository.findFirstByEventIdAndAvailableTypeOrderById(1L, GuideAvailableType.AVAILABLE).toString());
+    }
+
 }

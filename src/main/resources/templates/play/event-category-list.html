@@ -5,6 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>모집 게시판</title>
+        <link rel="stylesheet" href="/css/components/header.css">
+        <link rel="stylesheet" href="/css/components/footer.css">
         <link rel="stylesheet" href="/css/play/event-category-list.css" />
         <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,6 +17,7 @@
         />
     </head>
     <body>
+    <div th:insert="~{/components/header:: header}"></div>
         <div id="page-container">
             <main id="main-app">
                 <div class="main-wrapper-content">
@@ -662,8 +665,10 @@
             </main>
         </div>
         <!-- page container -->
+    <div th:insert="~{/components/footer:: footer}"></div>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/js/components/header.js"></script>
     <script src="/js/play/event-category-list.js"></script>
     <script>
         /* 좋아요 버튼 */
