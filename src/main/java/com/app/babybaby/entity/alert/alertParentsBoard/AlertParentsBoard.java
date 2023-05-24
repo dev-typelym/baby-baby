@@ -28,8 +28,8 @@ public class AlertParentsBoard extends Alert {
         this.parentsBoard = parentsBoard;
     }
 
-    public AlertParentsBoard(String alertTitle, String alertContent, AlertType alertType, Member member, LocalDateTime alertRegisterDate, ParentsBoard parentsBoard) {
-        super(alertTitle, alertContent, alertType, member, alertRegisterDate);
-        this.parentsBoard = parentsBoard;
-    }
+//    public AlertParentsBoard(String alertTitle, String alertContent, AlertType alertType, Member member, LocalDateTime alertRegisterDate, ParentsBoard parentsBoard) {
+//        super(alertTitle, alertContent, alertType, member, alertRegisterDate);
+//        this.parentsBoard = parentsBoard;
+//    }
 }

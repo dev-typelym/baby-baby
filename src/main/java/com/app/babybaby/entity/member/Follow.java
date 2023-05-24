@@ -1,27 +1,36 @@
 package com.app.babybaby.entity.member;
 
+import com.app.babybaby.entity.audit.Period;
+import com.app.babybaby.type.AlertReadStatus;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @ToString(exclude = {"following", "follower"})
 @Table(name = "TBL_FOLLOW")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Follow {
+public class Follow extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FOLLOWING_ID")
     private Member following;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FOLLOWER_ID")
     private Member follower;
 
+    private LocalDate followDate;
+
+    @ColumnDefault("UNREAD")
+    private AlertReadStatus alertReadStatus;
+
+    @Builder
     public Follow(Member following, Member follower) {
         this.follower = follower;
         this.following = following;

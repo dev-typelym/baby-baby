@@ -372,7 +372,6 @@ getReplyList(globalThis.page);
 
 
 function showReplyCount(replyAllcount) {
-    console.log("러러러럴드ㅡ드드등" + replyAllcount);
     let countText = '';
     countText += `<em>${replyAllcount}</em>개의 댓글이 달려있습니다.`
     $('.comment-count').html(countText);
@@ -386,8 +385,6 @@ function getReplyCount() {
         type: 'get',
         success: function (count) {
             let replyAllcount = count;
-            console.log("드러러러러렁" + replyAllcount);
-            // showReplyList(data.data);
             showReplyCount(replyAllcount);
         }
     });

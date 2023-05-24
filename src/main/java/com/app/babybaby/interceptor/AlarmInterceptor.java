@@ -1,7 +1,12 @@
 package com.app.babybaby.interceptor;
 
+import com.app.babybaby.domain.alertDTO.AlertFollowDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.alert.AlertRepository;
 import com.app.babybaby.repository.alert.alertFollow.AlertFollowRepository;
+import com.app.babybaby.service.alert.alertFollow.AlertFollowService;
+import com.app.babybaby.service.member.member.MemberService;
 import com.app.babybaby.type.AlertReadStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Component
@@ -20,13 +27,24 @@ public class AlarmInterceptor implements HandlerInterceptor {
 
     private final AlertRepository alertRepository;
     private final AlertFollowRepository alertFollowRepository;
-//    private MyAlarmRestController alarmRestController;
+    private final AlertFollowService alertFollowService;
+    private final HttpSession session;
+    //    private MyAlarmRestController alarmRestController;
 //    private GroupRepository groupRepository;
 //    private QuestAchievementRepositoryImpl questAchievementRepository;
+    private Long getSessionMemberId() {
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        return memberDTO.getId();
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        request.setAttribute("noReadAlarm", alertFollowRepository.getNoReadAlert());
+//        status가 unread인 알림의 수를 세션에 담는다.
+        Long memberId = (getSessionMemberId());
+        log.info("====================={}", memberId);
+        List<MemberDTO> followers = alertFollowService.getFollowers(memberId);
+//        log.info("================={}", followers);
+        request.getSession().setAttribute("followers", followers);
 //        Long NoReadCount = (Long)request.getAttribute("noReadAlarm");
         return true;
     }
