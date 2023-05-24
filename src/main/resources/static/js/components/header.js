@@ -252,6 +252,7 @@ function hideAlarmModal() {
 $(".alarm-modal-btn").on("click", function () {
     if (!alarmModalCheck) {
         let modalMessage = '';
+        getFollowAlertList();
         showAlarmModal(modalMessage);
     } else {
         hideAlarmModal();
@@ -346,24 +347,24 @@ if (memberDTO != null) {
 
 // 읽지 않은 알림이 있을 때 그림 바꾸기
 function getCount() {
-    $.ajax({
-        url: '/alert/follow/controller/unread', // 서버의 요청 경로
-        type: 'GET',
-        success: function (response) {
-            var count = response;
-            console.log("response : " + response);
-            console.log("count : " + count);
-            if (count === 0) {
-                $('.new-alarm').css('display', 'none');
-            } else {
-                $('.new-alarm').css('display', 'block');
-            }
-        },
-        error: function (xhr, status, error) {
-            console.log('Error:', error);
-            console.log("에러메세지");
-        }
-    });
+    // $.ajax({
+    //     url: '/alert/follow/controller/unread', // 서버의 요청 경로
+    //     type: 'GET',
+    //     success: function (response) {
+    //         var count = response;
+    //         console.log("response : " + response);
+    //         console.log("count : " + count);
+    //         if (count === 0) {
+    //             $('.new-alarm').hide();
+    //         } else {
+    //             $('.new-alarm').show();
+    //         }
+    //     },
+    //     error: function (xhr, status, error) {
+    //         console.log('Error:', error);
+    //         console.log("에러메세지");
+    //     }
+    // });
 }
 
 // getCount 함수 호출
@@ -375,6 +376,7 @@ function getFollowAlertList() {
         url: '/alert/follow/controller/list', // 서버의 요청 경로
         type: 'GET',
         success: function (response) {
+            $('.modal-alarm-btn-wrapper').empty();
             appendFollowAlertList(response);
         },
         error: function (xhr, status, error) {
@@ -397,13 +399,15 @@ function appendFollowAlertList(alertResult) {
                             <div class="modal-alarm-content-title">
                                 <p>아기자기알림</p>
                             </div>
-                            <div class="modal-alarm-content-time">${alert}</div>
-<!--                        </div>-->
-<!--                        <p class="modal-alarm-content-text"><span>00</span>님이 나를 팔로우합니다!</p>-->
-<!--                    </div>-->
+                            <div class="modal-alarm-content-time"></div>
+                        </div>
+                        <input class="alertId" type="hidden" value="${alert.id} style="display: none;">
+                        <p class="modal-alarm-content-text"><span>${alert.memberNickname}</span>님이 나를 팔로우합니다!</p>
+                    </div>
                 </button>`
         ;
     });
     $('.modal-alarm-btn-wrapper').append(followText);
     // globalThis.page++;
 }
+

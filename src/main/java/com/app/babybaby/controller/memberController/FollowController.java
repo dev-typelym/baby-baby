@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.standard.expression.GreaterThanExpression;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -27,7 +28,12 @@ import java.util.List;
 public class FollowController {
 
     private final FollowService followService;
+    private final MemberService memberService;
     private final HttpSession session;
+
+    private Long getMemberIdByEmail(String memberEmail){
+        return memberService.findByMemberEmail(memberEmail).getId();
+    }
 
     private Long getSessionMemberId(){
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
@@ -51,7 +57,7 @@ public class FollowController {
     @PostMapping("list/followers")
     public Page<MemberDTO> getFollowers(@RequestParam("page") Integer page){
         Page<MemberDTO> result = followService.findFollowersByMemberId(
-                PageRequest.of(page, 20), getSessionMemberId());
+                PageRequest.of(page, 10), getSessionMemberId());
         return result;
     }
 
@@ -64,12 +70,16 @@ public class FollowController {
     }
 
     @PostMapping("isFollowed")
-    public Boolean isFollowed(@RequestParam("memberId") Long memberId){
-        return followService.getIsFollowedByMemberId(memberId, getSessionMemberId());
+    public Boolean isFollowed(@RequestParam("memberEmail") String memberEmail){
+        log.info("isFollowed===============================");
+        log.info(followService.getIsFollowedByMemberId(getMemberIdByEmail(memberEmail), getSessionMemberId()).toString());
+        return followService.getIsFollowedByMemberId(getMemberIdByEmail(memberEmail), getSessionMemberId());
     }
 
     @PostMapping("countFollowers")
-    public Long countFollowers(@RequestParam("memberId")Long memberId){
-        return followService.findFollowingMemberCountByMemberId_QueryDSL(memberId);
+    public Long countFollowers(@RequestParam("memberEmail")String memberEmail){
+        log.info("이메일로 숫자 가져오기"+getMemberIdByEmail(memberEmail));
+        log.info("countFollowers===============================" + followService.findFollowingMemberCountByMemberId_QueryDSL(getMemberIdByEmail(memberEmail)).toString());
+        return followService.findFollowingMemberCountByMemberId_QueryDSL(getMemberIdByEmail(memberEmail));
     }
 }

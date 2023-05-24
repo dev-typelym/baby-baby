@@ -27,8 +27,8 @@ public class AlertReview extends Alert {
         this.review = review;
     }
 
-    public AlertReview(String alertTitle, String alertContent, AlertType alertType, Member member, LocalDateTime alertRegisterDate, Review review) {
-        super(alertTitle, alertContent, alertType, member, alertRegisterDate);
-        this.review = review;
-    }
+//    public AlertReview(String alertTitle, String alertContent, AlertType alertType, Member member, LocalDateTime alertRegisterDate, Review review) {
+//        super(alertTitle, alertContent, alertType, member, alertRegisterDate);
+//        this.review = review;
+//    }
 }
