@@ -35,6 +35,7 @@ public class PurchaseDTO {
     private List<EventFileDTO> eventFileDTOS;
     private CalendarDTO calendarDTOS;
     private List<KidDTO> kids;
+    Long [] kidList;
 
     private CouponStatus couponStatus;
     private Long couponPrice;

@@ -129,7 +129,11 @@ public class EventController {
     @PostMapping("list")
     public String getEvents(@RequestBody EventBoardSearch eventBoardSearch, PageRequestDTO pageRequestDTO, HttpSession session){
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-        Long sessionId = memberDTO.getId();
+        Long sessionId = null;
+        if(memberDTO != null){
+            sessionId = memberDTO.getId();
+        }
+
         Pageable pageable = PageRequest.of(pageRequestDTO.getPage(), 8);
         Slice<EventDTO> eventListDTO = eventService.findEventListWithPaging(sessionId, eventBoardSearch,pageable);
         List<EventDTO> eventDTOList = eventListDTO.stream().collect(Collectors.toList());

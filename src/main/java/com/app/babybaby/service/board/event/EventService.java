@@ -48,6 +48,7 @@ public interface EventService {
     default EventDTO eventToDTO(Event event){
         return EventDTO.builder()
                 .id(event.getId())
+                .memberType(event.getCompany().getMemberType())
                 .boardContent(event.getBoardContent())
                 .boardTitle(event.getBoardTitle())
                 .category(event.getCategory())
@@ -67,7 +68,8 @@ public interface EventService {
                 .calendar(toCalendarDTO(event.getCalendar()))
                 .files(event.getEventFiles().stream().map(eventFile -> eventFileToDTO(eventFile)).collect(Collectors.toList()))
                 .build();
-        }
+    }
+
     default EventDTO eventToDTOS(Event event){
         return EventDTO.builder()
                 .id(event.getId())

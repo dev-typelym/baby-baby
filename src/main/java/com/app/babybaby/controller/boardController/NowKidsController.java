@@ -125,7 +125,6 @@ public class NowKidsController {
         Member member = memberRepository.findById(sessionId).get();
         Event event = eventRepository.findById(eventId).get();
         log.info(member.getMemberNickname());
-
         model.addAttribute("memberNickName", member.getMemberNickname());
         model.addAttribute("eventCategory", event.getCategory());
         model.addAttribute("eventId", eventId);
@@ -174,7 +173,10 @@ public class NowKidsController {
     @ResponseBody
     public String getList(Integer pageNumber, HttpSession session){
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-        Long sessionId = memberDTO.getId();
+        Long sessionId = null;
+        if(memberDTO != null){
+            sessionId = memberDTO.getId();
+        }
         Page<NowKidsDTO> nowKidsDTOS = nowKidsService.getAllInfoForListDesc(pageNumber, 2, sessionId);
 //        페이지에 아무것도 없다면 빈 배열을 리턴
         if(nowKidsDTOS.isEmpty()){
@@ -195,7 +197,7 @@ public class NowKidsController {
 
             jsonArray.put(jsonObject);
         });
-        log.info(String.valueOf(jsonArray));
+        log.info("========================================================================" + memberDTO.toString());
         return jsonArray.toString();
     }
 

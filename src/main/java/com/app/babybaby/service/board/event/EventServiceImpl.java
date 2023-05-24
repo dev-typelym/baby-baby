@@ -14,6 +14,7 @@ import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.calendar.CalendarRepository;
 import com.app.babybaby.repository.file.eventFile.EventFileRepository;
 import com.app.babybaby.repository.like.eventLike.EventLikeRepository;
+import com.app.babybaby.repository.member.guide.GuidRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.service.member.member.MemberService;
@@ -45,6 +46,8 @@ public class EventServiceImpl implements EventService {
 
     private final CalendarRepository calendarRepository;
 
+    private final GuidRepository guidRepository;
+
 
 //    이벤트 게시판 리스트
     @Override
@@ -59,7 +62,9 @@ public class EventServiceImpl implements EventService {
             eventDTO.setMemberName(member.getMemberName());
         }).collect(Collectors.toList());
 //         해당 로그인한 사람이 이 이벤트에 좋아요를 눌렀는지 안눌렀는지 알수있게
-        eventDTOS.stream().forEach(eventDTO -> eventDTO.setIsEventLiked(eventLikeRepository.hasMemberLikedEvent(sessionId, eventDTO.getId())));
+        if(sessionId != null){
+            eventDTOS.stream().forEach(eventDTO -> eventDTO.setIsEventLiked(eventLikeRepository.hasMemberLikedEvent(sessionId, eventDTO.getId())));
+        }
 
 //        List<EventDTO> collect = events.get().collect(Collectors.toList());
         return new SliceImpl<>(eventDTOS,pageable,events.hasNext());
@@ -122,6 +127,7 @@ public class EventServiceImpl implements EventService {
         if(sessionId != null){
             //         해당 로그인한 사람이 이 이벤트에 좋아요를 눌렀는지 안눌렀는지 알수있게
             eventDTO.setIsEventLiked(eventLikeRepository.hasMemberLikedEvent(sessionId, eventDTO.getId()));
+            eventDTO.setIsApplied(guidRepository.existsByEvent_Id(eventId));
         }
         return eventDTO;
     }

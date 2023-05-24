@@ -647,7 +647,7 @@
                                     </button>
                                 </div>
                                 <!-- write 버튼 -->
-                                <div class="write-btn-container" onclick="location.href='/event/writeFirst'">
+                                <div class="write-btn-container" th:if="${session.member != null and session.member.memberType == 'COMPANY'}" th:value="${session.member.memberType}" onclick="location.href='/event/writeFirst'">
                                     <button type="button" class="write-btn">
                                         <div class="bottom-write"> 글쓰기
                                             <path fill="none" d="M0 0h24v24H0z"></path>
