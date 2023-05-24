@@ -56,11 +56,16 @@ public class GuideRepositoryTests {
 
     @Test
     public void findTopByEventIdAndAvailableTypeEndsWithTest(){
-        log.info(guideRepository.findFirstByEventIdAndAvailableTypeOrderById(1L, GuideAvailableType.AVAILABLE).toString());
+        log.info(guideRepository.findFirstByEventIdAndAvailableTypeOrderById(273L, GuideAvailableType.AVAILABLE).toString());
     }
     @Test
     public void findFirstByGeneralGuideNotTest(){
         log.info(guideRepository.findFirstByGeneralGuideIsNullAndEvent_Id(2L).toString());
+    }
+
+    @Test
+    public void existsByEvent_IdTest(){
+        log.info(String.valueOf(guideRepository.existsByEvent_Id(7L)));
     }
 
 }

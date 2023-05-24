@@ -43,25 +43,25 @@
 									</div>
 								</div>
 								<!-- 주문 정보 -->
-								<section class="Section_container" style="margin-top: 33px;">
+								<section class="Section_container top-payment-area" style="margin-top: 33px;">
 									<!-- 참여자 info container (단체) -->
 									<div class="Section_titleContainer">
 										<h3 class="Section_title">참여자 정보</h3>
 									</div>
-									<div class="payment-contributors-info-container">
-										<div class="payment-final-price-container">
-											<p class="summary total-price">참여인원
-												<span>3<span>명</span></span>
-											</p>
-											<p class="summary discount-price">통솔자 신청 (그룹인원 최대 10명) (그룹 인당 가격)
-												<span th:text="${eventDTO.eventPrice}"><span>원</span></span>
-											</p>
-											<hr class="hr-lighter">
-											<p class="final-price">추가금액 합계
-												<span>150,000<span>원</span></span>
-											</p>
-										</div>
-									</div>
+<!--									<div class="payment-contributors-info-container">-->
+<!--										<div class="payment-final-price-container">-->
+<!--											<p class="summary total-price">참여인원-->
+<!--												<span th:text="${kidIdList.size()}"><span>명</span></span>-->
+<!--											</p>-->
+<!--											<p class="summary discount-price">통솔자 신청 (그룹인원 최대 10명) (그룹 인당 가격)-->
+<!--												<span th:text="${eventDTO.eventPrice}"><span>원</span></span>-->
+<!--											</p>-->
+<!--											<hr class="hr-lighter">-->
+<!--											<p class="final-price">추가금액 합계-->
+<!--												<span th:text="${eventDTO.eventPrice * kidIdList.size()}">150,000<span>원</span></span>-->
+<!--											</p>-->
+<!--										</div>-->
+<!--									</div>-->
 									<!-- //참여자 info container (단체) 개인 일 때 없음-->
 								</section>
 								<!-- 요청 사항(선택) -->
@@ -159,24 +159,24 @@
 										</div>
 									</section>
 									<!--결제 info container (최종) -->
-									<section class="Section_container">
+									<section class="Section_container bottom-payment-area">
 										<div class="Section_titleContainer">
 											<h3 class="Section_title">총 결제 금액</h3>
 										</div>
-										<div class="payment-contributors-info-container">
-											<div class="payment-final-price-container">
-												<p class="summary total-price">총 금액
-													<span>40,000<span>원 x </span><span>3</span><span>명</span></span>
-												</p>
-												<p class="summary discount-price">할인 금액
-													<span><span>-</span>5,000<span>원</span></span>
-												</p>
-												<hr class="hr-lighter">
-												<p class="final-price">총 결제금액 
-													<span>115,000<span>원</span></span>
-												</p>
-											</div>
-										</div>
+<!--										<div class="payment-contributors-info-container">-->
+<!--											<div class="payment-final-price-container">-->
+<!--												<p class="summary total-price">총 금액-->
+<!--													<span th:text="${eventDTO.eventPrice}">40,000<span>원 x </span><span th:text="${kidIdList.size()}"></span><span>명</span></span>-->
+<!--												</p>-->
+<!--												<p class="summary discount-price">할인 금액-->
+<!--													<span><span>-</span><span class="coupon-amount-area">0</span><span>원</span></span>-->
+<!--												</p>-->
+<!--												<hr class="hr-lighter">-->
+<!--												<p class="final-price">총 결제금액-->
+<!--													<span>115,000<span>원</span></span>-->
+<!--												</p>-->
+<!--											</div>-->
+<!--										</div>-->
 									</section>
 									<!-- //결제 info container (최종)-->
 								</form>
@@ -189,44 +189,44 @@
 									<div class="Section_titleContainer">
 										<h3 class="Section_title">결제 금액</h3>
 									</div>
-									<div class="Active1 Active2">
-										<div class="DefaultPrice">
-											<div class="DefaultPrice_title">
-												<label class="Radio1 Radio2 Radio3">
-													<input type="radio" name="price" readonly="" value="DEFAULT" checked="">
-														<span class="Radio_icon"></span>
-														<span class="Radio_label"></span>
-												</label>일반 금액
-											</div>
-											<div class="Price_container">
-												<dl class="">
-													<dt>상품 금액</dt>
-													<dd>
-														<span>
-															<em class="Price_money">170,000</em>
-															원
-														</span>
-													</dd>
-												</dl>
-											</div>
-											<div class="Price_container">
-												<dl class="">
-													<dt>쿠폰 할인 금액</dt>
-													<dd>
-														<span>5,000 원</span>
-													</dd>
-												</dl>
-											</div>
-											<div class="Price_container">
-												<hr class="Price_divide">
-												<dl class="Price_total">
-													<dt>최종 결제 금액</dt>
-													<dd>
-														<span><em class="">165,000 원</em></span>
-													</dd>
-												</dl>
-											</div>
-										</div>
+									<div class="Active1 Active2 right_section_area" >
+<!--										<div class="DefaultPrice">-->
+<!--											<div class="DefaultPrice_title">-->
+<!--												<label class="Radio1 Radio2 Radio3">-->
+<!--													<input type="radio" name="price" readonly="" value="DEFAULT" checked="">-->
+<!--														<span class="Radio_icon"></span>-->
+<!--														<span class="Radio_label"></span>-->
+<!--												</label>일반 금액-->
+<!--											</div>-->
+<!--											<div class="Price_container">-->
+<!--												<dl class="">-->
+<!--													<dt>상품 금액</dt>-->
+<!--													<dd>-->
+<!--														<span>-->
+<!--															<em class="Price_money" th:text="${eventDTO.eventPrice * kidIdList.size()}">170,000</em>-->
+<!--															원-->
+<!--														</span>-->
+<!--													</dd>-->
+<!--												</dl>-->
+<!--											</div>-->
+<!--											<div class="Price_container">-->
+<!--												<dl class="">-->
+<!--													<dt>쿠폰 할인 금액</dt>-->
+<!--													<dd>-->
+<!--														<span class="coupon-amount-area">0</span>원-->
+<!--													</dd>-->
+<!--												</dl>-->
+<!--											</div>-->
+<!--											<div class="Price_container">-->
+<!--												<hr class="Price_divide">-->
+<!--												<dl class="Price_total">-->
+<!--													<dt>최종 결제 금액</dt>-->
+<!--													<dd>-->
+<!--														<span><em class="final-price-number" th:text="${eventDTO.eventPrice}">165,000 원</em></span>-->
+<!--													</dd>-->
+<!--												</dl>-->
+<!--											</div>-->
+<!--										</div>-->
 									</div>
 								</section>
 								<section class="Section_container Floating">
@@ -259,9 +259,9 @@
 												</label>
 											</div>
 										</div>
-										<button form="payment-submit" class="Button1 Button_p Button_c Button_i Button_b Button_s" type="submit" id="paymentbutton" disabled="true">
+										<button class="Button1 Button_p Button_c Button_i Button_b Button_s" type="submit" id="paymentbutton" disabled="true">
 											<span>
-												<span class="Button_children">165,000원 결제하기</span>
+												<span class="Button_children button-pay-go">165,000원 결제하기</span>
 											</span>
 										</button>
 									</div>
@@ -311,10 +311,11 @@
 <script th:inline="javascript">
 	let eventDTO = [[${eventDTO}]];
 	let eventId = [[${eventId}]];
-	let kidIds = [[${kidIds}]];
+	let kidIdList = [[${kidIdList}]];
 	console.log(eventDTO)
-	console.log(kidIds)
+	console.log(kidIdList)
 	console.log(eventId)
 </script>
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.1.min.js" type="application/javascript"></script>
 <script type="text/javascript" src="/js/payment/payment.js"></script>
 </html>

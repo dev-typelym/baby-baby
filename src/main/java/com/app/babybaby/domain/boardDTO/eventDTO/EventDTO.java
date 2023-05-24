@@ -9,6 +9,7 @@ import com.app.babybaby.entity.purchase.coupon.Coupon;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.type.CategoryType;
 import com.app.babybaby.type.FileType;
+import com.app.babybaby.type.MemberType;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,7 @@ public class EventDTO {
     private Long eventRecruitCount;
     private Address eventLocation;
     private Long eventPrice;
+    private Boolean isApplied;
     private CategoryType category;
     private EventBoardSearch eventBoardSearch;
     private CalendarDTO calendar;
@@ -34,6 +36,7 @@ public class EventDTO {
     private String memberEmail;
     private String memberHiSentence;
     private String memberPhone;
+    private MemberType memberType;
     private Address memberLocation;
     private String mainFileOriginalName;
     private String mainFileUUID;
@@ -52,13 +55,14 @@ public class EventDTO {
 
 
     @Builder
-    public EventDTO(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, CategoryType category, EventBoardSearch eventBoardSearch, CalendarDTO calendar, Boolean isEventLiked, Long memberId, String memberName, String memberNickname, String memberEmail, String memberHiSentence, String memberPhone, Address memberLocation, String mainFileOriginalName, String mainFileUUID, String mainFilePath, FileType fileType, List<EventFileDTO> files, String memberProfilePath, String memberProfileUUID, String memberProfileOriginalName) {
+    public EventDTO(Long id, String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, Boolean isApplied, CategoryType category, EventBoardSearch eventBoardSearch, CalendarDTO calendar, Boolean isEventLiked, Long memberId, String memberName, String memberNickname, String memberEmail, String memberHiSentence, String memberPhone, MemberType memberType, Address memberLocation, String mainFileOriginalName, String mainFileUUID, String mainFilePath, FileType fileType, List<EventFileDTO> files, List<CouponDTO> coupons, Long totalCouponCount, Long totalUnusedCouponCount, String memberProfilePath, String memberProfileUUID, String memberProfileOriginalName) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.eventRecruitCount = eventRecruitCount;
         this.eventLocation = eventLocation;
         this.eventPrice = eventPrice;
+        this.isApplied = isApplied;
         this.category = category;
         this.eventBoardSearch = eventBoardSearch;
         this.calendar = calendar;
@@ -69,12 +73,16 @@ public class EventDTO {
         this.memberEmail = memberEmail;
         this.memberHiSentence = memberHiSentence;
         this.memberPhone = memberPhone;
+        this.memberType = memberType;
         this.memberLocation = memberLocation;
         this.mainFileOriginalName = mainFileOriginalName;
         this.mainFileUUID = mainFileUUID;
         this.mainFilePath = mainFilePath;
         this.fileType = fileType;
         this.files = files;
+        this.coupons = coupons;
+        this.totalCouponCount = totalCouponCount;
+        this.totalUnusedCouponCount = totalUnusedCouponCount;
         this.memberProfilePath = memberProfilePath;
         this.memberProfileUUID = memberProfileUUID;
         this.memberProfileOriginalName = memberProfileOriginalName;

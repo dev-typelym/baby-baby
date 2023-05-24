@@ -74,8 +74,21 @@ public class GuideServiceImpl implements GuideService {
         Guide noGeneralGuide = guidRepository.findFirstByGeneralGuideIsNullAndEvent_Id(eventId);
         Member member = memberRepository.findById(memberId).get();
         Event event = eventRepository.findById(eventId).get();
-        noGeneralGuide.setGeneralGuide(member);
-        return null;
+
+//            this.event = event;
+//            this.adminGuide = adminGuide;
+
+        if(noGeneralGuide == null){
+            Guide guide = new Guide(event, member);
+            noGeneralGuide = guidRepository.save(guide);
+            noGeneralGuide.setGeneralGuide(member);
+            guidRepository.save(noGeneralGuide);
+        } else{
+            noGeneralGuide.setGeneralGuide(member);
+            guidRepository.save(noGeneralGuide); // noGeneralGuide 객체를 저장하고 업데이트
+        }
+
+        return true; // 또는 원하는 값을 반환
     }
 
 

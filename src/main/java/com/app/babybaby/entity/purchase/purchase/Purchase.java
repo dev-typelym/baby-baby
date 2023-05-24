@@ -57,10 +57,9 @@ public class Purchase {
         this.member = member;
     }
 
-    public Purchase(Long purchaseCount, Long purchasePrice, Coupon coupon, Event event, Member member) {
+    public Purchase(Long purchaseCount, Long purchasePrice, Event event, Member member) {
         this.purchaseCount = purchaseCount;
         this.purchasePrice = purchasePrice;
-        this.coupon = coupon;
         this.event = event;
         this.member = member;
     }

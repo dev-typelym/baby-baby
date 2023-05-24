@@ -54,7 +54,6 @@ $.ajax({
         $('.company_title_strong').html(generalMember.memberNickname)
         $('.company_title_p').html(generalMember.memberHiSentence)
         $('.follow_button').attr('follow', generalMember.isFollowed);
-        console.log($('.image_section'))
         $('.image_section').css('background-image', `url('/members/display?fileName=Member/Profile/${generalMember.memberProfilePath}/${generalMember.memberProfileUUID}_${generalMember.memberProfileOriginalName}' `)
         $('.image_section_span').css('background-image', `url('/members/display?fileName=Member/Profile/${generalMember.memberProfilePath}/${generalMember.memberProfileUUID}_${generalMember.memberProfileOriginalName}' `)
 
@@ -142,69 +141,9 @@ $.ajax({
 
 
 
-        //
-        // let parentsBoardsText = '';
-        //
-        // if(generalMember.parentsBoards.length > 0){
-        //     generalMember.parentsBoards.forEach((e,i) => {
-        //         parentsBoardsText +=
-        //             `
-        //                                 <div class="real_content_div">
-        //                                         <div class="project_card">
-        //                                             <a class="project_card_a">
-        //                                                 <div class="project_card_img"
-        //                                                    data-event-filePath="${e.filePath}"
-        //                                                    data-event-fileOriginalName="${e.fileOriginalName}"
-        //                                                    data-event-fileUUID="${e.fileUUID}"
-        //                                                 ></div>
-        //                                             </a>
-        //                                             <div class="project_card_div">
-        //                                                 <div class="air_ear">${e.parentsBoardTitle}</div>
-        //                                                 <div class="participation">
-        //                                                     <div class="event-info-wrap">
-        //                                                         <div class="proceeding_span total_amount">
-        //                                                             <span>${e.parentsBoardContent}</span>
-        //                                                         </div>
-        //                                                         <div class="proceeding_span total_amount write-date" style="color: #000;">
-        //                                                             <span>${formatDate(e.parentsBoardUpdateDate)}</span>
-        //                                                         </div>
-        //                                                     </div>
-        //                                                 </div>
-        //                                             </div>
-        //                                         </div>
-        //                                     </div>
-        //                                     <!-- //행사 1개 -->
-        //     `;
-        //     })
-        // }
-        //
-        //
-        // $('.real_content').append(parentsBoardsText)
-        //
-        //
-        // let reviewText = '';
-        // if(generalMember.reviews.length > 0) {
-        //
-        //     generalMember.reviews.forEach((e, i) => {
-        //         reviewText =
-        //             `
-        //     <li class="review_li">
-        //                             <div class="page_content_ul reviews-container">
-        //                                 <span class="real_name">${e.boardTitle}</span>
-        //                                 <div style="display: inline-block; position: relative;">
-        //                                     ${addStarsToContainer(e.reviewScore)}
-        //                                 </div>
-        //                             </div>
-        //                             <p class="like_p">${e.eventContent}</p>
-        //                         </li>
-        //             `;
-        //     })
-        //     $(".satisfaction_rating ul").append(reviewText)
         }
-    // }
 })
 
-/*<span class="review_span">${e.eventType}</span>*/
 
 function seeMoreParentsHandler(){
         $.ajax({

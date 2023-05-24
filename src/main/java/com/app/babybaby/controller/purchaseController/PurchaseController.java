@@ -1,16 +1,20 @@
 package com.app.babybaby.controller.purchaseController;
 
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
+import com.app.babybaby.domain.memberDTO.KidDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.domain.purchaseDTO.purchaseDTO.PurchaseDTO;
 import com.app.babybaby.service.purchase.purchase.PurchaseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,7 @@ public class PurchaseController {
 
     private final PurchaseService purchaseService;
 
-    @PostMapping("pay/{eventId}")
+    @GetMapping("pay/{eventId}")
     public String goPurchase(@PathVariable Long eventId,HttpSession session, Model model, HttpServletRequest request){
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
         Long sessionId = memberDTO.getId();
@@ -38,7 +42,26 @@ public class PurchaseController {
                 kidIdList.add(Long.parseLong(kidId));
             }
         }
-        model.addAttribute("kidIds", kidIdList);
+        log.info(kidIdList.toString());
+        model.addAttribute("kidIdList", kidIdList);
         return "payment/payment";
+    }
+
+    @PostMapping("save")
+    public RedirectView pay(Long eventId, PurchaseDTO purchaseDTO, HttpSession session) {
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
+
+        List<KidDTO> kids = new ArrayList<>();
+        for (Long kidId : purchaseDTO.getKidList()) {
+            KidDTO kidDTO = new KidDTO();
+            kidDTO.setId(kidId);
+            kids.add(kidDTO);
+        }
+        purchaseDTO.setKids(kids);
+        log.info(purchaseDTO.toString());
+         purchaseService.saveAll(sessionId, eventId, purchaseDTO);
+
+        return new RedirectView("mypage/main");
     }
 }

@@ -27,7 +27,11 @@ public class EventLikeController {
     @ResponseBody
     public Boolean clickLike(Long eventId, Boolean isLike, HttpSession session){
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-        Long sessionId = memberDTO.getId();
+        Long sessionId = null;
+
+        if(memberDTO != null){
+            sessionId = memberDTO.getId();
+        }
 
         Boolean result = null;
         log.info("내가 가져온 nowKidsId는  : " + String.valueOf(eventId));
