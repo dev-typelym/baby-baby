@@ -278,7 +278,7 @@ public Page<NowKids> findNowKidsEvents_queryDSL(Pageable pageable, AdminEventSea
 
     //  지금 우리 아이들은 삭제
     @Override
-    public void deleteNowKidsByIds_queryDSL(List<Long> nowkidsIds) {
+    public void deleteNowKidsByIds_queryDSL(Long nowkidsIds) {
         query.delete(nowKids)
                 .where(nowKids.id.in(nowkidsIds))
                 .execute();

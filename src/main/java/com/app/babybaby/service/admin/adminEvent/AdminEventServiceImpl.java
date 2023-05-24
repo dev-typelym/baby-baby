@@ -3,6 +3,7 @@ package com.app.babybaby.service.admin.adminEvent;
 import com.app.babybaby.domain.adminDTO.AdminEventDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.repository.board.event.EventRepository;
+import com.app.babybaby.repository.file.eventFile.EventFileRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.admin.AdminEventSearch;
 import com.app.babybaby.type.CategoryType;
@@ -27,6 +28,9 @@ public class AdminEventServiceImpl implements AdminEventService {
     @Autowired
     private EventRepository eventRepository;
 
+    @Autowired
+    private EventFileRepository eventFileRepository;
+
     //  관리자 이벤트 목록
     @Override
     public Page<AdminEventDTO> getAdminEventListWithPaging(int page, AdminEventSearch eventSearch, CategoryType eventCategory, String eventStatus) {
@@ -41,6 +45,7 @@ public class AdminEventServiceImpl implements AdminEventService {
     //  관리자 이벤트 삭제
     @Override
     public void deleteAdminEvent(List<String> eventIds) {
+        eventIds.stream().map(eventId -> Long.parseLong(eventId)).forEach(eventFileRepository::deleteByEventId);
         eventIds.stream().map(eventId -> Long.parseLong(eventId)).forEach(eventRepository::deleteEventByIds_queryDSL);
     }
 

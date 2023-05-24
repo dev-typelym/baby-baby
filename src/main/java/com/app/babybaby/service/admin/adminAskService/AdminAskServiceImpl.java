@@ -3,6 +3,8 @@ package com.app.babybaby.service.admin.adminAskService;
 
 import com.app.babybaby.domain.adminDTO.AdminAskDTO;
 import com.app.babybaby.entity.board.ask.Ask;
+import com.app.babybaby.entity.board.ask.AskAnswer;
+import com.app.babybaby.repository.board.ask.AskAnswerRepository;
 import com.app.babybaby.repository.board.ask.AskRepository;
 import com.app.babybaby.search.admin.AdminAskSearch;
 import lombok.RequiredArgsConstructor;
@@ -24,11 +26,14 @@ public class AdminAskServiceImpl implements AdminAskService {
     @Autowired
     private AskRepository askRepository;
 
+    @Autowired
+    private AskAnswerRepository askAnswerRepository;
+
 
     //    관리자 문의 목록
     @Override
-    public Page<AdminAskDTO> getAdminAskListWithPaging(int page, AdminAskSearch adminAskSearch) {
-        Page<Ask> asks = askRepository.findAllAsk_queryDSL(PageRequest.of(page, 5), adminAskSearch);
+    public Page<AdminAskDTO> getAdminAskListWithPaging(int page, AdminAskSearch adminAskSearch, String askStatus) {
+        Page<Ask> asks = askRepository.findAllAsk_queryDSL(PageRequest.of(page, 5), adminAskSearch, askStatus);
         List<AdminAskDTO> adminAskDTOS = asks.getContent().stream()
                 .map(this::toAskDTO)
                 .collect(Collectors.toList());
@@ -48,6 +53,13 @@ public class AdminAskServiceImpl implements AdminAskService {
     //  관리자 문의 삭제
     @Override
     public void deleteAdminAsk(List<String> askIds) {
+        askIds.stream().map(askId -> Long.parseLong(askId)).forEach(askAnswerRepository::deleteByAskId);
         askIds.stream().map(askId -> Long.parseLong(askId)).forEach(askRepository::deleteAskByIds_queryDSL);
+    }
+
+    //  관리자 문의 상태 변경
+    @Override
+    public void changeAskStataus(Long askId) {
+        askRepository.changeAskStatusById_queryDSL(askId);
     }
 }

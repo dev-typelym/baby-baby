@@ -5,6 +5,8 @@ import com.app.babybaby.entity.board.ask.QAsk;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.search.admin.AdminAskSearch;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
+import com.app.babybaby.type.ProcessType;
+import com.app.babybaby.type.SleepType;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import java.util.Optional;
 
 import static com.app.babybaby.entity.board.ask.QAsk.ask;
 import static com.app.babybaby.entity.board.event.QEvent.event;
+import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
 
 @RequiredArgsConstructor
 public class AskQueryDslImpl implements AskQueryDsl {
@@ -49,13 +52,20 @@ public class AskQueryDslImpl implements AskQueryDsl {
 
     //  [관리자] 문의 목록 조회
     @Override
-    public Page<Ask> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch) {
-        BooleanExpression askTitleEq = adminAskSearch.getAskTitle() == null ? null : ask.boardTitle.eq(adminAskSearch.getAskTitle());
-
+    public Page<Ask> findAllAsk_queryDSL(Pageable pageable, AdminAskSearch adminAskSearch, String askStatus) {
+        BooleanExpression askTitleEq = adminAskSearch.getAskTitle() == null ? null : ask.boardTitle.like("%" +adminAskSearch.getAskTitle()+ "%");
         QAsk ask = QAsk.ask;
         List<Ask> foundAsk = query.select(ask)
                 .from(ask)
-                .where(askTitleEq)
+                .where(
+                        askTitleEq.and(
+                                askStatus.equals("전체")
+                                        ? ask.askStatus.isNotNull()
+                                        : askStatus.equals("대기답변")
+                                        ? ask.askStatus.eq(ProcessType.HOLD)
+                                        : ask.askStatus.isNotNull()
+                        )
+                )
                 .orderBy(ask.id.asc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -63,7 +73,15 @@ public class AskQueryDslImpl implements AskQueryDsl {
 
         Long count = query.select(ask.count())
                 .from(ask)
-                .where(askTitleEq)
+                .where(
+                        askTitleEq.and(
+                                askStatus.equals("전체")
+                                        ? ask.askStatus.isNotNull()
+                                        : askStatus.equals("대기답변")
+                                        ? ask.askStatus.eq(ProcessType.HOLD)
+                                        : ask.askStatus.isNotNull()
+                        )
+                )
                 .fetchOne();
 
         return new PageImpl<>(foundAsk, pageable, count);
@@ -98,11 +116,12 @@ public class AskQueryDslImpl implements AskQueryDsl {
 
     }
 
-
-
-
-
-
-
-
+    //  [관리자] 문의 답변시 상태 바꾸기
+    @Override
+    public void changeAskStatusById_queryDSL(Long askId) {
+        query.update(ask)
+                .set(ask.askStatus, ProcessType.END)
+                .where(ask.id.eq(askId))
+                .execute();
+    }
 }

@@ -5,6 +5,7 @@ import com.app.babybaby.entity.board.review.Review;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
 import com.app.babybaby.repository.board.review.ReviewRepository;
+import com.app.babybaby.repository.file.reviewFile.ReviewFileRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.admin.AdminReviewSearch;
 import com.app.babybaby.type.CategoryType;
@@ -36,6 +37,9 @@ public class AdminReviewBoardSerivceImpl implements AdminReviewBoardSerivce {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @Autowired
+    private ReviewFileRepository reviewFileRepository;
+
     //    관리자 리뷰 목록
     @Override
     public Page<AdminReviewDTO> getAdminReviewListWithPaging(int page, AdminReviewSearch adminReviewSearch, CategoryType eventCategory) {
@@ -57,6 +61,7 @@ public class AdminReviewBoardSerivceImpl implements AdminReviewBoardSerivce {
     //    관리자 리뷰 삭제
     @Override
     public void deleteAdminReview(List<String> boardIds) {
+        boardIds.stream().map(boardId -> Long.parseLong(boardId)).forEach(reviewFileRepository::deleteByReviewBoardId);
         boardIds.stream().map(boardId -> Long.parseLong(boardId)).forEach(reviewRepository::deleteReviewBoardByIds_queryDSL);
     }
 }

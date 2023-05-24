@@ -3,9 +3,12 @@ package com.app.babybaby.repository.admin;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.nowKids.NowKids;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.calendar.Calendar;
 import com.app.babybaby.entity.embeddable.Address;
+import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.reply.parentsBoardReply.ParentsBoardReply;
 import com.app.babybaby.entity.reply.parentsBoardReply.QParentsBoardReply;
 import com.app.babybaby.entity.reply.reviewReply.QReviewReply;
 import com.app.babybaby.repository.board.event.EventRepository;
@@ -110,27 +113,54 @@ public class AdminRepositoryTests {
 ////        parentsBoardRepository.save(parentsBoard);
 ////        ParentsBoardReply parentsBoardReply = new ParentsBoardReply("싫어요", parentsBoard ,member);
 //    }
+
+//    @Test
+//    public void parentsBoardSaveTest() {
+//        LocalDateTime registerDate = LocalDateTime.now();
+//        Address address = new Address();
+//        address.setAddress("경기도");
+//        address.setAddressDetail("수원시");
+//        address.setAddressSubDetail("몰라동");
+//        address.setPostcode("31123");
 //
+//        Member member = new Member("company3@gmail.com", "한화", "3411", "hanhwa", "hi sentence231", "010-4131-1231", address, "profile_original_name.png", "profile_uuid", "/profile/path", registerDate, MemberType.COMPANY,  SleepType.AWAKE, "file_path", "file_uuid", "file_original_name");
+//
+//        memberRepository.save(member);
+//
+//        Calendar calendar = new Calendar("예술날", ART, LocalDateTime.now(), LocalDateTime.now());
+//
+//        Event event  = new Event(25L, address, 150000L, ART, calendar, member);
+//
+//        eventRepository.save(event);
+//
+//        ParentsBoard parentsBoard = new ParentsBoard("부모님마당제목1", "부모님마당내용1", event, member, null);
+//        parentsBoardRepository.save(parentsBoard);
+//        ParentsBoardReply parentsBoardReply = new ParentsBoardReply("싫어요", parentsBoard ,member);
+//        parentsBoardReplyRepository.save(parentsBoardReply);
+//    }
+//
+
+
 ////    NowKids 게시판 입력
 //@Test
 //public void save50NowKids() {
-////    Address address = new Address();
-////    address.setAddress("분당");
-////    address.setAddressDetail("d");
-////    address.setAddressSubDetail("dfa");
-////    address.setPostcode("12342132");
-////    for (int i = 11; i < 20; i++) {
-////        String uniqueNickname = "Bool" + i;
-////
-////        Member member = new Member("you" + i + "@naver.com", "정유찬", "1234", uniqueNickname, "안녕하세요",
-////                "0101234123" + i, address, null, null,null,LocalDateTime.now(), MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED, CategoryType.AGRICULTURE,null,null,null);
-////        Calendar calendar = new Calendar("이벤트1", CategoryType.AGRICULTURE, LocalDateTime.now(), LocalDateTime.now());
-//////            public Event (String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar) {
-////        Event event = new Event( "Test" + (i + 1), "test" +(i+1), 10L, address, 10000L, SPORTS, calendar, member);
-////        memberRepository.save(member);
-////        eventRepository.save(event);
-////        NowKids nowKids = new NowKids(event, member);
-////        nowKidsRepository.save(nowKids);
+//    Address address = new Address();
+//    address.setAddress("분당");
+//    address.setAddressDetail("d");
+//    address.setAddressSubDetail("dfa");
+//    address.setPostcode("12342132");
+//    for (int i = 11; i < 20; i++) {
+//        String uniqueNickname = "Bool" + i;
+//
+//        Member member = new Member("you" + i + "@naver.com", "정유찬", "1234", uniqueNickname, "안녕하세요",
+//                "0101234123" + i, address, null, null,null,LocalDateTime.now(), MemberType.COMPANY, AcceptanceType.ACCEPTED, SleepType.AWAKE, GuideType.NON_DISABLED, CategoryType.AGRICULTURE,null,null,null);
+//        Calendar calendar = new Calendar("이벤트1", CategoryType.AGRICULTURE, LocalDateTime.now(), LocalDateTime.now());
+////            public Event (String boardTitle, String boardContent, Long eventRecruitCount, Address eventLocation, Long eventPrice, String eventContent, CategoryType category, Calendar calendar) {
+//        Event event = new Event( "Test" + (i + 1), "test" +(i+1), 10L, address, 10000L, SPORTS, calendar, member,);
+//        memberRepository.save(member);
+//        eventRepository.save(event);
+//        NowKids nowKids = new NowKids(event, member);
+//        nowKidsRepository.save(nowKids);
 //    }
 //}
 //

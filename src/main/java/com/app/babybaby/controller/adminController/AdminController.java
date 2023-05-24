@@ -152,7 +152,7 @@ public class AdminController {
         return adminEventBoards;
     }
 
-    //    후기 댓글 삭제
+    //    이벤트 삭제
     @DeleteMapping("event/delete")
     @ResponseBody
     public void eventDelete(@RequestParam("checkedIds[]") List<String> checkIds){
@@ -232,8 +232,8 @@ public class AdminController {
     //  관리자 문의 목록
     @GetMapping("askList/{page}")
     @ResponseBody
-    public Page<AdminAskDTO> getAsk(@PathVariable("page") int page, AdminAskSearch adminAskSearch){
-        Page<AdminAskDTO> adminAsks = adminAskService.getAdminAskListWithPaging(page -1, adminAskSearch);
+    public Page<AdminAskDTO> getAsk(@PathVariable("page") int page, AdminAskSearch adminAskSearch, String askStatus){
+        Page<AdminAskDTO> adminAsks = adminAskService.getAdminAskListWithPaging(page -1, adminAskSearch, askStatus);
         return adminAsks;
     }
 
@@ -256,6 +256,7 @@ public class AdminController {
         Ask ask = askRepository.findAskById_queryDSL(changedTypeAskId);
         AskAnswer askAnswer = new AskAnswer(answerDataDTO.getAnswerTitle(), answerDataDTO.getAnswerContent(), ask);
         AskAnswer AskAnswerToSave = askAnswerRepository.save(askAnswer);
+        adminAskService.changeAskStataus(changedTypeAskId);
         return ask.getId();
     }
 

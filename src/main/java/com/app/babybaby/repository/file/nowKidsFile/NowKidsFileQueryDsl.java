@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface NowKidsFileQueryDsl {
     public List<NowKidsFile> findAllNowKidsFilesWithNowKidsId(Long nowKidsId);
+    public void deleteByNowKidsId(Long eventId);
 }

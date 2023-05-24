@@ -50,6 +50,7 @@ $(".confirm-delete, .no-check-confirm-delete").click(function() {
 // 모달 취소 버튼 클릭 시 모달 닫기
 $(".cancel-delete").click(function() {
     $(".delete-modal").hide();
+    $('input[name="check"]').prop('checked', false);
 });
 
 
@@ -412,10 +413,16 @@ function showList(nowKidsDTOS) {
             changeCategoryName = '기타';
         }
 
-        if (nowKids.startDate > now) {
+        const dateStartTimeString = eventBoard.startDate.toString();
+        const dateEndTimeString = eventBoard.endDate.toString();
+
+        const jsStartDate = new Date(dateStartTimeString);
+        const jsEndDate = new Date(dateEndTimeString);
+
+        if (jsStartDate > now) {
             changeEventStatus = '대기';
             eventStatusColor = 'red';
-        } else if(nowKids.startDate <= now  && nowKids.endDate >= now ){
+        } else if(jsStartDate <= now  && jsEndDate >= now ){
             changeEventStatus = '진행중';
             eventStatusColor = 'green';
         } else{
@@ -515,32 +522,32 @@ function showList(nowKidsDTOS) {
 										</svg>
 									</td>
 								</tr>
-								<tr class="crew-table" style="display: none;">
-									<td colspan="7" style="padding: 15px;">
-											<table class="rice-table">
-												<thead class="rice-table-thead">
-													<tr class="rice-table-tr">
-														<th class="rice-table-th" style="width: 5%;">No</th>
-														<th class="rice-table-th" style="width: 10%;">닉네임</th>
-														<th class="rice-table-th" style="width: 10%;">이름</th>
-														<th class="rice-table-th" style="width: 5%;">나이</th>
-														<th class="rice-table-th" style="width: 45%;">참여행사</th>
-														<th class="rice-table-th" style="width: 25%;">참여일자</th>
-													</tr>
-												</thead>
-												<tbody class="kid-list">
+<!--								<tr class="crew-table" style="display: none;">-->
+<!--									<td colspan="7" style="padding: 15px;">-->
+<!--											<table class="rice-table">-->
+<!--												<thead class="rice-table-thead">-->
 <!--													<tr class="rice-table-tr">-->
-<!--														<td class="rice-table-td">1</td>-->
-<!--														<td class="rice-table-td">lovelyU</td>-->
-<!--														<td class="rice-table-td">한동석</td>-->
-<!--														<td class="rice-table-td">5</td>-->
-<!--														<td class="rice-table-td">[우리은행] 모두가 함께하는 촉감놀이, 서해, 진흙여행</td>-->
-<!--														<td class="rice-table-td">2023-04-22 18:26:00</td>-->
+<!--														<th class="rice-table-th" style="width: 5%;">No</th>-->
+<!--														<th class="rice-table-th" style="width: 10%;">닉네임</th>-->
+<!--														<th class="rice-table-th" style="width: 10%;">이름</th>-->
+<!--														<th class="rice-table-th" style="width: 5%;">나이</th>-->
+<!--														<th class="rice-table-th" style="width: 45%;">참여행사</th>-->
+<!--														<th class="rice-table-th" style="width: 25%;">참여일자</th>-->
 <!--													</tr>-->
-												</tbody>
-											</table>
-									</td>
-								</tr>
+<!--												</thead>-->
+<!--												<tbody class="kid-list">-->
+<!--&lt;!&ndash;													<tr class="rice-table-tr">&ndash;&gt;-->
+<!--&lt;!&ndash;														<td class="rice-table-td">1</td>&ndash;&gt;-->
+<!--&lt;!&ndash;														<td class="rice-table-td">lovelyU</td>&ndash;&gt;-->
+<!--&lt;!&ndash;														<td class="rice-table-td">한동석</td>&ndash;&gt;-->
+<!--&lt;!&ndash;														<td class="rice-table-td">5</td>&ndash;&gt;-->
+<!--&lt;!&ndash;														<td class="rice-table-td">[우리은행] 모두가 함께하는 촉감놀이, 서해, 진흙여행</td>&ndash;&gt;-->
+<!--&lt;!&ndash;														<td class="rice-table-td">2023-04-22 18:26:00</td>&ndash;&gt;-->
+<!--&lt;!&ndash;													</tr>&ndash;&gt;-->
+<!--												</tbody>-->
+<!--											</table>-->
+<!--									</td>-->
+<!--								</tr>-->
 								<!-- //row 1개 -->
 							</table>
 						</div>

@@ -50,6 +50,7 @@ $(".confirm-delete, .no-check-confirm-delete").click(function() {
 // 모달 취소 버튼 클릭 시 모달 닫기
 $(".cancel-delete").click(function() {
     $(".delete-modal").hide();
+    $('input[name="check"]').prop('checked', false);
 });
 // /* 상세보기 버튼 js */
 // const detailBtnBodyList = document.querySelectorAll('.row');
@@ -421,10 +422,16 @@ function showList(eventBoardDTOS) {
             changeCategoryName = '기타';
         }
 
-        if (eventBoard.startDate > now) {
+        const dateStartTimeString = eventBoard.startDate.toString();
+        const dateEndTimeString = eventBoard.endDate.toString();
+
+        const jsStartDate = new Date(dateStartTimeString);
+        const jsEndDate = new Date(dateEndTimeString);
+
+        if (jsStartDate > now) {
             changeEventStatus = '대기';
             eventStatusColor = 'red';
-        } else if(eventBoard.startDate <= now  && eventBoard.endDate >= now ){
+        } else if(jsStartDate <= now  && jsEndDate >= now ){
             changeEventStatus = '진행중';
             eventStatusColor = 'green';
         } else{
@@ -473,7 +480,7 @@ function showList(eventBoardDTOS) {
 						<div class="profile-img-wrapper">
 							<label>
 								<div class="content-img">
-									<img 
+									<img src="/eventFiles/display?fileName=Event/${eventBoard.eventFileDTOS[0].filePath}/${eventBoard.eventFileDTOS[0].fileUUID}_${eventBoard.eventFileDTOS[0].fileOriginalName}"
 									/>
 								</div>
 							</label>

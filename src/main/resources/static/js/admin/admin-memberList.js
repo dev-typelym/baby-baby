@@ -53,6 +53,7 @@ $(".confirm-delete, .no-check-confirm-delete").click(function() {
 // 모달 취소 버튼 클릭 시 모달 닫기
 $(".cancel-delete").click(function() {
     $(".delete-modal").hide();
+    $('input[name="check"]').prop('checked', false);
 });
 
 

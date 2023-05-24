@@ -4,6 +4,7 @@ import com.app.babybaby.domain.adminDTO.AdminParentsBoardDTO;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.repository.board.event.EventRepository;
 import com.app.babybaby.repository.board.parentsBoard.ParentsBoardRepository;
+import com.app.babybaby.repository.file.parentsBoardFile.ParentsBoardFileRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.admin.AdminParentsBoardSearch;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,9 @@ public class AdminParentsBoardServiceImpl implements AdminParentsBoardService {
     @Autowired
     private ParentsBoardRepository parentsBoardRepository;
 
+    @Autowired
+    private ParentsBoardFileRepository parentsBoardFileRepository;
+
     //    관리자 부모님마당 목록
     @Override
     public Page<AdminParentsBoardDTO> getAdminParentsBoardListWithPaging(int page, AdminParentsBoardSearch parentsBoardSearch) {
@@ -52,6 +56,7 @@ public class AdminParentsBoardServiceImpl implements AdminParentsBoardService {
     //    관리자 부모님마당 삭제
     @Override
     public void deleteAdminParentsBoard(List<String> boardIds) {
+        boardIds.stream().map(boardId -> Long.parseLong(boardId)).forEach(parentsBoardFileRepository::deleteByParentsBoardId);
         boardIds.stream().map(boardId -> Long.parseLong(boardId)).forEach(parentsBoardRepository::deleteAdminParentsBoardByIds_queryDSL);
     }
 }

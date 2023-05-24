@@ -24,7 +24,7 @@ public interface AdminNowKidsService {
 //    public AdminNowKidsDTO getAdminNowKidsById(Long nowKidsId);
 
     //    관리자 지금우리아이들은 삭제하기
-    public void deleteAdminNowKids(List<Long> nowKidsIds);
+    public void deleteAdminNowKids(List<String> nowKidsIds);
 
 
     default AdminNowKidsDTO toAdminNowKidsDTO(NowKids nowKids){
