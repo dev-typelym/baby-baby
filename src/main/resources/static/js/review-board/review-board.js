@@ -1,8 +1,8 @@
 const PAGE_AMOUNT = 10;
 const $itemWrap = $(".show-item-wrap");
-const SEARCH_URL = "/parentsYard/list/show";
+const SEARCH_URL = "/review/list/show";
 const $pageWrap = $(".paging-list");
-const $contentWrap = $(".parentsList");
+const $contentWrap = $(".reviewList");
 const parentsBoardSearch = {
     searchTitle: null,
     categoryType: null,
@@ -13,7 +13,7 @@ const parentsBoardSearch = {
 
 function getParentsBoardList() {
     $.ajax({
-        url: `/parentsYard/list/show/${globalThis.page}`,
+        url: `/review/list/show/${globalThis.page}`,
         data: parentsBoardSearch,
         success: function (data) {
             console.log(data)
@@ -162,38 +162,46 @@ function showPage(data) {
     $pageWrap.html(text);
 }
 
-//    부모님 마당 목록
-function showList(boardDTOS) {
-    console.log(boardDTOS)
+//    리뷰 목록
+function showList(reviewDTOS) {
+    console.log(reviewDTOS)
     var content = "";
-    boardDTOS.forEach(board => {
-        const convertedCategory = convertCategory(board.eventCategory); // 영어 카테고리를 한글로 변환
-        const formattedDate = formatDate(new Date(board.parentsBoardRegisterDate));
+    reviewDTOS.forEach(review => {
+        const convertedCategory = convertCategory(review.eventCategory); // 영어 카테고리를 한글로 변환
+        const formattedDate = formatDate(new Date(review.updateDate));
         content += ` 
-                         <a href="/parentsYard/detail/${board.id}" class="parents-yard-board-item-link">
+                         <a href="/review/detail/${review.id}" class="parents-yard-board-item-link">
             <div class="parents-yard-board-item-wrapper">
-                <span class="category"><span>[${convertedCategory}]</span> ${board.eventTitle}</span>
+                <span class="category"><span>[${convertedCategory}]</span> ${review.eventTitle}</span>
                 <div class="parents-yard-board-item-container">
                     <h3 class="parents-yard-board-item-title">
-                        ${board.parentsBoardTitle}
+                        ${review.boardTitle}
                     </h3>
                     <p class="parents-yard-board-item-content">
-                        ${board.parentsBoardContent}
+                        ${review.boardContent}
                     </p>
                     <div class="parents-yard-board-item-bottom-wrapper">
                         <p class="parents-yard-board-item-writer" style="margin: 0;">
-                            작성자: ${board.memberNickname}<span class="bottom-divide-line">ㅣ</span>
+                            작성자: ${review.memberNickName}<span class="bottom-divide-line">ㅣ</span>
                         </p>
-                        <span class="parents-yard-board-item-date">
-                            ${formattedDate}
-                        </span>
-                    </div>
-                    <div class="parents-yard-board-item-thumbnail-wrapper">
-            `
-        if(board.parentsBoardFileDTOS.length != 0) {
+                                                    <span class="parents-yard-board-item-date">
+                                <span>
+                                    ${formattedDate}<span class="bottom-divide-line">ㅣ</span>
+                                </span>
+                                <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="star_svg" aria-hidden="true">
+                                    <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
+                                </svg>
+                                <span class="star-score">
+                                    ${review.reviewScore}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="parents-yard-board-item-thumbnail-wrapper">
+                        `
+        if(review.files.length != 0) {
             content += `
                         <span>
-                            <img class="thumbnail"  src="/parentsBoardFiles/display?fileName=ParentsBoard/${board.parentsBoardFileDTOS[0].filePath}/${board.parentsBoardFileDTOS[0].fileUUID}_${board.parentsBoardFileDTOS[0].fileOriginalName}">
+                            <img class="thumbnail"  src="/reviewFiles/display?fileName=Review/${review.files[0].filePath}/${review.files[0].fileUUID}_${review.files[0].fileOriginalName}">
                         </span>
                         `
         }

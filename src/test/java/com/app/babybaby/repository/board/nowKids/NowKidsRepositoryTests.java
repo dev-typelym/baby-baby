@@ -111,7 +111,7 @@ public class NowKidsRepositoryTests {
 
     @Test
     public void kidsKidsSaveTest(){
-        Optional<Member> parent = userRepository.findById(2L);
+        Optional<Member> parent = userRepository.findById(1L);
         for (int i = 0; i < 10; i++){
             Kid kid = Kid.builder().kidAge(4+i)
                     .kidName("김동한 " + i)

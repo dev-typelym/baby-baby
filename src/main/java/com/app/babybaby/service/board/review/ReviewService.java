@@ -52,7 +52,7 @@ public interface ReviewService {
                 .updateDate(review.getUpdateDate())
                 .uploadDate(review.getRegisterDate())
                 .eventCategory(review.getEvent().getCategory())
-                .eventContent(review.getBoardContent())
+                .eventContent(review.getEvent().getBoardContent())
                 .eventId(review.getEvent().getId())
                 .eventLocation(review.getEvent().getEventLocation())
                 .eventPrice(review.getEvent().getEventPrice())

@@ -1,11 +1,19 @@
-function showList(e) {
-    // if($(".comment-util-list").css('display') == 'none'){
-    if ($(e).next().css('display') == 'none') {
-        $(e).next().show();
-        // $(".comment-util-list").show();
+// function showList(e) {
+//     // if($(".comment-util-list").css('display') == 'none'){
+//     if ($(e).next().css('display') == 'none') {
+//         $(e).next().show();
+//         // $(".comment-util-list").show();
+//     } else {
+//         $(e).next().hide();
+//         // $(".comment-util-list").hide();
+//     }
+// }
+
+function showList(){
+    if($(".comment-util-list").css('display') == 'none'){
+        $(".comment-util-list").show();
     } else {
-        $(e).next().hide();
-        // $(".comment-util-list").hide();
+        $(".comment-util-list").hide();
     }
 }
 
