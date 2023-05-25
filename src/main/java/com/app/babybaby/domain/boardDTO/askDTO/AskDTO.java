@@ -22,10 +22,12 @@ public class AskDTO {
     private LocalDateTime registerDate;
     private String answerTitle;
     private String answerContent;
+    private Long memberId;
 
 
     @Builder
-    public AskDTO(Long id, ProcessType askStatus, String askBoardTitle, String askBoardContent, Member member, LocalDateTime registerDate, String answerTitle, String answerContent) {
+
+    public AskDTO(Long id, ProcessType askStatus, String askBoardTitle, String askBoardContent, Member member, LocalDateTime registerDate, String answerTitle, String answerContent, Long memberId) {
         this.id = id;
         this.askStatus = askStatus;
         this.askBoardTitle = askBoardTitle;
@@ -34,5 +36,6 @@ public class AskDTO {
         this.registerDate = registerDate;
         this.answerTitle = answerTitle;
         this.answerContent = answerContent;
+        this.memberId = memberId;
     }
 }

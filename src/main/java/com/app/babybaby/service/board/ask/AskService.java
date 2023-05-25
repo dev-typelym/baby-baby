@@ -27,7 +27,7 @@ public interface AskService{
                 .registerDate(ask.getRegisterDate());
 
         if (ask.getMember() != null) {
-            builder.member(ask.getMember());
+            builder.memberId(ask.getMember().getId());
         }
 
         if (ask.getAskAnswer() != null) {
