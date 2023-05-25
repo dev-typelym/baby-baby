@@ -69,8 +69,16 @@ public class MypageController {
     private final EventService eventService;
     private final PasswordEncoder passwordEncoder;
     private final CrewService crewService;
+    private final HttpSession session;
 
+    private Long getMemberIdByEmail(String memberEmail){
+        return memberService.findByMemberEmail(memberEmail).getId();
+    }
 
+    private Long getSessionMemberId(){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        return memberDTO.getId();
+    }
 
 
     //    마이페이지 메인
@@ -114,10 +122,10 @@ public class MypageController {
     @ResponseBody
     @PostMapping("profile/{date}")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    public List<EventKidDTO> getPofile(Model model, @PathVariable("date") String date1, HttpSession session){
+    public List<EventKidDTO> getPofile(Model model, @PathVariable("date") String date1){
         LocalDate date = LocalDate.parse(date1);
         log.info("------------------- 받아온 date : "+ date);
-        List<EventKidDTO> eventKidDTOS = crewService.findCrewByMemberId(110L, date);
+        List<EventKidDTO> eventKidDTOS = crewService.findCrewByMemberId(getSessionMemberId(), date);
         model.addAttribute("eventKidDTOS",eventKidDTOS);
         log.info(eventKidDTOS.toString());
         return eventKidDTOS;

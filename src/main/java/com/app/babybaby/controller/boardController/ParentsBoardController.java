@@ -11,6 +11,7 @@ import com.app.babybaby.entity.reply.parentsBoardReply.QParentsBoardReply;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.service.board.event.EventService;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
+import com.app.babybaby.service.member.member.MemberService;
 import com.app.babybaby.service.reply.parentsBoardReply.ParentsBoardReplyService;
 import com.app.babybaby.type.CategoryType;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,16 @@ public class ParentsBoardController {
     private final ParentsBoardReplyService parentsBoardReplyService;
     private final EventService eventService;
     private final HttpSession session;
+    private final MemberService memberService;
+
+    private Long getMemberIdByEmail(String memberEmail){
+        return memberService.findByMemberEmail(memberEmail).getId();
+    }
+
+    private Long getSessionMemberId(){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        return memberDTO.getId();
+    }
 
 
     //    첫 게시글 목록 화면으로 가기
@@ -106,7 +117,7 @@ public class ParentsBoardController {
 //    대표사진 올리는 페이지 불러오기
     @GetMapping("writeSecond")
     public String getParentsBoardWrite(Model model) {
-        Long sessionId = 2L;
+        Long sessionId = getSessionMemberId();
         Member member = parentsBoardService.getUserInfo(sessionId);
         model.addAttribute("memberInfo", member);
         return "parents-yard-board/parents-yard-board-thumbnail";
@@ -115,7 +126,7 @@ public class ParentsBoardController {
 //    모든 정보 저장
     @GetMapping
     public RedirectView saveALl(ParentsBoardDTO parentsBoardDTO){
-        Long sessionId = 1L;
+        Long sessionId = getSessionMemberId();
         parentsBoardService.saveAll(sessionId, parentsBoardDTO.getEventId(), parentsBoardDTO);
         log.info("parentBoard를 save하기 위한 곳 : " + parentsBoardDTO.toString());
         return new RedirectView("/parentsYard/list");

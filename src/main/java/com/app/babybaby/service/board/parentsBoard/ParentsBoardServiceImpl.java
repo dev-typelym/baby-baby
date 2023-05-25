@@ -86,9 +86,10 @@ public class ParentsBoardServiceImpl implements ParentsBoardService {
     @Override
     public void saveAll(Long memberId, Long eventId, ParentsBoardDTO parentsBoardDTO) {
         Member member = memberRepository.findById(memberId).get();
-        Event event = eventRepository.findById(eventId).get();
-        log.info("parentBoard는 " + parentsBoardDTO.toString());
-
+        Event event = null;
+        if(eventId != 0){
+            event = eventRepository.findById(eventId).get();
+        }
         ParentsBoard parentsBoard = this.toParentsBoardDTOEntity(parentsBoardDTO);
         parentsBoard.setEvent(event);
         parentsBoard.setMember(member);

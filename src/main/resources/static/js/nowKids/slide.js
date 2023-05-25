@@ -285,7 +285,9 @@ boardService.getList(function(nowDTOS) {
 });
 
 $(window).on('scroll', function() {
-    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+    console.log($(window).scrollTop() )
+    console.log($(document).height() - $(window).height())
+    if (Math.ceil($(window).scrollTop()) == $(document).height() - $(window).height()) {
         console.log("스크롤");
         page++;
         console.log(page);

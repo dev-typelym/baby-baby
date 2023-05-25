@@ -45,11 +45,12 @@ public class PurchaseController {
         }
         log.info(kidIdList.toString());
         model.addAttribute("kidIdList", kidIdList);
-        return "/payment/payment";
+        return "payment/payment";
     }
 
     @PostMapping("save")
-    public RedirectView pay(Long eventId, PurchaseDTO purchaseDTO, HttpSession session) {
+    @ResponseBody
+    public Long pay(Long eventId, PurchaseDTO purchaseDTO, HttpSession session) {
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
         Long sessionId = memberDTO.getId();
 
@@ -63,6 +64,6 @@ public class PurchaseController {
         log.info(purchaseDTO.toString());
          purchaseService.saveAll(sessionId, eventId, purchaseDTO);
 
-        return new RedirectView("/mypage/main");
+        return 1L;
     }
 }
