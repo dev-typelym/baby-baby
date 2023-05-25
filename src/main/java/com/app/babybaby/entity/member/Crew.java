@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,7 +27,7 @@ public class Crew{
     private Guide guide;
 
     @NotNull
-    private String eventRegisterDate;
+    private LocalDate eventRegisterDate;
 
     @Builder
     public Crew(Kid kid, Guide guide) {
@@ -35,14 +36,14 @@ public class Crew{
     }
 
     @Builder
-    public Crew(Long id, Kid kid, Guide guide, String eventRegisterDate) {
+    public Crew(Long id, Kid kid, Guide guide, LocalDate eventRegisterDate) {
         this.id = id;
         this.kid = kid;
         this.guide = guide;
         this.eventRegisterDate = eventRegisterDate;
     }
 
-    public Crew(Kid kid, Guide guide, String eventRegisterDate) {
+    public Crew(Kid kid, Guide guide, LocalDate eventRegisterDate) {
         this.kid = kid;
         this.guide = guide;
         this.eventRegisterDate = eventRegisterDate;

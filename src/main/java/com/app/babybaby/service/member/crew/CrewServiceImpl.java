@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
@@ -27,7 +28,7 @@ public class CrewServiceImpl implements CrewService {
     private final CrewRepository crewRepository;
 
     @Override
-    public List<EventKidDTO> findCrewByMemberId(Long sessionId, String date) {
+    public List<EventKidDTO> findCrewByMemberId(Long sessionId, LocalDate date) {
         List<Tuple> crews = crewRepository.findCrewByMemberId(sessionId,date);
         List<EventKidDTO> eventKidDTOS = null;
         for (Tuple tuple : crews) {

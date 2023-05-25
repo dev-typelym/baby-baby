@@ -12,6 +12,7 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class CrewQueryDslImpl implements CrewQueryDsl {
     }
 
     @Override
-    public List<Tuple> findCrewByMemberId(Long sessionId, String date) {
+    public List<Tuple> findCrewByMemberId(Long sessionId, LocalDate date) {
 //        return query.select(QEvent.event,
 //                JPAExpressions.select(kid)
 //                        .from(crew)
