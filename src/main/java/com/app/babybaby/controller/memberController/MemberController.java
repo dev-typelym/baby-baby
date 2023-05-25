@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -32,6 +33,16 @@ public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
     private final RandomKeyService randomKeyService;
+    private final HttpSession session;
+
+    private Long getMemberIdByEmail(String memberEmail){
+        return memberService.findByMemberEmail(memberEmail).getId();
+    }
+
+    private Long getSessionMemberId(){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        return memberDTO.getId();
+    }
 
     /* 회원 가입 페이지 이동*/
     @GetMapping("join/general")
@@ -161,7 +172,7 @@ public class MemberController {
     @PostMapping("details/generals/{memberId}")
     @ResponseBody
     public MemberDTO goGeneralRest(@PathVariable Long memberId){
-        Long sessionId = 1L;
+        Long sessionId = getSessionMemberId();
         return memberService.getAllUserInfo(memberId, sessionId);
     }
 

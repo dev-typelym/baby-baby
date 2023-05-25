@@ -47,8 +47,8 @@ public interface ParentsBoardService {
     default ParentsBoardDTO toParentsBoardDTO(ParentsBoard parentsBoard) {
         return ParentsBoardDTO.builder()
                 .id(parentsBoard.getId())
-                .eventTitle(parentsBoard.getEvent().getBoardTitle())
-                .eventCategory(parentsBoard.getEvent().getCategory())
+//                .eventTitle(parentsBoard.getEvent().getBoardTitle())
+//                .eventCategory(parentsBoard.getEvent().getCategory())
                 .memberNickname(parentsBoard.getMember().getMemberNickname())
                 .parentsBoardContent(parentsBoard.getBoardContent())
                 .parentsBoardTitle(parentsBoard.getBoardTitle())
