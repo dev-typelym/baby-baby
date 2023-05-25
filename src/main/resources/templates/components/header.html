@@ -64,7 +64,7 @@
                                     </div>
 
                                     <a th:if="${session.member == null}" th:href="@{/member/login}" class="header-user-button" style="display: inline-block;">로그인</a>
-                                    <a th:if="${session.member == null}" th:href="@{/member/join/general}" data-event="iam.signup" class="header-user-button" style="display: inline-block;">회원가입</a>
+                                    <a th:if="${session.member == null}" th:href="@{/member/login}" data-event="iam.signup" class="header-user-button" style="display: inline-block;">회원가입</a>
                                 </div>
                             </div>
                             <div class="web-header-funding-open funding-open" th:if="${session.member != null}">
