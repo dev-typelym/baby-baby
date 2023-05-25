@@ -43,6 +43,11 @@ public class CouponServiceImpl implements CouponService {
         couponRepository.save(coupon);
     }
 
+    @Override
+    public Long totalCouponCount(Long memberId) {
+        return  couponRepository.totalCouponCount(memberId);
+    }
+
 //    @Override
 //    public Slice<EventDTO> findEventListWithPaging(EventBoardSearch eventBoardSearch, Pageable pageable) {
 //        Slice<Event> events = eventRepository.findEventListWithPaging_QueryDSL(eventBoardSearch, pageable);

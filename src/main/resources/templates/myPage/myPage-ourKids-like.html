@@ -26,12 +26,14 @@
                 <p class="head-text">좋아요 목록</p>
                 <div class="follow-nav">
                     <ul class="nav-lists">
-                    <li class="follow">
-                        <button class="follow-nav-btn nav-btn">
-                        <span>놀러가요!</span>
-                        </button>
-                    </li>
-                    <li class="following">
+                        <li class="follow">
+                            <a th:href="@{/mypage/play-like}">
+                                <button class="follow-nav-btn nav-btn">
+                                    <span>놀러가요!</span>
+                                </button>
+                            </a>
+                        </li>
+                        <li class="following">
                         <button class="following-nav-btn nav-btn active">
                         <span>지금 우리 아이들은?</span>
                         </button>

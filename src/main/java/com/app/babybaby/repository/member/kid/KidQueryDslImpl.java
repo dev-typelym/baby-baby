@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 
 import static com.app.babybaby.entity.member.QKid.kid;
+import static com.app.babybaby.entity.purchase.purchase.QPurchase.purchase;
 
 @RequiredArgsConstructor
 public class KidQueryDslImpl implements KidQueryDsl {
@@ -20,4 +21,20 @@ public class KidQueryDslImpl implements KidQueryDsl {
                 .where(kid.parent.id.eq(kid.id));
         return null;
     }
+
+    @Override
+    public List<Kid> findAllMyKid_QueryDsl(Long memberId) {
+        return query.select(kid)
+                .from(kid)
+                .where(kid.parent.id.eq(memberId))
+                .fetch();
+    }
+
+    @Override
+    public Long findAllMyKidCount_QueryDsl(Long memberId) {
+        Long count = query.select(kid.count()).from(kid).where(kid.parent.id.eq(memberId)).fetchOne();
+        return count;
+    }
+
+
 }

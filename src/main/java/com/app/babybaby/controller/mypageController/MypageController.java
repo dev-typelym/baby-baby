@@ -73,7 +73,13 @@ public class MypageController {
 
     //    마이페이지 메인
     @GetMapping("main")
-    public String getMain(){
+    public String getMain(Model model,HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        model.addAttribute("purchaseCount",purchaseService.findMemberByIdWithCount(memberDTO.getId()));
+        model.addAttribute("kid",kidService.findALlMyKid(memberDTO.getId()));
+        model.addAttribute("kidCount",kidService.findALlMyKidCount(memberDTO.getId()));
+        model.addAttribute("member",memberService.findByMemberId(memberDTO.getId()));
+        model.addAttribute("couponCount",couponService.totalCouponCount(memberDTO.getId()));
         return "myPage/myPage-main-kdh";
     }
 

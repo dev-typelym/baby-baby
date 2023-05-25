@@ -71,4 +71,9 @@ public class CouponQueryDslImpl implements CouponQueryDsl {
                 .stream()
                 .count();
     }
+
+    @Override
+    public Long totalMyCouponCount(Long memberId) {
+        return null;
+    }
 }

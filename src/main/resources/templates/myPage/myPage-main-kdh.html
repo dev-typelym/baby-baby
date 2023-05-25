@@ -32,11 +32,10 @@
                     <h3 class="media-query-myprofile">나의 프로필</h3>
                     <div class="profile-info-area">
                       <div class="myprofile-photo">
-                        <label for="profile">
+                        <label for="">
                           <div class="profile">
                             <img
-                              src="https:/static.wadiz.kr/assets/icon/profile-icon-1.png"
-                              alt=""
+                                    th:src="'/members/display?fileName=Member/Profile/' + ${session.member.memberProfilePath} +'/'+${session.member.memberProfileUUID}+'_'+${session.member.memberProfileOriginalName}"
                             />
                           </div>
                         </label>
@@ -48,17 +47,17 @@
                       <img src="/images/myPage/tongsol.png">
                       <!-- 만약에 일반 회원이면 children.png사용 
                       아니다 싶으면 사용 하지 말기 -->
-                          <span>정유찬</span>
+                          <span th:text="${session.member.memberName}">정유찬</span>
                           <span>님</span>
                         </div>
 
                         <div class="profile-type">
-                          <span>통솔자</span>
+                          <span th:text="${session.member.memberType == GENERAL_GUIDE ? '통솔자' : '회원'}">통솔자</span>
                         </div>
                       </div>
                     </div>
-                    <button class="logout-btn" type="button">
-                      <span><span class="logout-btn-text">로그아웃</span></span>
+                    <button class="logout-btn" type="button" th:action="@{/member/logout}">
+                      <span><span class="logout-btn-text" >로그아웃</span></span>
                     </button>
                   </div>
 
@@ -74,7 +73,7 @@
                                   <span>구매내역</span>
 <!--                                </a>-->
                               </div>
-                              <div class="store-amount">1</div>
+                              <div class="store-amount" th:text="${purchaseCount}"></div>
                             </div>
                           </a>
                         </div>
@@ -102,7 +101,7 @@
                                 </svg>
                                 <span>쿠폰</span>
                               </div>
-                              <div class="coupon-amount">3 <span>장</span></div>
+                              <div class="coupon-amount" th:text="${couponCount} + '장'">3 <span>장</span></div>
                             </div>
                           </a>
                         </div>
@@ -113,14 +112,14 @@
                                 <img src="/images/myPage/toys.png" alt="" />
                                 <span>우리 아이들 목록</span>
                               </div>
-                              <div class="store-amount"><span>3 </span>명</div>
+                              <div class="store-amount"><span th:text="${kidCount}">3 </span>명</div>
                             </div>
                         </div>
-
                         <div class="kids-wrapper" style="display: none;">
-                          <div class="kids-content">
-                            <div class="kid-one">👩 황현수(여) 4세</div>
-                            <div class="kid-one">🧑 김동한(남) 3세</div>
+                          <div class="kids-content" th:each="kid : ${kid}">
+<!--                              <div class="kid-one" th:text="${kid.kidName + kid.kidGender}">👩🧑</div>-->
+<!--                              <div class="kid-one" th:text="${kid.kidGender == 'WOMAN' ? '🧑' : '👩'}+ ${kid.kidName} + ${kid.kidAge}"></div>-->
+                              <div class="kid-one" th:utext="${kid.kidGender == MAN ? '🧑' : '👩'} + ' ' + ${kid.kidName} + ' ' + ${kid.kidAge} + ' 세'"></div>
                           </div>
                         </div>
 
@@ -134,7 +133,7 @@
                 <h4 class="mypage-sub-title">나의 활동</h4>
                 <ul class="links">
                   <li class="one-link">
-                    <a href="#">
+                    <a th:href="@{/mypage/coupon}">
                       <div>
                         <span class="link-icon">
                           <svg
@@ -169,7 +168,7 @@
                   </li>
 
                   <li class="one-link">
-                    <a href="#">
+                    <a th:href="@{/mypage/play-like}">
                       <div>
                         <span class="link-icon">
                           <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true"><path d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"></path></svg>
@@ -189,13 +188,13 @@
                     </a>
                   </li>
 
-                  <li class="one-link">
-                    <a href="#">
+                  <li class="one-link" th:if="${session.member.memberType != GENERAL}">
+                    <a th:href="@{/mypage/profile}">
                       <div>
                         <span class="link-icon">
                           <img src="../../static/images/myPage/horse.png" alt="">
                         </span>
-                        <span class="link-text">나의 체험학습</span>
+                        <span class="link-text">나의 통솔 일정</span>
                       </div>
                       <span class="next-btn">
                         <svg
@@ -210,13 +209,13 @@
                     </a>
                   </li>
 
-                  <li class="one-link">
-                    <a href="#">
+                  <li class="one-link" th:if="${session.member.memberType  != COMPANY}">
+                    <a th:href="@{/mypage/my-event}">
                       <div>
                         <span class="link-icon">
                           <img src="/images/myPage/review-icon.png" alt="">
                         </span>
-                        <span class="link-text">내가 쓴 게시글</span>
+                        <span class="link-text">내가 쓴 체험학습</span>
                       </div>
                       <span class="next-btn">
                         <svg
@@ -232,7 +231,7 @@
                   </li>
 
                   <li class="one-link">
-                    <a href="#">
+                    <a th:href="@{/mypage/kid/register}">
                       <div>
                         <span class="link-icon">
                           <img src="/images/myPage/toys.png" alt="">
@@ -252,8 +251,8 @@
                     </a>
                   </li>
 
-                  <li class="one-link">
-                    <a href="#">
+                  <li class="one-link" th:if="${session.member.memberType != GENERAL_GUIDE}">
+                    <a th:href="@{/mypage/crew}">
                       <div>
                         <span class="link-icon">
                           <img src="/images/myPage/apply.png" alt="">
@@ -277,7 +276,7 @@
                 <h4 class="mypage-sub-title">고객센터</h4>
                 <ul class="links">
                   <li class="one-link">
-                    <a href="#">
+                    <a>
                       <div>
                         <span class="link-icon">
                           <img src="/images/myPage/announcement.png" alt="">
@@ -299,7 +298,7 @@
 
 
                   <li class="one-link">
-                    <a href="#">
+                    <a th:href="@{/mypage/inquiry}">
                       <div>
                         <span class="link-icon">
                           <img src="/images/myPage/support.png" alt="">
@@ -322,7 +321,7 @@
                   <h4 class="mypage-sub-title">나의 정보</h4>
                 <ul class="links">
                   <li class="one-link">
-                    <a href="#">
+                    <a href="#" th:href="@{/mypage/info}">
                       <div>
                         <span class="link-icon">
                           <svg viewBox="0 0 32 32" focusable="false" role="presentation" class="withIcon_icon__3VTbq" aria-hidden="true"><path d="M17.84 3.2l.4 2.56.16.88.88.32a9.55 9.55 0 0 1 2.893 1.691l.707.549.88-.32 2.4-.88L28 11.2l-2 1.68-.72.56.16.88a9.022 9.022 0 0 1-.009 3.336l-.151.824.72.56 2 1.76-1.84 3.2-3.28-1.2-.72.56a9.485 9.485 0 0 1-2.814 1.658l-.946.342-.16.88-.4 2.56h-3.68l-.4-2.56-.16-.88-.88-.32a9.55 9.55 0 0 1-2.893-1.691L9.12 22.8l-.88.32-2.4.88L4 20.8l2-1.68.72-.56-.16-.88a9.022 9.022 0 0 1 .009-3.336l.151-.824-.72-.56-2-1.76L5.84 8l3.28 1.2.72-.56a9.485 9.485 0 0 1 2.814-1.658l.946-.342.16-.88.4-2.56h3.68zM16 21.6a5.6 5.6 0 1 0 0-11.2 5.6 5.6 0 0 0 0 11.2zm2.56-20h-5.136a.8.8 0 0 0-.783.635L12.08 5.44a11.21 11.21 0 0 0-3.292 2.011L5.76 6.24h-.267a.798.798 0 0 0-.691.397L2.24 10.961a.798.798 0 0 0 .238 1.038l2.562 2.082a10.647 10.647 0 0 0 .01 3.906l-2.57 2.014a.8.8 0 0 0-.158 1.044L4.8 25.362a.8.8 0 0 0 .693.4h.347l2.96-1.2c.956.798 2.07 1.448 3.282 1.895l.638 3.225c.077.368.399.64.784.64h5.072a.8.8 0 0 0 .783-.635l.561-3.205a11.212 11.212 0 0 0 3.296-1.934l3.024 1.134h.347a.798.798 0 0 0 .691-.397l2.562-4.404a.8.8 0 0 0-.159-1.039l-2.561-2.081a10.647 10.647 0 0 0-.01-3.906l2.41-1.854a.8.8 0 0 0 .158-1.044L27.2 6.64a.8.8 0 0 0-.693-.4h-.347l-2.96 1.2a11.163 11.163 0 0 0-3.282-1.895L19.28 2.32a.801.801 0 0 0-.784-.64h-.017zM16 20a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"></path></svg>

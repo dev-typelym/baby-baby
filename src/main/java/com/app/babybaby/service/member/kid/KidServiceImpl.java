@@ -47,4 +47,17 @@ public class KidServiceImpl implements KidService {
         kidRepository.save(kid);
     }
 
+    @Override
+    public List<KidDTO> findALlMyKid(Long memberId) {
+        List<Kid> kids = kidRepository.findAllMyKid_QueryDsl(memberId);
+        List<KidDTO> kidDTOS = kids.stream().map(kid -> toKidDTO(kid)).collect(Collectors.toList());
+
+        return kidDTOS;
+    }
+
+    @Override
+    public Long findALlMyKidCount(Long memberId) {
+        return kidRepository.findAllMyKidCount_QueryDsl(memberId);
+    }
+
 }

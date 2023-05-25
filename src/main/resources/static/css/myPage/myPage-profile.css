@@ -988,3 +988,16 @@ max-width: 60%;
 .toastui-calendar-weekday-grid{
     z-index: 1;
 }
+
+img.iimm {
+    display: inline-flex;
+    position: relative;
+    outline: none;
+    border: none;
+    border-radius: 100%;
+    padding: 0;
+    width: 78px;
+    height: 80px;
+    vertical-align: middle;
+    margin-bottom: 8px;
+}
