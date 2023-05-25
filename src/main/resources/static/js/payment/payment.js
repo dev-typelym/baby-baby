@@ -40,23 +40,23 @@ $('.Checkbox_icon').on('click', $('.Checkbox_icon'), function () {
 
 /* 쿠폰창 모달 */
 
-const openModalBtn = document.getElementById('open-modal');
-const modal = document.getElementById('coupon-modal');
-const closeModalBtn = document.getElementsByClassName('close')[0];
-
-openModalBtn.onclick = function () {
-    modal.style.display = 'block';
-};
-
-closeModalBtn.onclick = function () {
-    modal.style.display = 'none';
-};
-
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-};
+// const openModalBtn = document.getElementById('open-modal');
+// const modal = document.getElementById('coupon-modal');
+// const closeModalBtn = document.getElementsByClassName('close')[0];
+//
+// openModalBtn.onclick = function () {
+//     modal.style.display = 'block';
+// };
+//
+// closeModalBtn.onclick = function () {
+//     modal.style.display = 'none';
+// };
+//
+// window.onclick = function (event) {
+//     if (event.target == modal) {
+//         modal.style.display = 'none';
+//     }
+// };
 
 // const modalForm = document.querySelector('#modal-form');
 

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.net.http.HttpRequest;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
 
     @GetMapping("pay/{eventId}")
-    public String goPurchase(@PathVariable Long eventId,HttpSession session, Model model, HttpServletRequest request){
+    public String goPurchase(@PathVariable("eventId") Long eventId,HttpSession session, Model model, HttpServletRequest request){
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
         Long sessionId = memberDTO.getId();
         EventDTO eventDTO = purchaseService.findAllInfoForPayment(sessionId, eventId);
@@ -44,7 +45,7 @@ public class PurchaseController {
         }
         log.info(kidIdList.toString());
         model.addAttribute("kidIdList", kidIdList);
-        return "payment/payment";
+        return "/payment/payment";
     }
 
     @PostMapping("save")
@@ -62,6 +63,6 @@ public class PurchaseController {
         log.info(purchaseDTO.toString());
          purchaseService.saveAll(sessionId, eventId, purchaseDTO);
 
-        return new RedirectView("mypage/main");
+        return new RedirectView("/mypage/main");
     }
 }

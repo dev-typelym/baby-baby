@@ -118,4 +118,7 @@ $('.select-option2').on('click', function () {
     $('input[name=eventId]').val(eventId)
 })
 
-$('.profile-name').text(events[0].company.memberNickname)
+console.log("=============sksksksksksk");
+console.log(events);
+
+$('.profile-name').text(events[0].memberNickname)

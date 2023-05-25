@@ -21,7 +21,7 @@
     <div class="parents-yard-board-detail-top">
         <div class="parents-yard-board-detail-user-profile">
             <img class="parents-yard-board-detail-user-profile-image"
-                 th:src="${'/members/display/fileName=Member/Profile/' + review.memberProfilePath + '/' + review.memberProfileUUID + '_' + review.memberProfileOriginalName}">
+                 th:src="'/members/display/fileName=Member/Profile/' + ${review.memberProfilePath} + '/' + ${review.memberProfileUUID} + '_' + ${review.memberProfileOriginalName}">
         </div>
         <span class="parents-yard-board-detail-user-name" th:text="${review.memberNickName}"></span>
         <input class="boardId" type="hidden" th:value="${review.id}" style="display: none;">
@@ -130,26 +130,26 @@
             </div>
         </div>
 
-        <!-- 댓글 시작 -->
+         댓글 시작
         <div class="board-detail-bottom">
-            <div class="board-comment">
-                <div class="comment-box">
-                    <div class="message-box">
-                        <p>
-                            아기자기 서비스의 건전한 운영을 위하여 운영기준 상 문제의 소지가 있거나 게시물에 관련이 없는 악의적인 댓글은 임의로 삭제될 수 있습니다.
-                        </p>
-                    </div>
-                    <br>
-                    <p class="comment-count">
-                        <!--                        <em>1</em>개의 댓글이 달려있습니다.-->
-                    </p>
-                    <div class="main-comment">
-                        <textarea name="" class="replyContent" id="" placeholder="댓글을 입력하세요."></textarea>
-                        <div class="btn-complete">
-                            <button class="btn-color">댓글달기</button>
-                        </div>
-                    </div>
-                    <div class="comment-list">
+<!--            <div class="board-comment">-->
+<!--                <div class="comment-box">-->
+<!--                    <div class="message-box">-->
+<!--                        <p>-->
+<!--                            아기자기 서비스의 건전한 운영을 위하여 운영기준 상 문제의 소지가 있거나 게시물에 관련이 없는 악의적인 댓글은 임의로 삭제될 수 있습니다.-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                    <br>-->
+<!--                    <p class="comment-count">-->
+<!--                        &lt;!&ndash;                        <em>1</em>개의 댓글이 달려있습니다.&ndash;&gt;-->
+<!--                    </p>-->
+<!--                    <div class="main-comment">-->
+<!--                        <textarea name="" class="replyContent" id="" placeholder="댓글을 입력하세요."></textarea>-->
+<!--                        <div class="btn-complete">-->
+<!--                            <button class="btn-color">댓글달기</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="comment-list">-->
                         <!--                        <ul id="comment-list-detail">-->
                         <!--                            <li class="top" style="display: list-item;">-->
                         <!--                                <div class="comment-wrap">-->
@@ -178,12 +178,12 @@
                         <!--                                </div>-->
                         <!--                            </li>-->
                         <!--                        </ul>-->
-                    </div>
-                </div>
-                <div class="btn-place">
-                    <button class="btn-comment">댓글 더 보기</button>
-                </div>
-            </div>
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="btn-place">-->
+<!--                    <button class="btn-comment">댓글 더 보기</button>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="free-board-other">
                 <h4>
                     <em id="categoryElement" th:attr="data-category=${review.eventCategory}"></em><span> 카테고리 최신 글</span>
