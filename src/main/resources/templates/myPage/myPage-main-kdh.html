@@ -135,7 +135,7 @@
                 <h4 class="mypage-sub-title">나의 활동</h4>
                 <ul class="links">
                   <li class="one-link">
-                    <a th:href="@{/mypage/coupon}">
+                    <a th:href="@{/mypage/following}">
                       <div>
                         <span class="link-icon">
                           <svg
@@ -190,7 +190,7 @@
                     </a>
                   </li>
 
-                  <li class="one-link" th:if="${session.member.memberType != 'GENERAL'}">
+                  <li class="one-link" th:if="${session.member.memberType != GENERAL}">
                     <a th:href="@{/mypage/profile}">
                       <div>
                         <span class="link-icon">

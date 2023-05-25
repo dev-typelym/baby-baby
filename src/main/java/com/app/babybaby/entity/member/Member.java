@@ -246,5 +246,15 @@ public class Member {
         this.memberHiSentence = memberHiSentence;
     }
 
+    public void setMemberProfileOriginalName(String memberProfileOriginalName) {
+        this.memberProfileOriginalName = memberProfileOriginalName;
+    }
 
+    public void setMemberProfileUUID(String memberProfileUUID) {
+        this.memberProfileUUID = memberProfileUUID;
+    }
+
+    public void setMemberProfilePath(String memberProfilePath) {
+        this.memberProfilePath = memberProfilePath;
+    }
 }
