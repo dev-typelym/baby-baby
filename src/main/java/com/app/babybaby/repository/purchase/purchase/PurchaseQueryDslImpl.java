@@ -83,7 +83,8 @@ public class PurchaseQueryDslImpl implements PurchaseQueryDsl {
 
     @Override
     public Long findMemberByIdWithCount(Long memberId) {
-        return null;
+        Long count = query.select(purchase.count()).from(purchase).where(purchase.member.id.eq(memberId)).fetchOne();
+        return count;
     }
 
 

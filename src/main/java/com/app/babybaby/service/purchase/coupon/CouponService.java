@@ -20,6 +20,8 @@ public interface CouponService {
 //    부모님마당 작성시 쿠폰 발급
     public void saveCouponByParentsBoard(Long id);
 
+    public Long totalCouponCount(Long memberId);
+
 
     default CouponDTO CouponToDTO(Coupon coupon){
         return CouponDTO.builder()

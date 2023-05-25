@@ -35,6 +35,8 @@ public interface PurchaseService {
 
     public void saveAll(Long memberId, Long eventId, PurchaseDTO purchaseDTO);
 
+    public Long findMemberByIdWithCount(Long memberId);
+
     default PurchaseDTO PurchaseToDTO(Purchase purchase){
         return PurchaseDTO.builder()
                 .coupon(purchase.getCoupon())

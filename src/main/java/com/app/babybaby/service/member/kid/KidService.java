@@ -14,6 +14,8 @@ public interface KidService {
 
     public List<KidDTO> findAllKidsByMemberIdAndEventId(Long sessionId, Long eventId);
     public void save(KidDTO kidDTO);
+    public List<KidDTO> findALlMyKid(Long memberId);
+    public Long findALlMyKidCount(Long memberId);
 
     default KidDTO toKidDTO(Kid kid){
         return KidDTO.builder()

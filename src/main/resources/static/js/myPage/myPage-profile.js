@@ -311,7 +311,6 @@ $("#today").click(() => {
                 <table class="children-table">
                   <thead>
                     <tr>
-                      <th class="num">No.</th>
                       <th class="nickname">나이</th>
                       <th class="name">이름</th>
                       <th class="place">체험 이름</th>
@@ -320,11 +319,10 @@ $("#today").click(() => {
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="num">1</td>
-                      <td class="nickname">lovelyU</td>
+                      <td class="nickname">${eventKid.kidAge}</td>
                       <td class="name">${eventKid.kidName}</td>
-                      <td class="place">진흙놀이</td>
-                      <td class="participant">2023-04-22 18:26:00</td>
+                      <td class="place">${eventKid.boardTitle}</td>
+                      <td class="participant">2023-04-22</td>
                     </tr>
                   </tbody>
                 </table>

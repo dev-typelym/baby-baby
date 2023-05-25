@@ -96,21 +96,16 @@
                 <h3 class="BlindText"></h3>
                 <!-- 프로필 이미지 -->
                 <div aria-hidden="true" class="Avatar">
-                  <span
-                    class="Avatar_image"
-                    style="
-                      background-image: url('https://static.wadiz.kr/assets/icon/profile-icon-6.png');
-                      border: 1px solid rgb(221, 226, 230);
-                    "
-                  ></span>
+                  <span class="Avatar_image" style="border: 1px solid rgb(221, 226, 230);">
+                    <img th:if="${session.member != null}" class="iimm" th:src="'/members/display?fileName=Member/Profile/' + ${session.member.memberProfilePath} +'/'+${session.member.memberProfileUUID}+'_'+${session.member.memberProfileOriginalName}">
+                  </span>
                 </div>
                 <!-- 사업자 회원 정보 -->
                 <div class="ProfileCorp_info">
                   <dl class="ProfileInfo_box" aria-label="회원정보">
                     <dt class="BlindText">회원닉네임</dt>
                     <dd class="ProfileInfo_nickname">
-                      <img src="//images/myPage/tongsol.png" width="20" style = "margin-bottom: -3px;" alt="">
-                      린먕
+                      <span th:text="${session.member.memberName}"></span>
                     </dd>
                     <dt class="BlindText">회원유형</dt>
                     <dd class="ProfileInfo_type">통솔자</dd>
@@ -137,12 +132,12 @@
                   </dl>
                 </div>
                 <!-- 프로필 설정 버튼 -->
-                <a href="#" class="ProfileSet Mint" id="apply">
+                <a href="#" class="ProfileSet Mint" id="apply" th:if="${session.member.memberType != GENERAL_GUIDE}">
                   <span>
                     <span class="ProfileSet_button">통솔자 신청하기</span>
                   </span>
                 </a>
-                <a href="#" class="ProfileSet">
+                <a th:href="@{/mypage/info}" class="ProfileSet">
                   <span>
                     <span class="ProfileSet_button">프로필 편집하기</span>
                   </span>

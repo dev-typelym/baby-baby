@@ -185,7 +185,8 @@
 
                           <div class="profile-area">
                             <label for="profile">
-                              <img src="/images/myPage/children.png" alt="" />
+                              <img th:src="'/members/display?fileName=Member/Profile/' + ${session.member.memberProfilePath} +'/'+${session.member.memberProfileUUID}+'_'+${session.member.memberProfileOriginalName}"
+                              />
                             </label>
                           </div>
                         </div>

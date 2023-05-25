@@ -160,4 +160,10 @@ public class PurchaseServiceImpl implements PurchaseService {
             processPayment(memberId, eventId, kids);
         }
 
+    @Override
+    public Long findMemberByIdWithCount(Long memberId) {
+        Long count = purchaseRepository.findMemberByIdWithCount(memberId);
+        return count;
+    }
+
 }

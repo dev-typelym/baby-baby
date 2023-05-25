@@ -297,8 +297,9 @@ label[for=profile], label[for=resume]{
 }
 
 label[for=profile] img, label[for=resume] img{
-    width: 64px;
+    width: 90px;
     cursor: pointer;
+    border-radius: 7px;
 }
 
 .resume-info{

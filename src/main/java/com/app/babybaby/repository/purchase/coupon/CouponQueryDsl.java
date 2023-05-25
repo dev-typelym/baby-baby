@@ -17,4 +17,7 @@ public interface CouponQueryDsl {
     
 //    전체 사용하지 않은 쿠폰 조회
     public Long totalUnusedCouponCount(Long memberId);
+
+//    나의 쿠폰 갯수 조회
+    public Long totalMyCouponCount(Long memberId);
 }
