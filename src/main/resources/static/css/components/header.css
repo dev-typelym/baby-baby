@@ -184,11 +184,9 @@ body ol, body select, body textarea, body ul {
 }
 .web-header {
        position: relative;
-    position: -webkit-sticky;
-    position: sticky;
     top: 0;
     transition: top .25s;
-    z-index: 1201;
+    z-index: 1;
     width: 100%;
 }
 .web-header .header-wrapper {
@@ -742,12 +740,6 @@ div.modal-background {
 
 
 /* 헤더 반응형 */
-@media screen and (min-width: 1097px){
-	.web-header {
-	    position: static;
-	}
-}
-
 @media screen and (min-width: 1097px){
 	.web-header .header-wrapper {
 	    position: relative;
