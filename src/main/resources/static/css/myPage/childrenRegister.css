@@ -85,11 +85,11 @@ input, select{
     margin-top: 10px;
 }
 
-button{
+.button-kid{
     border: none;
     background-color: #00c4c4;
     cursor: pointer;
-    padding: 13px 80px;
+    padding: 10px 22px;
     border-radius: 6px;
     color: white;
 }
