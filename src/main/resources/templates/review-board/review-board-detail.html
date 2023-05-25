@@ -20,8 +20,7 @@
 <div class="parents-yard-board-detail-wrapper">
     <div class="parents-yard-board-detail-top">
         <div class="parents-yard-board-detail-user-profile">
-            <img class="parents-yard-board-detail-user-profile-image"
-                 th:src="'/reviewFiles/display?fileName=Member/Profile/' + ${review.memberProfilePath} +'/'+${review.memberProfileUUID}+'_'+${review.memberProfileOriginalName}">
+            <img class="parents-yard-board-detail-user-profile-image" th:src="${'/eventFiles/display?fileName=/Member/Profile/' + review.memberProfilePath + '/' + review.memberProfileUUID + '_' +  review.memberProfileOriginalName}">
         </div>
         <span class="parents-yard-board-detail-user-name" th:text="${review.memberNickName}"></span>
         <input class="boardId" type="hidden" th:value="${review.id}" style="display: none;">
