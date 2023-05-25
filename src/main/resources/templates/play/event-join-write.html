@@ -279,7 +279,7 @@
             let kidId = $(e).nextAll(".kidIdforPurchase").val();
             let eventId = $(e).nextAll(".eventIdforPurchase").val();
             let $selectedOption = $("<p class='selected-option'></p>").text(kids);
-            $selectedOption.append("<input class='sendKidId'  name='kidIds' value='" + kidId + "'/>");
+            $selectedOption.append("<input class='sendKidId'  name='kidIds' type='hidden' value='" + kidId + "'/>");
             $selectedOption.append("<input class='sendEventId' style='display:none;' name='eventId' value='" + eventId + "'/>");
             console.log(kidId)
             console.log(e)
