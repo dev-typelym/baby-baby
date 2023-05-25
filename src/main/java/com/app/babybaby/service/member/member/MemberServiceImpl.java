@@ -257,7 +257,7 @@ public class MemberServiceImpl implements MemberService {
     public void setInfoMemberById(MemberDTO memberDTO, PasswordEncoder passwordEncoder) {
         Member member = memberRepository.findMemberById(memberDTO.getId());
 
-        if (!member.getMemberPassword().equals(memberDTO.getMemberPassword())) {
+        if (member.getMemberPassword().matches(memberDTO.getMemberPassword())) {
             member.setMemberPassword(passwordEncoder.encode(memberDTO.getMemberPassword()));
         }
 
@@ -265,6 +265,9 @@ public class MemberServiceImpl implements MemberService {
         member.setMemberAddress(memberDTO.getMemberAddress());
         member.setMemberPhone(memberDTO.getMemberPhone());
         member.setMemberNickname(memberDTO.getMemberNickname());
+        member.setMemberProfileOriginalName(memberDTO.getMemberProfileOriginalName());
+        member.setMemberProfilePath(memberDTO.getMemberProfilePath());
+        member.setMemberProfileUUID(memberDTO.getMemberProfileUUID());
         memberRepository.save(member);
     }
 
