@@ -26,6 +26,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/review/**") // 작성한 경로에 Interceptor 동작
                 .addPathPatterns("/nowKid/**") // 작성한 경로에 Interceptor 동작
                 .addPathPatterns("/alert/**") // 작성한 경로에 Interceptor 동작
+                .addPathPatterns("/review/**") // 작성한 경로에 Interceptor 동작
                 .excludePathPatterns("/admin/**");
 
     }

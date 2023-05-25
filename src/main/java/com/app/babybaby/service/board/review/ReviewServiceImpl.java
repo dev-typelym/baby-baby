@@ -94,6 +94,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     public Page<ReviewDTO> getFindAllWithSearchReviewBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
         Page<Review> reviews = reviewRepository.findAllReviewWithSearch_QueryDsl(pageable, parentsBoardSearch);
+        log.info(parentsBoardSearch.getCategoryType() + "서비스 카테고리이이이");
         List<ReviewDTO> reviewDTOS = reviews.stream().map(this::ReviewToDTO).collect(Collectors.toList());
         reviewDTOS.forEach(reviewDTO -> {
         });
@@ -103,7 +104,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<ReviewDTO> find2RecentDesc(CategoryType categoryType) {
         List<Review> reviews = reviewRepository.find2RecentDesc(categoryType);
-        List<ReviewDTO> reviewDTOList = reviews.stream().map(this::ReviewToDTO).collect(Collectors.toList());
+        List<ReviewDTO> reviewDTOList = reviews.stream().map(review -> ReviewToDTO(review)).collect(Collectors.toList());
         return reviewDTOList;
     }
 

@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="/css/components/header.css">
     <link rel="stylesheet" href="/css/components/footer.css">
     <link rel="stylesheet" href="/css/review-board/review-board-detail.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gugi&display=swap">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,74 +17,120 @@
 </head>
 <body>
 <div th:insert="~{/components/header:: header}"></div>
-    <div class="parents-yard-board-detail-wrapper">
-        <div class="parents-yard-board-detail-top">
-            <div class="parents-yard-board-detail-user-profile">
-                <img class="parents-yard-board-detail-user-profile-image" src="/images/parents-yard-board/parents-yard-board-detail/profile-image.png">
+<div class="parents-yard-board-detail-wrapper">
+    <div class="parents-yard-board-detail-top">
+        <div class="parents-yard-board-detail-user-profile">
+            <img class="parents-yard-board-detail-user-profile-image"
+                 th:src="${'/members/display/fileName=Member/Profile/' + review.memberProfilePath + '/' + review.memberProfileUUID + '_' + review.memberProfileOriginalName}">
+        </div>
+        <span class="parents-yard-board-detail-user-name" th:text="${review.memberNickName}"></span>
+        <input class="boardId" type="hidden" th:value="${review.id}" style="display: none;">
+        <input class="category" type="hidden" th:value="${review.eventCategory}" style="display: none;">
+        <h2 class="event-title"><span>[</span> <span th:attr="data-category=${review.eventCategory}">
+        <script th:inline="javascript">
+            var category = [[${review.eventCategory}]];
+            var convertedCategory = convertCategory(category);
+
+            // 한글로 변환된 카테고리 값 적용
+            document.write(convertedCategory);
+
+            function convertCategory(category) {
+                //    AGRICULTURE, ART, TRADITION, CRAFT, SCIENCE, MUSEUM, SPORTS, ETC
+                let categoryResult;
+
+                if (category == "AGRICULTURE") {
+                    categoryResult = "농촌";
+                } else if (category == "ART") {
+                    categoryResult = "예술";
+                } else if (category == "TRADITION") {
+                    categoryResult = "전통";
+                } else if (category == "CRAFT") {
+                    categoryResult = "공방";
+                } else if (category == "SCIENCE") {
+                    categoryResult = "과학";
+                } else if (category == "MUSEUM") {
+                    categoryResult = "박물관";
+                } else if (category == "SPORTS") {
+                    categoryResult = "스포츠";
+                } else {
+                    categoryResult = "기타";
+                }
+                return categoryResult;
+            }
+        </script>
+        </span>
+            <span>]</span><span th:text="${review.eventTitle}"></span></h2>
+        <h2 class="parents-yard-board-detail-title" th:text="${review.boardTitle}"></h2>
+        <div>
+                <span class="parents-yard-board-detail-date" th:attr="data-original-date=${review.updateDate}">
+                <script th:inline="javascript">
+                let boardId = [[${review.id}]];
+                var originalDate = /*[[${review.updateDate}]]*/ '';
+                var formattedDate = formatDate(originalDate);
+
+                // 기존 내용을 지우고 포맷팅된 날짜 값을 삽입
+                document.write(formattedDate);
+
+                function formatDate(originalDate) {
+                    let date = new Date(originalDate);
+                    let formattedDate = date.toLocaleDateString("ko-KR", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit"
+                    });
+
+                    // 마지막 점 제거
+                    formattedDate = formattedDate.replace(/\.$/, "");
+
+                    return formattedDate;
+                }
+            </script>
+                </span>
+        </div>
+    </div>
+    <!--        별점-->
+    <div class="star-wrapper">
+        <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true"
+             data-index="1">
+            <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z"
+                  fill-rule="evenodd"></path>
+        </svg>
+        <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true"
+             data-index="1">
+            <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z"
+                  fill-rule="evenodd"></path>
+        </svg>
+        <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true"
+             data-index="1">
+            <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z"
+                  fill-rule="evenodd"></path>
+        </svg>
+        <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true"
+             data-index="1">
+            <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z"
+                  fill-rule="evenodd"></path>
+        </svg>
+        <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true"
+             data-index="1">
+            <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z"
+                  fill-rule="evenodd"></path>
+        </svg>
+    </div>
+
+    <!--별점 -->
+    <div class="divide-line"></div>
+    <div class="parents-yard-board-detail-content-wrapper">
+        <div class="parents-yard-board-detail-content-container">
+            <div class="review-detail-img" th:each="file : ${review.files}">
+                <img class="detail-img"
+                     th:src="'/reviewFiles/display?fileName=Review/' + ${file.filePath} + '/' + ${file.fileUUID} + '_' + ${file.fileOriginalName}">
             </div>
-            <span class="parents-yard-board-detail-user-name">보호자1호</span>
-            <h2 class="event-title"><span>[박물관]</span> <span>아이들과 VR로 즐기는 신나는 실내 체험</span></h2>
-            <h2 class="parents-yard-board-detail-title">Z세대/알파세대의 새로운 놀이터, ‘메타버스’</h2>
-            <div>
-                <span class="parents-yard-board-detail-date">2020.11.26</span>
-            </div>
-            <div class="star-wrapper">
-                <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true" data-index="1">
-                    <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                </svg>
-                <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true" data-index="1">
-                    <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                </svg>
-                <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true" data-index="1">
-                    <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                </svg>
-                <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true" data-index="1">
-                    <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                </svg>
-                <svg viewBox="0 0 33 33" focusable="false" role="presentation" class="review-my-star" aria-hidden="true" data-index="1">
-                    <path d="M16.5 27l-7.652 4.674a2.001 2.001 0 0 1-2.988-2.171l2.08-8.722-6.81-5.833a2 2 0 0 1 1.143-3.513l8.937-.716 3.443-8.28a2.001 2.001 0 0 1 3.694.001l3.443 8.279 8.938.716a2.001 2.001 0 0 1 1.141 3.513l-6.81 5.833 2.081 8.722a2.001 2.001 0 0 1-1.481 2.41 2.002 2.002 0 0 1-1.507-.24L16.5 27z" fill-rule="evenodd"></path>
-                </svg>
+            <div class="parents-yard-detail-text">
+                <div class="detail-text" th:text="${review.boardContent}"></div>
             </div>
         </div>
-        <div class="divide-line"></div>
-        <div class="parents-yard-board-detail-content-wrapper">
-            <div class="parents-yard-board-detail-content-container">
-                <p>
-                    <img src="https://www.wadiz.kr/ft/images/green001/2021/0504/20210504113014691_null.jpg" class="fr-fic fr-dib">
-                </p>
-                <hr>
-                <blockquote class="type-line">
-                    <h3>주식시장에서도 부는 ‘메타버스’ 바람</h3>
-                </blockquote>
-                <p>
-                    <img src="https://www.wadiz.kr/ft/images/green001/2021/0504/20210504102507378_null.png" width="599" height="310" class="fr-fic fr-dib">
-                </p>
-                <h5>이미지 출처: 로블록스 / 매일경제</h5>
-                <p>
-                    ‘메타버스(metaverse)’의 대표 주자인, 미국 게임 플랫폼 ‘로블록스(ROBLOX)’가 지난달 10일(현지시간) 뉴욕 증시에 화려하게 입성했습니다. <strong>직상장 첫날 약 54%가 급등</strong>하며 기업 가치(시가 총액)는 371억 달러(약 42조 원)로 뛰었는데요. 이는 <strong>메타버스의 성장성이 반영</strong>된 것으로 볼 수 있습니다.&nbsp;
-                </p>
-                <table style="width: 100%;">
-                    <tbody>
-                        <tr>
-                            <td style="width: 100.0000%;">*메타버스(metaverse)란 가공·추상을 의미하는 ‘메타’(meta)와 현실 세계를 가리키는 ‘유니버스’(universe)의 합성어로 3차원 가상세계를 의미합니다.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>
-                    엔터테인먼트 및 게임 분야를 중심으로 화두가 되고 있는 메타버스는, <strong>최근 Z세대 및 알파세대 내에서 새로운 트렌드</strong>로 떠오르고 있습니다.</p><p><strong>로블록스는 9~12세 미국 어린이의 약 75%가 이용</strong>하는 것으로 알려지면서 차세대 플랫폼으로 주목받고 있습니다. 또한 <strong>국내 네이버제트의 3D 아바타 기반 SNS ‘제페토’는 최근 가입자가 2억 명</strong>을 넘어섰습니다. 전체 이용자 중 80% 이상은 10대 청소년으로, 이중 90% 이상이 외국인 이용자입니다.</p><p><strong>그렇다면 이들은 왜 메타버스 서비스에 열광하는 것일까요?</strong>
-                </p>
-                <blockquote class="type-line">
-                    <h3>가상세계에서의 세컨드잡</h3>
-                </blockquote>
-                <p>
-                    메타버스 서비스가 주목받은 이유는 구현된 가상세계가 현실 세계와 매우 닮아있기 때문입니다. 즉, 현<strong>실 세계와 같이 사회/문화활동 및 경제활동을 할 수 있다는 이야기</strong>입니다.</p><p>제페토는 이용자와 꼭 닮은 3D 아바타를 만든 뒤 증강현실(AR) 기술로 실제 사진이나 가상 배경에 자연스럽게 합성해 주는 서비스입니다. SNS 기능도 접목해 이용자끼리 여러 가상 공간에서 문자, 음성, 이모티콘 등으로 친목도 다질 수 있는데, <strong>이용자가 직접 콘텐츠를 만들 수 있는 기능도 추가</strong>했습니다.<br>그뿐만 아니라, <strong>BTS·블랙핑크·트와이스의 콘텐츠를 제공하며 ‘구찌’, ‘나이키’와 같은 글로벌 브랜드와의 협업도 진행</strong>함에 따라, 제페토의 영역은 더욱 확장되고 있습니다.
-                </p>
-                <p>
-                    <img src="https://www.wadiz.kr/ft/images/green001/2021/0504/20210504102243882_null.png" width="602" height="440" class="fr-fic fr-dib">
-                </p>
-            </div>
 
-            <!-- 댓글 시작 -->
+        <!-- 댓글 시작 -->
         <div class="board-detail-bottom">
             <div class="board-comment">
                 <div class="comment-box">
@@ -94,106 +141,144 @@
                     </div>
                     <br>
                     <p class="comment-count">
-                        <em>1</em>개의 댓글이 달려있습니다.
+                        <!--                        <em>1</em>개의 댓글이 달려있습니다.-->
                     </p>
                     <div class="main-comment">
-                        <textarea name="" id="" placeholder="댓글을 입력하세요."></textarea>
+                        <textarea name="" class="replyContent" id="" placeholder="댓글을 입력하세요."></textarea>
                         <div class="btn-complete">
                             <button class="btn-color">댓글달기</button>
                         </div>
                     </div>
                     <div class="comment-list">
-                        <ul id="comment-list-detail">
-                            <li class="top" style="display: list-item;">
-                                <div class="comment-wrap">
-                                    <div class="comment-info">
-                                        <img src="/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">
-                                        <span class="name">임의택</span>
-                                        <button class="comment-util" onclick="showList()"></button>
-                                        <ul class="comment-util-list">
-                                            <li>
-                                                <button type="button" class="modify-button">수정</button>
-                                            </li>
-                                            <li>
-                                                <button>삭제</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <p class="comment-content">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</p>
-                                    <textarea id="" class="modify-textarea" style="display: none;">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</textarea>
-                                    <div class="comment-date">
-                                        2023.04.23 23:56
-                                    </div>
-                                    <div class="comment-bottom" style="display:none;">
-                                        <button type="button" class="modify-cancel">취소</button>
-                                        <button type="button" class="modify-confirm">수정완료</button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                        <!--                        <ul id="comment-list-detail">-->
+                        <!--                            <li class="top" style="display: list-item;">-->
+                        <!--                                <div class="comment-wrap">-->
+                        <!--                                    <div class="comment-info">-->
+                        <!--                                        <img src="/images/parents-yard-board/parents-yard-board-detail/profile-sample1.jpg">-->
+                        <!--                                        <span class="name">임의택</span>-->
+                        <!--                                        <button class="comment-util" onclick="showList()"></button>-->
+                        <!--                                        <ul class="comment-util-list">-->
+                        <!--                                            <li>-->
+                        <!--                                                <button type="button" class="modify-button">수정</button>-->
+                        <!--                                            </li>-->
+                        <!--                                            <li>-->
+                        <!--                                                <button>삭제</button>-->
+                        <!--                                            </li>-->
+                        <!--                                        </ul>-->
+                        <!--                                    </div>-->
+                        <!--                                    <p class="comment-content">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</p>-->
+                        <!--                                    <textarea id="" class="modify-textarea" style="display: none;">정말 재밌어 보이네요~ 다음에 저희 아이도 이 체험학습에 보내야겠어요!</textarea>-->
+                        <!--                                    <div class="comment-date">-->
+                        <!--                                        2023.04.23 23:56-->
+                        <!--                                    </div>-->
+                        <!--                                    <div class="comment-bottom" style="display:none;">-->
+                        <!--                                        <button type="button" class="modify-cancel">취소</button>-->
+                        <!--                                        <button type="button" class="modify-confirm">수정완료</button>-->
+                        <!--                                    </div>-->
+                        <!--                                </div>-->
+                        <!--                            </li>-->
+                        <!--                        </ul>-->
                     </div>
                 </div>
                 <div class="btn-place">
                     <button class="btn-comment">댓글 더 보기</button>
-                    <button class="btn-comment" style="display: none;">댓글 닫기</button>
                 </div>
             </div>
             <div class="free-board-other">
-<!--                <h4>-->
-<!--                    <em>박물관</em>-->
-<!--                    카테고리의 최신글-->
-<!--                </h4>-->
-<!--                <div class="other-list">-->
-<!--                    <ul>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <div class="other-story">-->
-<!--                                    <div class="story-info">-->
-<!--                                        <em class="category">박물관</em>-->
-<!--                                        <p class="other-title">Z세대/알파세대의 새로운 놀이터, ‘메타버스’</p>-->
-<!--                                        <p class="other-content">실내에서 놀수 있는 새로운 놀이터를 아시나요?</p>-->
-<!--                                        <p class="info">-->
-<!--                                            <em class="date">23.04.24</em>-->
-<!--                                        </p>-->
-<!--                                    </div>-->
-<!--                                    <div class="img-wrap">-->
-<!--                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <a href="#">-->
-<!--                                <div class="other-story">-->
-<!--                                    <div class="story-info">-->
-<!--                                        <em class="category">박물관</em>-->
-<!--                                        <p class="other-title">Z세대/알파세대의 새로운 놀이터, ‘메타버스’</p>-->
-<!--                                        <p class="other-content">실내에서 놀수 있는 새로운 놀이터를 아시나요?</p>-->
-<!--                                        <p class="info">-->
-<!--                                            <em class="date">23.04.24</em>-->
-<!--                                        </p>-->
-<!--                                    </div>-->
-<!--                                    <div class="img-wrap">-->
-<!--                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-                <!-- <div class="btn-place">
-                    <button class="btn-category">카테고리 더 보기</button>
-                </div> -->
+                <h4>
+                    <em id="categoryElement" th:attr="data-category=${review.eventCategory}"></em>
+                    <script th:inline="javascript">
+                        var category = [[${review.eventCategory}]];
+                        var convertedCategory = convertCategory(category);
+
+                        // 한글로 변환된 카테고리 값 적용
+                        // document.write(convertedCategory);
+
+                        var categoryElement = document.getElementById('categoryElement');
+                        categoryElement.innerText = convertedCategory;
+                        categoryElement.style.color = '#00c4c4';
+
+                        function convertCategory(category) {
+                            //    AGRICULTURE, ART, TRADITION, CRAFT, SCIENCE, MUSEUM, SPORTS, ETC
+                            let categoryResult;
+
+                            if (category == "AGRICULTURE") {
+                                categoryResult = "농촌";
+                            } else if (category == "ART") {
+                                categoryResult = "예술";
+                            } else if (category == "TRADITION") {
+                                categoryResult = "전통";
+                            } else if (category == "CRAFT") {
+                                categoryResult = "공방";
+                            } else if (category == "SCIENCE") {
+                                categoryResult = "과학";
+                            } else if (category == "MUSEUM") {
+                                categoryResult = "박물관";
+                            } else if (category == "SPORTS") {
+                                categoryResult = "스포츠";
+                            } else {
+                                categoryResult = "기타";
+                            }
+                            return categoryResult;
+                        }
+                    </script>
+                    <!--                    카테고리의 최신글-->
+                </h4>
+                <div class="other-list">
+                    <!--                    <ul>-->
+                    <!--                        <li>-->
+                    <!--                            <a href="#">-->
+                    <!--                                <div class="other-story">-->
+                    <!--                                    <div class="story-info">-->
+                    <!--                                        <em class="category">박물관</em>-->
+                    <!--                                        <p class="other-title">Z세대/알파세대의 새로운 놀이터, ‘메타버스’</p>-->
+                    <!--                                        <p class="other-content">실내에서 놀수 있는 새로운 놀이터를 아시나요?</p>-->
+                    <!--                                        <p class="info">-->
+                    <!--                                            <em class="date">23.04.24</em>-->
+                    <!--                                        </p>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="img-wrap">-->
+                    <!--                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </a>-->
+                    <!--                        </li>-->
+                    <!--                        <li>-->
+                    <!--                            <a href="#">-->
+                    <!--                                <div class="other-story">-->
+                    <!--                                    <div class="story-info">-->
+                    <!--                                        <em class="category">박물관</em>-->
+                    <!--                                        <p class="other-title">Z세대/알파세대의 새로운 놀이터, ‘메타버스’</p>-->
+                    <!--                                        <p class="other-content">실내에서 놀수 있는 새로운 놀이터를 아시나요?</p>-->
+                    <!--                                        <p class="info">-->
+                    <!--                                            <em class="date">23.04.24</em>-->
+                    <!--                                        </p>-->
+                    <!--                                    </div>-->
+                    <!--                                    <div class="img-wrap">-->
+                    <!--                                        <img src="/images/parents-yard-board/parents-yard-board-detail/next-write-thumbnail.png">-->
+                    <!--                                    </div>-->
+                    <!--                                </div>-->
+                    <!--                            </a>-->
+                    <!--                        </li>-->
+                    <!--                    </ul>-->
+                    <!--                </div>-->
+                    <!--                &lt;!&ndash; <div class="btn-place">-->
+                    <!--                    <button class="btn-category">카테고리 더 보기</button>-->
+                </div>
             </div>
         </div>
         <!-- 댓글 끝 -->
-        </div>
     </div>
+</div>
 <div th:insert="~{/components/footer:: footer}"></div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/parents-yard-board/parents-yard-board-detail.js"></script>
+<script src="/js/review-board/review-board-detail.js"></script>
 <script src="/js/components/header.js"></script>
+<script>
+    let review = [[${review}]]
+    console.log(review)
+</script>
 
 </html>
