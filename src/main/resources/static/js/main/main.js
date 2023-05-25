@@ -1051,4 +1051,47 @@ function formatDate(originalDate) {
     return formattedDate;
 }
 
+// 동의 모달
+let agreeModalCheck;
+function showAgreeModal(modalMessage){
+    agreeModalCheck = false;
+    $("div#content-wrap").html(modalMessage)
+    /* $("div.modal").css("display", "flex").hide().fadeIn(500); */
+    $("div.agree-modal").css("animation", "popUp 0.5s");
+    $("div.agree-modal").css("display", "block").hide().fadeIn(500);
+    $("div.modal-background").css("display", "flex").hide().fadeIn(500);
+    setTimeout(function(){agreeModalCheck = true;}, 500);
+}
+
+function agreeModal() {
+
+    let modalMessage = '';
+
+
+    showAgreeModal(modalMessage);
+    $('html, body').css('overflow', 'hidden');
+}
+
+// $("div.modal-background").on("click", function(){
+//     $('html, body').css('overflow', 'auto');
+//     if(agreeModalCheck){
+//         $("div.modal").fadeOut(500);
+//         $("div.agree-modal").fadeOut(500);
+//         $("div.modal-background").fadeOut(500);
+//     }
+// });
+
+$(".agree-close-btn").on("click", function(){
+    $('html, body').css('overflow', 'auto');
+    if(agreeModalCheck){
+        $("div.modal").fadeOut(500);
+        /*  $("div.agree-modal").css("animation", "popDown 0.5s"); */
+        $("div.agree-modal").fadeOut(500);
+        $("div.modal-background").fadeOut(500);
+    }
+});
+
+$(document).ready(function() {
+    agreeModal();
+});
 

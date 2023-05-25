@@ -335,7 +335,7 @@ function showList(announcementDTOS) {
                     <div class="article">
                         <div class="info">
                             <div class="thumb">
-                                <img src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUuid}_${announcement.announcementFileDTOS[0].fileOrgName}" alt="">
+                                <img src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUUID}_${announcement.announcementFileDTOS[0].fileOriginalName}" alt="">
                             </div>
                             <div class="text-wrapper">
                                 <div class="notice">중요</div>
@@ -351,7 +351,7 @@ function showList(announcementDTOS) {
                     </div>
                     <div class="admin-writed">
                         <div class="announcement-content">
-                            <img src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUuid}_${announcement.announcementFileDTOS[0].fileOrgName}" alt="">
+                            <img src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUUID}_${announcement.announcementFileDTOS[0].fileOriginalName}" alt="">
                             ${announcement.announcementContent}
                         </div>
                     </div>
