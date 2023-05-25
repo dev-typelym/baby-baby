@@ -223,7 +223,7 @@
                                             </span>
                                     </button>
                                 </div>
-                                <button class="purchase_wrap_button" onclick="moveApply()">
+                                <button class="purchase_wrap_button" onclick="moveApply()" th:if="${!#strings.equals(session.member.memberType, 'COMPANY')}">
                                         <span class="camping_div_second_span">
                                             <span class="button_children">
                                                 <span class="button_children">참가 신청하기</span>
@@ -231,11 +231,11 @@
                                         </span>
                                 </button>
                                 <!-- 통솔자 일때만 보이게 하기 -->
-                                <button class="guide_wrap_button">
-                                        <span class="camping_div_second_span">
+                                <button class="guide_wrap_button" th:if="${#strings.equals(session.member.memberType, 'GENERAL_GUIDE')}">
+                                        <span class="camping_div_second_span" >
                                             <span class="button_children">
                                                 <span class="button_leader"
-                                                      th:value="${eventDTO.isApplied}">통솔 지원하기</span>
+                                                      >통솔 지원하기</span>
                                             </span>
                                         </span>
                                 </button>
@@ -502,7 +502,7 @@
                                                 </span>
                                             </span>
                                     </button>
-                                    <button class="guide_wrap_button">
+                                    <button class="guide_wrap_button" th:if="${#strings.equals(session.member.memberType, 'GENERAL_GUIDE')}">
                                             <span class="camping_div_second_span">
                                                 <span class="button_children">
                                                     <span class="button_leader"
