@@ -1981,7 +1981,7 @@ div.agree-modal {
     inset: 0px;
     z-index: 1000;
     box-sizing: border-box;
-    width: 640px;
+    width: 610px;
     margin: 0 auto;
     margin-top: 200px;
     background: rgb(255, 255, 255);
@@ -2080,4 +2080,8 @@ div.modal-background {
     font-size: 15px;
     margin-top: 30px;
     cursor: pointer;
+}
+
+.agree-close-btn:hover{
+    background: #00a2a2;
 }
