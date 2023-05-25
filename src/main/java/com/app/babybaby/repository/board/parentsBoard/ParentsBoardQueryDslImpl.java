@@ -47,9 +47,9 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 //        if(parentsBoardSearch.getCategoryType() == null) {
 //            parentsBoardSearch.setCategoryType(CategoryType.TALK);
 //        }
-        log.info(categoryType + "카테고리임~~~~");
-        log.info(searchTitle + "검색제목임~~~~");
-        log.info(searchContent + "검색내용임~~~~");
+        log.info(categoryType + "카테고리임!!!");
+        log.info(searchTitle + "검색제목임!!!");
+        log.info(searchContent + "검색내용임!!!");
 
 //       전체 목록 불러오기(페이징)
         List<ParentsBoard> foundParentsBoard = query.select(parentsBoard)

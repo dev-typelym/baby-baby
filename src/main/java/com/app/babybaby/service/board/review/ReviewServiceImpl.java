@@ -94,6 +94,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     public Page<ReviewDTO> getFindAllWithSearchReviewBoardList(Pageable pageable, ParentsBoardSearch parentsBoardSearch) {
         Page<Review> reviews = reviewRepository.findAllReviewWithSearch_QueryDsl(pageable, parentsBoardSearch);
+        log.info(parentsBoardSearch.getCategoryType() + "서비스 카테고리이이이");
         List<ReviewDTO> reviewDTOS = reviews.stream().map(this::ReviewToDTO).collect(Collectors.toList());
         reviewDTOS.forEach(reviewDTO -> {
         });

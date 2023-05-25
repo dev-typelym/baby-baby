@@ -188,7 +188,7 @@
                 <h4>
                     <em id="categoryElement" th:attr="data-category=${review.eventCategory}"></em>
                     <script th:inline="javascript">
-                        var category = /*[[${review.eventCategory}]]*/ '';
+                        var category = [[${review.eventCategory}]];
                         var convertedCategory = convertCategory(category);
 
                         // 한글로 변환된 카테고리 값 적용
