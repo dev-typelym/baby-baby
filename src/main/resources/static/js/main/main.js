@@ -686,7 +686,7 @@ $(".ask-admin-btn").on("click", function(){
 })
 
 
-/* 카테고리 최신순 2개 가져오기 */
+/* 부모님 마당 카테고리 최신순 5개 가져오기 */
 function appendCategoryList(categoryResults) {
     let categoryText = '';
     let index = 1;
@@ -696,7 +696,7 @@ function appendCategoryList(categoryResults) {
         // const convertedEndDate = formatDate(category.endDate);
         const uploadDate = formatDate(category.parentsBoardRegisterDate);
         categoryText += ` 
-                    <div class="event-banner${index} event-banners">
+                    <div class="event-banner${index} event-banners" onclick="location.href='/parentsYard/detail/${category.id}'">
                                 <div class="event-banner-image-wrapper">
                                     <div class="event-banner-image"><img src="/parentsBoardFiles/display?fileName=ParentsBoard/${category.parentsBoardFileDTOS[0].filePath}/${category.parentsBoardFileDTOS[0].fileUUID}_${category.parentsBoardFileDTOS[0].fileOriginalName}"></div>
                                 </div>
@@ -737,7 +737,7 @@ function appendEventList(categoryResults) {
         const convertedEndDate = formatDate(category.calendar.endDate);
         // const uploadDate = formatDate(category.parentsBoardRegisterDate);
         categoryText += ` 
-                   <div class="second-banner${index} second-banners">
+                   <div class="second-banner${index} second-banners" onclick="location.href='/'">
                                 <div class="second-banner-image-wrapper">
                                     <div class="second-banner-image">
                                     <img src="/eventFiles/display?fileName=Event/${category.files[0].filePath}/${category.files[0].fileUUID}_${category.files[0].fileOriginalName}">
@@ -778,7 +778,7 @@ function appendNowKidsList(categoryResults) {
     let index = 1;
     categoryResults.forEach(category => {
         categoryText +=` 
-        <div class="third-banner${index} third-banners">
+        <div class="third-banner${index} third-banners" onclick="location.href='/'">
             <div class="third-banner-image-wrapper">
                 <div class="third-banner-image">
                     <img src="/nowKidsFiles/display?fileName=NowKids/${category.nowKidsFileDTOList[0].filePath}/${category.nowKidsFileDTOList[0].fileUUID}_${category.nowKidsFileDTOList[0].fileOriginalName}">
@@ -804,7 +804,7 @@ function appendAnnouncementList(categoryResults) {
                         <div class="frequent-title-bar">
                             <div class="frequent-title">공지사항</div>
                             <div class="plus-menu">
-                                <div class="plus">더보기</div>
+                                <div class="plus"><a href="user-part/announcement">더보기</a></div>
                                 <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 11L6 6L1 1" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
@@ -848,7 +848,7 @@ function appendAnnouncementList(categoryResults) {
                         <div class="use-title-bar">
                             <div class="use-title">공지사항</div>
                             <div class="plus-menu">
-                                <div class="plus">더보기</div>
+                                <div class="plus"><a href="user-part/announcement">더보기</a></div>
                                 <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 11L6 6L1 1" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
@@ -892,7 +892,7 @@ function appendAnnouncementList(categoryResults) {
                         <div class="reserve-title-bar">
                             <div class="reserve-title">공지사항</div>
                             <div class="plus-menu">
-                                <div class="plus">더보기</div>
+                                <div class="plus"><a href="user-part/announcement">더보기</a></div>
                                 <svg width="7" height="12" viewBox="0 0 7 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 11L6 6L1 1" stroke="white" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
