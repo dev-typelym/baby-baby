@@ -77,7 +77,11 @@ public class ParentsBoardController {
     //    부모님 마당 게시글 상세보기 (부모님 마당의 id를 가져와서 그 id를 통해 eventCategory를 가져온다.)
     @GetMapping("detail/{id}")
     public String goParentsBoardDetail(@PathVariable Long id, Model model) {
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         model.addAttribute("parentsBoard", parentsBoardService.getParentsBoardDetail(id));
+        model.addAttribute("member", parentsBoardService.getParentsBoardDetail(id));
+        log.info("페어런트 보드입니다 : " + parentsBoardService.getParentsBoardDetail(id).toString());
         return "/parents-yard-board/parents-yard-board-detail";
     }
 

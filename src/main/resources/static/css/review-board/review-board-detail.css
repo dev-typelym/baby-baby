@@ -38,6 +38,7 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 .parents-yard-board-detail-user-profile-image{
     width: 100%;
     height: 100%;
+    border-radius: 100%;
 }
 
 .parents-yard-board-detail-user-name{

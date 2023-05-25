@@ -39,6 +39,7 @@ public class ParentsBoardReplyController {
         parentsBoardReplyDTO.setParentsBoardId(parentsBoardId);
         ParentsBoardReplyDTO savedReply = parentsBoardReplyService.parentsBoardReplySave(parentsBoardReplyDTO, memberId, parentsBoardId);
 
+
         return savedReply;
     }
 
@@ -56,7 +57,7 @@ public class ParentsBoardReplyController {
         int count = parentsBoardReplyDTOS.getTotalPages();
         Map<String, Object> response = new HashMap<>();
         response.put("data", parentsBoardReplyDTOS);
-        log.info("123456498798451312134598756132" + parentsBoardReplyDTOS);
+        log.info("----------------------" + parentsBoardReplyDTOS.toString());
         response.put("count", count);
         return response;
     }

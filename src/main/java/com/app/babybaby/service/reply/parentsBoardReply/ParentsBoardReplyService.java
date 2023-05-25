@@ -33,9 +33,9 @@ public interface ParentsBoardReplyService {
                 .parentsBoardReplyContent(parentsBoardReply.getParentsBoardReplyContent())
                 .memberId(parentsBoardReply.getMember().getId())
                 .memberNickName(parentsBoardReply.getMember().getMemberNickname())
-                .memberFileOriginalName(parentsBoardReply.getMember().getMemberFileOriginalName())
-                .memberFilePath(parentsBoardReply.getMember().getMemberFilePath())
-                .memberFileUUID(parentsBoardReply.getMember().getMemberFileUUID())
+                .memberFileOriginalName(parentsBoardReply.getMember().getMemberProfileOriginalName())
+                .memberFilePath(parentsBoardReply.getMember().getMemberProfilePath())
+                .memberFileUUID(parentsBoardReply.getMember().getMemberProfileUUID())
                 .parentsBoardId(parentsBoardReply.getParentsBoard().getId())
                 .build();
     }

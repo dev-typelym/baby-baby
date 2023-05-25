@@ -49,6 +49,7 @@ public interface ReviewService {
                 .memberNickName(review.getMember().getMemberNickname())
                 .memberProfileOriginalName(review.getMember().getMemberProfileOriginalName())
                 .memberProfilePath(review.getMember().getMemberProfilePath())
+                .memberProfileUUID(review.getMember().getMemberProfileUUID())
                 .updateDate(review.getUpdateDate())
                 .uploadDate(review.getRegisterDate())
                 .eventCategory(review.getEvent().getCategory())

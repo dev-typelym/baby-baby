@@ -357,6 +357,7 @@ function getReplyList(page) {
         data: {page: page, boardId: boardId},
         contentType: "application/json;charset=utf-8",
         success: function (data) {
+            console.log(data)
             globalThis.count = data.count;
             showReplyList(data.data);
             getReplyCount();
@@ -407,36 +408,36 @@ getReplyCount();
 function showReplyList(data) {
     let parentsBoardDTOS = data.content;
     console.log(parentsBoardDTOS);
-    parentsBoardDTOS.forEach(reply => {
-        console.log("reply :" +  reply);
+    parentsBoardDTOS.forEach((e,i) => {
+        console.log("reply :" +  e);
         let text = '';
         text += ` 
                         <ul id="comment-list-detail">
                             <li class="top" style="display: list-item;">
-                             <input class="replyId" type="hidden" value="${reply.id}" style="display: none;">
-                             <input class="parentsBoardId" type="hidden" value="${reply.parentsBoardId} style="display: none;">
+                             <input class="replyId" type="hidden" value="${e.id}" style="display: none;">
+                             <input class="parentsBoardId" type="hidden" value="${e.parentsBoardId} style="display: none;">
                                 <div class="comment-wrap">
                                     <div class="comment-info">
-                                        <img src="/parentsYard/reply/display?fileName=Member/Profile/${reply.memberProfilePath}/${reply.memberProfileUUID}_${reply.memberProfileOriginalName}">
-                                        <span class="name">${reply.memberNickName}</span>
+                                       <img src="/eventFiles/display?fileName=/Member/Profile/${e.memberFilePath}/${e.memberFileUUID}_${e.memberFileOriginalName}">
+                                        <span class="name">${e.memberNickName}</span>
                                         <button class="comment-util" onclick="showList(this)"></button>
                                         <ul class="comment-util-list">
                                             <li>
                                                 <button type="button" class="modify-button">수정</button>
                                             </li>
                                             <li>
-                                                <button  type="button" class="delete-reply" data-reply-id="${reply.id}">삭제</button>
+                                                <button  type="button" class="delete-reply" data-reply-id="${e.id}">삭제</button>
                                             </li>
                                         </ul>
                                     </div>
-                                    <p class="comment-content">${reply.parentsBoardReplyContent}</p>
-                                    <textarea id="" class="modify-textarea" style="display: none;">${reply.parentsBoardReplyContent}</textarea>
+                                    <p class="comment-content">${e.parentsBoardReplyContent}</p>
+                                    <textarea id="" class="modify-textarea" style="display: none;">${e.parentsBoardReplyContent}</textarea>
                                     <div class="comment-date">
-                                        ${formatDate(reply.updateDate)}
+                                        ${formatDate(e.updateDate)}
                                     </div>
                                     <div class="comment-bottom" style="display:none;">
                                         <button type="button" class="modify-cancel">취소</button>
-                                        <button type="button" class="modify-confirm" data-reply-id="${reply.id}">수정완료</button>
+                                        <button type="button" class="modify-confirm" data-reply-id="${e.id}">수정완료</button>
                                     </div>
                                 </div>
                             </li>
