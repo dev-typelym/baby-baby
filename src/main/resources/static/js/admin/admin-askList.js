@@ -104,7 +104,7 @@ $('.ask-all').click(function() {
 });
 
 $('.ask-wait').click(function() {
-  adminAskSearch.askStatus = '답변대기';
+  adminAskSearch.askStatus = '대기답변';
   getAdminAskList();
 
   $('.ask-all').css('color', 'black');
