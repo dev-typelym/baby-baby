@@ -96,7 +96,9 @@ public class ParentsBoardController {
         Long sessionId = memberDTO.getId();
         List<EventDTO> eventDTOS = parentsBoardService.getFindByEventId(sessionId).stream().map(eventService::eventToDTO).collect(Collectors.toList());
         Member member = parentsBoardService.getUserInfo(sessionId);
+        log.info(parentsBoardService.getFindByEventId(sessionId) + "이벤트아이디 0임?");
         model.addAttribute("eventDTOS", eventDTOS);
+        model.addAttribute("eventDTO", parentsBoardService.getFindByEventId(sessionId));
         model.addAttribute("memberInfo", member);
         return "parents-yard-board/parents-yard-board-write";
     }

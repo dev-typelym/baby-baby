@@ -28,12 +28,6 @@
                         <span class="profile-name" th:text="${memberInfo.memberNickname}"></span><span>의</span>
                         <p>부모님 마당 글작성</p>
                     </a>
-                    <button type="button" class="profile-btn">
-                        <span class="profile-span">
-                            <span>1</span>
-                            <span class="profile-span">번째 글작성</span>
-                        </span>
-                    </button>
                 </div>
                 <nav class="side-nav-box">
                     <div class="side-nav-layout"></div>
@@ -66,7 +60,7 @@
                         <div class="content-title">부모님 마당 내용 작성</div>
                         <div class="content-sub-title">부모님 마당에 등록할 기본정보를 입력해 주세요.</div>
                         <div class="content-box">
-                            <section class="content-section">
+                            <section class="content-section" th:if="${eventDTO != 0}" style="display: none;">
                                 <div class="input-title-box">
                                     <div class="input-title-layout2">
                                         <h2 class="class-for-after">참여한 체험학습</h2>
