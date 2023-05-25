@@ -157,7 +157,7 @@
             <!--여기가 같은 카테고리 중 최신순-->
             <div class="free-board-other">
                 <h4>
-                    <em id="categoryElement" th:attr="data-category=${parentsBoard.eventCategory}"></em>
+                    <em id="categoryElement" th:attr="data-category=${parentsBoard.eventCategory}"></em><span> 카테고리 최신 글</span>
                     <script th:inline="javascript">
                         var category = /*[[${parentsBoard.eventCategory}]]*/ '';
                         var convertedCategory = convertCategory(category);

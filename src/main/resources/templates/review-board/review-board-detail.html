@@ -186,7 +186,7 @@
             </div>
             <div class="free-board-other">
                 <h4>
-                    <em id="categoryElement" th:attr="data-category=${review.eventCategory}"></em>
+                    <em id="categoryElement" th:attr="data-category=${review.eventCategory}"></em><span> 카테고리 최신 글</span>
                     <script th:inline="javascript">
                         var category = [[${review.eventCategory}]];
                         var convertedCategory = convertCategory(category);
