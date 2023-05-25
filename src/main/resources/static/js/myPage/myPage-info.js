@@ -1,5 +1,7 @@
 /* mypage-info */
-
+let memberProfileOriginalName;
+let memberProfileUUID;
+let memberProfilePath;
 
 /* 눌렀을때 아래 나오도록 */
 
@@ -469,6 +471,9 @@ function sample6_execDaumPostcode() {
 // ajax로 댓글 작성
 const sendData = () => {
     console.log("sendData 들어옴@@@@");
+    console.log(memberProfileOriginalName)
+    console.log(memberProfilePath)
+    console.log(memberProfileUUID)
     $.ajax({
         type: 'POST',
         url: `/mypage/info`,
@@ -485,9 +490,97 @@ const sendData = () => {
     });
 };
 
+$fileInput = $('#profile')
+$fileListBox = $('label[for=profile]')
 
+let inputFiles = [];
+globalThis.arrayFile = new Array();
+FileList.prototype.forEach = Array.prototype.forEach;
+let j = 0;
+// 이미지 추가 시
+$fileInput.change((e) => {
+    $fileListBox.empty();
+    let index = 0;
+    let files = e.target.files;
+    let filesArr = Array.prototype.slice.call(files);
+    let formData = new FormData();
+    filesArr.forEach(file => formData.append("file", file))
+    console.log(files)
+    console.log(filesArr)
+    console.log(e.target.files);
 
+    $.ajax({
+        url: "/members/upload",
+        type: "post",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (uuids) {
+            globalThis.uuids = uuids;
+            const dataTransfer = new DataTransfer();
+            console.log(filesArr)
 
+            inputFiles = [];
+            filesArr.forEach((file, i) => {
+                inputFiles.push(file);
+                console.log(inputFiles[0].name)
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    console.log(e)
+                    let text =
+                        `
+                        <img src="/members/display?fileName=Member/Profile/${toStringByFormatting(new Date())}/${uuids[0]}_${inputFiles[0].name}" alt="">
+                        <input type="hidden" name="memberProfilePath" value="${toStringByFormatting(new Date())}">
+                        <input type="hidden" name="memberProfileOriginalName" value="${inputFiles[0].name}">
+                        <input type="hidden" name="memberProfileUUID" value="${uuids[0]}">
+                        `;
+                    $fileListBox.append(text);
+                    $(".file-content-box").show();
+                }
+                reader.readAsDataURL(file);
+                $('.preview-text').hide();
+            });
+
+            memberProfileOriginalName = inputFiles[0].name;
+            memberProfileUUID = globalThis.uuids[0];
+            memberProfilePath = toStringByFormatting(new Date());
+        }
+    });
+});
+
+$fileListBox.on("click",".image-cancel", (e) => {
+    let idx = e.currentTarget.id;
+    inputFiles.splice(idx, 1);
+    let box = '#file' + idx;
+    $(box).remove();
+
+    $fileListBox.find('div[id^="file"]').each(function(index) {
+        $(this).attr('id', 'file' + index);
+        $(this).find('button').attr('id', index);
+    });
+
+    console.log(inputFiles);
+
+    if(inputFiles.length < 1){
+        $('.preview-text').show();
+    }
+});
+
+//     /*****************************************************/
+function leftPad(value) {
+    if (value >= 10) {
+        return value;
+    }
+    return `0${value}`;
+}
+
+function toStringByFormatting(source, delimiter = '/') {
+    const year = source.getFullYear();
+    const month = leftPad(source.getMonth() + 1);
+    const day = leftPad(source.getDate());
+
+    return [year, month, day].join(delimiter);
+}
 
 
 

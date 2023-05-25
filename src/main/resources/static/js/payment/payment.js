@@ -215,12 +215,12 @@ let leftText =
 </dl>
 </div>
 <div class="Price_container">
-<dl class="">
-<dt>쿠폰 할인 금액</dt>
-<dd>
-<span class="coupon-amount-area">0</span>원
-</dd>
-</dl>
+<!--<dl class="">-->
+<!--<dt>쿠폰 할인 금액</dt>-->
+<!--<dd>-->
+<!--<span class="coupon-amount-area">0</span>원-->
+<!--</dd>-->
+<!--</dl>-->
 </div>
 <div class="Price_container">
 <hr class="Price_divide">
@@ -247,7 +247,7 @@ $('.coupon-right-full-wrap').on('click', function () {
     let couponId = parseInt(stringCoupnId);
     $('.coupon-amount-area').text('5000')
     $('.coupon-right-can-use').text("사용중")
-})
+});
 
 
 
@@ -309,7 +309,7 @@ paymentButton.on('click', function () {
             contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
             data: { purchasePrice : purchasePrice, "purchaseCount" : kidIdList.length, "eventId": eventDTO.id, "kidList" : kidIdList }, // 결제정보 객체 paymetnVO
             success: function () {
-                location.href = "/mypage/main";
+                location.href = "/parentsYard/list";
             },
             error: function (error) {
                 console.log(error);

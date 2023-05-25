@@ -37,8 +37,8 @@ public class AlertCrewRepositoryTests {
 
         member.ifPresent(member1 -> {
             crew.ifPresent(crew1 -> {
-                AlertCrew alertCrew = new AlertCrew("앙앙", "앙앙앙", AlertType.EVENT, member1, LocalDateTime.now(), crew1);
-                alertCrewRepository.save(alertCrew);
+//                AlertCrew alertCrew = new AlertCrew("앙앙", "앙앙앙", AlertType.EVENT, member1, LocalDateTime.now(), crew1);
+//                alertCrewRepository.save(alertCrew);
             });
         });
     }

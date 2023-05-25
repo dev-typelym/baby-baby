@@ -31,7 +31,7 @@ public class NowKidsLikeController {
         if(memberDTO != null){
             sessionId = memberDTO.getId();
         }
-
+        log.info(memberDTO.toString());
 //        isLike가 false라는 뜻은 아직 좋아요가 눌리지 않은 상태
         if(sessionId != null){
             if(!isLike){

@@ -123,7 +123,7 @@
                                             </div>
                                         </a>
                                     </div> -->
-                                    <div class="static-banner" th:if="${session}">
+                                    <div class="static-banner">
                                         <div class="static-banner-context">
                                             <div class="static-banner-date">
                                                 부모님에겐 휴식을, 아이들에겐 추억을!
@@ -134,7 +134,7 @@
                                                 체험학습을 제공해보세요.
                                             </div>
                                         </div>
-                                        <a href="/event/writeFirst" class="apply-form">
+                                        <a href="/event/goWrite" class="apply-form">
                                             <svg width="22" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5 9.41545L0.5 6.10352e-05H22.5L11.5 9.41545ZM0.5 1.60012V16.0001H22.5V1.60012L11.5 11.0155L0.5 1.60012Z" fill="white"></path>
                                             </svg>
@@ -631,23 +631,23 @@
                                 <!-- 게시글 1개 끝 -->
 
                                 <!-- top 버튼 -->
-                                <div class="top-btn-container">
-                                    <button type="button" class="top-btn">
-                                        <svg
-                                            viewBox="0 0 40 40"
-                                            focusable="false"
-                                            role="presentation"
-                                            class="top-btn-svg"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"
-                                            ></path>
-                                        </svg>
-                                    </button>
-                                </div>
+<!--                                <div class="top-btn-container">-->
+<!--                                    <button type="button" class="top-btn">-->
+<!--                                        <svg-->
+<!--                                            viewBox="0 0 40 40"-->
+<!--                                            focusable="false"-->
+<!--                                            role="presentation"-->
+<!--                                            class="top-btn-svg"-->
+<!--                                            aria-hidden="true"-->
+<!--                                        >-->
+<!--                                            <path-->
+<!--                                                d="M33 30l-1.4 1.4L20 19.8 8.4 31.4 7 30l13-13zm1-21H6v2h28z"-->
+<!--                                            ></path>-->
+<!--                                        </svg>-->
+<!--                                    </button>-->
+<!--                                </div>-->
                                 <!-- write 버튼 -->
-                                <div class="write-btn-container" th:if="${session.member != null and session.member.memberType == 'COMPANY'}" th:value="${session.member.memberType}" onclick="location.href='/event/writeFirst'">
+                                <div class="write-btn-container" th:if="${session.member != null}" th:value="${session.member.memberType}" onclick="location.href='/event/goWrite'">
                                     <button type="button" class="write-btn">
                                         <div class="bottom-write"> 글쓰기
                                             <path fill="none" d="M0 0h24v24H0z"></path>

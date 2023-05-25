@@ -11,6 +11,7 @@ import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.service.board.event.EventService;
 import com.app.babybaby.service.calendar.CalendarService;
 import com.app.babybaby.service.member.member.MemberService;
+import com.app.babybaby.type.MemberType;
 import com.google.gson.JsonArray;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -165,6 +166,21 @@ public class EventController {
         return "play/event-board-detail";
     }
 
+
+
+    @GetMapping("goWrite")
+    public RedirectView test(HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = null;
+        String url = null;
+
+        if(memberDTO == null){
+            return  new RedirectView("/member/login");
+        }
+
+        log.info(memberDTO.toString());
+        return memberDTO.getMemberType() == MemberType.COMPANY ? new RedirectView("/event/writeFirst") : new RedirectView("/event/list");
+    }
 
 
 //
