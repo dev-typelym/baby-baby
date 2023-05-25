@@ -172,6 +172,7 @@ li{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 150px;
 }
 
 .name{
