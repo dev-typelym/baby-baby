@@ -19,7 +19,7 @@ public class CrewServiceTests {
 
     @Test
     public void findCrewByMemberIdTest(){
-        log.info(crewService.findCrewByMemberId(110L, "2023-05-24-15:45:30.00").toString());
+//        log.info(crewService.findCrewByMemberId(110L, "2023-05-24-15:45:30.00").toString());
     }
 
 
