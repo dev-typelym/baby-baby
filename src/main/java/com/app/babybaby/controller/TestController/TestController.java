@@ -173,4 +173,16 @@ public class TestController {
     @GetMapping("/error/service-preparing")
     public void servocePreparing(){}
 
+    @GetMapping("/error/401")
+    public void error401(){}
+
+    @GetMapping("/error/403")
+    public void error403(){}
+
+    @GetMapping("/error/404")
+    public void error404(){}
+
+    @GetMapping("/error/500")
+    public void error500(){}
+
 }
