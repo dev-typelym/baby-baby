@@ -170,7 +170,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
                 .fetchOne();
         return new PageImpl<>(foundReview, pageable, count);
     }
-
+// 리뷰 최신글 두개 가져오기
     @Override
     public List<Review> find2RecentDesc(CategoryType category) {
         List<Review> reviews = query.select(review)
@@ -182,6 +182,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
         return reviews;
     }
 
+    //   리뷰 상세보기
     @Override
     public Optional<Review> findDetailById_QueryDsl(Long id) {
 
@@ -199,49 +200,6 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
         );
     }
 
-
-    //    맨위 카테고리 검색 설정
-    private BooleanExpression createBooleanExpression(ParentsBoardSearch parentsBoardSearch) {
-
-        BooleanExpression booleanExpression = null;
-
-        CategoryType categoryType = parentsBoardSearch.getCategoryType();
-
-        if(categoryType == null) {
-            return null;
-        }
-        log.info("===============" + parentsBoardSearch.getCategoryType());
-        switch (categoryType){
-            case AGRICULTURE:
-                booleanExpression = event.category.eq(categoryType.AGRICULTURE);
-                break;
-            case ART:
-                booleanExpression = event.category.eq(categoryType.ART);
-                break;
-            case TRADITION:
-                booleanExpression = event.category.eq(categoryType.TRADITION);
-                break;
-            case CRAFT:
-                booleanExpression = event.category.eq(categoryType.CRAFT);
-                break;
-            case SCIENCE:
-                booleanExpression = event.category.eq(categoryType.SCIENCE);
-                break;
-            case MUSEUM:
-                booleanExpression = event.category.eq(categoryType.MUSEUM);
-                break;
-            case SPORTS:
-                booleanExpression = event.category.eq(categoryType.SPORTS);
-                break;
-            case ETC:
-                booleanExpression = event.category.eq(categoryType.ETC);
-                break;
-            default:
-                break;
-        }
-
-        return booleanExpression;
-    }
 
 
 //    ---------------------------------- 관리자 -------------------------------------

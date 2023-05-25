@@ -103,7 +103,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<ReviewDTO> find2RecentDesc(CategoryType categoryType) {
         List<Review> reviews = reviewRepository.find2RecentDesc(categoryType);
-        List<ReviewDTO> reviewDTOList = reviews.stream().map(this::ReviewToDTO).collect(Collectors.toList());
+        List<ReviewDTO> reviewDTOList = reviews.stream().map(review -> ReviewToDTO(review)).collect(Collectors.toList());
         return reviewDTOList;
     }
 

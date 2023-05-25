@@ -151,48 +151,6 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
     }
 
 
-    //    맨위 카테고리 검색 설정
-    private BooleanExpression createBooleanExpression(ParentsBoardSearch parentsBoardSearch) {
-
-        BooleanExpression booleanExpression = null;
-
-        CategoryType categoryType = parentsBoardSearch.getCategoryType();
-
-        if(categoryType == null) {
-            return null;
-        }
-        log.info("===============" + parentsBoardSearch.getCategoryType());
-        switch (categoryType){
-            case AGRICULTURE:
-                booleanExpression = event.category.eq(categoryType.AGRICULTURE);
-                break;
-            case ART:
-                booleanExpression = event.category.eq(categoryType.ART);
-                break;
-            case TRADITION:
-                booleanExpression = event.category.eq(categoryType.TRADITION);
-                break;
-            case CRAFT:
-                booleanExpression = event.category.eq(categoryType.CRAFT);
-                break;
-            case SCIENCE:
-                booleanExpression = event.category.eq(categoryType.SCIENCE);
-                break;
-            case MUSEUM:
-                booleanExpression = event.category.eq(categoryType.MUSEUM);
-                break;
-            case SPORTS:
-                booleanExpression = event.category.eq(categoryType.SPORTS);
-                break;
-            case ETC:
-                booleanExpression = event.category.eq(categoryType.ETC);
-                break;
-            default:
-                break;
-        }
-
-        return booleanExpression;
-    }
 
     // 상세보기 카테고리 최신글 2개 가져오기 where절 손 봐야하나?
     @Override

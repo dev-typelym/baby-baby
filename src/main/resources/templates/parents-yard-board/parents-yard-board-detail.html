@@ -20,7 +20,7 @@
     <div class="parents-yard-board-detail-wrapper">
         <div class="parents-yard-board-detail-top">
             <div class="parents-yard-board-detail-user-profile">
-                <img class="parents-yard-board-detail-user-profile-image" th:src="@{/parentBoardFiles/display(fileName='parentsBoard/' + parentsBoard.memberProfilePath + '/' + parentsBoard.memberProfileUUID + '_' + parentsBoard.memberProfileOriginalName)}">
+                <img class="parents-yard-board-detail-user-profile-image" th:src="@{/parentBoardFiles/display(fileName='fileName=Member/Profile/' + parentsBoard.memberProfilePath + '/' + parentsBoard.memberProfileUUID + '_' + parentsBoard.memberProfileOriginalName)}">
             </div>
             <span class="parents-yard-board-detail-user-name" th:text="${parentsBoard.memberNickname}"></span>
             <input class="boardId" type="hidden" th:value="${parentsBoard.id}" style="display: none;">
@@ -192,7 +192,7 @@
                             return categoryResult;
                         }
                     </script>
-                    카테고리의 최신글
+<!--                    카테고리의 최신글-->
                 </h4>
                 <div class="other-list">
 <!--                    <ul>-->

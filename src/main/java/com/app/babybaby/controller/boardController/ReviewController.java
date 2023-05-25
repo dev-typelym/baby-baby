@@ -77,11 +77,12 @@ public class ReviewController {
     }
 
 
-    //    부모님 마당 게시글 상세보기 (부모님 마당의 id를 가져와서 그 id를 통해 eventCategory를 가져온다.)
+    //    리뷰 상세보기 (부모님 마당의 id를 가져와서 그 id를 통해 eventCategory를 가져온다.)
     @GetMapping("detail/{id}")
     public String goParentsBoardDetail(@PathVariable Long id, Model model) {
-        model.addAttribute("parentsBoard", reviewService.getReviewBoardDetail(id));
-        return "/parents-yard-board/parents-yard-board-detail";
+        log.info("===-=--=-=-=-=-=-=-= 드러옴" + reviewService.getReviewBoardDetail(id));
+        model.addAttribute("review", reviewService.getReviewBoardDetail(id));
+        return "/review-board/review-board-detail";
     }
 
     //    상세보기 안에 카테고리 최신글 2개 가져오기
@@ -93,10 +94,5 @@ public class ReviewController {
         List<ReviewDTO> categoryResults = reviewService.find2RecentDesc(category);
         log.info("categoryResults: " + categoryResults.toString());
         return categoryResults;
-    }
-
-    @GetMapping("detail")
-    public String goReviewDetail(){
-        return "review-board/review-board-detail";
     }
 }
