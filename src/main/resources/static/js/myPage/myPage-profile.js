@@ -308,7 +308,7 @@ $("#today").click(() => {
                       시작 : ${formattedDate}
                       <br> 
                       종료 : ${formattedEndDate}
-                      <br />장소 : ${eventKid.eventLocation.address} ${eventKid.eventLocation.addressDetail}
+                      <br />장소 : ${eventKid.eventLocation.address}
                       라이브
                     </p>
                     <p class="lecture-number">

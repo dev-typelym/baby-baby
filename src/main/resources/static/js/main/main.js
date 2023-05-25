@@ -778,7 +778,7 @@ function appendNowKidsList(categoryResults) {
     let index = 1;
     categoryResults.forEach(category => {
         categoryText +=` 
-        <div class="third-banner${index} third-banners" onclick="location.href='/nowKids/list'">
+        <div class="third-banner${index} third-banners" onclick="location.href='/nowKid/list'">
             <div class="third-banner-image-wrapper">
                 <div class="third-banner-image">
                     <img src="/nowKidsFiles/display?fileName=NowKids/${category.nowKidsFileDTOList[0].filePath}/${category.nowKidsFileDTOList[0].fileUUID}_${category.nowKidsFileDTOList[0].fileOriginalName}">

@@ -31,6 +31,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -115,10 +116,11 @@ public class PurchaseServiceImpl implements PurchaseService {
         }
 
         // 크루가 없다면 크루 생성
-        if (guide.getCrews().isEmpty()) {
+        if (guide.getCrews() == null) {
             final Guide finalGuide = guide;
             kids.forEach(kid -> {
                 Crew crew = new Crew(kid, finalGuide);
+                crew.setEventRegisterDate(LocalDate.now());
                 crewRepository.save(crew);
             });
 
@@ -134,6 +136,7 @@ public class PurchaseServiceImpl implements PurchaseService {
                     Guide savedGuide = guidRepository.save(guide1);
                     kids.forEach(kid -> {
                         Crew crew = new Crew(kid, savedGuide);
+                        crew.setEventRegisterDate(LocalDate.now());
                         crewRepository.save(crew);
                     });
                 }
