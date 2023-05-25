@@ -17,7 +17,7 @@
             <div class="full-content-inner">
                 <div class="title-line">
                     <span style="margin-left: 15px;">지금 우리 아이들은</span>
-                    <span class="write-icon" onclick="location.href='/nowKid/writeFirst'"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.31999 3.48005L12.52 6.68005L3.99999 15.2H0.799988V12L9.31999 3.48005ZM12 0.800049L9.87999 2.92005L13.08 6.12005L15.2 4.00005L12 0.800049Z" fill="white"></path></svg></span>
+                    <span class="write-icon" th:if="${#strings.equals(session.member.memberType, 'GENERAL_GUIDE')}" onclick="location.href='/nowKid/writeFirst'"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.31999 3.48005L12.52 6.68005L3.99999 15.2H0.799988V12L9.31999 3.48005ZM12 0.800049L9.87999 2.92005L13.08 6.12005L15.2 4.00005L12 0.800049Z" fill="white"></path></svg></span>
                 </div>
                 <div class="like-modal-container" id="like-modal" style="display: none">
                     <span class="like-text" style="display: none"
@@ -28,7 +28,7 @@
                     >
                 </div>
                 <div class="top-content-flex-wrapper">
-                    <div class="go-write-wrapper" onclick="location.href='/nowKid/writeFirst'">
+                    <div class="go-write-wrapper" onclick="location.href='/nowKid/writeFirst'" th:if="${#strings.equals(session.member.memberType, 'GENERAL_GUIDE')}">
                         글쓰러가기
                     </div>
                     <div class="top-content-margin-wrapper">
