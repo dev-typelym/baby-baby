@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>상세페이지</title>
     <link rel="stylesheet" href="/css/components/header.css">
     <link rel="stylesheet" href="/css/components/footer.css">
-    <link rel="stylesheet" href="/css/play/event-board-detail.css" />
-    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico" />
+    <link rel="stylesheet" href="/css/play/event-board-detail.css"/>
+    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico"/>
 </head>
 <body>
 <div th:insert="~{/components/header:: header}"></div>
-    <div class="main_wrapper">
-        <section>
-            <div style="background-color: #fff">
-                <div class="main_container">
-                    <div class="main_image">
-                        <div class="main_image_div">
-                            <div>
-                                <div class="slick">
-                                    <div class="slick_list">
-                                        <div class="slick_track">
-                                            <div class="slick_track_div">
-                                                <div>
-                                                    <div
+<div class="main_wrapper">
+    <section>
+        <div style="background-color: #fff">
+            <div class="main_container">
+                <div class="main_image">
+                    <div class="main_image_div">
+                        <div>
+                            <div class="slick">
+                                <div class="slick_list">
+                                    <div class="slick_track">
+                                        <div class="slick_track_div">
+                                            <div>
+                                                <div
                                                         tabindex="1"
                                                         style="
                                                             width: 100%;
                                                             display: inline-block;
                                                         "
-                                                    >
-                                                        <div class="url_image">
-                                                            <img th:src="${'/eventFiles/display?fileName=/Event/' + eventDTO.files[0].filePath + '/' + eventDTO.files[0].fileUUID + '_' +  eventDTO.files[0].fileOriginalName}">
-                                                        </div>
+                                                >
+                                                    <div class="url_image">
+                                                        <img th:src="${'/eventFiles/display?fileName=/Event/' + eventDTO.files[0].filePath + '/' + eventDTO.files[0].fileUUID + '_' +  eventDTO.files[0].fileOriginalName}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -42,60 +41,61 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="message_box">
+                    </div>
+                    <div class="message_box">
                             <span>
                                 <svg
-                                    viewbox="0 0 40 40"
-                                    focusable="false"
-                                    role="presentation"
-                                    class="message_box_svg"
-                                    aria-hidden="true"
+                                        viewbox="0 0 40 40"
+                                        focusable="false"
+                                        role="presentation"
+                                        class="message_box_svg"
+                                        aria-hidden="true"
                                 >
                                     <path fill="none" d="M0 0h40v40H0z"></path>
                                     <path
-                                        d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm1 28.6h-2v-13h2zm-1-15.84A1.8 1.8 0 1 1 21.8 12a1.8 1.8 0 0 1-1.8 1.76z"
+                                            d="M20 1a19 19 0 1 0 19 19A19.06 19.06 0 0 0 20 1zm1 28.6h-2v-13h2zm-1-15.84A1.8 1.8 0 1 1 21.8 12a1.8 1.8 0 0 1-1.8 1.76z"
                                     ></path>
                                 </svg>
                             </span>
-                            <div>
-                                <p class="perchase_confirm">
-                                    체험학습 신청 전 반드시 확인하세요!
-                                </p>
-                                <div class="perchase_confirm_div">
-                                    <ul class="certainly">
-                                        <li class="certainly_li">
-                                            체험 학습의 해당 날짜를 반드시
-                                            확인해주시고 일정에 차질이 없게
-                                            해주세요.
-                                        </li>
-                                        <li class="certainly_li">
-                                            체험학습 금액은 쿠폰 적용 전 금액이므로
-                                            최종 결제 금액은 신청하기를 누르셔서
-                                            쿠폰을 적용시킨 뒤 확인해주세요.
-                                        </li>
-                                        <li class="certainly_li">
-                                            인기 체험학습이라도 모집정원이 전부
-                                            찼다면 신청할 수 없으므로 모집정원 마감
-                                            전 서둘러서 신청해주시길 바랍니다.
-                                        </li>
-                                    </ul>
-                                </div>
+                        <div>
+                            <p class="perchase_confirm">
+                                체험학습 신청 전 반드시 확인하세요!
+                            </p>
+                            <div class="perchase_confirm_div">
+                                <ul class="certainly">
+                                    <li class="certainly_li">
+                                        체험 학습의 해당 날짜를 반드시
+                                        확인해주시고 일정에 차질이 없게
+                                        해주세요.
+                                    </li>
+                                    <li class="certainly_li">
+                                        체험학습 금액은 쿠폰 적용 전 금액이므로
+                                        최종 결제 금액은 신청하기를 누르셔서
+                                        쿠폰을 적용시킨 뒤 확인해주세요.
+                                    </li>
+                                    <li class="certainly_li">
+                                        인기 체험학습이라도 모집정원이 전부
+                                        찼다면 신청할 수 없으므로 모집정원 마감
+                                        전 서둘러서 신청해주시길 바랍니다.
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="wrapper">
-                        <div class="main_text_top">
-                            <div style="position: relative">
-                                <div style="margin-top: 16px">
-                                    <div class="text_header">
-                                        <div
+                </div>
+                <div class="wrapper">
+                    <div class="main_text_top">
+                        <div style="position: relative">
+                            <div style="margin-top: 16px">
+                                <div class="text_header">
+                                    <div
                                             style="display: flex; align-items: center; gap: 4px"
-                                        >
-                                            <div style="display: flex; gap: 8px">
-                                                <a class="camping_a">
+                                    >
+                                        <div style="display: flex; gap: 8px">
+                                            <a class="camping_a">
                                                     <span class="camping_span">
                                                         <span
-                                                            style="
+                                                                style="
                                                                 vertical-align: top;
                                                                 display: inline-flex;
                                                                 align-items: center;
@@ -103,44 +103,305 @@
                                                         >
                                                             <div class="camping_div">
                                                                 <span
-                                                                    class="camping_div_first_span"
-                                                                    >#</span
+                                                                        class="camping_div_first_span"
+                                                                >#</span
                                                                 >
                                                                 <span
-                                                                    class="camping_div_second_span"
-                                                                    >농촌</span
+                                                                        class="camping_div_second_span"
+                                                                >농촌</span
                                                                 >
                                                             </div>
                                                         </span>
                                                     </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 16px; display: flex">
+                                    <h3 class="text_title" th:text="${eventDTO.boardTitle}">
+                                    </h3>
+                                </div>
+                                <div
+                                        style="
+                                            margin-top: 6px;
+                                            display: flex;
+                                            align-items: center;
+                                        "
+                                ></div>
+                            </div>
+                            <div
+                                    style="margin-top: 6px; display: flex; align-items: center"
+                            >
+                                <!--                                    <div>-->
+                                <!--                                        <a class="text_star">-->
+                                <!--                                            <div class="font_right">-->
+                                <!--                                                <div class="font_right_div real_star"></div>-->
+                                <!--                                                <span class="font_right_span">4.5</span>-->
+                                <!--                                            </div>-->
+                                <!--                                            <span class="person_amount">(320)</span>-->
+                                <!--                                        </a>-->
+                                <!--                                    </div>-->
+                                <div class="participation">
+                                    <span id="person_icon" th:text="${eventDTO.eventRecruitCount}"> 10 </span>
+                                    명 모집
+                                </div>
+                            </div>
+                            <div class="company_info2">
+                                <em class="company_info_em">
+                                    <span th:text="${eventDTO.eventPrice}">54,900</span>
+                                    <span class="won">원</span>
+                                </em>
+                                <em class="modify-delete">
+                                    <button type="button">수정하기</button>
+                                    <button type="button">삭제하기</button>
+                                </em>
+                            </div>
+                            <div class="observer">
+                                <dl>
+                                    <div class="line_size">
+                                        <dt class="delivery">모집 기간</dt>
+                                        <dd class="delivery_dd">
+                                            <div class="delivery_div">
+                                                    <span class="inline_right">
+<!--                                                        <span style="letter-spacing: 0">-->
+                                                        <!--                                                            <span class="event-start-year"-->
+                                                        <!--                                                                >2023</span-->
+                                                        <!--                                                            >년-->
+                                                        <!--                                                            <span class="event-start-month"-->
+                                                        <!--                                                                >05</span-->
+                                                        <!--                                                            >월-->
+                                                        <!--                                                            <span class="event-start-day"-->
+                                                        <!--                                                                >01</span-->
+                                                        <!--                                                            >일&nbsp;~-->
+                                                        <!--                                                            <span class="event-end-year"-->
+                                                        <!--                                                                >2023</span-->
+                                                        <!--                                                            >년-->
+                                                        <!--                                                            <span class="event-end-month"-->
+                                                        <!--                                                                >05</span-->
+                                                        <!--                                                            >월-->
+                                                        <!--                                                            <span class="event-end-day">07</span-->
+                                                        <!--                                                            >일-->
+                                                        <!--                                                        </span>-->
+                                                    </span>
+                                            </div>
+                                        </dd>
+                                    </div>
+                                    <div class="line_size">
+                                        <dt class="delivery">모이는 장소</dt>
+                                        <dd class="delivery_dd">
+                                            <div class="delivery_div" th:text="${eventDTO.eventLocation.address}"></div>
+                                        </dd>
+                                    </div>
+                                </dl>
+                            </div>
+                        </div>
+                        <div style="margin-top: auto">
+                            <div class="purchase_wrap">
+                                <div class="purchase_wrap_div">
+                                    <button class="purchase_wrap_div_btn purchase_like_btn">
+                                            <span class="purchase_wrap_first_span">
+                                                <span class="purchase_wrap_second_span">
+                                                    <div>
+                                                        <svg
+                                                                viewbox="0 0 32 32"
+                                                                focusable="false"
+                                                                role="presentation"
+                                                                class="heart_icon"
+                                                                aria-hidden="false"
+                                                                style="width: 24px; height: 24px"
+                                                        >
+                                                            <path
+                                                                    class="heart_path"
+                                                                    d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"
+                                                            ></path>
+                                                        </svg>
+                                                        <!--                                                        <span class="purchase_wrap_third_span"-->
+                                                        <!--                                                            >1,135</span-->
+                                                        <!--                                                        >-->
+                                                    </div>
+                                                </span>
+                                            </span>
+                                    </button>
+                                </div>
+                                <button class="purchase_wrap_button" onclick="moveApply()">
+                                        <span class="camping_div_second_span">
+                                            <span class="button_children">
+                                                <span class="button_children">참가 신청하기</span>
+                                            </span>
+                                        </span>
+                                </button>
+                                <!-- 통솔자 일때만 보이게 하기 -->
+                                <button class="guide_wrap_button">
+                                        <span class="camping_div_second_span">
+                                            <span class="button_children">
+                                                <span class="button_leader"
+                                                      th:value="${eventDTO.isApplied}">통솔 지원하기</span>
+                                            </span>
+                                        </span>
+                                </button>
+                                <!-- 여기까지 통솔자 일 때만 보이게 하기 -->
+                            </div>
+                        </div>
+                        <div class="company_info">
+                            <div style="padding: 16px">
+                                <div class="flex_rela">
+                                    <a class="company_name_wrap">
+                                        <div class="wadiz_icon">
+                                                <span
+                                                        class="wadiz_icon_span">
+                                                    <img th:src="${'/eventFiles/display?fileName=/Member/Profile/' + eventDTO.memberProfilePath + '/' + eventDTO.memberProfileUUID + '_' +  eventDTO.memberProfileOriginalName}">
+                                                </span>
+                                        </div>
+                                        <div class="wadiz_name">
+                                            <span class="wadiz_name_span"
+                                                  th:text="${eventDTO.memberNickname}">회사 명</span>
+                                        </div>
+                                    </a>
+                                    <a class="bulk_purchase">
+                                            <span class="camping_div_second_span">
+                                                <svg
+                                                        viewbox="0 0 40 40"
+                                                        focusable="false"
+                                                        role="presentation"
+                                                        class="spot_icon"
+                                                        aria-hidden="true"
+                                                >
+                                                    <path fill="none" d="M0 0h40v40H0z"></path>
+                                                    <path
+                                                            d="M10.62 38.33V29H2.87V1.67h34.26v27.79H18.92zM5 27h7.7v6.11l5.3-5.73h17V3.75H5z"
+                                                    ></path>
+                                                    <path
+                                                            d="M12.84 13.28a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74z"
+                                                    ></path>
+                                                </svg>
+                                            </span>
+                                    </a>
+                                </div>
+                                <div class="more_button_company" style="display: none">
+                                    <table class="contact_table">
+                                        <tbody>
+                                        <tr>
+                                            <th>이메일</th>
+                                            <td th:text="${eventDTO.memberEmail}">info@wadiz.kr</td>
+                                        </tr>
+                                        <tr>
+                                            <th>문의전화</th>
+                                            <td th:text="${eventDTO.memberPhone}">1661-9056</td>
+                                        </tr>
+                                        <tr>
+                                            <th>한줄소개</th>
+                                            <td class="home_page" th:text="${eventDTO.memberHiSentence}">
+                                                열심히 하겠습니다!
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <button class="close">
+                                <div class="company_close" style="display: none">
+                                    <span class="close_span">닫기</span>
+                                    <svg
+                                            viewbox="0 0 32 32"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="close_svg"
+                                            aria-hidden="true"
+                                    >
+                                        <path
+                                                d="M16 9.6L26.4 20l-1.12 1.12L16 11.84l-9.28 9.28L5.6 20 16 9.6z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <div class="company_open" style="display: flex">
+                                    <span class="close_span">더보기</span>
+                                    <svg
+                                            viewbox="0 0 32 32"
+                                            focusable="false"
+                                            role="presentation"
+                                            class="open_svg"
+                                            aria-hidden="true"
+                                    >
+                                        <path
+                                                d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-full-wrapper">
+                <div>
+                    <nav class="detail_tab">
+                        <div class="main_text">
+                            <div style="position: relative">
+                                <div style="margin-top: 16px">
+                                    <div class="text_header">
+                                        <div
+                                                style="
+                                                    display: flex;
+                                                    align-items: center;
+                                                    gap: 4px;
+                                                "
+                                        >
+                                            <div style="display: flex; gap: 8px">
+                                                <a class="camping_a">
+                                                        <span class="camping_span">
+                                                            <span
+                                                                    style="
+                                                                    vertical-align: top;
+                                                                    display: inline-flex;
+                                                                    align-items: center;
+                                                                "
+                                                            >
+                                                                <div class="camping_div">
+                                                                    <span
+                                                                            class="camping_div_first_span"
+                                                                    >#</span
+                                                                    >
+                                                                    <span
+                                                                            class="camping_div_second_span category-hash-tag"
+                                                                    >농촌</span
+                                                                    >
+                                                                </div>
+                                                            </span>
+                                                        </span>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div style="margin-top: 16px; display: flex">
                                         <h3 class="text_title" th:text="${eventDTO.boardTitle}">
+                                            [벌써와배송]7종 캠핑 용품이 한곳에?ㅣ스텐락
+                                            올인원 캠프 반합 세트
                                         </h3>
                                     </div>
                                     <div
+                                            style="
+                                                margin-top: 6px;
+                                                display: flex;
+                                                align-items: center;
+                                            "
+                                    ></div>
+                                </div>
+                                <div
                                         style="
                                             margin-top: 6px;
                                             display: flex;
                                             align-items: center;
                                         "
-                                    ></div>
-                                </div>
-                                <div
-                                    style="margin-top: 6px; display: flex; align-items: center"
                                 >
-<!--                                    <div>-->
-<!--                                        <a class="text_star">-->
-<!--                                            <div class="font_right">-->
-<!--                                                <div class="font_right_div real_star"></div>-->
-<!--                                                <span class="font_right_span">4.5</span>-->
-<!--                                            </div>-->
-<!--                                            <span class="person_amount">(320)</span>-->
-<!--                                        </a>-->
-<!--                                    </div>-->
+                                    <!--                                        <div>-->
+                                    <!--                                            <a class="text_star">-->
+                                    <!--                                                <div class="font_right">-->
+                                    <!--                                                    <div class="font_right_div real_star"></div>-->
+                                    <!--                                                    <span class="font_right_span">4.5</span>-->
+                                    <!--                                                </div>-->
+                                    <!--                                                <span class="person_amount">(320)</span>-->
+                                    <!--                                            </a>-->
+                                    <!--                                        </div>-->
                                     <div class="participation">
                                         <span id="person_icon" th:text="${eventDTO.eventRecruitCount}"> 10 </span>
                                         명 모집
@@ -162,83 +423,93 @@
                                             <dt class="delivery">모집 기간</dt>
                                             <dd class="delivery_dd">
                                                 <div class="delivery_div">
-                                                    <span class="inline_right">
-<!--                                                        <span style="letter-spacing: 0">-->
-<!--                                                            <span class="event-start-year"-->
-<!--                                                                >2023</span-->
-<!--                                                            >년-->
-<!--                                                            <span class="event-start-month"-->
-<!--                                                                >05</span-->
-<!--                                                            >월-->
-<!--                                                            <span class="event-start-day"-->
-<!--                                                                >01</span-->
-<!--                                                            >일&nbsp;~-->
-<!--                                                            <span class="event-end-year"-->
-<!--                                                                >2023</span-->
-<!--                                                            >년-->
-<!--                                                            <span class="event-end-month"-->
-<!--                                                                >05</span-->
-<!--                                                            >월-->
-<!--                                                            <span class="event-end-day">07</span-->
-<!--                                                            >일-->
-<!--                                                        </span>-->
-                                                    </span>
+                                                        <span class="inline_right">
+                                                            <span style="letter-spacing: 0">
+                                                                <span class="event-start-year"
+                                                                >2023</span
+                                                                >년
+                                                                <span class="event-start-month"
+                                                                >05</span
+                                                                >월
+                                                                <span class="event-start-day"
+                                                                >01</span
+                                                                >일&nbsp;~
+                                                                <span class="event-end-year"
+                                                                >2023</span
+                                                                >년
+                                                                <span class="event-end-month"
+                                                                >05</span
+                                                                >월
+                                                                <span class="event-end-day"
+                                                                >07</span
+                                                                >일
+                                                            </span>
+                                                        </span>
                                                 </div>
                                             </dd>
                                         </div>
                                         <div class="line_size">
                                             <dt class="delivery">모이는 장소</dt>
                                             <dd class="delivery_dd">
-                                                <div class="delivery_div" th:text="${eventDTO.eventLocation.address}"></div>
+                                                <div class="delivery_div" th:text="${eventDTO.eventLocation.address}">
+                                                    역삼역 3번 출구
+                                                </div>
                                             </dd>
                                         </div>
                                     </dl>
                                 </div>
                             </div>
-                            <div style="margin-top: auto">
+                            <div style="margin-top: auto" th:if="${session.member != null}">
                                 <div class="purchase_wrap">
                                     <div class="purchase_wrap_div">
-                                        <button class="purchase_wrap_div_btn purchase_like_btn">
-                                            <span class="purchase_wrap_first_span">
-                                                <span class="purchase_wrap_second_span">
-                                                    <div>
-                                                        <svg
-                                                            viewbox="0 0 32 32"
-                                                            focusable="false"
-                                                            role="presentation"
-                                                            class="heart_icon"
-                                                            aria-hidden="false"
-                                                            style="width: 24px; height: 24px"
-                                                        >
-                                                            <path
-                                                                class="heart_path"
-                                                                d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"
-                                                            ></path>
-                                                        </svg>
-<!--                                                        <span class="purchase_wrap_third_span"-->
-<!--                                                            >1,135</span-->
-<!--                                                        >-->
-                                                    </div>
+                                        <button
+                                                class="purchase_wrap_div_btn purchase_like_btn"
+                                        >
+                                                <span class="purchase_wrap_first_span">
+                                                    <span class="purchase_wrap_second_span">
+                                                        <div>
+                                                            <svg
+                                                                    viewbox="0 0 32 32"
+                                                                    focusable="false"
+                                                                    role="presentation"
+                                                                    class="heart_icon"
+                                                                    aria-hidden="true"
+                                                                    style="
+                                                                    width: 24px;
+                                                                    height: 24px;
+                                                                "
+                                                            >
+                                                                <path
+                                                                        class="heart_path"
+                                                                        d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"
+                                                                ></path>
+                                                            </svg>
+                                                            <!--                                                            <span-->
+                                                            <!--                                                                class="purchase_wrap_third_span"-->
+                                                            <!--                                                                >1,135</span-->
+                                                            <!--                                                            >-->
+                                                        </div>
+                                                    </span>
                                                 </span>
-                                            </span>
                                         </button>
                                     </div>
-                                    <button class="purchase_wrap_button" onclick="moveApply()">
-                                        <span class="camping_div_second_span">
-                                            <span class="button_children">
-                                                <span class="button_children">참가 신청하기</span>
+                                    <button class="purchase_wrap_button">
+                                            <span class="camping_div_second_span">
+                                                <span class="button_children">
+                                                    <span class="button_children"
+                                                    >참가 신청하기</span
+                                                    >
+                                                </span>
                                             </span>
-                                        </span>
                                     </button>
-                                    <!-- 통솔자 일때만 보이게 하기 -->
                                     <button class="guide_wrap_button">
-                                        <span class="camping_div_second_span">
-                                            <span class="button_children">
-                                                <span class="button_leader" th:value = "${eventDTO.isApplied}">통솔 지원하기</span>
+                                            <span class="camping_div_second_span">
+                                                <span class="button_children">
+                                                    <span class="button_leader"
+                                                          th:value="${eventDTO.isApplied}">통솔 지원하기</span>
+                                                </span>
                                             </span>
-                                        </span>
                                     </button>
-                                    <!-- 여기까지 통솔자 일 때만 보이게 하기 -->
                                 </div>
                             </div>
                             <div class="company_info">
@@ -246,52 +517,58 @@
                                     <div class="flex_rela">
                                         <a class="company_name_wrap">
                                             <div class="wadiz_icon">
-                                                <span
-                                                    class="wadiz_icon_span">
-                                                    <img th:src="${'/eventFiles/display?fileName=/Member/Profile/' + eventDTO.memberProfilePath + '/' + eventDTO.memberProfileUUID + '_' +  eventDTO.memberProfileOriginalName}">
-                                                </span>
+                                                    <span
+                                                            class="wadiz_icon_span"
+                                                    >
+                                                        <img th:src="${'/eventFiles/display?fileName=/Member/Profile/' + eventDTO.memberProfilePath + '/' + eventDTO.memberProfileUUID + '_' +  eventDTO.memberProfileOriginalName}">
+                                                    </span>
                                             </div>
                                             <div class="wadiz_name">
-                                                <span class="wadiz_name_span" th:text="${eventDTO.memberNickname}">회사 명</span>
+                                                <span class="wadiz_name_span"
+                                                      th:text="${eventDTO.memberNickname}">회사 명</span>
                                             </div>
                                         </a>
                                         <a class="bulk_purchase">
-                                            <span class="camping_div_second_span">
-                                                <svg
-                                                    viewbox="0 0 40 40"
-                                                    focusable="false"
-                                                    role="presentation"
-                                                    class="spot_icon"
-                                                    aria-hidden="true"
-                                                >
-                                                    <path fill="none" d="M0 0h40v40H0z"></path>
-                                                    <path
-                                                        d="M10.62 38.33V29H2.87V1.67h34.26v27.79H18.92zM5 27h7.7v6.11l5.3-5.73h17V3.75H5z"
-                                                    ></path>
-                                                    <path
-                                                        d="M12.84 13.28a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74z"
-                                                    ></path>
-                                                </svg>
-                                            </span>
+                                                <span class="camping_div_second_span">
+                                                    <svg
+                                                            viewbox="0 0 40 40"
+                                                            focusable="false"
+                                                            role="presentation"
+                                                            class="spot_icon"
+                                                            aria-hidden="true"
+                                                    >
+                                                        <path
+                                                                fill="none"
+                                                                d="M0 0h40v40H0z"
+                                                        ></path>
+                                                        <path
+                                                                d="M10.62 38.33V29H2.87V1.67h34.26v27.79H18.92zM5 27h7.7v6.11l5.3-5.73h17V3.75H5z"
+                                                        ></path>
+                                                        <path
+                                                                d="M12.84 13.28a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74z"
+                                                        ></path>
+                                                    </svg>
+                                                    <span class="camping_div_second_span"
+                                                    >대량구매 문의</span
+                                                    >
+                                                </span>
                                         </a>
                                     </div>
                                     <div class="more_button_company" style="display: none">
                                         <table class="contact_table">
                                             <tbody>
-                                                <tr>
-                                                    <th>이메일</th>
-                                                    <td th:text="${eventDTO.memberEmail}">info@wadiz.kr</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>문의전화</th>
-                                                    <td th:text="${eventDTO.memberPhone}">1661-9056</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>한줄소개</th>
-                                                    <td class="home_page" th:text="${eventDTO.memberHiSentence}">
-                                                        열심히 하겠습니다!
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <th>이메일</th>
+                                                <td th:text="${eventDTO.memberEmail}">info@wadiz.kr</td>
+                                            </tr>
+                                            <tr>
+                                                <th>문의전화</th>
+                                                <td th:text="${eventDTO.memberPhone}">1661-9056</td>
+                                            </tr>
+                                            <tr>
+                                                <th>한줄 소개</th>
+                                                <td th:text="${eventDTO.memberHiSentence}">열심히 하겠습니다!</td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -300,335 +577,62 @@
                                     <div class="company_close" style="display: none">
                                         <span class="close_span">닫기</span>
                                         <svg
-                                            viewbox="0 0 32 32"
-                                            focusable="false"
-                                            role="presentation"
-                                            class="close_svg"
-                                            aria-hidden="true"
+                                                viewbox="0 0 32 32"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="close_svg"
+                                                aria-hidden="true"
                                         >
                                             <path
-                                                d="M16 9.6L26.4 20l-1.12 1.12L16 11.84l-9.28 9.28L5.6 20 16 9.6z"
+                                                    d="M16 9.6L26.4 20l-1.12 1.12L16 11.84l-9.28 9.28L5.6 20 16 9.6z"
                                             ></path>
                                         </svg>
                                     </div>
                                     <div class="company_open" style="display: flex">
                                         <span class="close_span">더보기</span>
                                         <svg
-                                            viewbox="0 0 32 32"
-                                            focusable="false"
-                                            role="presentation"
-                                            class="open_svg"
-                                            aria-hidden="true"
+                                                viewbox="0 0 32 32"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="open_svg"
+                                                aria-hidden="true"
                                         >
                                             <path
-                                                d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
+                                                    d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
                                             ></path>
                                         </svg>
                                     </div>
                                 </button>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="bottom-full-wrapper">
-                    <div>
-                        <nav class="detail_tab">
-                            <div class="main_text">
-                                <div style="position: relative">
-                                    <div style="margin-top: 16px">
-                                        <div class="text_header">
-                                            <div
-                                                style="
-                                                    display: flex;
-                                                    align-items: center;
-                                                    gap: 4px;
-                                                "
-                                            >
-                                                <div style="display: flex; gap: 8px">
-                                                    <a class="camping_a">
-                                                        <span class="camping_span">
-                                                            <span
-                                                                style="
-                                                                    vertical-align: top;
-                                                                    display: inline-flex;
-                                                                    align-items: center;
-                                                                "
-                                                            >
-                                                                <div class="camping_div">
-                                                                    <span
-                                                                        class="camping_div_first_span"
-                                                                        >#</span
-                                                                    >
-                                                                    <span
-                                                                        class="camping_div_second_span category-hash-tag"
-                                                                        >농촌</span
-                                                                    >
-                                                                </div>
-                                                            </span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div style="margin-top: 16px; display: flex">
-                                            <h3 class="text_title" th:text="${eventDTO.boardTitle}">
-                                                [벌써와배송]7종 캠핑 용품이 한곳에?ㅣ스텐락
-                                                올인원 캠프 반합 세트
-                                            </h3>
-                                        </div>
-                                        <div
-                                            style="
-                                                margin-top: 6px;
-                                                display: flex;
-                                                align-items: center;
-                                            "
-                                        ></div>
-                                    </div>
-                                    <div
-                                        style="
-                                            margin-top: 6px;
-                                            display: flex;
-                                            align-items: center;
-                                        "
-                                    >
-<!--                                        <div>-->
-<!--                                            <a class="text_star">-->
-<!--                                                <div class="font_right">-->
-<!--                                                    <div class="font_right_div real_star"></div>-->
-<!--                                                    <span class="font_right_span">4.5</span>-->
-<!--                                                </div>-->
-<!--                                                <span class="person_amount">(320)</span>-->
-<!--                                            </a>-->
-<!--                                        </div>-->
-                                        <div class="participation">
-                                            <span id="person_icon" th:text="${eventDTO.eventRecruitCount}"> 10 </span>
-                                            명 모집
-                                        </div>
-                                    </div>
-                                    <div class="company_info2">
-                                        <em class="company_info_em">
-                                            <span th:text="${eventDTO.eventPrice}">54,900</span>
-                                            <span class="won">원</span>
-                                        </em>
-                                        <em class="modify-delete">
-                                            <button type="button">수정하기</button>
-                                            <button type="button">삭제하기</button>
-                                        </em>
-                                    </div>
-                                    <div class="observer">
-                                        <dl>
-                                            <div class="line_size">
-                                                <dt class="delivery">모집 기간</dt>
-                                                <dd class="delivery_dd">
-                                                    <div class="delivery_div">
-                                                        <span class="inline_right">
-                                                            <span style="letter-spacing: 0">
-                                                                <span class="event-start-year"
-                                                                    >2023</span
-                                                                >년
-                                                                <span class="event-start-month"
-                                                                    >05</span
-                                                                >월
-                                                                <span class="event-start-day"
-                                                                    >01</span
-                                                                >일&nbsp;~
-                                                                <span class="event-end-year"
-                                                                    >2023</span
-                                                                >년
-                                                                <span class="event-end-month"
-                                                                    >05</span
-                                                                >월
-                                                                <span class="event-end-day"
-                                                                    >07</span
-                                                                >일
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                </dd>
-                                            </div>
-                                            <div class="line_size">
-                                                <dt class="delivery">모이는 장소</dt>
-                                                <dd class="delivery_dd">
-                                                    <div class="delivery_div" th:text="${eventDTO.eventLocation.address}">
-                                                        역삼역 3번 출구
-                                                    </div>
-                                                </dd>
-                                            </div>
-                                        </dl>
-                                    </div>
-                                </div>
-                                <div style="margin-top: auto" th:if="${session.member != null}">
-                                    <div class="purchase_wrap">
-                                        <div class="purchase_wrap_div">
-                                            <button
-                                                class="purchase_wrap_div_btn purchase_like_btn"
-                                            >
-                                                <span class="purchase_wrap_first_span">
-                                                    <span class="purchase_wrap_second_span">
+                        <ul class="detail_tab_ul">
+                            <li class="detail_tab_li">
+                                <a class="detail_a">
+                                    <span class="detail_tab_span">상세보기</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="stor_tab_wrapper">
+                        <div class="store_tab_contents">
+                            <div style="width: 100%">
+                                <div style="margin: 0 0 40px">
+                                    <div>
+                                        <section class="img_section">
+                                            <div class="content_wrap">
+                                                <div class="fold_height">
+                                                    <div>
                                                         <div>
-                                                            <svg
-                                                                viewbox="0 0 32 32"
-                                                                focusable="false"
-                                                                role="presentation"
-                                                                class="heart_icon"
-                                                                aria-hidden="true"
-                                                                style="
-                                                                    width: 24px;
-                                                                    height: 24px;
-                                                                "
-                                                            >
-                                                                <path
-                                                                    class="heart_path"
-                                                                    d="M22.16 4h-.007a8.142 8.142 0 0 0-6.145 2.79A8.198 8.198 0 0 0 9.76 3.998a7.36 7.36 0 0 0-7.359 7.446c0 5.116 4.64 9.276 11.6 15.596l2 1.76 2-1.76c6.96-6.32 11.6-10.48 11.6-15.6v-.08A7.36 7.36 0 0 0 22.241 4h-.085zm-5.28 21.84l-.88.8-.88-.8h-.08C8.4 19.76 4 15.84 4 11.44l-.001-.082A5.76 5.76 0 0 1 9.928 5.6a6.542 6.542 0 0 1 4.865 2.232l.486.567h1.52l.48-.56a6.548 6.548 0 0 1 4.877-2.24l.084-.001a5.76 5.76 0 0 1 5.76 5.76l-.001.085c0 4.396-4.4 8.316-11.12 14.396z"
-                                                                ></path>
-                                                            </svg>
-<!--                                                            <span-->
-<!--                                                                class="purchase_wrap_third_span"-->
-<!--                                                                >1,135</span-->
-<!--                                                            >-->
-                                                        </div>
-                                                    </span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                        <button class="purchase_wrap_button">
-                                            <span class="camping_div_second_span">
-                                                <span class="button_children">
-                                                    <span class="button_children"
-                                                        >참가 신청하기</span
-                                                    >
-                                                </span>
-                                            </span>
-                                        </button>
-                                        <button class="guide_wrap_button">
-                                            <span class="camping_div_second_span">
-                                                <span class="button_children">
-                                                    <span class="button_leader" th:value = "${eventDTO.isApplied}">통솔 지원하기</span>
-                                                </span>
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="company_info">
-                                    <div style="padding: 16px">
-                                        <div class="flex_rela">
-                                            <a class="company_name_wrap">
-                                                <div class="wadiz_icon">
-                                                    <span
-                                                        class="wadiz_icon_span"
-                                                    >
-                                                        <img th:src="${'/eventFiles/display?fileName=/Member/Profile/' + eventDTO.memberProfilePath + '/' + eventDTO.memberProfileUUID + '_' +  eventDTO.memberProfileOriginalName}">
-                                                    </span>
-                                                </div>
-                                                <div class="wadiz_name">
-                                                    <span class="wadiz_name_span" th:text="${eventDTO.memberNickname}">회사 명</span>
-                                                </div>
-                                            </a>
-                                            <a class="bulk_purchase">
-                                                <span class="camping_div_second_span">
-                                                    <svg
-                                                        viewbox="0 0 40 40"
-                                                        focusable="false"
-                                                        role="presentation"
-                                                        class="spot_icon"
-                                                        aria-hidden="true"
-                                                    >
-                                                        <path
-                                                            fill="none"
-                                                            d="M0 0h40v40H0z"
-                                                        ></path>
-                                                        <path
-                                                            d="M10.62 38.33V29H2.87V1.67h34.26v27.79H18.92zM5 27h7.7v6.11l5.3-5.73h17V3.75H5z"
-                                                        ></path>
-                                                        <path
-                                                            d="M12.84 13.28a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74zm7.16 0a1.87 1.87 0 1 0 0 3.74 1.87 1.87 0 1 0 0-3.74z"
-                                                        ></path>
-                                                    </svg>
-                                                    <span class="camping_div_second_span"
-                                                        >대량구매 문의</span
-                                                    >
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <div class="more_button_company" style="display: none">
-                                            <table class="contact_table">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>이메일</th>
-                                                        <td th:text="${eventDTO.memberEmail}">info@wadiz.kr</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>문의전화</th>
-                                                        <td th:text="${eventDTO.memberPhone}">1661-9056</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>한줄 소개</th>
-                                                        <td th:text="${eventDTO.memberHiSentence}">열심히 하겠습니다!</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <button class="close">
-                                        <div class="company_close" style="display: none">
-                                            <span class="close_span">닫기</span>
-                                            <svg
-                                                viewbox="0 0 32 32"
-                                                focusable="false"
-                                                role="presentation"
-                                                class="close_svg"
-                                                aria-hidden="true"
-                                            >
-                                                <path
-                                                    d="M16 9.6L26.4 20l-1.12 1.12L16 11.84l-9.28 9.28L5.6 20 16 9.6z"
-                                                ></path>
-                                            </svg>
-                                        </div>
-                                        <div class="company_open" style="display: flex">
-                                            <span class="close_span">더보기</span>
-                                            <svg
-                                                viewbox="0 0 32 32"
-                                                focusable="false"
-                                                role="presentation"
-                                                class="open_svg"
-                                                aria-hidden="true"
-                                            >
-                                                <path
-                                                    d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-                                                ></path>
-                                            </svg>
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                            <ul class="detail_tab_ul">
-                                <li class="detail_tab_li">
-                                    <a class="detail_a">
-                                        <span class="detail_tab_span">상세보기</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <div class="stor_tab_wrapper">
-                            <div class="store_tab_contents">
-                                <div style="width: 100%">
-                                    <div style="margin: 0 0 40px">
-                                        <div>
-                                            <section class="img_section">
-                                                <div class="content_wrap">
-                                                    <div class="fold_height">
-                                                        <div>
-                                                            <div>
-                                                                <div class="inner_contents">
-                                                                    <p class="event-img-area">
-                                                                        <img
+                                                            <div class="inner_contents">
+                                                                <p class="event-img-area">
+                                                                    <img
                                                                             data-width="583"
                                                                             data-height="1966"
                                                                             class="inner_img_align inner_img_float inner_img_width inner_img_posi"
                                                                             data-src="https://cdn.wadiz.kr/ft/images/green001/2022/1117/20221117172508839_55.jpg/wadiz/format/jpg/quality/80/"
                                                                             src="https://cdn.wadiz.kr/ft/images/green001/2022/1117/20221117172508839_55.jpg/wadiz/format/jpg/quality/80/"
-                                                                        />
-                                                                        <img
+                                                                    />
+                                                                    <img
                                                                             data-fr-image-pasted="true"
                                                                             data-width="496"
                                                                             data-height="655"
@@ -642,82 +646,83 @@
                                                                             data-src="https://cdn.wadiz.kr/ft/images/green001/2022/0919/20220919152328519_95.jpg/wadiz/format/jpg/quality/80/"
                                                                             class="inner_img_width inner_img_posi"
                                                                             src="https://cdn.wadiz.kr/ft/images/green001/2022/0919/20220919152328519_95.jpg/wadiz/format/jpg/quality/80/"
-                                                                        />
-                                                                        <img
+                                                                    />
+                                                                    <img
                                                                             data-height="3787"
                                                                             class="inner_img_align inner_img_width inner_img_margin"
                                                                             data-width="860"
                                                                             data-src="https://cdn2.wadiz.kr/2023/03/08/18cca989-089f-4fbf-a3c3-a9932f5b9d18"
                                                                             src="https://cdn2.wadiz.kr/2023/03/08/18cca989-089f-4fbf-a3c3-a9932f5b9d18"
-                                                                        />
-                                                                    </p>
+                                                                    />
+                                                                </p>
 
-                                                                    <section
+                                                                <section
                                                                         class="boardDetail-sectionContainer"
-                                                                    >
-                                                                        <article>
-                                                                            <header
-                                                                                class="Article-header"
-                                                                            >
-                                                                                <hgroup>
-                                                                                    <h2
-                                                                                        class="Article-title"
-                                                                                    >
-                                                                                        체험 소개
-                                                                                    </h2>
-                                                                                </hgroup>
-                                                                            </header>
-                                                                            <p class="event-explain" th:text="${eventDTO.boardContent}">
-                                                                                체험소개를 써주세요
-                                                                            </p>
-                                                                        </article>
-                                                                    </section>
-
-                                                                    <section
-                                                                    class="boardDetail-sectionContainer"
                                                                 >
                                                                     <article>
                                                                         <header
-                                                                            class="Article-header"
+                                                                                class="Article-header"
                                                                         >
                                                                             <hgroup>
-<!--                                                                                <h2-->
-<!--                                                                                    class="Article-title"-->
-<!--                                                                                >-->
-<!--                                                                                    체험 일정-->
-<!--                                                                                </h2>-->
+                                                                                <h2
+                                                                                        class="Article-title"
+                                                                                >
+                                                                                    체험 소개
+                                                                                </h2>
                                                                             </hgroup>
                                                                         </header>
-<!--                                                                        <p class="event-schedule">-->
-<!--                                                                            스케쥴을 넣어주세요-->
-<!--                                                                            &nbsp;-->
-<!--                                                                        </p>-->
+                                                                        <p class="event-explain"
+                                                                           th:text="${eventDTO.boardContent}">
+                                                                            체험소개를 써주세요
+                                                                        </p>
                                                                     </article>
                                                                 </section>
-                                                                    <section
+
+                                                                <section
                                                                         class="boardDetail-sectionContainer"
-                                                                    >
-                                                                        <article>
-                                                                            <header
+                                                                >
+                                                                    <article>
+                                                                        <header
                                                                                 class="Article-header"
-                                                                            >
-                                                                                <hgroup>
-                                                                                    <h2
+                                                                        >
+                                                                            <hgroup>
+                                                                                <!--                                                                                <h2-->
+                                                                                <!--                                                                                    class="Article-title"-->
+                                                                                <!--                                                                                >-->
+                                                                                <!--                                                                                    체험 일정-->
+                                                                                <!--                                                                                </h2>-->
+                                                                            </hgroup>
+                                                                        </header>
+                                                                        <!--                                                                        <p class="event-schedule">-->
+                                                                        <!--                                                                            스케쥴을 넣어주세요-->
+                                                                        <!--                                                                            &nbsp;-->
+                                                                        <!--                                                                        </p>-->
+                                                                    </article>
+                                                                </section>
+                                                                <section
+                                                                        class="boardDetail-sectionContainer"
+                                                                >
+                                                                    <article>
+                                                                        <header
+                                                                                class="Article-header"
+                                                                        >
+                                                                            <hgroup>
+                                                                                <h2
                                                                                         class="Article-title"
-                                                                                    >
-                                                                                        진행하는
-                                                                                        장소
-                                                                                    </h2>
-                                                                                </hgroup>
-                                                                            </header>
-                                                                            <div
-                                                                                class="placeMapSection-container"
-                                                                            >
-                                                                                <div
-                                                                                    class="placeMapContainer"
                                                                                 >
-                                                                                    <!-- 지도를 표시할 div 입니다 -->
-                                                                                    <div
+                                                                                    진행하는
+                                                                                    장소
+                                                                                </h2>
+                                                                            </hgroup>
+                                                                        </header>
+                                                                        <div
+                                                                                class="placeMapSection-container"
+                                                                        >
+                                                                            <div
+                                                                                    class="placeMapContainer"
+                                                                            >
+                                                                                <!-- 지도를 표시할 div 입니다 -->
+                                                                                <div
                                                                                         id="map"
                                                                                         style="
                                                                                             width: 100%;
@@ -726,8 +731,8 @@
                                                                                             overflow: hidden;
                                                                                             background: url('http://t1.daumcdn.net/mapjsapi/images/2x/bg_tile.png');
                                                                                         "
-                                                                                    >
-                                                                                        <div
+                                                                                >
+                                                                                    <div
                                                                                             style="
                                                                                                 position: absolute;
                                                                                                 left: 0px;
@@ -741,27 +746,27 @@
                                                                                                     url('http://t1.daumcdn.net/mapjsapi/images/2x/cursor/openhand.cur.ico'),
                                                                                                     default;
                                                                                             "
-                                                                                        >
-                                                                                            <div
+                                                                                    >
+                                                                                        <div
                                                                                                 style="
                                                                                                     position: absolute;
                                                                                                 "
-                                                                                            >
-                                                                                                <div
+                                                                                        >
+                                                                                            <div
                                                                                                     style="
                                                                                                         position: absolute;
                                                                                                         z-index: 0;
                                                                                                     "
-                                                                                                ></div>
-                                                                                                <div
+                                                                                            ></div>
+                                                                                            <div
                                                                                                     style="
                                                                                                         position: absolute;
                                                                                                         z-index: 1;
                                                                                                         left: 0px;
                                                                                                         top: 0px;
                                                                                                     "
-                                                                                                >
-                                                                                                    <img
+                                                                                            >
+                                                                                                <img
                                                                                                         src="http://map2.daumcdn.net/map_2d_hd/2303ksn/L3/1862/950.png"
                                                                                                         alt=""
                                                                                                         role="presentation"
@@ -783,12 +788,12 @@
                                                                                                             width: 256px;
                                                                                                             height: 256px;
                                                                                                         "
-                                                                                                    /><img
-                                                                                                        src="http://map3.daumcdn.net/map_2d_hd/2303ksn/L3/1862/951.png"
-                                                                                                        alt=""
-                                                                                                        role="presentation"
-                                                                                                        draggable="false"
-                                                                                                        style="
+                                                                                                /><img
+                                                                                                    src="http://map3.daumcdn.net/map_2d_hd/2303ksn/L3/1862/951.png"
+                                                                                                    alt=""
+                                                                                                    role="presentation"
+                                                                                                    draggable="false"
+                                                                                                    style="
                                                                                                             position: absolute;
                                                                                                             user-select: none;
                                                                                                             -webkit-user-drag: none;
@@ -805,12 +810,12 @@
                                                                                                             width: 256px;
                                                                                                             height: 256px;
                                                                                                         "
-                                                                                                    /><img
-                                                                                                        src="http://map0.daumcdn.net/map_2d_hd/2303ksn/L3/1862/952.png"
-                                                                                                        alt=""
-                                                                                                        role="presentation"
-                                                                                                        draggable="false"
-                                                                                                        style="
+                                                                                            /><img
+                                                                                                    src="http://map0.daumcdn.net/map_2d_hd/2303ksn/L3/1862/952.png"
+                                                                                                    alt=""
+                                                                                                    role="presentation"
+                                                                                                    draggable="false"
+                                                                                                    style="
                                                                                                             position: absolute;
                                                                                                             user-select: none;
                                                                                                             -webkit-user-drag: none;
@@ -827,12 +832,12 @@
                                                                                                             width: 256px;
                                                                                                             height: 256px;
                                                                                                         "
-                                                                                                    /><img
-                                                                                                        src="http://map1.daumcdn.net/map_2d_hd/2303ksn/L3/1862/953.png"
-                                                                                                        alt=""
-                                                                                                        role="presentation"
-                                                                                                        draggable="false"
-                                                                                                        style="
+                                                                                            /><img
+                                                                                                    src="http://map1.daumcdn.net/map_2d_hd/2303ksn/L3/1862/953.png"
+                                                                                                    alt=""
+                                                                                                    role="presentation"
+                                                                                                    draggable="false"
+                                                                                                    style="
                                                                                                             position: absolute;
                                                                                                             user-select: none;
                                                                                                             -webkit-user-drag: none;
@@ -849,12 +854,12 @@
                                                                                                             width: 256px;
                                                                                                             height: 256px;
                                                                                                         "
-                                                                                                    /><img
-                                                                                                        src="http://map2.daumcdn.net/map_2d_hd/2303ksn/L3/1863/950.png"
-                                                                                                        alt=""
-                                                                                                        role="presentation"
-                                                                                                        draggable="false"
-                                                                                                        style="
+                                                                                            /><img
+                                                                                                    src="http://map2.daumcdn.net/map_2d_hd/2303ksn/L3/1863/950.png"
+                                                                                                    alt=""
+                                                                                                    role="presentation"
+                                                                                                    draggable="false"
+                                                                                                    style="
                                                                                                             position: absolute;
                                                                                                             user-select: none;
                                                                                                             -webkit-user-drag: none;
@@ -871,12 +876,12 @@
                                                                                                             width: 256px;
                                                                                                             height: 256px;
                                                                                                         "
-                                                                                                    /><img
-                                                                                                        src="http://map3.daumcdn.net/map_2d_hd/2303ksn/L3/1863/951.png"
-                                                                                                        alt=""
-                                                                                                        role="presentation"
-                                                                                                        draggable="false"
-                                                                                                        style="
+                                                                                            /><img
+                                                                                                    src="http://map3.daumcdn.net/map_2d_hd/2303ksn/L3/1863/951.png"
+                                                                                                    alt=""
+                                                                                                    role="presentation"
+                                                                                                    draggable="false"
+                                                                                                    style="
                                                                                                             position: absolute;
                                                                                                             user-select: none;
                                                                                                             -webkit-user-drag: none;
@@ -893,12 +898,12 @@
                                                                                                             width: 256px;
                                                                                                             height: 256px;
                                                                                                         "
-                                                                                                    /><img
-                                                                                                        src="http://map0.daumcdn.net/map_2d_hd/2303ksn/L3/1863/952.png"
-                                                                                                        alt=""
-                                                                                                        role="presentation"
-                                                                                                        draggable="false"
-                                                                                                        style="
+                                                                                            /><img
+                                                                                                    src="http://map0.daumcdn.net/map_2d_hd/2303ksn/L3/1863/952.png"
+                                                                                                    alt=""
+                                                                                                    role="presentation"
+                                                                                                    draggable="false"
+                                                                                                    style="
                                                                                                             position: absolute;
                                                                                                             user-select: none;
                                                                                                             -webkit-user-drag: none;
@@ -915,12 +920,12 @@
                                                                                                             width: 256px;
                                                                                                             height: 256px;
                                                                                                         "
-                                                                                                    /><img
-                                                                                                        src="http://map1.daumcdn.net/map_2d_hd/2303ksn/L3/1863/953.png"
-                                                                                                        alt=""
-                                                                                                        role="presentation"
-                                                                                                        draggable="false"
-                                                                                                        style="
+                                                                                            /><img
+                                                                                                    src="http://map1.daumcdn.net/map_2d_hd/2303ksn/L3/1863/953.png"
+                                                                                                    alt=""
+                                                                                                    role="presentation"
+                                                                                                    draggable="false"
+                                                                                                    style="
                                                                                                             position: absolute;
                                                                                                             user-select: none;
                                                                                                             -webkit-user-drag: none;
@@ -937,29 +942,29 @@
                                                                                                             width: 256px;
                                                                                                             height: 256px;
                                                                                                         "
-                                                                                                    />
-                                                                                                </div>
-                                                                                                <div
+                                                                                            />
+                                                                                            </div>
+                                                                                            <div
                                                                                                     style="
                                                                                                         position: absolute;
                                                                                                         z-index: 1;
                                                                                                     "
-                                                                                                ></div>
-                                                                                                <div
+                                                                                            ></div>
+                                                                                            <div
                                                                                                     style="
                                                                                                         width: 767px;
                                                                                                         height: 170px;
                                                                                                         position: absolute;
                                                                                                         z-index: 1;
                                                                                                     "
-                                                                                                ></div>
-                                                                                                <div
+                                                                                            ></div>
+                                                                                            <div
                                                                                                     style="
                                                                                                         position: absolute;
                                                                                                         z-index: 1;
                                                                                                     "
-                                                                                                >
-                                                                                                    <svg
+                                                                                            >
+                                                                                                <svg
                                                                                                         version="1.1"
                                                                                                         style="
                                                                                                             stroke: none;
@@ -976,11 +981,11 @@
                                                                                                             top: -340px;
                                                                                                         "
                                                                                                         viewBox="0 0 3835 850"
-                                                                                                    >
-                                                                                                        <defs></defs>
-                                                                                                    </svg>
-                                                                                                </div>
-                                                                                                <div
+                                                                                                >
+                                                                                                    <defs></defs>
+                                                                                                </svg>
+                                                                                            </div>
+                                                                                            <div
                                                                                                     style="
                                                                                                         position: absolute;
                                                                                                         z-index: 1;
@@ -990,8 +995,8 @@
                                                                                                             0px
                                                                                                         );
                                                                                                     "
-                                                                                                >
-                                                                                                    <div
+                                                                                            >
+                                                                                                <div
                                                                                                         style="
                                                                                                             position: absolute;
                                                                                                             margin: -39px
@@ -1001,8 +1006,8 @@
                                                                                                             left: 384px;
                                                                                                             top: 85px;
                                                                                                         "
-                                                                                                    >
-                                                                                                        <img
+                                                                                                >
+                                                                                                    <img
                                                                                                             draggable="false"
                                                                                                             src="http://t1.daumcdn.net/mapjsapi/images/2x/marker.png"
                                                                                                             alt=""
@@ -1029,13 +1034,13 @@
                                                                                                                 width: 29px;
                                                                                                                 height: 42px;
                                                                                                             "
-                                                                                                        /><img
-                                                                                                            src="http://t1.daumcdn.net/mapjsapi/images/2x/transparent.gif"
-                                                                                                            alt=""
-                                                                                                            role="presentation"
-                                                                                                            draggable="false"
-                                                                                                            usemap="#daum.maps.Marker.Area:1"
-                                                                                                            style="
+                                                                                                    /><img
+                                                                                                        src="http://t1.daumcdn.net/mapjsapi/images/2x/transparent.gif"
+                                                                                                        alt=""
+                                                                                                        role="presentation"
+                                                                                                        draggable="false"
+                                                                                                        usemap="#daum.maps.Marker.Area:1"
+                                                                                                        style="
                                                                                                                 min-width: 0px;
                                                                                                                 min-height: 0px;
                                                                                                                 max-width: 99999px;
@@ -1048,10 +1053,12 @@
                                                                                                                 width: 29px;
                                                                                                                 height: 42px;
                                                                                                             "
-                                                                                                        /><map
+                                                                                                />
+                                                                                                    <map
                                                                                                             id="daum.maps.Marker.Area:1"
                                                                                                             name="daum.maps.Marker.Area:1"
-                                                                                                            ><area
+                                                                                                    >
+                                                                                                        <area
                                                                                                                 href="javascript:void(0)"
                                                                                                                 alt=""
                                                                                                                 role="presentation"
@@ -1061,12 +1068,13 @@
                                                                                                                 style="
                                                                                                                     -webkit-tap-highlight-color: transparent;
                                                                                                                 "
-                                                                                                        /></map>
-                                                                                                    </div>
+                                                                                                        />
+                                                                                                    </map>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div
+                                                                                    </div>
+                                                                                    <div
                                                                                             style="
                                                                                                 position: absolute;
                                                                                                 cursor: default;
@@ -1083,8 +1091,8 @@
                                                                                                     0
                                                                                                 );
                                                                                             "
-                                                                                        >
-                                                                                            <div
+                                                                                    >
+                                                                                        <div
                                                                                                 style="
                                                                                                     color: rgb(
                                                                                                         0,
@@ -1095,8 +1103,8 @@
                                                                                                     font-size: 10px;
                                                                                                     float: left;
                                                                                                 "
-                                                                                            >
-                                                                                                <div
+                                                                                        >
+                                                                                            <div
                                                                                                     style="
                                                                                                         float: left;
                                                                                                         margin: 2px
@@ -1138,8 +1146,8 @@
                                                                                                         border-image: initial;
                                                                                                         width: 46px;
                                                                                                     "
-                                                                                                ></div>
-                                                                                                <div
+                                                                                            ></div>
+                                                                                            <div
                                                                                                     style="
                                                                                                         float: left;
                                                                                                         margin: 0px
@@ -1157,18 +1165,18 @@
                                                                                                             0
                                                                                                         );
                                                                                                     "
-                                                                                                >
-                                                                                                    50m
-                                                                                                </div>
+                                                                                            >
+                                                                                                50m
                                                                                             </div>
-                                                                                            <div
+                                                                                        </div>
+                                                                                        <div
                                                                                                 style="
                                                                                                     margin: 0px
                                                                                                         4px;
                                                                                                     float: left;
                                                                                                 "
-                                                                                            >
-                                                                                                <a
+                                                                                        >
+                                                                                            <a
                                                                                                     target="_blank"
                                                                                                     href="http://map.kakao.com/"
                                                                                                     title="Kakao 지도로 보시려면 클릭하세요."
@@ -1177,17 +1185,17 @@
                                                                                                         width: 32px;
                                                                                                         height: 10px;
                                                                                                     "
-                                                                                                    ><img
-                                                                                                        src="http://t1.daumcdn.net/mapjsapi/images/2x/m_bi_b.png"
-                                                                                                        alt="Kakao 지도로 이동"
-                                                                                                        style="
+                                                                                            ><img
+                                                                                                    src="http://t1.daumcdn.net/mapjsapi/images/2x/m_bi_b.png"
+                                                                                                    alt="Kakao 지도로 이동"
+                                                                                                    style="
                                                                                                             float: left;
                                                                                                             width: 32px;
                                                                                                             height: 10px;
                                                                                                             border: none;
                                                                                                         "
-                                                                                                /></a>
-                                                                                                <div
+                                                                                            /></a>
+                                                                                            <div
                                                                                                     style="
                                                                                                         font: 11px /
                                                                                                                 11px
@@ -1197,10 +1205,10 @@
                                                                                                             sans-serif;
                                                                                                         float: left;
                                                                                                     "
-                                                                                                ></div>
-                                                                                            </div>
+                                                                                            ></div>
                                                                                         </div>
-                                                                                        <div
+                                                                                    </div>
+                                                                                    <div
                                                                                             style="
                                                                                                 cursor: auto;
                                                                                                 position: absolute;
@@ -1208,326 +1216,327 @@
                                                                                                 left: 0px;
                                                                                                 top: 0px;
                                                                                             "
-                                                                                        ></div>
-                                                                                    </div>
-                                                                                    <div
+                                                                                    ></div>
+                                                                                </div>
+                                                                                <div
                                                                                         class="place-container"
+                                                                                >
+                                                                                    <div
+                                                                                            class="placeLocation-container"
                                                                                     >
                                                                                         <div
-                                                                                            class="placeLocation-container"
-                                                                                        >
-                                                                                            <div
                                                                                                 class="placeLocationTitle-container"
-                                                                                            >
-                                                                                                <strong
+                                                                                        >
+                                                                                            <strong
                                                                                                     class="placeLocationTitle"
-                                                                                                    >주소</strong
-                                                                                                >
-                                                                                                <span
+                                                                                            >주소</strong
+                                                                                            >
+                                                                                            <span
                                                                                                     id="coordAddr"
                                                                                                     class="placeLocationTitleDetail"
                                                                                                     th:text="${eventDTO.eventLocation.address}"
-                                                                                                    ></span
-                                                                                                >
-                                                                                            </div>
+                                                                                            ></span
+                                                                                            >
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </article>
-                                                                    </section>
-                                                                </div>
+                                                                        </div>
+                                                                    </article>
+                                                                </section>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="img_section_div">
-                                                    <div class="more_button">
+                                            </div>
+                                            <div class="img_section_div">
+                                                <div class="more_button">
                                                         <span class="more_button_span"
-                                                            >체험학습 상세보기</span
+                                                        >체험학습 상세보기</span
                                                         >
-                                                        <svg
+                                                    <svg
                                                             viewbox="0 0 32 32"
                                                             focusable="false"
                                                             role="presentation"
                                                             class="more_button_svg"
                                                             aria-hidden="true"
-                                                        >
-                                                            <path
+                                                    >
+                                                        <path
                                                                 transform="rotate(180 16 16)"
                                                                 d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-                                                            ></path>
-                                                        </svg>
-                                                    </div>
+                                                        ></path>
+                                                    </svg>
                                                 </div>
-                                            </section>
-                                        </div>
+                                            </div>
+                                        </section>
                                     </div>
+                                </div>
+                                <div class="product_info">
                                     <div class="product_info">
-                                        <div class="product_info">
-                                            <div class="provide_information">
-                                                <strong style="font-weight: 700"
-                                                    >체험학습 정보 제공</strong
-                                                >
-                                                <div class="more_up_button">
-                                                    <svg
+                                        <div class="provide_information">
+                                            <strong style="font-weight: 700"
+                                            >체험학습 정보 제공</strong
+                                            >
+                                            <div class="more_up_button">
+                                                <svg
                                                         viewbox="0 0 32 32"
                                                         focusable="false"
                                                         role="presentation"
                                                         class="more_up_svg"
                                                         aria-hidden="true"
-                                                    >
-                                                        <path
+                                                >
+                                                    <path
                                                             d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-                                                        ></path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="provide_information_full_wrap"
-                                                style="display: none"
-                                            >
-                                                <div>
-                                                    <div class="provide_information_wrap">
-                                                        <div
-                                                            class="provide_information_wrap_first"
-                                                        >
-                                                            <div class="notice_container">
-                                                                <div class="notice_item">
-                                                                    <div
-                                                                        class="notice_item_title"
-                                                                    >
-                                                                        카테고리
-                                                                    </div>
-                                                                    <div
-                                                                        class="notice_item_content"
-                                                                    >
-                                                                        농촌
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notice_container">
-                                                                <div class="notice_item">
-                                                                    <div
-                                                                        class="notice_item_title"
-                                                                    >
-                                                                        모집 정원
-                                                                    </div>
-                                                                    <div
-                                                                        class="notice_item_content"
-                                                                    >
-                                                                        10명
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notice_container">
-                                                                <div class="notice_item">
-                                                                    <div
-                                                                        class="notice_item_title"
-                                                                    >
-                                                                        가격
-                                                                    </div>
-                                                                    <div
-                                                                        class="notice_item_content"
-                                                                    >
-                                                                        <span
-                                                                            class="bottom-price"
-                                                                            >54900</span
-                                                                        >원
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notice_container">
-                                                                <div class="notice_item">
-                                                                    <div
-                                                                        class="notice_item_title"
-                                                                    >
-                                                                        모집 기간
-                                                                    </div>
-                                                                    <div
-                                                                        class="notice_item_content"
-                                                                    >
-                                                                        <span
-                                                                            class="event-start"
-                                                                            >2023-04-05</span
-                                                                        >
-                                                                        ~
-                                                                        <span class="event-end"
-                                                                            >2023-04-20</span
-                                                                        >
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="notice_container">
-                                                                <div class="notice_item">
-                                                                    <div
-                                                                        class="notice_item_title"
-                                                                    >
-                                                                        모이는 장소
-                                                                    </div>
-                                                                    <div
-                                                                        class="notice_item_content"
-                                                                    >
-                                                                        역삼역 3번 출구
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="provide_information_wrap_second"
-                                                        >
-                                                            <hr
-                                                                class="provide_information_hr"
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
+                                                    ></path>
+                                                </svg>
                                             </div>
                                         </div>
+                                        <div
+                                                class="provide_information_full_wrap"
+                                                style="display: none"
+                                        >
+                                            <div>
+                                                <div class="provide_information_wrap">
+                                                    <div
+                                                            class="provide_information_wrap_first"
+                                                    >
+                                                        <div class="notice_container">
+                                                            <div class="notice_item">
+                                                                <div
+                                                                        class="notice_item_title"
+                                                                >
+                                                                    카테고리
+                                                                </div>
+                                                                <div
+                                                                        class="notice_item_content"
+                                                                >
+                                                                    농촌
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="notice_container">
+                                                            <div class="notice_item">
+                                                                <div
+                                                                        class="notice_item_title"
+                                                                >
+                                                                    모집 정원
+                                                                </div>
+                                                                <div
+                                                                        class="notice_item_content"
+                                                                >
+                                                                    10명
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="notice_container">
+                                                            <div class="notice_item">
+                                                                <div
+                                                                        class="notice_item_title"
+                                                                >
+                                                                    가격
+                                                                </div>
+                                                                <div
+                                                                        class="notice_item_content"
+                                                                >
+                                                                        <span
+                                                                                class="bottom-price"
+                                                                        >54900</span
+                                                                        >원
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="notice_container">
+                                                            <div class="notice_item">
+                                                                <div
+                                                                        class="notice_item_title"
+                                                                >
+                                                                    모집 기간
+                                                                </div>
+                                                                <div
+                                                                        class="notice_item_content"
+                                                                >
+                                                                        <span
+                                                                                class="event-start"
+                                                                        >2023-04-05</span
+                                                                        >
+                                                                    ~
+                                                                    <span class="event-end"
+                                                                    >2023-04-20</span
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="notice_container">
+                                                            <div class="notice_item">
+                                                                <div
+                                                                        class="notice_item_title"
+                                                                >
+                                                                    모이는 장소
+                                                                </div>
+                                                                <div
+                                                                        class="notice_item_content"
+                                                                >
+                                                                    역삼역 3번 출구
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                            class="provide_information_wrap_second"
+                                                    >
+                                                        <hr
+                                                                class="provide_information_hr"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
                                     </div>
-                                    <div class="product_info">
-                                        <div class="maker_info_wrapper">
-                                            <strong style="font-weight: 700">회사 정보</strong>
-                                            <div class="maker_up_button">
-                                                <svg
+                                </div>
+                                <div class="product_info">
+                                    <div class="maker_info_wrapper">
+                                        <strong style="font-weight: 700">회사 정보</strong>
+                                        <div class="maker_up_button">
+                                            <svg
                                                     viewbox="0 0 32 32"
                                                     focusable="false"
                                                     role="presentation"
                                                     class="maker_svg"
                                                     aria-hidden="true"
-                                                >
-                                                    <path
+                                            >
+                                                <path
                                                         d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-                                                    ></path>
-                                                </svg>
-                                            </div>
+                                                ></path>
+                                            </svg>
                                         </div>
-                                        <div class="maker_real_info" style="display: none">
-                                            <div style="margin-bottom: 16px">
-                                                <div class="maker_info_wrap">
-                                                    <div class="maker_info_line">
-                                                        <div class="maker_info_title">
-                                                            회사명
-                                                        </div>
-                                                        <div class="maker_info_content" th:text="${eventDTO.memberNickname}">
-                                                            와디즈 주식회사
-                                                        </div>
+                                    </div>
+                                    <div class="maker_real_info" style="display: none">
+                                        <div style="margin-bottom: 16px">
+                                            <div class="maker_info_wrap">
+                                                <div class="maker_info_line">
+                                                    <div class="maker_info_title">
+                                                        회사명
                                                     </div>
-                                                    <div class="maker_info_line">
-                                                        <div class="maker_info_title">
-                                                            한줄 소개
-                                                        </div>
-                                                        <div class="maker_info_content"  th:text="${eventDTO.memberHiSentence}">
-                                                            아이들을 위한 회사입니다!
-                                                        </div>
+                                                    <div class="maker_info_content"
+                                                         th:text="${eventDTO.memberNickname}">
+                                                        와디즈 주식회사
                                                     </div>
-                                                    <div class="maker_info_line">
-                                                        <div class="maker_info_title">
-                                                            회사 주소
-                                                        </div>
-                                                        <div class="maker_info_content">
-                                                            <span th:text="${'(' + eventDTO.memberLocation.postcode + ')' + '  ' + eventDTO.memberLocation.address + '  ' +  eventDTO.memberLocation.addressDetail + '  ' + eventDTO.memberLocation.addressSubDetail}"></span>
-<!--                                                            <img th:src="${'/eventFiles/display?fileName=/Member/Profile/' + eventDTO.memberProfilePath + '/' + eventDTO.me-->
-                                                        </div>
-                                                        </div>
+                                                </div>
+                                                <div class="maker_info_line">
+                                                    <div class="maker_info_title">
+                                                        한줄 소개
                                                     </div>
-                                                    <div class="maker_info_line">
-                                                        <div class="maker_info_title">
-                                                            연락처
-                                                        </div>
-                                                        <div class="maker_info_content" th:text="${eventDTO.memberPhone}">
-                                                            1661-9056
-                                                        </div>
+                                                    <div class="maker_info_content"
+                                                         th:text="${eventDTO.memberHiSentence}">
+                                                        아이들을 위한 회사입니다!
                                                     </div>
-                                                    <div class="maker_info_line">
-                                                        <div class="maker_info_title">
-                                                            이메일 주소
-                                                        </div>
-                                                        <div class="maker_info_content" th:text="${eventDTO.memberEmail}">
-                                                            info@wadiz.kr
-                                                        </div>
+                                                </div>
+                                                <div class="maker_info_line">
+                                                    <div class="maker_info_title">
+                                                        회사 주소
+                                                    </div>
+                                                    <div class="maker_info_content">
+                                                        <span th:text="${'(' + eventDTO.memberLocation.postcode + ')' + '  ' + eventDTO.memberLocation.address + '  ' +  eventDTO.memberLocation.addressDetail + '  ' + eventDTO.memberLocation.addressSubDetail}"></span>
+                                                        <!--                                                            <img th:src="${'/eventFiles/display?fileName=/Member/Profile/' + eventDTO.memberProfilePath + '/' + eventDTO.me-->
+                                                    </div>
+                                                </div>
+                                                <div class="maker_info_line">
+                                                    <div class="maker_info_title">
+                                                        연락처
+                                                    </div>
+                                                    <div class="maker_info_content" th:text="${eventDTO.memberPhone}">
+                                                        1661-9056
+                                                    </div>
+                                                </div>
+                                                <div class="maker_info_line">
+                                                    <div class="maker_info_title">
+                                                        이메일 주소
+                                                    </div>
+                                                    <div class="maker_info_content" th:text="${eventDTO.memberEmail}">
+                                                        info@wadiz.kr
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
-                                    <div class="product_info">
-                                        <div class="maker_info_wrapper">
-                                            <strong style="font-weight: 700"
-                                                >자주 묻는 질문</strong
-                                            >
-                                            <div class="faq_button">
-                                                <svg
-                                                    viewbox="0 0 32 32"
-                                                    focusable="false"
-                                                    role="presentation"
-                                                    class="faq_svg"
-                                                    aria-hidden="true"
-                                                >
-                                                    <path
-                                                        d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-                                                    ></path>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div class="faq_real_info" style="display: none">
-                                            <div style="margin-bottom: 16px">
-                                                <div class="maker_info_wrap">
-                                                    <div class="content-wrapper">
-                                                        <div class="one-content">
-                                                            <div class="inquire-title">
-                                                                체험학습에 참여하고 싶어요
-                                                                <i
-                                                                    class="icon expand-more"
-                                                                    aria-hidden="true"
-                                                                ></i>
-                                                            </div>
-                                                            <div class="inquire-content">
-                                                                체험학습 상세페이지에 오른쪽
-                                                                체험하기 버튼을 누르시고
-                                                                결제하시면 체험학습에 참여할 수
-                                                                있습니다.
-                                                            </div>
-                                                        </div>
+                                </div>
+                            </div>
+                            <div class="product_info">
+                                <div class="maker_info_wrapper">
+                                    <strong style="font-weight: 700"
+                                    >자주 묻는 질문</strong
+                                    >
+                                    <div class="faq_button">
+                                        <svg
+                                                viewbox="0 0 32 32"
+                                                focusable="false"
+                                                role="presentation"
+                                                class="faq_svg"
+                                                aria-hidden="true"
+                                        >
+                                            <path
+                                                    d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
+                                            ></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="faq_real_info" style="display: none">
+                                    <div style="margin-bottom: 16px">
+                                        <div class="maker_info_wrap">
+                                            <div class="content-wrapper">
+                                                <div class="one-content">
+                                                    <div class="inquire-title">
+                                                        체험학습에 참여하고 싶어요
+                                                        <i
+                                                                class="icon expand-more"
+                                                                aria-hidden="true"
+                                                        ></i>
+                                                    </div>
+                                                    <div class="inquire-content">
+                                                        체험학습 상세페이지에 오른쪽
+                                                        체험하기 버튼을 누르시고
+                                                        결제하시면 체험학습에 참여할 수
+                                                        있습니다.
+                                                    </div>
+                                                </div>
 
-                                                        <div class="one-content">
-                                                            <div class="inquire-title">
-                                                                통솔자는 어떻게 신청하나요?
-                                                                <i
-                                                                    class="icon expand-more"
-                                                                    aria-hidden="true"
-                                                                ></i>
-                                                            </div>
-                                                            <div class="inquire-content">
-                                                                로그인 하신후 마이페이지에
-                                                                들어가시면 아래에 통솔자로
-                                                                지원할 수 있는 버튼이 있습니다.
-                                                                혹은 나의 체험학습에 들어가서
-                                                                <strong>통솔자로 지원</strong>을
-                                                                누르시면 됩니다.
-                                                            </div>
-                                                        </div>
+                                                <div class="one-content">
+                                                    <div class="inquire-title">
+                                                        통솔자는 어떻게 신청하나요?
+                                                        <i
+                                                                class="icon expand-more"
+                                                                aria-hidden="true"
+                                                        ></i>
+                                                    </div>
+                                                    <div class="inquire-content">
+                                                        로그인 하신후 마이페이지에
+                                                        들어가시면 아래에 통솔자로
+                                                        지원할 수 있는 버튼이 있습니다.
+                                                        혹은 나의 체험학습에 들어가서
+                                                        <strong>통솔자로 지원</strong>을
+                                                        누르시면 됩니다.
+                                                    </div>
+                                                </div>
 
-                                                        <div class="one-content">
-                                                            <div class="inquire-title">
-                                                                통솔자의 선정기준과 방법이
-                                                                궁금해요
-                                                                <i
-                                                                    class="icon expand-more"
-                                                                    aria-hidden="true"
-                                                                ></i>
-                                                            </div>
-                                                            <div class="inquire-content">
-                                                                통솔자는 아기자기에서 자체적으로
-                                                                엄격하게 심사하고있습니다.
-                                                                <br />
-                                                                전문적인 인증서 혹은 이 분야에서
-                                                                오랜 경력이 있는 분들만이
-                                                                통솔자로 선정됩니다.
-                                                            </div>
-                                                        </div>
+                                                <div class="one-content">
+                                                    <div class="inquire-title">
+                                                        통솔자의 선정기준과 방법이
+                                                        궁금해요
+                                                        <i
+                                                                class="icon expand-more"
+                                                                aria-hidden="true"
+                                                        ></i>
+                                                    </div>
+                                                    <div class="inquire-content">
+                                                        통솔자는 아기자기에서 자체적으로
+                                                        엄격하게 심사하고있습니다.
+                                                        <br/>
+                                                        전문적인 인증서 혹은 이 분야에서
+                                                        오랜 경력이 있는 분들만이
+                                                        통솔자로 선정됩니다.
                                                     </div>
                                                 </div>
                                             </div>
@@ -1539,15 +1548,17 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+</div>
+</section>
+</div>
 <div th:insert="~{/components/footer:: footer}"></div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script
-    type="text/javascript"
-    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e010e1c47083a81e5873ca2682380a56&libraries=services"
+        type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e010e1c47083a81e5873ca2682380a56&libraries=services"
 ></script>
 <script th:inline="javascript">
     let eventDTO = [[${eventDTO}]];
