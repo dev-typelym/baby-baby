@@ -30,6 +30,7 @@ public class CustomError implements ErrorController {
         }
         return "/error/500";
     }
+
 }
 
 
