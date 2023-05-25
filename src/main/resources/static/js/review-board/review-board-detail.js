@@ -360,32 +360,32 @@ $('.comment-list').on('click', '.modify-confirm', function () {
 
 
 // 댓글목록 불러오기==========================================
-function getReplyList(page) {
-    $.ajax({
-        url: `/review/reply/list/show/${page}/${boardId}`,
-        data: {page: page, boardId: boardId},
-        contentType: "application/json;charset=utf-8",
-        success: function (data) {
-            globalThis.count = data.count;
-            showReplyList(data.data);
-            getReplyCount();
-            console.log("======count List success: ")
-            console.log(count)
-            console.log("======page List success: ")
-            console.log(globalThis.page)
-            if (page == (globalThis.count - 1)) {
-                $(".btn-comment").hide();
-            }else{
-                $(".btn-comment").show();
-            }
-        }
-    });
-
-}
-
-getReplyList(globalThis.page);
-
-
+// function getReplyList(page) {
+//     $.ajax({
+//         url: `/review/reply/list/show/${page}/${boardId}`,
+//         data: {page: page, boardId: boardId},
+//         contentType: "application/json;charset=utf-8",
+//         success: function (data) {
+//             globalThis.count = data.count;
+//             showReplyList(data.data);
+//             getReplyCount();
+//             console.log("======count List success: ")
+//             console.log(count)
+//             console.log("======page List success: ")
+//             console.log(globalThis.page)
+//             if (page == (globalThis.count - 1)) {
+//                 $(".btn-comment").hide();
+//             }else{
+//                 $(".btn-comment").show();
+//             }
+//         }
+//     });
+//
+// }
+//
+// getReplyList(globalThis.page);
+//
+//
 
 
 function showReplyCount(replyAllcount) {

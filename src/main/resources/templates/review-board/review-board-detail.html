@@ -21,7 +21,7 @@
     <div class="parents-yard-board-detail-top">
         <div class="parents-yard-board-detail-user-profile">
             <img class="parents-yard-board-detail-user-profile-image"
-                 th:src="'/members/display/fileName=Member/Profile/' + ${review.memberProfilePath} + '/' + ${review.memberProfileUUID} + '_' + ${review.memberProfileOriginalName}">
+                 th:src="'/reviewFiles/display?fileName=Member/Profile/' + ${review.memberProfilePath} +'/'+${review.memberProfileUUID}+'_'+${review.memberProfileOriginalName}">
         </div>
         <span class="parents-yard-board-detail-user-name" th:text="${review.memberNickName}"></span>
         <input class="boardId" type="hidden" th:value="${review.id}" style="display: none;">
@@ -130,8 +130,8 @@
             </div>
         </div>
 
-         댓글 시작
-        <div class="board-detail-bottom">
+<!--         댓글 시작-->
+<!--        <div class="board-detail-bottom">-->
 <!--            <div class="board-comment">-->
 <!--                <div class="comment-box">-->
 <!--                    <div class="message-box">-->
