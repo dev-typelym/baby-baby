@@ -137,7 +137,7 @@ function appendList(AskDTOS) {
                     <span class="author">
                         아기자기
                     </span>
-                    <span class="update-date">2023.01.30</span>
+                    <span class="update-date">${ask.registerDate}</span>
                 </div>
             </div>
         </div>

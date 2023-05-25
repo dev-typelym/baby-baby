@@ -11,11 +11,12 @@ import com.app.babybaby.entity.file.eventFile.EventFile;
 import com.app.babybaby.entity.member.Kid;
 import com.querydsl.core.Tuple;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public interface CrewService {
-    public List<EventKidDTO> findCrewByMemberId(Long sessionId, String date);
+    public List<EventKidDTO> findCrewByMemberId(Long sessionId, LocalDate date);
 
 
 

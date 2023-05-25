@@ -184,9 +184,14 @@ $("#today").click(() => {
       let eventCategory = "농촌"
       let location = '서울시 강동구'
       let category = '박물관';
+      eventStart = '2023-05-24';
+      eventEnd = new Date(start);
+      console.log(eventEnd + "@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-      eventStart = '2023-05-24 15:45:30.000';
-      eventEnd = new Date('2023-05-04T17:00:00+09:00')
+      var date = new Date(eventEnd);
+      var formattedDate111 = date.toISOString().split('T')[0];
+
+      console.log(formattedDate111); // Outputs: 2023-05-24
 
       let kstOffset = -540; // UTC+9
       start.setMinutes(start.getMinutes() + kstOffset); // 시작 시간을 한국 시간대로 변경
@@ -242,7 +247,7 @@ $("#today").click(() => {
       // ajax로 그날 참여한 모집 가져오기
       const sendData = () => {
         console.log("sendData 들어옴@@@@");
-        let date = eventStart;
+        let date = formattedDate111;
         $.ajax({
           type: 'post',
           url: `/mypage/profile/${date}`,
@@ -252,6 +257,7 @@ $("#today").click(() => {
             getResult(eventKidDTOS);
           },
           error: function (error) {
+            $(".lecture-list").html('');
             console.log('Error fetching data:', error);
           }
         });
@@ -274,7 +280,12 @@ $("#today").click(() => {
   function getResult(eventKidDTOS) {
           eventKidDTOS.forEach((eventKid, i) => {
           let eventAll = "";
-          eventAll +=
+            let startDate = new Date(eventKid.calendarDTO.startDate); // assuming eventLike.registerDate is a valid date string
+            let formattedDate = startDate.getFullYear() + '-' + (startDate.getMonth() + 1).toString().padStart(2, '0') + '-' + startDate.getDate().toString().padStart(2, '0');
+            let endDate = new Date(eventKid.calendarDTO.endDate); // assuming eventLike.registerDate is a valid date string
+            let formattedEndDate = endDate.getFullYear() + '-' + (endDate.getMonth() + 1).toString().padStart(2, '0') + '-' + endDate.getDate().toString().padStart(2, '0');
+
+            eventAll +=
               `
               <!-- 왼쪽 컨텐츠 한개 -->
               <div class="lecture">
@@ -295,10 +306,10 @@ $("#today").click(() => {
                       ${eventKid.boardContent}
                     </p>
                     <p class="lecture-info">
-                      시작 : ${startFormat}
+                      시작 : ${formattedDate}
                       <br> 
-                      종료 : ${endFormat}
-                      <br />장소 : ${eventKid.eventLocation.address}
+                      종료 : ${formattedEndDate}
+                      <br />장소 : ${eventKid.eventLocation.address} ${eventKid.eventLocation.addressDetail}
                       라이브
                     </p>
                     <p class="lecture-number">

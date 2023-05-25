@@ -56,9 +56,11 @@
                         </div>
                       </div>
                     </div>
-                    <button class="logout-btn" type="button" th:action="@{/member/logout}">
-                      <span><span class="logout-btn-text" >로그아웃</span></span>
-                    </button>
+                      <a th:href="@{/member/logout}">
+                          <button class="logout-btn" type="button">
+                              <span><span class="logout-btn-text" >로그아웃</span></span>
+                          </button>
+                      </a>
                   </div>
 
                   <div class="body-content-right-wrapper center">
@@ -188,7 +190,7 @@
                     </a>
                   </li>
 
-                  <li class="one-link" th:if="${session.member.memberType != GENERAL}">
+                  <li class="one-link" th:if="${session.member.memberType != 'GENERAL'}">
                     <a th:href="@{/mypage/profile}">
                       <div>
                         <span class="link-icon">

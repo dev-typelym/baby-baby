@@ -36,6 +36,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,6 +47,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -111,7 +113,9 @@ public class MypageController {
 
     @ResponseBody
     @PostMapping("profile/{date}")
-    public List<EventKidDTO> getPofile(Model model,@PathVariable("date") String date,HttpSession session){
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public List<EventKidDTO> getPofile(Model model, @PathVariable("date") String date1, HttpSession session){
+        LocalDate date = LocalDate.parse(date1);
         log.info("------------------- 받아온 date : "+ date);
         List<EventKidDTO> eventKidDTOS = crewService.findCrewByMemberId(110L, date);
         model.addAttribute("eventKidDTOS",eventKidDTOS);
