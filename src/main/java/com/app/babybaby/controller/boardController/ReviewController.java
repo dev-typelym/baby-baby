@@ -4,6 +4,7 @@ package com.app.babybaby.controller.boardController;
 import com.app.babybaby.domain.boardDTO.eventDTO.EventDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.boardDTO.reviewDTO.ReviewDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.service.board.review.ReviewService;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -29,8 +31,9 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @GetMapping("writeFirst")
-    public String goReviewBoardWrite(Model model){
-        Long sessionId = 1L;
+    public String goReviewBoardWrite(Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         List<EventDTO> events = reviewService.findAllEventsByMemberId(sessionId);
 
         Gson gson = new Gson();
@@ -41,8 +44,9 @@ public class ReviewController {
     }
 
     @GetMapping("writeSecond")
-    public String goReviewBoardSecond(Model model){
-        Long sessionId = 1L;
+    public String goReviewBoardSecond(Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         Member member = reviewService.getMemberInfo(sessionId);
 //        로그인 되어있지 않을때 로그인 페이지로 보내주기
         model.addAttribute(member);
@@ -51,8 +55,9 @@ public class ReviewController {
     }
 
     @PostMapping("save")
-    public RedirectView saveReviewBoard(ReviewDTO reviewDTO, Long eventId){
-        Long sessionId = 1L;
+    public RedirectView saveReviewBoard(ReviewDTO reviewDTO, Long eventId, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long sessionId = memberDTO.getId();
         log.info(reviewDTO.toString());
         reviewService.saveReview(sessionId, eventId, reviewDTO);
         return new RedirectView("/review/list");

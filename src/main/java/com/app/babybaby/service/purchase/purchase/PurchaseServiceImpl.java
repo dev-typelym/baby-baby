@@ -106,6 +106,8 @@ public class PurchaseServiceImpl implements PurchaseService {
         // 가장 최근 가이드 하나 가져오기
         Guide guide = guidRepository.findFirstByEventIdAndAvailableTypeOrderById(eventId, GuideAvailableType.AVAILABLE);
 
+        log.info("=============", guide);
+
         // 가이드가 없다면 새로운 가이드 생성
         if (guide == null) {
             guide = new Guide(event, company);

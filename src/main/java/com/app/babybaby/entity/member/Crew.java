@@ -48,4 +48,8 @@ public class Crew{
         this.guide = guide;
         this.eventRegisterDate = eventRegisterDate;
     }
+
+    public void setEventRegisterDate(LocalDate eventRegisterDate) {
+        this.eventRegisterDate = eventRegisterDate;
+    }
 }

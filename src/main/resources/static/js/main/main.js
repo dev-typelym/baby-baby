@@ -737,7 +737,7 @@ function appendEventList(categoryResults) {
         const convertedEndDate = formatDate(category.calendar.endDate);
         // const uploadDate = formatDate(category.parentsBoardRegisterDate);
         categoryText += ` 
-                   <div class="second-banner${index} second-banners" onclick="location.href='/'">
+                   <div class="second-banner${index} second-banners"  onclick="location.href='/event/detail/${category.id}'">
                                 <div class="second-banner-image-wrapper">
                                     <div class="second-banner-image">
                                     <img src="/eventFiles/display?fileName=Event/${category.files[0].filePath}/${category.files[0].fileUUID}_${category.files[0].fileOriginalName}">
@@ -778,7 +778,7 @@ function appendNowKidsList(categoryResults) {
     let index = 1;
     categoryResults.forEach(category => {
         categoryText +=` 
-        <div class="third-banner${index} third-banners" onclick="location.href='/'">
+        <div class="third-banner${index} third-banners" onclick="location.href='/nowKids/list'">
             <div class="third-banner-image-wrapper">
                 <div class="third-banner-image">
                     <img src="/nowKidsFiles/display?fileName=NowKids/${category.nowKidsFileDTOList[0].filePath}/${category.nowKidsFileDTOList[0].fileUUID}_${category.nowKidsFileDTOList[0].fileOriginalName}">
