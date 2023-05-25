@@ -184,7 +184,7 @@ function appendCategoryList(categoryResults) {
     let categoryText = '';
     categoryResults.forEach(category => {
         const convertedCategory = convertCategory(category.eventCategory); // 영어 카테고리를 한글로 변환
-        const convertedTime = formatDate(category.parentsBoardUpdateDate);
+        const convertedTime = formatDate(category.updateDate);
         categoryText += ` 
                     <ul>
                         <li>
@@ -192,14 +192,14 @@ function appendCategoryList(categoryResults) {
                                 <div class="other-story">
                                     <div class="story-info">
                                         <em class="category">${convertedCategory}</em>
-                                        <p class="other-title">${category.parentsBoardTitle}</p>
-                                        <p class="other-content">${category.parentsBoardContent}</p>
+                                        <p class="other-title">${category.boardTitle}</p>
+                                        <p class="other-content">${category.boardContent}</p>
                                         <p class="info">
                                             <em class="date">${convertedTime}</em>
                                         </p>
                                     </div>
                                     <div class="img-wrap">
-                                        <img src="/parentsBoardFiles/display?fileName=ParentsBoard/${category.parentsBoardFileDTOS[0].filePath}/${category.parentsBoardFileDTOS[0].fileUUID}_${category.parentsBoardFileDTOS[0].fileOriginalName}">
+                                        <img src="/reviewFiles/display?fileName=Review/${category.files[0].filePath}/${category.files[0].fileUUID}_${category.files[0].fileOriginalName}">
                                     </div>
                                 </div>
                             </a>
