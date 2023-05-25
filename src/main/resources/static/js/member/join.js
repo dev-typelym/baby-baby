@@ -331,12 +331,12 @@ let phoneFlag = false;
 // 핸드폰 정규식 이벤트 함수 사용
 $phoneInput.on("blur", function() {
 	var isPhoneNum = /([01]{2,})([01679]{1,})([0-9]{3,4})([0-9]{4})/;
-	var $phoneInputVal = $phoneInput.val();
+	var $phoneInputVal = $phoneInput.val().replaceAll("-", "");
 	var phoneInputVal = $phoneInput.val();
 	$.ajax({
 		url:"/members/checkPhone" ,
 		method: 'post',
-		data: {"memberPhone": $phoneInput.val()},
+		data: {"memberPhone": $phoneInputVal},
 		success: function(result){
 			let message;
 			if(result == 1){
@@ -345,13 +345,13 @@ $phoneInput.on("blur", function() {
 				$phoneWarning.css('display', 'block');
 				phoneFlag = false;
 
-			} else if($phoneInput.val().length < 1){
+			} else if($phoneInputVal.length < 1){
 				$phoneWarning.css('display', 'block');
 				$phoneWarning.css('color', 'red');
 				message = "필수 입력 사항입니다";
 				phoneFlag = false;
 
-			} else if(!isPhoneNum.test($phoneInput.val())){
+			} else if(!isPhoneNum.test($phoneInputVal)){
 				$phoneWarning.css('display', 'block');
 				$phoneWarning.css('color', 'red');
 				message = "잘못된 형식입니다. 다시 입력해주세요.";
