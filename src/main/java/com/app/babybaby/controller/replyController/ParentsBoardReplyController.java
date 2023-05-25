@@ -34,9 +34,10 @@ public class ParentsBoardReplyController {
     @ResponseBody
     public ParentsBoardReplyDTO saveParentsBoardReply(ParentsBoardReplyDTO parentsBoardReplyDTO, @PathVariable("parentsBoardId") Long parentsBoardId, HttpSession httpSession) {
 //        세션에서 받아오기 ID
-//        Long memberId = (Long) httpSession.getAttribute("member");
+        MemberDTO memberDTO = (MemberDTO)httpSession.getAttribute("member");
+        Long memberId = memberDTO.getId();
         parentsBoardReplyDTO.setParentsBoardId(parentsBoardId);
-        ParentsBoardReplyDTO savedReply = parentsBoardReplyService.parentsBoardReplySave(parentsBoardReplyDTO, 1L, parentsBoardId);
+        ParentsBoardReplyDTO savedReply = parentsBoardReplyService.parentsBoardReplySave(parentsBoardReplyDTO, memberId, parentsBoardId);
 
         return savedReply;
     }
@@ -55,6 +56,7 @@ public class ParentsBoardReplyController {
         int count = parentsBoardReplyDTOS.getTotalPages();
         Map<String, Object> response = new HashMap<>();
         response.put("data", parentsBoardReplyDTOS);
+        log.info("123456498798451312134598756132" + parentsBoardReplyDTOS);
         response.put("count", count);
         return response;
     }
