@@ -29,7 +29,15 @@ public class SecurityConfig {
     private static final String ADMIN_PATH = "/admin/**";
     private static final String MYPAGE_PATH = "/mypage/**";
 
-    private static final String BOARD_PATH = "/board/**";
+    private static final String PARENTS_YARD_PATH_WRITE_FIRST = "/parentsYard/**/writeFirst/**";
+    private static final String PARENTS_YARD_PATH_WRITE_SECOND = "/parentsYard/**/writeSecond/**";
+    private static final String NOW_KID_PATH_WRITE_FIRST = "/nowKid/**/writeFirst/**";
+    private static final String NOW_KID_PATH_WRITE_SECOND = "/nowKid/**/writeSecond/**";
+    private static final String EVENT_WRITE_FIRST= "/event/**/writeFirst/**";
+    private static final String EVENT_WRITE_SECOND= "/event/**/writeSecond/**";
+    private static final String EVENT_WRITE_THIRD= "/event/**/writeThird/**";
+    private static final String REVIEW_WRITE_FIRST= "/review/**/writeFirst/**";
+    private static final String REVIEW_WRITE_SECOND= "/review/**/writeSecond/**";
 
 
     private static final String IGNORE_FAVICON = "/favicon.ico";
@@ -63,8 +71,17 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-//                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
-//                .antMatchers(MYPAGE_PATH).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name())
+                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
+                .antMatchers(MYPAGE_PATH).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name())
+                .antMatchers(PARENTS_YARD_PATH_WRITE_FIRST).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name(), Role.ADMIN.name())
+                .antMatchers(PARENTS_YARD_PATH_WRITE_SECOND).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name(), Role.ADMIN.name())
+                .antMatchers(NOW_KID_PATH_WRITE_FIRST).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name(), Role.ADMIN.name())
+                .antMatchers(NOW_KID_PATH_WRITE_SECOND).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name(), Role.ADMIN.name())
+                .antMatchers(EVENT_WRITE_FIRST).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name(), Role.ADMIN.name())
+                .antMatchers(EVENT_WRITE_SECOND).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name(), Role.ADMIN.name())
+                .antMatchers(EVENT_WRITE_THIRD).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name(), Role.ADMIN.name())
+                .antMatchers(REVIEW_WRITE_FIRST).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name(), Role.ADMIN.name())
+                .antMatchers(REVIEW_WRITE_SECOND).hasAnyRole(Role.GENERAL.name(), Role.COMPANY.name(), Role.ADMIN.name())
                 .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
