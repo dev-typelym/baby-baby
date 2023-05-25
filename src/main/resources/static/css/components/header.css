@@ -499,6 +499,7 @@ input::placeholder {
     height: 32px;
     border-radius: 100%;
     object-fit: cover;
+    border: 1px solid #00c4c4;
 }
 
 .new-alarm{
