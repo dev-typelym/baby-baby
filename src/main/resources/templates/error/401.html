@@ -2,41 +2,71 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>401</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gugi&display=swap">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="/images/logo_favi/favi/favicon.ico">
     <link rel="stylesheet" href="/css/components/header.css">
     <link rel="stylesheet" href="/css/components/footer.css">
-    <link rel="shortcut icon" href="/images/components/dodam-favicon.png">
-    <link rel="stylesheet" href="/css/error/error.css">
+    <style>
+        .go-home{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 140px;
+            height: 50px;
+            background: #00c4c4;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+
+        .go-home-wrapper{
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        .message{
+            width: fit-content;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .message h1{
+            font-size: 47px;
+        }
+        .message p{
+            font-size: 29px;
+        }
+
+        .margin{
+            margin-top: 30px;
+        }
+
+        .margin-bottom{
+            margin-bottom: 50px;
+        }
+
+        .go-home{
+            color: #fff;
+            border-radius: 3px;
+            margin-bottom: 60px;
+        }
+    </style>
 </head>
 <body>
-<div>
-    <!-- 헤더 -->
-    <div th:insert="~{/components/header:: header}"></div>
-    <div class="errorpage">
-        <div class="icon">
-            <i class="icon-error">
-                <img src="/images/error/error-401.png" alt="">
-            </i>
-            <h1>죄송합니다.</h1>
-            <div class="message">
-                <p>요청하신 페이지를 찾을 수 없거나 예기치 못한 오류가 발생하였습니다.</p>
-                <p>지속적으로 동일한 문제가 발생하거나 관련하여 문의내용이 있으시면, 언제든지 문의하기를 이용해 주십시오.</p>
-            </div>
-            <div class="buttons">
-                <a href="/home" class="basic button primary">홈으로</a>
-                <a href="/inquiry/register" class="basic button">문의하기</a>
-            </div>
-        </div>
-    </div>
-    <!--푸터-->
-    <div th:insert="~{/components/footer:: footer}"></div>
+<div th:insert="~{/components/header:: header}"></div>
+<div style="width: 25vw; margin: 0 auto; margin-top: 30px">
+    <img style="width: 100%; height: 100%;" src="/images/error/error-401.png">
 </div>
+<div class="message">
+    <h1>죄송합니다.</h1>
+    <p class="margin">THE PAGE YOU REQUESTED COULD NOT FOUND</p>
+    <p class="margin-bottom">요청하신 페이지를 찾을 수 없거나 예기치 못한 오류가 발생하였습니다.</p>
+</div>
+<div class="go-home-wrapper">
+    <a class="go-home" style="color: #fff" th:href="@{/main/}">홈으로</a>
+</div>
+<div th:insert="~{/components/footer:: footer}"></div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 </html>
