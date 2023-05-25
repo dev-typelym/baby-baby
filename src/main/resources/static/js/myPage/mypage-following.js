@@ -59,15 +59,21 @@ let followService =(() =>{
     }
 
     function countFollowers(memberEmail) {
-        $.ajax({
-            url: `/follows/countFollowers`,
-            data: {"memberEmail": memberEmail},
-            type: 'post',
-            success: function (results) {
-                return results;
-            }
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: `/follows/countFollowers`,
+                data: {"memberEmail": memberEmail},
+                type: 'post',
+                success: function (results) {
+                    resolve(results);
+                },
+                error: function (error) {
+                    reject(error);
+                }
+            });
         });
     }
+
 
     return {getFollowers : getFollowers , getFollowings : getFollowings, isFollowed : isFollowed, countFollowers : countFollowers}
 
@@ -100,26 +106,31 @@ function attachFollowingButtonEvent() {
 
 function appendFollowingsList(results){
     let text = '';
+    let promises = [];
     results.content.forEach(result => {
         let count = followService.countFollowers(result.memberEmail);
-        text += ` 
-                   <div class="one-content">
-                        <a href="#">
-                            <div class="profile-area">
-                                <div class="profile">
-                                    <img src="/members/display?fileName=Member/Profile/${result.memberProfilePath}/${result.memberProfileUUID}_${result.memberProfileOriginalName}">
+        let countPromise = followService.countFollowers(result.memberEmail);
+        promises.push(countPromise);
+        countPromise.then(count => {
+            text += ` 
+                       <div class="one-content"  onclick="location.href='/member/details/${result.id}'">
+                                <div class="profile-area">
+                                    <div class="profile">
+                                        <img src="/members/display?fileName=Member/Profile/${result.memberProfilePath}/${result.memberProfileUUID}_${result.memberProfileOriginalName}">
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="profile-name-area">
-                                <p class="name">${result.memberNickname}</p>
-                                <p class="follower-count">팔로우 하는 사람 <span>${count}</span></p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="line"></div>`
+    
+                                <div class="profile-name-area">
+                                    <p class="name">${result.memberNickname}</p>
+                                    <p class="follower-count">팔로우 하는 사람 <span>${count}</span></p>
+                                </div>
+                        </div>
+                        <div class="line"></div>`
+        });
     });
-    $('.one-content-wrapper').html(text);
+    Promise.all(promises).then(() => {
+        $('.one-content-wrapper').html(text);
+    });
 }
 
 // 페이지 로딩 시 초기 리스트를 불러옴
