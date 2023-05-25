@@ -13,6 +13,7 @@ import com.app.babybaby.repository.reply.parentsBoardReply.ParentsBoardReplyRepo
 import com.app.babybaby.search.board.parentsBoard.ParentsBoardSearch;
 import com.app.babybaby.type.*;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.Parent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -192,7 +193,7 @@ public class ParentsBoardRepositoryTests {
     @Transactional
     public void parentsBoardListTest() {
         ParentsBoardSearch parentsBoardSearch = new ParentsBoardSearch();
-        Pageable pageable = PageRequest.of(1, 10);
+        Pageable pageable = PageRequest.of(0, 10);
         parentsBoardRepository.findAllWithSearch_QueryDsl(pageable, parentsBoardSearch)
                 .get()
                 .map(ParentsBoard::toString)
@@ -209,6 +210,11 @@ public class ParentsBoardRepositoryTests {
     @Transactional
     public void findDetailByIdTest() {
         log.info(parentsBoardRepository.findDetailById_QueryDsl(521L).toString());
+    }
+
+    @Test
+    public void findAllTest(){
+        parentsBoardRepository.findAll().stream().map(ParentsBoard::toString).forEach(log::info);
     }
 
 

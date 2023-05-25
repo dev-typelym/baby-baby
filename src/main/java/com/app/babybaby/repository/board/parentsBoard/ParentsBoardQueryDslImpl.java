@@ -54,10 +54,10 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 //       전체 목록 불러오기(페이징)
         List<ParentsBoard> foundParentsBoard = query.select(parentsBoard)
                 .from(parentsBoard)
-                .join(parentsBoard.event)
-                .fetchJoin()
+                .leftJoin(parentsBoard.event)
                 .leftJoin(parentsBoard.parentsBoardFiles)
                 .fetchJoin()
+
                 .orderBy(parentsBoard.id.desc())
 //                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
                 .where(searchAll, categoryType)
