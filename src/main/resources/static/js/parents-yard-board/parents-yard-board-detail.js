@@ -9,14 +9,14 @@
 //     }
 // }
 
-function showList(){
-    if($(".comment-util-list").css('display') == 'none'){
-        $(".comment-util-list").show();
+function showList(button) {
+    var commentUtilList = $(button).parent().find('.comment-util-list');
+    if (commentUtilList.css('display') == 'none') {
+        commentUtilList.show();
     } else {
-        $(".comment-util-list").hide();
+        commentUtilList.hide();
     }
 }
-
 /* 수정버튼 눌렀을 때 */
 $('.comment-list').on('click', '.modify-button', function () {
     var index = $(this).index('.modify-button'); // 클릭한 버튼의 인덱스 확인
@@ -179,7 +179,7 @@ function appendCategoryList(categoryResults) {
         categoryText += ` 
                     <ul>
                         <li>
-                            <a>
+                            <a href="@{/parentsYard/detail/${category.id}}">
                                 <div class="other-story">
                                     <div class="story-info">
                                         <em class="category">${convertedCategory}</em>
@@ -364,7 +364,7 @@ function getReplyList(page) {
             console.log(count)
             console.log("======page List success: ")
             console.log(globalThis.page)
-            if (page == (globalThis.count - 1)) {
+            if (page == (globalThis.count - 2)) {
                 $(".btn-comment").hide();
             }else{
                 $(".btn-comment").show();
@@ -406,8 +406,9 @@ getReplyCount();
 
 function showReplyList(data) {
     let parentsBoardDTOS = data.content;
+    console.log(parentsBoardDTOS);
     parentsBoardDTOS.forEach(reply => {
-
+        console.log("reply :" +  reply);
         let text = '';
         text += ` 
                         <ul id="comment-list-detail">
@@ -416,7 +417,7 @@ function showReplyList(data) {
                              <input class="parentsBoardId" type="hidden" value="${reply.parentsBoardId} style="display: none;">
                                 <div class="comment-wrap">
                                     <div class="comment-info">
-                                        <img src="/members/display?fileName=Member/Profile/${reply.memberProfilePath}/${reply.memberProfileUUID}_${reply.memberProfileOriginalName}">
+                                        <img src="/parentsYard/reply/display?fileName=Member/Profile/${reply.memberProfilePath}/${reply.memberProfileUUID}_${reply.memberProfileOriginalName}">
                                         <span class="name">${reply.memberNickName}</span>
                                         <button class="comment-util" onclick="showList(this)"></button>
                                         <ul class="comment-util-list">
