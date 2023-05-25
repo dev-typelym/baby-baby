@@ -7,7 +7,7 @@ public interface ReviewReplyService {
 
     default ReviewReply toReviewReplyEntity(ReviewReplyDTO reviewReplyDTO){
         return ReviewReply.builder()
-                .id(reviewReplyDTO.getReplyId())
+                .id(reviewReplyDTO.getId())
                 .reviewReplyContent(reviewReplyDTO.getReviewReplyContent())
                 .build();
     }

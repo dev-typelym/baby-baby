@@ -60,7 +60,7 @@ public class ReviewReplyQueryDslImpl implements ReviewReplyQueryDsl {
         Long parentsBoardReplyCount =
                 query.select(reviewReply.count())
                         .from(reviewReply)
-                        .where(reviewReply.review.event.id.eq(reviewId))
+                        .where(reviewReply.review.id.eq(reviewId))
                         .fetchOne();
 
         return parentsBoardReplyCount;
