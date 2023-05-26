@@ -1,14 +1,17 @@
 package com.app.babybaby.service.member.follow;
 
 import com.app.babybaby.domain.alertDTO.AlertFollowDTO;
+import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.alert.alertFollow.AlertFollow;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.member.Follow;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.repository.alert.alertFollow.AlertFollowRepository;
 import com.app.babybaby.repository.member.follow.FollowRepository;
 import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.service.member.member.MemberService;
+import com.app.babybaby.type.CategoryType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -85,5 +88,21 @@ public class FollowServiceImpl implements FollowService {
         return followRepository.findFollowingMemberCountByMemberId_QueryDSL(memberId);
     }
 
+//    알림 나를 팔로우 하는 사람들 8명 최신 가져오기
+    @Override
+    public List<Follow> find8FollowersBySessionId(Long id) {
+        List<Follow> follows = followRepository.find8FollowersBySessionId(id);
+        log.info("팔로우 서비스으" + follows.toString());
+        return follows;
+    }
+//    부모님 마당 참고용
+    //    상세보기 카테고리 최신글 2개 가져오기
+//    @Override
+//    public List<ParentsBoardDTO> find2RecentDesc(CategoryType categoryType) {
+//        List<ParentsBoard> parents = parentsBoardRepository.find2RecentDesc(categoryType);
+//        log.info(parents.toString());
+//        List<ParentsBoardDTO> parentsList = parents.stream().map(parentsBoard -> toParentsBoardDTO(parentsBoard)).collect(Collectors.toList());
+//        return parentsList;
+//    }
 
 }

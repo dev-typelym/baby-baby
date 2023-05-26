@@ -1,20 +1,20 @@
 package com.app.babybaby.controller.memberController;
 
 
+import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.entity.member.Follow;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.service.member.follow.FollowService;
 import com.app.babybaby.service.member.member.MemberService;
+import com.app.babybaby.type.CategoryType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.standard.expression.GreaterThanExpression;
 
 import javax.servlet.http.HttpSession;
@@ -82,4 +82,14 @@ public class FollowController {
         log.info("countFollowers===============================" + followService.findFollowingMemberCountByMemberId_QueryDSL(getMemberIdByEmail(memberEmail)).toString());
         return followService.findFollowingMemberCountByMemberId_QueryDSL(getMemberIdByEmail(memberEmail));
     }
+
+    @PostMapping("alert")
+    @ResponseBody
+    public List<Follow> getFollowerList() {
+        log.info("팔로우 컨트롤러 알림============" + followService.find8FollowersBySessionId(getSessionMemberId()).toString());
+        return followService.find8FollowersBySessionId(getSessionMemberId());
+    }
+
+
+
 }

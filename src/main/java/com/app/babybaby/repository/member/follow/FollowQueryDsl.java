@@ -3,6 +3,7 @@ package com.app.babybaby.repository.member.follow;
 
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.review.Review;
+import com.app.babybaby.entity.member.Follow;
 import com.app.babybaby.entity.member.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,7 @@ public interface FollowQueryDsl {
 
         public List<Review> findALlReviewByMemberId_QueryDSL(Long memberId);
 
-
+//  나를 팔로잉하는 사람들 목록 불러오기
+    public List<Follow> find8FollowersBySessionId(Long id);
 
 }

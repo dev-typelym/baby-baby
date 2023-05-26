@@ -1,5 +1,6 @@
 package com.app.babybaby.repository.alert.alertFollow;
 
+import com.app.babybaby.repository.member.follow.FollowRepository;
 import com.app.babybaby.service.alert.alertFollow.AlertFollowService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,10 @@ public class AlertFollowRepositoryTests {
     @Autowired
     AlertFollowService alertFollowService;
 
+    @Autowired
+    FollowRepository followRepository;
+
+
     @Test
     public void test11(){
         log.info(alertFollowRepository.find8RecentFollowersByMemberId(1L).toString());
@@ -27,5 +32,10 @@ public class AlertFollowRepositoryTests {
     @Test
     public void test2(){
         log.info(alertFollowService.find8RecentFollowersByMemberId(2L).toString());
+    }
+
+    @Test
+    public void testAlarm(){
+        log.info(followRepository.find8FollowersBySessionId(1L).toString());
     }
 }

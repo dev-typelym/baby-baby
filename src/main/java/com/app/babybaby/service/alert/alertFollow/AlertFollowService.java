@@ -2,8 +2,10 @@ package com.app.babybaby.service.alert.alertFollow;
 
 import com.app.babybaby.domain.alertDTO.AlertFollowDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
+import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.FollowDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.domain.memberDTO.MemberDetailDTO;
 import com.app.babybaby.entity.alert.alertFollow.AlertFollow;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.member.Follow;
@@ -39,7 +41,7 @@ public interface AlertFollowService {
 //                .alertType(alertFollow.getAlertType())
 //                .member(alertFollow.getMember())
 //                .alertRegisterDate(alertFollow.getAlertRegisterDate())
-//                .follower(alertFollow.getFollower())
+//                .followers(alertFollow.getFollower())
 //                .build();
 //    }
 
@@ -68,8 +70,11 @@ public interface AlertFollowService {
                 .memberFileUUID(member.getMemberFileUUID())
                 .build();
     }
-    //    헤더 팔로우 알림 목록 8개
+    //    헤더 팔로우 알림 목록 8개 현수
     public List<MemberDTO> find8RecentFollowersByMemberId(Long memberId);
+
+//    동한
+//    public List<CompanyDTO> find8RecentFollowersByMemberId2(Long memberId);
 
 //    default AlertFollow alertDTOtoEntity(AlertFollowDTO alertFollowDTO){
 //        return AlertFollow.builder()
@@ -100,4 +105,25 @@ public interface AlertFollowService {
                 .id(follow.getId())
                 .build();
     }
+
+    default CompanyDTO toCompanyDTO(Member member){
+        return CompanyDTO.builder()
+                .memberPhone(member.getMemberPhone())
+                .memberNickname(member.getMemberNickname())
+                .memberAddress(member.getMemberAddress())
+                .memberEmail(member.getMemberEmail())
+                .memberGuideStatus(member.getMemberGuideStatus())
+                .memberHiSentence(member.getMemberHiSentence())
+                .memberId(member.getId())
+                .memberProfileOriginalName(member.getMemberProfileOriginalName())
+                .memberProfilePath(member.getMemberProfilePath())
+                .memberProfileUUID(member.getMemberProfileUUID())
+                .memberName(member.getMemberName())
+                .memberPhone(member.getMemberPhone())
+                .memberType(member.getMemberType())
+                .memberSleep(member.getMemberSleep())
+                .memberRole(member.getMemberRole())
+                .build();
+    }
+
 }

@@ -371,11 +371,28 @@ function getCount() {
 getCount();
 
 
+// function getFollowAlertList() {
+//     $.ajax({
+//         url: '/alert/follow/controller/list', // 서버의 요청 경로
+//         type: 'GET',
+//         success: function (response) {
+//             console.log("response : " + response);
+//             $('.modal-alarm-btn-wrapper').empty();
+//             appendFollowAlertList(response);
+//         },
+//         error: function (xhr, status, error) {
+//             console.log('Error:', error);
+//             console.log("에러메세지");
+//         }
+//     });
+// }
+
 function getFollowAlertList() {
     $.ajax({
-        url: '/alert/follow/controller/list', // 서버의 요청 경로
+        url: '/alert/follow/controller/list',
         type: 'GET',
         success: function (response) {
+                console.log("alertReadStatus:", response.alert);
             $('.modal-alarm-btn-wrapper').empty();
             appendFollowAlertList(response);
         },
@@ -385,6 +402,38 @@ function getFollowAlertList() {
         }
     });
 }
+// 헤더 빨간점 띄우기!!!
+// $.ajax({
+//     url: '/alert/follow/controller/read',
+//     type: 'GET',
+//     success: function(response) {
+//         // 응답 처리 나를 팔로우하는 사람의 id값의 리스트를 보냄.(response = List<Long> uniqueIds)
+//         console.log("리스포스능ㅁㄴ음ㄴㅇ : " + response);
+//     },
+//     error: function(error) {
+//         // 오류 처리
+//         console.error("오류요 : " + error);
+//     }
+// });
+// $.ajax({
+//     url: '/alert/follow/controller/read',
+//     type: 'GET',
+//     success: function (response) {
+//         // 서버에서 받은 uniqueIds를 동적인 배열에 저장
+//         console.log("response입니다, : " + response)
+//         if (response == false) {
+//             $('.new-alarm').show();
+//         } else {
+//             $('.new-alarm').hide();
+//         }
+//     },
+//     error: function(error) {
+//         // 오류 처리
+//         console.error("오류요 : " + error);
+//     }
+// });
+
+
 
 function appendFollowAlertList(alertResult) {
     let followText = '';

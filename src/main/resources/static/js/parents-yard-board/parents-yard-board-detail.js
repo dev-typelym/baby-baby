@@ -179,7 +179,7 @@ function appendCategoryList(categoryResults) {
         categoryText += ` 
                     <ul>
                         <li>
-                            <a href="@{/parentsYard/detail/${category.id}}">
+                            <a>
                                 <div class="other-story">
                                     <div class="story-info">
                                         <em class="category">${convertedCategory}</em>

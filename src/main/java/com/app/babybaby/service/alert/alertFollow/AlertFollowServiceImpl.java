@@ -2,7 +2,9 @@ package com.app.babybaby.service.alert.alertFollow;
 
 import com.app.babybaby.domain.alertDTO.AlertFollowDTO;
 import com.app.babybaby.domain.boardDTO.parentsBoardDTO.ParentsBoardDTO;
+import com.app.babybaby.domain.memberDTO.CompanyDTO;
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.domain.memberDTO.MemberDetailDTO;
 import com.app.babybaby.entity.alert.alertFollow.AlertFollow;
 import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.member.Follow;
@@ -84,9 +86,17 @@ public class AlertFollowServiceImpl implements AlertFollowService {
     public List<MemberDTO> find8RecentFollowersByMemberId(Long memberId) {
         log.info("=======최근 8명 불러오기=========memberId",memberId);
         List<Follow> list = alertFollowRepository.find8RecentFollowersByMemberId(memberId);
-        log.info("리스트으으으" + list);
+        log.info("리스트으으으123" + list);
         return list.stream().map(r -> entityToMemberDTO(r.getFollower())).collect(Collectors.toList());
     }
+
+//    @Override
+//    public List<CompanyDTO> find8RecentFollowersByMemberId2(Long memberId) {
+//        log.info("=======최근 8명 불러오기=========memberId",memberId);
+//        List<Follow> list = alertFollowRepository.find8RecentFollowersByMemberId(memberId);
+//        log.info("리스트으으으123" + list);
+//        return list.stream().map(r -> this.toCompanyDTO(r.getFollower())).collect(Collectors.toList());
+//    }
 
     @Override
     public AlertFollow saveAlertDTOForFollowing(Follow follow) {
