@@ -204,7 +204,7 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
                 .join(parentsBoard.member)
                 .fetchJoin()
                 .where(parentsBoardNameEq)
-                .orderBy(parentsBoard.id.asc())
+                .orderBy(parentsBoard.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

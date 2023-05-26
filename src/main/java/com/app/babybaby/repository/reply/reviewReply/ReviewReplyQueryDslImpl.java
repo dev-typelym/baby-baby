@@ -31,7 +31,7 @@ public class ReviewReplyQueryDslImpl implements ReviewReplyQueryDsl {
         List<ReviewReply> foundReviewReply = query.select(reviewReply)
                 .from(reviewReply)
                 .where(reviewReplyContentEq)
-                .orderBy(reviewReply.id.asc())
+                .orderBy(reviewReply.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

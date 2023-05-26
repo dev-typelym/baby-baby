@@ -381,7 +381,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
                                         : event.category.isNotNull())
                                 .and(eventNameEq)
                 )
-                .orderBy(event.id.asc())
+                .orderBy(event.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

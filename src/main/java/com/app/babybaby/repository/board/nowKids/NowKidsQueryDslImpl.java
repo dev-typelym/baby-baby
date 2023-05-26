@@ -225,7 +225,7 @@ public Page<NowKids> findNowKidsEvents_queryDSL(Pageable pageable, AdminEventSea
                                     : nowKids.event.category.isNotNull())
                             .and(eventNameEq)
             )
-            .orderBy(nowKids.id.asc())
+            .orderBy(nowKids.id.desc())
             .offset(pageable.getOffset())
             .limit(pageable.getPageSize())
             .fetch();

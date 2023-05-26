@@ -494,7 +494,7 @@ function showList(nowKidsDTOS) {
 										<th style="width: 20%;">행사 위치</th>
 										<th style="width: 15%;">행사 기간</th>
 										<th style="width: 10%;">종료 여부</th>
-										<th style="width: 10%;">참여 명단</th>
+<!--										<th style="width: 10%;">참여 명단</th>-->
 									</tr>
 								</thead>
 								<!-- row 1개 -->
@@ -506,21 +506,21 @@ function showList(nowKidsDTOS) {
 									<td class="event-period modal"><span class="start-date">${formattedStartDate}</span><span> ~ </span><span class="send-date">${formattedEndDate}</span></td>
 									<!-- <td class="event-status hold">대기</td>
 									<td class="event-status end">종료</td>-->
-									<td class="event-status process selected">진행중</td> 
-									<td class="event-guide maker_up_button">
-										<svg
-										viewbox="0 0 32 32"
-										focusable="false"
-										role="presentation"
-										class="maker_svg"
-										aria-hidden="true"
-										style="width: 12px;"
-										>
-										<path
-											d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-										></path>
-										</svg>
-									</td>
+									<td class="event-status process selected" style="color: ${eventStatusColor}">${changeEventStatus}</td> 
+<!--									<td class="event-guide maker_up_button">-->
+<!--										<svg-->
+<!--										viewbox="0 0 32 32"-->
+<!--										focusable="false"-->
+<!--										role="presentation"-->
+<!--										class="maker_svg"-->
+<!--										aria-hidden="true"-->
+<!--										style="width: 12px;"-->
+<!--										>-->
+<!--										<path-->
+<!--											d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"-->
+<!--										></path>-->
+<!--										</svg>-->
+<!--									</td>-->
 								</tr>
 <!--								<tr class="crew-table" style="display: none;">-->
 <!--									<td colspan="7" style="padding: 15px;">-->

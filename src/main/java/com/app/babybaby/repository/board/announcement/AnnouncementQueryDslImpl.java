@@ -41,7 +41,7 @@ public class AnnouncementQueryDslImpl implements AnnouncementQueryDsl {
         List<Announcement> foundAnnouncement = query.select(announcement)
                 .from(announcement)
                 .where(announcementTitleEq)
-                .orderBy(announcement.id.asc())
+                .orderBy(announcement.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

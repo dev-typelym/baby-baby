@@ -32,6 +32,8 @@
 	border: 0.0625rem solid #f2f2f2;
     box-shadow: 11px 13px 11px -14px grey;
     background: #fff;
+	height: 500px;
+	position: relative;
 }
 
 .board-info-title-box {
@@ -107,6 +109,10 @@ table td {
 .page-button-box-layout {
 	text-align: center;	
 	margin-top: 25px;
+	position: absolute;
+	bottom: 12px;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .page-button-box {
