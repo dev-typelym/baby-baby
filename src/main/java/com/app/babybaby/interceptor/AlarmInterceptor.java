@@ -28,17 +28,13 @@ public class AlarmInterceptor implements HandlerInterceptor {
     private final AlertRepository alertRepository;
     private final AlertFollowRepository alertFollowRepository;
     private final AlertFollowService alertFollowService;
+    private final HttpSession session;
     //    private MyAlarmRestController alarmRestController;
 //    private GroupRepository groupRepository;
 //    private QuestAchievementRepositoryImpl questAchievementRepository;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//        status가 unread인 알림의 수를 세션에 담는다.
-//        List<MemberDTO> followers = alertFollowService.getFollowers(1L);
-////        log.info("================={}", followers);
-//        request.getSession().setAttribute("followers", followers);
-//        Long NoReadCount = (Long)request.getAttribute("noReadAlarm");
         return true;
     }
 
@@ -49,6 +45,13 @@ public class AlarmInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+        //        status가 unread인 알림의 수를 세션에 담는다.
+        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        Long session = memberDTO.getId();
+        List<MemberDTO> followers = alertFollowService.find8RecentFollowersByMemberId(session);
+        request.getSession().setAttribute("followers", followers);
+//        Long NoReadCount = (Long)request.getAttribute("noReadAlarm");
+
     }
 
 //    private boolean isRedirectView(ModelAndView modelAndView) {

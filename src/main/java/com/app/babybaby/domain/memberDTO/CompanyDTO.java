@@ -41,6 +41,7 @@ public class CompanyDTO {
     private Long totalReviewCount;
     private Boolean hasNextPage;
     private List<EventDTO> events;
+    private AlertReadStatus alertReadStatus;
 
     private List<EventDTO> finishedEvents;
     private List<EventDTO> upcommingEvents;
@@ -48,7 +49,8 @@ public class CompanyDTO {
     private List<ReviewDTO> reviews;
 
     @Builder
-    public CompanyDTO(Long memberId, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType eventCategory, Long totalEventsCount, List<EventDTO> events, List<EventDTO> finishedEvents, List<EventDTO> upcommingEvents, List<EventDTO> nowEvents, List<ReviewDTO> reviews) {
+    public CompanyDTO(AlertReadStatus alertReadStatus, Long memberId, String memberEmail, String memberName, String memberPassword, String memberNickname, String memberHiSentence, String memberPhone, Address memberAddress, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType eventCategory, Long totalEventsCount, List<EventDTO> events, List<EventDTO> finishedEvents, List<EventDTO> upcommingEvents, List<EventDTO> nowEvents, List<ReviewDTO> reviews) {
+        this.alertReadStatus = alertReadStatus;
         this.memberId = memberId;
         this.memberEmail = memberEmail;
         this.memberName = memberName;

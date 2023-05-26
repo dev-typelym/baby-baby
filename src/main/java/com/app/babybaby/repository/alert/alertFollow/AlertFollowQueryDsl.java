@@ -1,6 +1,7 @@
 package com.app.babybaby.repository.alert.alertFollow;
 
 import com.app.babybaby.domain.alertDTO.AlertFollowDTO;
+import com.app.babybaby.domain.memberDTO.MemberDTO;
 import com.app.babybaby.entity.alert.Alert;
 import com.app.babybaby.entity.alert.alertFollow.AlertFollow;
 import com.app.babybaby.entity.member.Follow;
@@ -16,9 +17,12 @@ public interface AlertFollowQueryDsl {
     public List<Member> getFollowers(Long memberId);
 
 //    알림 버튼을 눌렀을 떄 뿌려줄 팔로우 알림 리스트 8개
-    public List<AlertFollow> find8DescByMemberId(Long memberId);
+//    public List<AlertFollow> find8DescByMemberId(Long memberId);
 
-//    알림 버튼을 눌렀을 떄 뿌려줄 팔로우 알림 리스트 8개
+//    알림 버튼을 눌렀을 떄 뿌려줄 팔로우 알림 리스트 8개 현수버전
     public List<Follow> find8RecentFollowersByMemberId(Long memberId);
+
+
+//    public List<Alert> getNoReadAlertList();
 
 }

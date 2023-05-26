@@ -1,10 +1,14 @@
 package com.app.babybaby.service.member.follow;
 
 import com.app.babybaby.domain.memberDTO.MemberDTO;
+import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
+import com.app.babybaby.entity.member.Follow;
 import com.app.babybaby.entity.member.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+
+import java.util.List;
 
 public interface FollowService {
     public void saveFollow(Long followId, Long followerId);
@@ -18,6 +22,8 @@ public interface FollowService {
     public Boolean getIsFollowedByMemberId(Long memberId, Long sessionId);
 
     public Long findFollowingMemberCountByMemberId_QueryDSL(Long memberId);
+
+    public List<Follow> find8FollowersBySessionId(Long id);
 
     default MemberDTO entityToMemberDTO(Member member){
         return MemberDTO.dtoBuilder()

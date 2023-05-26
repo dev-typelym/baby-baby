@@ -165,6 +165,7 @@ function showPage(data) {
 //    부모님 마당 목록
 function showList(boardDTOS) {
     console.log(boardDTOS)
+    console.log(boardDTOS.id);
     var content = "";
     boardDTOS.forEach(board => {
         const convertedCategory = convertCategory(board.eventCategory); // 영어 카테고리를 한글로 변환

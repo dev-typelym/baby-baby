@@ -37,5 +37,8 @@ public class Follow extends Period {
         this.following = following;
     }
 
+    public void updateStatus(){
+        this.alertReadStatus = alertReadStatus.READ;
+    }
 
 }

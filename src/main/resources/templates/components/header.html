@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/components/header.css">
     <title>header</title>
@@ -12,9 +12,9 @@
 <header th:fragment="header" id="header">
     <div class="buttonContainer">
         <button class="canvasBtn" id="stopButton">Stop Confetti</button>
-        <button class="canvasBtn" id="startButton">Drop Confetti</button>	
+        <button class="canvasBtn" id="startButton">Drop Confetti</button>
     </div>
-    
+
     <canvas id="canvas"></canvas>
 
     <div>
@@ -24,23 +24,24 @@
                     <div class="header-container">
                         <ul class="header-menu-category-ul">
                             <li class="header-menu-category-li logo-li"><a
-                                class="header-menu-category-logo" th:href="@{/main}">
+                                    class="header-menu-category-logo" th:href="@{/main}">
                                 <img class="logo-image" src="/images/main/images/small-logo.png">
                             </a></li>
                             <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" th:href="@{/event/list}"><span>놀러가요!</span>
+                                    class="header-menu-category-a" th:href="@{/event/list}"><span>놀러가요!</span>
                             </a></li>
                             <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" th:href="@{/nowKid/list}"> <span>지금 우리 아이들은?</span>
+                                    class="header-menu-category-a" th:href="@{/nowKid/list}"> <span>지금 우리 아이들은?</span>
                             </a></li>
                             <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" th:href="@{/parentsYard/list}"> <span>부모님 마당</span>
+                                    class="header-menu-category-a" th:href="@{/parentsYard/list}"> <span>부모님 마당</span>
                             </a></li>
                             <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" th:href="@{/review/list}"> <span>후기</span>
+                                    class="header-menu-category-a" th:href="@{/review/list}"> <span>후기</span>
                             </a></li>
                             <li class="header-menu-category-li"><a
-                                class="header-menu-category-a" th:href="@{/user-part/announcement}"> <span>공지사항</span>
+                                    class="header-menu-category-a" th:href="@{/user-part/announcement}">
+                                <span>공지사항</span>
                             </a></li>
                         </ul>
                         <div class="web-header-utils">
@@ -57,39 +58,47 @@
                                     <div class="profile-wrapper">
                                         <a th:href="@{/mypage/main}" class="profile-link">
                                             <div class="profile-image-wrapper">
-                                                <img th:if="${session.member != null}" class="profile-image" th:src="'/members/display?fileName=Member/Profile/' + ${session.member.memberProfilePath} +'/'+${session.member.memberProfileUUID}+'_'+${session.member.memberProfileOriginalName}">
-                                                <img th:unless="${session.member != null}" class="profile-image" style="display: none;">
+                                                <img th:if="${session.member != null}" class="profile-image"
+                                                     th:src="'/members/display?fileName=Member/Profile/' + ${session.member.memberProfilePath} +'/'+${session.member.memberProfileUUID}+'_'+${session.member.memberProfileOriginalName}">
+                                                <img th:unless="${session.member != null}" class="profile-image"
+                                                     style="display: none;">
                                             </div>
                                         </a>
                                     </div>
 
-                                    <a th:if="${session.member == null}" th:href="@{/member/login}" class="header-user-button" style="display: inline-block;">로그인</a>
-                                    <a th:if="${session.member == null}" th:href="@{/member/login}" data-event="iam.signup" class="header-user-button" style="display: inline-block;">회원가입</a>
+                                    <a th:if="${session.member == null}" th:href="@{/member/login}"
+                                       class="header-user-button" style="display: inline-block;">로그인</a>
+                                    <a th:if="${session.member == null}" th:href="@{/member/login}"
+                                       data-event="iam.signup" class="header-user-button"
+                                       style="display: inline-block;">회원가입</a>
                                 </div>
                             </div>
                             <div class="web-header-funding-open funding-open" th:if="${session.member != null}">
                                 <div>
                                     <div>
-                                        <button aria-label="기부 참여하기" class="header-make-button header-make-button2 header-make-button3 funding-open-button" type="button">
-<!--                                            <span>-->
-<!--                                                <span class="header-make-project-span">-->
-<!--                                                    <span style="color: black;">아기자기랑&nbsp;+</span><span style="font-size:1em; font-weight: 900;" >300</span><span style="color: black;">&nbsp;일째❤️</span>-->
-<!--                                                </span>-->
-<!--                                            </span>-->
-<!--                                            <span>-->
-<!--                                                <span class="header-make-project-span">-->
-<!--                                                    <span style="color: black;">아기자기랑&nbsp;+</span>-->
-<!--                                                    <span style="font-size:1em; font-weight: 900;" th:text="${#temporals.temporalUnitBetween(T(java.time.LocalDateTime).now(), memberRegisterDate, T(java.time.temporal.ChronoUnit).DAYS)}"></span>-->
-<!--                                                    <span style="color: black;">&nbsp;일째❤️</span>-->
-<!--                                                </span>-->
-<!--                                            </span>-->
+                                        <button aria-label="기부 참여하기"
+                                                class="header-make-button header-make-button2 header-make-button3 funding-open-button"
+                                                type="button">
+                                            <!--                                            <span>-->
+                                            <!--                                                <span class="header-make-project-span">-->
+                                            <!--                                                    <span style="color: black;">아기자기랑&nbsp;+</span><span style="font-size:1em; font-weight: 900;" >300</span><span style="color: black;">&nbsp;일째❤️</span>-->
+                                            <!--                                                </span>-->
+                                            <!--                                            </span>-->
+                                            <!--                                            <span>-->
+                                            <!--                                                <span class="header-make-project-span">-->
+                                            <!--                                                    <span style="color: black;">아기자기랑&nbsp;+</span>-->
+                                            <!--                                                    <span style="font-size:1em; font-weight: 900;" th:text="${#temporals.temporalUnitBetween(T(java.time.LocalDateTime).now(), memberRegisterDate, T(java.time.temporal.ChronoUnit).DAYS)}"></span>-->
+                                            <!--                                                    <span style="color: black;">&nbsp;일째❤️</span>-->
+                                            <!--                                                </span>-->
+                                            <!--                                            </span>-->
                                             <script th:inline="javascript">
-                                                let memberDTO=[[${session.member}]];
+                                                let memberDTO = [[${session.member}]];
                                             </script>
                                             <span>
                                                 <span class="header-make-project-span">
                                                     <span style="color: black;">아기자기랑&nbsp;+</span>
-                                                    <span id="membership-days" style="font-size:1em; font-weight: 900;"></span>
+                                                    <span id="membership-days"
+                                                          style="font-size:1em; font-weight: 900;"></span>
                                                     <span style="color: black;">&nbsp;일째❤️</span>
                                                 </span>
                                             </span>
@@ -110,34 +119,34 @@
                 <span class="modal-alarm-title">알림</span>
             </div>
             <div class="modal-alarm-btn-wrapper">
-<!--                버튼 한개 시작-->
-<!--                <button type="button" class="modal-alarm-btn">-->
-<!--                    <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" class="message-image">-->
-<!--                    <div class="modal-alarm-content-wrapper">-->
-<!--                        <div class="modal-alarm-content-container">-->
-<!--                            <div class="modal-alarm-content-title">-->
-<!--                                <p>아기자기알림</p>-->
-<!--                            </div>-->
-<!--                            <div class="modal-alarm-content-time">9시간 전</div>-->
-<!--                        </div>-->
-<!--                        <p class="modal-alarm-content-text"><span>00</span>님이 나를 팔로우합니다!</p>-->
-<!--                    </div>-->
-<!--                </button>-->
-<!--                버튼 한개 끝-->
-<!--                버튼 한개 시작-->
-<!--                <button type="button" class="modal-alarm-btn">-->
-<!--                    <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" class="message-image">-->
-<!--                    <div class="modal-alarm-content-wrapper">-->
-<!--                        <div class="modal-alarm-content-container">-->
-<!--                            <div class="modal-alarm-content-title">-->
-<!--                                <p>아기자기알림</p>-->
-<!--                            </div>-->
-<!--                            <div class="modal-alarm-content-time">9시간 전</div>-->
-<!--                        </div>-->
-<!--                        <p class="modal-alarm-content-text"><span>00</span>님이 나를 팔로우합니다!</p>-->
-<!--                    </div>-->
-<!--                </button>-->
-<!--                버튼 한개 끝-->
+                <!--                버튼 한개 시작-->
+                <!--                <button type="button" class="modal-alarm-btn">-->
+                <!--                    <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" class="message-image">-->
+                <!--                    <div class="modal-alarm-content-wrapper">-->
+                <!--                        <div class="modal-alarm-content-container">-->
+                <!--                            <div class="modal-alarm-content-title">-->
+                <!--                                <p>아기자기알림</p>-->
+                <!--                            </div>-->
+                <!--                            <div class="modal-alarm-content-time">9시간 전</div>-->
+                <!--                        </div>-->
+                <!--                        <p class="modal-alarm-content-text"><span>00</span>님이 나를 팔로우합니다!</p>-->
+                <!--                    </div>-->
+                <!--                </button>-->
+                <!--                버튼 한개 끝-->
+                <!--                버튼 한개 시작-->
+                <!--                <button type="button" class="modal-alarm-btn">-->
+                <!--                    <img src="https://cdn3.wadiz.kr/inbox/SYSTEM.png" class="message-image">-->
+                <!--                    <div class="modal-alarm-content-wrapper">-->
+                <!--                        <div class="modal-alarm-content-container">-->
+                <!--                            <div class="modal-alarm-content-title">-->
+                <!--                                <p>아기자기알림</p>-->
+                <!--                            </div>-->
+                <!--                            <div class="modal-alarm-content-time">9시간 전</div>-->
+                <!--                        </div>-->
+                <!--                        <p class="modal-alarm-content-text"><span>00</span>님이 나를 팔로우합니다!</p>-->
+                <!--                    </div>-->
+                <!--                </button>-->
+                <!--                버튼 한개 끝-->
             </div>
         </div>
     </div>

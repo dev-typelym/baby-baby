@@ -4,6 +4,7 @@ import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.board.parentsBoard.QParentsBoard;
 import com.app.babybaby.entity.board.review.QReview;
 import com.app.babybaby.entity.board.review.Review;
+import com.app.babybaby.entity.member.Follow;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.member.QFollow;
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -106,4 +107,16 @@ public class FollowQueryDslImpl implements FollowQueryDsl {
                 .fetch();
     }
 
+//    알람 - 나를 팔로잉 하는 사람들 목록 불러오기
+    @Override
+    public List<Follow> find8FollowersBySessionId(Long id) {
+        List<Follow> followers = query.select(follow)
+                .from(follow)
+                .where(follow.following.id.eq(id))
+                .orderBy(follow.id.desc())
+                .limit(8)
+                .fetch();
+        return followers;
+    }
+    
 }
