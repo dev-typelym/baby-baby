@@ -132,7 +132,7 @@
                   </dl>
                 </div>
                 <!-- 프로필 설정 버튼 -->
-                <a th:href="@{/mypage/crew}" class="ProfileSet Mint" id="apply" th:if="${session.member.memberType != GENERAL_GUIDE}">
+                <a th:href="@{/mypage/crew}" class="ProfileSet Mint" id="apply" th:if="${!#strings.equals(session.member.memberType, 'GENERAL_GUIDE')}">
                   <span>
                     <span class="ProfileSet_button">통솔자 신청하기</span>
                   </span>
