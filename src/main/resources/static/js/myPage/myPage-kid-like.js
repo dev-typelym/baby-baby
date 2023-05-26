@@ -55,7 +55,7 @@ function appendList(nowKidsLikeDTOS) {
         console.log(nowKidsLikeDTOS);
         boardText3 +=  `
         <div role="presentation" class="instance">
-                <a class="item" href="">
+                <a class="item" href="/nowKid/list">
                     <div class="thumbnail-container">
                         <div class="thumbnail-list">
                                `

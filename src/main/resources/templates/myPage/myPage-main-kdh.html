@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="profile-type">
-                          <span th:text="${session.member.memberType == GENERAL_GUIDE ? '통솔자' : '회원'}">통솔자</span>
+                          <span th:text="${#strings.equals(session.member.memberType, 'GENERAL_GUIDE') ? '통솔자' : '회원'}">통솔자</span>
                         </div>
                       </div>
                     </div>
@@ -121,7 +121,7 @@
                           <div class="kids-content" th:each="kid : ${kid}">
 <!--                              <div class="kid-one" th:text="${kid.kidName + kid.kidGender}">👩🧑</div>-->
 <!--                              <div class="kid-one" th:text="${kid.kidGender == 'WOMAN' ? '🧑' : '👩'}+ ${kid.kidName} + ${kid.kidAge}"></div>-->
-                              <div class="kid-one" th:utext="${kid.kidGender == MAN ? '🧑' : '👩'} + ' ' + ${kid.kidName} + ' ' + ${kid.kidAge} + ' 세'"></div>
+                              <div class="kid-one" th:utext="${#strings.equals(kid.kidGender, 'MAN')? '🧑' : '👩'} + ' ' + ${kid.kidName} + ' ' + ${kid.kidAge} + ' 세'"></div>
                           </div>
                         </div>
 
@@ -190,7 +190,7 @@
                     </a>
                   </li>
 
-                  <li class="one-link" th:if="${session.member.memberType != GENERAL}">
+                  <li class="one-link" th:if="${#strings.equals(session.member.memberType, 'GENERAL_GUIDE')}">
                     <a th:href="@{/mypage/profile}">
                       <div>
                         <span class="link-icon">
@@ -211,7 +211,7 @@
                     </a>
                   </li>
 
-                  <li class="one-link" th:if="${session.member.memberType  != COMPANY}">
+                  <li class="one-link" th:if="${#strings.equals(session.member.memberType, 'COMPANY')}">
                     <a th:href="@{/mypage/my-event}">
                       <div>
                         <span class="link-icon">
@@ -253,7 +253,7 @@
                     </a>
                   </li>
 
-                  <li class="one-link" th:if="${session.member.memberType != GENERAL_GUIDE}">
+                  <li class="one-link"  th:if="${#strings.equals(session.member.memberType, 'GENERAL')}">
                     <a th:href="@{/mypage/crew}">
                       <div>
                         <span class="link-icon">
@@ -278,7 +278,7 @@
                 <h4 class="mypage-sub-title">고객센터</h4>
                 <ul class="links">
                   <li class="one-link">
-                    <a>
+                    <a th:href="@{/user-part/announcement}">
                       <div>
                         <span class="link-icon">
                           <img src="/images/myPage/announcement.png" alt="">
@@ -345,7 +345,7 @@
 
 
                   <li class="one-link">
-                    <a href="#">
+                    <a href="myPage-withDrawl.html">
                       <div>
                         <span class="link-icon">
                           <img src="/images/myPage/withdraw.png" alt="">

@@ -257,4 +257,7 @@ public class Member {
     public void setMemberProfilePath(String memberProfilePath) {
         this.memberProfilePath = memberProfilePath;
     }
+
+
+
 }

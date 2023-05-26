@@ -21,6 +21,7 @@ import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.repository.purchase.coupon.CouponRepository;
 import com.app.babybaby.service.board.parentsBoard.ParentsBoardService;
 import com.app.babybaby.service.board.review.ReviewService;
+import com.app.babybaby.type.AcceptanceType;
 import com.app.babybaby.type.MemberType;
 import com.app.babybaby.type.Role;
 import com.app.babybaby.type.SleepType;
@@ -146,6 +147,8 @@ public class MemberServiceImpl implements MemberService {
                     member.setMemberGuideType(memberDTO.getMemberGuideType());
                     member.setMemberType(memberDTO.getMemberType());
                     member.setMemberGuideInterest(memberDTO.getMemberGuideInterest());
+                    member.setMemberGuideStatus(AcceptanceType.HOLD);
+                    member.setMemberType(MemberType.GENERAL);
                     memberRepository.save(member);
     }
 

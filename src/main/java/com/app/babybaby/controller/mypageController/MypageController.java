@@ -149,8 +149,9 @@ public class MypageController {
         log.info(memberDTO.toString() + "<- 화면에서 받아온 값");
         memberService.setInfoMemberById(memberDTO,passwordEncoder);
         log.info(memberDTO.toString() + "이건 밑에11111");
-
-        return memberService.findByMemberId(memberDTO.getId());
+        MemberDTO memberDTONew = memberService.findByMemberId(memberDTO.getId());
+        session.setAttribute("member", memberDTONew);
+        return memberDTONew;
     }
 
     @PostMapping("info-password")
