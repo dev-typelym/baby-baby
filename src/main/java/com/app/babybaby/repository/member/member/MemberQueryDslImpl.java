@@ -119,7 +119,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         List<Member> foundUsers = query.select(member)
                 .from(member)
                 .where((member.memberType.eq(MemberType.GENERAL).or(member.memberType.eq(MemberType.GENERAL_GUIDE)).or(member.memberType.eq(MemberType.ADMIN_GUIDE))).and(member.memberSleep.eq(SleepType.AWAKE)).and(memberNameEq))
-                .orderBy(member.id.asc())
+                .orderBy(member.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -156,7 +156,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         List<Member> foundUsers = query.select(member)
                 .from(member)
                 .where(member.memberType.eq(MemberType.COMPANY).and(memberNameEq).and(member.memberSleep.eq(SleepType.AWAKE)))
-                .orderBy(member.id.asc())
+                .orderBy(member.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -204,7 +204,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                         .and(member.memberFileUUID.isNotNull())
                         .and(member.memberSleep.eq(SleepType.AWAKE))
                         .and(memberNameEq))
-                .orderBy(member.id.asc())
+                .orderBy(member.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

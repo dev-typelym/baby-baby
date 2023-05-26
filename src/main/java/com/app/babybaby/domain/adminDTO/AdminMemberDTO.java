@@ -1,5 +1,7 @@
 package com.app.babybaby.domain.adminDTO;
 
+import com.app.babybaby.entity.board.event.Event;
+import com.app.babybaby.entity.embeddable.Address;
 import com.app.babybaby.type.*;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Component
 @Data
@@ -37,9 +40,10 @@ public class AdminMemberDTO {
     private String memberFileUUID;
     private String memberFileOriginalName;
     private Long eventCount;
+    private List<Event> companyEventList;
 
     @Builder
-    public AdminMemberDTO(Long id, String memberName, String memberNickname, String memberPhone, String memberEmail, LocalDateTime memberRegisterDate, String memberAddress, String memberAddressDetail, String memberAddressSubDetail, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName, Long eventCount) {
+    public AdminMemberDTO(Long id, String memberName, String memberNickname, String memberPhone, String memberEmail, LocalDateTime memberRegisterDate, String memberAddress, String memberAddressDetail, String memberAddressSubDetail, String memberProfileOriginalName, String memberProfileUUID, String memberProfilePath, MemberType memberType, Role memberRole, AcceptanceType memberGuideStatus, SleepType memberSleep, GuideType memberGuideType, CategoryType memberGuideInterest, String memberFilePath, String memberFileUUID, String memberFileOriginalName, Long eventCount, List<Event> companyEventList) {
         this.id = id;
         this.memberName = memberName;
         this.memberNickname = memberNickname;
@@ -62,5 +66,6 @@ public class AdminMemberDTO {
         this.memberFileUUID = memberFileUUID;
         this.memberFileOriginalName = memberFileOriginalName;
         this.eventCount = eventCount;
+        this.companyEventList = companyEventList;
     }
 }

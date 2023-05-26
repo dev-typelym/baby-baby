@@ -351,8 +351,13 @@ function showList(announcementDTOS) {
                     </div>
                     <div class="admin-writed">
                         <div class="announcement-content">
-                            <img src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUUID}_${announcement.announcementFileDTOS[0].fileOriginalName}" alt="">
-                            ${announcement.announcementContent}
+                            <div class="thumbnail-wrapper">
+                                <img class="detail-photo" src="/announcementFiles/display?fileName=Announcement/${announcement.announcementFileDTOS[0].filePath}/${announcement.announcementFileDTOS[0].fileUUID}_${announcement.announcementFileDTOS[0].fileOriginalName}" alt="">
+                            </div>
+                            <div>
+                                [공지사항 ${announcement.id}]<br><br>
+                                <span class="announcement-content-text">${announcement.announcementContent}</span>
+                            </div>
                         </div>
                     </div>
                 </li>

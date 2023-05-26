@@ -176,7 +176,7 @@ function showList(companyDTOS) {
     companyDTOS.forEach(company => {
         content +=
             `
-               <tr class="no-hover-row" onclick="openModal(${company.id}, event)">
+<!--               <tr class="no-hover-row" onclick="openModal(${company.id}, event)">-->
                     <td class="no-modal">
                     <input type="checkbox" name="check">
                     </td>
@@ -193,7 +193,7 @@ function showList(companyDTOS) {
 
         detailcontent +=
             `
-               <section class="user-modal" id="company-detail1">
+               <section class="user-modal" id="company-detail${company.id}">
 			<div class="user-modal-shape">
 				<div class="modal-header">
 					<h4>행사 목록</h4>
@@ -235,7 +235,7 @@ function showList(companyDTOS) {
 									</tr>
 								</thead>
 								<tbody class="company-event-list">
-									<tr>
+<!--									<tr>-->
 <!--										<td class="event-num">1</td>-->
 <!--										<td class="event-title">[아이와 함께하는] 진흙놀이</td>-->
 <!--										<td class="event-category">과학</td>-->
@@ -245,7 +245,7 @@ function showList(companyDTOS) {
 <!--										&lt;!&ndash; <td class="event-status hold">대기</td>-->
 <!--										<td class="event-status end">종료</td>&ndash;&gt;-->
 <!--										<td class="event-status process">진행중</td>-->
-									</tr>
+<!--									</tr>-->
 								</tbody>
 							</table>
 							<!-- 페이지 버튼 -->
@@ -294,7 +294,6 @@ function showList(companyDTOS) {
 					</main>
 				</form>
 			</div>
-			<input class="companyIdForEventList" style="visibility:hidden" value="$${company.id}">
 		</section>
             `
     });
@@ -401,152 +400,157 @@ getAdminCompanyList();
 
 //-----------------------------------------ajax--------------------------------------------------
 
-const EVENT_PAGE_AMOUNT = 10;
-const $eventPageWrap = $(".event-page-button-box");
-const $eventContentWrap = $(".company-event-list");
-const companyIdData = {
-    companyId: null
-};
-
-companyIdData.companyId = $('.companyIdForEventList').val();
+$(".no-hover-row").on('click', function (e) {
 
 
-function getAdminCompanyEventList() {
-    $.ajax({
-        url: `company-event-List/${globalThis.detailPage}`,
-        data: companyIdData,
-        success: function(data) {
-            $eventPageWrap.empty();
-            showEventPage(data);
-            $eventContentWrap.empty();
-            showEventList(data.content);
+
+    const EVENT_PAGE_AMOUNT = 10;
+    const $eventPageWrap = $(".event-page-button-box");
+    const $eventContentWrap = $(".company-event-list");
+    const companyIdData = {
+        companyId: null
+    };
+
+    companyIdData.companyId =$(this).find('.company-id').text();
+
+
+    function getAdminCompanyEventList() {
+        $.ajax({
+            url: `company-event-List/${globalThis.detailPage}`,
+            data: companyIdData,
+            success: function(data) {
+                $eventPageWrap.empty();
+                showEventPage(data);
+                $eventContentWrap.empty();
+                showEventList(data.content);
+            }
+
+        })
+    }
+
+    globalThis.detailPage = 1;
+
+
+
+    function findEventPage(page) {
+        globalThis.detailPage = page;
+        getAdminCompanyEventList();
+    }
+
+
+    function showEventPage(data) {
+        let eventPageable = data.pageable;
+        let eventPageNumber = pageable.pageNumber;
+        let eventTotalPages = data.totalPages;
+        let eventCount = Math.floor(eventPageNumber/EVENT_PAGE_AMOUNT);
+
+        let eventStartPage = eventCount * EVENT_PAGE_AMOUNT;
+        let eventEndPage = eventStartPage + EVENT_PAGE_AMOUNT;
+
+        eventEndPage = eventEndPage > data.totalPages ? data.totalPages : eventEndPage;
+
+        let hasEventPrev = eventStartPage > 1;
+        // 170 page / 5 = 24 -> 171 /
+        let hasEventNext = eventEndPage < data.totalPages;
+
+        let text = "";
+
+
+        // Previous button
+        if (hasEventPrev) {
+            text += `<div class="">`;
+            text += `<div class="page-button-margin">`;
+            text += `<div>`;
+            text += `<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button" onclick="findPage(${startPage})" data-page = "${pageNumber}" aria-label="이전 목록">`;
+            text += `</div>`;
+            text += `</div>`;
+            text += `</div>`;
         }
 
-    })
-}
+        // Page buttons
+        for (let i = eventStartPage + 1; i < eventEndPage + 1; i++) {
+            let eventPage = i;
+            if (eventPageNumber  + 1 == eventPage) {
+                text += `<div class="page-button-active page-button" onclick="findPage(${i})">`;
+            } else {
+                text += `<div class="page-button" onclick="findPage(${i})">`;
+            }
+            text += `<div class="page-button-margin">`;
+            text += `<div>`;
+            text += `<span>${i}</span>`;
+            text += `</div>`;
+            text += `</div>`;
+            text += `</div>`;
+        }
 
-globalThis.detailPage = 1;
+        // Next button
+        if (hasEventNext) {
+            text += `<div class="">`;
+            text += `<div class="page-button-margin">`;
+            text += `<div>`;
+            text += `<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button" onclick="findPage(${endPage+1})" data-page="' + (pageNumber + 1) + '" aria-label="다음 목록">`;
+            text += `</div>`;
+            text += `</div>`;
+            text += `</div>`;
+        }
+
+        $eventPageWrap.html(text);
+    }
 
 
+    //    기업 목록
+    function showEventList(companyEventDTOS) {
+        var content = "";
+        console.log(companyEventDTOS)
+        companyEventDTOS.forEach(companyEvent => {
+            content +=
+                `
+                   <tr>
+                        <td class="event-num">${companyEvent.id}</td>
+                        <td class="event-title">${companyEvent.boardTitle}</td>
+                        <td class="event-category">${companyEvent.category}</td>
+                        <td class="event-location">여의도</td>
+                        <td class="event-period"><span class="start-date">2023.10.22</span><span> ~ </span><span class="send-date">2023.11.15</span></td>
+                        <td class="event-amount">1200<span>명</span></td>
+                        <!-- <td class="event-status hold">대기</td>
+                        <td class="event-status end">종료</td>-->
+                        <td class="event-status process">진행중</td>
+                    </tr>
+                `
+        });
+        $eventPageWrap.append(content);
 
-function findEventPage(page) {
-    globalThis.detailPage = page;
+    }
+
     getAdminCompanyEventList();
-}
 
+    // 선택된 항목 삭제하기
+    $('.confirm-delete').on('click', function () {
+        var checkedIds = new Array();
+        // 체크 박스 체크된 값
+        $('input:checkbox[name=check]:checked').closest('tr').find('.company-id').each(function () {
+            checkedIds.push(this.innerText);
+            console.log(this.innerText);
+        });
 
-function showEventPage(data) {
-    let eventPageable = data.pageable;
-    let eventPageNumber = pageable.pageNumber;
-    let eventTotalPages = data.totalPages;
-    let eventCount = Math.floor(eventPageNumber/EVENT_PAGE_AMOUNT);
+        // $('input:checkbox[name=check]:checked').closest('tr').find('.reply-id').each(function () {
+        //     var id = $(this).text();
+        //     checkedIds.push(parseInt(id, 10));
+        // });
+        console.log(checkedIds);
+        console.log(typeof checkedIds[0]);
+        $.ajax({
+            url: "member/delete",
+            type: "patch",
+            data: {
+                "checkedIds": checkedIds,
+            },
+            success: function () {
+                findPage(page);
+            }
+        });
 
-    let eventStartPage = eventCount * EVENT_PAGE_AMOUNT;
-    let eventEndPage = eventStartPage + EVENT_PAGE_AMOUNT;
-
-    eventEndPage = eventEndPage > data.totalPages ? data.totalPages : eventEndPage;
-
-    let hasEventPrev = eventStartPage > 1;
-    // 170 page / 5 = 24 -> 171 /
-    let hasEventNext = eventEndPage < data.totalPages;
-
-    let text = "";
-
-
-    // Previous button
-    if (hasEventPrev) {
-        text += `<div class="">`;
-        text += `<div class="page-button-margin">`;
-        text += `<div>`;
-        text += `<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-128.png" class="left-button" onclick="findPage(${startPage})" data-page = "${pageNumber}" aria-label="이전 목록">`;
-        text += `</div>`;
-        text += `</div>`;
-        text += `</div>`;
-    }
-
-    // Page buttons
-    for (let i = eventStartPage + 1; i < eventEndPage + 1; i++) {
-        let eventPage = i;
-        if (eventPageNumber  + 1 == eventPage) {
-            text += `<div class="page-button-active page-button" onclick="findPage(${i})">`;
-        } else {
-            text += `<div class="page-button" onclick="findPage(${i})">`;
-        }
-        text += `<div class="page-button-margin">`;
-        text += `<div>`;
-        text += `<span>${i}</span>`;
-        text += `</div>`;
-        text += `</div>`;
-        text += `</div>`;
-    }
-
-    // Next button
-    if (hasEventNext) {
-        text += `<div class="">`;
-        text += `<div class="page-button-margin">`;
-        text += `<div>`;
-        text += `<img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_right_48px-128.png" class="right-button" onclick="findPage(${endPage+1})" data-page="' + (pageNumber + 1) + '" aria-label="다음 목록">`;
-        text += `</div>`;
-        text += `</div>`;
-        text += `</div>`;
-    }
-
-    $eventPageWrap.html(text);
-}
-
-
-//    기업 목록
-function showEventList(companyEventDTOS) {
-    var content = "";
-    console.log(companyEventDTOS)
-    companyEventDTOS.forEach(companyEvent => {
-        content +=
-            `
-               <tr class="row" onclick="openModal(1, event)">
-                    <td class="no-modal">
-                    <input type="checkbox" name="check">
-                    </td>
-                    <td class="company-id">${company.id}</td>
-                    <td>${company.memberName}</td>
-                    <td>${company.memberNickname}</td>
-                    <td>${company.memberName}</td>
-                    <td>${company.memberPhone}</td>
-                    <td>${company.memberEmail}</td>
-                    <td>${company.eventCount}</td>
-                </tr>
-            `
-    });
-    $eventPageWrap.append(content);
-
-}
-
-getAdminCompanyEventList();
-
-// 선택된 항목 삭제하기
-$('.confirm-delete').on('click', function () {
-    var checkedIds = new Array();
-    // 체크 박스 체크된 값
-    $('input:checkbox[name=check]:checked').closest('tr').find('.company-id').each(function () {
-        checkedIds.push(this.innerText);
-        console.log(this.innerText);
+        $('input:checkbox[id=allSelect]:checked').prop('checked', false);
     });
 
-    // $('input:checkbox[name=check]:checked').closest('tr').find('.reply-id').each(function () {
-    //     var id = $(this).text();
-    //     checkedIds.push(parseInt(id, 10));
-    // });
-    console.log(checkedIds);
-    console.log(typeof checkedIds[0]);
-    $.ajax({
-        url: "member/delete",
-        type: "patch",
-        data: {
-            "checkedIds": checkedIds,
-        },
-        success: function () {
-            findPage(page);
-        }
-    });
-
-    $('input:checkbox[id=allSelect]:checked').prop('checked', false);
 });

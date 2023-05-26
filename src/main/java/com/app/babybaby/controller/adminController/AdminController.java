@@ -108,7 +108,7 @@ public class AdminController {
     @GetMapping("kid-list")
     @ResponseBody
     public  List<AdminKidDTO> getAllKids(Long guideId, Long eventId) {
-        log.info("eventID는 : " + eventId.toString());
+//        log.info("eventID는 : " + eventId.toString());
         log.info("Kids들은" + nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(guideId, eventId).toString());
 
         List<AdminKidDTO> kids = adminKidService.findAllKidsByGuideIdAndEventId(guideId, eventId);

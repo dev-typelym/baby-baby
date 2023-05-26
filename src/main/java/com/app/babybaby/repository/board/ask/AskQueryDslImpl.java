@@ -66,7 +66,7 @@ public class AskQueryDslImpl implements AskQueryDsl {
                                         : ask.askStatus.isNotNull()
                         )
                 )
-                .orderBy(ask.id.asc())
+                .orderBy(ask.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

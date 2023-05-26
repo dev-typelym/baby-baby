@@ -218,7 +218,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
                 .join(review.member)
                 .fetchJoin()
                 .where((eventCategory != null ? review.event.category.eq(eventCategory) : review.event.category.isNotNull()).and(reviewContentEq))
-                .orderBy(review.id.asc())
+                .orderBy(review.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();

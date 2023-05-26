@@ -68,7 +68,7 @@ public class ParentsBoardReplyQueryDslImpl implements ParentsBoardReplyQueryDsl 
         List<ParentsBoardReply> foundParentsBoardReply = query.select(parentsBoardReply)
                 .from(parentsBoardReply)
                 .where(parentsBoardContentEq)
-                .orderBy(parentsBoardReply.id.asc())
+                .orderBy(parentsBoardReply.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
