@@ -117,6 +117,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
         // 크루가 없다면 크루 생성
         if (guide.getCrews() == null) {
+            log.info("===========here===========");
             final Guide finalGuide = guide;
             kids.forEach(kid -> {
                 Crew crew = new Crew(kid, finalGuide);
@@ -143,32 +144,32 @@ public class PurchaseServiceImpl implements PurchaseService {
             }
         }
     }
+
     @Override
-        public void saveAll(Long memberId, Long eventId, PurchaseDTO purchaseDTO) {
-    //        Purchase purchase = this.dtoToPurchaseEntity(purchaseDTO);
-    //        이 맴버는 현재 세션에 있는 맴버아이디
-            Member member = memberRepository.findById(memberId).get();
-            Event event = eventRepository.findById(eventId).get();
-            Coupon coupon = new Coupon(purchaseDTO.getCouponType(), purchaseDTO.getCouponStatus(), purchaseDTO.getCouponPrice(), member);
-            Purchase purchase1 = new Purchase(purchaseDTO.getPurchaseCount(), purchaseDTO.getPurchasePrice(), event, member);
-            purchaseRepository.save(purchase1);
-            Guide guide = guidRepository.findFirstByEventIdAndAvailableTypeOrderById(eventId, GuideAvailableType.AVAILABLE);
-            if(guide == null){
-                Guide newGuide = new Guide(event, event.getCompany());
-                guidRepository.save(newGuide);
-            }
-            List<Kid> kids = purchaseDTO.getKids().stream()
+    public void saveAll(Long memberId, Long eventId, PurchaseDTO purchaseDTO) {
+        //        Purchase purchase = this.dtoToPurchaseEntity(purchaseDTO);
+        //        이 맴버는 현재 세션에 있는 맴버아이디
+        Member member = memberRepository.findById(memberId).get();
+        Event event = eventRepository.findById(eventId).get();
+        Coupon coupon = new Coupon(purchaseDTO.getCouponType(), purchaseDTO.getCouponStatus(), purchaseDTO.getCouponPrice(), member);
+        Purchase purchase1 = new Purchase(purchaseDTO.getPurchaseCount(), purchaseDTO.getPurchasePrice(), event, member);
+        purchaseRepository.save(purchase1);
+        Guide guide = guidRepository.findFirstByEventIdAndAvailableTypeOrderById(eventId, GuideAvailableType.AVAILABLE);
+        if (guide == null) {
+            Guide newGuide = new Guide(event, event.getCompany());
+            guidRepository.save(newGuide);
+        }
+        List<Kid> kids = purchaseDTO.getKids().stream()
                 .map(kidDTO -> kidRepository.findById(kidDTO.getId()).get())
                 .collect(Collectors.toList());
-            log.info("purchaseDTO 입니다 ~~~~~~~~~~~~~ : " + purchaseDTO);
-            log.info("Kids들 입니다 ~~~~~~~~~~~~ : " + kids);
-            processPayment(memberId, eventId, kids);
-        }
+        log.info("purchaseDTO 입니다 ~~~~~~~~~~~~~ : " + purchaseDTO);
+        log.info("Kids들 입니다 ~~~~~~~~~~~~ : " + kids);
+        processPayment(memberId, eventId, kids);
+    }
 
     @Override
     public Long findMemberByIdWithCount(Long memberId) {
         Long count = purchaseRepository.findMemberByIdWithCount(memberId);
         return count;
     }
-
 }

@@ -169,6 +169,7 @@ function showList(boardDTOS) {
     var content = "";
     boardDTOS.forEach(board => {
         const convertedCategory = convertCategory(board.eventCategory); // 영어 카테고리를 한글로 변환
+        console.log("board.eventCategory : " + board.eventCategory);
         const formattedDate = formatDate(new Date(board.parentsBoardRegisterDate));
         content += ` 
                          <a href="/parentsYard/detail/${board.id}" class="parents-yard-board-item-link">

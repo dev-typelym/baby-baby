@@ -47,8 +47,8 @@ public interface ParentsBoardService {
     default ParentsBoardDTO toParentsBoardDTO(ParentsBoard parentsBoard) {
         return ParentsBoardDTO.builder()
                 .id(parentsBoard.getId())
-//                .eventTitle(parentsBoard.getEvent().getBoardTitle())
-//                .eventCategory(parentsBoard.getEvent().getCategory())
+                .eventTitle(parentsBoard.getEvent().getBoardTitle())
+                .eventCategory(parentsBoard.getEvent().getCategory())
                 .memberNickname(parentsBoard.getMember().getMemberNickname())
                 .parentsBoardContent(parentsBoard.getBoardContent())
                 .parentsBoardTitle(parentsBoard.getBoardTitle())
@@ -56,7 +56,9 @@ public interface ParentsBoardService {
                 .parentsBoardUpdateDate(parentsBoard.getUpdateDate())
                 .representFileOriginName(parentsBoard.getRepresentFileOrginName())
                 .representFilePath(parentsBoard.getRepresentFilePath())
-                .representFileUUID(parentsBoard.getRepresentFileUUID())
+                .memberProfileOriginalName(parentsBoard.getMember().getMemberProfileOriginalName())
+                .memberProfilePath(parentsBoard.getMember().getMemberProfilePath())
+                .memberProfileUUID(parentsBoard.getMember().getMemberProfileUUID())
                 .parentsBoardFileDTOS(parentsBoard.getParentsBoardFiles().stream()
                         .map(this::parentsBoardFileToDTO).collect(Collectors.toList()))
                 .build();
