@@ -133,6 +133,7 @@ function getAdminGuideList() {
             $contentWrap.empty();
             showList(data.content);
             updateStatus();
+            downloadCertification();
         }
 
     })
@@ -356,7 +357,10 @@ function showList(guideDTOS) {
 							</li>
 <!--							<li class="content-list">-->
 <!--								<span>증명서류</span>-->
-<!--								<a class="guide-file">apply-certificate.pdf</a>-->
+<!--								<div class="guide-file">${guide.memberFileOriginalName}</div>-->
+<!--								<input class="filePath" style="visibility: hidden" value="${guide.memberFilePath}">-->
+<!--								<input class="fileUUID" style="visibility: hidden" value="${guide.memberFileUUID}">-->
+<!--								<input class="fileOriginalName" style="visibility: hidden" value="${guide.memberFileOriginalName}">-->
 <!--							</li>-->
 						</ul>
 						<div class="update-box">
@@ -377,7 +381,42 @@ function showList(guideDTOS) {
 
 getAdminGuideList();
 
+// ------------------------------ 파일 ajax-------------------------------------
 
+const fileDownloadPath = {
+    filePath: null,
+    fileOriginalName : null,
+    fileUUID : null
+};
+
+
+function downloadCertification() {
+    $('.guide-file').on("click", function () {
+        console.log("클릭됨")
+        let downloadFilePath = null;
+        let downloadOriginalName = null;
+        let downloadUUID = null;
+        downloadFilePath = $(this).parents().find('.filePath').val();
+        downloadOriginalName = $(this).parents().find('.fileUUID').val();
+        downloadUUID = $(this).parents().find('.fileOriginalName').val();
+
+        console.log(downloadFilePath);
+        console.log(downloadOriginalName);
+        console.log(downloadUUID);
+
+        fileDownloadPath.filePath = downloadFilePath;
+        fileDownloadPath.fileOriginalName = downloadOriginalName;
+        fileDownloadPath.fileUUID = downloadUUID;
+
+        $.ajax({
+            url: `/pdf/file/download/${fileDownloadPath.filePath}?fileUUID=${fileDownloadPath.fileUUID}&fileOriginalName=${fileDownloadPath.fileOriginalName}`,
+            success: function () {
+                console.log("파일성공!")
+            }
+
+        })
+    });
+}
 //------------------------------- 승인하기 ajax---------------------------------------
 
 function updateStatus(){
@@ -402,6 +441,10 @@ function updateStatus(){
 
         console.log("업데이트버튼눌림")
         setAdminGuideStatus();
+        $('#guide-detail' + dataForAccept.memberId).hide();
     });
 
+    $('.accept').on("click", function () {
+        $('.accept').hide();
+    });
 }
