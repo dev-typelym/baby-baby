@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,13 +37,14 @@ public class PurchaseDTO {
     private CalendarDTO calendarDTOS;
     private List<KidDTO> kids;
     Long [] kidList;
+    private String eventRegisterDate;
 
     private CouponStatus couponStatus;
     private Long couponPrice;
     private CouponType couponType;
 
     @Builder
-    public PurchaseDTO(Long id, LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, String eventTitle, Long memberId, String memberName, List<EventFileDTO> eventFileDTOS,String memberPhone,CalendarDTO calendarDTOS) {
+    public PurchaseDTO(Long id, LocalDateTime purchaseRegisterDate, Long purchaseCount, Long purchasePrice, Coupon coupon, String eventTitle, Long memberId, String memberName, String memberPhone, GuideType guideType, List<EventFileDTO> eventFileDTOS, CalendarDTO calendarDTOS, List<KidDTO> kids, Long[] kidList, String eventRegisterDate, CouponStatus couponStatus, Long couponPrice, CouponType couponType) {
         this.id = id;
         this.purchaseRegisterDate = purchaseRegisterDate;
         this.purchaseCount = purchaseCount;
@@ -51,8 +53,15 @@ public class PurchaseDTO {
         this.eventTitle = eventTitle;
         this.memberId = memberId;
         this.memberName = memberName;
-        this.eventFileDTOS = eventFileDTOS;
         this.memberPhone = memberPhone;
+        this.guideType = guideType;
+        this.eventFileDTOS = eventFileDTOS;
         this.calendarDTOS = calendarDTOS;
+        this.kids = kids;
+        this.kidList = kidList;
+        this.eventRegisterDate = eventRegisterDate;
+        this.couponStatus = couponStatus;
+        this.couponPrice = couponPrice;
+        this.couponType = couponType;
     }
 }

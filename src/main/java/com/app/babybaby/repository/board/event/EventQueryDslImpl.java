@@ -45,7 +45,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
     //    이벤트 게시판 검색 페이징
     @Override
     public Slice<Event> findEventListWithPaging_QueryDSL(EventBoardSearch eventBoardSearch,Pageable pageable) {
-
+        LocalDateTime currentTime = LocalDateTime.now();
         if(eventBoardSearch.getCategoryType() == CategoryType.ALL){
             eventBoardSearch.setCategoryType(null);
         }
@@ -71,9 +71,12 @@ public class EventQueryDslImpl implements EventQueryDsl {
             events.where(eventCategoryContains);
         }
 
-        List<Event> result = events.orderBy(event.id.desc())
+        List<Event> result = events.orderBy(event.calendar.startDate.asc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
+                .where(
+                        (event.calendar.startDate.before(currentTime))
+                        .and(event.calendar.endDate.after(currentTime)))
                 .fetch();
 
         boolean hasNext = false;

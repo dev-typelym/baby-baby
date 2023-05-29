@@ -71,4 +71,8 @@ public class Guide {
     public void setGeneralGuide(Member generalGuide) {
         this.generalGuide = generalGuide;
     }
+
+    public void setCrews(List<Crew> crews) {
+        this.crews = crews;
+    }
 }
