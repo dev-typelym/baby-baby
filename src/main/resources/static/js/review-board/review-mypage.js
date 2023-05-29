@@ -35,10 +35,10 @@ function appendList(reviewDTOS) {
 
         console.log(reviewDTOS);
         boardText3 +=  `
-        <a class="parents-yard-board-item-link">
+        <a class="parents-yard-board-item-link" href="/review/detail/${review.id}">
               <div class="parents-yard-board-item-wrapper">
                 <!-- 카테고리 -->
-                <span class="category"> <span>[${review.eventCategory}]</span> <span>온 가족이 함께 즐기는 행사</span></span>
+                <span class="category"> <span>[${review.eventCategory}]</span> <span></span></span>
                 <div class="parents-yard-board-item-container">
                     <!-- 내가 쓴 체험학습 이름 -->
                     ${review.boardTitle}

@@ -19,13 +19,12 @@ public class PurchaseServiceTests {
     @Autowired
     PurchaseService purchaseService;
 
-    List<Kid> kidList = new 
+
 
 
     @Test
     public void test1(){
 
-        purchaseService.processPayment(30L, 175, );
     }
 
 }

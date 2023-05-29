@@ -1,32 +1,28 @@
-/* 클릭 시 수정/삭제 버튼 창 */
-/* function showList(e){
-    if($(e).next().css('display') == 'none'){
-        $(e).next().show();
-    } else {
-        $(e).next().hide();
-    }
-}
- */
-function showList(){
-    if($(".comment-util-list").css('display') == 'none'){
-        $(".comment-util-list").show();
-    } else {
-        $(".comment-util-list").hide();
-    }
-}
+parents-yard-board-detail.js
 
+
+
+
+// function showList(e) {
+//     // if($(".comment-util-list").css('display') == 'none'){
+//     if ($(e).next().css('display') == 'none') {
+//         $(e).next().show();
+//         // $(".comment-util-list").show();
+//     } else {
+//         $(e).next().hide();
+//         // $(".comment-util-list").hide();
+//     }
+// }
+
+function showList(button) {
+    var commentUtilList = $(button).parent().find('.comment-util-list');
+    if (commentUtilList.css('display') == 'none') {
+        commentUtilList.show();
+    } else {
+        commentUtilList.hide();
+    }
+}
 /* 수정버튼 눌렀을 때 */
-// $(".modify-button").each((i, e) => {
-//     $(e).click(() => {
-//         $($(".modify-textarea")[i]).show();//수정영역
-//         $('.comment-util-list').hide();//수정,삭제 모달 숨기기
-//         $($('.comment-util')[i]).attr("disabled",true);//수정,삭제 버튼 비활성화
-//         $($(".comment-content")[i]).css("display","none");//기존영역 숨기기
-//         $($(".comment-date")[i]).css("display","none");//날짜 숨기기
-//         $($(".comment-bottom")[i]).css("display","block");//취소,수정완료 버튼
-//     });
-// });
-
 $('.comment-list').on('click', '.modify-button', function () {
     var index = $(this).index('.modify-button'); // 클릭한 버튼의 인덱스 확인
     $($(".modify-textarea")[index]).show(); // 수정영역
@@ -37,15 +33,14 @@ $('.comment-list').on('click', '.modify-button', function () {
     $($(".comment-bottom")[index]).css("display", "block"); // 취소, 수정완료 버튼
 });
 
-
 /* 삭제버튼 눌렀을 때 - 모달 */
-function showModal(){
+function showModal() {
     $('.modal-copy').css('display', 'block');
     $('.modal-bg').css('display', 'block');
     $('body').css('overflow', 'hidden');
 }
 
-function closeModal(){
+function closeModal() {
     $('.modal-copy').css('display', 'none');
     $('.modal-bg').css('display', 'none');
     $('body').css('overflow', 'visible');
@@ -56,13 +51,12 @@ $(".modify-cancel").each((i, e) => {
     $(e).click(() => {
         $($(".modify-textarea")[i]).hide();//수정영역
         $('.comment-util-list').hide();//수정,삭제 모달 숨기기
-        $('.comment-util').attr("disabled",false);
-        $($(".comment-content")[i]).css("display","block");//기존영역 숨기기
-        $($(".comment-date")[i]).css("display","block");//날짜 숨기기
-        $($(".comment-bottom")[i]).css("display","none");//취소,수정완료 버튼
+        $('.comment-util').attr("disabled", false);
+        $($(".comment-content")[i]).css("display", "block");//기존영역 숨기기
+        $($(".comment-date")[i]).css("display", "block");//날짜 숨기기
+        $($(".comment-bottom")[i]).css("display", "none");//취소,수정완료 버튼
     });
 });
-
 
 
 /* 클릭 했을 때 색 변경/취소 */
@@ -79,6 +73,7 @@ $(".modify-cancel").each((i, e) => {
 //         $(".btn-like").removeClass("active-heart-button");
 //     }
 // });
+
 
 /* 카카오톡 공유하기 API */
 /* function shareMessage() {
@@ -119,6 +114,7 @@ Kakao.Share.sendDefault({
 });
 } */
 
+/* DateTime을 Date로 바꾸기 */
 
 
 var originalDateElement = document.querySelector('.parents-yard-board-detail-date');
@@ -163,7 +159,7 @@ $('.comment-open').click(function () {
 const categoryService = (() => {
     function getCategoryList(callback) {
         $.ajax({
-            url: `/review/detail/category/${boardId}`,
+            url: `/parentsYard/detail/category/${boardId}`,
             type: 'post',
             data: {boardId: boardId},
             success: function (categoryResults) {
@@ -184,7 +180,7 @@ function appendCategoryList(categoryResults) {
     let categoryText = '';
     categoryResults.forEach(category => {
         const convertedCategory = convertCategory(category.eventCategory); // 영어 카테고리를 한글로 변환
-        const convertedTime = formatDate(category.updateDate);
+        const convertedTime = formatDate(category.parentsBoardUpdateDate);
         categoryText += ` 
                     <ul>
                         <li>
@@ -192,14 +188,14 @@ function appendCategoryList(categoryResults) {
                                 <div class="other-story">
                                     <div class="story-info">
                                         <em class="category">${convertedCategory}</em>
-                                        <p class="other-title">${category.boardTitle}</p>
-                                        <p class="other-content">${category.boardContent}</p>
+                                        <p class="other-title">${category.parentsBoardTitle}</p>
+                                        <p class="other-content">${category.parentsBoardContent}</p>
                                         <p class="info">
                                             <em class="date">${convertedTime}</em>
                                         </p>
                                     </div>
                                     <div class="img-wrap">
-                                        <img src="/reviewFiles/display?fileName=Review/${category.files[0].filePath}/${category.files[0].fileUUID}_${category.files[0].fileOriginalName}">
+                                        <img src="/parentsBoardFiles/display?fileName=ParentsBoard/${category.parentsBoardFileDTOS[0].filePath}/${category.parentsBoardFileDTOS[0].fileUUID}_${category.parentsBoardFileDTOS[0].fileOriginalName}">
                                     </div>
                                 </div>
                             </a>
@@ -263,7 +259,7 @@ function convertCategory(category) {
 $(document).on('click', '.delete-reply', function () {
     var replyId = $(this).data('reply-id'); // data-reply-id 속성을 통해 댓글의 ID 값을 가져옴
     $.ajax({
-        url: `/review/reply/delete/${replyId}`,
+        url: `/parentsYard/reply/delete/${replyId}`,
         type: 'post',
         success: function (result) {
             $(".comment-list").html("");
@@ -287,7 +283,7 @@ $(".write-reply").click(function () {
     }
 
     $.ajax({
-        url: `/review/reply/write/${boardId}`,
+        url: `/parentsYard/reply/write/${boardId}`,
         type: 'get',
         data: {parentsBoardReplyContent: $('.replyContent').val()},
         success: function (result) {
@@ -335,7 +331,7 @@ $('.comment-list').on('click', '.modify-confirm', function () {
     }
 
     $.ajax({
-        url: `/review/reply/update/${replyId}/${replyContent}`,
+        url: `/parentsYard/reply/update/${replyId}/${replyContent}`,
         type: 'post',
         data: {replyContent: replyContent},
         success: function (result) {
@@ -358,34 +354,38 @@ $('.comment-list').on('click', '.modify-confirm', function () {
 
 // 댓글 총 수를 구하기 위한 globalThis.totalReplies
 
+globalThis.memberId = 0;
 
 // 댓글목록 불러오기==========================================
-// function getReplyList(page) {
-//     $.ajax({
-//         url: `/review/reply/list/show/${page}/${boardId}`,
-//         data: {page: page, boardId: boardId},
-//         contentType: "application/json;charset=utf-8",
-//         success: function (data) {
-//             globalThis.count = data.count;
-//             showReplyList(data.data);
-//             getReplyCount();
-//             console.log("======count List success: ")
-//             console.log(count)
-//             console.log("======page List success: ")
-//             console.log(globalThis.page)
-//             if (page == (globalThis.count - 1)) {
-//                 $(".btn-comment").hide();
-//             }else{
-//                 $(".btn-comment").show();
-//             }
-//         }
-//     });
-//
-// }
-//
-// getReplyList(globalThis.page);
-//
-//
+function getReplyList(page) {
+    $.ajax({
+        url: `/parentsYard/reply/list/show/${page}/${boardId}/${memberId}`,
+        data: {page: page, boardId: boardId, memberId: memberId},
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            console.log(data)
+            globalThis.memberId = data.memberId;
+            console.log("data.memberId" + globalThis.memberId);
+            globalThis.count = data.count;
+            showReplyList(data.data);
+            getReplyCount();
+            console.log("======count List success: ")
+            console.log(count)
+            console.log("======page List success: ")
+            console.log(globalThis.page)
+            if (page == (globalThis.count - 1)) {
+                $(".btn-comment").hide();
+            }else{
+                $(".btn-comment").show();
+            }
+        }
+    });
+
+}
+
+getReplyList(globalThis.page);
+
+
 
 
 function showReplyCount(replyAllcount) {
@@ -396,7 +396,7 @@ function showReplyCount(replyAllcount) {
 
 function getReplyCount() {
     $.ajax({
-        url: `/review/reply/show/${boardId}`,
+        url: `/parentsYard/reply/show/${boardId}`,
         data: {boardId: boardId},
         async:false,
         type: 'get',
@@ -415,36 +415,43 @@ getReplyCount();
 
 function showReplyList(data) {
     let parentsBoardDTOS = data.content;
-    parentsBoardDTOS.forEach(reply => {
-
+    console.log(parentsBoardDTOS);
+    parentsBoardDTOS.forEach((e,i) => {
+        console.log("reply :" +  e);
         let text = '';
         text += ` 
                         <ul id="comment-list-detail">
                             <li class="top" style="display: list-item;">
-                             <input class="replyId" type="hidden" value="${reply.id}" style="display: none;">
-                             <input class="parentsBoardId" type="hidden" value="${reply.parentsBoardId} style="display: none;">
+                             <input class="replyId" type="hidden" value="${e.id}" style="display: none;">
+                             <input class="parentsBoardId" type="hidden" value="${e.parentsBoardId} style="display: none;">
                                 <div class="comment-wrap">
                                     <div class="comment-info">
-                                        <img src="/members/display?fileName=Member/Profile/${reply.memberProfilePath}/${reply.memberProfileUUID}_${reply.memberProfileOriginalName}">
-                                        <span class="name">${reply.memberNickName}</span>
+                                       <img src="/eventFiles/display?fileName=/Member/Profile/${e.memberFilePath}/${e.memberFileUUID}_${e.memberFileOriginalName}">
+                                        <span class="name">${e.memberNickName}</span>`;
+        if (memberId == e.id) {
+            text += `
+                                                <button class="comment-util" onclick="showButton(this)"></button>
+                                                `;
+        }
+        text += `
                                         <button class="comment-util" onclick="showList(this)"></button>
                                         <ul class="comment-util-list">
                                             <li>
                                                 <button type="button" class="modify-button">수정</button>
                                             </li>
                                             <li>
-                                                <button  type="button" class="delete-reply" data-reply-id="${reply.id}">삭제</button>
+                                                <button  type="button" class="delete-reply" data-reply-id="${e.id}">삭제</button>
                                             </li>
                                         </ul>
                                     </div>
-                                    <p class="comment-content">${reply.parentsBoardReplyContent}</p>
-                                    <textarea id="" class="modify-textarea" style="display: none;">${reply.parentsBoardReplyContent}</textarea>
+                                    <p class="comment-content">${e.parentsBoardReplyContent}</p>
+                                    <textarea id="" class="modify-textarea" style="display: none;">${e.parentsBoardReplyContent}</textarea>
                                     <div class="comment-date">
-                                        ${formatDate(reply.updateDate)}
+                                        ${formatDate(e.updateDate)}
                                     </div>
                                     <div class="comment-bottom" style="display:none;">
                                         <button type="button" class="modify-cancel">취소</button>
-                                        <button type="button" class="modify-confirm" data-reply-id="${reply.id}">수정완료</button>
+                                        <button type="button" class="modify-confirm" data-reply-id="${e.id}">수정완료</button>
                                     </div>
                                 </div>
                             </li>

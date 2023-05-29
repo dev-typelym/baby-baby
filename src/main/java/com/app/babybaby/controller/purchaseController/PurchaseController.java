@@ -61,7 +61,7 @@ public class PurchaseController {
             kids.add(kidDTO);
         }
         purchaseDTO.setKids(kids);
-        log.info(purchaseDTO.toString());
+        log.info(purchaseDTO.toString(), "==============={} 제발");
          purchaseService.saveAll(sessionId, eventId, purchaseDTO);
 
         return 1L;

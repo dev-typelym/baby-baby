@@ -365,11 +365,6 @@ function getReplyList(page) {
             console.log(count)
             console.log("======page List success: ")
             console.log(globalThis.page)
-            if (page == (globalThis.count - 2)) {
-                $(".btn-comment").hide();
-            }else{
-                $(".btn-comment").show();
-            }
         }
     });
 
