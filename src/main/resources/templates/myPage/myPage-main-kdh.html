@@ -211,13 +211,13 @@
                     </a>
                   </li>
 
-                  <li class="one-link" th:if="${#strings.equals(session.member.memberType, 'COMPANY')}">
-                    <a th:href="@{/mypage/my-event}">
-                      <div>
+                    <li class="one-link">
+                        <a th:href="@{${#strings.equals(session.member.memberType,'COMPANY') ? '/mypage/my-event' : '/mypage/review'}}">
+                            <div>
                         <span class="link-icon">
                           <img src="/images/myPage/review-icon.png" alt="">
                         </span>
-                        <span class="link-text">내가 쓴 체험학습</span>
+                                <span class="link-text" th:text="${#strings.equals(member.memberType, 'COMPANY') ? '내가 쓴 체험학습' : '내가 쓴 후기'}">내가 쓴 체험학습</span>
                       </div>
                       <span class="next-btn">
                         <svg

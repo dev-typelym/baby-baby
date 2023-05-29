@@ -125,9 +125,9 @@ public class MypageController {
     public List<EventKidDTO> getPofile(Model model, @PathVariable("date") String date1){
         LocalDate date = LocalDate.parse(date1);
         log.info("------------------- 받아온 date : "+ date);
-        List<EventKidDTO> eventKidDTOS = crewService.findCrewByMemberId(getSessionMemberId(), date);
+        List<EventKidDTO> eventKidDTOS = crewService.findCrewByMemberId(30L, date);
         model.addAttribute("eventKidDTOS",eventKidDTOS);
-        log.info(eventKidDTOS.toString());
+//        log.info(eventKidDTOS.toString());
         return eventKidDTOS;
     }
 

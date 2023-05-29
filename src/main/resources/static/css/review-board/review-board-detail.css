@@ -1,3 +1,5 @@
+css
+css
 @charset "UTF-8";
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
 
@@ -12,7 +14,7 @@
 @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
 
 body, h1, h2, h3, h4, h5, h6, input, textarea, select {
-	font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 
@@ -24,7 +26,7 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select {
 
 .parents-yard-board-detail-top{
     padding-top: 32px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     overflow: hidden;
     text-align: center;
 }
@@ -683,6 +685,7 @@ button.btn-category {
     display: flex;
     margin-top: 12px;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 .review-my-star{
@@ -694,7 +697,7 @@ button.btn-category {
 
 
 
-@media screen and (min-width: 960px){
+@media screen and (min-width: 960px) {
     .board-detail:after {
         content: "";
         clear: both;
@@ -751,7 +754,7 @@ button.btn-category {
         height: auto;
         padding: 15px 0 15px 15px;
     }
-    
+
     .story-info em.category {
         display: inline-block;
         margin-bottom: 8px;
@@ -777,7 +780,7 @@ button.btn-category {
         -webkit-box-orient: vertical;
         word-wrap: break-word;
     }
-    
+
     .img-wrap {
         width: 156px;
         height: 108px;
