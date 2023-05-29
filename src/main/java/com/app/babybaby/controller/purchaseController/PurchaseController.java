@@ -43,12 +43,15 @@ public class PurchaseController {
                 kidIdList.add(Long.parseLong(kidId));
             }
         }
-        log.info(kidIdList.toString());
+
+        String eventRegisterDate = request.getParameter("eventRegisterDate");
+        log.info("eventRegisterDate은 : " + eventRegisterDate);
+        model.addAttribute("eventRegisterDate", eventRegisterDate);
         model.addAttribute("kidIdList", kidIdList);
         return "payment/payment";
     }
 
-    @PostMapping("save")
+    @GetMapping("save")
     @ResponseBody
     public Long pay(Long eventId, PurchaseDTO purchaseDTO, HttpSession session) {
         MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
@@ -61,6 +64,7 @@ public class PurchaseController {
             kids.add(kidDTO);
         }
         purchaseDTO.setKids(kids);
+        log.info(purchaseDTO.getEventRegisterDate());
         log.info(purchaseDTO.toString(), "==============={} 제발");
          purchaseService.saveAll(sessionId, eventId, purchaseDTO);
 

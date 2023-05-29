@@ -31,12 +31,17 @@ $('.Checkbox_icon').on('click', $('.Checkbox_icon'), function () {
 
 
 
-
-
-
-
-
 });
+// 현재 URL의 QueryString 가져오기
+let queryString = window.location.search;
+
+// QueryString을 파싱하여 객체로 변환
+let params = new URLSearchParams(queryString);
+let eventRegisterDate = params.get('eventRegisterDate');
+
+$('input[name=eventRegisterDate]').val(eventRegisterDate)
+console.log(eventRegisterDate);
+
 
 /* 쿠폰창 모달 */
 
@@ -305,9 +310,9 @@ paymentButton.on('click', function () {
         //비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.4
         $.ajax({
             url: "/payment/save", // 컨트롤러 주소
-            type: "post",
+            type: "get",
             contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
-            data: { purchasePrice : purchasePrice, "purchaseCount" : kidIdList.length, "eventId": eventDTO.id, "kidList" : kidIdList }, // 결제정보 객체 paymetnVO
+            data: { purchasePrice : purchasePrice, "purchaseCount" : kidIdList.length, "eventId": eventDTO.id, "kidList" : kidIdList, "eventRegisterDate": eventRegisterDate }, // 결제정보 객체 paymetnVO
             success: function () {
                 location.href = "/parentsYard/list";
             },

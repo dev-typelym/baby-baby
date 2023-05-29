@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public interface PurchaseService {
 
     public EventDTO findAllInfoForPayment(Long memberId, Long eventId);
 
-    public void processPayment(Long memberId, Long eventId, List<Kid> kids);
+    public void processPayment(Long memberId, Long eventId, List<Kid> kids, String eventRegisterDate);
 
     public void saveAll(Long memberId, Long eventId, PurchaseDTO purchaseDTO);
 

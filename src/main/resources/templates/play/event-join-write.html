@@ -93,6 +93,7 @@
                             </div>
                         </div>
                     </section>
+                    <form id="go-payment" th:action="@{/payment/pay/{eventId}(eventId=${eventDTO.id})}" method="get">
                     <section class="content-section">
                         <div class="input-title-box">
                             <div class="input-title-layout">
@@ -105,7 +106,7 @@
                                         <div class="date-wrap">
                                             <div class="date-container">
                                                 <div class="date-input-box">
-                                                    <input type="date" name="" class="form-control date-box"
+                                                    <input type="date" name="eventRegisterDate" class="form-control date-box"
                                                            placeholder="예시) 2023-04-28" autocomplete="off" size="12"/>
                                                 </div>
                                             </div>
@@ -157,7 +158,6 @@
                                             </th:block>
                                         </div>
                                     </div>
-                                    <form id="go-payment" th:action="@{/payment/pay/{eventId}(eventId=${eventDTO.id})}" method="get">
                                         <div class="kids-table">
                                         </div>
                                     </form>

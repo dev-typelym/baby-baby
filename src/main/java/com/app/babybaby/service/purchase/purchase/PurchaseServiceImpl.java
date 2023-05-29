@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -146,91 +147,99 @@ public class PurchaseServiceImpl implements PurchaseService {
 //        }
 //    }
 
-    public void processPayment(Long memberId, Long eventId, List<Kid> kids) {
-        Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new IllegalArgumentException("이벤트를 찾을 수 없습니다."));
-        Member company = null;
-        if (memberId != null) {
-            company = memberRepository.findById(memberId).orElse(null);
-        }
-
-        // 가장 최근 가이드 하나 가져오기
-        Guide guide = guidRepository.findFirstByEventIdAndAvailableTypeOrderById(eventId, GuideAvailableType.AVAILABLE);
-
-        log.info("=============guid : " + guide);
-
-        // 가이드가 없다면 새로운 가이드 생성
-        if (guide == null) {
-            guide = new Guide(event, company);
-            guide = guidRepository.save(guide);
-            log.info("가이드가 없을 때 생기는 guide: " + guide);
-        }
-        log.info("내가 가져온 가이드의 크루들: " + guide.getCrews().toString());
-
-        // 크루가 없다면 크루 생성
-        if (guide.getCrews() == null || guide.getCrews().isEmpty()) {
-            final Guide finalGuide = guide;
-            kids.forEach(kid -> {
-                Crew crew = new Crew(kid, finalGuide);
-                crew.setEventRegisterDate(LocalDate.now());
-                log.info("크루가 없을 때 크루가 세이브 되는 곳: " + crewRepository.save(crew));
-            });
-        }
-
-        // 현재 들어온 아이들 수와 남아있는 가이드의 아이들 수를 합친 결과가 10보다 크거나 같다면
-        if (guide.getCrews().size() + kids.size() > 10) {
-            // 가이드의 상태를 불가능으로 변경
-            guide.setAvailableType(GuideAvailableType.UNAVAILABLE);
-
-            // 새로운 가이드 가져오기
-            Guide newGuide = guidRepository.findFirstByEventIdAndAvailableTypeOrderById(eventId, GuideAvailableType.AVAILABLE);
-            if (newGuide == null) {
-                Guide guide1 = new Guide(event, company);
-                Guide savedGuide = guidRepository.save(guide1);
-                kids.forEach(kid -> {
-                    Crew crew = new Crew(kid, savedGuide);
-                    crew.setEventRegisterDate(LocalDate.now());
-                    crewRepository.save(crew);
-                });
-            } else {
-                // 이미 존재하는 가이드를 사용하여 크루 생성
-                final Guide finalGuide = guide;
-                kids.forEach(kid -> {
-                    Crew crew = new Crew(kid, finalGuide);
-                    crew.setEventRegisterDate(LocalDate.now());
-                    crewRepository.save(crew);
-                });
-            }
-        } else {
-            final Guide finalGuide = guide;
-            kids.forEach(kid -> {
-                Crew crew = new Crew(kid, finalGuide);
-                crew.setEventRegisterDate(LocalDate.now());
-            });
-        }
-    }
-
     @Override
     public void saveAll(Long memberId, Long eventId, PurchaseDTO purchaseDTO) {
         //        Purchase purchase = this.dtoToPurchaseEntity(purchaseDTO);
         //        이 맴버는 현재 세션에 있는 맴버아이디
         Member member = memberRepository.findById(memberId).get();
         Event event = eventRepository.findById(eventId).get();
-        Coupon coupon = new Coupon(purchaseDTO.getCouponType(), purchaseDTO.getCouponStatus(), purchaseDTO.getCouponPrice(), member);
         Purchase purchase1 = new Purchase(purchaseDTO.getPurchaseCount(), purchaseDTO.getPurchasePrice(), event, member);
         purchaseRepository.save(purchase1);
-        Guide guide = guidRepository.findFirstByEventIdAndAvailableTypeOrderById(eventId, GuideAvailableType.AVAILABLE);
-        if (guide == null) {
-            Guide newGuide = new Guide(event, event.getCompany());
-            guidRepository.save(newGuide);
-        }
         List<Kid> kids = purchaseDTO.getKids().stream()
                 .map(kidDTO -> kidRepository.findById(kidDTO.getId()).get())
                 .collect(Collectors.toList());
         log.info("purchaseDTO 입니다 ~~~~~~~~~~~~~ : " + purchaseDTO);
         log.info("Kids들 입니다 ~~~~~~~~~~~~ : " + kids);
-        processPayment(memberId, eventId, kids);
+        processPayment(memberId, eventId, kids, purchaseDTO.getEventRegisterDate());
     }
+
+
+
+    public void processPayment(Long memberId, Long eventId, List<Kid> kids, String eventRegisterDate) {
+//        이벤트와 컴퍼니는 없을수가없다.
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("이벤트를 찾을 수 없습니다."));
+        Member company = memberRepository.findById(memberId).get();
+        LocalDate localDate = LocalDate.parse(eventRegisterDate);
+
+        // 가장 최근 가이드 하나 가져오기
+        Guide guide = guidRepository.findFirstByEventIdAndAvailableTypeOrderById(eventId, GuideAvailableType.AVAILABLE);
+        // 가이드가 없다면 새로운 가이드 생성
+        if (guide == null) {
+            guide = new Guide(event, company);
+            guide = guidRepository.save(guide);
+            log.info("가이드가 없을 때 생기는 guide: " + guide);
+        }
+        
+        if (guide.getCrews() == null) {
+            guide.setCrews(new ArrayList<>());
+        }
+        log.info("내가 가져온 가이드의 크루들: " + guide.getCrews().size());
+        log.info("크루 생성전 가이드 : " + guide);
+        log.info("내가 가져온 Kids" + kids);
+        // 크루가 없다면 크루 생성
+//        if (guide.getCrews() == null || guide.getCrews().isEmpty()) {
+//            final Guide finalGuide = guide;
+//            kids.forEach(kid -> {
+//                Crew crew = new Crew(kid, finalGuide);
+//                crew.setEventRegisterDate(localDate);
+//                Crew savedCrew = crewRepository.save(crew);
+//                log.info("크루가 없을 때 크루가 세이브 되는 곳: " + savedCrew);
+//            });
+//        }
+
+        if (guide.getCrews().size() + kids.size() < 10) {
+            final Guide finalGuide = guide;
+            kids.forEach(kid -> {
+                Crew crew = new Crew(kid, finalGuide);
+                crew.setEventRegisterDate(localDate);
+                Crew savedCrew = crewRepository.save(crew);
+                log.info("크루가 없을 때 크루가 세이브 되는 곳: " + savedCrew);
+            });
+        }
+
+        // 현재 들어온 아이들 수와 남아있는 가이드의 아이들 수를 합친 결과가 10보다 크거나 같다면
+        log.info("가이드가 가지고있는 크루의 사이즈는 : " + guide.getCrews().size());
+        log.info("지금 신청한 애들의 사이즈는  : " + guide.getCrews().size());
+        if (guide.getCrews().size() + kids.size() > 10) {
+            // 새로운 가이드 가져오기
+            Guide newGuide = guidRepository.findFirstByEventIdAndAvailableTypeOrderById(eventId, GuideAvailableType.AVAILABLE);
+            log.info("10명이 넘어갔을떄 새로운 가이드를 가져오는 겁니다" + newGuide);
+            if (newGuide == null) {
+                Guide guide1 = new Guide(event, company);
+                Guide savedGuide = guidRepository.save(guide1);
+                log.info("save가 되는중?");
+                kids.forEach(kid -> {
+                    Crew crew = new Crew(kid, savedGuide);
+                    crew.setEventRegisterDate(LocalDate.now());
+                    crewRepository.save(crew);
+                });
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
 
     @Override
     public Long findMemberByIdWithCount(Long memberId) {
