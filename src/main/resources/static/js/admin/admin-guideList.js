@@ -355,13 +355,13 @@ function showList(guideDTOS) {
 								<span>흥미카테고리</span>
 								<p class="guide-interest-category">${guideInterestCategory}</p>
 							</li>
-<!--							<li class="content-list">-->
-<!--								<span>증명서류</span>-->
-<!--								<div class="guide-file">${guide.memberFileOriginalName}</div>-->
-<!--								<input class="filePath" style="visibility: hidden" value="${guide.memberFilePath}">-->
-<!--								<input class="fileUUID" style="visibility: hidden" value="${guide.memberFileUUID}">-->
-<!--								<input class="fileOriginalName" style="visibility: hidden" value="${guide.memberFileOriginalName}">-->
-<!--							</li>-->
+							<li class="content-list">
+								<span>증명서류</span>
+								<div class="guide-file">${guide.memberFileOriginalName}</div>
+								<input class="filePath" style="visibility: hidden" value="${guide.memberFilePath}">
+								<input class="fileUUID" style="visibility: hidden" value="${guide.memberFileUUID}">
+								<input class="fileOriginalName" style="visibility: hidden" value="${guide.memberFileOriginalName}">
+							</li>
 						</ul>
 						<div class="update-box">
 							<button type="button" class="update-button deny">승인취소</button>

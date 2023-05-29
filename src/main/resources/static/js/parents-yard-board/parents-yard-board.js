@@ -75,7 +75,7 @@ $("#filter-select").on("change", function () {
 
 
 // 동한 버전
-$("form[name='search-form']").on("submit", function (e) {
+$(".go-search-btn").on("click", function (e) {
     e.preventDefault();
     let val;
     let searchSelected = $(".filter-for-serach").val();
@@ -86,7 +86,7 @@ $("form[name='search-form']").on("submit", function (e) {
 
     if (searchSelected === "title") {
         parentsBoardSearch.searchTitle = val;
-        parentsBoardSearch.searchContent = "null";
+        parentsBoardSearch.searchContent = null;
     } else if (searchSelected === "titleContents") {
         parentsBoardSearch.searchContent = val;
         parentsBoardSearch.searchTitle = val;

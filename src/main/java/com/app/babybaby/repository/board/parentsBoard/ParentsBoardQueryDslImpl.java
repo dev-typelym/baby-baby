@@ -60,7 +60,12 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
 
                 .orderBy(parentsBoard.id.desc())
 //                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
-                .where(searchAll, categoryType)
+                .where(
+                        (searchTitle != null && searchContent != null)
+                                ? searchAll
+                                : searchTitle.or(searchContent),
+                        categoryType
+                )
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -68,7 +73,12 @@ public class ParentsBoardQueryDslImpl implements ParentsBoardQueryDsl {
         Long count = query.select(parentsBoard.count())
                 .from(parentsBoard)
 //                .where(createBooleanExpression(parentsBoardSearch)/*, createTextSearchOption(parentsBoardSearch)*/)
-                .where(searchAll, categoryType)
+                .where(
+                        (searchTitle != null && searchContent != null)
+                                ? searchAll
+                                : searchTitle.or(searchContent),
+                        categoryType
+                )
                 .fetchOne();
         log.info("asdsadasdd" + foundParentsBoard);
         return new PageImpl<>(foundParentsBoard, pageable, count);

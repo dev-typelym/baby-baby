@@ -49,6 +49,7 @@ public interface ParentsBoardService {
                 .id(parentsBoard.getId())
                 .eventTitle(parentsBoard.getEvent().getBoardTitle())
                 .eventCategory(parentsBoard.getEvent().getCategory())
+                .memberId(parentsBoard.getMember().getId())
                 .memberNickname(parentsBoard.getMember().getMemberNickname())
                 .parentsBoardContent(parentsBoard.getBoardContent())
                 .parentsBoardTitle(parentsBoard.getBoardTitle())

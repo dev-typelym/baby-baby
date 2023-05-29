@@ -26,6 +26,7 @@ public class ParentsBoardDTO {
     private Long id;
     private String eventTitle;
     private String memberNickname;
+    private Long memberId;
     private CategoryType eventCategory;
     private Long eventId;
     private String parentsBoardContent;
@@ -43,9 +44,10 @@ public class ParentsBoardDTO {
     private LocalDate parentsBoardRegisterDateType;
     private LocalDate parentsBoardUpdateDateType;
     @Builder
-    public ParentsBoardDTO(Long id, String eventTitle, String memberNickname, CategoryType eventCategory, Long eventId, String parentsBoardContent, String parentsBoardTitle, String memberProfileUUID, String memberProfilePath, String memberProfileOriginalName, LocalDateTime parentsBoardRegisterDate, LocalDateTime parentsBoardUpdateDate, String representFileOriginName, String representFilePath, String representFileUUID, List<ParentsBoardFileDTO> parentsBoardFileDTOS, List<ParentsBoardReplyDTO> parentsBoardReplyDTOS, LocalDate parentsBoardRegisterDateType, LocalDate parentsBoardUpdateDateType) {
+    public ParentsBoardDTO(Long id, String eventTitle, String memberNickname, Long memberId, CategoryType eventCategory, Long eventId, String parentsBoardContent, String parentsBoardTitle, String memberProfileUUID, String memberProfilePath, String memberProfileOriginalName, LocalDateTime parentsBoardRegisterDate, LocalDateTime parentsBoardUpdateDate, String representFileOriginName, String representFilePath, String representFileUUID, List<ParentsBoardFileDTO> parentsBoardFileDTOS, List<ParentsBoardReplyDTO> parentsBoardReplyDTOS, LocalDate parentsBoardRegisterDateType, LocalDate parentsBoardUpdateDateType) {
         this.id = id;
         this.eventTitle = eventTitle;
+        this.memberId = memberId;
         this.memberNickname = memberNickname;
         this.eventCategory = eventCategory;
         this.eventId = eventId;
