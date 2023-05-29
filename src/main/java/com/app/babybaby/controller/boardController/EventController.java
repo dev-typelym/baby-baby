@@ -53,7 +53,10 @@ public class EventController {
 //                                     @PageableDefault(size = 10) Pageable pageable) {
 //        return eventService.findEventListWithPaging(eventBoardSearch, pageable);
 //    }
-
+    @GetMapping("api")
+    public String getEventApi(){
+        return "play/event-open-api";
+    }
     /*test 용 */
 
 
