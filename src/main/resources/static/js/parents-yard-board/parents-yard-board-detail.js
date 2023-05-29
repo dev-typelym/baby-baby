@@ -415,13 +415,13 @@ function showReplyList(data) {
                                     <div class="comment-info">
                                        <img src="/eventFiles/display?fileName=/Member/Profile/${e.memberFilePath}/${e.memberFileUUID}_${e.memberFileOriginalName}">
                                         <span class="name">${e.memberNickName}</span>
-                                        <button class="comment-util" onclick="showList(this)"></button>
+                                        <button class="comment-util" onclick="showList(this)" style="${e.memberId === sessionId ? '' : 'display: none;'}"></button>
                                         <ul class="comment-util-list">
                                             <li>
                                                 <button type="button" class="modify-button">수정</button>
                                             </li>
                                             <li>
-                                                <button  type="button" class="delete-reply" data-reply-id="${e.id}">삭제</button>
+                                                <button type="button" class="delete-reply" data-reply-id="${e.id}">삭제</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -439,6 +439,8 @@ function showReplyList(data) {
                         </ul> `
         ;
         $('.comment-list').append(text);
+        console.log("댓글 쓴사람 아이디 : " + e.id)
+        console.log("세션 아이디" + sessionId)
     });
     console.log("=============page append 후===============")
     console.log(globalThis.page);
