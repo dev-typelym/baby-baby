@@ -564,6 +564,7 @@ div.search input:focus {
 .for-price-wrap {
     display: flex;
     flex-direction: column;
+    width: 190px;
 }
 
 .for-price-full-contain {
