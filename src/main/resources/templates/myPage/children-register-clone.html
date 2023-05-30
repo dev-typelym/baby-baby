@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="/images/myPage/favicon.png">
 </head>
 <body>
-<div th:insert="~{/components/header:: header}"></div>
+<div th:insert="~{components/header:: header}"></div>
 <form th:action="@{/mypage/kid/register}" method="post" th:object="${kid}">
   <input type="hidden" name="parent" th:field="*{parent}">
   <div
@@ -123,7 +123,7 @@
     </div>
   </div>
 </form>
-<div th:insert="~{/components/footer:: footer}"></div>
+<div th:insert="~{components/footer:: footer}"></div>
 <!-- test -->
 <!-- HTML 코드 -->
 </body>
