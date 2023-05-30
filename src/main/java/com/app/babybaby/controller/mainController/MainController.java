@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,12 @@ public class MainController {
 
     private final MemberService memberService;
     private final HttpSession session;
+
+
+    @GetMapping("")
+    public RedirectView goToMainRedirect(){
+        return new RedirectView("main");
+    }
 
     @GetMapping("main")
     public String goToMain(@AuthenticationPrincipal UserDetail userDetail){
