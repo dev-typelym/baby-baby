@@ -165,7 +165,7 @@ public class NowKidsController {
         List<MemberDTO> memberDTOS = nowKidsService.find8AuthorDesc();
         log.info("내가 가져온 맴버들 : " + memberDTOS);
         model.addAttribute("memberDTOS", memberDTOS);
-        return "/nowKids/now-kids-list";
+        return "nowKids/now-kids-list";
     }
 
     /* 최신순 프로필 가져오기*/

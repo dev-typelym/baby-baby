@@ -87,7 +87,7 @@ public class ReviewController {
     public String goParentsBoardDetail(@PathVariable Long id, Model model) {
         log.info("===-=--=-=-=-=-=-=-= 드러옴" + reviewService.getReviewBoardDetail(id));
         model.addAttribute("review", reviewService.getReviewBoardDetail(id));
-        return "/review-board/review-board-detail";
+        return "review-board/review-board-detail";
     }
 
     //    상세보기 안에 카테고리 최신글 2개 가져오기

@@ -47,7 +47,7 @@ public class MemberController {
     /* 회원 가입 페이지 이동*/
     @GetMapping("join/general")
     public String gotoJoinForm_general(MemberDTO memberDTO) {
-        return "/member/join";
+        return "member/join";
     }
     /* 회원 가입 페이지 이동*/
     @GetMapping("join/company")
@@ -77,13 +77,13 @@ public class MemberController {
     /* 비밀번호 찾기 페이지 */
     @GetMapping("find-password")
     public String findPassword() {
-        return "/member/find-password";
+        return "member/find-password";
     }
 
     /* 아이디 찾기 페이지 */
     @GetMapping("find-id")
     public String findId(){
-        return "/member/find-id";
+        return "member/find-id";
     }
 
 //    /* 비밀번호 재설정 페이지 */
@@ -116,7 +116,7 @@ public class MemberController {
         }
         log.info("model: " + model.getAttribute("errorMessage"));
 
-        return "/member/password-change";
+        return "member/password-change";
     }
 
     /* ****************************** 멤버 로그인 / 회원 가입 끝 *************************************************** */
@@ -130,12 +130,12 @@ public class MemberController {
 
     @GetMapping("/details/companies/{memberId}")
     public String goCompany(@PathVariable Long memberId){
-        return "/member-detail/company-detail";
+        return "member-detail/company-detail";
     }
 
     @GetMapping("/details/generals/{memberId}")
     public String goUser(@PathVariable Long memberId){
-        return "/member-detail/member-detail";
+        return "member-detail/member-detail";
     }
 
     @PostMapping("details/companies/{memberId}")
