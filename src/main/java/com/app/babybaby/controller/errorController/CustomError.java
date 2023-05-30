@@ -21,11 +21,11 @@ public class CustomError implements ErrorController {
             int code = Integer.valueOf(status.toString());
             log.info("{}========",code);
             if(code == HttpStatus.NOT_FOUND.value()){
-                return "/error/404";
+                return "error/404";
             }else if(code == HttpStatus.UNAUTHORIZED.value()){
-                return "/error/401";
+                return "error/401";
             }else if(code == HttpStatus.FORBIDDEN.value()){
-                return "/error/403";
+                return "error/403";
             }
         }
         return "/error/500";

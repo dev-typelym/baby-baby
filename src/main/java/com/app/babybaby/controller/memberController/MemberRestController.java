@@ -95,7 +95,7 @@ public class MemberRestController {
     @ResponseBody
     public List<String> uploadP (@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
         List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/Member/Profile/" + getPath();
+        String path = "/C:/upload/Member/Profile/" + getPath();
         log.info("path는 " + path);
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
@@ -110,7 +110,7 @@ public class MemberRestController {
     @GetMapping("display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        return FileCopyUtils.copyToByteArray(new File("/C:/upload", fileName));
     }
 
 

@@ -12,6 +12,6 @@ public class ServicePreparingController {
 
     @GetMapping("service-preparing")
     public String handlePreparingPage(){
-        return "/error/service-preparing";
+        return "error/service-preparing";
     }
 }

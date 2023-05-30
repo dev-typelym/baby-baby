@@ -82,7 +82,7 @@ public class ParentsBoardController {
         model.addAttribute("parentsBoard", parentsBoardService.getParentsBoardDetail(id));
         model.addAttribute("member", parentsBoardService.getParentsBoardDetail(id));
         log.info("페어런트 보드입니다 : " + parentsBoardService.getParentsBoardDetail(id).toString());
-        return "/parents-yard-board/parents-yard-board-detail";
+        return "parents-yard-board/parents-yard-board-detail";
     }
 
 //    상세보기 안에 카테고리 최신글 2개 가져오기
