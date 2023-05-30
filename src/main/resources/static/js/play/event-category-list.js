@@ -186,7 +186,7 @@ boardService.getList(function(eventListDTO) {
 
 
 $(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == Math.floor($(document).height() * 0.9)) {
+    if(Math.ceil($(window).scrollTop() + $(window).height()) == Math.floor($(document).height() * 0.9)) {
         page++;
         boardService.getList(appendList);
         bindLikeButtonClickEvent()
