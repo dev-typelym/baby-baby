@@ -22,7 +22,7 @@ public class ReviewFileController {
     @ResponseBody
     public List<String> uploadP (@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
         List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/Review/" + getPath();
+        String path = "/C:/upload/Review/" + getPath();
         log.info("path는 " + path);
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
@@ -37,7 +37,7 @@ public class ReviewFileController {
     @GetMapping("display")
     @ResponseBody
     public byte[] display(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+        return FileCopyUtils.copyToByteArray(new File("/C:/upload", fileName));
     }
 
 
