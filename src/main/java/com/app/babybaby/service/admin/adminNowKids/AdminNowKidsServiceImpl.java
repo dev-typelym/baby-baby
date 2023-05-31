@@ -11,6 +11,7 @@ import com.app.babybaby.repository.member.member.MemberRepository;
 import com.app.babybaby.search.admin.AdminEventSearch;
 import com.app.babybaby.type.CategoryType;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 @Transactional
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AdminNowKidsServiceImpl implements AdminNowKidsService {
 
 
@@ -55,13 +57,16 @@ public class AdminNowKidsServiceImpl implements AdminNowKidsService {
             Long guidId = nowkids.getGuide().getId(); // 각 nowkids 객체의 guidId 필드에 접근
             Long eventId = nowkids.getEvent().getId(); // 각 nowkids 객체의 eventId 필드에 접근
 
+            log.info(guidId.toString());
+            log.info(eventId.toString());
             List<Kid>kidListOfList  = nowKidsRepository.findAllKidsByEventIdAndGuideId_QueryDsl(guidId, eventId);
             List<AdminKidDTO> adminKidDTOS = kidListOfList.stream()
                     .map(this::toAdminKidDTO)
                     .collect(Collectors.toList());
             adminNowKidsDTOS.stream().forEach(adminNowKidsDTO -> adminNowKidsDTO.setAdminKidDTOS(adminKidDTOS));
-        }
 
+        }
+        log.info(adminNowKidsDTOS.toString());
         return new PageImpl<>(adminNowKidsDTOS, nowKids.getPageable(), nowKids.getTotalElements());
     }
 

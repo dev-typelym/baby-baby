@@ -1,15 +1,15 @@
 package com.app.babybaby.repository.board.nowKids;
 
-import com.app.babybaby.entity.board.QBoardInfo;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.event.QEvent;
 import com.app.babybaby.entity.board.nowKids.NowKids;
 import com.app.babybaby.entity.board.nowKids.QNowKids;
 import com.app.babybaby.entity.calendar.QCalendar;
-import com.app.babybaby.entity.file.File;
 import com.app.babybaby.entity.file.nowKidsFile.NowKidsFile;
-import com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile;
-import com.app.babybaby.entity.member.*;
+import com.app.babybaby.entity.member.Kid;
+import com.app.babybaby.entity.member.Member;
+import com.app.babybaby.entity.member.QGuide;
+import com.app.babybaby.entity.member.QKid;
 import com.app.babybaby.search.admin.AdminEventSearch;
 import com.app.babybaby.type.CategoryType;
 import com.querydsl.core.BooleanBuilder;
@@ -21,6 +21,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,6 @@ import static com.app.babybaby.entity.file.nowKidsFile.QNowKidsFile.nowKidsFile;
 import static com.app.babybaby.entity.member.QCrew.crew;
 import static com.app.babybaby.entity.member.QGuide.guide;
 import static com.app.babybaby.entity.member.QKid.kid;
-import static com.app.babybaby.entity.member.QMember.member;
 
 @RequiredArgsConstructor
 public class NowKidsQueryDslImpl implements NowKidsQueryDsl {
@@ -290,6 +290,16 @@ public Page<NowKids> findNowKidsEvents_queryDSL(Pageable pageable, AdminEventSea
         query.delete(nowKids)
                 .where(nowKids.id.in(nowkidsIds))
                 .execute();
+    }
+
+
+    @Override
+    public LocalDate findParticipateDate_queryDSL(Long kidId) {
+        return query.select(crew.eventRegisterDate)
+                .from(crew)
+                .join(crew.kid)
+                .where(crew.kid.id.eq(kidId))
+                .fetchOne();
     }
 
 }

@@ -21,7 +21,7 @@ spring:
       #create-drop: DROP 후 CREATE 후 DROP, DML을 사용하지 않는 다면 DROP되지 않음
       #update: Entity와 DB 스키마 비교 후 수정 사항 반영(컬럼 추가)
       #validate: Entity와 DB 스키마 비교(다르면 예외 발생)
-      ddl-auto: update
+      ddl-auto: validate
 
     #jpa format
     properties:
@@ -59,7 +59,7 @@ spring:
             client-name: Naver
             client-id: mmwkeUCk_aGZ5CRwz2zI
             client-secret: hhahl19XKJ
-            redirect-uri: http://localhost:10000/login/oauth2/code/naver
+            redirect-uri: http://baby-baby.store/login/oauth2/code/naver
             authorization-grant-type: authorization_code
             scope: name,email,mobile,nickname
 
@@ -67,7 +67,7 @@ spring:
           kakao:
             client-id: 0c8cc08d9f8f4ef0430dfbdb6bb7b2c7
             client-secret: Zj7d2o5LVvPHy9JT8C8WyfPIF6kqD8MR
-            redirect-uri: http://localhost:10000/login/oauth2/code/kakao
+            redirect-uri: http://baby-baby.store/login/oauth2/code/kakao
             client-authentication-method: POST
             authorization-grant-type: authorization_code
             scope: account_email

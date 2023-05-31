@@ -247,7 +247,7 @@
                         <div class="company_info">
                             <div style="padding: 16px">
                                 <div class="flex_rela">
-                                    <a class="company_name_wrap">
+                                    <a class="company_name_wrap" th:href="@{/member/details/{memberId}(memberId=${eventDTO.memberId})}">
                                         <div class="wadiz_icon">
                                                 <span
                                                         class="wadiz_icon_span">
@@ -259,7 +259,7 @@
                                                   th:text="${eventDTO.memberNickname}">회사 명</span>
                                         </div>
                                     </a>
-                                    <a class="bulk_purchase">
+                                    <a class="bulk_purchase" th:href="@{/member/details/{memberId}(memberId=${eventDTO.memberId})}">
                                             <span class="camping_div_second_span">
                                                 <svg
                                                         viewbox="0 0 40 40"
@@ -516,8 +516,8 @@
                             </div>
                             <div class="company_info">
                                 <div style="padding: 16px">
-                                    <div class="flex_rela">
-                                        <a class="company_name_wrap">
+                                    <div class="flex_rela" th:onclick="@{/member/details/{memberId}(memberId=${eventDTO.memberId})}">
+                                        <a class="company_name_wrap" th:href="@{/member/details/{memberId}(memberId=${eventDTO.memberId})}">
                                             <div class="wadiz_icon">
                                                     <span
                                                             class="wadiz_icon_span"
@@ -530,7 +530,7 @@
                                                       th:text="${eventDTO.memberNickname}">회사 명</span>
                                             </div>
                                         </a>
-                                        <a class="bulk_purchase">
+                                        <a class="bulk_purchase" th:href="@{/member/details/{memberId}(memberId=${eventDTO.memberId})}">
                                                 <span class="camping_div_second_span">
                                                     <svg
                                                             viewbox="0 0 40 40"
@@ -1560,7 +1560,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script
         type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e010e1c47083a81e5873ca2682380a56&libraries=services"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b2f487d3d6dca365c1f21483be72a4c&libraries=services"
 ></script>
 <script th:inline="javascript">
     let eventDTO = [[${eventDTO}]];

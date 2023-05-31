@@ -2,16 +2,9 @@ package com.app.babybaby.repository.board.event;
 
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.board.event.QEvent;
-import com.app.babybaby.entity.board.parentsBoard.ParentsBoard;
 import com.app.babybaby.entity.guideSchedule.GuideSchedule;
-import com.app.babybaby.entity.guideSchedule.QGuideSchedule;
-import com.app.babybaby.entity.like.eventLike.QEventLike;
-import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
-import com.app.babybaby.entity.member.QMember;
-import com.app.babybaby.entity.purchase.coupon.QCoupon;
 import com.app.babybaby.entity.purchase.purchase.Purchase;
-import com.app.babybaby.entity.purchase.purchase.QPurchase;
 import com.app.babybaby.search.admin.AdminEventSearch;
 import com.app.babybaby.search.board.parentsBoard.EventBoardSearch;
 import com.app.babybaby.type.CategoryType;
@@ -21,18 +14,13 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.app.babybaby.entity.board.event.QEvent.event;
-import static com.app.babybaby.entity.board.nowKids.QNowKids.nowKids;
-import static com.app.babybaby.entity.board.parentsBoard.QParentsBoard.parentsBoard;
 import static com.app.babybaby.entity.guideSchedule.QGuideSchedule.guideSchedule;
-import static com.app.babybaby.entity.like.eventLike.QEventLike.eventLike;
-import static com.app.babybaby.entity.member.QMember.member;
 import static com.app.babybaby.entity.purchase.coupon.QCoupon.coupon;
 import static com.app.babybaby.entity.purchase.purchase.QPurchase.purchase;
 
@@ -44,7 +32,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
     //    이벤트 게시판 목록
     //    이벤트 게시판 검색 페이징
     @Override
-    public Slice<Event> findEventListWithPaging_QueryDSL(EventBoardSearch eventBoardSearch,Pageable pageable) {
+    public Slice<Event> findEventListWithPaging_QueryDSL(EventBoardSearch eventBoardSearch, Pageable pageable) {
         LocalDateTime currentTime = LocalDateTime.now();
         if(eventBoardSearch.getCategoryType() == CategoryType.ALL){
             eventBoardSearch.setCategoryType(null);
@@ -90,7 +78,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
 
 //    내가쓴 이벤트 게시글
     @Override
-    public Slice<Event> findMemberIdByEventListWithPaging_QueryDSL(Long memberId,Pageable pageable) {
+    public Slice<Event> findMemberIdByEventListWithPaging_QueryDSL(Long memberId, Pageable pageable) {
         List<Event> events = query.selectDistinct(event)
                 .from(event)
                 .where(event.company.id.eq(memberId))
@@ -142,7 +130,7 @@ public class EventQueryDslImpl implements EventQueryDsl {
 
     //    내 스케쥴 ㅋ
     @Override
-    public Slice<Event> findEventScheduleByMemberId_QueryDSL(Pageable pageable, Long memberId,LocalDateTime pickUpDate /*startDate*/) {
+    public Slice<Event> findEventScheduleByMemberId_QueryDSL(Pageable pageable, Long memberId, LocalDateTime pickUpDate /*startDate*/) {
 //        List<Event> events = query.selectDistinct(guideSchedule.event)
 //                .from(guideSchedule)
 //                .join(guideSchedule.event)
@@ -452,25 +440,16 @@ public class EventQueryDslImpl implements EventQueryDsl {
     }
 
     @Override
-    public Page<Event> findNowKidsEventsList_queryDSL(Pageable pageable, Long companyId) {
+    public List<Event> findNowKidsEventsList_queryDSL(Long companyId) {
         QEvent event = QEvent.event;
 
-        List<Event> foundEventForCompany =  query.select(event)
+        return query.select(event)
                 .from(event)
                 .join(event.company)
                 .fetchJoin()
                 .where(event.company.id.eq(companyId))
                 .orderBy(event.id.asc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
                 .fetch();
-
-        Long count = query.select(event.count())
-                .from(event)
-                .where(event.company.id.eq(companyId))
-                .fetchOne();
-
-        return new PageImpl<>(foundEventForCompany, pageable, count);
     }
 
 }

@@ -3,7 +3,6 @@ package com.app.babybaby.service.admin.adminAskService;
 
 import com.app.babybaby.domain.adminDTO.AdminAskDTO;
 import com.app.babybaby.entity.board.ask.Ask;
-import com.app.babybaby.entity.board.ask.AskAnswer;
 import com.app.babybaby.repository.board.ask.AskAnswerRepository;
 import com.app.babybaby.repository.board.ask.AskRepository;
 import com.app.babybaby.search.admin.AdminAskSearch;
