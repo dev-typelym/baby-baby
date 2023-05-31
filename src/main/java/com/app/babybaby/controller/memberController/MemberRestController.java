@@ -80,7 +80,7 @@ public class MemberRestController {
             mailDTO.setAddress(memberEmail);
             mailDTO.setTitle("[아기 자기]새 비밀 번호 설정 링크 입니다.");
 
-            String message = "비밀 번호 변경 링크 입니다.\n\n" + "링크: http://localhost:10000/member/change-password-request/" + memberEmail + "/" + randomKeyString;
+            String message = "비밀 번호 변경 링크 입니다.\n\n" + "링크: http://baby-baby.store/member/change-password-request/" + memberEmail + "/" + randomKeyString;
 
             mailDTO.setMessage(message);
 

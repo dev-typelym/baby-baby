@@ -1,7 +1,6 @@
 package com.app.babybaby.repository.board.event;
 
 import com.app.babybaby.entity.board.event.Event;
-import com.app.babybaby.entity.member.Kid;
 import com.app.babybaby.entity.member.Member;
 import com.app.babybaby.entity.purchase.purchase.Purchase;
 import com.app.babybaby.search.admin.AdminEventSearch;
@@ -17,7 +16,7 @@ import java.util.Optional;
 
 public interface EventQueryDsl {
     //    이벤트 게시판 목록(무한스크롤)
-    public Slice<Event> findEventListWithPaging_QueryDSL(EventBoardSearch eventBoardSearch,Pageable pageable);
+    public Slice<Event> findEventListWithPaging_QueryDSL(EventBoardSearch eventBoardSearch, Pageable pageable);
 //    내가쓴 이벤트 게시판 [기업]
     public Slice<Event> findMemberIdByEventListWithPaging_QueryDSL(Long memberId, Pageable pageable);
     //    이벤트 게시판 상세 페이지
@@ -70,6 +69,6 @@ public interface EventQueryDsl {
     public void deleteEventByIds_queryDSL(Long eventId);
 
     //   [관리자] 기업상세 이벤트 페이징 목록
-    public Page<Event> findNowKidsEventsList_queryDSL(Pageable pageable, Long companyId);
+    public List<Event> findNowKidsEventsList_queryDSL(Long companyId);
 
 }

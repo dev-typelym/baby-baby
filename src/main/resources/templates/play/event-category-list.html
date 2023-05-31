@@ -17,7 +17,7 @@
         />
     </head>
     <body>
-    <div th:insert="~{components/header:: header}"></div>
+    <div th:insert="~{/components/header:: header}"></div>
         <div id="page-container">
             <main id="main-app">
                 <div class="main-wrapper-content">
@@ -92,8 +92,8 @@
                                         <button>기타</button>
                                     </li>
 
-                                    <li class="introduce-all-events" value="">
-                                        <button>전국 체험학습 소개</button>
+                                    <li class="introduce-all-events" onclick="location.href='/event/api'">
+                                        <button>서울시 체험학습 소개</button>
                                     </li>
                                     <form name="search-form">
                                     <div class="search">
@@ -228,7 +228,7 @@
             </main>
         </div>
         <!-- page container -->
-    <div th:insert="~{components/footer:: footer}"></div>
+    <div th:insert="~{/components/footer:: footer}"></div>
     </body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="/js/components/header.js"></script>

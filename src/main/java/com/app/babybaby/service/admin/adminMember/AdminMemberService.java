@@ -1,6 +1,7 @@
 package com.app.babybaby.service.admin.adminMember;
 
 import com.app.babybaby.domain.adminDTO.AdminCompanyDetailDTO;
+import com.app.babybaby.domain.adminDTO.AdminEventDTO;
 import com.app.babybaby.domain.adminDTO.AdminMemberDTO;
 import com.app.babybaby.entity.board.event.Event;
 import com.app.babybaby.entity.member.Member;
@@ -115,6 +116,21 @@ public interface AdminMemberService {
                 .profileOriginalName(event.getCompany().getMemberProfileOriginalName())
                 .profilePath(event.getCompany().getMemberProfilePath())
                 .profileUUID(event.getCompany().getMemberProfileUUID())
+                .build();
+    }
+
+    default AdminEventDTO toAdminEventDTO(Event event){
+        return AdminEventDTO.builder()
+                .id(event.getId())
+                .memberName(event.getCompany().getMemberName())
+                .category(event.getCategory())
+                .boardTitle(event.getBoardTitle())
+                .eventAddress(event.getEventLocation().getAddress())
+                .eventAddressDetail(event.getEventLocation().getAddressDetail())
+                .eventAddressSubDetail(event.getEventLocation().getAddressSubDetail())
+                .startDate(event.getCalendar().getStartDate())
+                .endDate(event.getCalendar().getEndDate())
+                .eventRecruitCount(event.getEventRecruitCount())
                 .build();
     }
 }
