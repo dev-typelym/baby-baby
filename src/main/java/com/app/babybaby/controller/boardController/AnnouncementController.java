@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class AnnouncementController {
 
+    @GetMapping("announcement")
+    public void announcement(){}
+
     private final AdminAnnouncementService adminAnnouncementService;
 
     @GetMapping("announcement-list/{page}")

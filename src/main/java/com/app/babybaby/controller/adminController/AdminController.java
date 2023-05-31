@@ -55,6 +55,38 @@ public class AdminController {
     private final AnnouncementRepository announcementRepository;
     private final NowKidsRepository nowKidsRepository;
 
+    @GetMapping("admin-announcementList")
+    public void adminAnnouncementList(){}
+
+    @GetMapping("admin-askList")
+    public void askList(){}
+
+    @GetMapping("admin-companyList")
+    public void companyList(){}
+
+    @GetMapping("admin-eventList")
+    public void eventList(){}
+
+    @GetMapping("admin-guideList")
+    public void guideList(){}
+
+    @GetMapping("admin-memberList")
+    public void memberList(){}
+
+    @GetMapping("admin-nowKidsList")
+    public void nowKidsList(){}
+
+    @GetMapping("admin-parentsBoardList")
+    public void parentsBoardList(){}
+
+    @GetMapping("admin-parentsBoardReplyList")
+    public void parentsBoardReplyList(){}
+
+    @GetMapping("admin-reviewList")
+    public void reviewList(){}
+
+    @GetMapping("admin-reviewReplyList")
+    public void reviewReplyList(){}
 
     //    회원 목록
     @GetMapping("memberList/{page}")

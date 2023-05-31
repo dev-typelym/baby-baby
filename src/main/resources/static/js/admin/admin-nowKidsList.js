@@ -508,20 +508,20 @@ function showList(nowKidsDTOS) {
 									<!-- <td class="event-status hold">대기</td>
 									<td class="event-status end">종료</td>-->
 									<td class="event-status" style="color: ${eventStatusColor}">${changeEventStatus}</td> 
-									<td class="event-guide maker_up_button">
-										<svg
-										viewbox="0 0 32 32"
-										focusable="false"
-										role="presentation"
-										class="maker_svg"
-										aria-hidden="true"
-										style="width: 12px;"
-										>
-										<path
-											d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"
-										></path>
-										</svg>
-									</td>
+<!--									<td class="event-guide maker_up_button">-->
+<!--										<svg-->
+<!--										viewbox="0 0 32 32"-->
+<!--										focusable="false"-->
+<!--										role="presentation"-->
+<!--										class="maker_svg"-->
+<!--										aria-hidden="true"-->
+<!--										style="width: 12px;"-->
+<!--										>-->
+<!--										<path-->
+<!--											d="M16 22.4L5.6 12l1.12-1.12L16 20.16l9.28-9.28L26.4 12 16 22.4z"-->
+<!--										></path>-->
+<!--										</svg>-->
+<!--									</td>-->
 								</tr>
 								<tr class="crew-table" style="display: none;">
 									<td colspan="7" style="padding: 15px;">

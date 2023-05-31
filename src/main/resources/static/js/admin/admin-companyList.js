@@ -176,7 +176,7 @@ function showList(companyDTOS) {
     companyDTOS.forEach(company => {
         content +=
             `
-               <tr class="row" onclick="openModal(${company.id}, event)">
+               <tr class="no-hover-row" >
                     <td class="no-modal">
                     <input type="checkbox" name="check">
                     </td>
