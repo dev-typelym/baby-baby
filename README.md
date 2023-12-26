@@ -24,7 +24,7 @@
 
 
 ### 🛠️프로젝트 사용 툴
-<img width="1160" alt="스크린샷 2022-12-27 오전 12 23 33" src="https://github.com/dev-typelym/baby-baby/assets/122762472/f80528c9-205d-4fa1-8342-bc22966a6b25" style = "width: 45%; height : 45%">
+<img width="1160" alt="스크린샷 2022-12-27 오전 12 23 33" src="https://github.com/dev-typelym/baby-baby/assets/122762472/d82ba185-03e3-44df-9ac5-41a9ec34ba7c" style = "width: 45%; height : 45%">
 
 ----------------------------------------------------------------------------------------------------------------------
 
@@ -85,7 +85,7 @@ Back-end<br>
 
 ### DB - ERD
 
-![neighbor-erd](https://user-images.githubusercontent.com/122762452/231799781-6b4e9a7b-cfa2-4137-896b-1ff217414e38.png)
+![neighbor-erd](https://github.com/dev-typelym/baby-baby/assets/122762472/5e384f34-a28b-4571-b48f-8df36f00cf45)
 
 ----------------------------------------------------------------------------------------------------------------------
   
